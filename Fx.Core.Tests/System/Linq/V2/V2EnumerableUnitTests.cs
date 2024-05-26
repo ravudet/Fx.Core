@@ -275,7 +275,7 @@ namespace System.Linq.V2
         }
 
         /// <summary>
-        /// Averages a sequence by projecting the elements to int32
+        /// Averages a sequence by projecting the elements to <see cref="Int32"/>
         /// </summary>
         [TestMethod]
         public void AverageUsingInt32()
@@ -284,6 +284,81 @@ namespace System.Linq.V2
             var enumerable = new AverageableMock();
 
             Assert.AreEqual(4, enumerable.AsV2Enumerable().Average(selector));
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average(selector));
+        }
+
+        /// <summary>
+        /// Averages a sequence by projecting the elements to <see cref="Int64"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageUsingInt64()
+        {
+        }
+
+        /// <summary>
+        /// Averages a sequence by projecting the elements to <see cref="Nullable{Double}"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageUsingNullableDouble()
+        {
+        }
+
+        /// <summary>
+        /// Averages a sequence by projecting the elements to <see cref="Single"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageUsingSingle()
+        {
+        }
+
+        /// <summary>
+        /// Averages a sequence by projecting the elements to <see cref="Nullable{Int64}"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageUsingNullableInt64()
+        {
+        }
+
+        /// <summary>
+        /// Averages a sequence by projecting the elements to <see cref="Nullable{Single}"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageUsingNullableSingle()
+        {
+        }
+
+        /// <summary>
+        /// Averages a sequence by projecting the elements to <see cref="Double"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageUsingDouble()
+        {
+        }
+
+        /// <summary>
+        /// Averages a sequence by projecting the elements to <see cref="Nullable{Int32}"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageUsingNullableInt32()
+        {
+        }
+
+        /// <summary>
+        /// Averages a sequence by projecting the elements to <see cref="Decimal"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageUsingDecimal()
+        {
+        }
+
+        /// <summary>
+        /// Averages a sequence by projecting the elements to <see cref="Nullable{Decimal}"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageUsingNullableDecimal()
+        {
         }
 
         private sealed class AverageableMock : IAverageableMixin<string>
