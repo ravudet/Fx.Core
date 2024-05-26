@@ -7,42 +7,54 @@ namespace System.Linq.V2
     [TestClass]
     public class V2EnumerableUnitTests
     {
-        private const string uniqueTestValue1 = "2962B9CA-A5AF-466A-93EE-201EA84741CF";
-
-        private const string uniqueTestValue2 = "A17B205B-C92A-4EEE-9FCF-37429FCE3754";
-
-        private const string uniqueTestValue3 = "140E488A-01F3-495C-B0A7-BE732C52F13F";
-
         //// TODO should you remove iv2 : iv1? that way no one accidentally escapes back to v1?
         //// TODO you skpped the adapter methods (tov2enumerable, tov2lookup, etc.)
 
         [TestMethod]
         public void Aggregate()
         {
-            var enumerable = new AggregateMock();
-            var aggregated = enumerable.Aggregate((_, _) => uniqueTestValue1);
-            Assert.AreEqual(uniqueTestValue1, aggregated);
+            Func<string, string, string> func = (_, _) => "asdf";
+            var enumerable = new AggregatableMock();
+
+            var aggregated = enumerable.Aggregate(func);
+            Assert.AreEqual("asdf", aggregated);
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Aggregate(func));
         }
 
         [TestMethod]
         public void AggregateWithSeed()
         {
-            var enumerable = new AggregateMock();
-            var aggregated = enumerable.Aggregate(uniqueTestValue1 , (accumulate, _) => $"{accumulate}{uniqueTestValue2}");
-            Assert.AreEqual($"{uniqueTestValue1}{uniqueTestValue2}", aggregated);
+            var seed = "asdf";
+            Func<string, string, string> func = (_, _) => "qwer";
+            var enumerable = new AggregatableMock();
+
+            var aggregated = enumerable.Aggregate(seed, func);
+            Assert.AreEqual("qwer", aggregated);
+
+            // make sure v1 has different behavior
+            Assert.AreEqual("asdf", enumerable.AsEnumerable().Aggregate(seed, func));
         }
 
         [TestMethod]
         public void AggregateWithSeedAndResultSelector()
         {
-            var enumerable = new AggregateMock();
-            var aggregated = enumerable.Aggregate(uniqueTestValue1, (accumulate, _) => $"{accumulate}{uniqueTestValue2}", accumulate => $"{accumulate}{uniqueTestValue3}");
-            Assert.AreEqual($"{uniqueTestValue1}{uniqueTestValue2}{uniqueTestValue3}", aggregated);
+            var seed = "asdf";
+            Func<string, string, string> func = (_, _) => "qwer";
+            Func<string, string> resultSelector = _ => _;
+            var enumerable = new AggregatableMock();
+
+            var aggregated = enumerable.Aggregate(seed, func, resultSelector);
+            Assert.AreEqual("qwer", aggregated);
+
+            // make sure v1 has different behavior
+            Assert.AreEqual("asdf", enumerable.AsEnumerable().Aggregate(seed, func, resultSelector));
         }
 
-        private sealed class AggregateMock : IAggregatableMixin<string>
+        private sealed class AggregatableMock : IAggregatableMixin<string>
         {
-            public AggregateMock()
+            public AggregatableMock()
             {
             }
             public string Aggregate(Func<string, string, string> func)
@@ -71,6 +83,24 @@ namespace System.Linq.V2
             IEnumerator IEnumerable.GetEnumerator()
             {
                 return this.GetEnumerator();
+            }
+        }
+
+        [TestMethod]
+        public void All()
+        {
+        }
+
+        private sealed class AllableMock : IAllableMixin<string>
+        {
+            public IEnumerator<string> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
             }
         }
     }
