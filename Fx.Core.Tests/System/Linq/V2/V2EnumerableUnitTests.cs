@@ -3,6 +3,7 @@ namespace System.Linq.V2
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     [TestClass]
     public class V2EnumerableUnitTests
@@ -89,18 +90,38 @@ namespace System.Linq.V2
         [TestMethod]
         public void All()
         {
+            var called = false;
+            Func<string, bool> predicate = _ => called = !called;
+            var enumerable = new AllableMock();
+
+            Assert.AreEqual(false, enumerable.All(predicate));
+            Assert.AreEqual(true, called);
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(true, enumerable.AsEnumerable().All(predicate));
+            Assert.AreEqual(true, called); // v1 won't actually call the predicate, so 'called' remains unchanged
         }
 
         private sealed class AllableMock : IAllableMixin<string>
         {
+            public AllableMock()
+            {
+            }
+
+            public bool All(Func<string, bool> predicate)
+            {
+                predicate(string.Empty);
+                return false;
+            }
+
             public IEnumerator<string> GetEnumerator()
             {
-                throw new NotImplementedException();
+                yield break;
             }
 
             IEnumerator IEnumerable.GetEnumerator()
             {
-                throw new NotImplementedException();
+                return this.GetEnumerator();
             }
         }
     }
