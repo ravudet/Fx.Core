@@ -6,8 +6,4 @@
     <RootNamespace />
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="System\Linq\Expressions\" />
-  </ItemGroup>
-
 </Project>
