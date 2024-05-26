@@ -196,5 +196,42 @@ namespace System.Linq.V2
                 return this.GetEnumerator();
             }
         }
+
+        /// <summary>
+        /// Appends an element to a sequence
+        /// </summary>
+        [TestMethod]
+        public void Append()
+        {
+            var element = "asdf";
+            var enumerable = new AppendableMock();
+
+            CollectionAssert.AreEqual(new[] { "asdf", "asdf" }, enumerable.Append(element).ToList());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(new[] { "asdf" }, enumerable.AsEnumerable().Append(element).ToList());
+        }
+
+        private sealed class AppendableMock : IAppendableMixin<string>
+        {
+            public AppendableMock()
+            {
+            }
+
+            public IV2Enumerable<string> Append(string element)
+            {
+                return new[] { element, element }.ToV2Enumerable();
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
     }
 }
