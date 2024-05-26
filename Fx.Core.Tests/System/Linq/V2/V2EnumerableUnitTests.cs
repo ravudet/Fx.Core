@@ -295,6 +295,13 @@ namespace System.Linq.V2
         [TestMethod]
         public void AverageUsingInt64()
         {
+            Func<string, long> selector = _ => 5;
+            var enumerable = new AverageableMock();
+
+            Assert.AreEqual(5, enumerable.AsV2Enumerable().Average(selector));
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average(selector));
         }
 
         /// <summary>
@@ -303,6 +310,13 @@ namespace System.Linq.V2
         [TestMethod]
         public void AverageUsingNullableDouble()
         {
+            Func<string, double?> selector = _ => 6;
+            var enumerable = new AverageableMock();
+
+            Assert.AreEqual(6, enumerable.AsV2Enumerable().Average(selector));
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().Average(selector));
         }
 
         /// <summary>
@@ -311,6 +325,13 @@ namespace System.Linq.V2
         [TestMethod]
         public void AverageUsingSingle()
         {
+            Func<string, float> selector = _ => 7;
+            var enumerable = new AverageableMock();
+
+            Assert.AreEqual(7, enumerable.AsV2Enumerable().Average(selector));
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average(selector));
         }
 
         /// <summary>
@@ -319,6 +340,13 @@ namespace System.Linq.V2
         [TestMethod]
         public void AverageUsingNullableInt64()
         {
+            Func<string, long?> selector = _ => 8;
+            var enumerable = new AverageableMock();
+
+            Assert.AreEqual(8, enumerable.AsV2Enumerable().Average(selector));
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().Average(selector));
         }
 
         /// <summary>
@@ -327,6 +355,13 @@ namespace System.Linq.V2
         [TestMethod]
         public void AverageUsingNullableSingle()
         {
+            Func<string, float?> selector = _ => 9;
+            var enumerable = new AverageableMock();
+
+            Assert.AreEqual(9, enumerable.AsV2Enumerable().Average(selector));
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().Average(selector));
         }
 
         /// <summary>
@@ -335,6 +370,13 @@ namespace System.Linq.V2
         [TestMethod]
         public void AverageUsingDouble()
         {
+            Func<string, double> selector = _ => 10;
+            var enumerable = new AverageableMock();
+
+            Assert.AreEqual(10, enumerable.AsV2Enumerable().Average(selector));
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average(selector));
         }
 
         /// <summary>
@@ -343,6 +385,13 @@ namespace System.Linq.V2
         [TestMethod]
         public void AverageUsingNullableInt32()
         {
+            Func<string, int?> selector = _ => 11;
+            var enumerable = new AverageableMock();
+
+            Assert.AreEqual(11, enumerable.AsV2Enumerable().Average(selector));
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().Average(selector));
         }
 
         /// <summary>
@@ -351,6 +400,13 @@ namespace System.Linq.V2
         [TestMethod]
         public void AverageUsingDecimal()
         {
+            Func<string, decimal> selector = _ => 12;
+            var enumerable = new AverageableMock();
+
+            Assert.AreEqual(12, enumerable.AsV2Enumerable().Average(selector));
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average(selector));
         }
 
         /// <summary>
@@ -359,6 +415,13 @@ namespace System.Linq.V2
         [TestMethod]
         public void AverageUsingNullableDecimal()
         {
+            Func<string, decimal> selector = _ => 13;
+            var enumerable = new AverageableMock();
+
+            Assert.AreEqual(13, enumerable.AsV2Enumerable().Average(selector));
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average(selector));
         }
 
         private sealed class AverageableMock : IAverageableMixin<string>
