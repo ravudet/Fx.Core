@@ -1,5 +1,6 @@
 namespace System.Linq.V2
 {
+    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections;
     using System.Collections.Generic;
@@ -234,7 +235,44 @@ namespace System.Linq.V2
             }
         }
 
-        //// TODO skipped asv2enumerable
+        /// <summary>
+        /// Calls the same method on the same v2enumerable using different "views"
+        /// </summary>
+        [TestMethod]
+        public void AsV2Enumerable()
+        {
+            var enumerable = new MockV2Enumerable<string>();
+
+            Assert.AreEqual(1, MockView(enumerable));
+            Assert.AreEqual(2, MockView(enumerable.AsV2Enumerable()));
+        }
+
+        private sealed class MockV2Enumerable<T> : IAnyableMixin<T>
+        {
+            public MockV2Enumerable()
+            {
+            }
+
+            public IEnumerator<T> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        private static int MockView<T>(MockV2Enumerable<T> mock)
+        {
+            return 1;
+        }
+
+        private static int MockView<T>(IV2Enumerable<T> v2)
+        {
+            return 2;
+        }
 
         /// <summary>
         /// Averages a sequence by projecting the elements to int32
