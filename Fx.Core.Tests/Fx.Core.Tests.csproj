@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="System\Linq\V2\" />
+    <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
   </ItemGroup>
 
 </Project>
