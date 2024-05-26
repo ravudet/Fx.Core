@@ -20,7 +20,7 @@ namespace System.Linq.V2
             Func<string, string, string> func = (_, _) => "asdf";
             var enumerable = new AggregatableMock();
 
-            var aggregated = enumerable.Aggregate(func);
+            var aggregated = enumerable.AsV2Enumerable().Aggregate(func);
             Assert.AreEqual("asdf", aggregated);
 
             // make sure v1 has different behavior
@@ -37,7 +37,7 @@ namespace System.Linq.V2
             Func<string, string, string> func = (_, _) => "qwer";
             var enumerable = new AggregatableMock();
 
-            var aggregated = enumerable.Aggregate(seed, func);
+            var aggregated = enumerable.AsV2Enumerable().Aggregate(seed, func);
             Assert.AreEqual("qwer", aggregated);
 
             // make sure v1 has different behavior
@@ -55,7 +55,7 @@ namespace System.Linq.V2
             Func<string, string> resultSelector = _ => _;
             var enumerable = new AggregatableMock();
 
-            var aggregated = enumerable.Aggregate(seed, func, resultSelector);
+            var aggregated = enumerable.AsV2Enumerable().Aggregate(seed, func, resultSelector);
             Assert.AreEqual("qwer", aggregated);
 
             // make sure v1 has different behavior
@@ -106,7 +106,7 @@ namespace System.Linq.V2
             Func<string, bool> predicate = _ => called = !called;
             var enumerable = new AllableMock();
 
-            Assert.AreEqual(false, enumerable.All(predicate));
+            Assert.AreEqual(false, enumerable.AsV2Enumerable().All(predicate));
             Assert.AreEqual(true, called);
 
             // make sure v1 has different behavior
@@ -145,7 +145,7 @@ namespace System.Linq.V2
         {
             var enumerable = new AnyableMock();
 
-            Assert.AreEqual(true, enumerable.Any());
+            Assert.AreEqual(true, enumerable.AsV2Enumerable().Any());
 
             // make sure v1 has different behavior
             Assert.AreEqual(false, enumerable.AsEnumerable().Any());
@@ -161,7 +161,7 @@ namespace System.Linq.V2
             Func<string, bool> predicate = _ => called = !called;
             var enumerable = new AnyableMock();
 
-            Assert.AreEqual(true, enumerable.Any(predicate));
+            Assert.AreEqual(true, enumerable.AsV2Enumerable().Any(predicate));
             Assert.AreEqual(true, called);
 
             // make sure v1 has different behavior
@@ -206,10 +206,10 @@ namespace System.Linq.V2
             var element = "asdf";
             var enumerable = new AppendableMock();
 
-            CollectionAssert.AreEqual(new[] { "asdf", "asdf" }, enumerable.Append(element).ToList());
+            CollectionAssert.AreEqual(new[] { "asdf", "asdf" }, enumerable.AsV2Enumerable().Append(element).ToList());
 
             // make sure v1 has different behavior
-            CollectionAssert.AreEqual(new[] { "asdf" }, enumerable.AsEnumerable().Append(element).ToList());
+            CollectionAssert.AreEqual(new[] { "asdf" }, enumerable.AsV2Enumerable().AsEnumerable().Append(element).ToList());
         }
 
         private sealed class AppendableMock : IAppendableMixin<string>
@@ -221,6 +221,87 @@ namespace System.Linq.V2
             public IV2Enumerable<string> Append(string element)
             {
                 return new[] { element, element }.ToV2Enumerable();
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        //// TODO skipped asv2enumerable
+
+        /// <summary>
+        /// Averages a sequence by projecting the elements to int32
+        /// </summary>
+        [TestMethod]
+        public void AverageUsingInt32()
+        {
+            Func<string, int> selector = _ => 4;
+            var enumerable = new AverageableMock();
+
+            Assert.AreEqual(4, enumerable.AsV2Enumerable().Average(selector));
+        }
+
+        private sealed class AverageableMock : IAverageableMixin<string>
+        {
+            public AverageableMock()
+            {
+            }
+
+            public double Average(Func<string, int> selector)
+            {
+                return selector(string.Empty);
+            }
+
+            public double? Average(Func<string, int?> selector)
+            {
+                return selector(string.Empty);
+            }
+
+            public decimal Average(Func<string, decimal> selector)
+            {
+                return selector(string.Empty);
+            }
+
+            public double Average(Func<string, double> selector)
+            {
+                return selector(string.Empty);
+            }
+
+            public float? Average(Func<string, float?> selector)
+            {
+                return selector(string.Empty);
+            }
+
+            public double? Average(Func<string, long?> selector)
+            {
+                return selector(string.Empty);
+            }
+
+            public float Average(Func<string, float> selector)
+            {
+                return selector(string.Empty);
+            }
+
+            public double? Average(Func<string, double?> selector)
+            {
+                return selector(string.Empty);
+            }
+
+            public double Average(Func<string, long> selector)
+            {
+                return selector(string.Empty);
+            }
+
+            public decimal? Average(Func<string, decimal?> selector)
+            {
+                return selector(string.Empty);
             }
 
             public IEnumerator<string> GetEnumerator()

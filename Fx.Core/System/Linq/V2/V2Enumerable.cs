@@ -225,6 +225,7 @@
         public static IV2Enumerable<TSource> AsV2Enumerable<TSource>(this IV2Enumerable<TSource> self)
         {
             //// TODO this extension is named differently than v1 linq; this is *probably* a good thing
+            //// TODO if you remove v2 from deriving v1, renaming this would probably be good
             return self;
         }
 
