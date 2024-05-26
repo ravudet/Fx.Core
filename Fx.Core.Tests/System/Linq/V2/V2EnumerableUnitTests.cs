@@ -11,6 +11,9 @@ namespace System.Linq.V2
         //// TODO should you remove iv2 : iv1? that way no one accidentally escapes back to v1?
         //// TODO you skpped the adapter methods (tov2enumerable, tov2lookup, etc.)
 
+        /// <summary>
+        /// Aggregates a sequence
+        /// </summary>
         [TestMethod]
         public void Aggregate()
         {
@@ -24,6 +27,9 @@ namespace System.Linq.V2
             Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Aggregate(func));
         }
 
+        /// <summary>
+        /// Aggregates a sequence using a seed
+        /// </summary>
         [TestMethod]
         public void AggregateWithSeed()
         {
@@ -38,6 +44,9 @@ namespace System.Linq.V2
             Assert.AreEqual("asdf", enumerable.AsEnumerable().Aggregate(seed, func));
         }
 
+        /// <summary>
+        /// Aggregates a sequence using a seed and a result selector
+        /// </summary>
         [TestMethod]
         public void AggregateWithSeedAndResultSelector()
         {
@@ -87,6 +96,9 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Alls a sequence
+        /// </summary>
         [TestMethod]
         public void All()
         {
@@ -112,6 +124,66 @@ namespace System.Linq.V2
             {
                 predicate(string.Empty);
                 return false;
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Anys a sequence
+        /// </summary>
+        [TestMethod]
+        public void Any()
+        {
+            var enumerable = new AnyableMock();
+
+            Assert.AreEqual(true, enumerable.Any());
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(false, enumerable.AsEnumerable().Any());
+        }
+
+        /// <summary>
+        /// Anys a sequence using a predicate
+        /// </summary>
+        [TestMethod]
+        public void AnyWithPredicate()
+        {
+            var called = false;
+            Func<string, bool> predicate = _ => called = !called;
+            var enumerable = new AnyableMock();
+
+            Assert.AreEqual(true, enumerable.Any(predicate));
+            Assert.AreEqual(true, called);
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(false, enumerable.AsEnumerable().Any(predicate));
+            Assert.AreEqual(true, called); // v1 won't actually call the predicate, so 'called' remains unchanged
+        }
+
+        private sealed class AnyableMock : IAnyableMixin<string>
+        {
+            public AnyableMock()
+            {
+            }
+
+            public bool Any()
+            {
+                return true;
+            }
+
+            public bool Any(Func<string, bool> predicate)
+            {
+                predicate(string.Empty);
+                return true;
             }
 
             public IEnumerator<string> GetEnumerator()
