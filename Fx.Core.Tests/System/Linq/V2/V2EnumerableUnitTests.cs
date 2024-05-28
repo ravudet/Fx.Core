@@ -725,6 +725,162 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Averages a sequence of <see cref="Int32"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageInt32()
+        {
+            var enumerable = new AverageableInt32Mock(20);
+
+            Assert.AreEqual(20, enumerable.AsV2Enumerable().Average());
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average());
+        }
+
+        private sealed class AverageableInt32Mock : IAverageableInt32Mixin
+        {
+            private readonly double average;
+
+            public AverageableInt32Mock(double average)
+            {
+                this.average = average;
+            }
+
+            public double Average()
+            {
+                return this.average;
+            }
+
+            public IEnumerator<int> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Averages a sequence of <see cref="Double"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageDouble()
+        {
+            var enumerable = new AverageableDoubleMock(21);
+
+            Assert.AreEqual(21, enumerable.AsV2Enumerable().Average());
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average());
+        }
+
+        private sealed class AverageableDoubleMock : IAverageableDoubleMixin
+        {
+            private readonly double average;
+
+            public AverageableDoubleMock(double average)
+            {
+                this.average = average;
+            }
+
+            public double Average()
+            {
+                return this.average;
+            }
+
+            public IEnumerator<double> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Averages a sequence of <see cref="Decimal"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageDecimal()
+        {
+            var enumerable = new AverageableDecimalMock(22);
+
+            Assert.AreEqual(22, enumerable.AsV2Enumerable().Average());
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average());
+        }
+
+        private sealed class AverageableDecimalMock : IAverageableDecimalMixin
+        {
+            private readonly decimal average;
+
+            public AverageableDecimalMock(decimal average)
+            {
+                this.average = average;
+            }
+
+            public decimal Average()
+            {
+                return this.average;
+            }
+
+            public IEnumerator<decimal> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Averages a sequence of <see cref="Single"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageSingle()
+        {
+            var enumerable = new AverageableSingleMock(23);
+
+            Assert.AreEqual(23, enumerable.AsV2Enumerable().Average());
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average());
+        }
+
+        private sealed class AverageableSingleMock : IAverageableSingleMixin
+        {
+            private readonly float average;
+
+            public AverageableSingleMock(float average)
+            {
+                this.average = average;
+            }
+
+            public float Average()
+            {
+                return this.average;
+            }
+
+            public IEnumerator<float> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
         //// TODO recording:
         //// open sound settings; make sure output and input are both the airpods hands-free
         //// https://app.clipchamp.com/
