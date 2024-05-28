@@ -8,6 +8,9 @@
     [TestClass]
     public sealed class ScenarioTests
     {
+        /// <summary>
+        /// Confirm that the monad gets passed through after operations
+        /// </summary>
         [TestMethod]
         public void Test0()
         {
@@ -27,6 +30,9 @@
             CollectionAssert.AreEqual(new[] { 25, 20, 15, 5, 10 }, appendedAppendedPrependedAppended.ToArray());
         }
 
+        /// <summary>
+        /// Confirm that two monads can work together and both get passed through after operations on each
+        /// </summary>
         [TestMethod]
         public void Test()
         {
@@ -49,6 +55,22 @@
             // and to close the loop, even though we have called through each extension once, we should still be able to get to the correct extension
             var prependedAppendedPrependedAppended = appendedPrependedAppended.Prepend(25);
             CollectionAssert.AreEqual(new[] { 20, 5, 10, 15, 25 }, prependedAppendedPrependedAppended.ToArray());
+        }
+
+        /// <summary>
+        /// Confirm that the monad gets passed through after operations outside of the monad
+        /// </summary>
+        [TestMethod]
+        public void Test2()
+        {
+            var original = new[] { 5, 10 }.ToV2Enumerable();
+            var foo = new FooExtension<int>(original).AsV2Enumerable();
+
+            var whered = foo.Where(_ => _ % 2 == 0);
+            CollectionAssert.AreEqual(new[] { 10 }, whered.ToArray());
+
+            var appendedWhered = whered.Append(15);
+            CollectionAssert.AreEqual(new[] { 15, 10 }, appendedWhered.ToArray());
         }
 
         private sealed class FooExtension<T> : IEnumerableMonad<T>, IAppendableMixin<T>
