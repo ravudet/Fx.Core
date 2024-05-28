@@ -2,7 +2,7 @@
 {
     public interface IAverageableNullableSingleMixin : IV2Enumerable<float?>
     {
-        public float? Average(IV2Enumerable<float?> self)
+        public float? Average()
         {
             return this.AverageDefault();
         }

@@ -490,5 +490,243 @@ namespace System.Linq.V2
                 return this.GetEnumerator();
             }
         }
+
+        /// <summary>
+        /// Averages a sequence of <see cref="Nullable{Single}"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageNullableSingle()
+        {
+            var enumerable = new AverageableNullableSingleMock(14);
+
+            Assert.AreEqual(14, enumerable.AsV2Enumerable().Average());
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().Average());
+        }
+
+        private sealed class AverageableNullableSingleMock : IAverageableNullableSingleMixin
+        {
+            private readonly float? average;
+
+            public AverageableNullableSingleMock(float? average)
+            {
+                this.average = average;
+            }
+
+            public float? Average()
+            {
+                return this.average;
+            }
+
+            public IEnumerator<float?> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Averages a sequence of <see cref="Nullable{Int64}"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageNullableInt64()
+        {
+            var enumerable = new AverageableNullableInt64Mock(15);
+
+            Assert.AreEqual(15, enumerable.AsV2Enumerable().Average());
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().Average());
+        }
+
+        private sealed class AverageableNullableInt64Mock : IAverageableNullableInt64Mixin
+        {
+            private readonly double? average;
+
+            public AverageableNullableInt64Mock(double? average)
+            {
+                this.average = average;
+            }
+
+            public double? Average()
+            {
+                return this.average;
+            }
+
+            public IEnumerator<long?> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Averages a sequence of <see cref="Nullable{Int32}"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageNullableInt32()
+        {
+            var enumerable = new AverageableNullableInt32Mock(16);
+
+            Assert.AreEqual(16, enumerable.AsV2Enumerable().Average());
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().Average());
+        }
+
+        private sealed class AverageableNullableInt32Mock : IAverageableNullableInt32Mixin
+        {
+            private readonly double? average;
+
+            public AverageableNullableInt32Mock(double? average)
+            {
+                this.average = average;
+            }
+
+            public double? Average()
+            {
+                return this.average;
+            }
+
+            public IEnumerator<int?> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Averages a sequence of <see cref="Nullable{Double}"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageNullableDouble()
+        {
+            var enumerable = new AverageableNullableDoubleMock(17);
+
+            Assert.AreEqual(17, enumerable.AsV2Enumerable().Average());
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().Average());
+        }
+
+        private sealed class AverageableNullableDoubleMock : IAverageableNullableDoubleMixin
+        {
+            private readonly double? average;
+
+            public AverageableNullableDoubleMock(double? average)
+            {
+                this.average = average;
+            }
+
+            public double? Average()
+            {
+                return this.average;
+            }
+
+            public IEnumerator<double?> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Averages a sequence of <see cref="Nullable{Decimal}"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageNullableDecimal()
+        {
+            var enumerable = new AverageableNullableDecimalMock(18);
+
+            Assert.AreEqual(18, enumerable.AsV2Enumerable().Average());
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().Average());
+        }
+
+        private sealed class AverageableNullableDecimalMock : IAverageableNullableDecimalMixin
+        {
+            private readonly decimal? average;
+
+            public AverageableNullableDecimalMock(decimal? average)
+            {
+                this.average = average;
+            }
+
+            public decimal? Average()
+            {
+                return this.average;
+            }
+
+            public IEnumerator<decimal?> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Averages a sequence of <see cref="Int64"/>
+        /// </summary>
+        [TestMethod]
+        public void AverageInt64()
+        {
+            var enumerable = new AverageableInt64Mock(19);
+
+            Assert.AreEqual(19, enumerable.AsV2Enumerable().Average());
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<InvalidOperationException>(() => enumerable.AsEnumerable().Average());
+        }
+
+        private sealed class AverageableInt64Mock : IAverageableInt64Mixin
+        {
+            private readonly double average;
+
+            public AverageableInt64Mock(double average)
+            {
+                this.average = average;
+            }
+
+            public double Average()
+            {
+                return this.average;
+            }
+
+            public IEnumerator<long> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        //// TODO recording:
+        //// open sound settings; make sure output and input are both the airpods hands-free
+        //// https://app.clipchamp.com/
     }
 }
