@@ -46,7 +46,7 @@
             CollectionAssert.AreEqual(new[] { 20, 5, 10, 15 }, appendedPrependedAppended.ToArray());
 
             // and to close the loop, even though we have called through each extension once, we should still be able to get to the correct extension
-            var prependedAppendedPrependedAppended = prependedAppended.Prepend(25);
+            var prependedAppendedPrependedAppended = appendedPrependedAppended.Prepend(25);
             CollectionAssert.AreEqual(new[] { 20, 5, 10, 15, 25 }, prependedAppendedPrependedAppended.ToArray());
         }
 
@@ -66,7 +66,16 @@
 
             public IV2Enumerable<T> Append(T element)
             {
-                return AppendIterator(element).ToV2Enumerable();
+                var appended = AppendIterator(element).ToV2Enumerable();
+                //// TODO the implementation should have to do these casts...
+                if (this.Source is IEnumerableMonad<T> monad)
+                {
+                    return monad.Create(appended);
+                }
+                else
+                {
+                    return appended;
+                }
             }
 
             private IEnumerable<T> AppendIterator(T element)
@@ -105,7 +114,15 @@
 
             public IV2Enumerable<T> Prepend(T element)
             {
-                return this.PrependIterator(element).ToV2Enumerable();
+                var prepended = this.PrependIterator(element).ToV2Enumerable();
+                if (this.Source is IEnumerableMonad<T> monad)
+                {
+                    return monad.Create(prepended);
+                }
+                else
+                {
+                    return prepended;
+                }
             }
 
             private IEnumerable<T> PrependIterator(T element)
