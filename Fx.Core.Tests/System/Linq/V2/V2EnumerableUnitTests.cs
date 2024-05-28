@@ -881,6 +881,47 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Chunks a sequence
+        /// </summary>
+        [TestMethod]
+        public void Chunk()
+        {
+            var size = 5;
+            var enumerator = new ChunkableMock();
+
+            var v2Chunked = enumerator.AsV2Enumerable().Chunk(size).ToArray();
+            Assert.AreEqual(1, v2Chunked.Length);
+            Assert.AreEqual(1, v2Chunked[0].Length);
+            Assert.AreEqual("5", v2Chunked[0][0]);
+
+            // make sure v1 has different behavior
+            var v1Chunked = enumerator.AsEnumerable().Chunk(size).ToArray();
+            Assert.AreEqual(0, v1Chunked.Length);
+        }
+
+        private sealed class ChunkableMock : IChunkableMixin<string>
+        {
+            public ChunkableMock()
+            {
+            }
+
+            public IV2Enumerable<string[]> Chunk(int size)
+            {
+                return new[] { new[] { size.ToString() } }.ToV2Enumerable();
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
         //// TODO recording:
         //// open sound settings; make sure output and input are both the airpods hands-free
         //// https://app.clipchamp.com/
