@@ -4,10 +4,10 @@
     {
         public static IEnumerableMonad<TUnit> Create<TElement, TUnit>(this IEnumerableMonad<TElement> monad, IV2Enumerable<TUnit> enumerable)
         {
-            /*if (monad is IEnumerableMonad<TElement> nestedMonad)
+            if (monad.Source is IEnumerableMonad<TElement> nestedMonad)
             {
                 enumerable = nestedMonad.Create(enumerable);
-            }*/
+            }
 
             return monad.Unit<TUnit>()(enumerable);
         }

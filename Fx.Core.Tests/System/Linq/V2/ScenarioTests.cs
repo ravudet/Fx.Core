@@ -1,5 +1,6 @@
 ﻿namespace System.Linq.V2
 {
+    using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections;
     using System.Collections.Generic;
@@ -67,15 +68,7 @@
             public IV2Enumerable<T> Append(T element)
             {
                 var appended = AppendIterator(element).ToV2Enumerable();
-                //// TODO the implementation should have to do these casts...
-                if (this.Source is IEnumerableMonad<T> monad)
-                {
-                    return monad.Create(appended);
-                }
-                else
-                {
-                    return appended;
-                }
+                return appended;
             }
 
             private IEnumerable<T> AppendIterator(T element)
@@ -115,14 +108,7 @@
             public IV2Enumerable<T> Prepend(T element)
             {
                 var prepended = this.PrependIterator(element).ToV2Enumerable();
-                if (this.Source is IEnumerableMonad<T> monad)
-                {
-                    return monad.Create(prepended);
-                }
-                else
-                {
-                    return prepended;
-                }
+                return prepended;
             }
 
             private IEnumerable<T> PrependIterator(T element)
