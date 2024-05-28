@@ -216,7 +216,15 @@
         {
             if (self is IAppendableMixin<TSource> append)
             {
-                return append.Append(element);
+                var appended = append.Append(element);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(appended);
+                }
+                else
+                {
+                    return appended;
+                }
             }
 
             return self.AppendDefault(element);
@@ -1550,7 +1558,15 @@
         {
             if (self is IPrependableMixin<TSource> prepend)
             {
-                return prepend.Prepend(element);
+                var prepended = prepend.Prepend(element);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(prepended);
+                }
+                else
+                {
+                    return prepended;
+                }
             }
 
             return self.PrependDefault(element);

@@ -77,6 +77,7 @@
 
         internal static IV2Enumerable<TSource> AppendDefault<TSource>(this IV2Enumerable<TSource> self, TSource element)
         {
+            //// TODO rename aggregatedoverload to monad
             if (self is IEnumerableMonad<TSource> aggregatedOverload)
             {
                 return aggregatedOverload.Create(aggregatedOverload.Source.Append(element));

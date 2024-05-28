@@ -7,7 +7,7 @@ namespace System.Linq.V2
     using System.Diagnostics.CodeAnalysis;
 
     [TestClass]
-    public class V2EnumerableUnitTests
+    public sealed class V2EnumerableUnitTests
     {
         //// TODO should you remove iv2 : iv1? that way no one accidentally escapes back to v1?
         //// TODO you skpped the adapter methods (tov2enumerable, tov2lookup, etc.)
@@ -921,6 +921,10 @@ namespace System.Linq.V2
                 return this.GetEnumerator();
             }
         }
+
+        //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
+        //// TODO normalize on TElement everywhere
+        //// TODO null checks
 
         //// TODO recording:
         //// open sound settings; make sure output and input are both the airpods hands-free
