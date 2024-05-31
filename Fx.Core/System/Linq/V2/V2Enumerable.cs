@@ -232,8 +232,6 @@
 
         public static IV2Enumerable<TSource> AsV2Enumerable<TSource>(this IV2Enumerable<TSource> self)
         {
-            //// TODO this extension is named differently than v1 linq; this is *probably* a good thing
-            //// TODO if you remove v2 from deriving v1, renaming this would probably be good
             return self;
         }
 
@@ -439,7 +437,6 @@
 
         /*public static IV2Enumerable<TResult> Cast<TResult>(this IV2Enumerable self)
         {
-            //// TODO
             throw new System.NotImplementedException();
         }*/
 
@@ -611,7 +608,6 @@
 
         public static IV2Enumerable<TResult> Empty<TResult>()
         {
-            //// TODO
             throw new System.NotImplementedException();
         }
 
@@ -1513,7 +1509,6 @@
 
         /*public static IV2Enumerable<TResult> OfType<TResult>(this IV2Enumerable self)
         {
-            //// TODO
             throw new System.NotImplementedException();
         }*/
 
@@ -1580,13 +1575,11 @@
 
         /*public static IV2Enumerable<int> Range(int start, int count)
         {
-            //// TODO
             throw new System.NotImplementedException();
         }*/
 
         /*public static IV2Enumerable<TResult> Repeat<TResult>(TResult element, int count)
         {
-            //// TODO
             throw new System.NotImplementedException();
         }*/
 
@@ -2036,33 +2029,6 @@
             return self.TakeWhileDefault(predicate);
         }
 
-        /*public static IV2OrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector)
-        {
-            //// TODO
-            throw new System.NotImplementedException();
-        }
-
-        public static IV2OrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
-        {
-            //// TODO
-            throw new System.NotImplementedException();
-        }
-
-        public static IV2OrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector)
-        {
-            //// TODO
-            throw new System.NotImplementedException();
-        }
-
-        public static IV2OrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(
-            this IV2OrderedEnumerable<TSource> self,
-            Func<TSource, TKey> keySelector,
-            IComparer<TKey>? comparer)
-        {
-            //// TODO
-            throw new System.NotImplementedException();
-        }*/
-
         public static TSource[] ToArray<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IToArrayableMixin<TSource> toArray)
@@ -2263,7 +2229,7 @@
             if (self is IWhereableMixin<TSource> where)
             {
                 var whered = where.Where(predicate);
-                if (where is IEnumerableMonad<TSource> monad) //// TODO implement this second monad check everywhere
+                if (where is IEnumerableMonad<TSource> monad)
                 {
                     return monad.Create(whered);
                 }

@@ -2,7 +2,6 @@
 {
     public interface ICastableMixin : IV2Enumerable
     {
-        //// TODO
         IV2Enumerable<TResult> Cast<TResult>();
     }
 }

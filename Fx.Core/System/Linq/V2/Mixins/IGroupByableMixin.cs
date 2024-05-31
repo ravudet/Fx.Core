@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IGroupByableMixin<TSource> : IV2Enumerable<TSource> //// TODO use out parameters
+    public interface IGroupByableMixin<TSource> : IV2Enumerable<TSource>
     {
         public IV2Enumerable<TResult> GroupBy<TKey, TElement, TResult>(
             Func<TSource, TKey> keySelector,

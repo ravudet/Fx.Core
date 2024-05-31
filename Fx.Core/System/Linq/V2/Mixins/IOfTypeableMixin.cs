@@ -2,6 +2,6 @@
 {
     public interface IOfTypeableMixin<TSource> : IV2Enumerable<TSource>
     {
-        IV2Enumerable<TResult> OfType<TResult>(IV2Enumerable self); //// TODO
+        IV2Enumerable<TResult> OfType<TResult>(IV2Enumerable self);
     }
 }

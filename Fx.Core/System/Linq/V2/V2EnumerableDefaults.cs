@@ -77,7 +77,6 @@
 
         internal static IV2Enumerable<TSource> AppendDefault<TSource>(this IV2Enumerable<TSource> self, TSource element)
         {
-            //// TODO rename aggregatedoverload to monad
             if (self is IEnumerableMonad<TSource> aggregatedOverload)
             {
                 return aggregatedOverload.Create(aggregatedOverload.Source.Append(element));
@@ -288,7 +287,6 @@
 
         /*internal static IV2Enumerable<TResult> Cast<TResult>(this IV2Enumerable self)
         {
-            //// TODO
             throw new System.NotImplementedException();
         }*/
 
@@ -461,7 +459,6 @@
 
         internal static IV2Enumerable<TResult> EmptyDefault<TResult>()
         {
-            //// TODO
             throw new System.NotImplementedException();
         }
 
@@ -1361,9 +1358,8 @@
             return self.AsEnumerable().MinBy(keySelector);
         }
 
-        /*internal static IV2Enumerable<TResult> OfType<TResult>(this IV2Enumerable self)
+        /*internal static IV2Enumerable<TResult> OfTypeDefault<TResult>(this IV2Enumerable self)
         {
-            //// TODO
             throw new System.NotImplementedException();
         }*/
 
@@ -1465,13 +1461,11 @@
 
         /*internal static IV2Enumerable<int> Range(int start, int count)
         {
-            //// TODO
             throw new System.NotImplementedException();
         }*/
 
         /*internal static IV2Enumerable<TResult> Repeat<TResult>(TResult element, int count)
         {
-            //// TODO
             throw new System.NotImplementedException();
         }*/
 
@@ -1920,33 +1914,6 @@
 
             return self.AsEnumerable().TakeWhile(predicate).ToV2Enumerable();
         }
-
-        /*internal static IV2OrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector)
-        {
-            //// TODO
-            throw new System.NotImplementedException();
-        }
-
-        internal static IV2OrderedEnumerable<TSource> ThenBy<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
-        {
-            //// TODO
-            throw new System.NotImplementedException();
-        }
-
-        internal static IV2OrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(this IV2OrderedEnumerable<TSource> self, Func<TSource, TKey> keySelector)
-        {
-            //// TODO
-            throw new System.NotImplementedException();
-        }
-
-        internal static IV2OrderedEnumerable<TSource> ThenByDescending<TSource, TKey>(
-            this IV2OrderedEnumerable<TSource> self,
-            Func<TSource, TKey> keySelector,
-            IComparer<TKey>? comparer)
-        {
-            //// TODO
-            throw new System.NotImplementedException();
-        }*/
 
         internal static TSource[] ToArrayDefault<TSource>(this IV2Enumerable<TSource> self)
         {

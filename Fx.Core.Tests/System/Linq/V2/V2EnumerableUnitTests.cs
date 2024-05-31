@@ -9,9 +9,6 @@ namespace System.Linq.V2
     [TestClass]
     public sealed class V2EnumerableUnitTests
     {
-        //// TODO should you remove iv2 : iv1? that way no one accidentally escapes back to v1?
-        //// TODO you skpped the adapter methods (tov2enumerable, tov2lookup, etc.)
-
         /// <summary>
         /// Aggregates a sequence
         /// </summary>
@@ -922,9 +919,31 @@ namespace System.Linq.V2
             }
         }
 
+        //// TODO start a design document
+        //// TODO document that you are not implementing thenby and thenbydescending yet because they are externally extensible and maybe benefit from a monad of their own
+        //// TODO remind yourself that you could just use default interface implementations for all of linq; however, this doesn't establish the pattern for others to add their own extension methods and introduce their own interfaces; further, there can be conflicts between the interface and existing concrete collection implementations (or such things could be introduced in the future); those conflicts can cause compiler errors when upgrading linq versions in certain cases
+        //// TODO implement empty; is emptydefault still relevant?
+        //// TODO implement range; is rangedeafult still relevant?
+        //// TODO implement repeat; is repeatdeafult still relevant?
+        //// TODO address what you've written in chunkdefault
+        //// TODO implement the monad check in the public extensions (where is an example)
+        //// 
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
+        //// TODO you skpped tests for the the adapter methods (tov2enumerable, tov2lookup, etc.); you should have a separate implementation and test file for those
+        ////
+        //// TODO make sure the names of the variables make sense (like, you change from aggregatedoverload to monad, so the default extensions use the old name)
+        //// TODO do you need the non-generic type? can you add it later?
+        //// TODO add default implementation for icastablemixin if you keep the non-generic type
+        //// TODO uncomment the cast extension method
+        //// TODO add default implementation for ioftypeablemixin; you will want the mixin whether or not you keep the non-generic type, but it may look different if you keep the non-generic
+        //// TODO uncomment the oftype extension method
+        //// TODO should you remove iv2 : iv1? that way no one accidentally escapes back to v1?
+        //// TODO if you remove v2: v1 then you should change asv2enumerable to asenumerable; otherwise, you should document in the design doc that having a different name is good to make it clear to callers which framework they are in
         //// TODO normalize on TElement everywhere
+        //// TODO see where you can use covariance and contravariance; you maybe want to split up some mixin interfaces because doing so will give you granularity to define ins and outs that you otherwise couldn't
         //// TODO null checks
+        //// TODO fix any spacing issues in the interface files in the overloads folder
+        //// TODO check if you should make anything public that's internal or private
 
         //// TODO recording:
         //// open sound settings; make sure output and input are both the airpods hands-free
