@@ -126,7 +126,8 @@
 
             // now observe that we lose the call count optimization when a concact is applied
             containedTypeCallCount = 0;
-            var wheredConcated = whereable.Concat(new[] { new ContainedType("hjkl") }.ToV2Enumerable()).Where(containedType => containedType.SomeProperty.Length % 2 == 0);
+            var concat1 = new[] { new ContainedType("hjkl") }.ToV2Enumerable();
+            var wheredConcated = whereable.Concat(concat1).Where(containedType => containedType.SomeProperty.Length % 2 == 0);
             CollectionAssert.AreEqual(
                 new[]
                 {
@@ -142,7 +143,7 @@
             // confirm that concatextension preserves the call count optimization
             var extended = new ConcatExtension<ContainedType>(whereable).AsV2Enumerable();
             containedTypeCallCount = 0;
-            var wheredConcatedExtended = extended.Concat(new[] { new ContainedType("hjkl") }.ToV2Enumerable()).Where(containedType => containedType.SomeProperty.Length % 2 == 0);
+            var wheredConcatedExtended = extended.Concat(concat1).Where(containedType => containedType.SomeProperty.Length % 2 == 0);
             CollectionAssert.AreEqual(
                 new[]
                 {
@@ -157,26 +158,19 @@
 
             // confirm that *subsequent* concats still preserve the call count optimization
             containedTypeCallCount = 0;
-            var concat1 = new ConcatExtension<ContainedType>(new[] { new ContainedType("hjkl") }.ToV2Enumerable()).AsV2Enumerable();
-            var concat2 = new ConcatExtension<ContainedType>(new[] { new ContainedType("yuio") }.ToV2Enumerable()).AsV2Enumerable();
-
-            var first = extended.Concat(concat1);
-            var second = first.Where(containedType => containedType.SomeProperty.Length % 2 == 0);
-            var third = second.Concat(concat2);
-            var fourth = third.Where(containedType => containedType.SomeProperty.Contains("1"));
-
-            /*var wheredConcatedWheredConcatedExtended = extended
+            var concat2 = new[] { new ContainedType("yuio") }.ToV2Enumerable();
+            var wheredConcatedWheredConcatedExtended = extended
                 .Concat(concat1)
                 .Where(containedType => containedType.SomeProperty.Length % 2 == 0)
                 .Concat(concat2)
-                .Where(containedType => containedType.SomeProperty.Contains("1"));*/
+                .Where(containedType => containedType.SomeProperty.Contains("1"));
             CollectionAssert.AreEqual(
                 new[]
                 {
                     new ContainedType("1234"),
                     new ContainedType("1234"),
                 },
-                fourth.ToArray(),
+                wheredConcatedWheredConcatedExtended.ToArray(),
                 ContainedTypeComparer.Instance);
             Assert.AreEqual(1, containedTypeCallCount);
         }
