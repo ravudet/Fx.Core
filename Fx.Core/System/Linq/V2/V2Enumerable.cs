@@ -2263,7 +2263,7 @@
             if (self is IWhereableMixin<TSource> where)
             {
                 var whered = where.Where(predicate);
-                if (where is IEnumerableMonad<TSource> monad)
+                if (where is IEnumerableMonad<TSource> monad) //// TODO implement this second monad check everywhere
                 {
                     return monad.Create(whered);
                 }
