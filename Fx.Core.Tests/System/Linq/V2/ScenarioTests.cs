@@ -189,7 +189,7 @@
                 return source => new ConcatExtension<TSource>(source);
             }
 
-            public IV2Enumerable<T> Concat(IV2Enumerable<T> second)
+            IV2Enumerable<T> IConcatableMixin<T>.Concat(IV2Enumerable<T> second)
             {
                 return new Concated(this.Source, second);
             }

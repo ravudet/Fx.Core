@@ -296,6 +296,9 @@
         {
             if (self is IEnumerableMonad<TSource> aggregatedOverload)
             {
+                //// TODO the monad check should happen once and it should happen in the public extension methods; think of it this way: this method is the *default* implementation; whatever it is supposed to "know" to do, the dev overloading it is also supposed to know to do; however, you don't want the dev of a monad to have to constantly litter there code with calls to create
+                //// on the other hand, what if someone call ichunkableenumerable.chunk directly? in fact, if some calls the monad concrete implementation directly, and not through the public extension methods, that caller is not going to get the monad passed through...
+                //// for this reason, it's probably best if the dev uses explicit interface implementations for their mixins; you should update your test code to follow this best practice if that's what you decide to do
                 return aggregatedOverload.Create(aggregatedOverload.Source.Chunk(size));
             }
 
