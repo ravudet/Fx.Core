@@ -5,6 +5,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Numerics;
+    using System.Reflection.Metadata.Ecma335;
 
     [TestClass]
     public sealed class ScenarioTests
@@ -153,9 +154,34 @@
                 wheredConcatedExtended.ToArray(),
                 ContainedTypeComparer.Instance);
             Assert.AreEqual(2, containedTypeCallCount);
+
+            // confirm that *subsequent* concats still preserve the call count optimization
+            containedTypeCallCount = 0;
+            var concat1 = new ConcatExtension<ContainedType>(new[] { new ContainedType("hjkl") }.ToV2Enumerable()).AsV2Enumerable();
+            var concat2 = new ConcatExtension<ContainedType>(new[] { new ContainedType("yuio") }.ToV2Enumerable()).AsV2Enumerable();
+
+            var first = extended.Concat(concat1);
+            var second = first.Where(containedType => containedType.SomeProperty.Length % 2 == 0);
+            var third = second.Concat(concat2);
+            var fourth = third.Where(containedType => containedType.SomeProperty.Contains("1"));
+
+            /*var wheredConcatedWheredConcatedExtended = extended
+                .Concat(concat1)
+                .Where(containedType => containedType.SomeProperty.Length % 2 == 0)
+                .Concat(concat2)
+                .Where(containedType => containedType.SomeProperty.Contains("1"));*/
+            CollectionAssert.AreEqual(
+                new[]
+                {
+                    new ContainedType("1234"),
+                    new ContainedType("1234"),
+                },
+                fourth.ToArray(),
+                ContainedTypeComparer.Instance);
+            Assert.AreEqual(1, containedTypeCallCount);
         }
 
-        private sealed class ConcatExtension<T> : IEnumerableMonad<T>, IConcatableMixin<T>
+        private sealed class ConcatExtension<T> : IEnumerableMonad<T>, IConcatableMixin<T>, IWhereableMixin<T>
         {
             public ConcatExtension(IV2Enumerable<T> source)
             {
@@ -217,6 +243,38 @@
                 public IEnumerator<T> GetEnumerator()
                 {
                     return this.source.Concat(this.second).GetEnumerator();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    return this.GetEnumerator();
+                }
+            }
+
+            public IV2Enumerable<T> Where(Func<T, bool> predicate)
+            {
+                return new Whered(this.Source, predicate);
+            }
+
+            private sealed class Whered : IWhereableMixin<T>
+            {
+                private readonly IV2Enumerable<T> source;
+                private readonly Func<T, bool> predicate;
+
+                public Whered(IV2Enumerable<T> source, Func<T, bool> predicate)
+                {
+                    this.source = source;
+                    this.predicate = predicate;
+                }
+
+                public IV2Enumerable<T> Where(Func<T, bool> predicate)
+                {
+                    return new Whered(this.source, (element) => this.predicate(element) && predicate(element));
+                }
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    return this.source.Where(this.predicate).GetEnumerator();
                 }
 
                 IEnumerator IEnumerable.GetEnumerator()

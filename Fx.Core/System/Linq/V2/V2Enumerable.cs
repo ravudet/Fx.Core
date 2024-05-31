@@ -457,7 +457,13 @@
         {
             if (first is IConcatableMixin<TSource> concat)
             {
-                return concat.Concat(second);
+                var concated = concat.Concat(second);
+                if (concat is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(concated);
+                }
+
+                return concated;
             }
 
             return first.ConcatDefault(second);
@@ -2256,7 +2262,13 @@
         {
             if (self is IWhereableMixin<TSource> where)
             {
-                return where.Where(predicate);
+                var whered = where.Where(predicate);
+                if (where is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(whered);
+                }
+
+                return whered;
             }
 
             return self.WhereDefault(predicate);
