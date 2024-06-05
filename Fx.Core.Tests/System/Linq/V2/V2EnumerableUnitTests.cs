@@ -1102,6 +1102,65 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Gets the sequence or its default if it's empty
+        /// </summary>
+        [TestMethod]
+        public void DefaultIfEmpty()
+        {
+            var enumerable = new DefaultIfEmptyableMock("asdf");
+
+            CollectionAssert.AreEqual(new[] { "asdf" }, enumerable.AsV2Enumerable().DefaultIfEmpty().ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(new string?[] { null }, enumerable.AsEnumerable().DefaultIfEmpty().ToArray());
+        }
+
+        /// <summary>
+        /// Gets the sequence or its default if it's empty
+        /// </summary>
+        [TestMethod]
+        public void DefaultIfEmptyWithDefault()
+        {
+            var enumerable = new DefaultIfEmptyableMock("asdf");
+            var @default = "qwer";
+
+            CollectionAssert.AreEqual(new[] { "asdf", "qwer" }, enumerable.AsV2Enumerable().DefaultIfEmpty(@default).ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(new[] { "qwer" }, enumerable.AsEnumerable().DefaultIfEmpty(@default).ToArray());
+        }
+
+        private sealed class DefaultIfEmptyableMock : IDefaultIfEmptyableMixin<string>
+        {
+            private readonly string value;
+
+            public DefaultIfEmptyableMock(string value)
+            {
+                this.value = value;
+            }
+
+            public IV2Enumerable<string?> DefaultIfEmpty()
+            {
+                return new[] { this.value }.ToV2Enumerable();
+            }
+
+            public IV2Enumerable<string> DefaultIfEmpty(string defaultValue)
+            {
+                return new[] { this.value, defaultValue }.ToV2Enumerable();
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
         //// TODO discuss design decision 3 with others
         //// 
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
