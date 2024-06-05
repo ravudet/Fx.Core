@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
+    using System.IO.IsolatedStorage;
     using System.Reflection.Metadata.Ecma335;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
@@ -221,10 +222,8 @@
                 {
                     return monad.Create(appended);
                 }
-                else
-                {
-                    return appended;
-                }
+
+                return appended;
             }
 
             return self.AppendDefault(element);
@@ -444,7 +443,13 @@
         {
             if (self is IChunkableMixin<TSource> chunk)
             {
-                return chunk.Chunk(size);
+                var chunked = chunk.Chunk(size);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(chunked);
+                }
+
+                return chunked;
             }
 
             return self.ChunkDefault(size);
@@ -455,7 +460,7 @@
             if (first is IConcatableMixin<TSource> concat)
             {
                 var concated = concat.Concat(second);
-                if (concat is IEnumerableMonad<TSource> monad)
+                if (first is IEnumerableMonad<TSource> monad)
                 {
                     return monad.Create(concated);
                 }
@@ -510,7 +515,13 @@
         {
             if (self is IDefaultIfEmptyableMixin<TSource> defaultIfEmpty)
             {
-                return defaultIfEmpty.DefaultIfEmpty();
+                var defaultIfEmptyed = defaultIfEmpty.DefaultIfEmpty();
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(defaultIfEmptyed);
+                }
+
+                return defaultIfEmptyed;
             }
 
             return self.DefaultIfEmptyDefault();
@@ -520,7 +531,13 @@
         {
             if (self is IDefaultIfEmptyableMixin<TSource> defaultIfEmpty)
             {
-                return defaultIfEmpty.DefaultIfEmpty(defaultValue);
+                var defaultIfEmptyed = defaultIfEmpty.DefaultIfEmpty(defaultValue);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(defaultIfEmptyed);
+                }
+
+                return defaultIfEmptyed;
             }
 
             return self.DefaultIfEmptyDefault(defaultValue);
@@ -530,7 +547,13 @@
         {
             if (self is IDistinctableMixin<TSource> distinct)
             {
-                return distinct.Distinct();
+                var distincted = distinct.Distinct();
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(distincted);
+                }
+
+                return distincted;
             }
 
             return self.DistinctDefault();
@@ -540,7 +563,13 @@
         {
             if (self is IDistinctableMixin<TSource> distinct)
             {
-                return distinct.Distinct(comparer);
+                var distincted = distinct.Distinct(comparer);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(distincted);
+                }
+
+                return distincted;
             }
 
             return self.DistinctDefault(comparer);
@@ -550,7 +579,13 @@
         {
             if (self is IDistinctByableMixin<TSource> distinctBy)
             {
-                return distinctBy.DistinctBy(keySelector);
+                var distinctByed = distinctBy.DistinctBy(keySelector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(distinctByed);
+                }
+
+                return distinctByed;
             }
 
             return self.DistinctByDefault(keySelector);
@@ -560,7 +595,13 @@
         {
             if (self is IDistinctByableMixin<TSource> distinctBy)
             {
-                return distinctBy.DistinctBy(keySelector, comparer);
+                var distinctByed = distinctBy.DistinctBy(keySelector, comparer);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(distinctByed);
+                }
+
+                return distinctByed;
             }
 
             return self.DistinctByDefault(keySelector, comparer);
@@ -610,7 +651,13 @@
         {
             if (first is IExceptableMixin<TSource> except)
             {
-                return except.Except(second);
+                var excepted = except.Except(second);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Concat(excepted);
+                }
+
+                return excepted;
             }
 
             return first.ExceptDefault(second);
@@ -620,7 +667,13 @@
         {
             if (first is IExceptableMixin<TSource> except)
             {
-                return except.Except(second, comparer);
+                var excepted = except.Except(second, comparer);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(excepted);
+                }
+
+                return excepted;
             }
 
             return first.ExceptDefault(second, comparer);
@@ -630,7 +683,13 @@
         {
             if (first is IExceptByableMixin<TSource> exceptBy)
             {
-                return exceptBy.ExceptBy(second, keySelector);
+                var exceptByed = exceptBy.ExceptBy(second, keySelector);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(exceptByed);
+                }
+
+                return exceptByed;
             }
 
             return first.ExceptByDefault(second, keySelector);
@@ -644,7 +703,13 @@
         {
             if (first is IExceptByableMixin<TSource> exceptBy)
             {
-                return exceptBy.ExceptBy(second, keySelector, comparer);
+                var exceptByed = exceptBy.ExceptBy(second, keySelector, comparer);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(exceptByed);
+                }
+
+                return exceptByed;
             }
 
             return first.ExceptByDefault(second, keySelector);
@@ -719,7 +784,13 @@
         {
             if (self is IGroupByableMixin<TSource> groupBy)
             {
-                return groupBy.GroupBy(keySelector, elementSelector, resultSelector, comparer);
+                var groupByed = groupBy.GroupBy(keySelector, elementSelector, resultSelector, comparer);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(groupByed);
+                }
+
+                return groupByed;
             }
 
             return self.GroupByDefault(keySelector, elementSelector, resultSelector, comparer);
@@ -733,7 +804,13 @@
         {
             if (self is IGroupByableMixin<TSource> groupBy)
             {
-                return groupBy.GroupBy(keySelector, elementSelector, resultSelector);
+                var groupByed = groupBy.GroupBy(keySelector, elementSelector, resultSelector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(groupByed);
+                }
+
+                return groupByed;
             }
 
             return self.GroupByDefault(keySelector, elementSelector, resultSelector);
@@ -747,7 +824,13 @@
         {
             if (self is IGroupByableMixin<TSource> groupBy)
             {
-                return groupBy.GroupBy(keySelector, resultSelector, comparer);
+                var groupByed = groupBy.GroupBy(keySelector, resultSelector, comparer);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(groupByed);
+                }
+
+                return groupByed;
             }
 
             return self.GroupByDefault(keySelector, resultSelector, comparer);
@@ -760,7 +843,13 @@
         {
             if (self is IGroupByableMixin<TSource> groupBy)
             {
-                return groupBy.GroupBy(keySelector, resultSelector);
+                var groupByed = groupBy.GroupBy(keySelector, resultSelector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(groupByed);
+                }
+
+                return groupByed;
             }
 
             return self.GroupByDefault(keySelector, resultSelector);
@@ -770,7 +859,13 @@
         {
             if (self is IGroupByableMixin<TSource> groupBy)
             {
-                return groupBy.GroupBy(keySelector);
+                var groupByed = groupBy.GroupBy(keySelector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(groupByed);
+                }
+
+                return groupByed;
             }
 
             return self.GroupByDefault(keySelector);
@@ -783,7 +878,13 @@
         {
             if (self is IGroupByableMixin<TSource> groupBy)
             {
-                return groupBy.GroupBy(keySelector, elementSelector);
+                var groupByed = groupBy.GroupBy(keySelector, elementSelector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(groupByed);
+                }
+
+                return groupByed;
             }
 
             return self.GroupByDefault(keySelector, elementSelector);
@@ -796,7 +897,13 @@
         {
             if (self is IGroupByableMixin<TSource> groupBy)
             {
-                return groupBy.GroupBy(keySelector, comparer);
+                var groupByed = groupBy.GroupBy(keySelector, comparer);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(groupByed);
+                }
+
+                return groupByed;
             }
 
             return self.GroupByDefault(keySelector, comparer);
@@ -810,7 +917,13 @@
         {
             if (self is IGroupByableMixin<TSource> groupBy)
             {
-                return groupBy.GroupBy(keySelector, elementSelector, comparer);
+                var groupByed = groupBy.GroupBy(keySelector, elementSelector, comparer);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(groupByed);
+                }
+
+                return groupByed;
             }
 
             return self.GroupByDefault(keySelector, elementSelector, comparer);
@@ -826,7 +939,13 @@
         {
             if (outer is IGroupJoinableMixin<TOuter> groupJoin)
             {
-                return groupJoin.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
+                var groupJoined = groupJoin.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
+                if (outer is IEnumerableMonad<TraceSource> monad)
+                {
+                    return monad.Create(groupJoined);
+                }
+
+                return groupJoined;
             }
 
             return outer.GroupJoinDefault(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
@@ -841,7 +960,13 @@
         {
             if (outer is IGroupJoinableMixin<TOuter> groupJoin)
             {
-                return groupJoin.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector);
+                var groupJoined = groupJoin.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector);
+                if (outer is IEnumerableMonad<TOuter> monad)
+                {
+                    return monad.Create(groupJoined);
+                }
+
+                return groupJoined;
             }
 
             return outer.GroupJoinDefault(inner, outerKeySelector, innerKeySelector, resultSelector);
@@ -851,7 +976,13 @@
         {
             if (first is IIntersectableMixin<TSource> intersect)
             {
-                return intersect.Intersect(second, comparer);
+                var intersected = intersect.Intersect(second, comparer);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(intersected);
+                }
+
+                return intersected;
             }
 
             return first.IntersectDefault(second, comparer);
@@ -861,7 +992,13 @@
         {
             if (first is IIntersectableMixin<TSource> intersect)
             {
-                return intersect.Intersect(second);
+                var intersected = intersect.Intersect(second);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(intersected);
+                }
+
+                return intersected;
             }
 
             return first.IntersectDefault(second);
@@ -871,7 +1008,13 @@
         {
             if (first is IIntersectByableMixin<TSource> intersectBy)
             {
-                return intersectBy.IntersectBy(second, keySelector);
+                var intersectByed = intersectBy.IntersectBy(second, keySelector);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(intersectByed);
+                }
+
+                return intersectByed;
             }
 
             return first.IntersectByDefault(second, keySelector);
@@ -885,7 +1028,13 @@
         {
             if (first is IIntersectByableMixin<TSource> intersectBy)
             {
-                return intersectBy.IntersectBy(second, keySelector, comparer);
+                var intersectByed = intersectBy.IntersectBy(second, keySelector, comparer);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(intersectByed);
+                }
+
+                return intersectByed;
             }
 
             return first.IntersectByDefault(second, keySelector, comparer);
@@ -900,7 +1049,13 @@
         {
             if (outer is IJoinableMixin<TOuter> join)
             {
-                return join.Join(inner, outerKeySelector, innerKeySelector, resultSelector);
+                var joined = join.Join(inner, outerKeySelector, innerKeySelector, resultSelector);
+                if (outer is IEnumerableMonad<TOuter> monad)
+                {
+                    return monad.Create(joined);
+                }
+
+                return joined;
             }
 
             return outer.JoinDefault(inner, outerKeySelector, innerKeySelector, resultSelector);
@@ -916,7 +1071,13 @@
         {
             if (outer is IJoinableMixin<TOuter> join)
             {
-                return join.Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
+                var joined = join.Join(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
+                if (outer is IEnumerableMonad<TOuter> monad)
+                {
+                    return monad.Create(joined);
+                }
+
+                return joined;
             }
 
             return outer.JoinDefault(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
@@ -1559,10 +1720,8 @@
                 {
                     return monad.Create(prepended);
                 }
-                else
-                {
-                    return prepended;
-                }
+
+                return prepended;
             }
 
             return self.PrependDefault(element);
@@ -1572,7 +1731,13 @@
         {
             if (self is IReverseableMixin<TSource> reverse)
             {
-                return reverse.Reverse();
+                var reversed = reverse.Reverse();
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(reversed);
+                }
+
+                return reversed;
             }
 
             return self.ReverseDefault();
@@ -1582,7 +1747,13 @@
         {
             if (self is ISelectableMixin<TSource> select)
             {
-                return select.Select(selector);            
+                var selected = select.Select(selector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(selected);
+                }
+
+                return selected;
             }
 
             return self.SelectDefault(selector);
@@ -1592,7 +1763,13 @@
         {
             if (self is ISelectableMixin<TSource> select)
             {
-                return select.Select(selector);
+                var selected = select.Select(selector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(selected);
+                }
+
+                return selected;
             }
 
             return self.SelectDefault(selector);
@@ -1602,7 +1779,13 @@
         {
             if (self is ISelectManyableMixin<TSource> selectMany)
             {
-                return selectMany.SelectMany(selector);
+                var selectManyed = selectMany.SelectMany(selector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(selectManyed);
+                }
+
+                return selectManyed;
             }
 
             return self.SelectManyDefault(selector);
@@ -1615,7 +1798,13 @@
         {
             if (self is ISelectManyableMixin<TSource> selectMany)
             {
-                return selectMany.SelectMany(collectionSelector, resultSelector);
+                var selectManyed = selectMany.SelectMany(collectionSelector, resultSelector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(selectManyed);
+                }
+
+                return selectManyed;
             }
 
             return self.SelectManyDefault(collectionSelector, resultSelector);
@@ -1628,7 +1817,13 @@
         {
             if (self is ISelectManyableMixin<TSource> selectMany)
             {
-                return selectMany.SelectMany(collectionSelector, resultSelector);
+                var selectManyed = selectMany.SelectMany(collectionSelector, resultSelector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(selectManyed);
+                }
+
+                return selectManyed;
             }
 
             return self.SelectManyDefault(collectionSelector, resultSelector);
@@ -1638,7 +1833,13 @@
         {
             if (self is ISelectManyableMixin<TSource> selectMany)
             {
-                return selectMany.SelectMany(selector);
+                var selectManyed = selectMany.SelectMany(selector);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(selectManyed);
+                }
+
+                return selectManyed;
             }
 
             return self.SelectManyDefault(selector);
@@ -1728,7 +1929,13 @@
         {
             if (self is ISkipableMixin<TSource> skip)
             {
-                return skip.Skip(count);
+                var skiped = skip.Skip(count);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(skiped);
+                }
+
+                return skiped;
             }
 
             return self.SkipDefault(count);
@@ -1738,7 +1945,13 @@
         {
             if (self is ISkipLastableMixin<TSource> skipLast)
             {
-                return skipLast.SkipLast(count);
+                var skipLasted = skipLast.SkipLast(count);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Concat(skipLasted);
+                }
+
+                return skipLasted;
             }
 
             return self.SkipLastDefault(count);
@@ -1748,7 +1961,13 @@
         {
             if (self is ISkipWhileableMixin<TSource> skipWhile)
             {
-                return skipWhile.SkipWhile(predicate);
+                var skipWhiled = skipWhile.SkipWhile(predicate);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(skipWhiled);
+                }
+
+                return skipWhiled;
             }
 
             return self.SkipWhileDefault(predicate);
@@ -1758,7 +1977,13 @@
         {
             if (self is ISkipWhileableMixin<TSource> skipWhile)
             {
-                return skipWhile.SkipWhile(predicate);
+                var skipWhiled = skipWhile.SkipWhile(predicate);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(skipWhiled);
+                }
+
+                return skipWhiled;
             }
 
             return self.SkipWhileDefault(predicate);
@@ -1968,6 +2193,7 @@
         {
             if (self is ITakeableMixin<TSource> take)
             {
+                //// TODO you are here
                 return take.Take(range);
             }
 
