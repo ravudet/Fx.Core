@@ -1568,11 +1568,6 @@
             return self.PrependDefault(element);
         }
 
-        /*public static IV2Enumerable<int> Range(int start, int count)
-        {
-            throw new System.NotImplementedException();
-        }*/
-
         /*public static IV2Enumerable<TResult> Repeat<TResult>(TResult element, int count)
         {
             throw new System.NotImplementedException();

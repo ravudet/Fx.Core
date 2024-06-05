@@ -4,8 +4,66 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Numerics;
     using System.Reflection.Metadata.Ecma335;
+
+    public interface IEnumerableFactories
+    {
+        static abstract IV2Enumerable<T> Empty<T>();
+
+        static abstract IV2Enumerable<T> Repeat<T>(T element, int count);
+    }
+
+    public sealed class RavudetExtension<TElement> : IEnumerableFactories, IEnumerableMonad<TElement>
+    {
+        public RavudetExtension(IV2Enumerable<TElement> source)
+        {
+            this.Source = source;
+        }
+
+        public IV2Enumerable<TElement> Source { get; }
+
+        public static IV2Enumerable<T> Empty<T>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static IV2Enumerable<T> Repeat<T>(T element, int count)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<TElement> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Unit<TSource> Unit<TSource>()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public static class SpikeExtensions
+    {
+        public static IV2Enumerable<TElement> Driver<TEnumerable, TElement>(this TEnumerable source) where TEnumerable : IV2Enumerable<TElement>, IEnumerableFactories
+        {
+            if (!source.Take(5).Any())
+            {
+                return TEnumerable.Empty<TElement>();
+            }
+            else
+            {
+                return TEnumerable.Repeat(source.First(), 10);
+            }
+        }
+    }
 
     [TestClass]
     public sealed class ScenarioTests
@@ -18,6 +76,10 @@
             var @int = Enumerable.Empty<int>().GetEnumerator().Current;
 
             var moved = Enumerable.Empty<object>().GetEnumerator().MoveNext();
+
+            var data = new RavudetExtension<string>(new[] { "asdf" }.ToV2Enumerable());
+            SpikeExtensions.Driver<RavudetExtension<string>, string>(data);
+            var driven = data.Driver<RavudetExtension<string>, string>();
         }
 
         /// <summary>

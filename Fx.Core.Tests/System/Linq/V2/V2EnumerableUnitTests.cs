@@ -927,7 +927,7 @@ namespace System.Linq.V2
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
         //// TODO you skpped tests for the the adapter methods (tov2enumerable, tov2lookup, etc.); you should have a separate implementation and test file for those
         ////
-        //// TODO should the factories actually be part of this release? you aren't allowing them to be extensible (for example, enumerable.repeat could be a countable mixin, but you're not doing that, and no one else can override that...); maybe the factories should be static interface methods?
+        //// TODO should the factories actually be part of this release? you aren't allowing them to be extensible (for example, enumerable.repeat could be a countable mixin, but you're not doing that, and no one else can override that...); maybe the factories should be static interface methods? if they are static interface methods, then having "defaults" of them would make sense
         //// TODO should unit be a static method?
         //// TODO make sure the names of the variables make sense (like, you change from aggregatedoverload to monad, so the default extensions use the old name)
         //// TODO do you need the non-generic type? can you add it later?

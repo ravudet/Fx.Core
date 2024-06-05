@@ -1454,11 +1454,6 @@
             return self.AsEnumerable().Prepend(element).ToV2Enumerable();
         }
 
-        /*internal static IV2Enumerable<int> Range(int start, int count)
-        {
-            throw new System.NotImplementedException();
-        }*/
-
         /*internal static IV2Enumerable<TResult> Repeat<TResult>(TResult element, int count)
         {
             throw new System.NotImplementedException();

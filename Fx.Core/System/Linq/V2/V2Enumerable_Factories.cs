@@ -67,5 +67,10 @@ namespace System.Linq.V2
                 }
             }
         }
+
+        public static IV2Enumerable<int> Range(int start, int count)
+        {
+            return Enumerable.Range(start, count).ToV2Enumerable();
+        }
     }
 }
