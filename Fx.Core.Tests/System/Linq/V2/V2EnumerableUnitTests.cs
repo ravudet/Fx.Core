@@ -244,7 +244,7 @@ namespace System.Linq.V2
             Assert.AreEqual(2, MockView(enumerable.AsV2Enumerable()));
         }
 
-        private sealed class MockV2Enumerable<T> : IAnyableMixin<T>
+        private sealed class MockV2Enumerable<T> : IV2Enumerable<T>
         {
             public MockV2Enumerable()
             {
@@ -885,15 +885,15 @@ namespace System.Linq.V2
         public void Chunk()
         {
             var size = 5;
-            var enumerator = new ChunkableMock();
+            var enumerable = new ChunkableMock();
 
-            var v2Chunked = enumerator.AsV2Enumerable().Chunk(size).ToArray();
+            var v2Chunked = enumerable.AsV2Enumerable().Chunk(size).ToArray();
             Assert.AreEqual(1, v2Chunked.Length);
             Assert.AreEqual(1, v2Chunked[0].Length);
             Assert.AreEqual("5", v2Chunked[0][0]);
 
             // make sure v1 has different behavior
-            var v1Chunked = enumerator.AsEnumerable().Chunk(size).ToArray();
+            var v1Chunked = enumerable.AsEnumerable().Chunk(size).ToArray();
             Assert.AreEqual(0, v1Chunked.Length);
         }
 
@@ -906,6 +906,130 @@ namespace System.Linq.V2
             public IV2Enumerable<string[]> Chunk(int size)
             {
                 return new[] { new[] { size.ToString() } }.ToV2Enumerable();
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Concats two sequences
+        /// </summary>
+        [TestMethod]
+        public void Concat()
+        {
+            var enumerable = new ConcatableMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
+            var second = new[] { "zxcv", "1234" }.ToV2Enumerable();
+
+            var v2Concated = enumerable.AsV2Enumerable().Concat(second);
+            CollectionAssert.AreEqual(new[] { "zxcv", "1234", "asdf", "qwer" }, v2Concated.ToArray());
+
+            // make sure v1 has different behavior
+            var v1Concated = enumerable.AsEnumerable().Concat(second);
+            CollectionAssert.AreEqual(new[] { "zxcv", "1234" }, v1Concated.ToArray());
+        }
+
+        private sealed class ConcatableMock : IConcatableMixin<string>
+        {
+            private readonly IV2Enumerable<string> first;
+
+            public ConcatableMock(IV2Enumerable<string> first)
+            {
+                this.first = first;
+            }
+
+            public IV2Enumerable<string> Concat(IV2Enumerable<string> second)
+            {
+                return ConcatIterator(second).ToV2Enumerable();
+            }
+            
+            private IEnumerable<string> ConcatIterator(IV2Enumerable<string> second)
+            {
+                foreach (var element in second)
+                {
+                    yield return element;
+                }
+
+                foreach (var element in this.first)
+                {
+                    yield return element;
+                }
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Checks if a sequence contains an element
+        /// </summary>
+        [TestMethod]
+        public void Contains()
+        {
+            var enumerable = new ContainsableMock();
+            var value = "true";
+
+            Assert.AreEqual(true, enumerable.AsV2Enumerable().Contains(value));
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(false, enumerable.AsEnumerable().Contains(value));
+        }
+
+        /// <summary>
+        /// Checks if a sequence contains an element using a comparer to determine equality of elements
+        /// </summary>
+        [TestMethod]
+        public void ContainsWithComparer()
+        {
+            var enumerable = new ContainsableMock();
+            var value = "false";
+            var comparer = StringComparer.Ordinal;
+
+            Assert.AreEqual(true, enumerable.AsV2Enumerable().Contains(value, comparer));
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(false, enumerable.AsEnumerable().Contains(value, comparer));
+        }
+
+        /// <summary>
+        /// Checks if a sequence contains an element using a <see langword="null"/> comparer to determine equality of elements
+        /// </summary>
+        [TestMethod]
+        public void ContainsWithNullComparer()
+        {
+            var enumerable = new ContainsableMock();
+            var value = "true";
+
+            Assert.AreEqual(true, enumerable.AsV2Enumerable().Contains(value, null));
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(false, enumerable.AsEnumerable().Contains(value, null));
+        }
+
+        private sealed class ContainsableMock : IContainsableMixin<string>
+        {
+            public bool Contains(string value, IEqualityComparer<string>? comparer)
+            {
+                return bool.Parse(value) == (comparer == null);
+            }
+
+            public bool Contains(string value)
+            {
+                return bool.Parse(value);
             }
 
             public IEnumerator<string> GetEnumerator()
