@@ -72,5 +72,10 @@ namespace System.Linq.V2
         {
             return Enumerable.Range(start, count).ToV2Enumerable();
         }
+
+        public static IV2Enumerable<TResult> Repeat<TResult>(TResult element, int count)
+        {
+            return Enumerable.Repeat(element, count).ToV2Enumerable();
+        }
     }
 }

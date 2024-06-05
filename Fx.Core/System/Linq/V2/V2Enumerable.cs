@@ -1568,11 +1568,6 @@
             return self.PrependDefault(element);
         }
 
-        /*public static IV2Enumerable<TResult> Repeat<TResult>(TResult element, int count)
-        {
-            throw new System.NotImplementedException();
-        }*/
-
         public static IV2Enumerable<TSource> Reverse<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IReverseableMixin<TSource> reverse)

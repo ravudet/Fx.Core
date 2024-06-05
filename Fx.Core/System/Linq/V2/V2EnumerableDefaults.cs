@@ -1454,11 +1454,6 @@
             return self.AsEnumerable().Prepend(element).ToV2Enumerable();
         }
 
-        /*internal static IV2Enumerable<TResult> Repeat<TResult>(TResult element, int count)
-        {
-            throw new System.NotImplementedException();
-        }*/
-
         internal static IV2Enumerable<TSource> ReverseDefault<TSource>(this IV2Enumerable<TSource> self)
         {
             if (self is IEnumerableMonad<TSource> aggregatedOverload)

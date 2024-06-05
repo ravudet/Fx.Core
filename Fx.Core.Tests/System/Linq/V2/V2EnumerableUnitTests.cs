@@ -919,8 +919,6 @@ namespace System.Linq.V2
             }
         }
 
-        //// TODO implement range; is rangedeafult still relevant?
-        //// TODO implement repeat; is repeatdeafult still relevant?
         //// TODO address what you've written in chunkdefault
         //// TODO implement the monad check in the public extensions (where is an example)
         //// 
