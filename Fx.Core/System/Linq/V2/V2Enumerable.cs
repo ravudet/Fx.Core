@@ -2214,7 +2214,7 @@
             if (self is IWhereableMixin<TSource> where)
             {
                 var whered = where.Where(predicate);
-                if (where is IEnumerableMonad<TSource> monad)
+                if (self is IEnumerableMonad<TSource> monad)
                 {
                     return monad.Create(whered);
                 }
