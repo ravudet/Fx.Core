@@ -919,8 +919,8 @@ namespace System.Linq.V2
             }
         }
 
-        //// TODO discuss design decision 3 with others
         //// TODO implement the monad check in the public extensions (where is an example)
+        //// TODO discuss design decision 3 with others
         //// 
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
         //// TODO you skpped tests for the the adapter methods (tov2enumerable, tov2lookup, etc.); you should have a separate implementation and test file for those
