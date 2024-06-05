@@ -1043,6 +1043,65 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Counts the element in a sequence
+        /// </summary>
+        [TestMethod]
+        public void Count()
+        {
+            var enumerable = new CountableMock(4);
+
+            Assert.AreEqual(4, enumerable.AsV2Enumerable().Count());
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(0, enumerable.AsEnumerable().Count());
+        }
+
+        /// <summary>
+        /// Counts the element in a sequence that match a predicate
+        /// </summary>
+        [TestMethod]
+        public void CountWithPredicate()
+        {
+            var enumerable = new CountableMock(4);
+            var predicate = (int element) => element % 2 == 0;
+
+            Assert.AreEqual(1, enumerable.AsV2Enumerable().Count(predicate));
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(0, enumerable.AsEnumerable().Count(predicate));
+        }
+
+        private sealed class CountableMock : ICountableMixin<int>
+        {
+            private readonly int count;
+
+            public CountableMock(int count)
+            {
+                this.count = count;
+            }
+
+            public int Count()
+            {
+                return this.count;
+            }
+
+            public int Count(Func<int, bool> predicate)
+            {
+                return predicate(this.count) ? 1 : 0;
+            }
+
+            public IEnumerator<int> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
         //// TODO discuss design decision 3 with others
         //// 
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
