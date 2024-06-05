@@ -919,7 +919,6 @@ namespace System.Linq.V2
             }
         }
 
-        //// TODO implement empty; is emptydefault still relevant?
         //// TODO implement range; is rangedeafult still relevant?
         //// TODO implement repeat; is repeatdeafult still relevant?
         //// TODO address what you've written in chunkdefault
@@ -928,6 +927,7 @@ namespace System.Linq.V2
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
         //// TODO you skpped tests for the the adapter methods (tov2enumerable, tov2lookup, etc.); you should have a separate implementation and test file for those
         ////
+        //// TODO should the factories actually be part of this release? you aren't allowing them to be extensible (for example, enumerable.repeat could be a countable mixin, but you're not doing that, and no one else can override that...); maybe the factories should be static interface methods?
         //// TODO should unit be a static method?
         //// TODO make sure the names of the variables make sense (like, you change from aggregatedoverload to monad, so the default extensions use the old name)
         //// TODO do you need the non-generic type? can you add it later?
@@ -942,6 +942,8 @@ namespace System.Linq.V2
         //// TODO null checks
         //// TODO fix any spacing issues in the interface files in the overloads folder
         //// TODO check if you should make anything public that's internal or private
+        //// TODO remove spike tests from ScenarioTests
+        //// TODO productize scenario tests
 
         //// TODO recording:
         //// open sound settings; make sure output and input are both the airpods hands-free

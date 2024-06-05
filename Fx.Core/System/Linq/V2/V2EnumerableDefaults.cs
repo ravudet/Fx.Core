@@ -457,11 +457,6 @@
             return self.AsEnumerable().ElementAtOrDefault(index);
         }
 
-        internal static IV2Enumerable<TResult> EmptyDefault<TResult>()
-        {
-            throw new System.NotImplementedException();
-        }
-
         internal static IV2Enumerable<TSource> ExceptDefault<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
         {
             if (first is IEnumerableMonad<TSource> aggregatedOverload)
