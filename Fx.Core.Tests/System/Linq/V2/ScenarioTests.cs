@@ -10,6 +10,16 @@
     [TestClass]
     public sealed class ScenarioTests
     {
+        [TestMethod]
+        public void Spike()
+        {
+            var current = Enumerable.Empty<object>().GetEnumerator().Current;
+            var @string = Enumerable.Empty<string>().GetEnumerator().Current;
+            var @int = Enumerable.Empty<int>().GetEnumerator().Current;
+
+            var moved = Enumerable.Empty<object>().GetEnumerator().MoveNext();
+        }
+
         /// <summary>
         /// Confirm that the monad gets passed through after operations
         /// </summary>

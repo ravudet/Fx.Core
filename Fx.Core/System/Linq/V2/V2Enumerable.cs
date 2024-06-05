@@ -606,11 +606,6 @@
             return self.ElementAtOrDefaultDefault(index);
         }
 
-        public static IV2Enumerable<TResult> Empty<TResult>()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public static IV2Enumerable<TSource> Except<TSource>(this IV2Enumerable<TSource> first, IV2Enumerable<TSource> second)
         {
             if (first is IExceptableMixin<TSource> except)
