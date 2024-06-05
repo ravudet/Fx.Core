@@ -2193,8 +2193,13 @@
         {
             if (self is ITakeableMixin<TSource> take)
             {
-                //// TODO you are here
-                return take.Take(range);
+                var taked = take.Take(range);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(taked);
+                }
+
+                return taked;
             }
 
             return self.TakeDefault(range);
@@ -2204,7 +2209,13 @@
         {
             if (self is ITakeableMixin<TSource> take)
             {
-                return take.Take(count);
+                var taked = take.Take(count);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(taked);
+                }
+
+                return taked;
             }
 
             return self.TakeDefault(count);
@@ -2214,7 +2225,13 @@
         {
             if (self is ITakeLastableMixin<TSource> takeLast)
             {
-                return takeLast.TakeLast(count);
+                var takeLasted = takeLast.TakeLast(count);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(takeLasted);
+                }
+
+                return takeLasted;
             }
 
             return self.TakeLastDefault(count);
@@ -2224,7 +2241,13 @@
         {
             if (self is ITakeWhileableMixin<TSource> takeWhile)
             {
-                return takeWhile.TakeWhile(predicate);
+                var takeWhiled = takeWhile.TakeWhile(predicate);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(takeWhiled);
+                }
+
+                return takeWhiled;
             }
 
             return self.TakeWhileDefault(predicate);
@@ -2234,7 +2257,13 @@
         {
             if (self is ITakeWhileableMixin<TSource> takeWhile)
             {
-                return takeWhile.TakeWhile(predicate);
+                var takeWhiled = takeWhile.TakeWhile(predicate);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(takeWhiled);
+                }
+
+                return takeWhiled;
             }
 
             return self.TakeWhileDefault(predicate);
@@ -2395,7 +2424,13 @@
         {
             if (first is IUnionableMixin<TSource> union)
             {
-                return union.Union(second);
+                var unioned = union.Union(second);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(unioned);
+                }
+
+                return unioned;
             }
 
             return first.UnionDefault(second);
@@ -2405,7 +2440,13 @@
         {
             if (first is IUnionableMixin<TSource> union)
             {
-                return union.Union(second, comparer);
+                var unioned = union.Union(second, comparer);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(unioned);
+                }
+
+                return unioned;
             }
 
             return first.UnionDefault(second, comparer);
@@ -2415,7 +2456,13 @@
         {
             if (first is IUnionByableMixin<TSource> unionBy)
             {
-                return unionBy.UnionBy(second, keySelector);
+                var unionByed = unionBy.UnionBy(second, keySelector);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(unionByed);
+                }
+
+                return unionByed;
             }
 
             return first.UnionByDefault(second, keySelector);
@@ -2429,7 +2476,13 @@
         {
             if (first is IUnionByableMixin<TSource> unionBy)
             {
-                return unionBy.UnionBy(second, keySelector, comparer);
+                var unionByed = unionBy.UnionBy(second, keySelector, comparer);
+                if (first is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(unionByed);
+                }
+
+                return unionByed;
             }
 
             return first.UnionByDefault(second, keySelector, comparer);
@@ -2455,7 +2508,13 @@
         {
             if (self is IWhereableMixin<TSource> where)
             {
-                return where.Where(predicate);
+                var whered = where.Where(predicate);
+                if (self is IEnumerableMonad<TSource> monad)
+                {
+                    return monad.Create(whered);
+                }
+
+                return whered;
             }
 
             return self.WhereDefault(predicate);
@@ -2468,7 +2527,13 @@
         {
             if (first is IZipableMixin<TFirst> zip)
             {
-                return zip.Zip(second, third);
+                var ziped = zip.Zip(second, third);
+                if (first is IEnumerableMonad<TFirst> monad)
+                {
+                    return monad.Create(ziped);
+                }
+
+                return ziped;
             }
 
             return first.ZipDefault(second, third);
@@ -2478,7 +2543,13 @@
         {
             if (first is IZipableMixin<TFirst> zip)
             {
-                return zip.Zip(second);
+                var ziped = zip.Zip(second);
+                if (first is IEnumerableMonad<TFirst> monad)
+                {
+                    return monad.Create(ziped);
+                }
+
+                return ziped;
             }
 
             return first.ZipDefault(second);
@@ -2491,7 +2562,13 @@
         {
             if (first is IZipableMixin<TFirst> zip)
             {
-                return zip.Zip(second, resultSelector);
+                var ziped = zip.Zip(second, resultSelector);
+                if (first is IEnumerableMonad<TFirst> monad)
+                {
+                    return monad.Create(ziped);
+                }
+
+                return ziped;
             }
 
             return first.ZipDefault(second, resultSelector);
