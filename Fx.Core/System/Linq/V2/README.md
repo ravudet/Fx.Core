@@ -71,25 +71,13 @@ The following design decisions were made while implementing V2:
 1. LINQ extension methods that leverage non-`IEnumerable<T>` interfaces (like `ThenBy` and `ThenByDescending`) are not implemented in V2 at this time. These extension methods should be considered carefully in the future to determine if the interfaces they use represent their own monads, or if they are really just syntactic conveniences and truly are extending `IEnumerable<T>`. Regardless, in the meantime, third-party developers are able to provide their own versions of these extension methods that follow the same conventions that V2 establishes.
 2. Default interface implementations are used for the mixins. Originally, there was an interface for every extension method overload. However, these interfaces didn't really have meaningful names, and it was never quite clear which interface needed to be implemented (for example, there are many overloads for `.Sum()`, and previously each overload had its own interface; the implementer would need to look through all of the "sum" interfaces and find the one that had the correct method signature in order to determine which interface their class should implement; this is tedious and error-prone). As a result, each set of overloads has a single mixin interface associated with it, and that interface has default interface implementations for all of the overloads. In this way, the developer can implement the interface, but only override the method overload that they are interested in.
 
-The question arose why not use default interface implementations for all of the LINQ extension methods (i.e. have a single interface that has all of the LINQ extension methods and provide default interface implementations for every method). This suggestion was discarded because:
-1. It doesn't establish the external-extensibility conventions that V2 currently establishes, making it more difficult for third-party developers to invent their own extension methods and mixins in the future.
-2. Existing collections that are being backported to V2 may already have implementations for these methods that don't follow the V2 requirements, and so naming conflicts can result. If the existing implementations truly don't follow the V2 logic requirements, then this can result in subtle bugs that don't clearly indicate if they are the result of V2 issues, collection implementations issues, or a breach of the contract between the two.
+   The question arose why not use default interface implementations for all of the LINQ extension methods (i.e. have a single interface that has all of the LINQ extension methods and provide default interface implementations for every method). This suggestion was discarded because:
+      1. It doesn't establish the external-extensibility conventions that V2 currently establishes, making it more difficult for third-party developers to invent their own extension methods and mixins in the future.
+      2. Existing collections that are being backported to V2 may already have implementations for these methods that don't follow the V2 requirements, and so naming conflicts can result. If the existing implementations truly don't follow the V2 logic requirements, then this can result in subtle bugs that don't clearly indicate if they are the result of V2 issues, collection implementations issues, or a breach of the contract between the two.
+3. The public extension methods check if the source enumerable implements a mixin. If it does, then the mixin implementation is used. However, if **only** the mixin implementation is used, then if the source is a monad, the monad is lost. As a result, the source is further checked if it is a monad, and if it is, then the monad unit is used to wrap the result from the mixin.
 
+   This is somewhat at odds with the default implementations provided for the mixins. Let's say that there is class `Foo` that implements `IEnumerableMonad<T>` and `IWhereableMixin<T>`. If the caller instantiates a `Foo` directly and calls `Where()`, they will be calling the `Where()` method as defined on the `IWhereableMixin<T>` and implemented on `Foo`. This means that, if `Foo` doesn't use its own Unit to wrap the result of its own `Where()` result, the caller will not receive back a `Foo`, and will have lost future uses of the `Foo` monad. This behavior is different from what the caller would receive if they simply cast `Foo` to `IV2Enumerable<T>` and then called `.Where()`, because in this case the public `.Where()` extension is called, and it will wrap the result in the `Foo` monad again.
 
+   If the `Foo` implementer chooses to wrap their own `Where()` result using their unit, this inconsistency is avoided. However, if they do so, then the result is wrapped by the unit twice, which is unnecessary. To avoid this duplication, the public extensions should actually remove their monad check and the subsequent unit call. If the public extensions were written this way, then there would be no duplicate unit calls **and** there would be consistent behavior between the public extensions, the default interface implementations, and the custom mixin implementations. **However**, doing this would require all mixin developers to be aware that, if they are also developing a monad, they must wrap their mixin results using the monad's unit. This is tedious and error-prone. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   From all of these factors, it's not clear what the best decision is, but the decision was made to have potentially inconsisten behavior if a concrete mixin implementation is being directly leveraged by a caller.

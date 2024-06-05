@@ -919,7 +919,7 @@ namespace System.Linq.V2
             }
         }
 
-        //// TODO address what you've written in chunkdefault
+        //// TODO discuss design decision 3 with others
         //// TODO implement the monad check in the public extensions (where is an example)
         //// 
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
