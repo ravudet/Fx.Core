@@ -152,6 +152,18 @@
         {
             GenerateFluent(
                 operation: "Union",
+                overload: "Union",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "IV2Enumerable<object> second",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "new[] { string.Empty }.ToV2Enumerable()"
+                );
+            GenerateFluent(
+                operation: "Union",
                 overload: "UnionWithComparer",
                 overloadReturnTypeParameters: "object",
                 overloadTypeParameters: "",
