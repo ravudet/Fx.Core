@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "TakeWhile",
+                overload: "TakeWhileWithIndexPredicate",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, int, bool> predicate",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "(element, index) => true"
+                );
+
+            GenerateFluent(
                 operation: "Union",
                 overload: "Union",
                 overloadReturnTypeParameters: "object",

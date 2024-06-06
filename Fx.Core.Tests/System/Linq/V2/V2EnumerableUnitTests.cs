@@ -2557,11 +2557,16 @@ namespace System.Linq.V2
 
         //// TODO discuss design decision 3 with others; if you rename the interface methods, confusion can be avoided; also, having separate interfaces for every method avoids the need for the "default" behavior at all
         //// 
+        //// TODO tests for tolist
+        //// TODO tests for tohashset
+        //// TODO tests for todictionary
+        //// TODO tests for toarray
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
         //// TODO use code generation for C:\source\Fx.Core\TextFile1.txt
         //// TODO you skpped tests for the the adapter methods (tov2enumerable, tov2lookup, etc.); you should have a separate implementation and test file for those
         ////
         //// TODO should the orderby variants use monad checks somehow? maybe not, maybe they should be treated list toarray and tolist?
+        //// TODO write tests for orderby variants
         //// TODO should the tolookup variants use monad checks somehow? maybe not, maybe they should be treated list toarray and tolist?
         //// TODO should the factories actually be part of this release? you aren't allowing them to be extensible (for example, enumerable.repeat could be a countable mixin, but you're not doing that, and no one else can override that...); maybe the factories should be static interface methods? if they are static interface methods, then having "defaults" of them would make sense
         //// TODO should unit be a static method?
