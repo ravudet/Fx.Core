@@ -1423,6 +1423,75 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Removes the elements of one sequence from another
+        /// </summary>
+        [TestMethod]
+        public void Except()
+        {
+            var enumerable = new ExceptableMock();
+            var second = new[] { "asdf", "qwer" }.ToV2Enumerable();
+
+            CollectionAssert.AreEqual(new[] { "asdf" }, enumerable.AsV2Enumerable().Except(second).ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(Array.Empty<string>(), enumerable.AsEnumerable().Except(second).ToArray());
+        }
+
+        /// <summary>
+        /// Removes the elements of one sequence from another using a comparer to determine equality of elements
+        /// </summary>
+        [TestMethod]
+        public void ExceptWithComparer()
+        {
+            var enumerable = new ExceptableMock();
+            var second = new[] { "asdf", "qwer" }.ToV2Enumerable();
+            var comparer = StringComparer.Ordinal;
+
+            CollectionAssert.AreEqual(new[] { "qwer" }, enumerable.AsV2Enumerable().Except(second, comparer).ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(Array.Empty<string>(), enumerable.AsEnumerable().Except(second, comparer).ToArray());
+        }
+
+        /// <summary>
+        /// Removes the elements of one sequence from another using a <see langword="null"/> comparer to determine equality of elements
+        /// </summary>
+        [TestMethod]
+        public void ExceptWithNullComparer()
+        {
+            var enumerable = new ExceptableMock();
+            var second = new[] { "asdf", "qwer" }.ToV2Enumerable();
+
+            CollectionAssert.AreEqual(new[] { "asdf" }, enumerable.AsV2Enumerable().Except(second, null).ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(Array.Empty<string>(), enumerable.AsEnumerable().Except(second, null).ToArray());
+        }
+
+        private sealed class ExceptableMock : IExceptableMixin<string>
+        {
+            public IV2Enumerable<string> Except(IV2Enumerable<string> second)
+            {
+                return new[] { second.First() }.ToV2Enumerable();
+            }
+
+            public IV2Enumerable<string> Except(IV2Enumerable<string> second, IEqualityComparer<string>? comparer)
+            {
+                return new[] { comparer == null ? second.First() : second.Last() }.ToV2Enumerable();
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
         //// TODO discuss design decision 3 with others; if you rename the interface methods, confusion can be avoided; also, having separate interfaces for every method avoids the need for the "default" behavior at all
         //// 
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
