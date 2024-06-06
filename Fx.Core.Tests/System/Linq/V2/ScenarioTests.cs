@@ -84,7 +84,7 @@
                 overloadTypeParameters: "", //// TODO
                 overloadParameters: "object defaultValue",
                 resultType: "object",
-                arguments: "new object()"
+                arguments: "singleton.GetHashCode()"
                 );
 
             GenerateTerminal(
