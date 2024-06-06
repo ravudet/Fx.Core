@@ -152,6 +152,18 @@
         {
             GenerateFluent(
                 operation: "UnionBy",
+                overload: "UnionBy",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "IV2Enumerable<object> second, Func<object, TKey> keySelector",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "new[] { string.Empty }.ToV2Enumerable(), (element) => new object()"
+                );
+            GenerateFluent(
+                operation: "UnionBy",
                 overload: "UnionByWithComparer",
                 overloadReturnTypeParameters: "object",
                 overloadTypeParameters: "<TKey>",
