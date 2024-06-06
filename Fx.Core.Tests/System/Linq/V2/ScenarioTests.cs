@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "SelectMany",
+                overload: "SelectMany",
+                overloadReturnTypeParameters: "TResult",
+                overloadTypeParameters: "<TResult>",
+                overloadParameters: "Func<object, IV2Enumerable<TResult>> selector",
+                monadType: "<object>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TResult>",
+                resultReturnTypeParameters: "TResult",
+                arguments: "element => V2Enumerable.Empty<object>()"
+                );
+
+            GenerateFluent(
                 operation: "Skip",
                 overload: "Skip",
                 overloadReturnTypeParameters: "object",
