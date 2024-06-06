@@ -1664,17 +1664,6 @@ namespace System.Linq.V2
             Assert.AreEqual(MockExceptByMonadExceptByableMixin<string>.Result, monad.Source);
         }
 
-        private sealed class MockExceptByMonadException<TElement> : Exception
-        {
-            public MockExceptByMonadException(IV2Enumerable<TElement> result)
-                : base()
-            {
-                this.Result = result;
-            }
-
-            public IV2Enumerable<TElement> Result { get; }
-        }
-
         private sealed class MockExceptByMonadExceptByableMixin<TElement> : IExceptByableMixin<TElement>
         {
             public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
@@ -1738,6 +1727,8 @@ namespace System.Linq.V2
                 throw new NotImplementedException();
             }
         }
+
+
 
         //// TODO discuss design decision 3 with others; if you rename the interface methods, confusion can be avoided; also, having separate interfaces for every method avoids the need for the "default" behavior at all
         //// 
