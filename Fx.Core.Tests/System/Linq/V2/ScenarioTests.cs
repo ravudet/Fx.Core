@@ -73,6 +73,18 @@
         {
             Generate(
                 operation: "Where",
+                overload: "Where",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "(element) => true"
+                );
+            Generate(
+                operation: "Where",
                 overload: "WhereWithIndexPredicate",
                 overloadReturnTypeParameters: "object",
                 overloadTypeParameters: "",
