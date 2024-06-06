@@ -79,7 +79,7 @@
         {
             GenerateTerminal(
                 operation: "Sum",
-                overload: "SumInt32s",
+                overload: "SumElementsAsInt32s",
                 overloadReturnType: "int",
                 overloadTypeParameters: "", //// TODO
                 overloadParameters: "Func<object, int> selector",
@@ -88,7 +88,7 @@
                 );
             GenerateTerminal(
                 operation: "Sum",
-                overload: "SumInt64s",
+                overload: "SumElementsAsInt64s",
                 overloadReturnType: "long",
                 overloadTypeParameters: "", //// TODO
                 overloadParameters: "Func<object, long> selector",
