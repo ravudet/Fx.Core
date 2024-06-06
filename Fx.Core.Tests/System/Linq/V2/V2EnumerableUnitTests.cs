@@ -1503,7 +1503,7 @@ namespace System.Linq.V2
         }
 
         /// <summary>
-        /// Tests that the default implementation of ExceptByu is used when a mixin is not implemented
+        /// Tests that the default implementation of ExceptBy is used when a mixin is not implemented
         /// </summary>
         [TestMethod]
         public void ExceptByableMixinDefaults()
