@@ -709,31 +709,6 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
-            {
-                //// TODO
-                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
-            }
-
-            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
-            {
-                private ResultEnumerable()
-                {
-                }
-
-                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
-
-                public IEnumerator<T> GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
             public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
