@@ -71,7 +71,44 @@
         [TestMethod]
         public void Generate()
         {
-            Generate(
+            GenerateFluent();
+            GenerateTerminal();
+        }
+
+        private static void GenerateTerminal()
+        {
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumInts"
+                );
+        }
+
+        private static void GenerateTerminal(
+            string operation,
+            string overload)
+        {
+            var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\TerminalTemplate.txt");
+            var escapedTemplate = template
+                .Replace("{", "{{")
+                .Replace("}", "}}")
+                .Replace("{{0}}", "{0}")
+                .Replace("{{1}}", "{1}")
+                ;
+
+            var generated = string.Format(
+                escapedTemplate,
+                operation,
+                overload);
+
+            var unescapedGenerated = generated
+                .Replace("{{", "{")
+                .Replace("}}", "}");
+            System.IO.File.WriteAllText($@"C:\source\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{overload}.cs", unescapedGenerated);
+        }
+
+        private static void GenerateFluent()
+        {
+            GenerateFluent(
                 operation: "Where",
                 overload: "Where",
                 overloadReturnTypeParameters: "object",
@@ -83,7 +120,7 @@
                 resultReturnTypeParameters: "object",
                 arguments: "(element) => true"
                 );
-            Generate(
+            GenerateFluent(
                 operation: "Where",
                 overload: "WhereWithIndexPredicate",
                 overloadReturnTypeParameters: "object",
@@ -96,7 +133,7 @@
                 arguments: "(element, index) => true"
                 );
 
-            Generate(
+            GenerateFluent(
                 operation: "Zip",
                 overload: "ZipWithThird",
                 overloadReturnTypeParameters: "(object First, TSecond Second, TThird Third)",
@@ -108,7 +145,7 @@
                 resultReturnTypeParameters: "(object, TSecond, TThird)",
                 arguments: "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()"
                 );
-            Generate(
+            GenerateFluent(
                 operation: "Zip",
                 overload: "Zip",
                 overloadReturnTypeParameters: "(object First, TSecond Second)",
@@ -120,7 +157,7 @@
                 resultReturnTypeParameters: "(object, TSecond)",
                 arguments: "new[] { string.Empty }.ToV2Enumerable()"
                 );
-            Generate(
+            GenerateFluent(
                 operation: "Zip",
                 overload: "ZipWithResultSelector",
                 overloadReturnTypeParameters: "TResult",
@@ -134,7 +171,7 @@
                 );
         }
 
-        private static void Generate(
+        private static void GenerateFluent(
             string operation,
             string overload,
             string overloadReturnTypeParameters,
