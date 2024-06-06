@@ -1167,7 +1167,7 @@ namespace System.Linq.V2
         [TestMethod]
         public void Distinct()
         {
-            var enumerable = new DistinctMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
+            var enumerable = new DistinctableMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
 
             CollectionAssert.AreEqual(new[] { "asdf", "qwer" }, enumerable.AsV2Enumerable().Distinct().ToArray());
 
@@ -1181,7 +1181,7 @@ namespace System.Linq.V2
         [TestMethod]
         public void DistinctWithComparer()
         {
-            var enumerable = new DistinctMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
+            var enumerable = new DistinctableMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
             var comparer = StringComparer.OrdinalIgnoreCase;
 
             CollectionAssert.AreEqual(new[] { "qwer" }, enumerable.AsV2Enumerable().Distinct(comparer).ToArray());
@@ -1196,7 +1196,7 @@ namespace System.Linq.V2
         [TestMethod]
         public void DistinctWithNullComparer()
         {
-            var enumerable = new DistinctMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
+            var enumerable = new DistinctableMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
 
             CollectionAssert.AreEqual(new[] { "asdf" }, enumerable.AsV2Enumerable().Distinct(null).ToArray());
 
@@ -1204,11 +1204,11 @@ namespace System.Linq.V2
             CollectionAssert.AreEqual(Array.Empty<string>(), enumerable.AsEnumerable().Distinct(null).ToArray());
         }
 
-        private sealed class DistinctMock : IDistinctableMixin<string>
+        private sealed class DistinctableMock : IDistinctableMixin<string>
         {
             private readonly IV2Enumerable<string> values;
 
-            public DistinctMock(IV2Enumerable<string> values)
+            public DistinctableMock(IV2Enumerable<string> values)
             {
                 this.values = values;
             }
@@ -1221,6 +1221,93 @@ namespace System.Linq.V2
             public IV2Enumerable<string> Distinct(IEqualityComparer<string>? comparer)
             {
                 return new[] { comparer == null ? this.values.First() : this.values.Last() }.ToV2Enumerable();
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Gets the distinct elements of a sequence using a selector to determine which portion of the elements should be used to determine equality
+        /// </summary>
+        [TestMethod]
+        public void DistinctBy()
+        {
+            var enumerable = new DistinctByableMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
+            var selector = (string element) => element;
+
+            CollectionAssert.AreEqual(new[] { "aq" }, enumerable.AsV2Enumerable().DistinctBy(selector).ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(Array.Empty<string>(), enumerable.AsEnumerable().DistinctBy(selector).ToArray());
+        }
+
+        /// <summary>
+        /// Gets the distinct elements of a sequence using a selector to determine which portion of the elements should be used to determine equality and a comparer to determine the equality of those portions
+        /// </summary>
+        [TestMethod]
+        public void DistinctByWithComparer()
+        {
+            var enumerable = new DistinctByableMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
+            var selector = (string element) => element;
+            var comparer = StringComparer.Ordinal;
+
+            CollectionAssert.AreEqual(new[] { "qwer" }, enumerable.AsV2Enumerable().DistinctBy(selector, comparer).ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(Array.Empty<string>(), enumerable.AsEnumerable().DistinctBy(selector, comparer).ToArray());
+        }
+
+        /// <summary>
+        /// Gets the distinct elements of a sequence using a selector to determine which portion of the elements should be used to determine equality and a <see langword="null"/> comparer to determine the equality of those portions
+        /// </summary>
+        [TestMethod]
+        public void DistinctByWithNullComparer()
+        {
+            var enumerable = new DistinctByableMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
+            var selector = (string element) => element;
+
+            CollectionAssert.AreEqual(new[] { "asdf" }, enumerable.AsV2Enumerable().DistinctBy(selector, null).ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(Array.Empty<string>(), enumerable.AsEnumerable().DistinctBy(selector, null).ToArray());
+        }
+
+        private sealed class DistinctByableMock : IDistinctByableMixin<string>
+        {
+            private readonly IV2Enumerable<string> values;
+
+            public DistinctByableMock(IV2Enumerable<string> values)
+            {
+                this.values = values;
+            }
+
+            public IV2Enumerable<string> DistinctBy<TKey>(Func<string, TKey> keySelector)
+            {
+                var result = string.Empty;
+                foreach (var element in this.values)
+                {
+                    var selected = keySelector(element);
+                    if (selected as string == element)
+                    {
+                        result += element[0];
+                    }
+                }
+
+                return new[] { result }.ToV2Enumerable();
+            }
+
+            public IV2Enumerable<string> DistinctBy<TKey>(Func<string, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+            {
+                var selected = keySelector(comparer == null ? this.values.First() : this.values.Last());
+                return new[] { (selected as string) ?? string.Empty }.ToV2Enumerable();
             }
 
             public IEnumerator<string> GetEnumerator()
