@@ -93,11 +93,13 @@
                 .Replace("}", "}}")
                 .Replace("{{0}}", "{0}")
                 .Replace("{{1}}", "{1}")
+                .Replace("{{2}}", "{2}")
                 ;
 
             var generated = string.Format(
                 escapedTemplate,
                 operation,
+                operation.ToLower(),
                 overload);
 
             var unescapedGenerated = generated
