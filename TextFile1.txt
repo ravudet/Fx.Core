@@ -607,7 +607,7 @@ namespace System.Linq.V2
             var {2}ed = enumerable.{0}({10});
             var monad = {2}ed as Mock{1}NoMixinAndMonadWhereSourceIsNotMixin.ResultMonad{6};
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(new[] { (Mock{1}NoMixinAndMonadWhereSourceIsNotMixin.ResultObject, string.Empty, string.Empty) }, monad.Source.ToArray());
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), monad.Source.ToArray());
         }
 
         private sealed class Mock{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -703,7 +703,7 @@ namespace System.Linq.V2
 
             public IEnumerator<object> GetEnumerator()
             {
-                throw new NotImplementedException();
+                return this.Source.GetEnumerator();
             }
 
             IEnumerator IEnumerable.GetEnumerator()
@@ -720,7 +720,7 @@ namespace System.Linq.V2
         {
             var enumerable = new Mock{1}NoMixinAndNoMonad().AsV2Enumerable();
             var {2}ed = enumerable.{0}({10});
-            CollectionAssert.AreEqual(new[] { (Mock{1}NoMixinAndNoMonad.ResultObject, string.Empty, string.Empty) }, {2}ed.ToArray());
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), {2}ed.ToArray());
         }
 
         private sealed class Mock{1}NoMixinAndNoMonad : IV2Enumerable<object>
