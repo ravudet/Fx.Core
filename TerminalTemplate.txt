@@ -158,7 +158,7 @@ namespace System.Linq.V2
             var enumerable = new Mock{2}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = Mock{2}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var {1}ed = enumerable.{0}({7});
-            Assert.AreEqual(singleton.GetHashCode(), {1}ed);
+            Assert.AreEqual(singleton.GetHashCode(), {1}ed.GetHashCode());
         }
 
         private sealed class Mock{2}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
@@ -250,7 +250,7 @@ namespace System.Linq.V2
             var enumerable = new Mock{2}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = Mock{2}MixinWithoutOverloadAndNoMonad.Element;
             var {1}ed = enumerable.{0}({7});
-            Assert.AreEqual(singleton.GetHashCode(), {1}ed);
+            Assert.AreEqual(singleton.GetHashCode(), {1}ed.GetHashCode());
         }
 
         private sealed class Mock{2}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>
@@ -390,7 +390,7 @@ namespace System.Linq.V2
             var enumerable = new Mock{2}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = Mock{2}NoMixinAndMonadWhereSourceIsNotMixin.Element;
             var {1}ed = enumerable.{0}({7});
-            Assert.AreEqual(singleton.GetHashCode(), {1}ed);
+            Assert.AreEqual(singleton.GetHashCode(), {1}ed.GetHashCode());
         }
 
         private sealed class Mock{2}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -500,7 +500,7 @@ namespace System.Linq.V2
             var enumerable = new Mock{2}NoMixinAndNoMonad().AsV2Enumerable();
             var singleton = Mock{2}NoMixinAndNoMonad.Element;
             var {1}ed = enumerable.{0}({7});
-            Assert.AreEqual(singleton.GetHashCode(), {1}ed);
+            Assert.AreEqual(singleton.GetHashCode(), {1}ed.GetHashCode());
         }
 
         private sealed class Mock{2}NoMixinAndNoMonad : IV2Enumerable<object>
