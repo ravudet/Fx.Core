@@ -940,7 +940,7 @@
             if (outer is IGroupJoinableMixin<TOuter> groupJoin)
             {
                 var groupJoined = groupJoin.GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, comparer);
-                if (outer is IEnumerableMonad<TraceSource> monad)
+                if (outer is IEnumerableMonad<TOuter> monad)
                 {
                     return monad.Create(groupJoined);
                 }
