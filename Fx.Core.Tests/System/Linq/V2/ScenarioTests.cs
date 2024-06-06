@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "SkipLast",
+                overload: "SkipLast",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "int count",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "4"
+                );
+
+            GenerateFluent(
                 operation: "SkipWhile",
                 overload: "SkipWhile",
                 overloadReturnTypeParameters: "object",

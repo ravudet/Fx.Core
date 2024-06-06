@@ -1948,7 +1948,7 @@
                 var skipLasted = skipLast.SkipLast(count);
                 if (self is IEnumerableMonad<TSource> monad)
                 {
-                    return monad.Concat(skipLasted);
+                    return monad.Create(skipLasted);
                 }
 
                 return skipLasted;
