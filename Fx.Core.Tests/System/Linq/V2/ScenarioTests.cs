@@ -152,6 +152,18 @@
         {
             GenerateFluent(
                 operation: "SelectMany",
+                overload: "SelectManyWithCollectionAndResultSelector",
+                overloadReturnTypeParameters: "TResult",
+                overloadTypeParameters: "<TCollection, TResult>",
+                overloadParameters: "Func<object, IV2Enumerable<TCollection>> collectionSelector, Func<object, TCollection, TResult> resultSelector",
+                monadType: "<object>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TResult>",
+                resultReturnTypeParameters: "TResult",
+                arguments: "element => V2Enumerable.Empty<object>(), (element, collection) => collection"
+                );
+            GenerateFluent(
+                operation: "SelectMany",
                 overload: "SelectManyWithIndexAndResultSelector",
                 overloadReturnTypeParameters: "TResult",
                 overloadTypeParameters: "<TCollection, TResult>",
@@ -162,7 +174,6 @@
                 resultReturnTypeParameters: "TResult",
                 arguments: "(element, index) => V2Enumerable.Empty<object>(), (element, collection) => collection"
                 );
-
             GenerateFluent(
                 operation: "SelectMany",
                 overload: "SelectMany",
