@@ -146,7 +146,7 @@
             string resultReturnTypeParameters,
             string arguments)
         {
-            var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\TextFile1.txt");
+            var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\FluentTemplate.txt");
             var escapedTemplate = template
                 .Replace("{", "{{")
                 .Replace("}", "}}")
