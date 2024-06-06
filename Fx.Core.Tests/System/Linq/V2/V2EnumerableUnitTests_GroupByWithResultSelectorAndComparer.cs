@@ -14,8 +14,8 @@ namespace System.Linq.V2
         public void GroupByWithResultSelectorAndComparerMixinWithOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockGroupByWithResultSelectorAndComparerMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var groupbyed = enumerable.GroupBy(element => element, element => element, null);
-            var monad = groupbyed as MockGroupByWithResultSelectorAndComparerMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<IV2Grouping<object, object>>;
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this, null);
+            var monad = groupbyed as MockGroupByWithResultSelectorAndComparerMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
             Assert.AreEqual(MockGroupByWithResultSelectorAndComparerMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result<object>(), monad.Source);
         }
@@ -137,7 +137,7 @@ namespace System.Linq.V2
         public void GroupByWithResultSelectorAndComparerMixinWithOverloadAndNoMonad()
         {
             var enumerable = new MockGroupByWithResultSelectorAndComparerMixinWithOverloadAndNoMonad().AsV2Enumerable();
-            var groupbyed = enumerable.GroupBy(element => element, element => element, null);
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this, null);
             Assert.AreEqual(MockGroupByWithResultSelectorAndComparerMixinWithOverloadAndNoMonad.Result<object>(), groupbyed);
         }
 
@@ -190,10 +190,10 @@ namespace System.Linq.V2
         public void GroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
             var enumerable = new MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var groupbyed = enumerable.GroupBy(element => element, element => element, null);
-            var monad = groupbyed as MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<IV2Grouping<object, object>>;
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this, null);
+            var monad = groupbyed as MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            var source = monad.Source as MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<IV2Grouping<object, object>>;
+            var source = monad.Source as MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(source);
             Assert.AreEqual(MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result<object>(), source.Source);
         }
@@ -334,10 +334,10 @@ namespace System.Linq.V2
         public void GroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var groupbyed = enumerable.GroupBy(element => element, element => element, null);
-            var monad = groupbyed as MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<IV2Grouping<object, object>>;
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this, null);
+            var monad = groupbyed as MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, element => element, null).ToArray(), monad.Source.ToArray(), GroupingComparer.Instance);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, (key, elements) => (object)this, null).ToArray(), monad.Source.ToArray(), GroupingComparer.Instance);
         }
 
         private sealed class MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IGroupByableMixin<object>, IEnumerableMonad<object>
@@ -428,8 +428,8 @@ namespace System.Linq.V2
         public void GroupByWithResultSelectorAndComparerMixinWithoutOverloadAndNoMonad()
         {
             var enumerable = new MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var groupbyed = enumerable.GroupBy(element => element, element => element, null);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, element => element, null).ToArray(), groupbyed.ToArray(), GroupingComparer.Instance);
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this, null);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, (key, elements) => (object)this, null).ToArray(), groupbyed.ToArray(), GroupingComparer.Instance);
         }
 
         private sealed class MockGroupByWithResultSelectorAndComparerMixinWithoutOverloadAndNoMonad : IGroupByableMixin<object>
@@ -454,8 +454,8 @@ namespace System.Linq.V2
         public void GroupByWithResultSelectorAndComparerNoMixinAndMonadWhereSourceIsMixin()
         {
             var enumerable = new MockGroupByWithResultSelectorAndComparerNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var groupbyed = enumerable.GroupBy(element => element, element => element, null);
-            var monad = groupbyed as MockGroupByWithResultSelectorAndComparerNoMixinAndMonadWhereSourceIsMixin.ResultMonad<IV2Grouping<object, object>>;
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this, null);
+            var monad = groupbyed as MockGroupByWithResultSelectorAndComparerNoMixinAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
             Assert.AreEqual(MockGroupByWithResultSelectorAndComparerNoMixinAndMonadWhereSourceIsMixin.Result<object>(), monad.Source);
         }
@@ -596,10 +596,10 @@ namespace System.Linq.V2
         public void GroupByWithResultSelectorAndComparerNoMixinAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockGroupByWithResultSelectorAndComparerNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var groupbyed = enumerable.GroupBy(element => element, element => element, null);
-            var monad = groupbyed as MockGroupByWithResultSelectorAndComparerNoMixinAndMonadWhereSourceIsNotMixin.ResultMonad<IV2Grouping<object, object>>;
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this, null);
+            var monad = groupbyed as MockGroupByWithResultSelectorAndComparerNoMixinAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, element => element, null).ToArray(), monad.Source.ToArray(), GroupingComparer.Instance);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, (key, elements) => (object)this, null).ToArray(), monad.Source.ToArray(), GroupingComparer.Instance);
         }
 
         private sealed class MockGroupByWithResultSelectorAndComparerNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -711,8 +711,8 @@ namespace System.Linq.V2
         public void GroupByWithResultSelectorAndComparerNoMixinAndNoMonad()
         {
             var enumerable = new MockGroupByWithResultSelectorAndComparerNoMixinAndNoMonad().AsV2Enumerable();
-            var groupbyed = enumerable.GroupBy(element => element, element => element, null);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, element => element, null).ToArray(), groupbyed.ToArray(), GroupingComparer.Instance);
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this, null);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, (key, elements) => (object)this, null).ToArray(), groupbyed.ToArray(), GroupingComparer.Instance);
         }
 
         private sealed class MockGroupByWithResultSelectorAndComparerNoMixinAndNoMonad : IV2Enumerable<object>

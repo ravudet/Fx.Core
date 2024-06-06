@@ -182,11 +182,11 @@
                 overloadReturnTypeParameters: "TResult",
                 overloadTypeParameters: "<TKey, TResult>",
                 overloadParameters: "Func<object, TKey> keySelector, Func<TKey, IV2Enumerable<object>, TResult> resultSelector, IEqualityComparer<TKey>? comparer",
-                monadType: "<IV2Grouping<object, object>>",
+                monadType: "<object>",
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "element => element, element => element, null",
+                arguments: "element => element, (key, elements) => (object)this, null",
                 collectionComparer: ", GroupingComparer.Instance"
                 );
             GenerateFluent(
