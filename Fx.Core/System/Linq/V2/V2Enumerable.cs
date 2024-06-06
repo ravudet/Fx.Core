@@ -712,7 +712,7 @@
                 return exceptByed;
             }
 
-            return first.ExceptByDefault(second, keySelector);
+            return first.ExceptByDefault(second, keySelector, comparer);
         }
 
         public static TSource First<TSource>(this IV2Enumerable<TSource> self)

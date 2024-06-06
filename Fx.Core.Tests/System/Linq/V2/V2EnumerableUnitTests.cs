@@ -5,6 +5,7 @@ namespace System.Linq.V2
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Xml.Linq;
 
     [TestClass]
     public sealed class V2EnumerableUnitTests
@@ -1728,7 +1729,240 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Tests that the mixin implementation of ExceptBy is used
+        /// </summary>
+        [TestMethod]
+        public void ExceptByableWithComparerMixin()
+        {
+            var enumerable = new MockExceptByableWithComparerMixin<string>().AsV2Enumerable();
+            Assert.AreEqual(MockExceptByableWithComparerMixin<string>.Result, enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _, null));
+        }
 
+        /// <summary>
+        /// Tests that the default implementation of ExceptBy is used when a mixin is not implemented
+        /// </summary>
+        [TestMethod]
+        public void ExceptByableWithComparerMixinDefaults()
+        {
+            var enumerable = new MockExceptByableWithComparerMixin<string>().AsV2Enumerable();
+            try
+            {
+                enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _).Enumerate();
+                Assert.Fail();
+            }
+            catch (Exception exception)
+            {
+                Assert.AreEqual(MockExceptByableWithComparerMixin<string>.Exception, exception);
+            }
+        }
+
+        private sealed class MockExceptByableWithComparerMixin<TElement> : IExceptByableMixin<TElement>
+        {
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public static Exception Exception { get; } = EnumerationException.Instance;
+
+            private sealed class EnumerationException : Exception
+            {
+                private EnumerationException()
+                    : base()
+                {
+                }
+
+                public static EnumerationException Instance { get; } = new EnumerationException();
+            }
+
+            public IV2Enumerable<TElement> ExceptBy<TKey>(IV2Enumerable<TKey> second, Func<TElement, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw EnumerationException.Instance;
+            }
+
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Tests that the monad is preserved when a monad and a ExceptBy mixin are combined and the mixin implementation is called
+        /// </summary>
+        [TestMethod]
+        public void ExceptByableWithComparerMixinAndMonad()
+        {
+            var enumerable = new MockExceptByableWithComparerMixinAndMonad<string>().AsV2Enumerable();
+            var ExceptByed = enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _, null);
+            var monad = ExceptByed as MockExceptByableWithComparerMixinAndMonad<string>;
+            Assert.IsNotNull(monad);
+            Assert.AreEqual(MockExceptByableWithComparerMixinAndMonad<string>.Result, monad.Source);
+        }
+
+        private sealed class MockExceptByableWithComparerMixinAndMonad<TElement> : IExceptByableMixin<TElement>, IEnumerableMonad<TElement>
+        {
+            public MockExceptByableWithComparerMixinAndMonad()
+                : this(V2Enumerable.Empty<TElement>())
+            {
+            }
+
+            private MockExceptByableWithComparerMixinAndMonad(IV2Enumerable<TElement> source)
+            {
+                this.Source = source;
+            }
+
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IV2Enumerable<TElement> Source { get; }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return (IV2Enumerable<TSource> source) => new MockExceptByableWithComparerMixinAndMonad<TSource>(source);
+            }
+            public IV2Enumerable<TElement> ExceptBy<TKey>(IV2Enumerable<TKey> second, Func<TElement, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        [TestMethod]
+        public void ExceptByWithComparerDefault()
+        {
+            //// TODO
+            V2Enumerable.Empty<string>().ExceptBy(V2Enumerable.Empty<string>(), _ => _, null).Enumerate();
+        }
+
+        /// <summary>
+        /// Tests that the monad source is used when the source is the ExceptBy mixin
+        /// </summary>
+        [TestMethod]
+        public void ExceptByWithComparerMonad()
+        {
+            var enumerable = new MockExceptByWithComparerMonad<string>(new MockExceptByMonadExceptByableWithComparerMixin<string>().AsV2Enumerable()).AsV2Enumerable();
+            var ExceptByed = enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _, null);
+            var monad = ExceptByed as MockExceptByWithComparerMonad<string>;
+            Assert.IsNotNull(monad);
+            Assert.AreEqual(MockExceptByMonadExceptByableWithComparerMixin<string>.Result, monad.Source);
+        }
+
+        private sealed class MockExceptByMonadExceptByableWithComparerMixin<TElement> : IExceptByableMixin<TElement>
+        {
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IV2Enumerable<TElement> ExceptBy<TKey>(IV2Enumerable<TKey> second, Func<TElement, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private sealed class MockExceptByWithComparerMonad<TElement> : IEnumerableMonad<TElement>
+        {
+            public MockExceptByWithComparerMonad(IV2Enumerable<TElement> source)
+            {
+                this.Source = source;
+            }
+
+            public IV2Enumerable<TElement> Source { get; }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return (IV2Enumerable<TSource> source) => new MockExceptByWithComparerMonad<TSource>(source);
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         //// TODO discuss design decision 3 with others; if you rename the interface methods, confusion can be avoided; also, having separate interfaces for every method avoids the need for the "default" behavior at all
         //// 
