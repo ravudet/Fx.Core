@@ -75,8 +75,17 @@
                 overload: "ZipWithThird",
                 operation: "Zip",
                 monadType: "<(object, string, string)>",
-                resultType: "<string, string>",
+                resultTypeArguments: "<string, string>",
+                resultReturnTypeParameters: "(object, TSecond, TThird)",
                 arguments: "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()"
+                );
+            Generate(
+                overload: "ZipWithResultSelector",
+                operation: "Zip",
+                monadType: "<object>",
+                resultTypeArguments: "object",
+                resultReturnTypeParameters: "(object, TSecond, TThird)",
+                arguments: "new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object()"
                 );
         }
 
@@ -84,7 +93,8 @@
             string overload,
             string operation,
             string monadType,
-            string resultType,
+            string resultTypeArguments,
+            string resultReturnTypeParameters,
             string arguments)
         {
             var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\TextFile1.txt");
@@ -96,7 +106,9 @@
                 .Replace("{{2}}", "{2}")
                 .Replace("{{3}}", "{3}")
                 .Replace("{{4}}", "{4}")
-                .Replace("{{5}}", "{5}");
+                .Replace("{{5}}", "{5}")
+                .Replace("{{6}}", "{6}")
+                ;
 
             var generated = string.Format(
                 escapedTemplate,
@@ -104,7 +116,8 @@
                 operation,
                 operation.ToLower(),
                 monadType,
-                resultType,
+                resultTypeArguments,
+                resultReturnTypeParameters,
                 arguments);
 
             var unescapedGenerated = generated

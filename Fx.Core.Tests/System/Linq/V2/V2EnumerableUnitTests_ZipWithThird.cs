@@ -145,9 +145,9 @@ namespace System.Linq.V2
             Assert.AreEqual(MockZipWithThirdMixinWithOverloadAndNoMonad.Result<string, string>(), ziped);
         }
 
-        private sealed class MockZipWithThirdMixinWithOverloadAndNoMonad : IZipableMixin<string>
+        private sealed class MockZipWithThirdMixinWithOverloadAndNoMonad : IZipableMixin<object>
         {
-            public IV2Enumerable<(string First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
+            public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
                 IV2Enumerable<TSecond> second,
                 IV2Enumerable<TThird> third)
             {
@@ -155,10 +155,10 @@ namespace System.Linq.V2
                 return Result<TSecond, TThird>();
             }
 
-            public static IV2Enumerable<(string, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
             {
                 //// TODO
-                return ResultEnumerable<(string, TSecond, TThird)>.Instance;
+                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -180,7 +180,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IEnumerator<string> GetEnumerator()
+            public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -709,10 +709,10 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<(string, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
             {
                 //// TODO
-                return ResultEnumerable<(string, TSecond, TThird)>.Instance;
+                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>

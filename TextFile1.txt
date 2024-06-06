@@ -14,7 +14,7 @@ namespace System.Linq.V2
         public void {0}MixinWithOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new Mock{0}MixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{1}({5});
+            var {2}ed = enumerable.{1}({6});
             var monad = {2}ed as Mock{0}MixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad{3};
             Assert.IsNotNull(monad);
             Assert.AreEqual(Mock{0}MixinWithOverloadAndMonadWhereSourceIsNotMixin.Result{4}(), monad.Source);
@@ -98,10 +98,10 @@ namespace System.Linq.V2
                 return Result<TSecond, TThird>();
             }
 
-            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<{5}> Result<TSecond, TThird>()
             {
                 //// TODO
-                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
+                return ResultEnumerable<{5}>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -141,13 +141,13 @@ namespace System.Linq.V2
         public void {0}MixinWithOverloadAndNoMonad()
         {
             var enumerable = new Mock{0}MixinWithOverloadAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{1}({5});
+            var {2}ed = enumerable.{1}({6});
             Assert.AreEqual(Mock{0}MixinWithOverloadAndNoMonad.Result{4}(), {2}ed);
         }
 
-        private sealed class Mock{0}MixinWithOverloadAndNoMonad : I{1}ableMixin<string>
+        private sealed class Mock{0}MixinWithOverloadAndNoMonad : I{1}ableMixin<object>
         {
-            public IV2Enumerable<(string First, TSecond Second, TThird Third)> {1}<TSecond, TThird>(
+            public IV2Enumerable<(object First, TSecond Second, TThird Third)> {1}<TSecond, TThird>(
                 IV2Enumerable<TSecond> second,
                 IV2Enumerable<TThird> third)
             {
@@ -155,10 +155,10 @@ namespace System.Linq.V2
                 return Result<TSecond, TThird>();
             }
 
-            public static IV2Enumerable<(string, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
             {
                 //// TODO
-                return ResultEnumerable<(string, TSecond, TThird)>.Instance;
+                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -180,7 +180,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IEnumerator<string> GetEnumerator()
+            public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -198,7 +198,7 @@ namespace System.Linq.V2
         public void {0}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
             var enumerable = new Mock{0}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{1}({5});
+            var {2}ed = enumerable.{1}({6});
             var monad = {2}ed as Mock{0}MixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad{3};
             Assert.IsNotNull(monad);
             var source = monad.Source as Mock{0}MixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad{3};
@@ -303,10 +303,10 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<{5}> Result<TSecond, TThird>()
             {
                 //// TODO
-                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
+                return ResultEnumerable<{5}>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -346,7 +346,7 @@ namespace System.Linq.V2
         public void {0}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new Mock{0}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{1}({5});
+            var {2}ed = enumerable.{1}({6});
             var monad = {2}ed as Mock{0}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad{3};
             Assert.IsNotNull(monad);
             CollectionAssert.AreEqual(Array.Empty<(string, string, string)>(), monad.Source.ToArray());
@@ -440,7 +440,7 @@ namespace System.Linq.V2
         public void {0}MixinWithoutOverloadAndNoMonad()
         {
             var enumerable = new Mock{0}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{1}({5});
+            var {2}ed = enumerable.{1}({6});
             CollectionAssert.AreEqual(new[] { (Mock{0}MixinWithoutOverloadAndNoMonad.ResultObject, string.Empty, string.Empty) }, {2}ed.ToArray());
         }
 
@@ -466,7 +466,7 @@ namespace System.Linq.V2
         public void {0}NoMixinAndMonadWhereSourceIsMixin()
         {
             var enumerable = new Mock{0}NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{1}({5});
+            var {2}ed = enumerable.{1}({6});
             var monad = {2}ed as Mock{0}NoMixinAndMonadWhereSourceIsMixin.ResultMonad{3};
             Assert.IsNotNull(monad);
             Assert.AreEqual(Mock{0}NoMixinAndMonadWhereSourceIsMixin.Result{4}(), monad.Source);
@@ -569,10 +569,10 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<{5}> Result<TSecond, TThird>()
             {
                 //// TODO
-                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
+                return ResultEnumerable<{5}>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -612,7 +612,7 @@ namespace System.Linq.V2
         public void {0}NoMixinAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new Mock{0}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{1}({5});
+            var {2}ed = enumerable.{1}({6});
             var monad = {2}ed as Mock{0}NoMixinAndMonadWhereSourceIsNotMixin.ResultMonad{3};
             Assert.IsNotNull(monad);
             CollectionAssert.AreEqual(new[] { (Mock{0}NoMixinAndMonadWhereSourceIsNotMixin.ResultObject, string.Empty, string.Empty) }, monad.Source.ToArray());
@@ -709,10 +709,10 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<(string, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<{5}> Result<TSecond, TThird>()
             {
                 //// TODO
-                return ResultEnumerable<(string, TSecond, TThird)>.Instance;
+                return ResultEnumerable<{5}>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -752,7 +752,7 @@ namespace System.Linq.V2
         public void {0}NoMixinAndNoMonad()
         {
             var enumerable = new Mock{0}NoMixinAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{1}({5});
+            var {2}ed = enumerable.{1}({6});
             CollectionAssert.AreEqual(new[] { (Mock{0}NoMixinAndNoMonad.ResultObject, string.Empty, string.Empty) }, {2}ed.ToArray());
         }
 
