@@ -76,6 +76,7 @@
                 operation: "Zip",
                 monadType: "<(object, string, string)>",
                 resultTypeArguments: "<string, string>",
+                resultTypeParameters: "<TSecond, TThird>",
                 resultReturnTypeParameters: "(object, TSecond, TThird)",
                 arguments: "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()"
                 );
@@ -83,8 +84,9 @@
                 overload: "ZipWithResultSelector",
                 operation: "Zip",
                 monadType: "<object>",
-                resultTypeArguments: "object",
-                resultReturnTypeParameters: "(object, TSecond, TThird)",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
                 arguments: "new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object()"
                 );
         }
@@ -94,6 +96,7 @@
             string operation,
             string monadType,
             string resultTypeArguments,
+            string resultTypeParameters,
             string resultReturnTypeParameters,
             string arguments)
         {
@@ -108,6 +111,7 @@
                 .Replace("{{4}}", "{4}")
                 .Replace("{{5}}", "{5}")
                 .Replace("{{6}}", "{6}")
+                .Replace("{{7}}", "{7}")
                 ;
 
             var generated = string.Format(
@@ -117,6 +121,7 @@
                 operation.ToLower(),
                 monadType,
                 resultTypeArguments,
+                resultTypeParameters,
                 resultReturnTypeParameters,
                 arguments);
 
