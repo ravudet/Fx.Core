@@ -151,6 +151,31 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "Select",
+                overload: "SelectWithIndexSelector",
+                overloadReturnTypeParameters: "TResult",
+                overloadTypeParameters: "<TResult>",
+                overloadParameters: "Func<object, int, TResult> selector",
+                monadType: "<object>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TResult>",
+                resultReturnTypeParameters: "TResult",
+                arguments: "(element, index) => element"
+                );
+            GenerateFluent(
+                operation: "Select",
+                overload: "Select",
+                overloadReturnTypeParameters: "TResult",
+                overloadTypeParameters: "<TResult>",
+                overloadParameters: "Func<object, TResult> selector",
+                monadType: "<object>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TResult>",
+                resultReturnTypeParameters: "TResult",
+                arguments: "element => element"
+                );
+
+            GenerateFluent(
                 operation: "SelectMany",
                 overload: "SelectManyWithIndexSelector",
                 overloadReturnTypeParameters: "TResult",
