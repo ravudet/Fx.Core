@@ -78,6 +78,16 @@
         private static void GenerateTerminal()
         {
             GenerateTerminal(
+                operation: "SingleOrDefault",
+                overload: "SingleOrDefaultWithDefaultValue",
+                overloadReturnType: "object",
+                overloadTypeParameters: "", //// TODO
+                overloadParameters: "object defaultValue",
+                resultType: "object",
+                arguments: "new object()"
+                );
+
+            GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsAsInt32s",
                 overloadReturnType: "int",
