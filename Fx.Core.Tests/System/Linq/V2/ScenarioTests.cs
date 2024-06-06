@@ -75,6 +75,8 @@
                 operation: "Zip",
                 overload: "ZipWithThird",
                 overloadReturnTypeParameters: "(object First, TSecond Second, TThird Third)",
+                overloadTypeParameters: "<TSecond, TThird>",
+                overloadParameters: "IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third",
                 monadType: "<(object, string, string)>",
                 resultTypeArguments: "<string, string>",
                 resultTypeParameters: "<TSecond, TThird>",
@@ -84,11 +86,13 @@
             Generate(
                 operation: "Zip",
                 overload: "ZipWithResultSelector",
-                overloadReturnTypeParameters: "object",
+                overloadReturnTypeParameters: "TResult",
+                overloadTypeParameters: "<TSecond, TResult>",
+                overloadParameters: "IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third",
                 monadType: "<object>",
-                resultTypeArguments: "",
-                resultTypeParameters: "",
-                resultReturnTypeParameters: "object",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TResult>",
+                resultReturnTypeParameters: "TResult",
                 arguments: "new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object()"
                 );
         }
@@ -97,6 +101,8 @@
             string operation,
             string overload,
             string overloadReturnTypeParameters,
+            string overloadTypeParameters,
+            string overloadParameters,
             string monadType,
             string resultTypeArguments,
             string resultTypeParameters,
@@ -116,6 +122,8 @@
                 .Replace("{{6}}", "{6}")
                 .Replace("{{7}}", "{7}")
                 .Replace("{{8}}", "{8}")
+                .Replace("{{9}}", "{9}")
+                .Replace("{{10}}", "{10}")
                 ;
 
             var generated = string.Format(
@@ -124,6 +132,8 @@
                 overload,
                 operation.ToLower(),
                 overloadReturnTypeParameters,
+                overloadTypeParameters,
+                overloadParameters,
                 monadType,
                 resultTypeArguments,
                 resultTypeParameters,

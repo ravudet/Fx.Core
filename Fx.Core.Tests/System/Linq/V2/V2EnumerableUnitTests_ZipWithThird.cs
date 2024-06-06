@@ -90,9 +90,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
-                IV2Enumerable<TSecond> second,
-                IV2Enumerable<TThird> third)
+            public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
             {
                 //// TODO
                 return Result<TSecond, TThird>();
@@ -147,9 +145,7 @@ namespace System.Linq.V2
 
         private sealed class MockZipWithThirdMixinWithOverloadAndNoMonad : IZipableMixin<object>
         {
-            public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
-                IV2Enumerable<TSecond> second,
-                IV2Enumerable<TThird> third)
+            public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
             {
                 //// TODO
                 return Result<TSecond, TThird>();
@@ -249,9 +245,7 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
-                    IV2Enumerable<TSecond> second,
-                    IV2Enumerable<TThird> third)
+                public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
                 {
                     //// TODO
                     return Result<TSecond, TThird>();
@@ -515,9 +509,7 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
-                    IV2Enumerable<TSecond> second,
-                    IV2Enumerable<TThird> third)
+                public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
                 {
                     //// TODO
                     return Result<TSecond, TThird>();
