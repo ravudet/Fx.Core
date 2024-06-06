@@ -151,6 +151,31 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "IntersectBy",
+                overload: "IntersectBy",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "IV2Enumerable<TKey> second, Func<object, TKey> keySelector",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "V2Enumerable.Empty<object>(), element => element"
+                );
+            GenerateFluent(
+                operation: "IntersectBy",
+                overload: "IntersectByWithComparer",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "IV2Enumerable<TKey> second, Func<object, TKey> keySelector, IEqualityComparer<TKey>? comparer",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "V2Enumerable.Empty<object>(), element => element, null"
+                );
+
+            GenerateFluent(
                 operation: "Join",
                 overload: "Join",
                 overloadReturnTypeParameters: "TResult",
