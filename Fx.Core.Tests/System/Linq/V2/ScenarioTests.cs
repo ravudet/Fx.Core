@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "Union",
+                overload: "UnionWithComparer",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "IV2Enumerable<object> second, IEqualityComparer<object>? comparer",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "new[] { string.Empty }.ToV2Enumerable(), null"
+                );
+
+            GenerateFluent(
                 operation: "UnionBy",
                 overload: "UnionBy",
                 overloadReturnTypeParameters: "object",
