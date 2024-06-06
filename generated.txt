@@ -1,0 +1,235 @@
+        /// <summary>
+        /// Tests that the mixin implementation of GroupBy is used
+        /// </summary>
+        [TestMethod]
+        public void GroupByableWithElementSelectorMixin()
+        {
+            var enumerable = new MockGroupByableWithElementSelectorMixin<string>().AsV2Enumerable();
+            Assert.AreEqual(MockGroupByableWithElementSelectorMixin<string>.Result, enumerable.GroupBy(V2Enumerable.Empty<string>(), _ => _));
+        }
+
+        /// <summary>
+        /// Tests that the default implementation of GroupBy is used when a mixin is not implemented
+        /// </summary>
+        [TestMethod]
+        public void GroupByableWithElementSelectorMixinDefaults()
+        {
+            var enumerable = new MockGroupByableWithElementSelectorMixin<string>().AsV2Enumerable();
+            try
+            {
+                enumerable.GroupBy(V2Enumerable.Empty<string>(), _ => _, null).Enumerate();
+                Assert.Fail();
+            }
+            catch (Exception exception)
+            {
+                Assert.AreEqual(MockGroupByableWithElementSelectorMixin<string>.Exception, exception);
+            }
+        }
+
+        private sealed class MockGroupByableWithElementSelectorMixin<TElement> : IGroupByableMixin<TElement>
+        {
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public static Exception Exception { get; } = EnumerationException.Instance;
+
+            private sealed class EnumerationException : Exception
+            {
+                private EnumerationException()
+                    : base()
+                {
+                }
+
+                public static EnumerationException Instance { get; } = new EnumerationException();
+            }
+
+            public IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw EnumerationException.Instance;
+            }
+
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Tests that the monad is preserved when a monad and a GroupBy mixin are combined and the mixin implementation is called
+        /// </summary>
+        [TestMethod]
+        public void GroupByableWithElementSelectorMixinAndMonad()
+        {
+            var enumerable = new MockGroupByableWithElementSelectorMixinAndMonad<string>().AsV2Enumerable();
+            var groupByed = enumerable.GroupBy(V2Enumerable.Empty<string>(), _ => _);
+            var monad = groupByed as MockGroupByableWithElementSelectorMixinAndMonad<string>;
+            Assert.IsNotNull(monad);
+            Assert.AreEqual(MockGroupByableWithElementSelectorMixinAndMonad<string>.Result, monad.Source);
+        }
+
+        private sealed class MockGroupByableWithElementSelectorMixinAndMonad<TElement> : IGroupByableMixin<TElement>, IEnumerableMonad<TElement>
+        {
+            public MockGroupByableWithElementSelectorMixinAndMonad()
+                : this(V2Enumerable.Empty<TElement>())
+            {
+            }
+
+            private MockGroupByableWithElementSelectorMixinAndMonad(IV2Enumerable<TElement> source)
+            {
+                this.Source = source;
+            }
+
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IV2Enumerable<TElement> Source { get; }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return (IV2Enumerable<TSource> source) => new MockGroupByableWithElementSelectorMixinAndMonad<TSource>(source);
+            }
+
+            public IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        [TestMethod]
+        public void GroupByWithElementSelectorDefault()
+        {
+            //// TODO
+            V2Enumerable.Empty<string>().GroupBy(V2Enumerable.Empty<string>(), _ => _).Enumerate();
+        }
+
+        /// <summary>
+        /// Tests that the monad source is used when the source is the GroupBy mixin
+        /// </summary>
+        [TestMethod]
+        public void GroupByWithElementSelectorMonad()
+        {
+            var enumerable = new MockGroupByWithElementSelectorMonad<string>(new MockGroupByMonadGroupByableWithElementSelectorMixin<string>().AsV2Enumerable()).AsV2Enumerable();
+            var groupByed = enumerable.GroupBy(V2Enumerable.Empty<string>(), _ => _);
+            var monad = groupByed as MockGroupByWithElementSelectorMonad<string>;
+            Assert.IsNotNull(monad);
+            Assert.AreEqual(MockGroupByMonadGroupByableWithElementSelectorMixin<string>.Result, monad.Source);
+        }
+
+        private sealed class MockGroupByMonadGroupByableWithElementSelectorMixin<TElement> : IGroupByableMixin<TElement>
+        {
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private sealed class MockGroupByWithElementSelectorMonad<TElement> : IEnumerableMonad<TElement>
+        {
+            public MockGroupByWithElementSelectorMonad(IV2Enumerable<TElement> source)
+            {
+                this.Source = source;
+            }
+
+            public IV2Enumerable<TElement> Source { get; }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return (IV2Enumerable<TSource> source) => new MockGroupByWithElementSelectorMonad<TSource>(source);
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }

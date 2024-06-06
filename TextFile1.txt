@@ -1,0 +1,235 @@
+        /// <summary>
+        /// Tests that the mixin implementation of {1} is used
+        /// </summary>
+        [TestMethod]
+        public void {2}Mixin()
+        {
+            var enumerable = new Mock{2}Mixin<string>().AsV2Enumerable();
+            Assert.AreEqual(Mock{2}Mixin<string>.Result, enumerable.{1}(V2Enumerable.Empty<string>(), _ => _));
+        }
+
+        /// <summary>
+        /// Tests that the default implementation of {1} is used when a mixin is not implemented
+        /// </summary>
+        [TestMethod]
+        public void {2}MixinDefaults()
+        {
+            var enumerable = new Mock{2}Mixin<string>().AsV2Enumerable();
+            try
+            {
+                enumerable.{1}(V2Enumerable.Empty<string>(), _ => _, null).Enumerate();
+                Assert.Fail();
+            }
+            catch (Exception exception)
+            {
+                Assert.AreEqual(Mock{2}Mixin<string>.Exception, exception);
+            }
+        }
+
+        private sealed class Mock{2}Mixin<TElement> : I{1}ableMixin<TElement>
+        {
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public static Exception Exception { get; } = EnumerationException.Instance;
+
+            private sealed class EnumerationException : Exception
+            {
+                private EnumerationException()
+                    : base()
+                {
+                }
+
+                public static EnumerationException Instance { get; } = new EnumerationException();
+            }
+
+            {4}
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw EnumerationException.Instance;
+            }
+
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Tests that the monad is preserved when a monad and a {1} mixin are combined and the mixin implementation is called
+        /// </summary>
+        [TestMethod]
+        public void {2}MixinAndMonad()
+        {
+            var enumerable = new Mock{2}MixinAndMonad<string>().AsV2Enumerable();
+            var {5}ed = enumerable.{1}(V2Enumerable.Empty<string>(), _ => _);
+            var monad = {5}ed as Mock{2}MixinAndMonad<string>;
+            Assert.IsNotNull(monad);
+            Assert.AreEqual(Mock{2}MixinAndMonad<string>.Result, monad.Source);
+        }
+
+        private sealed class Mock{2}MixinAndMonad<TElement> : I{1}ableMixin<TElement>, IEnumerableMonad<TElement>
+        {
+            public Mock{2}MixinAndMonad()
+                : this(V2Enumerable.Empty<TElement>())
+            {
+            }
+
+            private Mock{2}MixinAndMonad(IV2Enumerable<TElement> source)
+            {
+                this.Source = source;
+            }
+
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IV2Enumerable<TElement> Source { get; }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return (IV2Enumerable<TSource> source) => new Mock{2}MixinAndMonad<TSource>(source);
+            }
+
+            {4}
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        [TestMethod]
+        public void {3}Default()
+        {
+            //// TODO
+            V2Enumerable.Empty<string>().{1}(V2Enumerable.Empty<string>(), _ => _).Enumerate();
+        }
+
+        /// <summary>
+        /// Tests that the monad source is used when the source is the {1} mixin
+        /// </summary>
+        [TestMethod]
+        public void {3}Monad()
+        {
+            var enumerable = new Mock{3}Monad<string>(new Mock{1}Monad{2}Mixin<string>().AsV2Enumerable()).AsV2Enumerable();
+            var {5}ed = enumerable.{1}(V2Enumerable.Empty<string>(), _ => _);
+            var monad = {5}ed as Mock{3}Monad<string>;
+            Assert.IsNotNull(monad);
+            Assert.AreEqual(Mock{1}Monad{2}Mixin<string>.Result, monad.Source);
+        }
+
+        private sealed class Mock{1}Monad{2}Mixin<TElement> : I{1}ableMixin<TElement>
+        {
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            {4}
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private sealed class Mock{3}Monad<TElement> : IEnumerableMonad<TElement>
+        {
+            public Mock{3}Monad(IV2Enumerable<TElement> source)
+            {
+                this.Source = source;
+            }
+
+            public IV2Enumerable<TElement> Source { get; }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return (IV2Enumerable<TSource> source) => new Mock{3}Monad<TSource>(source);
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
