@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "Reverse",
+                overload: "Reverse",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: ""
+                );
+
+            GenerateFluent(
                 operation: "Select",
                 overload: "SelectWithIndexSelector",
                 overloadReturnTypeParameters: "TResult",
