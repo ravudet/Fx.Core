@@ -97,6 +97,18 @@
                 );
             Generate(
                 operation: "Zip",
+                overload: "Zip",
+                overloadReturnTypeParameters: "(object First, TSecond Second)",
+                overloadTypeParameters: "<TSecond>",
+                overloadParameters: "IV2Enumerable<TSecond> second",
+                monadType: "<(object, string)>",
+                resultTypeArguments: "<string>",
+                resultTypeParameters: "<TSecond>",
+                resultReturnTypeParameters: "(object, TSecond)",
+                arguments: "new[] { string.Empty }.ToV2Enumerable()"
+                );
+            Generate(
+                operation: "Zip",
                 overload: "ZipWithResultSelector",
                 overloadReturnTypeParameters: "TResult",
                 overloadTypeParameters: "<TSecond, TResult>",
