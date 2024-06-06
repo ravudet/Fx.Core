@@ -1493,7 +1493,7 @@ namespace System.Linq.V2
         }
 
         /// <summary>
-        /// TODO
+        /// Tests that the mixin implementation of ExceptBy is used
         /// </summary>
         [TestMethod]
         public void ExceptByableMixin()
@@ -1502,6 +1502,9 @@ namespace System.Linq.V2
             Assert.AreEqual(MockExceptByableMixin<string>.Result, enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _));
         }
 
+        /// <summary>
+        /// Tests that the default implementation of ExceptByu is used when a mixin is not implemented
+        /// </summary>
         [TestMethod]
         public void ExceptByableMixinDefaults()
         {
@@ -1569,6 +1572,9 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Tests that the monad is preserved when a monad and a ExceptBy mixin are combined and the mixin implementation is called
+        /// </summary>
         [TestMethod]
         public void ExceptByableMixinAndMonad()
         {
@@ -1635,6 +1641,9 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
         [TestMethod]
         public void ExceptByDefault()
         {
@@ -1642,6 +1651,9 @@ namespace System.Linq.V2
             V2Enumerable.Empty<string>().ExceptBy(V2Enumerable.Empty<string>(), _ => _).Enumerate();
         }
 
+        /// <summary>
+        /// Tests that the monad source is used when the source is the ExceptBy mixin
+        /// </summary>
         [TestMethod]
         public void ExceptByMonad()
         {
