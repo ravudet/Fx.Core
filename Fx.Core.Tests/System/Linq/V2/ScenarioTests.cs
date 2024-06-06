@@ -79,7 +79,11 @@
         {
             GenerateTerminal(
                 operation: "Sum",
-                overload: "SumInts"
+                overload: "SumInt32s"
+                );
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumInt64s"
                 );
         }
 

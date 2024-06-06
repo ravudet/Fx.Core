@@ -8,14 +8,14 @@ namespace System.Linq.V2
     public sealed partial class V2EnumerableUnitTests
     {
         [TestMethod]
-        public void SumIntsMixinWithOverload()
+        public void SumInt32sMixinWithOverload()
         {
-            var enumerable = new MockSumIntsMixinWithOverload().AsV2Enumerable();
+            var enumerable = new MockSumInt32sMixinWithOverload().AsV2Enumerable();
             var sumed = enumerable.Sum(element => element.GetHashCode());
-            Assert.AreEqual(MockSumIntsMixinWithOverload.Result, sumed);
+            Assert.AreEqual(MockSumInt32sMixinWithOverload.Result, sumed);
         }
 
-        private sealed class MockSumIntsMixinWithOverload : ISumableMixin<object>
+        private sealed class MockSumInt32sMixinWithOverload : ISumableMixin<object>
         {
             public static int Result { get; } = new object().GetHashCode();
 
@@ -36,14 +36,14 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumIntsMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void SumInt32sMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var enumerable = new MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var sumed = enumerable.Sum(element => element.GetHashCode());
-            Assert.AreEqual(MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result, sumed);
+            Assert.AreEqual(MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result, sumed);
         }
 
-        private sealed class MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsMixin : ISumableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsMixin : ISumableMixin<object>, IEnumerableMonad<object>
         {
             public static int Result { get; } = new object().GetHashCode();
 
@@ -90,7 +90,7 @@ namespace System.Linq.V2
 
                 public int Sum(Func<object, int> selector)
                 {
-                    return MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -151,14 +151,14 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumIntsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void SumInt32sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var enumerable = new MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var sumed = enumerable.Sum(element => element.GetHashCode());
-            Assert.AreEqual(MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element.GetHashCode(), sumed);
+            Assert.AreEqual(MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element.GetHashCode(), sumed);
         }
 
-        private sealed class MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ISumableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ISumableMixin<object>, IEnumerableMonad<object>
         {
             public static object Element { get; } = new object();
 
@@ -193,7 +193,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = new[] { MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element }.ToV2Enumerable();
+            public IV2Enumerable<object> Source { get; } = new[] { MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element }.ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -242,14 +242,14 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumIntsMixinWithoutOverloadAndNoMonad()
+        public void SumInt32sMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new MockSumIntsMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var enumerable = new MockSumInt32sMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var sumed = enumerable.Sum(element => element.GetHashCode());
-            Assert.AreEqual(MockSumIntsMixinWithoutOverloadAndNoMonad.Element.GetHashCode(), sumed);
+            Assert.AreEqual(MockSumInt32sMixinWithoutOverloadAndNoMonad.Element.GetHashCode(), sumed);
         }
 
-        private sealed class MockSumIntsMixinWithoutOverloadAndNoMonad : ISumableMixin<object>
+        private sealed class MockSumInt32sMixinWithoutOverloadAndNoMonad : ISumableMixin<object>
         {
             public static object Element { get; } = new object();
 
@@ -265,14 +265,14 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumIntsNoMixinAndMonadWhereSourceIsMixin()
+        public void SumInt32sNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockSumIntsNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var enumerable = new MockSumInt32sNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var sumed = enumerable.Sum(element => element.GetHashCode());
-            Assert.AreEqual(MockSumIntsNoMixinAndMonadWhereSourceIsMixin.Result, sumed);
+            Assert.AreEqual(MockSumInt32sNoMixinAndMonadWhereSourceIsMixin.Result, sumed);
         }
 
-        private sealed class MockSumIntsNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockSumInt32sNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
             public static int Result { get; } = new object().GetHashCode();
 
@@ -319,7 +319,7 @@ namespace System.Linq.V2
 
                 public int Sum(Func<object, int> selector)
                 {
-                    return MockSumIntsNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return MockSumInt32sNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -380,14 +380,14 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumIntsNoMixinAndMonadWhereSourceIsNotMixin()
+        public void SumInt32sNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockSumIntsNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var enumerable = new MockSumInt32sNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var sumed = enumerable.Sum(element => element.GetHashCode());
-            Assert.AreEqual(MockSumIntsNoMixinAndMonadWhereSourceIsNotMixin.Element.GetHashCode(), sumed);
+            Assert.AreEqual(MockSumInt32sNoMixinAndMonadWhereSourceIsNotMixin.Element.GetHashCode(), sumed);
         }
 
-        private sealed class MockSumIntsNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockSumInt32sNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -489,14 +489,14 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumIntsNoMixinAndNoMonad()
+        public void SumInt32sNoMixinAndNoMonad()
         {
-            var enumerable = new MockSumIntsNoMixinAndNoMonad().AsV2Enumerable();
+            var enumerable = new MockSumInt32sNoMixinAndNoMonad().AsV2Enumerable();
             var sumed = enumerable.Sum(element => element.GetHashCode());
-            Assert.AreEqual(MockSumIntsNoMixinAndNoMonad.Element.GetHashCode(), sumed);
+            Assert.AreEqual(MockSumInt32sNoMixinAndNoMonad.Element.GetHashCode(), sumed);
         }
 
-        private sealed class MockSumIntsNoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockSumInt32sNoMixinAndNoMonad : IV2Enumerable<object>
         {
             public static object Element { get; } = new object();
 
