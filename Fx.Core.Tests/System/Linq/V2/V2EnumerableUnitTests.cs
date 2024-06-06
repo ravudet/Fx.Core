@@ -3,6 +3,7 @@ namespace System.Linq.V2
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Text.RegularExpressions;
 
     [TestClass]
     public sealed partial class V2EnumerableUnitTests
@@ -2552,6 +2553,40 @@ namespace System.Linq.V2
             IEnumerator IEnumerable.GetEnumerator()
             {
                 throw new NotImplementedException();
+            }
+        }
+
+        private sealed class GroupingComparer : IComparer
+        {
+            private GroupingComparer()
+            {
+            }
+
+            public static GroupingComparer Instance { get; } = new GroupingComparer();
+
+            public int Compare(object? x, object? y)
+            {
+                if (object.ReferenceEquals(x, y))
+                {
+                    return 0;
+                }
+
+                if (x is IGrouping<object, object> grouping && y is IV2Grouping<object, object> v2Grouping)
+                {
+                    if (grouping.Key != v2Grouping.Key)
+                    {
+                        return -1;
+                    }
+
+                    if (!grouping.SequenceEqual(v2Grouping))
+                    {
+                        return -1;
+                    }
+
+                    return 0;
+                }
+
+                return -1;
             }
         }
 

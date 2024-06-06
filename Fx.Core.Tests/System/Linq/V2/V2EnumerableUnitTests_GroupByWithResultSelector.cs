@@ -8,19 +8,19 @@ namespace System.Linq.V2
     public sealed partial class V2EnumerableUnitTests
     {
         /// <summary>
-        /// {0}s a mixin that does implement the {1} overload and does implement a monad where the source is not a mixin
+        /// GroupBys a mixin that does implement the GroupByWithResultSelector overload and does implement a monad where the source is not a mixin
         /// </summary>
         [TestMethod]
-        public void {1}MixinWithOverloadAndMonadWhereSourceIsNotMixin()
+        public void GroupByWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad{6};
+            var enumerable = new MockGroupByWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this);
+            var monad = groupbyed as MockGroupByWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            Assert.AreEqual(Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin.Result{7}(), monad.Source);
+            Assert.AreEqual(MockGroupByWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result<object>(), monad.Source);
         }
 
-        private sealed class Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockGroupByWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin : IGroupByableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -90,67 +90,14 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<{3}> {0}{4}({5})
+            public IV2Enumerable<TResult> GroupBy<TKey, TResult>(Func<object, TKey> keySelector, Func<TKey, IV2Enumerable<object>, TResult> resultSelector)
             {
-                return Result{8}();
+                return Result<TResult>();
             }
 
-            public static IV2Enumerable<{9}> Result{8}()
+            public static IV2Enumerable<TResult> Result<TResult>()
             {
-                return ResultEnumerable<{9}>.Instance;
-            }
-
-            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
-            {
-                private ResultEnumerable()
-                {
-                }
-
-                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
-
-                public IEnumerator<T> GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public IEnumerator<object> GetEnumerator()
-            {
-                throw new NotImplementedException();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        /// <summary>
-        /// {0}s a mixin that does implement the {1} overload and does not implement a monad
-        /// </summary>
-        [TestMethod]
-        public void {1}MixinWithOverloadAndNoMonad()
-        {
-            var enumerable = new Mock{1}MixinWithOverloadAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            Assert.AreEqual(Mock{1}MixinWithOverloadAndNoMonad.Result{7}(), {2}ed);
-        }
-
-        private sealed class Mock{1}MixinWithOverloadAndNoMonad : I{0}ableMixin<object>
-        {
-            public IV2Enumerable<{3}> {0}{4}({5})
-            {
-                return Result{8}();
-            }
-
-            public static IV2Enumerable<{9}> Result{8}()
-            {
-                return ResultEnumerable<{9}>.Instance;
+                return ResultEnumerable<TResult>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -184,21 +131,74 @@ namespace System.Linq.V2
         }
 
         /// <summary>
-        /// {0}s a mixin that does not implement the {1} overload and does implement a monad where the source is a mixin
+        /// GroupBys a mixin that does implement the GroupByWithResultSelector overload and does not implement a monad
         /// </summary>
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void GroupByWithResultSelectorMixinWithOverloadAndNoMonad()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad{6};
+            var enumerable = new MockGroupByWithResultSelectorMixinWithOverloadAndNoMonad().AsV2Enumerable();
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this);
+            Assert.AreEqual(MockGroupByWithResultSelectorMixinWithOverloadAndNoMonad.Result<object>(), groupbyed);
+        }
+
+        private sealed class MockGroupByWithResultSelectorMixinWithOverloadAndNoMonad : IGroupByableMixin<object>
+        {
+            public IV2Enumerable<TResult> GroupBy<TKey, TResult>(Func<object, TKey> keySelector, Func<TKey, IV2Enumerable<object>, TResult> resultSelector)
+            {
+                return Result<TResult>();
+            }
+
+            public static IV2Enumerable<TResult> Result<TResult>()
+            {
+                return ResultEnumerable<TResult>.Instance;
+            }
+
+            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// GroupBys a mixin that does not implement the GroupByWithResultSelector overload and does implement a monad where the source is a mixin
+        /// </summary>
+        [TestMethod]
+        public void GroupByWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        {
+            var enumerable = new MockGroupByWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this);
+            var monad = groupbyed as MockGroupByWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            var source = monad.Source as Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad{6};
+            var source = monad.Source as MockGroupByWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(source);
-            Assert.AreEqual(Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result{7}(), source.Source);
+            Assert.AreEqual(MockGroupByWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result<object>(), source.Source);
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockGroupByWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin : IGroupByableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -233,7 +233,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            private sealed class SourceEnumerable : IGroupByableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -241,9 +241,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<{3}> {0}{4}({5})
+                public IV2Enumerable<TResult> GroupBy<TKey, TResult>(Func<object, TKey> keySelector, Func<TKey, IV2Enumerable<object>, TResult> resultSelector)
                 {
-                    return Result{8}();
+                    return Result<TResult>();
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -292,9 +292,9 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<{9}> Result{8}()
+            public static IV2Enumerable<TResult> Result<TResult>()
             {
-                return ResultEnumerable<{9}>.Instance;
+                return ResultEnumerable<TResult>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -328,19 +328,19 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// {0}s a mixin that does not implement the {1} overload and does implement a monad where the source is not a mixin
+        /// GroupBys a mixin that does not implement the GroupByWithResultSelector overload and does implement a monad where the source is not a mixin
         /// </summary>
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void GroupByWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad{6};
+            var enumerable = new MockGroupByWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this);
+            var monad = groupbyed as MockGroupByWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), monad.Source.ToArray(){11});
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, (key, elements) => (object)this).ToArray(), monad.Source.ToArray(), GroupingComparer.Instance);
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockGroupByWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IGroupByableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -422,17 +422,17 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// {0}s a mixin that does not implement the {1} overload and does not implement a monad
+        /// GroupBys a mixin that does not implement the GroupByWithResultSelector overload and does not implement a monad
         /// </summary>
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndNoMonad()
+        public void GroupByWithResultSelectorMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), {2}ed.ToArray(){11});
+            var enumerable = new MockGroupByWithResultSelectorMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, (key, elements) => (object)this).ToArray(), groupbyed.ToArray(), GroupingComparer.Instance);
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>
+        private sealed class MockGroupByWithResultSelectorMixinWithoutOverloadAndNoMonad : IGroupByableMixin<object>
         {
             public static object ResultObject { get; } = new object();
 
@@ -448,19 +448,19 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// {0}s a monad where the source is a mixin
+        /// GroupBys a monad where the source is a mixin
         /// </summary>
         [TestMethod]
-        public void {1}NoMixinAndMonadWhereSourceIsMixin()
+        public void GroupByWithResultSelectorNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}NoMixinAndMonadWhereSourceIsMixin.ResultMonad{6};
+            var enumerable = new MockGroupByWithResultSelectorNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this);
+            var monad = groupbyed as MockGroupByWithResultSelectorNoMixinAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            Assert.AreEqual(Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result{7}(), monad.Source);
+            Assert.AreEqual(MockGroupByWithResultSelectorNoMixinAndMonadWhereSourceIsMixin.Result<object>(), monad.Source);
         }
 
-        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockGroupByWithResultSelectorNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -495,7 +495,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            private sealed class SourceEnumerable : IGroupByableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -503,9 +503,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<{3}> {0}{4}({5})
+                public IV2Enumerable<TResult> GroupBy<TKey, TResult>(Func<object, TKey> keySelector, Func<TKey, IV2Enumerable<object>, TResult> resultSelector)
                 {
-                    return Result{8}();
+                    return Result<TResult>();
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -554,9 +554,9 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<{9}> Result{8}()
+            public static IV2Enumerable<TResult> Result<TResult>()
             {
-                return ResultEnumerable<{9}>.Instance;
+                return ResultEnumerable<TResult>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -590,19 +590,19 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// {0}s a monad where the source is a not mixin
+        /// GroupBys a monad where the source is a not mixin
         /// </summary>
         [TestMethod]
-        public void {1}NoMixinAndMonadWhereSourceIsNotMixin()
+        public void GroupByWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}NoMixinAndMonadWhereSourceIsNotMixin.ResultMonad{6};
+            var enumerable = new MockGroupByWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this);
+            var monad = groupbyed as MockGroupByWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), monad.Source.ToArray(){11});
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, (key, elements) => (object)this).ToArray(), monad.Source.ToArray(), GroupingComparer.Instance);
         }
 
-        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockGroupByWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -705,17 +705,17 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// {0}s a <see cref="IV2Enumerable{T}"/>
+        /// GroupBys a <see cref="IV2Enumerable{T}"/>
         /// </summary>
         [TestMethod]
-        public void {1}NoMixinAndNoMonad()
+        public void GroupByWithResultSelectorNoMixinAndNoMonad()
         {
-            var enumerable = new Mock{1}NoMixinAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), {2}ed.ToArray(){11});
+            var enumerable = new MockGroupByWithResultSelectorNoMixinAndNoMonad().AsV2Enumerable();
+            var groupbyed = enumerable.GroupBy(element => element, (key, elements) => (object)this);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().GroupBy(element => element, (key, elements) => (object)this).ToArray(), groupbyed.ToArray(), GroupingComparer.Instance);
         }
 
-        private sealed class Mock{1}NoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockGroupByWithResultSelectorNoMixinAndNoMonad : IV2Enumerable<object>
         {
             public static object ResultObject { get; } = new object();
 

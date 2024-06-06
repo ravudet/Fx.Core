@@ -151,6 +151,111 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "GroupBy",
+                overload: "GroupByWithElementSelectorAndResultSelectorAndComparer",
+                overloadReturnTypeParameters: "TResult",
+                overloadTypeParameters: "<TKey, TElement, TResult>",
+                overloadParameters: "Func<object, TKey> keySelector, Func<object, TElement> elementSelector, Func<TKey, IV2Enumerable<TElement>, TResult> resultSelector, IEqualityComparer<TKey>? comparer",
+                monadType: "<object>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TResult>",
+                resultReturnTypeParameters: "TResult",
+                arguments: "element => element, element => element, (key, elements) => (object)this, null",
+                collectionComparer: ", GroupingComparer.Instance"
+                );
+            GenerateFluent(
+                operation: "GroupBy",
+                overload: "GroupByWithElementSelectorAndResultSelector",
+                overloadReturnTypeParameters: "TResult",
+                overloadTypeParameters: "<TKey, TElement, TResult>",
+                overloadParameters: "Func<object, TKey> keySelector, Func<object, TElement> elementSelector, Func<TKey, IV2Enumerable<TElement>, TResult> resultSelector",
+                monadType: "<object>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TResult>",
+                resultReturnTypeParameters: "TResult",
+                arguments: "element => element, element => element, (key, elements) => (object)this",
+                collectionComparer: ", GroupingComparer.Instance"
+                );
+            GenerateFluent(
+                operation: "GroupBy",
+                overload: "GroupByWithResultSelectorAndComparer",
+                overloadReturnTypeParameters: "TResult",
+                overloadTypeParameters: "<TKey, TResult>",
+                overloadParameters: "Func<object, TKey> keySelector, Func<TKey, IV2Enumerable<object>, TResult> resultSelector, IEqualityComparer<TKey>? comparer",
+                monadType: "<IV2Grouping<object, object>>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TResult>",
+                resultReturnTypeParameters: "TResult",
+                arguments: "element => element, element => element, null",
+                collectionComparer: ", GroupingComparer.Instance"
+                );
+            GenerateFluent(
+                operation: "GroupBy",
+                overload: "GroupByWithResultSelector",
+                overloadReturnTypeParameters: "TResult",
+                overloadTypeParameters: "<TKey, TResult>",
+                overloadParameters: "Func<object, TKey> keySelector, Func<TKey, IV2Enumerable<object>, TResult> resultSelector",
+                monadType: "<object>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TResult>",
+                resultReturnTypeParameters: "TResult",
+                arguments: "element => element, (key, elements) => (object)this",
+                collectionComparer: ", GroupingComparer.Instance"
+                );
+            GenerateFluent(
+                operation: "GroupBy",
+                overload: "GroupBy",
+                overloadReturnTypeParameters: "IV2Grouping<TKey, object>",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector",
+                monadType: "<IV2Grouping<object, object>>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TKey>",
+                resultReturnTypeParameters: "IV2Grouping<TKey, object>",
+                arguments: "element => element",
+                collectionComparer: ", GroupingComparer.Instance"
+                );
+            GenerateFluent(
+                operation: "GroupBy",
+                overload: "GroupByWithElementSelector",
+                overloadReturnTypeParameters: "IV2Grouping<TKey, TElement>",
+                overloadTypeParameters: "<TKey, TElement>",
+                overloadParameters: "Func<object, TKey> keySelector, Func<object, TElement> elementSelector",
+                monadType: "<IV2Grouping<object, object>>",
+                resultTypeArguments: "<object, object>",
+                resultTypeParameters: "<TKey, TElement>",
+                resultReturnTypeParameters: "IV2Grouping<TKey, TElement>",
+                arguments: "element => element, element => element",
+                collectionComparer: ", GroupingComparer.Instance"
+                );
+            GenerateFluent(
+                operation: "GroupBy",
+                overload: "GroupByWithComparer",
+                overloadReturnTypeParameters: "IV2Grouping<TKey, object>",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector, IEqualityComparer<TKey>? comparer",
+                monadType: "<IV2Grouping<object, object>>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TKey>",
+                resultReturnTypeParameters: "IV2Grouping<TKey, object>",
+                arguments: "element => element, null",
+                collectionComparer: ", GroupingComparer.Instance"
+                );
+            GenerateFluent(
+                operation: "GroupBy",
+                overload: "GroupByWithElementSelectorAndComparer",
+                overloadReturnTypeParameters: "IV2Grouping<TKey, TElement>",
+                overloadTypeParameters: "<TKey, TElement>",
+                overloadParameters: "Func<object, TKey> keySelector, Func<object, TElement> elementSelector, IEqualityComparer<TKey>? comparer",
+                monadType: "<IV2Grouping<object, object>>",
+                resultTypeArguments: "<object, object>",
+                resultTypeParameters: "<TKey, TElement>",
+                resultReturnTypeParameters: "IV2Grouping<TKey, TElement>",
+                arguments: "element => element, element => element, null",
+                collectionComparer: ", GroupingComparer.Instance"
+                );
+
+            GenerateFluent(
                 operation: "GroupJoin",
                 overload: "GroupJoinWithComparer",
                 overloadReturnTypeParameters: "TResult",
@@ -587,7 +692,8 @@
             string resultTypeArguments,
             string resultTypeParameters,
             string resultReturnTypeParameters,
-            string arguments)
+            string arguments,
+            string collectionComparer = "")
         {
             var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\FluentTemplate.txt");
             var escapedTemplate = template
@@ -604,6 +710,7 @@
                 .Replace("{{8}}", "{8}")
                 .Replace("{{9}}", "{9}")
                 .Replace("{{10}}", "{10}")
+                .Replace("{{11}}", "{11}")
                 ;
 
             var generated = string.Format(
@@ -618,7 +725,8 @@
                 resultTypeArguments,
                 resultTypeParameters,
                 resultReturnTypeParameters,
-                arguments
+                arguments,
+                collectionComparer
                 );
 
             var unescapedGenerated = generated
