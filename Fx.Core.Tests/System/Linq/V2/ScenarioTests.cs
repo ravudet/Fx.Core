@@ -79,17 +79,20 @@
         {
             GenerateTerminal(
                 operation: "Sum",
-                overload: "SumInt32s"
+                overload: "SumInt32s",
+                overloadReturnType: "int"
                 );
             GenerateTerminal(
                 operation: "Sum",
-                overload: "SumInt64s"
+                overload: "SumInt64s",
+                overloadReturnType: "long"
                 );
         }
 
         private static void GenerateTerminal(
             string operation,
-            string overload)
+            string overload,
+            string overloadReturnType)
         {
             var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\TerminalTemplate.txt");
             var escapedTemplate = template
@@ -98,13 +101,15 @@
                 .Replace("{{0}}", "{0}")
                 .Replace("{{1}}", "{1}")
                 .Replace("{{2}}", "{2}")
+                .Replace("{{3}}", "{3}")
                 ;
 
             var generated = string.Format(
                 escapedTemplate,
                 operation,
                 operation.ToLower(),
-                overload);
+                overload,
+                overloadReturnType);
 
             var unescapedGenerated = generated
                 .Replace("{{", "{")

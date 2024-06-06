@@ -19,7 +19,7 @@ namespace System.Linq.V2
         {
             public static int Result { get; } = new object().GetHashCode();
 
-            public int Sum(Func<object, int> selector)
+            public long Sum(Func<object, int> selector)
             {
                 return Result;
             }
@@ -88,7 +88,7 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public int Sum(Func<object, int> selector)
+                public long Sum(Func<object, int> selector)
                 {
                     return MockSumInt64sMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
@@ -317,7 +317,7 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public int Sum(Func<object, int> selector)
+                public long Sum(Func<object, int> selector)
                 {
                     return MockSumInt64sNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
