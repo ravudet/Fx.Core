@@ -72,6 +72,18 @@
         public void Generate()
         {
             Generate(
+                operation: "Where",
+                overload: "WhereWithIndexPredicate",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, int, bool> predicate",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "(element, index) => true"
+                );
+            Generate(
                 operation: "Zip",
                 overload: "ZipWithThird",
                 overloadReturnTypeParameters: "(object First, TSecond Second, TThird Third)",
