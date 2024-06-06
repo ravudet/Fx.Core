@@ -84,7 +84,7 @@
             Generate(
                 operation: "Zip",
                 overload: "ZipWithResultSelector",
-                overloadReturnTypeParameters: "(object First, TSecond Second, TThird Third)",
+                overloadReturnTypeParameters: "object",
                 monadType: "<object>",
                 resultTypeArguments: "",
                 resultTypeParameters: "",
