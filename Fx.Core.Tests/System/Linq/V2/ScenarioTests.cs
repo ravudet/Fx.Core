@@ -82,14 +82,16 @@
                 overload: "SumInt32s",
                 overloadReturnType: "int",
                 overloadTypeParameters: "", //// TODO
-                overloadParameters: "Func<object, int> selector"
+                overloadParameters: "Func<object, int> selector",
+                arguments: "element => (int)element.GetHashCode()"
                 );
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumInt64s",
                 overloadReturnType: "long",
                 overloadTypeParameters: "", //// TODO
-                overloadParameters: "Func<object, long> selector"
+                overloadParameters: "Func<object, long> selector",
+                arguments: "element => (long)element.GetHashCode()"
                 );
         }
 
@@ -98,7 +100,8 @@
             string overload,
             string overloadReturnType,
             string overloadTypeParameters,
-            string overloadParameters)
+            string overloadParameters,
+            string arguments)
         {
             var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\TerminalTemplate.txt");
             var escapedTemplate = template
@@ -110,6 +113,7 @@
                 .Replace("{{3}}", "{3}")
                 .Replace("{{4}}", "{4}")
                 .Replace("{{5}}", "{5}")
+                .Replace("{{6}}", "{6}")
                 ;
 
             var generated = string.Format(
@@ -119,7 +123,8 @@
                 overload,
                 overloadReturnType,
                 overloadTypeParameters,
-                overloadParameters
+                overloadParameters,
+                arguments
                 );
 
             var unescapedGenerated = generated
@@ -234,7 +239,8 @@
                 resultTypeArguments,
                 resultTypeParameters,
                 resultReturnTypeParameters,
-                arguments);
+                arguments
+                );
 
             var unescapedGenerated = generated
                 .Replace("{{", "{")

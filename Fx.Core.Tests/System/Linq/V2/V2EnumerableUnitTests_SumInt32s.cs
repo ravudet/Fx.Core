@@ -11,7 +11,7 @@ namespace System.Linq.V2
         public void SumInt32sMixinWithOverload()
         {
             var enumerable = new MockSumInt32sMixinWithOverload().AsV2Enumerable();
-            var sumed = enumerable.Sum(element => element.GetHashCode());
+            var sumed = enumerable.Sum(element => (int)element.GetHashCode());
             Assert.AreEqual(MockSumInt32sMixinWithOverload.Result, sumed);
         }
 
@@ -39,7 +39,7 @@ namespace System.Linq.V2
         public void SumInt32sMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
             var enumerable = new MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var sumed = enumerable.Sum(element => element.GetHashCode());
+            var sumed = enumerable.Sum(element => (int)element.GetHashCode());
             Assert.AreEqual(MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result, sumed);
         }
 
@@ -154,7 +154,7 @@ namespace System.Linq.V2
         public void SumInt32sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var sumed = enumerable.Sum(element => element.GetHashCode());
+            var sumed = enumerable.Sum(element => (int)element.GetHashCode());
             Assert.AreEqual(MockSumInt32sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element.GetHashCode(), sumed);
         }
 
@@ -245,7 +245,7 @@ namespace System.Linq.V2
         public void SumInt32sMixinWithoutOverloadAndNoMonad()
         {
             var enumerable = new MockSumInt32sMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var sumed = enumerable.Sum(element => element.GetHashCode());
+            var sumed = enumerable.Sum(element => (int)element.GetHashCode());
             Assert.AreEqual(MockSumInt32sMixinWithoutOverloadAndNoMonad.Element.GetHashCode(), sumed);
         }
 
@@ -268,7 +268,7 @@ namespace System.Linq.V2
         public void SumInt32sNoMixinAndMonadWhereSourceIsMixin()
         {
             var enumerable = new MockSumInt32sNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var sumed = enumerable.Sum(element => element.GetHashCode());
+            var sumed = enumerable.Sum(element => (int)element.GetHashCode());
             Assert.AreEqual(MockSumInt32sNoMixinAndMonadWhereSourceIsMixin.Result, sumed);
         }
 
@@ -383,7 +383,7 @@ namespace System.Linq.V2
         public void SumInt32sNoMixinAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockSumInt32sNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var sumed = enumerable.Sum(element => element.GetHashCode());
+            var sumed = enumerable.Sum(element => (int)element.GetHashCode());
             Assert.AreEqual(MockSumInt32sNoMixinAndMonadWhereSourceIsNotMixin.Element.GetHashCode(), sumed);
         }
 
@@ -492,7 +492,7 @@ namespace System.Linq.V2
         public void SumInt32sNoMixinAndNoMonad()
         {
             var enumerable = new MockSumInt32sNoMixinAndNoMonad().AsV2Enumerable();
-            var sumed = enumerable.Sum(element => element.GetHashCode());
+            var sumed = enumerable.Sum(element => (int)element.GetHashCode());
             Assert.AreEqual(MockSumInt32sNoMixinAndNoMonad.Element.GetHashCode(), sumed);
         }
 
