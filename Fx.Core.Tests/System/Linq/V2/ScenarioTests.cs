@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "Join",
+                overload: "JoinWithComparer",
+                overloadReturnTypeParameters: "TResult",
+                overloadTypeParameters: "<TInner, TKey, TResult>",
+                overloadParameters: "IV2Enumerable<TInner> inner, Func<object, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<object, TInner, TResult> resultSelector, IEqualityComparer<TKey>? comparer",
+                monadType: "<object>",
+                resultTypeArguments: "<object>",
+                resultTypeParameters: "<TResult>",
+                resultReturnTypeParameters: "TResult",
+                arguments: "V2Enumerable.Empty<object>(), outer => outer, inner => inner, (outer, inner) => (object)this, null"
+                );
+
+            GenerateFluent(
                 operation: "Prepend",
                 overload: "Prepend",
                 overloadReturnTypeParameters: "object",
