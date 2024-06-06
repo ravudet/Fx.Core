@@ -2566,7 +2566,7 @@ namespace System.Linq.V2
         public void ZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(V2Enumerable.Empty<string>(), V2Enumerable.Empty<string>());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
             var monad = ziped as MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(string, string, string)>;
             Assert.IsNotNull(monad);
             Assert.AreEqual(MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result<string, string>(), monad.Source);
@@ -2688,7 +2688,7 @@ namespace System.Linq.V2
         public void ZipWithThirdMixinWithOverloadAndNoMonad()
         {
             var enumerable = new MockZipWithThirdMixinWithOverloadAndNoMonad().AsV2Enumerable();
-            var ziped = enumerable.Zip(V2Enumerable.Empty<string>(), V2Enumerable.Empty<string>());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
             Assert.AreEqual(MockZipWithThirdMixinWithOverloadAndNoMonad.Result<string, string>(), ziped);
         }
 
@@ -2740,7 +2740,7 @@ namespace System.Linq.V2
         public void ZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
             var enumerable = new MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(V2Enumerable.Empty<string>(), V2Enumerable.Empty<string>());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
             var monad = ziped as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<(string, string, string)>;
             Assert.IsNotNull(monad);
             var source = monad.Source as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<(string, string, string)>;
@@ -2883,7 +2883,7 @@ namespace System.Linq.V2
         public void ZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(V2Enumerable.Empty<string>(), V2Enumerable.Empty<string>());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
             var monad = ziped as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(string, string, string)>;
             Assert.IsNotNull(monad);
             CollectionAssert.AreEqual(Array.Empty<(string, string, string)>(), monad.Source.ToArray());
