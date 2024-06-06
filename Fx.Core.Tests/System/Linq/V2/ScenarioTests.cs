@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "Prepend",
+                overload: "Prepend",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "object element",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "this"
+                );
+
+            GenerateFluent(
                 operation: "Reverse",
                 overload: "Reverse",
                 overloadReturnTypeParameters: "object",
