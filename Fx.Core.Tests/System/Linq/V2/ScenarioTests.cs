@@ -83,6 +83,7 @@
                 resultReturnTypeParameters: "object",
                 arguments: "(element, index) => true"
                 );
+
             Generate(
                 operation: "Zip",
                 overload: "ZipWithThird",
