@@ -337,7 +337,7 @@ namespace System.Linq.V2
             var whereed = enumerable.Where((element) => true);
             var monad = whereed as MockWhereMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(Array.Empty<(string, string, string)>(), monad.Source.ToArray());
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().Where((element) => true).ToArray(), monad.Source.ToArray());
         }
 
         private sealed class MockWhereMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IWhereableMixin<object>, IEnumerableMonad<object>
@@ -412,7 +412,7 @@ namespace System.Linq.V2
 
             public IEnumerator<object> GetEnumerator()
             {
-                throw new NotImplementedException();
+                return this.Source.GetEnumerator();
             }
 
             IEnumerator IEnumerable.GetEnumerator()

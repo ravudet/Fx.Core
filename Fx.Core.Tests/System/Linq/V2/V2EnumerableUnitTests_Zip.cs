@@ -337,7 +337,7 @@ namespace System.Linq.V2
             var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable());
             var monad = ziped as MockZipMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(object, string)>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(Array.Empty<(string, string, string)>(), monad.Source.ToArray());
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().Zip(new[] { string.Empty }.ToV2Enumerable()).ToArray(), monad.Source.ToArray());
         }
 
         private sealed class MockZipMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<object>, IEnumerableMonad<object>
@@ -412,7 +412,7 @@ namespace System.Linq.V2
 
             public IEnumerator<object> GetEnumerator()
             {
-                throw new NotImplementedException();
+                return this.Source.GetEnumerator();
             }
 
             IEnumerator IEnumerable.GetEnumerator()

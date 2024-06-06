@@ -8,19 +8,19 @@ namespace System.Linq.V2
     public sealed partial class V2EnumerableUnitTests
     {
         /// <summary>
-        /// {0}s a mixin that does implement the {1} overload and does implement a monad where the source is not a mixin
+        /// UnionBys a mixin that does implement the UnionByWithComparer overload and does implement a monad where the source is not a mixin
         /// </summary>
         [TestMethod]
-        public void {1}MixinWithOverloadAndMonadWhereSourceIsNotMixin()
+        public void UnionByWithComparerMixinWithOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad{6};
+            var enumerable = new MockUnionByWithComparerMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var unionbyed = enumerable.UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null);
+            var monad = unionbyed as MockUnionByWithComparerMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            Assert.AreEqual(Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin.Result{7}(), monad.Source);
+            Assert.AreEqual(MockUnionByWithComparerMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result(), monad.Source);
         }
 
-        private sealed class Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockUnionByWithComparerMixinWithOverloadAndMonadWhereSourceIsNotMixin : IUnionByableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -90,67 +90,14 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<{3}> {0}{4}({5})
+            public IV2Enumerable<object> UnionBy<TKey>(IV2Enumerable<object> second, Func<object, TKey> keySelector, IEqualityComparer<TKey>? comparer)
             {
-                return Result{8}();
+                return Result();
             }
 
-            public static IV2Enumerable<{9}> Result{8}()
+            public static IV2Enumerable<object> Result()
             {
-                return ResultEnumerable<{9}>.Instance;
-            }
-
-            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
-            {
-                private ResultEnumerable()
-                {
-                }
-
-                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
-
-                public IEnumerator<T> GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public IEnumerator<object> GetEnumerator()
-            {
-                throw new NotImplementedException();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        /// <summary>
-        /// {0}s a mixin that does implement the {1} overload and does not implement a monad
-        /// </summary>
-        [TestMethod]
-        public void {1}MixinWithOverloadAndNoMonad()
-        {
-            var enumerable = new Mock{1}MixinWithOverloadAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            Assert.AreEqual(Mock{1}MixinWithOverloadAndNoMonad.Result{7}(), {2}ed);
-        }
-
-        private sealed class Mock{1}MixinWithOverloadAndNoMonad : I{0}ableMixin<object>
-        {
-            public IV2Enumerable<{3}> {0}{4}({5})
-            {
-                return Result{8}();
-            }
-
-            public static IV2Enumerable<{9}> Result{8}()
-            {
-                return ResultEnumerable<{9}>.Instance;
+                return ResultEnumerable<object>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -184,21 +131,74 @@ namespace System.Linq.V2
         }
 
         /// <summary>
-        /// {0}s a mixin that does not implement the {1} overload and does implement a monad where the source is a mixin
+        /// UnionBys a mixin that does implement the UnionByWithComparer overload and does not implement a monad
         /// </summary>
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void UnionByWithComparerMixinWithOverloadAndNoMonad()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad{6};
+            var enumerable = new MockUnionByWithComparerMixinWithOverloadAndNoMonad().AsV2Enumerable();
+            var unionbyed = enumerable.UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null);
+            Assert.AreEqual(MockUnionByWithComparerMixinWithOverloadAndNoMonad.Result(), unionbyed);
+        }
+
+        private sealed class MockUnionByWithComparerMixinWithOverloadAndNoMonad : IUnionByableMixin<object>
+        {
+            public IV2Enumerable<object> UnionBy<TKey>(IV2Enumerable<object> second, Func<object, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+            {
+                return Result();
+            }
+
+            public static IV2Enumerable<object> Result()
+            {
+                return ResultEnumerable<object>.Instance;
+            }
+
+            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// UnionBys a mixin that does not implement the UnionByWithComparer overload and does implement a monad where the source is a mixin
+        /// </summary>
+        [TestMethod]
+        public void UnionByWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        {
+            var enumerable = new MockUnionByWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var unionbyed = enumerable.UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null);
+            var monad = unionbyed as MockUnionByWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            var source = monad.Source as Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad{6};
+            var source = monad.Source as MockUnionByWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(source);
-            Assert.AreEqual(Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result{7}(), source.Source);
+            Assert.AreEqual(MockUnionByWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result(), source.Source);
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockUnionByWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin : IUnionByableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -233,7 +233,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            private sealed class SourceEnumerable : IUnionByableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -241,9 +241,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<{3}> {0}{4}({5})
+                public IV2Enumerable<object> UnionBy<TKey>(IV2Enumerable<object> second, Func<object, TKey> keySelector, IEqualityComparer<TKey>? comparer)
                 {
-                    return Result{8}();
+                    return Result();
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -292,9 +292,9 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<{9}> Result{8}()
+            public static IV2Enumerable<object> Result()
             {
-                return ResultEnumerable<{9}>.Instance;
+                return ResultEnumerable<object>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -328,19 +328,19 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// {0}s a mixin that does not implement the {1} overload and does implement a monad where the source is not a mixin
+        /// UnionBys a mixin that does not implement the UnionByWithComparer overload and does implement a monad where the source is not a mixin
         /// </summary>
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void UnionByWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad{6};
+            var enumerable = new MockUnionByWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var unionbyed = enumerable.UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null);
+            var monad = unionbyed as MockUnionByWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), monad.Source.ToArray());
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null).ToArray(), monad.Source.ToArray());
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockUnionByWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IUnionByableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -422,17 +422,17 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// {0}s a mixin that does not implement the {1} overload and does not implement a monad
+        /// UnionBys a mixin that does not implement the UnionByWithComparer overload and does not implement a monad
         /// </summary>
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndNoMonad()
+        public void UnionByWithComparerMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), {2}ed.ToArray());
+            var enumerable = new MockUnionByWithComparerMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var unionbyed = enumerable.UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null).ToArray(), unionbyed.ToArray());
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>
+        private sealed class MockUnionByWithComparerMixinWithoutOverloadAndNoMonad : IUnionByableMixin<object>
         {
             public static object ResultObject { get; } = new object();
 
@@ -448,19 +448,19 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// {0}s a monad where the source is a mixin
+        /// UnionBys a monad where the source is a mixin
         /// </summary>
         [TestMethod]
-        public void {1}NoMixinAndMonadWhereSourceIsMixin()
+        public void UnionByWithComparerNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}NoMixinAndMonadWhereSourceIsMixin.ResultMonad{6};
+            var enumerable = new MockUnionByWithComparerNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var unionbyed = enumerable.UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null);
+            var monad = unionbyed as MockUnionByWithComparerNoMixinAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            Assert.AreEqual(Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result{7}(), monad.Source);
+            Assert.AreEqual(MockUnionByWithComparerNoMixinAndMonadWhereSourceIsMixin.Result(), monad.Source);
         }
 
-        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockUnionByWithComparerNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -495,7 +495,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            private sealed class SourceEnumerable : IUnionByableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -503,9 +503,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<{3}> {0}{4}({5})
+                public IV2Enumerable<object> UnionBy<TKey>(IV2Enumerable<object> second, Func<object, TKey> keySelector, IEqualityComparer<TKey>? comparer)
                 {
-                    return Result{8}();
+                    return Result();
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -554,9 +554,9 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<{9}> Result{8}()
+            public static IV2Enumerable<object> Result()
             {
-                return ResultEnumerable<{9}>.Instance;
+                return ResultEnumerable<object>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -590,19 +590,19 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// {0}s a monad where the source is a not mixin
+        /// UnionBys a monad where the source is a not mixin
         /// </summary>
         [TestMethod]
-        public void {1}NoMixinAndMonadWhereSourceIsNotMixin()
+        public void UnionByWithComparerNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}NoMixinAndMonadWhereSourceIsNotMixin.ResultMonad{6};
+            var enumerable = new MockUnionByWithComparerNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var unionbyed = enumerable.UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null);
+            var monad = unionbyed as MockUnionByWithComparerNoMixinAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), monad.Source.ToArray());
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null).ToArray(), monad.Source.ToArray());
         }
 
-        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockUnionByWithComparerNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -705,17 +705,17 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// {0}s a <see cref="IV2Enumerable{T}"/>
+        /// UnionBys a <see cref="IV2Enumerable{T}"/>
         /// </summary>
         [TestMethod]
-        public void {1}NoMixinAndNoMonad()
+        public void UnionByWithComparerNoMixinAndNoMonad()
         {
-            var enumerable = new Mock{1}NoMixinAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), {2}ed.ToArray());
+            var enumerable = new MockUnionByWithComparerNoMixinAndNoMonad().AsV2Enumerable();
+            var unionbyed = enumerable.UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().UnionBy(new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null).ToArray(), unionbyed.ToArray());
         }
 
-        private sealed class Mock{1}NoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockUnionByWithComparerNoMixinAndNoMonad : IV2Enumerable<object>
         {
             public static object ResultObject { get; } = new object();
 
