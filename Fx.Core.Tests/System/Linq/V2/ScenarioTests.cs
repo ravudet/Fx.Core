@@ -152,6 +152,18 @@
         {
             GenerateFluent(
                 operation: "TakeWhile",
+                overload: "TakeWhile",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "element => true"
+                );
+            GenerateFluent(
+                operation: "TakeWhile",
                 overload: "TakeWhileWithIndexPredicate",
                 overloadReturnTypeParameters: "object",
                 overloadTypeParameters: "",
@@ -223,7 +235,7 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "(element) => true"
+                arguments: "element => true"
                 );
             GenerateFluent(
                 operation: "Where",

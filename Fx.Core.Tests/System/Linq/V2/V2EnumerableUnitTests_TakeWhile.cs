@@ -8,19 +8,19 @@ namespace System.Linq.V2
     public sealed partial class V2EnumerableUnitTests
     {
         /// <summary>
-        /// Wheres a mixin that does implement the Where overload and does implement a monad where the source is not a mixin
+        /// TakeWhiles a mixin that does implement the TakeWhile overload and does implement a monad where the source is not a mixin
         /// </summary>
         [TestMethod]
-        public void WhereMixinWithOverloadAndMonadWhereSourceIsNotMixin()
+        public void TakeWhileMixinWithOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockWhereMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var whereed = enumerable.Where(element => true);
-            var monad = whereed as MockWhereMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
+            var enumerable = new MockTakeWhileMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var takewhileed = enumerable.TakeWhile(element => true);
+            var monad = takewhileed as MockTakeWhileMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            Assert.AreEqual(MockWhereMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result(), monad.Source);
+            Assert.AreEqual(MockTakeWhileMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result(), monad.Source);
         }
 
-        private sealed class MockWhereMixinWithOverloadAndMonadWhereSourceIsNotMixin : IWhereableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockTakeWhileMixinWithOverloadAndMonadWhereSourceIsNotMixin : ITakeWhileableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -90,7 +90,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<object> Where(Func<object, bool> predicate)
+            public IV2Enumerable<object> TakeWhile(Func<object, bool> predicate)
             {
                 return Result();
             }
@@ -131,19 +131,19 @@ namespace System.Linq.V2
         }
 
         /// <summary>
-        /// Wheres a mixin that does implement the Where overload and does not implement a monad
+        /// TakeWhiles a mixin that does implement the TakeWhile overload and does not implement a monad
         /// </summary>
         [TestMethod]
-        public void WhereMixinWithOverloadAndNoMonad()
+        public void TakeWhileMixinWithOverloadAndNoMonad()
         {
-            var enumerable = new MockWhereMixinWithOverloadAndNoMonad().AsV2Enumerable();
-            var whereed = enumerable.Where(element => true);
-            Assert.AreEqual(MockWhereMixinWithOverloadAndNoMonad.Result(), whereed);
+            var enumerable = new MockTakeWhileMixinWithOverloadAndNoMonad().AsV2Enumerable();
+            var takewhileed = enumerable.TakeWhile(element => true);
+            Assert.AreEqual(MockTakeWhileMixinWithOverloadAndNoMonad.Result(), takewhileed);
         }
 
-        private sealed class MockWhereMixinWithOverloadAndNoMonad : IWhereableMixin<object>
+        private sealed class MockTakeWhileMixinWithOverloadAndNoMonad : ITakeWhileableMixin<object>
         {
-            public IV2Enumerable<object> Where(Func<object, bool> predicate)
+            public IV2Enumerable<object> TakeWhile(Func<object, bool> predicate)
             {
                 return Result();
             }
@@ -184,21 +184,21 @@ namespace System.Linq.V2
         }
 
         /// <summary>
-        /// Wheres a mixin that does not implement the Where overload and does implement a monad where the source is a mixin
+        /// TakeWhiles a mixin that does not implement the TakeWhile overload and does implement a monad where the source is a mixin
         /// </summary>
         [TestMethod]
-        public void WhereMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void TakeWhileMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockWhereMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var whereed = enumerable.Where(element => true);
-            var monad = whereed as MockWhereMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
+            var enumerable = new MockTakeWhileMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var takewhileed = enumerable.TakeWhile(element => true);
+            var monad = takewhileed as MockTakeWhileMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            var source = monad.Source as MockWhereMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
+            var source = monad.Source as MockTakeWhileMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(source);
-            Assert.AreEqual(MockWhereMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result(), source.Source);
+            Assert.AreEqual(MockTakeWhileMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result(), source.Source);
         }
 
-        private sealed class MockWhereMixinWithoutOverloadAndMonadWhereSourceIsMixin : IWhereableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockTakeWhileMixinWithoutOverloadAndMonadWhereSourceIsMixin : ITakeWhileableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -233,7 +233,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IWhereableMixin<object>
+            private sealed class SourceEnumerable : ITakeWhileableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -241,7 +241,7 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<object> Where(Func<object, bool> predicate)
+                public IV2Enumerable<object> TakeWhile(Func<object, bool> predicate)
                 {
                     return Result();
                 }
@@ -328,19 +328,19 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// Wheres a mixin that does not implement the Where overload and does implement a monad where the source is not a mixin
+        /// TakeWhiles a mixin that does not implement the TakeWhile overload and does implement a monad where the source is not a mixin
         /// </summary>
         [TestMethod]
-        public void WhereMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void TakeWhileMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockWhereMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var whereed = enumerable.Where(element => true);
-            var monad = whereed as MockWhereMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
+            var enumerable = new MockTakeWhileMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var takewhileed = enumerable.TakeWhile(element => true);
+            var monad = takewhileed as MockTakeWhileMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().Where(element => true).ToArray(), monad.Source.ToArray());
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().TakeWhile(element => true).ToArray(), monad.Source.ToArray());
         }
 
-        private sealed class MockWhereMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IWhereableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockTakeWhileMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ITakeWhileableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -422,17 +422,17 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// Wheres a mixin that does not implement the Where overload and does not implement a monad
+        /// TakeWhiles a mixin that does not implement the TakeWhile overload and does not implement a monad
         /// </summary>
         [TestMethod]
-        public void WhereMixinWithoutOverloadAndNoMonad()
+        public void TakeWhileMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new MockWhereMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var whereed = enumerable.Where(element => true);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().Where(element => true).ToArray(), whereed.ToArray());
+            var enumerable = new MockTakeWhileMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var takewhileed = enumerable.TakeWhile(element => true);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().TakeWhile(element => true).ToArray(), takewhileed.ToArray());
         }
 
-        private sealed class MockWhereMixinWithoutOverloadAndNoMonad : IWhereableMixin<object>
+        private sealed class MockTakeWhileMixinWithoutOverloadAndNoMonad : ITakeWhileableMixin<object>
         {
             public static object ResultObject { get; } = new object();
 
@@ -448,19 +448,19 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// Wheres a monad where the source is a mixin
+        /// TakeWhiles a monad where the source is a mixin
         /// </summary>
         [TestMethod]
-        public void WhereNoMixinAndMonadWhereSourceIsMixin()
+        public void TakeWhileNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockWhereNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var whereed = enumerable.Where(element => true);
-            var monad = whereed as MockWhereNoMixinAndMonadWhereSourceIsMixin.ResultMonad<object>;
+            var enumerable = new MockTakeWhileNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var takewhileed = enumerable.TakeWhile(element => true);
+            var monad = takewhileed as MockTakeWhileNoMixinAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            Assert.AreEqual(MockWhereNoMixinAndMonadWhereSourceIsMixin.Result(), monad.Source);
+            Assert.AreEqual(MockTakeWhileNoMixinAndMonadWhereSourceIsMixin.Result(), monad.Source);
         }
 
-        private sealed class MockWhereNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockTakeWhileNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -495,7 +495,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IWhereableMixin<object>
+            private sealed class SourceEnumerable : ITakeWhileableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -503,7 +503,7 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<object> Where(Func<object, bool> predicate)
+                public IV2Enumerable<object> TakeWhile(Func<object, bool> predicate)
                 {
                     return Result();
                 }
@@ -590,19 +590,19 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// Wheres a monad where the source is a not mixin
+        /// TakeWhiles a monad where the source is a not mixin
         /// </summary>
         [TestMethod]
-        public void WhereNoMixinAndMonadWhereSourceIsNotMixin()
+        public void TakeWhileNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockWhereNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var whereed = enumerable.Where(element => true);
-            var monad = whereed as MockWhereNoMixinAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
+            var enumerable = new MockTakeWhileNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var takewhileed = enumerable.TakeWhile(element => true);
+            var monad = takewhileed as MockTakeWhileNoMixinAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().Where(element => true).ToArray(), monad.Source.ToArray());
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().TakeWhile(element => true).ToArray(), monad.Source.ToArray());
         }
 
-        private sealed class MockWhereNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockTakeWhileNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -705,17 +705,17 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// Wheres a <see cref="IV2Enumerable{T}"/>
+        /// TakeWhiles a <see cref="IV2Enumerable{T}"/>
         /// </summary>
         [TestMethod]
-        public void WhereNoMixinAndNoMonad()
+        public void TakeWhileNoMixinAndNoMonad()
         {
-            var enumerable = new MockWhereNoMixinAndNoMonad().AsV2Enumerable();
-            var whereed = enumerable.Where(element => true);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().Where(element => true).ToArray(), whereed.ToArray());
+            var enumerable = new MockTakeWhileNoMixinAndNoMonad().AsV2Enumerable();
+            var takewhileed = enumerable.TakeWhile(element => true);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().TakeWhile(element => true).ToArray(), takewhileed.ToArray());
         }
 
-        private sealed class MockWhereNoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockTakeWhileNoMixinAndNoMonad : IV2Enumerable<object>
         {
             public static object ResultObject { get; } = new object();
 
