@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "TakeLast",
+                overload: "TakeLast",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "int count",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "4"
+                );
+
+            GenerateFluent(
                 operation: "TakeWhile",
                 overload: "TakeWhile",
                 overloadReturnTypeParameters: "object",
