@@ -487,5 +487,28 @@ namespace System.Linq.V2
                 throw new NotImplementedException();
             }
         }
+
+        [TestMethod]
+        public void SumIntsNoMixinAndNoMonad()
+        {
+            var enumerable = new MockSumIntsNoMixinAndNoMonad().AsV2Enumerable();
+            var sumed = enumerable.Sum(element => element.GetHashCode());
+            Assert.AreEqual(MockSumIntsNoMixinAndNoMonad.Element.GetHashCode(), sumed);
+        }
+
+        private sealed class MockSumIntsNoMixinAndNoMonad : IV2Enumerable<object>
+        {
+            public static object Element { get; } = new object();
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                yield return Element;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
