@@ -92,13 +92,11 @@ namespace System.Linq.V2
 
             public IV2Enumerable<{3}> {0}{4}({5})
             {
-                //// TODO
                 return Result{8}();
             }
 
             public static IV2Enumerable<{9}> Result{8}()
             {
-                //// TODO
                 return ResultEnumerable<{9}>.Instance;
             }
 
@@ -147,13 +145,11 @@ namespace System.Linq.V2
         {
             public IV2Enumerable<{3}> {0}{4}({5})
             {
-                //// TODO
                 return Result{8}();
             }
 
             public static IV2Enumerable<{9}> Result{8}()
             {
-                //// TODO
                 return ResultEnumerable<{9}>.Instance;
             }
 
@@ -247,7 +243,6 @@ namespace System.Linq.V2
 
                 public IV2Enumerable<{3}> {0}{4}({5})
                 {
-                    //// TODO
                     return Result{8}();
                 }
 
@@ -299,7 +294,6 @@ namespace System.Linq.V2
 
             public static IV2Enumerable<{9}> Result{8}()
             {
-                //// TODO
                 return ResultEnumerable<{9}>.Instance;
             }
 
@@ -511,7 +505,6 @@ namespace System.Linq.V2
 
                 public IV2Enumerable<{3}> {0}{4}({5})
                 {
-                    //// TODO
                     return Result{8}();
                 }
 
@@ -563,7 +556,6 @@ namespace System.Linq.V2
 
             public static IV2Enumerable<{9}> Result{8}()
             {
-                //// TODO
                 return ResultEnumerable<{9}>.Instance;
             }
 

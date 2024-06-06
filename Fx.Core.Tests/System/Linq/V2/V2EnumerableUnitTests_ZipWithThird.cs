@@ -92,13 +92,11 @@ namespace System.Linq.V2
 
             public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
             {
-                //// TODO
                 return Result<TSecond, TThird>();
             }
 
             public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
             {
-                //// TODO
                 return ResultEnumerable<(object, TSecond, TThird)>.Instance;
             }
 
@@ -147,13 +145,11 @@ namespace System.Linq.V2
         {
             public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
             {
-                //// TODO
                 return Result<TSecond, TThird>();
             }
 
             public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
             {
-                //// TODO
                 return ResultEnumerable<(object, TSecond, TThird)>.Instance;
             }
 
@@ -247,7 +243,6 @@ namespace System.Linq.V2
 
                 public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
                 {
-                    //// TODO
                     return Result<TSecond, TThird>();
                 }
 
@@ -299,7 +294,6 @@ namespace System.Linq.V2
 
             public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
             {
-                //// TODO
                 return ResultEnumerable<(object, TSecond, TThird)>.Instance;
             }
 
@@ -511,7 +505,6 @@ namespace System.Linq.V2
 
                 public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
                 {
-                    //// TODO
                     return Result<TSecond, TThird>();
                 }
 
@@ -563,7 +556,6 @@ namespace System.Linq.V2
 
             public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
             {
-                //// TODO
                 return ResultEnumerable<(object, TSecond, TThird)>.Instance;
             }
 

@@ -92,13 +92,11 @@ namespace System.Linq.V2
 
             public IV2Enumerable<(object First, TSecond Second)> Zip<TSecond>(IV2Enumerable<TSecond> second)
             {
-                //// TODO
                 return Result<TSecond>();
             }
 
             public static IV2Enumerable<(object, TSecond)> Result<TSecond>()
             {
-                //// TODO
                 return ResultEnumerable<(object, TSecond)>.Instance;
             }
 
@@ -147,13 +145,11 @@ namespace System.Linq.V2
         {
             public IV2Enumerable<(object First, TSecond Second)> Zip<TSecond>(IV2Enumerable<TSecond> second)
             {
-                //// TODO
                 return Result<TSecond>();
             }
 
             public static IV2Enumerable<(object, TSecond)> Result<TSecond>()
             {
-                //// TODO
                 return ResultEnumerable<(object, TSecond)>.Instance;
             }
 
@@ -247,7 +243,6 @@ namespace System.Linq.V2
 
                 public IV2Enumerable<(object First, TSecond Second)> Zip<TSecond>(IV2Enumerable<TSecond> second)
                 {
-                    //// TODO
                     return Result<TSecond>();
                 }
 
@@ -299,7 +294,6 @@ namespace System.Linq.V2
 
             public static IV2Enumerable<(object, TSecond)> Result<TSecond>()
             {
-                //// TODO
                 return ResultEnumerable<(object, TSecond)>.Instance;
             }
 
@@ -511,7 +505,6 @@ namespace System.Linq.V2
 
                 public IV2Enumerable<(object First, TSecond Second)> Zip<TSecond>(IV2Enumerable<TSecond> second)
                 {
-                    //// TODO
                     return Result<TSecond>();
                 }
 
@@ -563,7 +556,6 @@ namespace System.Linq.V2
 
             public static IV2Enumerable<(object, TSecond)> Result<TSecond>()
             {
-                //// TODO
                 return ResultEnumerable<(object, TSecond)>.Instance;
             }
 

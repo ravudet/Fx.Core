@@ -92,13 +92,11 @@ namespace System.Linq.V2
 
             public IV2Enumerable<TResult> Zip<TSecond, TResult>(IV2Enumerable<TSecond> second, Func<object, TSecond, TResult> resultSelector)
             {
-                //// TODO
                 return Result<TResult>();
             }
 
             public static IV2Enumerable<TResult> Result<TResult>()
             {
-                //// TODO
                 return ResultEnumerable<TResult>.Instance;
             }
 
@@ -147,13 +145,11 @@ namespace System.Linq.V2
         {
             public IV2Enumerable<TResult> Zip<TSecond, TResult>(IV2Enumerable<TSecond> second, Func<object, TSecond, TResult> resultSelector)
             {
-                //// TODO
                 return Result<TResult>();
             }
 
             public static IV2Enumerable<TResult> Result<TResult>()
             {
-                //// TODO
                 return ResultEnumerable<TResult>.Instance;
             }
 
@@ -247,7 +243,6 @@ namespace System.Linq.V2
 
                 public IV2Enumerable<TResult> Zip<TSecond, TResult>(IV2Enumerable<TSecond> second, Func<object, TSecond, TResult> resultSelector)
                 {
-                    //// TODO
                     return Result<TResult>();
                 }
 
@@ -299,7 +294,6 @@ namespace System.Linq.V2
 
             public static IV2Enumerable<TResult> Result<TResult>()
             {
-                //// TODO
                 return ResultEnumerable<TResult>.Instance;
             }
 
@@ -511,7 +505,6 @@ namespace System.Linq.V2
 
                 public IV2Enumerable<TResult> Zip<TSecond, TResult>(IV2Enumerable<TSecond> second, Func<object, TSecond, TResult> resultSelector)
                 {
-                    //// TODO
                     return Result<TResult>();
                 }
 
@@ -563,7 +556,6 @@ namespace System.Linq.V2
 
             public static IV2Enumerable<TResult> Result<TResult>()
             {
-                //// TODO
                 return ResultEnumerable<TResult>.Instance;
             }
 

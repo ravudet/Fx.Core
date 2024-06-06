@@ -92,13 +92,11 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Where(Func<object, int, bool> predicate)
             {
-                //// TODO
                 return Result();
             }
 
             public static IV2Enumerable<object> Result()
             {
-                //// TODO
                 return ResultEnumerable<object>.Instance;
             }
 
@@ -147,13 +145,11 @@ namespace System.Linq.V2
         {
             public IV2Enumerable<object> Where(Func<object, int, bool> predicate)
             {
-                //// TODO
                 return Result();
             }
 
             public static IV2Enumerable<object> Result()
             {
-                //// TODO
                 return ResultEnumerable<object>.Instance;
             }
 
@@ -247,7 +243,6 @@ namespace System.Linq.V2
 
                 public IV2Enumerable<object> Where(Func<object, int, bool> predicate)
                 {
-                    //// TODO
                     return Result();
                 }
 
@@ -299,7 +294,6 @@ namespace System.Linq.V2
 
             public static IV2Enumerable<object> Result()
             {
-                //// TODO
                 return ResultEnumerable<object>.Instance;
             }
 
@@ -511,7 +505,6 @@ namespace System.Linq.V2
 
                 public IV2Enumerable<object> Where(Func<object, int, bool> predicate)
                 {
-                    //// TODO
                     return Result();
                 }
 
@@ -563,7 +556,6 @@ namespace System.Linq.V2
 
             public static IV2Enumerable<object> Result()
             {
-                //// TODO
                 return ResultEnumerable<object>.Instance;
             }
 
