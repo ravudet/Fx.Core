@@ -105,7 +105,7 @@
             var unescapedGenerated = generated
                 .Replace("{{", "{")
                 .Replace("}}", "}");
-            System.IO.File.WriteAllText(@"C:\source\Fx.Core\generated.txt", unescapedGenerated);
+            System.IO.File.WriteAllText($@"C:\source\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{overload}.cs", unescapedGenerated);
         }
 
         [TestMethod]
