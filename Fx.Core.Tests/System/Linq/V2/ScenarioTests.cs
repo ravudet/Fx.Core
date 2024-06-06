@@ -151,6 +151,31 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "SkipWhile",
+                overload: "SkipWhile",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "element => true"
+                );
+            GenerateFluent(
+                operation: "SkipWhile",
+                overload: "SkipWhileWithIndexPredicate",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, int, bool> predicate",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "(element, index) => true"
+                );
+
+            GenerateFluent(
                 operation: "Take",
                 overload: "TakeWithRange",
                 overloadReturnTypeParameters: "object",
