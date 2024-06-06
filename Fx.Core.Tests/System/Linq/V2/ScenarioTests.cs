@@ -88,7 +88,7 @@
                 overload: "ZipWithResultSelector",
                 overloadReturnTypeParameters: "TResult",
                 overloadTypeParameters: "<TSecond, TResult>",
-                overloadParameters: "IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third",
+                overloadParameters: "IV2Enumerable<TSecond> second, Func<object, TSecond, TResult> resultSelector",
                 monadType: "<object>",
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",

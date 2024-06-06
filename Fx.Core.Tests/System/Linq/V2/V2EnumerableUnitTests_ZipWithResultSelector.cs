@@ -8,19 +8,19 @@ namespace System.Linq.V2
     public sealed partial class V2EnumerableUnitTests
     {
         /// <summary>
-        /// Zips a mixin that does implement the ZipWithThird overload and does implement a monad where the source is not a mixin
+        /// Zips a mixin that does implement the ZipWithResultSelector overload and does implement a monad where the source is not a mixin
         /// </summary>
         [TestMethod]
-        public void ZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin()
+        public void ZipWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            var monad = ziped as MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(object, string, string)>;
+            var enumerable = new MockZipWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var monad = ziped as MockZipWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            Assert.AreEqual(MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result<string, string>(), monad.Source);
+            Assert.AreEqual(MockZipWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result<object>(), monad.Source);
         }
 
-        private sealed class MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockZipWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -90,67 +90,16 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
+            public IV2Enumerable<TResult> Zip<TSecond, TResult>(IV2Enumerable<TSecond> second, Func<object, TSecond, TResult> resultSelector)
             {
-                return Result<TSecond, TThird>();
+                //// TODO
+                return Result<TResult>();
             }
 
-            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<TResult> Result<TResult>()
             {
-                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
-            }
-
-            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
-            {
-                private ResultEnumerable()
-                {
-                }
-
-                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
-
-                public IEnumerator<T> GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public IEnumerator<object> GetEnumerator()
-            {
-                throw new NotImplementedException();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        /// <summary>
-        /// Zips a mixin that does implement the ZipWithThird overload and does not implement a monad
-        /// </summary>
-        [TestMethod]
-        public void ZipWithThirdMixinWithOverloadAndNoMonad()
-        {
-            var enumerable = new MockZipWithThirdMixinWithOverloadAndNoMonad().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            Assert.AreEqual(MockZipWithThirdMixinWithOverloadAndNoMonad.Result<string, string>(), ziped);
-        }
-
-        private sealed class MockZipWithThirdMixinWithOverloadAndNoMonad : IZipableMixin<object>
-        {
-            public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
-            {
-                return Result<TSecond, TThird>();
-            }
-
-            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
-            {
-                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
+                //// TODO
+                return ResultEnumerable<TResult>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -184,21 +133,76 @@ namespace System.Linq.V2
         }
 
         /// <summary>
-        /// Zips a mixin that does not implement the ZipWithThird overload and does implement a monad where the source is a mixin
+        /// Zips a mixin that does implement the ZipWithResultSelector overload and does not implement a monad
         /// </summary>
         [TestMethod]
-        public void ZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void ZipWithResultSelectorMixinWithOverloadAndNoMonad()
         {
-            var enumerable = new MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            var monad = ziped as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<(object, string, string)>;
+            var enumerable = new MockZipWithResultSelectorMixinWithOverloadAndNoMonad().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            Assert.AreEqual(MockZipWithResultSelectorMixinWithOverloadAndNoMonad.Result<object>(), ziped);
+        }
+
+        private sealed class MockZipWithResultSelectorMixinWithOverloadAndNoMonad : IZipableMixin<object>
+        {
+            public IV2Enumerable<TResult> Zip<TSecond, TResult>(IV2Enumerable<TSecond> second, Func<object, TSecond, TResult> resultSelector)
+            {
+                //// TODO
+                return Result<TResult>();
+            }
+
+            public static IV2Enumerable<TResult> Result<TResult>()
+            {
+                //// TODO
+                return ResultEnumerable<TResult>.Instance;
+            }
+
+            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Zips a mixin that does not implement the ZipWithResultSelector overload and does implement a monad where the source is a mixin
+        /// </summary>
+        [TestMethod]
+        public void ZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        {
+            var enumerable = new MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var monad = ziped as MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            var source = monad.Source as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<(object, string, string)>;
+            var source = monad.Source as MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(source);
-            Assert.AreEqual(MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result<string, string>(), source.Source);
+            Assert.AreEqual(MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result<object>(), source.Source);
         }
 
-        private sealed class MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin : IZipableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin : IZipableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -241,9 +245,10 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
+                public IV2Enumerable<TResult> Zip<TSecond, TResult>(IV2Enumerable<TSecond> second, Func<object, TSecond, TResult> resultSelector)
                 {
-                    return Result<TSecond, TThird>();
+                    //// TODO
+                    return Result<TResult>();
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -292,9 +297,10 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<TResult> Result<TResult>()
             {
-                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
+                //// TODO
+                return ResultEnumerable<TResult>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -328,19 +334,19 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// Zips a mixin that does not implement the ZipWithThird overload and does implement a monad where the source is not a mixin
+        /// Zips a mixin that does not implement the ZipWithResultSelector overload and does implement a monad where the source is not a mixin
         /// </summary>
         [TestMethod]
-        public void ZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void ZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            var monad = ziped as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(object, string, string)>;
+            var enumerable = new MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var monad = ziped as MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
             CollectionAssert.AreEqual(Array.Empty<(string, string, string)>(), monad.Source.ToArray());
         }
 
-        private sealed class MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -422,17 +428,17 @@ namespace System.Linq.V2
         }
         
         /// <summary>
-        /// Zips a mixin that does not implement the ZipWithThird overload and does not implement a monad
+        /// Zips a mixin that does not implement the ZipWithResultSelector overload and does not implement a monad
         /// </summary>
         [TestMethod]
-        public void ZipWithThirdMixinWithoutOverloadAndNoMonad()
+        public void ZipWithResultSelectorMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new MockZipWithThirdMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            CollectionAssert.AreEqual(new[] { (MockZipWithThirdMixinWithoutOverloadAndNoMonad.ResultObject, string.Empty, string.Empty) }, ziped.ToArray());
+            var enumerable = new MockZipWithResultSelectorMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            CollectionAssert.AreEqual(new[] { (MockZipWithResultSelectorMixinWithoutOverloadAndNoMonad.ResultObject, string.Empty, string.Empty) }, ziped.ToArray());
         }
 
-        private sealed class MockZipWithThirdMixinWithoutOverloadAndNoMonad : IZipableMixin<object>
+        private sealed class MockZipWithResultSelectorMixinWithoutOverloadAndNoMonad : IZipableMixin<object>
         {
             public static object ResultObject { get; } = new object();
 
@@ -451,16 +457,16 @@ namespace System.Linq.V2
         /// Zips a monad where the source is a mixin
         /// </summary>
         [TestMethod]
-        public void ZipWithThirdNoMixinAndMonadWhereSourceIsMixin()
+        public void ZipWithResultSelectorNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            var monad = ziped as MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin.ResultMonad<(object, string, string)>;
+            var enumerable = new MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var monad = ziped as MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            Assert.AreEqual(MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin.Result<string, string>(), monad.Source);
+            Assert.AreEqual(MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsMixin.Result<object>(), monad.Source);
         }
 
-        private sealed class MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -503,9 +509,10 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(IV2Enumerable<TSecond> second, IV2Enumerable<TThird> third)
+                public IV2Enumerable<TResult> Zip<TSecond, TResult>(IV2Enumerable<TSecond> second, Func<object, TSecond, TResult> resultSelector)
                 {
-                    return Result<TSecond, TThird>();
+                    //// TODO
+                    return Result<TResult>();
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -554,9 +561,10 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<TResult> Result<TResult>()
             {
-                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
+                //// TODO
+                return ResultEnumerable<TResult>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -593,16 +601,16 @@ namespace System.Linq.V2
         /// Zips a monad where the source is a not mixin
         /// </summary>
         [TestMethod]
-        public void ZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin()
+        public void ZipWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            var monad = ziped as MockZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin.ResultMonad<(object, string, string)>;
+            var enumerable = new MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var monad = ziped as MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(new[] { (MockZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin.ResultObject, string.Empty, string.Empty) }, monad.Source.ToArray());
+            CollectionAssert.AreEqual(new[] { (MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin.ResultObject, string.Empty, string.Empty) }, monad.Source.ToArray());
         }
 
-        private sealed class MockZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -708,14 +716,14 @@ namespace System.Linq.V2
         /// Zips a <see cref="IV2Enumerable{T}"/>
         /// </summary>
         [TestMethod]
-        public void ZipWithThirdNoMixinAndNoMonad()
+        public void ZipWithResultSelectorNoMixinAndNoMonad()
         {
-            var enumerable = new MockZipWithThirdNoMixinAndNoMonad().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            CollectionAssert.AreEqual(new[] { (MockZipWithThirdNoMixinAndNoMonad.ResultObject, string.Empty, string.Empty) }, ziped.ToArray());
+            var enumerable = new MockZipWithResultSelectorNoMixinAndNoMonad().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            CollectionAssert.AreEqual(new[] { (MockZipWithResultSelectorNoMixinAndNoMonad.ResultObject, string.Empty, string.Empty) }, ziped.ToArray());
         }
 
-        private sealed class MockZipWithThirdNoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockZipWithResultSelectorNoMixinAndNoMonad : IV2Enumerable<object>
         {
             public static object ResultObject { get; } = new object();
 
