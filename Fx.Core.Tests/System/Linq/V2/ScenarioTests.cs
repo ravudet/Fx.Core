@@ -72,8 +72,9 @@
         public void Generate()
         {
             Generate(
-                overload: "ZipWithThird",
                 operation: "Zip",
+                overload: "ZipWithThird",
+                overloadReturnTypeParameters: "(object First, TSecond Second, TThird Third)",
                 monadType: "<(object, string, string)>",
                 resultTypeArguments: "<string, string>",
                 resultTypeParameters: "<TSecond, TThird>",
@@ -81,8 +82,9 @@
                 arguments: "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()"
                 );
             Generate(
-                overload: "ZipWithResultSelector",
                 operation: "Zip",
+                overload: "ZipWithResultSelector",
+                overloadReturnTypeParameters: "(object First, TSecond Second, TThird Third)",
                 monadType: "<object>",
                 resultTypeArguments: "",
                 resultTypeParameters: "",
@@ -92,8 +94,9 @@
         }
 
         private static void Generate(
-            string overload,
             string operation,
+            string overload,
+            string overloadReturnTypeParameters,
             string monadType,
             string resultTypeArguments,
             string resultTypeParameters,
@@ -112,13 +115,15 @@
                 .Replace("{{5}}", "{5}")
                 .Replace("{{6}}", "{6}")
                 .Replace("{{7}}", "{7}")
+                .Replace("{{8}}", "{8}")
                 ;
 
             var generated = string.Format(
                 escapedTemplate,
-                overload,
                 operation,
+                overload,
                 operation.ToLower(),
+                overloadReturnTypeParameters,
                 monadType,
                 resultTypeArguments,
                 resultTypeParameters,
