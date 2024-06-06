@@ -71,6 +71,22 @@
         [TestMethod]
         public void Generate()
         {
+            Generate(
+                overload: "ZipWithThird",
+                operation: "Zip",
+                monadType: "<(object, string, string)>",
+                resultType: "<string, string>",
+                arguments: "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()"
+                );
+        }
+
+        private static void Generate(
+            string overload,
+            string operation,
+            string monadType,
+            string resultType,
+            string arguments)
+        {
             var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\TextFile1.txt");
             var escapedTemplate = template
                 .Replace("{", "{{")
@@ -81,18 +97,7 @@
                 .Replace("{{3}}", "{3}")
                 .Replace("{{4}}", "{4}")
                 .Replace("{{5}}", "{5}");
-            /*
-            var overload = "ZipWithThird";
-            var operation = "Zip";
-            var monadType = "<(object, string, string)>";
-            var resultType = "<string, string>";
-            var arguments = "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()";
-            */
-            var overload = "ZipWithThird";
-            var operation = "Zip";
-            var monadType = "<(object, string, string)>";
-            var resultType = "<string, string>";
-            var arguments = "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()";
+
             var generated = string.Format(
                 escapedTemplate,
                 overload,
