@@ -1492,6 +1492,241 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
+        [TestMethod]
+        public void ExceptByableMixin()
+        {
+            var enumerable = new MockExceptByableMixin<string>().AsV2Enumerable();
+            Assert.AreEqual(MockExceptByableMixin<string>.Result, enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _));
+        }
+
+        [TestMethod]
+        public void ExceptByableMixinDefaults()
+        {
+            var enumerable = new MockExceptByableMixin<string>().AsV2Enumerable();
+            try
+            {
+                enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _, null).Enumerate();
+                Assert.Fail();
+            }
+            catch (Exception exception)
+            {
+                Assert.AreEqual(MockExceptByableMixin<string>.Exception, exception);
+            }
+        }
+
+        private sealed class MockExceptByableMixin<TElement> : IExceptByableMixin<TElement>
+        {
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public static Exception Exception { get; } = EnumerationException.Instance;
+
+            private sealed class EnumerationException : Exception
+            {
+                private EnumerationException()
+                    : base()
+                {
+                }
+
+                public static EnumerationException Instance { get; } = new EnumerationException();
+            }
+
+            public IV2Enumerable<TElement> ExceptBy<TKey>(IV2Enumerable<TKey> second, Func<TElement, TKey> keySelector)
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw EnumerationException.Instance;
+            }
+
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        [TestMethod]
+        public void ExceptByableMixinAndMonad()
+        {
+            var enumerable = new MockExceptByableMixinAndMonad<string>().AsV2Enumerable();
+            var exceptByed = enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _);
+            var monad = exceptByed as MockExceptByableMixinAndMonad<string>;
+            Assert.IsNotNull(monad);
+            Assert.AreEqual(MockExceptByableMixinAndMonad<string>.Result, monad.Source);
+        }
+
+        private sealed class MockExceptByableMixinAndMonad<TElement> : IExceptByableMixin<TElement>, IEnumerableMonad<TElement>
+        {
+            public MockExceptByableMixinAndMonad()
+                : this(V2Enumerable.Empty<TElement>())
+            {
+            }
+
+            private MockExceptByableMixinAndMonad(IV2Enumerable<TElement> source)
+            {
+                this.Source = source;
+            }
+
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IV2Enumerable<TElement> Source { get; }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return (IV2Enumerable<TSource> source) => new MockExceptByableMixinAndMonad<TSource>(source);
+            }
+
+            public IV2Enumerable<TElement> ExceptBy<TKey>(IV2Enumerable<TKey> second, Func<TElement, TKey> keySelector)
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [TestMethod]
+        public void ExceptByDefault()
+        {
+            //// TODO
+            V2Enumerable.Empty<string>().ExceptBy(V2Enumerable.Empty<string>(), _ => _).Enumerate();
+        }
+
+        [TestMethod]
+        public void ExceptByMonad()
+        {
+            var enumerable = new MockExceptByMonad<string>(new MockExceptByMonadExceptByableMixin<string>().AsV2Enumerable()).AsV2Enumerable();
+            var exceptByed = enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _);
+            var monad = exceptByed as MockExceptByMonad<string>;
+            Assert.IsNotNull(monad);
+            Assert.AreEqual(MockExceptByMonadExceptByableMixin<string>.Result, monad.Source);
+        }
+
+        private sealed class MockExceptByMonadException<TElement> : Exception
+        {
+            public MockExceptByMonadException(IV2Enumerable<TElement> result)
+                : base()
+            {
+                this.Result = result;
+            }
+
+            public IV2Enumerable<TElement> Result { get; }
+        }
+
+        private sealed class MockExceptByMonadExceptByableMixin<TElement> : IExceptByableMixin<TElement>
+        {
+            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
+
+            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+
+                public IEnumerator<TResult> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IV2Enumerable<TElement> ExceptBy<TKey>(IV2Enumerable<TKey> second, Func<TElement, TKey> keySelector)
+            {
+                return Result;
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private sealed class MockExceptByMonad<TElement> : IEnumerableMonad<TElement>
+        {
+            public MockExceptByMonad(IV2Enumerable<TElement> source)
+            {
+                this.Source = source;
+            }
+
+            public IV2Enumerable<TElement> Source { get; }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return (IV2Enumerable<TSource> source) => new MockExceptByMonad<TSource>(source);
+            }
+
+            public IEnumerator<TElement> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         //// TODO discuss design decision 3 with others; if you rename the interface methods, confusion can be avoided; also, having separate interfaces for every method avoids the need for the "default" behavior at all
         //// 
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
@@ -1520,5 +1755,17 @@ namespace System.Linq.V2
         //// TODO recording:
         //// open sound settings; make sure output and input are both the airpods hands-free
         //// https://app.clipchamp.com/
+    }
+
+    internal static class TestTODO
+    {
+        public static IV2Enumerable<T> Enumerate<T>(this IV2Enumerable<T> source)
+        {
+            foreach (var element in source)
+            {
+            }
+
+            return source;
+        }
     }
 }
