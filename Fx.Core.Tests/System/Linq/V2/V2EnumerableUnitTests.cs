@@ -1321,6 +1321,108 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Gets the element at a certain index
+        /// </summary>
+        [TestMethod]
+        public void ElementAt()
+        {
+            var enumerable = new ElementAtableMock();
+
+            Assert.AreEqual("4", enumerable.AsV2Enumerable().ElementAt(4));
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => enumerable.AsEnumerable().ElementAt(4));
+        }
+
+        /// <summary>
+        /// Gets the element at a certain index
+        /// </summary>
+        [TestMethod]
+        public void ElementAtIndex()
+        {
+            var enumerable = new ElementAtableMock();
+
+            Assert.AreEqual("5", enumerable.AsV2Enumerable().ElementAt(new Index(5)));
+
+            // make sure v1 has different behavior
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => enumerable.AsEnumerable().ElementAt(new Index(5)));
+        }
+
+        private sealed class ElementAtableMock : IElementAtableMixin<string>
+        {
+            public string ElementAt(Index index)
+            {
+                return index.Value.ToString();
+            }
+
+            public string ElementAt(int index)
+            {
+                return index.ToString();
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        /// <summary>
+        /// Gets the element at a certain index
+        /// </summary>
+        [TestMethod]
+        public void ElementAtOrDefault()
+        {
+            var enumerable = new ElementAtOrDefaultableMock();
+
+            Assert.AreEqual("6", enumerable.AsV2Enumerable().ElementAtOrDefault(6));
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().ElementAtOrDefault(6));
+        }
+
+        /// <summary>
+        /// Gets the element at a certain index
+        /// </summary>
+        [TestMethod]
+        public void ElementAtOrDefaultIndex()
+        {
+            var enumerable = new ElementAtOrDefaultableMock();
+
+            Assert.AreEqual("7", enumerable.AsV2Enumerable().ElementAtOrDefault(new Index(7)));
+
+            // make sure v1 has different behavior
+            Assert.AreEqual(null, enumerable.AsEnumerable().ElementAtOrDefault(7));
+        }
+
+        private sealed class ElementAtOrDefaultableMock : IElementAtOrDefaultableMixin<string>
+        {
+            public string ElementAtOrDefault(Index index)
+            {
+                return index.Value.ToString();
+            }
+
+            public string ElementAtOrDefault(int index)
+            {
+                return index.ToString();
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
         //// TODO discuss design decision 3 with others; if you rename the interface methods, confusion can be avoided; also, having separate interfaces for every method avoids the need for the "default" behavior at all
         //// 
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
