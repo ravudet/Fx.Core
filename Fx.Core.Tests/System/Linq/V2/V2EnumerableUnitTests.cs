@@ -2567,12 +2567,12 @@ namespace System.Linq.V2
         {
             var enumerable = new MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            var monad = ziped as MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(string, string, string)>;
+            var monad = ziped as MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(object, string, string)>;
             Assert.IsNotNull(monad);
             Assert.AreEqual(MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result<string, string>(), monad.Source);
         }
 
-        private sealed class MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<string>, IEnumerableMonad<string>
+        private sealed class MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -2605,7 +2605,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<string> Source { get; } = V2Enumerable.Empty<string>();
+            public IV2Enumerable<object> Source { get; } = V2Enumerable.Empty<object>();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -2642,16 +2642,16 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<(string First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
+            public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
                 IV2Enumerable<TSecond> second,
                 IV2Enumerable<TThird> third)
             {
                 return Result<TSecond, TThird>();
             }
 
-            public static IV2Enumerable<(string, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
             {
-                return ResultEnumerable<(string, TSecond, TThird)>.Instance;
+                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -2673,7 +2673,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IEnumerator<string> GetEnumerator()
+            public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -2741,14 +2741,14 @@ namespace System.Linq.V2
         {
             var enumerable = new MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            var monad = ziped as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<(string, string, string)>;
+            var monad = ziped as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<(object, string, string)>;
             Assert.IsNotNull(monad);
-            var source = monad.Source as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<(string, string, string)>;
+            var source = monad.Source as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<(object, string, string)>;
             Assert.IsNotNull(source);
             Assert.AreEqual(MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result<string, string>(), source.Source);
         }
 
-        private sealed class MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin : IZipableMixin<string>, IEnumerableMonad<string>
+        private sealed class MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin : IZipableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -2781,9 +2781,9 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<string> Source { get; } = SourceEnumerable.Instance;
+            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IZipableMixin<string>
+            private sealed class SourceEnumerable : IZipableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -2791,14 +2791,14 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<(string First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
+                public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
                     IV2Enumerable<TSecond> second,
                     IV2Enumerable<TThird> third)
                 {
                     return Result<TSecond, TThird>();
                 }
 
-                public IEnumerator<string> GetEnumerator()
+                public IEnumerator<object> GetEnumerator()
                 {
                     throw new NotImplementedException();
                 }
@@ -2844,9 +2844,9 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<(string, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
             {
-                return ResultEnumerable<(string, TSecond, TThird)>.Instance;
+                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -2868,7 +2868,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IEnumerator<string> GetEnumerator()
+            public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -2884,12 +2884,12 @@ namespace System.Linq.V2
         {
             var enumerable = new MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            var monad = ziped as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(string, string, string)>;
+            var monad = ziped as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(object, string, string)>;
             Assert.IsNotNull(monad);
             CollectionAssert.AreEqual(Array.Empty<(string, string, string)>(), monad.Source.ToArray());
         }
 
-        private sealed class MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<string>, IEnumerableMonad<string>
+        private sealed class MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<object>, IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -2922,7 +2922,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<string> Source { get; } = V2Enumerable.Empty<string>();
+            public IV2Enumerable<object> Source { get; } = V2Enumerable.Empty<string>();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -2959,7 +2959,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IEnumerator<string> GetEnumerator()
+            public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -2998,12 +2998,12 @@ namespace System.Linq.V2
         {
             var enumerable = new MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
-            var monad = ziped as MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin.ResultMonad<(string, string, string)>;
+            var monad = ziped as MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin.ResultMonad<(object, string, string)>;
             Assert.IsNotNull(monad);
             Assert.AreEqual(MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin.Result<string, string>(), monad.Source);
         }
 
-        private sealed class MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<string>
+        private sealed class MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -3036,9 +3036,9 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<string> Source { get; } = SourceEnumerable.Instance;
+            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IZipableMixin<string>
+            private sealed class SourceEnumerable : IZipableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -3046,14 +3046,14 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<(string First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
+                public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
                     IV2Enumerable<TSecond> second,
                     IV2Enumerable<TThird> third)
                 {
                     return Result<TSecond, TThird>();
                 }
 
-                public IEnumerator<string> GetEnumerator()
+                public IEnumerator<object> GetEnumerator()
                 {
                     throw new NotImplementedException();
                 }
@@ -3099,9 +3099,9 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<(string, TSecond, TThird)> Result<TSecond, TThird>()
+            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
             {
-                return ResultEnumerable<(string, TSecond, TThird)>.Instance;
+                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
             }
 
             private sealed class ResultEnumerable<T> : IV2Enumerable<T>
@@ -3123,7 +3123,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IEnumerator<string> GetEnumerator()
+            public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
