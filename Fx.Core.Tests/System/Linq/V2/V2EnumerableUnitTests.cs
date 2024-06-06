@@ -1161,7 +1161,80 @@ namespace System.Linq.V2
             }
         }
 
-        //// TODO discuss design decision 3 with others
+        /// <summary>
+        /// Gets the distinct elements of a sequence
+        /// </summary>
+        [TestMethod]
+        public void Distinct()
+        {
+            var enumerable = new DistinctMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
+
+            CollectionAssert.AreEqual(new[] { "asdf", "qwer" }, enumerable.AsV2Enumerable().Distinct().ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(Array.Empty<string>(), enumerable.AsEnumerable().Distinct().ToArray());
+        }
+
+        /// <summary>
+        /// Gets the distinct elements of a sequence using a comparer to determine element equality
+        /// </summary>
+        [TestMethod]
+        public void DistinctWithComparer()
+        {
+            var enumerable = new DistinctMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
+            var comparer = StringComparer.OrdinalIgnoreCase;
+
+            CollectionAssert.AreEqual(new[] { "qwer" }, enumerable.AsV2Enumerable().Distinct(comparer).ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(Array.Empty<string>(), enumerable.AsEnumerable().Distinct(comparer).ToArray());
+        }
+
+        /// <summary>
+        /// Gets the distinct elements of a sequence using a <see langword="null"/> comparer to determine element equality
+        /// </summary>
+        [TestMethod]
+        public void DistinctWithNullComparer()
+        {
+            var enumerable = new DistinctMock(new[] { "asdf", "qwer" }.ToV2Enumerable());
+
+            CollectionAssert.AreEqual(new[] { "asdf" }, enumerable.AsV2Enumerable().Distinct(null).ToArray());
+
+            // make sure v1 has different behavior
+            CollectionAssert.AreEqual(Array.Empty<string>(), enumerable.AsEnumerable().Distinct(null).ToArray());
+        }
+
+        private sealed class DistinctMock : IDistinctableMixin<string>
+        {
+            private readonly IV2Enumerable<string> values;
+
+            public DistinctMock(IV2Enumerable<string> values)
+            {
+                this.values = values;
+            }
+
+            public IV2Enumerable<string> Distinct()
+            {
+                return this.values;
+            }
+
+            public IV2Enumerable<string> Distinct(IEqualityComparer<string>? comparer)
+            {
+                return new[] { comparer == null ? this.values.First() : this.values.Last() }.ToV2Enumerable();
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                yield break;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        //// TODO discuss design decision 3 with others; if you rename the interface methods, confusion can be avoided; also, having separate interfaces for every method avoids the need for the "default" behavior at all
         //// 
         //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
         //// TODO you skpped tests for the the adapter methods (tov2enumerable, tov2lookup, etc.); you should have a separate implementation and test file for those
