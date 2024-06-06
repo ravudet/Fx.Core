@@ -435,7 +435,7 @@ namespace System.Linq.V2
         {
             var enumerable = new Mock{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var {2}ed = enumerable.{0}({10});
-            CollectionAssert.AreEqual(new[] { (Mock{1}MixinWithoutOverloadAndNoMonad.ResultObject, string.Empty, string.Empty) }, {2}ed.ToArray());
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), {2}ed.ToArray());
         }
 
         private sealed class Mock{1}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>

@@ -14,7 +14,7 @@ namespace System.Linq.V2
         public void ZipWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockZipWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this);
             var monad = ziped as MockZipWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
             Assert.AreEqual(MockZipWithResultSelectorMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result<object>(), monad.Source);
@@ -139,7 +139,7 @@ namespace System.Linq.V2
         public void ZipWithResultSelectorMixinWithOverloadAndNoMonad()
         {
             var enumerable = new MockZipWithResultSelectorMixinWithOverloadAndNoMonad().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this);
             Assert.AreEqual(MockZipWithResultSelectorMixinWithOverloadAndNoMonad.Result<object>(), ziped);
         }
 
@@ -194,7 +194,7 @@ namespace System.Linq.V2
         public void ZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
             var enumerable = new MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this);
             var monad = ziped as MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
             var source = monad.Source as MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<object>;
@@ -340,7 +340,7 @@ namespace System.Linq.V2
         public void ZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this);
             var monad = ziped as MockZipWithResultSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
             CollectionAssert.AreEqual(Array.Empty<(string, string, string)>(), monad.Source.ToArray());
@@ -434,8 +434,8 @@ namespace System.Linq.V2
         public void ZipWithResultSelectorMixinWithoutOverloadAndNoMonad()
         {
             var enumerable = new MockZipWithResultSelectorMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
-            CollectionAssert.AreEqual(new[] { (MockZipWithResultSelectorMixinWithoutOverloadAndNoMonad.ResultObject, string.Empty, string.Empty) }, ziped.ToArray());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this);
+            CollectionAssert.AreEqual(enumerable.AsEnumerable().Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this).ToArray(), ziped.ToArray());
         }
 
         private sealed class MockZipWithResultSelectorMixinWithoutOverloadAndNoMonad : IZipableMixin<object>
@@ -460,7 +460,7 @@ namespace System.Linq.V2
         public void ZipWithResultSelectorNoMixinAndMonadWhereSourceIsMixin()
         {
             var enumerable = new MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this);
             var monad = ziped as MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
             Assert.AreEqual(MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsMixin.Result<object>(), monad.Source);
@@ -604,7 +604,7 @@ namespace System.Linq.V2
         public void ZipWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this);
             var monad = ziped as MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin.ResultMonad<object>;
             Assert.IsNotNull(monad);
             CollectionAssert.AreEqual(new[] { (MockZipWithResultSelectorNoMixinAndMonadWhereSourceIsNotMixin.ResultObject, string.Empty, string.Empty) }, monad.Source.ToArray());
@@ -719,7 +719,7 @@ namespace System.Linq.V2
         public void ZipWithResultSelectorNoMixinAndNoMonad()
         {
             var enumerable = new MockZipWithResultSelectorNoMixinAndNoMonad().AsV2Enumerable();
-            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object());
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this);
             CollectionAssert.AreEqual(new[] { (MockZipWithResultSelectorNoMixinAndNoMonad.ResultObject, string.Empty, string.Empty) }, ziped.ToArray());
         }
 

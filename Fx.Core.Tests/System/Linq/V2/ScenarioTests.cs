@@ -93,7 +93,7 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "new[] { string.Empty }.ToV2Enumerable(), (first, second) => new object()"
+                arguments: "new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this"
                 );
         }
 
