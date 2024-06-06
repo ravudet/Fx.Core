@@ -72,26 +72,39 @@
         public void Generate()
         {
             var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\TextFile1.txt");
-            var escapedTemplate = template.Replace("{", "{{").Replace("}", "}}").Replace("{{0}}", "{0}").Replace("{{1}}", "{1}").Replace("{{2}}", "{2}").Replace("{{3}}", "{3}").Replace("{{4}}", "{4}").Replace("{{5}}", "{5}");
+            var escapedTemplate = template
+                .Replace("{", "{{")
+                .Replace("}", "}}")
+                .Replace("{{0}}", "{0}")
+                .Replace("{{1}}", "{1}")
+                .Replace("{{2}}", "{2}")
+                .Replace("{{3}}", "{3}")
+                .Replace("{{4}}", "{4}")
+                .Replace("{{5}}", "{5}");
             /*
-            var generated = string.Format(
-                "",
-                "ExceptBy", 
-                "ExceptByableWithComparer",
-                "ExceptByWithComparer",
-                "public IV2Enumerable<TElement> ExceptBy<TKey>(IV2Enumerable<TKey> second, Func<TElement, TKey> keySelector, IEqualityComparer<TKey>? comparer)",
-                "exceptBy");
+            var overload = "ZipWithThird";
+            var operation = "Zip";
+            var monadType = "<(object, string, string)>";
+            var resultType = "<string, string>";
+            var arguments = "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()";
             */
+            var overload = "ZipWithThird";
+            var operation = "Zip";
+            var monadType = "<(object, string, string)>";
+            var resultType = "<string, string>";
+            var arguments = "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()";
             var generated = string.Format(
                 escapedTemplate,
-                "",
-                "GroupBy",
-                "GroupByableWithElementSelector",
-                "GroupByWithElementSelector",
-                "public IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)",
-                "groupBy");
+                overload,
+                operation,
+                operation.ToLower(),
+                monadType,
+                resultType,
+                arguments);
 
-            var unescapedGenerated = generated.Replace("{{", "{").Replace("}}", "}");
+            var unescapedGenerated = generated
+                .Replace("{{", "{")
+                .Replace("}}", "}");
             System.IO.File.WriteAllText(@"C:\source\Fx.Core\generated.txt", unescapedGenerated);
         }
 

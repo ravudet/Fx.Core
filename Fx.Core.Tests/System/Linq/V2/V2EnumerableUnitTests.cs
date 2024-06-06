@@ -2560,7 +2560,7 @@ namespace System.Linq.V2
         }
 
         /// <summary>
-        /// 
+        /// Zips a mixin that does implement the ZipWithThird overload and does implement a monad where the source is not a mixin
         /// </summary>
         [TestMethod]
         public void ZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin()
@@ -2618,7 +2618,7 @@ namespace System.Linq.V2
                 {
                     ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
                 }
-                    
+
                 private ResultMonad(IV2Enumerable<T> source)
                 {
                     this.Source = source;
@@ -2684,6 +2684,9 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Zips a mixin that does implement the ZipWithThird overload and does not implement a monad
+        /// </summary>
         [TestMethod]
         public void ZipWithThirdMixinWithOverloadAndNoMonad()
         {
@@ -2736,6 +2739,9 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Zips a mixin that does not implement the ZipWithThird overload and does implement a monad where the source is a mixin
+        /// </summary>
         [TestMethod]
         public void ZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
@@ -2879,6 +2885,9 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Zips a mixin that does not implement the ZipWithThird overload and does implement a monad where the source is not a mixin
+        /// </summary>
         [TestMethod]
         public void ZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
@@ -2970,6 +2979,9 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Zips a mixin that does not implement the ZipWithThird overload and does not implement a monad
+        /// </summary>
         [TestMethod]
         public void ZipWithThirdMixinWithoutOverloadAndNoMonad()
         {
@@ -2993,6 +3005,9 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Zips a monad where the source is a mixin
+        /// </summary>
         [TestMethod]
         public void ZipWithThirdNoMixinAndMonadWhereSourceIsMixin()
         {
@@ -3134,6 +3149,9 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Zips a monad where the source is a not mixin
+        /// </summary>
         [TestMethod]
         public void ZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin()
         {
@@ -3270,6 +3288,9 @@ namespace System.Linq.V2
             }
         }
 
+        /// <summary>
+        /// Zips a <see cref="IV2Enumerable{T}"/>
+        /// </summary>
         [TestMethod]
         public void ZipWithThirdNoMixinAndNoMonad()
         {

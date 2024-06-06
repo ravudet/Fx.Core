@@ -1,188 +1,76 @@
         /// <summary>
-        /// Tests that the mixin implementation of GroupBy is used
+        /// Zips a mixin that does implement the ZipWithThird overload and does implement a monad where the source is not a mixin
         /// </summary>
         [TestMethod]
-        public void GroupByableWithElementSelectorMixin()
+        public void ZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockGroupByableWithElementSelectorMixin<string>().AsV2Enumerable();
-            Assert.AreEqual(MockGroupByableWithElementSelectorMixin<string>.Result, enumerable.GroupBy(V2Enumerable.Empty<string>(), _ => _));
-        }
-
-        /// <summary>
-        /// Tests that the default implementation of GroupBy is used when a mixin is not implemented
-        /// </summary>
-        [TestMethod]
-        public void GroupByableWithElementSelectorMixinDefaults()
-        {
-            var enumerable = new MockGroupByableWithElementSelectorMixin<string>().AsV2Enumerable();
-            try
-            {
-                enumerable.GroupBy(V2Enumerable.Empty<string>(), _ => _, null).Enumerate();
-                Assert.Fail();
-            }
-            catch (Exception exception)
-            {
-                Assert.AreEqual(MockGroupByableWithElementSelectorMixin<string>.Exception, exception);
-            }
-        }
-
-        private sealed class MockGroupByableWithElementSelectorMixin<TElement> : IGroupByableMixin<TElement>
-        {
-            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
-
-            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
-            {
-                private ResultEnumerable()
-                {
-                }
-
-                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
-
-                public IEnumerator<TResult> GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public static Exception Exception { get; } = EnumerationException.Instance;
-
-            private sealed class EnumerationException : Exception
-            {
-                private EnumerationException()
-                    : base()
-                {
-                }
-
-                public static EnumerationException Instance { get; } = new EnumerationException();
-            }
-
-            public IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
-            {
-                return Result;
-            }
-
-            public IEnumerator<TElement> GetEnumerator()
-            {
-                throw EnumerationException.Instance;
-            }
-
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                return this.GetEnumerator();
-            }
-        }
-
-        /// <summary>
-        /// Tests that the monad is preserved when a monad and a GroupBy mixin are combined and the mixin implementation is called
-        /// </summary>
-        [TestMethod]
-        public void GroupByableWithElementSelectorMixinAndMonad()
-        {
-            var enumerable = new MockGroupByableWithElementSelectorMixinAndMonad<string>().AsV2Enumerable();
-            var groupByed = enumerable.GroupBy(V2Enumerable.Empty<string>(), _ => _);
-            var monad = groupByed as MockGroupByableWithElementSelectorMixinAndMonad<string>;
+            var enumerable = new MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
+            var monad = ziped as MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(object, string, string)>;
             Assert.IsNotNull(monad);
-            Assert.AreEqual(MockGroupByableWithElementSelectorMixinAndMonad<string>.Result, monad.Source);
+            Assert.AreEqual(MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin.Result<string, string>(), monad.Source);
         }
 
-        private sealed class MockGroupByableWithElementSelectorMixinAndMonad<TElement> : IGroupByableMixin<TElement>, IEnumerableMonad<TElement>
+        private sealed class MockZipWithThirdMixinWithOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<object>, IEnumerableMonad<object>
         {
-            public MockGroupByableWithElementSelectorMixinAndMonad()
-                : this(V2Enumerable.Empty<TElement>())
+            private static class ResultMonadFactory<T>
             {
-            }
+                private static Unit<T> factory;
 
-            private MockGroupByableWithElementSelectorMixinAndMonad(IV2Enumerable<TElement> source)
-            {
-                this.Source = source;
-            }
-
-            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
-
-            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
-            {
-                private ResultEnumerable()
+                static ResultMonadFactory()
                 {
+                    ResultMonad<T>.SetFactory();
+                    if (factory == null)
+                    {
+                        throw new NotSupportedException("The SetFactory method did not set the factory");
+                    }
                 }
 
-                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
-
-                public IEnumerator<TResult> GetEnumerator()
+                public static Unit<T> Factory
                 {
-                    throw new NotImplementedException();
-                }
+                    get
+                    {
+                        return factory;
+                    }
+                    set
+                    {
+                        if (factory != null)
+                        {
+                            throw new NotSupportedException("Cannot set the factory after initialization");
+                        }
 
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
+                        factory = value;
+                    }
                 }
             }
 
-            public IV2Enumerable<TElement> Source { get; }
+            public IV2Enumerable<object> Source { get; } = V2Enumerable.Empty<object>();
 
             public Unit<TSource> Unit<TSource>()
             {
-                return (IV2Enumerable<TSource> source) => new MockGroupByableWithElementSelectorMixinAndMonad<TSource>(source);
+                return ResultMonadFactory<TSource>.Factory;
             }
 
-            public IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
+            public sealed class ResultMonad<T> : IEnumerableMonad<T>
             {
-                return Result;
-            }
-
-            public IEnumerator<TElement> GetEnumerator()
-            {
-                throw new NotImplementedException();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        /// <summary>
-        /// TODO
-        /// </summary>
-        [TestMethod]
-        public void GroupByWithElementSelectorDefault()
-        {
-            //// TODO
-            V2Enumerable.Empty<string>().GroupBy(V2Enumerable.Empty<string>(), _ => _).Enumerate();
-        }
-
-        /// <summary>
-        /// Tests that the monad source is used when the source is the GroupBy mixin
-        /// </summary>
-        [TestMethod]
-        public void GroupByWithElementSelectorMonad()
-        {
-            var enumerable = new MockGroupByWithElementSelectorMonad<string>(new MockGroupByMonadGroupByableWithElementSelectorMixin<string>().AsV2Enumerable()).AsV2Enumerable();
-            var groupByed = enumerable.GroupBy(V2Enumerable.Empty<string>(), _ => _);
-            var monad = groupByed as MockGroupByWithElementSelectorMonad<string>;
-            Assert.IsNotNull(monad);
-            Assert.AreEqual(MockGroupByMonadGroupByableWithElementSelectorMixin<string>.Result, monad.Source);
-        }
-
-        private sealed class MockGroupByMonadGroupByableWithElementSelectorMixin<TElement> : IGroupByableMixin<TElement>
-        {
-            public static IV2Enumerable<TElement> Result { get; } = ResultEnumerable<TElement>.Instance;
-
-            private sealed class ResultEnumerable<TResult> : IV2Enumerable<TResult>
-            {
-                private ResultEnumerable()
+                public static void SetFactory()
                 {
+                    ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
+                }
+                    
+                private ResultMonad(IV2Enumerable<T> source)
+                {
+                    this.Source = source;
                 }
 
-                public static ResultEnumerable<TResult> Instance { get; } = new ResultEnumerable<TResult>();
+                public IV2Enumerable<T> Source { get; }
 
-                public IEnumerator<TResult> GetEnumerator()
+                public Unit<TSource> Unit<TSource>()
+                {
+                    return ResultMonadFactory<TSource>.Factory;
+                }
+
+                public IEnumerator<T> GetEnumerator()
                 {
                     throw new NotImplementedException();
                 }
@@ -193,12 +81,40 @@
                 }
             }
 
-            public IV2Enumerable<IV2Grouping<TKey, TElement>> GroupBy<TKey, TElement>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
+            public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
+                IV2Enumerable<TSecond> second,
+                IV2Enumerable<TThird> third)
             {
-                return Result;
+                //// TODO
+                return Result<TSecond, TThird>();
             }
 
-            public IEnumerator<TElement> GetEnumerator()
+            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
+            {
+                //// TODO
+                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
+            }
+
+            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -209,23 +125,635 @@
             }
         }
 
-        private sealed class MockGroupByWithElementSelectorMonad<TElement> : IEnumerableMonad<TElement>
+        /// <summary>
+        /// Zips a mixin that does implement the ZipWithThird overload and does not implement a monad
+        /// </summary>
+        [TestMethod]
+        public void ZipWithThirdMixinWithOverloadAndNoMonad()
         {
-            public MockGroupByWithElementSelectorMonad(IV2Enumerable<TElement> source)
+            var enumerable = new MockZipWithThirdMixinWithOverloadAndNoMonad().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
+            Assert.AreEqual(MockZipWithThirdMixinWithOverloadAndNoMonad.Result<string, string>(), ziped);
+        }
+
+        private sealed class MockZipWithThirdMixinWithOverloadAndNoMonad : IZipableMixin<string>
+        {
+            public IV2Enumerable<(string First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
+                IV2Enumerable<TSecond> second,
+                IV2Enumerable<TThird> third)
             {
-                this.Source = source;
+                //// TODO
+                return Result<TSecond, TThird>();
             }
 
-            public IV2Enumerable<TElement> Source { get; }
+            public static IV2Enumerable<(string, TSecond, TThird)> Result<TSecond, TThird>()
+            {
+                //// TODO
+                return ResultEnumerable<(string, TSecond, TThird)>.Instance;
+            }
+
+            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Zips a mixin that does not implement the ZipWithThird overload and does implement a monad where the source is a mixin
+        /// </summary>
+        [TestMethod]
+        public void ZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        {
+            var enumerable = new MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
+            var monad = ziped as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<(object, string, string)>;
+            Assert.IsNotNull(monad);
+            var source = monad.Source as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad<(object, string, string)>;
+            Assert.IsNotNull(source);
+            Assert.AreEqual(MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result<string, string>(), source.Source);
+        }
+
+        private sealed class MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsMixin : IZipableMixin<object>, IEnumerableMonad<object>
+        {
+            private static class ResultMonadFactory<T>
+            {
+                private static Unit<T> factory;
+
+                static ResultMonadFactory()
+                {
+                    ResultMonad<T>.SetFactory();
+                    if (factory == null)
+                    {
+                        throw new NotSupportedException("The SetFactory method did not set the factory");
+                    }
+                }
+
+                public static Unit<T> Factory
+                {
+                    get
+                    {
+                        return factory;
+                    }
+                    set
+                    {
+                        if (factory != null)
+                        {
+                            throw new NotSupportedException("Cannot set the factory after initialization");
+                        }
+
+                        factory = value;
+                    }
+                }
+            }
+
+            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
+
+            private sealed class SourceEnumerable : IZipableMixin<object>
+            {
+                private SourceEnumerable()
+                {
+                }
+
+                public static SourceEnumerable Instance { get; } = new SourceEnumerable();
+
+                public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
+                    IV2Enumerable<TSecond> second,
+                    IV2Enumerable<TThird> third)
+                {
+                    //// TODO
+                    return Result<TSecond, TThird>();
+                }
+
+                public IEnumerator<object> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
 
             public Unit<TSource> Unit<TSource>()
             {
-                return (IV2Enumerable<TSource> source) => new MockGroupByWithElementSelectorMonad<TSource>(source);
+                return ResultMonadFactory<TSource>.Factory;
             }
 
-            public IEnumerator<TElement> GetEnumerator()
+            public sealed class ResultMonad<T> : IEnumerableMonad<T>
+            {
+                public static void SetFactory()
+                {
+                    ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
+                }
+
+                private ResultMonad(IV2Enumerable<T> source)
+                {
+                    this.Source = source;
+                }
+
+                public IV2Enumerable<T> Source { get; }
+
+                public Unit<TSource> Unit<TSource>()
+                {
+                    return ResultMonadFactory<TSource>.Factory;
+                }
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
+            {
+                //// TODO
+                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
+            }
+
+            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
+        /// <summary>
+        /// Zips a mixin that does not implement the ZipWithThird overload and does implement a monad where the source is not a mixin
+        /// </summary>
+        [TestMethod]
+        public void ZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        {
+            var enumerable = new MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
+            var monad = ziped as MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad<(object, string, string)>;
+            Assert.IsNotNull(monad);
+            CollectionAssert.AreEqual(Array.Empty<(string, string, string)>(), monad.Source.ToArray());
+        }
+
+        private sealed class MockZipWithThirdMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IZipableMixin<object>, IEnumerableMonad<object>
+        {
+            private static class ResultMonadFactory<T>
+            {
+                private static Unit<T> factory;
+
+                static ResultMonadFactory()
+                {
+                    ResultMonad<T>.SetFactory();
+                    if (factory == null)
+                    {
+                        throw new NotSupportedException("The SetFactory method did not set the factory");
+                    }
+                }
+
+                public static Unit<T> Factory
+                {
+                    get
+                    {
+                        return factory;
+                    }
+                    set
+                    {
+                        if (factory != null)
+                        {
+                            throw new NotSupportedException("Cannot set the factory after initialization");
+                        }
+
+                        factory = value;
+                    }
+                }
+            }
+
+            public IV2Enumerable<object> Source { get; } = V2Enumerable.Empty<string>();
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return ResultMonadFactory<TSource>.Factory;
+            }
+
+            public sealed class ResultMonad<T> : IEnumerableMonad<T>
+            {
+                public static void SetFactory()
+                {
+                    ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
+                }
+
+                private ResultMonad(IV2Enumerable<T> source)
+                {
+                    this.Source = source;
+                }
+
+                public IV2Enumerable<T> Source { get; }
+
+                public Unit<TSource> Unit<TSource>()
+                {
+                    return ResultMonadFactory<TSource>.Factory;
+                }
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
+        /// <summary>
+        /// Zips a mixin that does not implement the ZipWithThird overload and does not implement a monad
+        /// </summary>
+        [TestMethod]
+        public void ZipWithThirdMixinWithoutOverloadAndNoMonad()
+        {
+            var enumerable = new MockZipWithThirdMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
+            CollectionAssert.AreEqual(new[] { (MockZipWithThirdMixinWithoutOverloadAndNoMonad.ResultObject, string.Empty, string.Empty) }, ziped.ToArray());
+        }
+
+        private sealed class MockZipWithThirdMixinWithoutOverloadAndNoMonad : IZipableMixin<object>
+        {
+            public static object ResultObject { get; } = new object();
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                yield return ResultObject;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
+        /// <summary>
+        /// Zips a monad where the source is a mixin
+        /// </summary>
+        [TestMethod]
+        public void ZipWithThirdNoMixinAndMonadWhereSourceIsMixin()
+        {
+            var enumerable = new MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
+            var monad = ziped as MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin.ResultMonad<(object, string, string)>;
+            Assert.IsNotNull(monad);
+            Assert.AreEqual(MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin.Result<string, string>(), monad.Source);
+        }
+
+        private sealed class MockZipWithThirdNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        {
+            private static class ResultMonadFactory<T>
+            {
+                private static Unit<T> factory;
+
+                static ResultMonadFactory()
+                {
+                    ResultMonad<T>.SetFactory();
+                    if (factory == null)
+                    {
+                        throw new NotSupportedException("The SetFactory method did not set the factory");
+                    }
+                }
+
+                public static Unit<T> Factory
+                {
+                    get
+                    {
+                        return factory;
+                    }
+                    set
+                    {
+                        if (factory != null)
+                        {
+                            throw new NotSupportedException("Cannot set the factory after initialization");
+                        }
+
+                        factory = value;
+                    }
+                }
+            }
+
+            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
+
+            private sealed class SourceEnumerable : IZipableMixin<object>
+            {
+                private SourceEnumerable()
+                {
+                }
+
+                public static SourceEnumerable Instance { get; } = new SourceEnumerable();
+
+                public IV2Enumerable<(object First, TSecond Second, TThird Third)> Zip<TSecond, TThird>(
+                    IV2Enumerable<TSecond> second,
+                    IV2Enumerable<TThird> third)
+                {
+                    //// TODO
+                    return Result<TSecond, TThird>();
+                }
+
+                public IEnumerator<object> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return ResultMonadFactory<TSource>.Factory;
+            }
+
+            public sealed class ResultMonad<T> : IEnumerableMonad<T>
+            {
+                public static void SetFactory()
+                {
+                    ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
+                }
+
+                private ResultMonad(IV2Enumerable<T> source)
+                {
+                    this.Source = source;
+                }
+
+                public IV2Enumerable<T> Source { get; }
+
+                public Unit<TSource> Unit<TSource>()
+                {
+                    return ResultMonadFactory<TSource>.Factory;
+                }
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public static IV2Enumerable<(object, TSecond, TThird)> Result<TSecond, TThird>()
+            {
+                //// TODO
+                return ResultEnumerable<(object, TSecond, TThird)>.Instance;
+            }
+
+            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
+        /// <summary>
+        /// Zips a monad where the source is a not mixin
+        /// </summary>
+        [TestMethod]
+        public void ZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin()
+        {
+            var enumerable = new MockZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
+            var monad = ziped as MockZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin.ResultMonad<(object, string, string)>;
+            Assert.IsNotNull(monad);
+            CollectionAssert.AreEqual(new[] { (MockZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin.ResultObject, string.Empty, string.Empty) }, monad.Source.ToArray());
+        }
+
+        private sealed class MockZipWithThirdNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        {
+            private static class ResultMonadFactory<T>
+            {
+                private static Unit<T> factory;
+
+                static ResultMonadFactory()
+                {
+                    ResultMonad<T>.SetFactory();
+                    if (factory == null)
+                    {
+                        throw new NotSupportedException("The SetFactory method did not set the factory");
+                    }
+                }
+
+                public static Unit<T> Factory
+                {
+                    get
+                    {
+                        return factory;
+                    }
+                    set
+                    {
+                        if (factory != null)
+                        {
+                            throw new NotSupportedException("Cannot set the factory after initialization");
+                        }
+
+                        factory = value;
+                    }
+                }
+            }
+
+            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
+
+            public static object ResultObject { get; } = new object();
+
+            private sealed class SourceEnumerable : IV2Enumerable<object>
+            {
+                private SourceEnumerable()
+                {
+                }
+
+                public static SourceEnumerable Instance { get; } = new SourceEnumerable();
+
+                public IEnumerator<object> GetEnumerator()
+                {
+                    yield return ResultObject;
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return ResultMonadFactory<TSource>.Factory;
+            }
+
+            public sealed class ResultMonad<T> : IEnumerableMonad<T>
+            {
+                public static void SetFactory()
+                {
+                    ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
+                }
+
+                private ResultMonad(IV2Enumerable<T> source)
+                {
+                    this.Source = source;
+                }
+
+                public IV2Enumerable<T> Source { get; }
+
+                public Unit<TSource> Unit<TSource>()
+                {
+                    return ResultMonadFactory<TSource>.Factory;
+                }
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public static IV2Enumerable<(string, TSecond, TThird)> Result<TSecond, TThird>()
+            {
+                //// TODO
+                return ResultEnumerable<(string, TSecond, TThird)>.Instance;
+            }
+
+            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
+            {
+                private ResultEnumerable()
+                {
+                }
+
+                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
+        /// <summary>
+        /// Zips a <see cref="IV2Enumerable{T}"/>
+        /// </summary>
+        [TestMethod]
+        public void ZipWithThirdNoMixinAndNoMonad()
+        {
+            var enumerable = new MockZipWithThirdNoMixinAndNoMonad().AsV2Enumerable();
+            var ziped = enumerable.Zip(new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable());
+            CollectionAssert.AreEqual(new[] { (MockZipWithThirdNoMixinAndNoMonad.ResultObject, string.Empty, string.Empty) }, ziped.ToArray());
+        }
+
+        private sealed class MockZipWithThirdNoMixinAndNoMonad : IV2Enumerable<object>
+        {
+            public static object ResultObject { get; } = new object();
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                yield return ResultObject;
             }
 
             IEnumerator IEnumerable.GetEnumerator()
