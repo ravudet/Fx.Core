@@ -7,116 +7,21 @@ namespace System.Linq.V2
 
     public sealed partial class V2EnumerableUnitTests
     {
-        /// <summary>
-        /// {0}s a mixin that does implement the {1} overload and does implement a monad where the source is not a mixin
-        /// </summary>
         [TestMethod]
-        public void {1}MixinWithOverloadAndMonadWhereSourceIsNotMixin()
+        public void SumIntsMixinWithOverload()
         {
-            var enumerable = new Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin.ResultMonad{6};
-            Assert.IsNotNull(monad);
-            Assert.AreEqual(Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin.Result{7}(), monad.Source);
+            var enumerable = new MockSumIntsMixinWithOverload().AsV2Enumerable();
+            var sumed = enumerable.Sum(element => element.GetHashCode());
+            Assert.AreEqual(MockSumIntsMixinWithOverload.Result, sumed);
         }
 
-        private sealed class Mock{1}MixinWithOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockSumIntsMixinWithOverload : ISumableMixin<object>
         {
-            private static class ResultMonadFactory<T>
+            public static int Result { get; } = new object().GetHashCode();
+
+            public int Sum(Func<object, int> selector)
             {
-                private static Unit<T> factory;
-
-                static ResultMonadFactory()
-                {
-                    ResultMonad<T>.SetFactory();
-                    if (factory == null)
-                    {
-                        throw new NotSupportedException("The SetFactory method did not set the factory");
-                    }
-                }
-
-                public static Unit<T> Factory
-                {
-                    get
-                    {
-                        return factory;
-                    }
-                    set
-                    {
-                        if (factory != null)
-                        {
-                            throw new NotSupportedException("Cannot set the factory after initialization");
-                        }
-
-                        factory = value;
-                    }
-                }
-            }
-
-            public IV2Enumerable<object> Source { get; } = V2Enumerable.Empty<object>();
-
-            public Unit<TSource> Unit<TSource>()
-            {
-                return ResultMonadFactory<TSource>.Factory;
-            }
-
-            public sealed class ResultMonad<T> : IEnumerableMonad<T>
-            {
-                public static void SetFactory()
-                {
-                    ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
-                }
-                    
-                private ResultMonad(IV2Enumerable<T> source)
-                {
-                    this.Source = source;
-                }
-
-                public IV2Enumerable<T> Source { get; }
-
-                public Unit<TSource> Unit<TSource>()
-                {
-                    return ResultMonadFactory<TSource>.Factory;
-                }
-
-                public IEnumerator<T> GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public IV2Enumerable<{3}> {0}{4}({5})
-            {
-                return Result{8}();
-            }
-
-            public static IV2Enumerable<{9}> Result{8}()
-            {
-                return ResultEnumerable<{9}>.Instance;
-            }
-
-            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
-            {
-                private ResultEnumerable()
-                {
-                }
-
-                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
-
-                public IEnumerator<T> GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
+                return Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -130,76 +35,18 @@ namespace System.Linq.V2
             }
         }
 
-        /// <summary>
-        /// {0}s a mixin that does implement the {1} overload and does not implement a monad
-        /// </summary>
         [TestMethod]
-        public void {1}MixinWithOverloadAndNoMonad()
+        public void SumIntsMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new Mock{1}MixinWithOverloadAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            Assert.AreEqual(Mock{1}MixinWithOverloadAndNoMonad.Result{7}(), {2}ed);
+            var enumerable = new MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var sumed = enumerable.Sum(element => element.GetHashCode());
+            Assert.AreEqual(MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result, sumed);
         }
 
-        private sealed class Mock{1}MixinWithOverloadAndNoMonad : I{0}ableMixin<object>
+        private sealed class MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsMixin : ISumableMixin<object>, IEnumerableMonad<object>
         {
-            public IV2Enumerable<{3}> {0}{4}({5})
-            {
-                return Result{8}();
-            }
+            public static int Result { get; } = new object().GetHashCode();
 
-            public static IV2Enumerable<{9}> Result{8}()
-            {
-                return ResultEnumerable<{9}>.Instance;
-            }
-
-            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
-            {
-                private ResultEnumerable()
-                {
-                }
-
-                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
-
-                public IEnumerator<T> GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public IEnumerator<object> GetEnumerator()
-            {
-                throw new NotImplementedException();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        /// <summary>
-        /// {0}s a mixin that does not implement the {1} overload and does implement a monad where the source is a mixin
-        /// </summary>
-        [TestMethod]
-        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
-        {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad{6};
-            Assert.IsNotNull(monad);
-            var source = monad.Source as Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.ResultMonad{6};
-            Assert.IsNotNull(source);
-            Assert.AreEqual(Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result{7}(), source.Source);
-        }
-
-        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
-        {
             private static class ResultMonadFactory<T>
             {
                 private static Unit<T> factory;
@@ -233,7 +80,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            private sealed class SourceEnumerable : ISumableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -241,9 +88,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<{3}> {0}{4}({5})
+                public int Sum(Func<object, int> selector)
                 {
-                    return Result{8}();
+                    return MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -292,30 +139,6 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<{9}> Result{8}()
-            {
-                return ResultEnumerable<{9}>.Instance;
-            }
-
-            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
-            {
-                private ResultEnumerable()
-                {
-                }
-
-                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
-
-                public IEnumerator<T> GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
             public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
@@ -326,22 +149,19 @@ namespace System.Linq.V2
                 throw new NotImplementedException();
             }
         }
-        
-        /// <summary>
-        /// {0}s a mixin that does not implement the {1} overload and does implement a monad where the source is not a mixin
-        /// </summary>
+
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void SumIntsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.ResultMonad{6};
-            Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(Array.Empty<(string, string, string)>(), monad.Source.ToArray());
+            var enumerable = new MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var sumed = enumerable.Sum(element => element.GetHashCode());
+            Assert.AreEqual(MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element.GetHashCode(), sumed);
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ISumableMixin<object>, IEnumerableMonad<object>
         {
+            public static object Element { get; } = new object();
+
             private static class ResultMonadFactory<T>
             {
                 private static Unit<T> factory;
@@ -373,7 +193,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = V2Enumerable.Empty<string>();
+            public IV2Enumerable<object> Source { get; } = new[] { MockSumIntsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element }.ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -420,25 +240,22 @@ namespace System.Linq.V2
                 throw new NotImplementedException();
             }
         }
-        
-        /// <summary>
-        /// {0}s a mixin that does not implement the {1} overload and does not implement a monad
-        /// </summary>
+
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndNoMonad()
+        public void SumIntsMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), {2}ed.ToArray());
+            var enumerable = new MockSumIntsMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var sumed = enumerable.Sum(element => element.GetHashCode());
+            Assert.AreEqual(MockSumIntsMixinWithoutOverloadAndNoMonad.Element.GetHashCode(), sumed);
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>
+        private sealed class MockSumIntsMixinWithoutOverloadAndNoMonad : ISumableMixin<object>
         {
-            public static object ResultObject { get; } = new object();
+            public static object Element { get; } = new object();
 
             public IEnumerator<object> GetEnumerator()
             {
-                yield return ResultObject;
+                yield return Element;
             }
 
             IEnumerator IEnumerable.GetEnumerator()
@@ -446,22 +263,19 @@ namespace System.Linq.V2
                 throw new NotImplementedException();
             }
         }
-        
-        /// <summary>
-        /// {0}s a monad where the source is a mixin
-        /// </summary>
+
         [TestMethod]
-        public void {1}NoMixinAndMonadWhereSourceIsMixin()
+        public void SumIntsNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}NoMixinAndMonadWhereSourceIsMixin.ResultMonad{6};
-            Assert.IsNotNull(monad);
-            Assert.AreEqual(Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result{7}(), monad.Source);
+            var enumerable = new MockSumIntsNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var sumed = enumerable.Sum(element => element.GetHashCode());
+            Assert.AreEqual(MockSumIntsNoMixinAndMonadWhereSourceIsMixin.Result, sumed);
         }
 
-        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockSumIntsNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
+            public static int Result { get; } = new object().GetHashCode();
+
             private static class ResultMonadFactory<T>
             {
                 private static Unit<T> factory;
@@ -495,7 +309,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            private sealed class SourceEnumerable : ISumableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -503,9 +317,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IV2Enumerable<{3}> {0}{4}({5})
+                public int Sum(Func<object, int> selector)
                 {
-                    return Result{8}();
+                    return MockSumIntsNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -554,30 +368,6 @@ namespace System.Linq.V2
                 }
             }
 
-            public static IV2Enumerable<{9}> Result{8}()
-            {
-                return ResultEnumerable<{9}>.Instance;
-            }
-
-            private sealed class ResultEnumerable<T> : IV2Enumerable<T>
-            {
-                private ResultEnumerable()
-                {
-                }
-
-                public static ResultEnumerable<T> Instance { get; } = new ResultEnumerable<T>();
-
-                public IEnumerator<T> GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-
-                IEnumerator IEnumerable.GetEnumerator()
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
             public IEnumerator<object> GetEnumerator()
             {
                 throw new NotImplementedException();
@@ -588,21 +378,16 @@ namespace System.Linq.V2
                 throw new NotImplementedException();
             }
         }
-        
-        /// <summary>
-        /// {0}s a monad where the source is a not mixin
-        /// </summary>
+
         [TestMethod]
-        public void {1}NoMixinAndMonadWhereSourceIsNotMixin()
+        public void SumIntsNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            var monad = {2}ed as Mock{1}NoMixinAndMonadWhereSourceIsNotMixin.ResultMonad{6};
-            Assert.IsNotNull(monad);
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), monad.Source.ToArray());
+            var enumerable = new MockSumIntsNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var sumed = enumerable.Sum(element => element.GetHashCode());
+            Assert.AreEqual(MockSumIntsNoMixinAndMonadWhereSourceIsNotMixin.Element.GetHashCode(), sumed);
         }
 
-        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockSumIntsNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -637,7 +422,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object ResultObject { get; } = new object();
+            public static object Element { get; } = new object();
 
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
@@ -649,7 +434,7 @@ namespace System.Linq.V2
 
                 public IEnumerator<object> GetEnumerator()
                 {
-                    yield return ResultObject;
+                    yield return Element;
                 }
 
                 IEnumerator IEnumerable.GetEnumerator()
@@ -657,7 +442,6 @@ namespace System.Linq.V2
                     throw new NotImplementedException();
                 }
             }
-
             public Unit<TSource> Unit<TSource>()
             {
                 return ResultMonadFactory<TSource>.Factory;
@@ -695,7 +479,7 @@ namespace System.Linq.V2
 
             public IEnumerator<object> GetEnumerator()
             {
-                return this.Source.GetEnumerator();
+                throw new NotImplementedException();
             }
 
             IEnumerator IEnumerable.GetEnumerator()
@@ -703,25 +487,22 @@ namespace System.Linq.V2
                 throw new NotImplementedException();
             }
         }
-        
-        /// <summary>
-        /// {0}s a <see cref="IV2Enumerable{T}"/>
-        /// </summary>
+
         [TestMethod]
-        public void {1}NoMixinAndNoMonad()
+        public void SumIntsNoMixinAndNoMonad()
         {
-            var enumerable = new Mock{1}NoMixinAndNoMonad().AsV2Enumerable();
-            var {2}ed = enumerable.{0}({10});
-            CollectionAssert.AreEqual(enumerable.AsEnumerable().{0}({10}).ToArray(), {2}ed.ToArray());
+            var enumerable = new MockSumIntsNoMixinAndNoMonad().AsV2Enumerable();
+            var sumed = enumerable.Sum(element => element.GetHashCode());
+            Assert.AreEqual(MockSumIntsNoMixinAndNoMonad.Element.GetHashCode(), sumed);
         }
 
-        private sealed class Mock{1}NoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockSumIntsNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object ResultObject { get; } = new object();
+            public static object Element { get; } = new object();
 
             public IEnumerator<object> GetEnumerator()
             {
-                yield return ResultObject;
+                yield return Element;
             }
 
             IEnumerator IEnumerable.GetEnumerator()
