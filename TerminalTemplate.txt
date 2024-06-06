@@ -11,13 +11,13 @@ namespace System.Linq.V2
         public void {2}MixinWithOverload()
         {
             var enumerable = new Mock{2}MixinWithOverload().AsV2Enumerable();
-            var {1}ed = enumerable.{0}({6});
+            var {1}ed = enumerable.{0}({7});
             Assert.AreEqual(Mock{2}MixinWithOverload.Result, {1}ed);
         }
 
         private sealed class Mock{2}MixinWithOverload : I{0}ableMixin<object>
         {
-            public static int Result { get; } = new object().GetHashCode();
+            public static {6} Result { get; } = new object().GetHashCode();
 
             public {3} {0}({5})
             {
@@ -39,13 +39,13 @@ namespace System.Linq.V2
         public void {2}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
             var enumerable = new Mock{2}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var {1}ed = enumerable.{0}({6});
+            var {1}ed = enumerable.{0}({7});
             Assert.AreEqual(Mock{2}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result, {1}ed);
         }
 
         private sealed class Mock{2}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
         {
-            public static int Result { get; } = new object().GetHashCode();
+            public static {6} Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -154,7 +154,7 @@ namespace System.Linq.V2
         public void {2}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new Mock{2}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {1}ed = enumerable.{0}({6});
+            var {1}ed = enumerable.{0}({7});
             Assert.AreEqual(Mock{2}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element.GetHashCode(), {1}ed);
         }
 
@@ -245,7 +245,7 @@ namespace System.Linq.V2
         public void {2}MixinWithoutOverloadAndNoMonad()
         {
             var enumerable = new Mock{2}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var {1}ed = enumerable.{0}({6});
+            var {1}ed = enumerable.{0}({7});
             Assert.AreEqual(Mock{2}MixinWithoutOverloadAndNoMonad.Element.GetHashCode(), {1}ed);
         }
 
@@ -268,13 +268,13 @@ namespace System.Linq.V2
         public void {2}NoMixinAndMonadWhereSourceIsMixin()
         {
             var enumerable = new Mock{2}NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var {1}ed = enumerable.{0}({6});
+            var {1}ed = enumerable.{0}({7});
             Assert.AreEqual(Mock{2}NoMixinAndMonadWhereSourceIsMixin.Result, {1}ed);
         }
 
         private sealed class Mock{2}NoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
-            public static int Result { get; } = new object().GetHashCode();
+            public static {6} Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -383,7 +383,7 @@ namespace System.Linq.V2
         public void {2}NoMixinAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new Mock{2}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {1}ed = enumerable.{0}({6});
+            var {1}ed = enumerable.{0}({7});
             Assert.AreEqual(Mock{2}NoMixinAndMonadWhereSourceIsNotMixin.Element.GetHashCode(), {1}ed);
         }
 
@@ -492,7 +492,7 @@ namespace System.Linq.V2
         public void {2}NoMixinAndNoMonad()
         {
             var enumerable = new Mock{2}NoMixinAndNoMonad().AsV2Enumerable();
-            var {1}ed = enumerable.{0}({6});
+            var {1}ed = enumerable.{0}({7});
             Assert.AreEqual(Mock{2}NoMixinAndNoMonad.Element.GetHashCode(), {1}ed);
         }
 

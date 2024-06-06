@@ -17,7 +17,7 @@ namespace System.Linq.V2
 
         private sealed class MockSumInt64sMixinWithOverload : ISumableMixin<object>
         {
-            public static int Result { get; } = new object().GetHashCode();
+            public static long Result { get; } = new object().GetHashCode();
 
             public long Sum(Func<object, long> selector)
             {
@@ -45,7 +45,7 @@ namespace System.Linq.V2
 
         private sealed class MockSumInt64sMixinWithoutOverloadAndMonadWhereSourceIsMixin : ISumableMixin<object>, IEnumerableMonad<object>
         {
-            public static int Result { get; } = new object().GetHashCode();
+            public static long Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -274,7 +274,7 @@ namespace System.Linq.V2
 
         private sealed class MockSumInt64sNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
-            public static int Result { get; } = new object().GetHashCode();
+            public static long Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {

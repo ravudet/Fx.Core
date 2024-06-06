@@ -83,6 +83,7 @@
                 overloadReturnType: "int",
                 overloadTypeParameters: "", //// TODO
                 overloadParameters: "Func<object, int> selector",
+                resultType: "int",
                 arguments: "element => (int)element.GetHashCode()"
                 );
             GenerateTerminal(
@@ -91,6 +92,7 @@
                 overloadReturnType: "long",
                 overloadTypeParameters: "", //// TODO
                 overloadParameters: "Func<object, long> selector",
+                resultType: "long",
                 arguments: "element => (long)element.GetHashCode()"
                 );
         }
@@ -101,6 +103,7 @@
             string overloadReturnType,
             string overloadTypeParameters,
             string overloadParameters,
+            string resultType,
             string arguments)
         {
             var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\TerminalTemplate.txt");
@@ -114,6 +117,7 @@
                 .Replace("{{4}}", "{4}")
                 .Replace("{{5}}", "{5}")
                 .Replace("{{6}}", "{6}")
+                .Replace("{{7}}", "{7}")
                 ;
 
             var generated = string.Format(
@@ -124,6 +128,7 @@
                 overloadReturnType,
                 overloadTypeParameters,
                 overloadParameters,
+                resultType,
                 arguments
                 );
 
