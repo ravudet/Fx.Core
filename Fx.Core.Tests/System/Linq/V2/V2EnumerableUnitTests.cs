@@ -1816,8 +1816,8 @@ namespace System.Linq.V2
         public void ExceptByableWithComparerMixinAndMonad()
         {
             var enumerable = new MockExceptByableWithComparerMixinAndMonad<string>().AsV2Enumerable();
-            var ExceptByed = enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _, null);
-            var monad = ExceptByed as MockExceptByableWithComparerMixinAndMonad<string>;
+            var exceptByed = enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _, null);
+            var monad = exceptByed as MockExceptByableWithComparerMixinAndMonad<string>;
             Assert.IsNotNull(monad);
             Assert.AreEqual(MockExceptByableWithComparerMixinAndMonad<string>.Result, monad.Source);
         }
@@ -1894,8 +1894,8 @@ namespace System.Linq.V2
         public void ExceptByWithComparerMonad()
         {
             var enumerable = new MockExceptByWithComparerMonad<string>(new MockExceptByMonadExceptByableWithComparerMixin<string>().AsV2Enumerable()).AsV2Enumerable();
-            var ExceptByed = enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _, null);
-            var monad = ExceptByed as MockExceptByWithComparerMonad<string>;
+            var exceptByed = enumerable.ExceptBy(V2Enumerable.Empty<string>(), _ => _, null);
+            var monad = exceptByed as MockExceptByWithComparerMonad<string>;
             Assert.IsNotNull(monad);
             Assert.AreEqual(MockExceptByMonadExceptByableWithComparerMixin<string>.Result, monad.Source);
         }
