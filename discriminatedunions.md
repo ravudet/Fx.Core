@@ -247,3 +247,30 @@ public sealed class Foo : ChessPiece
 + }
 }
 ```
+
+If the customer does not want to wait, or if another customer wants to use a different scoring mechanism, they end up needing to write their own `switch` statement just like the ones we started with:
+
+```
+public static int SpecialScore(ChessPiece piece)
+{
+  switch (piece)
+  {
+    case King:
+      return 0;
+    case Queen:
+      return 1;
+    case Knight:
+      return 4;
+    case Rook:
+      return 5;
+    case Bishop:
+      return 8;
+    case Pawn:
+      return 9;
+    case Foo:
+      return 15;
+    default:
+      throw new Exception("UNREACHABLE CODE");
+  }
+}
+```
