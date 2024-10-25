@@ -37,17 +37,17 @@ public static string PieceToImageFile(ChessPiece piece)
   switch (piece)
   {
     case ChessPiece.King:
-      return "c:\king.png";
+      return @"c:\king.png";
     case ChessPiece.Queen:      
-      return "c:\queen.png";
+      return @"c:\queen.png";
     case ChessPiece.Knight:
-      return "c:\knight.png";
+      return @"c:\knight.png";
     case ChessPiece.Rook:
-      return "c:\rook.png";
+      return @"c:\rook.png";
     case ChessPiece.Bishop:
-      return "c:\bishop.png";
+      return @"c:\bishop.png";
     case ChessPiece.Pawn:
-      return "c:\pawn.png";
+      return @"c:\pawn.png";
     default:
       throw new Exception("UNREACHABLE CODE");
   }
@@ -88,7 +88,7 @@ public sealed class King : ChessPiece
 
   public sealed override string ImageFile()
   {
-    return "c:\king.png";
+    return @"c:\king.png";
   }
 }
 
@@ -101,7 +101,7 @@ public sealed class Queen : ChessPiece
 
   public sealed override string ImageFile()
   {
-    return "c:\queen.png";
+    return @"c:\queen.png";
   }
 }
 
@@ -114,7 +114,7 @@ public sealed class Knight : ChessPiece
 
   public sealed override string ImageFile()
   {
-    return "c:\knight.png";
+    return @"c:\knight.png";
   }
 }
 
@@ -140,7 +140,7 @@ public sealed class Bishop : ChessPiece
 
   public sealed override string ImageFile()
   {
-    return "c:\bishop.png";
+    return @"c:\bishop.png";
   }
 }
 
@@ -153,7 +153,7 @@ public sealed class Pawn : ChessPiece
 
   public sealed override string ImageFile()
   {
-    return "c:\pawn.png";
+    return @"c:\pawn.png";
   }
 }
 ```
@@ -170,7 +170,7 @@ Now, to add `Foo`, we just add a new class:
 +
 + public sealed override string ImageFile()
 + {
-+   return "c:\foo.png";
++   return @"c:\foo.png";
 + }
 +}
 ```
@@ -368,32 +368,32 @@ public struct Void
 
 public sealed class ToCharVisitor : ChessPiece.Visitor<char, Void>
 {
-  public sealed override char Visit(King node, Void context)
+  public sealed override char Visit(ChessPiece.King node, Void context)
   {
     return 'K';
   }
 
-  public sealed override char Visit(Queen node, Void context)
+  public sealed override char Visit(ChessPiece.Queen node, Void context)
   {
     return 'Q';
   }
 
-  public sealed override char Visit(Knight node, Void context)
+  public sealed override char Visit(ChessPiece.Knight node, Void context)
   {
     return 'N';
   }
 
-  public sealed override char Visit(Rook node, Void context)
+  public sealed override char Visit(ChessPiece.Rook node, Void context)
   {
     return 'R';
   }
 
-  public sealed override char Visit(Bishop node, Void context)
+  public sealed override char Visit(ChessPiece.Bishop node, Void context)
   {
     return 'B';
   }
 
-  public sealed override char Visit(Pawn node, Void context)
+  public sealed override char Visit(ChessPiece.Pawn node, Void context)
   {
     return 'P';
   }
@@ -401,34 +401,34 @@ public sealed class ToCharVisitor : ChessPiece.Visitor<char, Void>
 
 public sealed class ToImageFileVisitor : ChessPiece.Visitor<string, Void>
 {
-  public sealed override string Visit(King node, Void context)
+  public sealed override string Visit(ChessPiece.King node, Void context)
   {
-    return "c:\king.png";
+    return @"c:\king.png";
   }
 
-  public sealed override string Visit(Queen node, Void context)
+  public sealed override string Visit(ChessPiece.Queen node, Void context)
   {
-    return "c:\queen.png";
+    return @"c:\queen.png";
   }
 
-  public sealed override string Visit(Knight node, Void context)
+  public sealed override string Visit(ChessPiece.Knight node, Void context)
   {
-    return "c:\knight.png";
+    return @"c:\knight.png";
   }
 
-  public sealed override string Visit(Rook node, Void context)
+  public sealed override string Visit(ChessPiece.Rook node, Void context)
   {
-    return "c:\rook.png";
+    return @"c:\rook.png";
   }
 
-  public sealed override string Visit(Bishop node, Void context)
+  public sealed override string Visit(ChessPiece.Bishop node, Void context)
   {
-    return "c:\bishop.png";
+    return @"c:\bishop.png";
   }
 
-  public sealed override string Visit(Pawn node, Void context)
+  public sealed override string Visit(ChessPiece.Pawn node, Void context)
   {
-    return "c:\pawn.png";
+    return @"c:\pawn.png";
   }
 }
 ```
@@ -438,40 +438,65 @@ Our customer can also implement their special score using a visitor as well:
 ```
 public sealed class ToSpecialScoreVisitor : ChessPiece.Visitor<int, Void>
 {
-  public sealed override int Visit(King node, Void context)
+  public sealed override int Visit(ChessPiece.King node, Void context)
   {
     return 0;
   }
 
-  public sealed override int Visit(Queen node, Void context)
+  public sealed override int Visit(ChessPiece.Queen node, Void context)
   {
     return 1;
   }
 
-  public sealed override int Visit(Knight node, Void context)
+  public sealed override int Visit(ChessPiece.Knight node, Void context)
   {
     return 4;
   }
 
-  public sealed override int Visit(Rook node, Void context)
+  public sealed override int Visit(ChessPiece.Rook node, Void context)
   {
     return 5;
   }
 
-  public sealed override int Visit(Bishop node, Void context)
+  public sealed override int Visit(ChessPiece.Bishop node, Void context)
   {
     return 8;
   }
 
-  public sealed override int Visit(Pawn node, Void context)
+  public sealed override int Visit(ChessPiece.Pawn node, Void context)
   {
     return 9;
   }
 }
 ```
 
+Now, very importantly, let's try to add `Foo` to the set of chess pieces:
 
+```diff
+public abstract class ChessPiece
+{
+  ...
++ public sealed class Foo : ChessPiece
++ {
++ }
+}
+```
 
+This doesn't compile because we haven't implemented the `abstract` method `Accept` yet. The implemenation for that method is always the same, so let's copy it from one of the other pieces:
+
+```diff
+public abstract class ChessPiece
+{
+  ...
+  public sealed class Foo : ChessPiece
+  {
++   protected sealed override TResult Accept<TResult, TContext>(Visitor<TResult, TContext> visitor, TContext context)
++   {
++     return visitor.Visit(this, context);
++   }
+  }
+}
+```
 
 
 
