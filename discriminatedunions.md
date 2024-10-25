@@ -274,3 +274,5 @@ public static int SpecialScore(ChessPiece piece)
   }
 }
 ```
+
+If we add yet another type of piece, say `Bar`, this **looks** like an additive change and therefore not a breaking change, but in actuality, `ChessPiece` **semantically** represents a discriminated union, and new members of the union should be treated like a breaking change. This is illustrated in the above case: if we add `Bar`, then we have a customer who now is throwing an exception which declares that the line of code that throws the exception as unreachable. 
