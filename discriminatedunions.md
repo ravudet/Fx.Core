@@ -498,7 +498,31 @@ public abstract class ChessPiece
 }
 ```
 
+Now this doesn't compile because there's no corresponding `Visit` method defined on `Visitor` for the new `Foo` type, so let's add that method:
 
+```diff
+public abstract class ChessPiece
+{
+  ...
+  public abstract class Visitor<TResult, TContext>
+  {
+    ...
++   public abstract TResult Visit(Foo node, TContext context);
+  }
+  ...
+  public sealed class Foo : ChessPiece
+  {
+    protected sealed override TResult Accept<TResult, TContext>(Visitor<TResult, TContext> visitor, TContext context)
+    {
+      return visitor.Visit(this, context);
+    }
+  }
+}
+```
+
+Now none of our visitor implementations compile. This is **by design** because it now surfaces the fact that we have introduced a breaking change. Adding a member to a discriminated union, as previously discussed, is a breaking change, and this model actually surfaces that by requiring a new `abtract` method on our visitor, and adding a new `abstract` method is itself a breaking change. 
+
+By modeling our discriminated union with an `abstract` class that has a `private` constructor and by modeling our union members as nested derived types of that `abstract` class and by exposing external extensibility of this type hierarchy through the use of the visitor pattern (instead of inheritance), we are able to ship code that makes clear through compiler errors whenever breaking changes are introduced without reducing the flexibility of the union nor its members. 
 
 
 
