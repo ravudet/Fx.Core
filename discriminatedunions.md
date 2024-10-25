@@ -32,7 +32,7 @@ public static char PieceToChar(ChessPiece piece)
   }
 }
 
-public static string PieceToImageFile()
+public static string PieceToImageFile(ChessPiece piece)
 {
   switch (piece)
   {
@@ -74,5 +74,103 @@ Now, we have to go find all of the places `ChessPiece` is referenced and add a b
 ```
 public abstract class ChessPiece
 {
+  public abstract char CharacterRepresentation();
+
+  public abstract string ImageFile();
 }
+
+public sealed class King : ChessPiece
+{
+  public sealed override char CharacterRepresentation()
+  {
+    return 'K';
+  }
+
+  public sealed override string ImageFile()
+  {
+    return "c:\king.png";
+  }
+}
+
+public sealed class Queen : ChessPiece
+{
+  public sealed override char CharacterRepresentation()
+  {
+    return 'Q';
+  }
+
+  public sealed override string ImageFile()
+  {
+    return "c:\queen.png";
+  }
+}
+
+public sealed class Knight : ChessPiece
+{
+  public sealed override char CharacterRepresentation()
+  {
+    return 'N';
+  }
+
+  public sealed override string ImageFile()
+  {
+    return "c:\knight.png";
+  }
+}
+
+public sealed class Rook : ChessPiece
+{
+  public sealed override char CharacterRepresentation()
+  {
+    return 'R';
+  }
+
+  public sealed override string ImageFile()
+  {
+    return "c:\rook.png";
+  }
+}
+
+public sealed class Bishop : ChessPiece
+{
+  public sealed override char CharacterRepresentation()
+  {
+    return 'B';
+  }
+
+  public sealed override string ImageFile()
+  {
+    return "c:\bishop.png";
+  }
+}
+
+public sealed class Pawn : ChessPiece
+{
+  public sealed override char CharacterRepresentation()
+  {
+    return 'P';
+  }
+
+  public sealed override string ImageFile()
+  {
+    return "c:\pawn.png";
+  }
+}
+```
+
+Now, to add `Foo`, we just add a new class:
+
+```diff
++public sealed class Foo : ChessPiece
++{
++ public sealed override char CharacterRepresentation()
++ {
++   return 'F';
++ }
++
++ public sealed override string ImageFile()
++ {
++   return "c:\foo.png";
++ }
++}
 ```
