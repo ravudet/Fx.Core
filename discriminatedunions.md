@@ -174,3 +174,76 @@ Now, to add `Foo`, we just add a new class:
 + }
 +}
 ```
+
+Any caller that was previously invoking `PieceToChar(piece)` is now invoking `piece.CharacterRepresentation()` and does not need to be updated with the addition of `Foo`. However, this only works because we have complete control of the functionality that chess pieces are providing on a per-piece basis. Let's say that we ship this to a customer and they decide that they would like to compute the score of a game of chess. To follow the existing pattern, they need to make a feature request and we can add a new abstract method:
+
+```diff
+public abstract class ChessPiece
+{
+  ...
++ public abstract int Score();
+}
+
+public sealed class King : ChessPiece
+{
+  ...
++ public sealed override int Score()
++ {
++   return int.MaxValue;
++ }
+}
+
+public sealed class Queen : ChessPiece
+{
+  ...
++ public sealed override int Score()
++ {
++   return 9;
++ }
+}
+
+public sealed class Knight : ChessPiece
+{
+  ...
++ public sealed override int Score()
++ {
++   return 3;
++ }
+}
+
+public sealed class Rook : ChessPiece
+{
+  ...
++ public sealed override int Score()
++ {
++   return 5;
++ }
+}
+
+public sealed class Bishop : ChessPiece
+{
+  ...
++ public sealed override int Score()
++ {
++   return 3;
++ }
+}
+
+public sealed class Pawn : ChessPiece
+{
+  ...
++ public sealed override int Score()
++ {
++   return 1;
++ }
+}
+
+public sealed class Foo : ChessPiece
+{
+  ...
++ public sealed override int Score()
++ {
++   return 10;
++ }
+}
+```
