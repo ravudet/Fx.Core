@@ -276,3 +276,224 @@ public static int SpecialScore(ChessPiece piece)
 ```
 
 If we add yet another type of piece, say `Bar`, this **looks** like an additive change and therefore not a breaking change, but in actuality, `ChessPiece` **semantically** represents a discriminated union, and new members of the union should be treated like a breaking change. This is illustrated in the above case: if we add `Bar`, then we have a customer who now is throwing an exception which declares that the line of code that throws the exception as unreachable. 
+
+### Solution
+
+We can actually model the union and solve this problem through the use of nested types and the visitor pattern. Let's take our first bit of code and design it a little differently:
+```
+public abstract class ChessPiece
+{
+  private ChessPiece()
+  {
+  }
+
+  protected abstract TResult Accept<TResult, TContext>(Visitor<TResult, TContext> visitor, TContext context);
+
+  public abstract class Visitor<TResult, TContext>
+  {
+    public TResult Dispatch(ChessPiece node, TContext context)
+    {
+      return node.Accept(this, context);
+    }
+
+    public abstract TResult Visit(King node, TContext context);
+
+    public abstract TResult Visit(Queen node, TContext context);
+
+    public abstract TResult Visit(Knight node, TContext context);
+
+    public abstract TResult Visit(Rook node, TContext context);
+
+    public abstract TResult Visit(Bishop node, TContext context);
+
+    public abstract TResult Visit(Pawn node, TContext context);
+  }
+
+  public sealed class King : ChessPiece
+  {
+    protected sealed override TResult Accept<TResult, TContext>(Visitor<TResult, TContext> visitor, TContext context)
+    {
+      return visitor.Visit(this, context);
+    }
+  }
+
+  public sealed class Queen : ChessPiece
+  {
+    protected sealed override TResult Accept<TResult, TContext>(Visitor<TResult, TContext> visitor, TContext context)
+    {
+      return visitor.Visit(this, context);
+    }
+  }
+
+  public sealed class Knight : ChessPiece
+  {
+    protected sealed override TResult Accept<TResult, TContext>(Visitor<TResult, TContext> visitor, TContext context)
+    {
+      return visitor.Visit(this, context);
+    }
+  }
+
+  public sealed class Rook : ChessPiece
+  {
+    protected sealed override TResult Accept<TResult, TContext>(Visitor<TResult, TContext> visitor, TContext context)
+    {
+      return visitor.Visit(this, context);
+    }
+  }
+
+  public sealed class Bishop : ChessPiece
+  {
+    protected sealed override TResult Accept<TResult, TContext>(Visitor<TResult, TContext> visitor, TContext context)
+    {
+      return visitor.Visit(this, context);
+    }
+  }
+
+  public sealed class Pawn : ChessPiece
+  {
+    protected sealed override TResult Accept<TResult, TContext>(Visitor<TResult, TContext> visitor, TContext context)
+    {
+      return visitor.Visit(this, context);
+    }
+  }
+}
+```
+
+Let's note a few things about this code. First is the `private` constructor in `ChessPiece`. This ensures that only *nested* types are able to derive from `ChessPiece`, and since nested types cannot be externally added, we have guaranteed the exact set of types that derive from `ChessPiece`. Also observe that the `abstract` method `Accept` in `ChessPiece` combined with the `Visitor` class is able to accomplish what we were doing before with inheritance, but in an externally-extensible way. We can now implement `ToChar` and `ToImageFile` methods without needing to add explicit methods to the `ChessPiece` base type:
+
+```
+public struct Void
+{
+}
+
+public sealed class ToCharVisitor : ChessPiece.Visitor<char, Void>
+{
+  public sealed override char Visit(King node, Void context)
+  {
+    return 'K';
+  }
+
+  public sealed override char Visit(Queen node, Void context)
+  {
+    return 'Q';
+  }
+
+  public sealed override char Visit(Knight node, Void context)
+  {
+    return 'N';
+  }
+
+  public sealed override char Visit(Rook node, Void context)
+  {
+    return 'R';
+  }
+
+  public sealed override char Visit(Bishop node, Void context)
+  {
+    return 'B';
+  }
+
+  public sealed override char Visit(Pawn node, Void context)
+  {
+    return 'P';
+  }
+}
+
+public sealed class ToImageFileVisitor : ChessPiece.Visitor<string, Void>
+{
+  public sealed override string Visit(King node, Void context)
+  {
+    return "c:\king.png";
+  }
+
+  public sealed override string Visit(Queen node, Void context)
+  {
+    return "c:\queen.png";
+  }
+
+  public sealed override string Visit(Knight node, Void context)
+  {
+    return "c:\knight.png";
+  }
+
+  public sealed override string Visit(Rook node, Void context)
+  {
+    return "c:\rook.png";
+  }
+
+  public sealed override string Visit(Bishop node, Void context)
+  {
+    return "c:\bishop.png";
+  }
+
+  public sealed override string Visit(Pawn node, Void context)
+  {
+    return "c:\pawn.png";
+  }
+}
+```
+
+Our customer can also implement their special score using a visitor as well:
+
+```
+public sealed class ToSpecialScoreVisitor : ChessPiece.Visitor<int, Void>
+{
+  public sealed override int Visit(King node, Void context)
+  {
+    return 0;
+  }
+
+  public sealed override int Visit(Queen node, Void context)
+  {
+    return 1;
+  }
+
+  public sealed override int Visit(Knight node, Void context)
+  {
+    return 4;
+  }
+
+  public sealed override int Visit(Rook node, Void context)
+  {
+    return 5;
+  }
+
+  public sealed override int Visit(Bishop node, Void context)
+  {
+    return 8;
+  }
+
+  public sealed override int Visit(Pawn node, Void context)
+  {
+    return 9;
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
