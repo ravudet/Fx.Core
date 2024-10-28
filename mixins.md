@@ -28,7 +28,7 @@ public static class EnumerableExtensions
 {
   public static int Count<T>(this IEnumerable<T> source)
   {
-    if (source is IColleciton<T> collectionOfT)
+    if (source is ICollection<T> collectionOfT)
     {
       return collectionOfT.Count;
     }
@@ -68,13 +68,13 @@ var count = sequence
 
 Because `Select` is called, the return type of `sequence.Select(...)` is no longer `ICollection<T>`, so the `Count` method has to individually enumerate all of the elements in order to get the count. But we know **semantically** that `Select` won't change the number of elements in the sequence. Somewhere along the way, .NET updated their implementations to look more like this (NOTE: I'm taking a number of liberties to reduce the complexity of this code; the .NET team has a **very** involved design for LINQ that is entirely out of scope):
 
-```
+```diff
 public static class EnumerableExtensions
 {
-  private interface IIterator<T>
-  {
-    
-  }
++ private interface IIterator<T> : IEnumerable<T>
++ {
++   bool TryGetCount(out int count);
++ }
 
   public static int Count<T>(this IEnumerable<T> source)
   {
@@ -88,6 +88,11 @@ public static class EnumerableExtensions
       return collection.Count;
     }
 
++   if (source is IIterator<T> iterator && iterator.TryGetCount(out var count))
++   {
++     return count;
++   }
+
     var count = 0;
     foreach (var element in source)
     {
@@ -99,10 +104,97 @@ public static class EnumerableExtensions
 
   public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
   {
-    foreach (var element in source)
+-   foreach (var element in source)
+-   {
+-     yield return selector(element);
+-   }
++   return new SelectIterator<TSource, TResult>(source, selector);
+  }
+
+  private sealed class SelectIterator<TSource, TResult> : IIterator<TResult>
+  {
+    private readonly IEnumerable<TSource> source;
+    private readonly Func<TSource, TResult> selector;
+
+    public SelectIterator(IEnumerable<TSource> source, Func<TSource, TResult> selector)
     {
-      yield return selector(element);
+      this.source = source;
+      this.selector = selector;
+    }
+
+    public IEnumerator<TResult> GetEnumerator()
+    {
+      foreach (var element in this.source)
+      {
+        yield return this.selector(element);
+      }
+    }
+
+    public bool TryGetCount(out int count)
+    {
+      if (this.source is ICollection<TSource> collectionOfT)
+      {
+        count = collectionOfT.Count;
+        return true;
+      }
+
+      if (source is ICollection collection)
+      {
+        count = collection.Count;
+        return true;
+      }
+
+      count = -1;
+      return false;
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+      return this.GetEnumerator();
     }
   }
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
