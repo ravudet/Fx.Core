@@ -161,45 +161,8 @@ public static class EnumerableExtensions
 }
 ```
 
+The new `IIterator<T>` interface effectively allows implementers to "preserve" the count of the initial `IEnumerable<T>`. This means that, now, when `Select` is called, we don't lose the count of the original sequence. When the subsequent `Count` is called, it notices that the `IEnumerable<T>` is actually an `IIterator<T>` and then attempts to get the count from that iterator. Because the iterator is the result of a `Select` call, it's been implemented to retrieve the count from the original sequence if possible.
 
+However, because this new `IIterator<T>` interface is not `public`, external implementers are not able to leverage these benefits. For example, in my `Shuffle` method at the top, we know that the length of the sequence is preserved even after the shuffle, but we have no way to communicate this to the `Count` method without incurring other performance issues.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+This is where mixins come into play. Let's continue how we will accomplish this in the next post.
