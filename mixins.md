@@ -111,48 +111,53 @@ public static class EnumerableExtensions
 +   return new SelectIterator<TSource, TResult>(source, selector);
   }
 
-  private sealed class SelectIterator<TSource, TResult> : IIterator<TResult>
-  {
-    private readonly IEnumerable<TSource> source;
-    private readonly Func<TSource, TResult> selector;
-
-    public SelectIterator(IEnumerable<TSource> source, Func<TSource, TResult> selector)
-    {
-      this.source = source;
-      this.selector = selector;
-    }
-
-    public IEnumerator<TResult> GetEnumerator()
-    {
-      foreach (var element in this.source)
-      {
-        yield return this.selector(element);
-      }
-    }
-
-    public bool TryGetCount(out int count)
-    {
-      if (this.source is ICollection<TSource> collectionOfT)
-      {
-        count = collectionOfT.Count;
-        return true;
-      }
-
-      if (source is ICollection collection)
-      {
-        count = collection.Count;
-        return true;
-      }
-
-      count = -1;
-      return false;
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-      return this.GetEnumerator();
-    }
-  }
++ private sealed class SelectIterator<TSource, TResult> : IIterator<TResult>
++ {
++   private readonly IEnumerable<TSource> source;
++   private readonly Func<TSource, TResult> selector;
++
++   public SelectIterator(IEnumerable<TSource> source, Func<TSource, TResult> selector)
++   {
++     this.source = source;
++     this.selector = selector;
++   }
++
++   public IEnumerator<TResult> GetEnumerator()
++   {
++     foreach (var element in this.source)
++     {
++       yield return this.selector(element);
++     }
++   }
++
++   public bool TryGetCount(out int count)
++   {
++     if (this.source is ICollection<TSource> collectionOfT)
++     {
++       count = collectionOfT.Count;
++       return true;
++     }
++
++     if (source is ICollection collection)
++     {
++       count = collection.Count;
++       return true;
++     }
++
++     if (source is IIterator<T> iterator && iterator.TryGetCount(out var count))
++     {
++       return count;
++     }
++
++     count = -1;
++     return false;
++   }
++
++   IEnumerator IEnumerable.GetEnumerator()
++   {
++     return this.GetEnumerator();
++   }
++ }
 }
 ```
 
