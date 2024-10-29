@@ -1,7 +1,7 @@
 To continue the previous post about the "mixin pattern", let's see what it would look like to allow our `Shuffle` method to preserve its count.
 
 .NET has internally introduced something like the following interface:
-```
+```csharp
 private interface IIterator<T> : IEnumerable<T>
 {
   bool TryGetCount(out int count);
@@ -10,7 +10,7 @@ private interface IIterator<T> : IEnumerable<T>
 
 And our current `Shuffle` implementation looks like:
 
-```
+```csharp
 public static class EnumerableExtensions
 {
   public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random random)
@@ -107,7 +107,7 @@ public static class EnumerableExtensions
 
 Wonderful! Now, our shuffled sequences have preserved the count of the underlying sequence! However, we've basically reintroduced the same problem into the `Shuffle` method that we had with the `Count` method initially: if someone has a better way to implement `Shuffle`, they cannot do so in an externally extensible way. And as noted in the first post, my `Shuffle` implementation above leaves a fair bit to be desired, performance-wise, so it's ideal to have a design which allows for my customers to provide their own improvements. Let's follow the same pattern that `IIterator` uses, but instead for `Shuffle`:
 
-```
+```csharp
 public interface IShuffleMixin<T> : IEnumerable<T>
 {
   IEnumerable<T> Shuffle(Random random);
@@ -143,7 +143,7 @@ public static class EnumerableExtensions
 
 Doing this, a developer (even one outside of our repository) can add an optimized shuffle implementation:
 
-```
+```csharp
 public sealed class FastShuffler<T> : IShuffleMixin<T>
 {
 }
