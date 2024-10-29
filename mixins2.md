@@ -146,8 +146,52 @@ Doing this, a developer (even one outside of our repository) can add an optimize
 ```csharp
 public sealed class FastShuffler<T> : IShuffleMixin<T>
 {
+  private readonly IEnumerable<T> source;
+
+  public FastShuffler(IEnumerable<T> source)
+  {
+    this.source = source;
+  }
+
+  public IEnumerator<T> GetEnumerator()
+  {
+    return this.source.GetEnumerator();
+  }
+
+  public IEnumerable<T> Shuffle(Random random)
+  {
+    if (this.source is IReadOnlyList<T> list)
+    {
+      return Shuffle(list, random);
+    }
+    else
+    {
+      return this.source.Shuffle(random);
+    }
+  }
+
+  private static IEnumerable<T> Shuffle(IReadOnlyList<T> list, Random random)
+  {
+    var swapped = new T?[list.Count];
+    for (int i = 0; i < swapped.Length; ++i)
+    {
+      var next = random.Next(i, swapped.Length);
+      var temp = swapped[i] ?? list[i];
+      swapped[i] = swapped[next] ?? list[next];
+      swapped[next] = temp;
+
+      yield return swapped[i]!;
+    }
+  }
+
+  IEnumerator IEnumerable.GetEnumerator()
+  {
+    return this.GetEnumerator();
+  }
 }
 ```
+
+Next time we will use monads to explore how to combine these count optimizations with the shuffler optimizations while preserving the external extensibility across a chain of calls!
 
 
 
