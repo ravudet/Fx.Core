@@ -246,70 +246,136 @@ return SelectDefault(source, selector);
 
 private static IEnumerable<TResult> SelectDefault<TSource, TResult>(IEnumerable<TSource> source, Func<TSource, TResult> selector)
 {
-if (source is ICountMixin<TSource> countMixin)
-{
-return new CountedSelectIterator<TSource, TResult>(countMixin, selector);
+-if (source is ICountMixin<TSource> countMixin)
+-{
+-return new CountedSelectIterator<TSource, TResult>(countMixin, selector);
+-}
+-
+-return new DefaultSelectIterator<TSource, TResult>(source, selector);
++foreach (var element in source)
++{
++yield return selector(element);
++}
 }
 
-return new DefaultSelectIterator<TSource, TResult>(source, selector);
-}
+-private sealed class CountedSelectIterator<TSource, TResult> : ICountMixin<TResult>
+-{
+-private readonly ICountMixin<TSource> countMixin;
+-private readonly Func<TSource, TResult> selector;
+-
+-public CountedSelectIterator(ICountMixin<TSource> countMixin, Func<TSource, TResult> selector)
+-{
+-this.countMixin = countMixin;
+-this.selector = selector;
+-}
+-
+-public int Count()
+-{
+-return this.countMixin.Count();
+-}
+-
+-public IEnumerator<TResult> GetEnumerator()
+-{
+-return DefaultSelectIterator<TSource, TResult>.Select(this.countMixin, this.selector).GetEnumerator();
+-}
+-
+-IEnumerator IEnumerable.GetEnumerator()
+-{
+-return this.GetEnumerator();
+-}
+-}
+-
+-private sealed class DefaultSelectIterator<TSource, TResult> : IEnumerable<TResult>
+-{
+-private readonly IEnumerable<TSource> source;
+-private readonly Func<TSource, TResult> selector;
+-
+-public DefaultSelectIterator(IEnumerable<TSource> source, Func<TSource, TResult> selector)
+-{
+-this.source = source;
+-this.selector = selector;
+-}
+-
+-public IEnumerator<TResult> GetEnumerator()
+-{
+-return Select(this.source, this.selector).GetEnumerator();
+-}
+-
+-public static IEnumerable<TResult> Select(IEnumerable<TSource> source, Func<TSource, TResult> selector)
+-{
+-foreach (var element in source)
+-{
+-yield return selector(element);
+-}
+-}
+-
+-IEnumerator IEnumerable.GetEnumerator()
+-{
+-return this.GetEnumerator();
+-}
+-}
 
-private sealed class CountedSelectIterator<TSource, TResult> : ICountMixin<TResult>
-{
-private readonly ICountMixin<TSource> countMixin;
-private readonly Func<TSource, TResult> selector;
-
-public CountedSelectIterator(ICountMixin<TSource> countMixin, Func<TSource, TResult> selector)
-{
-this.countMixin = countMixin;
-this.selector = selector;
-}
-
-public int Count()
-{
-return this.countMixin.Count();
-}
-
-public IEnumerator<TResult> GetEnumerator()
-{
-return DefaultSelectIterator<TSource, TResult>.Select(this.countMixin, this.selector).GetEnumerator();
-}
-
-IEnumerator IEnumerable.GetEnumerator()
-{
-return this.GetEnumerator();
-}
-}
-
-private sealed class DefaultSelectIterator<TSource, TResult> : IEnumerable<TResult>
-{
-private readonly IEnumerable<TSource> source;
-private readonly Func<TSource, TResult> selector;
-
-public DefaultSelectIterator(IEnumerable<TSource> source, Func<TSource, TResult> selector)
-{
-this.source = source;
-this.selector = selector;
-}
-
-public IEnumerator<TResult> GetEnumerator()
-{
-return Select(this.source, this.selector).GetEnumerator();
-}
-
-public static IEnumerable<TResult> Select(IEnumerable<TSource> source, Func<TSource, TResult> selector)
-{
-foreach (var element in source)
-{
-yield return selector(element);
-}
-}
-
-IEnumerator IEnumerable.GetEnumerator()
-{
-return this.GetEnumerator();
-}
-}
++public static IEnumerable<T> ApplyDefaultOptimizations<T>(this IEnumerable<T> source)
++{
++return new DefaultOpimizations<T>(source);
++}
++
++private sealed class DefaultOpimizations<T> : IEnumerableMonad<T>, ISelectMixin<T>
++{
++public DefaultOpimizations(IEnumerable<T> source)
++{
++Source = source;
++}
++
++public IEnumerable<T> Source { get; }
++
++public Unit<TElement> Unit<TElement>()
++{
++return toWrap => new DefaultOpimizations<TElement>(toWrap);
++}
++
++public IEnumerator<T> GetEnumerator()
++{
++return this.Source.GetEnumerator();
++}
++
++IEnumerator IEnumerable.GetEnumerator()
++{
++return this.GetEnumerator();
++}
++
++public IEnumerable<TResult> Select<TResult>(Func<T, TResult> selector)
++{
++return new Selected<TResult>(this.Source, selector);
++}
++
++private sealed class Selected<TResult> : IEnumerable<TResult>, ICountMixin<TResult>
++{
++private readonly IEnumerable<T> source;
++private readonly Func<T, TResult> selector;
++
++public Selected(IEnumerable<T> source, Func<T, TResult> selector)
++{
++this.source = source;
++this.selector = selector;
++}
++
++public int Count()
++{
++return this.source.Count();
++}
++
++public IEnumerator<TResult> GetEnumerator()
++{
++return this.source.Select(this.selector).GetEnumerator();
++}
++
++IEnumerator IEnumerable.GetEnumerator()
++{
++return this.GetEnumerator();
++}
++}
++}
 ...
 }
 ```
