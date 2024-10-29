@@ -165,10 +165,20 @@ public interface IEnumerableMonad<T> : IEnumerable<T>
 }
 ```
 
+These types meet the three requirements:
+1. We have the `Source` property to expose the original instance
+2. We have the `Unit` property to expose the way to wrap instances into the monad
+3. The monad implements `IEnumerable<T>`, as `IEnumerable<T>` is the functionality that is being provided by the monad
+
+Now let's update our framework code to leverage this monad:
+```csharp
+
+```
 
 
 
 
+TODO next time, we will see the code that our customers can now write to implement a shuffle that preserves the count
 
 
 
