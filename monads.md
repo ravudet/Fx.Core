@@ -211,41 +211,4 @@ public sealed class ShuffleIterator<T> : IShuffleMixin<T>
 }
 ```
 
-
-
-
-TODO select.shuffle.count
-
-
-
-
-
-we *could* achieve this by...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Wonderful! We've allowed the count of the original sequence to be preserved even after a `Shuffle` has been performed. In fact, `new ShuffleIterator<T>(sequence).Shuffle(new Random()).Count()` doesn't even do **any** of the shuffling; this is quite a performance benefit. However, notice that if `new ShuffleIterator<T>(sequence).Select(_ => _).Shuffle(new Random()).Count()` is called, the call to `Select` causes us to lose track of the `ShuffleIterator` instance, which means that the count of `sequence` will not be preserved by the `Select` call and therefore not preserved by the `Shuffle` call. Now, we *could* achieve this by writing quite a lot of in `ShuffleIterator`, but we would need to write the same code in practically *every* mixin implementation that gets written. Let's see how monads can be used to achieve this instead. We will explore this in the next post.
