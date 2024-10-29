@@ -156,12 +156,12 @@ And we noticed the repetitive code that will need to be written to implement `Sh
 
 Modeling this in C# is actually pretty straightforward:
 ```csharp
-public delegate IEnumerableMonad<T> Unit<T>(IEnumerable<T> source);
+public delegate IEnumerableMonad<TSource> Unit<TSource>(IEnumerable<TSource> source);
 
-public interface IEnumerableMonad<T> : IEnumerable<T>
+public interface IEnumerableMonad<TSource> : IEnumerable<TSource>
 {
-  IEnumerable<T> Source { get; }
-  Unit<T> Unit<T>();
+  IEnumerable<TSource> Source { get; }
+  Unit<TElement> Unit<TElement>();
 }
 ```
 
