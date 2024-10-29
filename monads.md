@@ -150,11 +150,77 @@ public static class Enumerable
 }
 ```
 
+Notice that we are back to our problem from last time: `Shuffle` semantically doesn't affect the count, but if we call `sequence.Shuffle(new Random()).Count()`, the original count of `sequence` is lost by the time the `Count` method is called. Luckily because of the `IShuffleMixin`, we can address this in an externally extensible way:
+
+```csharp
+public sealed class ShuffleIterator<T> : IShuffleMixin<T>
+{
+  private readonly IEnumerable<T> source;
+
+  public ShuffleIterator(IEnumerable<T> source)
+  {
+    this.source = source;
+  }
+
+  public IEnumerable<T> Shuffle(Random random)
+  {
+    if (this.source is ICountMixin<T> countMixin)
+    {
+      return new CountedShuffled(countMixin, random);
+    }
+
+    return this.source.Shuffle(random);
+  }
+
+  private sealed class CountedShuffled : ICountMixin<T>
+  {
+    private readonly ICountMixin<T> counted;
+    private readonly Random random;
+
+    public CountedShuffled(ICountMixin<T> counted, Random random)
+    {
+      this.counted = counted;
+      this.random = random;
+    }
+
+    public int Count()
+    {
+      return this.counted.Count();
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+      return this.counted.Shuffle(this.random).GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+      return this.GetEnumerator();
+    }
+  }
+
+  public IEnumerator<T> GetEnumerator()
+  {
+    return this.source.GetEnumerator();
+  }
+
+  IEnumerator IEnumerable.GetEnumerator()
+  {
+    return this.GetEnumerator();
+  }
+}
+```
+
+
+
 
 TODO select.shuffle.count
 
 
 
+
+
+we *could* achieve this by...
 
 
 
