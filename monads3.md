@@ -156,104 +156,104 @@ A customer who wants to implement `Shuffle` should follow the same conventions:
 ```csharp
 public interface IShuffleMixin<T> : IEnumerable<T>
 {
-IEnumerable<T> Shuffle(Random random);
+  IEnumerable<T> Shuffle(Random random);
 }
 
 public static class EnumerableExtensions
 {
-public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random random)
-{
-if (source is IShuffleMixin<T> shuffleMixin)
-{
-var shuffled = shuffleMixin.Shuffle(random);
-if (source is IEnumerableMonad<T> mixinMonad)
-{
-return mixinMonad.Create(shuffled);
-}
-}
+  public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random random)
+  {
+    if (source is IShuffleMixin<T> shuffleMixin)
+    {
+      var shuffled = shuffleMixin.Shuffle(random);
+      if (source is IEnumerableMonad<T> mixinMonad)
+      {
+        return mixinMonad.Create(shuffled);
+      }
+    }
 
-if (source is IEnumerableMonad<T> monad)
-{
-return monad.Create(monad.Source.Shuffle(random));
-}
+    if (source is IEnumerableMonad<T> monad)
+    {
+      return monad.Create(monad.Source.Shuffle(random));
+    }
 
-return ShuffleDefault(source, random);
-}
+     return ShuffleDefault(source, random);
+  }
 
-private static IEnumerable<T> ShuffleDefault<T>(IEnumerable<T> source, Random random)
-{
-var list = source.ToList();
-for (int i = 0; i < list.Count; ++i)
-{
-var next = random.Next(i, list.Count);
-var temp = list[i];
-list[i] = list[next];
-list[next] = temp;
+  private static IEnumerable<T> ShuffleDefault<T>(IEnumerable<T> source, Random random)
+  {
+    var list = source.ToList();
+    for (int i = 0; i < list.Count; ++i)
+    {
+      var next = random.Next(i, list.Count);
+      var temp = list[i];
+      list[i] = list[next];
+      list[next] = temp;
 
-yield return list[i];
-}
-}
+      yield return list[i];
+    }
+  }
 
-public static IEnumerable<T> ApplyShuffleOptimizations<T>(this IEnumerable<T> source)
-{
-return new ShuffleOptimizations<T>(source);
-}
+  public static IEnumerable<T> ApplyShuffleOptimizations<T>(this IEnumerable<T> source)
+  {
+    return new ShuffleOptimizations<T>(source);
+  }
 
-private sealed class ShuffleOptimizations<T> : IEnumerableMonad<T>, IShuffleMixin<T>
-{
-public ShuffleOptimizations(IEnumerable<T> source)
-{
-Source = source;
-}
+  private sealed class ShuffleOptimizations<T> : IEnumerableMonad<T>, IShuffleMixin<T>
+  {
+    public ShuffleOptimizations(IEnumerable<T> source)
+    {
+      Source = source;
+    }
 
-public IEnumerable<T> Source { get; }
+    public IEnumerable<T> Source { get; }
 
-public Unit<TElement> Unit<TElement>()
-{
-return toWrap => new ShuffleOptimizations<TElement>(toWrap);
-}
+    public Unit<TElement> Unit<TElement>()
+    {
+      return toWrap => new ShuffleOptimizations<TElement>(toWrap);
+    }
 
-public IEnumerator<T> GetEnumerator()
-{
-return this.Source.GetEnumerator();
-}
+    public IEnumerator<T> GetEnumerator()
+    {
+      return this.Source.GetEnumerator();
+    }
 
-IEnumerator IEnumerable.GetEnumerator()
-{
-return this.GetEnumerator();
-}
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+      return this.GetEnumerator();
+    }
 
-public IEnumerable<T> Shuffle(Random random)
-{
-return new Shuffled(this.Source, random);
-}
+    public IEnumerable<T> Shuffle(Random random)
+    {
+      return new Shuffled(this.Source, random);
+    }
 
-private sealed class Shuffled : ICountMixin<T>
-{
-private readonly IEnumerable<T> source;
-private readonly Random random;
+    private sealed class Shuffled : ICountMixin<T>
+    {
+      private readonly IEnumerable<T> source;
+      private readonly Random random;
 
-public Shuffled(IEnumerable<T> source, Random random)
-{
-this.source = source;
-this.random = random;
-}
+      public Shuffled(IEnumerable<T> source, Random random)
+      {
+        this.source = source;
+        this.random = random;
+      }
 
-public int Count()
-{
-return this.source.Count();
-}
+      public int Count()
+      {
+        return this.source.Count();
+      }
 
-public IEnumerator<T> GetEnumerator()
-{
-return this.source.Shuffle(this.random).GetEnumerator();
-}
+      public IEnumerator<T> GetEnumerator()
+      {
+        return this.source.Shuffle(this.random).GetEnumerator();
+      }
 
-IEnumerator IEnumerable.GetEnumerator()
-{
-return this.GetEnumerator();
-}
-}
-}
+      IEnumerator IEnumerable.GetEnumerator()
+      {
+        return this.GetEnumerator();
+      }
+    }
+  }
 }
 ```
