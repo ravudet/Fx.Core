@@ -379,39 +379,6 @@ public static class Enumerable
   ...
 }
 ```
+With this new framework, we are writing the same amount of code, but because of the monad we are able to preverse the select/count relationship through any number of calls to `Select` and through other monads. The same will be true for our customer implementing `Shuffle`: the select/count relationship will be preserved through the `Shuffle` call, and the shuffle/count relationship ship will be preserved through the `Select` call. This will be true no matter now many times `Shuffle` and `Select` are called in sequence. This means that whoever implements a monad only needs to be concerned with the top-level combinations of relationships without having to worry about how deeply nested those calls go.
 
-
-
-
-TODO next time, we will see the code that our customers can now write to implement a shuffle that preserves the count
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Next time, we will see the code that our customers can now write to implement a shuffle that preserves the count.
