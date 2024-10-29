@@ -108,4 +108,96 @@ public static class EnumerableExtensions
 Wonderful! Now, our shuffled sequences have preserved the count of the underlying sequence! However, we've basically reintroduced the same problem into the `Shuffle` method that we had with the `Count` method initially: if someone has a better way to implement `Shuffle`, they cannot do so in an externally extensible way. And as noted in the first post, my `Shuffle` implementation above leaves a fair bit to be desired, performance-wise, so it's ideal to have a design which allows for my customers to provide their own improvements. Let's follow the same pattern that `IIterator` uses, but instead for `Shuffle`:
 
 ```
+public interface IShuffleMixin<T> : IEnumerable<T>
+{
+  IEnumerable<T> Shuffle(Random random);
+}
+
+public static class EnumerableExtensions
+{
+  public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source, Random random)
+  {
+    if (source is IShuffleMixin<T> shuffleMixin)
+    {
+      return shuffleMixin.Shuffle(random);
+    }
+
+    return ShuffleDefault(source, random);
+  }
+
+  private static IEnumerable<T> ShuffleDefault<T>(IEnumerable<T> source, Random random)
+  {
+    var list = source.ToList();
+    for (int i = 0; i < list.Count; ++i)
+    {
+      var next = random.Next(i, list.Count);
+      var temp = list[i];
+      list[i] = list[next];
+      list[next] = temp;
+
+      yield return list[i];
+    }
+  }
+}
 ```
+
+Doing this, a developer (even one outside of our repository) can add an optimized shuffle implementation:
+
+```
+public sealed class FastShuffler<T> : IShuffleMixin<T>
+{
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
