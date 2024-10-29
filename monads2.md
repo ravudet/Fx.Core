@@ -171,8 +171,147 @@ These types meet the three requirements:
 3. The monad implements `IEnumerable<T>`, as `IEnumerable<T>` is the functionality that is being provided by the monad
 
 Now let's update our framework code to leverage this monad:
-```csharp
+```diff
++public static class EnumerableMonadExtensions
++{
++public static IEnumerableMonad<TUnit> Create<TElement, TUnit>(this IEnumerableMonad<TElement> monad, IEnumerable<TUnit> enumerable)
++{
++if (monad.Source is IEnumerableMonad<TElement> nestedMonad)
++{
++    enumerable = nestedMonad.Create(enumerable);
++}
++
++return monad.Unit<TUnit>()(enumerable);
++}
++}
 
+public interface ICountMixin<T> : IEnumerable<T>
+{
+int Count();
+}
+
+public interface ISelectMixin<TSource> : IEnumerable<TSource>
+{
+IEnumerable<TResult> Select<TResult>(Func<TSource, TResult> selector);
+}
+
+public static class Enumerable
+{
+...
+public static int Count<T>(this IEnumerable<T> source)
+{
+if (source is ICountMixin<T> countMixin)
+{
+return countMixin.Count();
+}
++
++if (source is IEnumerableMonad<T> monad)
++{
++    return monad.Source.Count();
++}
+
+return CountDefault(source);
+}
+
+private static int CountDefault<T>(IEnumerable<T> source)
+{
+var count = 0;
+foreach (var element in source)
+{
+++count;
+}
+
+return count;
+}
+
+public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+{
+if (source is ISelectMixin<TSource> selectMixin)
+{
+-return selectMixin.Select(selector);
++var selected = selectMixin.Select(selector);
++if (source is IEnumerableMonad<TSource> mixinMonad)
++{
++return mixinMonad.Create(selected);
++}
+}
++
++if (source is IEnumerableMonad<TSource> monad)
++{
++return monad.Create(monad.Source.Select(selector));
++}
+
+return SelectDefault(source, selector);
+}
+
+private static IEnumerable<TResult> SelectDefault<TSource, TResult>(IEnumerable<TSource> source, Func<TSource, TResult> selector)
+{
+if (source is ICountMixin<TSource> countMixin)
+{
+return new CountedSelectIterator<TSource, TResult>(countMixin, selector);
+}
+
+return new DefaultSelectIterator<TSource, TResult>(source, selector);
+}
+
+private sealed class CountedSelectIterator<TSource, TResult> : ICountMixin<TResult>
+{
+private readonly ICountMixin<TSource> countMixin;
+private readonly Func<TSource, TResult> selector;
+
+public CountedSelectIterator(ICountMixin<TSource> countMixin, Func<TSource, TResult> selector)
+{
+this.countMixin = countMixin;
+this.selector = selector;
+}
+
+public int Count()
+{
+return this.countMixin.Count();
+}
+
+public IEnumerator<TResult> GetEnumerator()
+{
+return DefaultSelectIterator<TSource, TResult>.Select(this.countMixin, this.selector).GetEnumerator();
+}
+
+IEnumerator IEnumerable.GetEnumerator()
+{
+return this.GetEnumerator();
+}
+}
+
+private sealed class DefaultSelectIterator<TSource, TResult> : IEnumerable<TResult>
+{
+private readonly IEnumerable<TSource> source;
+private readonly Func<TSource, TResult> selector;
+
+public DefaultSelectIterator(IEnumerable<TSource> source, Func<TSource, TResult> selector)
+{
+this.source = source;
+this.selector = selector;
+}
+
+public IEnumerator<TResult> GetEnumerator()
+{
+return Select(this.source, this.selector).GetEnumerator();
+}
+
+public static IEnumerable<TResult> Select(IEnumerable<TSource> source, Func<TSource, TResult> selector)
+{
+foreach (var element in source)
+{
+yield return selector(element);
+}
+}
+
+IEnumerator IEnumerable.GetEnumerator()
+{
+return this.GetEnumerator();
+}
+}
+...
+}
 ```
 
 
