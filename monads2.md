@@ -149,7 +149,7 @@ public static class EnumerableExtensions
 }
 ```
 
-And we noticed the repetitive code that will need to be written to implement `Shuffle` in such a way to preserve the count through `Select`s. To implement a monad, we will need two things:
+And we noticed the repetitive code that will need to be written to implement `Shuffle` in such a way to preserve the count through `Select`s. To implement a monad, we will need three things:
 1. The "source" instance that the monad is wrapping
 2. A factory method that gives us an instance of the monad by wrapping a "source" instance (sometimes referred to as the "unit")
 3. The functionality that the monad provides
