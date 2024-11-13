@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "Concat",
+                overload: "Concat",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "IV2Enumerable<object> second",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "V2Enumerable.Empty<object>()"
+                );
+
+            GenerateFluent(
                 operation: "DefaultIfEmpty",
                 overload: "DefaultIfEmpty",
                 overloadReturnTypeParameters: "object",
