@@ -152,6 +152,18 @@
         {
             GenerateFluent(
                 operation: "ExceptBy",
+                overload: "ExceptBy",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "IV2Enumerable<TKey> second, Func<object, TKey> keySelector",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "V2Enumerable.Empty<object>(), element => element"
+                );
+            GenerateFluent(
+                operation: "ExceptBy",
                 overload: "ExceptByWithComparer",
                 overloadReturnTypeParameters: "object",
                 overloadTypeParameters: "<TKey>",
