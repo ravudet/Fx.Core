@@ -151,6 +151,20 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "Chunk",
+                overload: "Chunk",
+                overloadReturnTypeParameters: "object[]",
+                overloadTypeParameters: "",
+                overloadParameters: "int size",
+                monadType: "<object[]>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object[]",
+                arguments: "17",
+                collectionComparer: ", GroupingComparer.Instance"
+                );
+
+            GenerateFluent(
                 operation: "Concat",
                 overload: "Concat",
                 overloadReturnTypeParameters: "object",

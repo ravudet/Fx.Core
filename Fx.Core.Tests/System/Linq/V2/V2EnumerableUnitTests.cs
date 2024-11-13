@@ -2586,6 +2586,16 @@ namespace System.Linq.V2
                     return 0;
                 }
 
+                if (x is object[] xes && y is object[] yes)
+                {
+                    if (!xes.SequenceEqual(yes))
+                    {
+                        return -1;
+                    }
+
+                    return 0;
+                }
+
                 return -1;
             }
         }
