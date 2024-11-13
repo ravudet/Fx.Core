@@ -152,6 +152,18 @@
         {
             GenerateFluent(
                 operation: "DefaultIfEmpty",
+                overload: "DefaultIfEmpty",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: ""
+                );
+            GenerateFluent(
+                operation: "DefaultIfEmpty",
                 overload: "DefaultIfEmptyWithDefaultValue",
                 overloadReturnTypeParameters: "object",
                 overloadTypeParameters: "",
