@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "DefaultIfEmpty",
+                overload: "DefaultIfEmptyWithDefaultValue",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "object defaultValue",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "(object)this"
+                );
+
+            GenerateFluent(
                 operation: "Distinct",
                 overload: "Distinct",
                 overloadReturnTypeParameters: "object",
