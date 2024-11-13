@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "Distinct",
+                overload: "DistinctWithComparer",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "IEqualityComparer<object>? comparer",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "null"
+                );
+
+            GenerateFluent(
                 operation: "DistinctBy",
                 overload: "DistinctBy",
                 overloadReturnTypeParameters: "object",
