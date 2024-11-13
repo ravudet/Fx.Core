@@ -116,7 +116,7 @@
             string resultType,
             string arguments)
         {
-            var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\TerminalTemplate.txt");
+            var template = System.IO.File.ReadAllText(@"C:\github\Fx.Core\TerminalTemplate.txt");
             var escapedTemplate = template
                 .Replace("{", "{{")
                 .Replace("}", "}}")
@@ -145,11 +145,24 @@
             var unescapedGenerated = generated
                 .Replace("{{", "{")
                 .Replace("}}", "}");
-            System.IO.File.WriteAllText($@"C:\source\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{overload}.cs", unescapedGenerated);
+            System.IO.File.WriteAllText($@"C:\github\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{overload}.cs", unescapedGenerated);
         }
 
         private static void GenerateFluent()
         {
+            GenerateFluent(
+                operation: "ExceptBy",
+                overload: "ExceptByWithComparer",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "IV2Enumerable<TKey> second, Func<object, TKey> keySelector, IEqualityComparer<TKey>? comparer",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "V2Enumerable.Empty<object>(), element => element, null"
+                );
+
             GenerateFluent(
                 operation: "GroupBy",
                 overload: "GroupByWithElementSelectorAndResultSelectorAndComparer",
@@ -693,9 +706,9 @@
             string resultTypeParameters,
             string resultReturnTypeParameters,
             string arguments,
-            string collectionComparer = "")
+            string collectionComparer = "") //// TODO don't use default parameter
         {
-            var template = System.IO.File.ReadAllText(@"C:\source\Fx.Core\FluentTemplate.txt");
+            var template = System.IO.File.ReadAllText(@"C:\github\Fx.Core\FluentTemplate.txt");
             var escapedTemplate = template
                 .Replace("{", "{{")
                 .Replace("}", "}}")
@@ -732,7 +745,7 @@
             var unescapedGenerated = generated
                 .Replace("{{", "{")
                 .Replace("}}", "}");
-            System.IO.File.WriteAllText($@"C:\source\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{overload}.cs", unescapedGenerated);
+            System.IO.File.WriteAllText($@"C:\github\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{overload}.cs", unescapedGenerated);
         }
 
         [TestMethod]
