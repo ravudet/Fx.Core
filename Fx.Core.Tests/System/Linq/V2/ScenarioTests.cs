@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "Append",
+                overload: "Append",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "object element",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "(object)this"
+                );
+
+            GenerateFluent(
                 operation: "Chunk",
                 overload: "Chunk",
                 overloadReturnTypeParameters: "object[]",

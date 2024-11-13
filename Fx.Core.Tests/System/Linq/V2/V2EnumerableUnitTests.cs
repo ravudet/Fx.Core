@@ -2566,6 +2566,7 @@ namespace System.Linq.V2
 
             public int Compare(object? x, object? y)
             {
+                //// TODO somehow make this general form so that it doesnt have to be updated for every test that uses a new return type
                 if (object.ReferenceEquals(x, y))
                 {
                     return 0;
