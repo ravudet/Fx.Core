@@ -105,6 +105,16 @@
                 resultType: "long",
                 arguments: "element => (long)element.GetHashCode()"
                 );
+
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumElementsAsNullableDoubles",
+                overloadReturnType: "double?",
+                overloadTypeParameters: "", //// TODO
+                overloadParameters: "Func<object, double?> selector",
+                resultType: "double?",
+                arguments: "element => (double?)element.GetHashCode()"
+                );
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsAsDecimals",
