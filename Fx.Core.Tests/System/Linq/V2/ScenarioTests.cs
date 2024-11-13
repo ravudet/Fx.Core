@@ -152,6 +152,18 @@
         {
             GenerateFluent(
                 operation: "Except",
+                overload: "Except",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "IV2Enumerable<object> second",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "V2Enumerable.Empty<object>()"
+                );
+            GenerateFluent(
+                operation: "Except",
                 overload: "ExceptWithComparer",
                 overloadReturnTypeParameters: "object",
                 overloadTypeParameters: "",

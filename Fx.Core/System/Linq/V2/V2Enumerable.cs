@@ -654,7 +654,7 @@
                 var excepted = except.Except(second);
                 if (first is IEnumerableMonad<TSource> monad)
                 {
-                    return monad.Concat(excepted);
+                    return monad.Create(excepted);
                 }
 
                 return excepted;
