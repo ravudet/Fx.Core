@@ -152,6 +152,18 @@
         {
             GenerateFluent(
                 operation: "DistinctBy",
+                overload: "DistinctBy",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "element => element"
+                );
+            GenerateFluent(
+                operation: "DistinctBy",
                 overload: "DistinctByWithComparer",
                 overloadReturnTypeParameters: "object",
                 overloadTypeParameters: "<TKey>",
