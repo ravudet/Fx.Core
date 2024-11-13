@@ -151,6 +151,19 @@
         private static void GenerateFluent()
         {
             GenerateFluent(
+                operation: "DistinctBy",
+                overload: "DistinctByWithComparer",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector, IEqualityComparer<TKey>? comparer",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: "element => element, null"
+                );
+
+            GenerateFluent(
                 operation: "Except",
                 overload: "Except",
                 overloadReturnTypeParameters: "object",
