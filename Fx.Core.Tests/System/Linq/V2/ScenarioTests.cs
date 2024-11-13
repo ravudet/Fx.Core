@@ -152,6 +152,18 @@
         {
             GenerateFluent(
                 operation: "Distinct",
+                overload: "Distinct",
+                overloadReturnTypeParameters: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                monadType: "<object>",
+                resultTypeArguments: "",
+                resultTypeParameters: "",
+                resultReturnTypeParameters: "object",
+                arguments: ""
+                );
+            GenerateFluent(
+                operation: "Distinct",
                 overload: "DistinctWithComparer",
                 overloadReturnTypeParameters: "object",
                 overloadTypeParameters: "",
