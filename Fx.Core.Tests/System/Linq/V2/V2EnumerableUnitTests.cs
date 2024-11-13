@@ -2603,6 +2603,8 @@ namespace System.Linq.V2
 
         //// TODO discuss design decision 3 with others; if you rename the interface methods, confusion can be avoided; also, having separate interfaces for every method avoids the need for the "default" behavior at all
         //// 
+        //// TODO summablesinglemixin, summabledoublemixin, etc
+        //// TODO tests for TryGetNonEnumeratedCount
         //// TODO tests for tolist
         //// TODO tests for tohashset
         //// TODO tests for todictionary

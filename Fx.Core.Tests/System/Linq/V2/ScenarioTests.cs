@@ -105,6 +105,15 @@
                 resultType: "long",
                 arguments: "element => (long)element.GetHashCode()"
                 );
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumElementsAsDecimals",
+                overloadReturnType: "decimal",
+                overloadTypeParameters: "", //// TODO
+                overloadParameters: "Func<object, decimal> selector",
+                resultType: "decimal",
+                arguments: "element => (decimal)element.GetHashCode()"
+                );
         }
 
         private static void GenerateTerminal(
