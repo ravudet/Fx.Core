@@ -22,7 +22,7 @@ namespace System.Linq.V2
 
             public decimal Sum(Func<object, decimal> selector)
             {
-                return Result;
+                return (decimal)Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -92,7 +92,7 @@ namespace System.Linq.V2
 
                 public decimal Sum(Func<object, decimal> selector)
                 {
-                    return MockSumElementsAsDecimalsMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (decimal)MockSumElementsAsDecimalsMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -324,7 +324,7 @@ namespace System.Linq.V2
 
                 public decimal Sum(Func<object, decimal> selector)
                 {
-                    return MockSumElementsAsDecimalsNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (decimal)MockSumElementsAsDecimalsNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()

@@ -22,7 +22,7 @@ namespace System.Linq.V2
 
             public object Aggregate(Func<object, object, object> func)
             {
-                return Result;
+                return (object)Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -92,7 +92,7 @@ namespace System.Linq.V2
 
                 public object Aggregate(Func<object, object, object> func)
                 {
-                    return MockAggregateMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (object)MockAggregateMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -324,7 +324,7 @@ namespace System.Linq.V2
 
                 public object Aggregate(Func<object, object, object> func)
                 {
-                    return MockAggregateNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (object)MockAggregateNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()

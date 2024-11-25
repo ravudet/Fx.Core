@@ -22,7 +22,7 @@ namespace System.Linq.V2
 
             public int Sum(Func<object, int> selector)
             {
-                return Result;
+                return (int)Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -92,7 +92,7 @@ namespace System.Linq.V2
 
                 public int Sum(Func<object, int> selector)
                 {
-                    return MockSumElementsAsInt32sMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (int)MockSumElementsAsInt32sMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -324,7 +324,7 @@ namespace System.Linq.V2
 
                 public int Sum(Func<object, int> selector)
                 {
-                    return MockSumElementsAsInt32sNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (int)MockSumElementsAsInt32sNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()

@@ -22,7 +22,7 @@ namespace System.Linq.V2
 
             public object SingleOrDefault(object defaultValue)
             {
-                return Result;
+                return (object)Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -92,7 +92,7 @@ namespace System.Linq.V2
 
                 public object SingleOrDefault(object defaultValue)
                 {
-                    return MockSingleOrDefaultWithDefaultValueMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (object)MockSingleOrDefaultWithDefaultValueMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -324,7 +324,7 @@ namespace System.Linq.V2
 
                 public object SingleOrDefault(object defaultValue)
                 {
-                    return MockSingleOrDefaultWithDefaultValueNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (object)MockSingleOrDefaultWithDefaultValueNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()

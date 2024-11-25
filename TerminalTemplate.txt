@@ -20,9 +20,9 @@ namespace System.Linq.V2
         {
             public static {5} Result { get; } = new object().GetHashCode();
 
-            public {2} {0}({4})
+            public {2} {0}{3}({4})
             {
-                return Result;
+                return ({2})Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -90,9 +90,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public {2} {0}({4})
+                public {2} {0}{3}({4})
                 {
-                    return Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return ({2})Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -322,9 +322,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public {2} {0}({4})
+                public {2} {0}{3}({4})
                 {
-                    return Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result;
+                    return ({2})Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()

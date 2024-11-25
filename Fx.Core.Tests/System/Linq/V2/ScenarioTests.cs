@@ -88,6 +88,16 @@
                 );
 
             GenerateTerminal(
+                operation: "Aggregate",
+                overload: "AggregateWithSeed",
+                overloadReturnType: "TAccumulate",
+                overloadTypeParameters: "<TAccumulate>", //// TODO
+                overloadParameters: "TAccumulate seed, Func<TAccumulate, object, TAccumulate> func",
+                resultType: "object",
+                arguments: "new object(), (first, second) => singleton"
+                );
+
+            GenerateTerminal(
                 operation: "SingleOrDefault",
                 overload: "SingleOrDefaultWithDefaultValue",
                 overloadReturnType: "object",

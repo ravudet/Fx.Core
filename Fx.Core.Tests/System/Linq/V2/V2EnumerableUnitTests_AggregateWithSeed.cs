@@ -8,21 +8,21 @@ namespace System.Linq.V2
     public sealed partial class V2EnumerableUnitTests
     {
         [TestMethod]
-        public void SumElementsAsNullableDoublesMixinWithOverload()
+        public void AggregateWithSeedMixinWithOverload()
         {
-            var enumerable = new MockSumElementsAsNullableDoublesMixinWithOverload().AsV2Enumerable();
-            var singleton = MockSumElementsAsNullableDoublesMixinWithOverload.Result;
-            var sumed = enumerable.Sum(element => (double?)element.GetHashCode());
-            Assert.AreEqual(singleton, sumed);
+            var enumerable = new MockAggregateWithSeedMixinWithOverload().AsV2Enumerable();
+            var singleton = MockAggregateWithSeedMixinWithOverload.Result;
+            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton);
+            Assert.AreEqual(singleton, aggregateed);
         }
 
-        private sealed class MockSumElementsAsNullableDoublesMixinWithOverload : ISumableMixin<object>
+        private sealed class MockAggregateWithSeedMixinWithOverload : IAggregateableMixin<object>
         {
-            public static double? Result { get; } = new object().GetHashCode();
+            public static object Result { get; } = new object().GetHashCode();
 
-            public double? Sum(Func<object, double?> selector)
+            public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, object, TAccumulate> func)
             {
-                return (double?)Result;
+                return (TAccumulate)Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -37,17 +37,17 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumElementsAsNullableDoublesMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void AggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockSumElementsAsNullableDoublesMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockSumElementsAsNullableDoublesMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
-            var sumed = enumerable.Sum(element => (double?)element.GetHashCode());
-            Assert.AreEqual(singleton, sumed);
+            var enumerable = new MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton);
+            Assert.AreEqual(singleton, aggregateed);
         }
 
-        private sealed class MockSumElementsAsNullableDoublesMixinWithoutOverloadAndMonadWhereSourceIsMixin : ISumableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsMixin : IAggregateableMixin<object>, IEnumerableMonad<object>
         {
-            public static double? Result { get; } = new object().GetHashCode();
+            public static object Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -82,7 +82,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : ISumableMixin<object>
+            private sealed class SourceEnumerable : IAggregateableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -90,9 +90,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public double? Sum(Func<object, double?> selector)
+                public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, object, TAccumulate> func)
                 {
-                    return (double?)MockSumElementsAsNullableDoublesMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (TAccumulate)MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -153,15 +153,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumElementsAsNullableDoublesMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void AggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockSumElementsAsNullableDoublesMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockSumElementsAsNullableDoublesMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var sumed = enumerable.Sum(element => (double?)element.GetHashCode());
-            Assert.AreEqual(singleton.GetHashCode(), sumed.GetHashCode());
+            var enumerable = new MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
+            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton);
+            Assert.AreEqual(singleton.GetHashCode(), aggregateed.GetHashCode());
         }
 
-        private sealed class MockSumElementsAsNullableDoublesMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ISumableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IAggregateableMixin<object>, IEnumerableMonad<object>
         {
             public static object Element { get; } = new object();
 
@@ -196,7 +196,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = new[] { MockSumElementsAsNullableDoublesMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element }.ToV2Enumerable();
+            public IV2Enumerable<object> Source { get; } = new[] { MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element }.ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -245,15 +245,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumElementsAsNullableDoublesMixinWithoutOverloadAndNoMonad()
+        public void AggregateWithSeedMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new MockSumElementsAsNullableDoublesMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var singleton = MockSumElementsAsNullableDoublesMixinWithoutOverloadAndNoMonad.Element;
-            var sumed = enumerable.Sum(element => (double?)element.GetHashCode());
-            Assert.AreEqual(singleton.GetHashCode(), sumed.GetHashCode());
+            var enumerable = new MockAggregateWithSeedMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var singleton = MockAggregateWithSeedMixinWithoutOverloadAndNoMonad.Element;
+            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton);
+            Assert.AreEqual(singleton.GetHashCode(), aggregateed.GetHashCode());
         }
 
-        private sealed class MockSumElementsAsNullableDoublesMixinWithoutOverloadAndNoMonad : ISumableMixin<object>
+        private sealed class MockAggregateWithSeedMixinWithoutOverloadAndNoMonad : IAggregateableMixin<object>
         {
             public static object Element { get; } = new object();
 
@@ -269,17 +269,17 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsMixin()
+        public void AggregateWithSeedNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockSumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockSumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsMixin.Result;
-            var sumed = enumerable.Sum(element => (double?)element.GetHashCode());
-            Assert.AreEqual(singleton, sumed);
+            var enumerable = new MockAggregateWithSeedNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockAggregateWithSeedNoMixinAndMonadWhereSourceIsMixin.Result;
+            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton);
+            Assert.AreEqual(singleton, aggregateed);
         }
 
-        private sealed class MockSumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockAggregateWithSeedNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
-            public static double? Result { get; } = new object().GetHashCode();
+            public static object Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -314,7 +314,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : ISumableMixin<object>
+            private sealed class SourceEnumerable : IAggregateableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -322,9 +322,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public double? Sum(Func<object, double?> selector)
+                public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, object, TAccumulate> func)
                 {
-                    return (double?)MockSumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (TAccumulate)MockAggregateWithSeedNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -385,15 +385,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsNotMixin()
+        public void AggregateWithSeedNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockSumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockSumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsNotMixin.Element;
-            var sumed = enumerable.Sum(element => (double?)element.GetHashCode());
-            Assert.AreEqual(singleton.GetHashCode(), sumed.GetHashCode());
+            var enumerable = new MockAggregateWithSeedNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockAggregateWithSeedNoMixinAndMonadWhereSourceIsNotMixin.Element;
+            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton);
+            Assert.AreEqual(singleton.GetHashCode(), aggregateed.GetHashCode());
         }
 
-        private sealed class MockSumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockAggregateWithSeedNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -495,15 +495,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void SumElementsAsNullableDoublesNoMixinAndNoMonad()
+        public void AggregateWithSeedNoMixinAndNoMonad()
         {
-            var enumerable = new MockSumElementsAsNullableDoublesNoMixinAndNoMonad().AsV2Enumerable();
-            var singleton = MockSumElementsAsNullableDoublesNoMixinAndNoMonad.Element;
-            var sumed = enumerable.Sum(element => (double?)element.GetHashCode());
-            Assert.AreEqual(singleton.GetHashCode(), sumed.GetHashCode());
+            var enumerable = new MockAggregateWithSeedNoMixinAndNoMonad().AsV2Enumerable();
+            var singleton = MockAggregateWithSeedNoMixinAndNoMonad.Element;
+            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton);
+            Assert.AreEqual(singleton.GetHashCode(), aggregateed.GetHashCode());
         }
 
-        private sealed class MockSumElementsAsNullableDoublesNoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockAggregateWithSeedNoMixinAndNoMonad : IV2Enumerable<object>
         {
             public static object Element { get; } = new object();
 
