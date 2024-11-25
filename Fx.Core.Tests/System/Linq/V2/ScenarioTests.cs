@@ -152,13 +152,13 @@
             var generated = string.Format(
                 escapedTemplate,
                 operation,
-                operation.ToLower(),
                 overload,
                 overloadReturnType,
                 overloadTypeParameters,
                 overloadParameters,
                 resultType,
-                arguments
+                arguments,
+                operation.ToLower()
                 );
 
             var unescapedGenerated = generated
