@@ -107,7 +107,7 @@
                 arguments: "new object(), (first, second) => singleton, accumulate => singleton"
                 );
 
-            //// TODO do you want to redo the existing tests here as generated tests?
+            //// TODO do you want to redo the existing tests here as generated tests? TODO it appears that the existing tests are just for the correctness of the default implementation, not the mixin or monad aspects
 
             GenerateTerminal(
                 operation: "First",
@@ -167,6 +167,16 @@
                 overloadParameters: "object defaultValue",
                 resultType: "object",
                 arguments: "singleton"
+                );
+
+            GenerateTerminal(
+                operation: "Last",
+                overload: "Last",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "object",
+                arguments: ""
                 );
 
             //// TODO pick up here...
