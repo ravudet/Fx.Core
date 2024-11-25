@@ -120,6 +120,18 @@
                 );
 
             GenerateTerminal(
+                operation: "First",
+                overload: "FirstWithPredicate",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate",
+                resultType: "object",
+                arguments: "element => true"
+                );
+
+            //// TODO pick up here...
+
+            GenerateTerminal(
                 operation: "SingleOrDefault",
                 overload: "SingleOrDefaultWithDefaultValue",
                 overloadReturnType: "object",
