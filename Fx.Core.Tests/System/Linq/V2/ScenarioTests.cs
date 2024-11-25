@@ -199,6 +199,16 @@
                 arguments: ""
                 );
 
+            GenerateTerminal(
+                operation: "LastOrDefault",
+                overload: "LastOrDefaultWithPredicateAndDefault",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate, object defaultValue",
+                resultType: "object",
+                arguments: "element => true, singleton"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
