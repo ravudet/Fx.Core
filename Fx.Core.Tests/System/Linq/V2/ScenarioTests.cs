@@ -81,7 +81,7 @@
                 operation: "Aggregate",
                 overload: "Aggregate",
                 overloadReturnType: "object",
-                overloadTypeParameters: "", //// TODO
+                overloadTypeParameters: "",
                 overloadParameters: "Func<object, object, object> func",
                 resultType: "object",
                 arguments: "(first, second) => singleton"
@@ -91,7 +91,7 @@
                 operation: "Aggregate",
                 overload: "AggregateWithSeed",
                 overloadReturnType: "TAccumulate",
-                overloadTypeParameters: "<TAccumulate>", //// TODO
+                overloadTypeParameters: "<TAccumulate>",
                 overloadParameters: "TAccumulate seed, Func<TAccumulate, object, TAccumulate> func",
                 resultType: "object",
                 arguments: "new object(), (first, second) => singleton"
@@ -101,7 +101,7 @@
                 operation: "SingleOrDefault",
                 overload: "SingleOrDefaultWithDefaultValue",
                 overloadReturnType: "object",
-                overloadTypeParameters: "", //// TODO
+                overloadTypeParameters: "",
                 overloadParameters: "object defaultValue",
                 resultType: "object",
                 arguments: "singleton.GetHashCode()"
@@ -111,7 +111,7 @@
                 operation: "Sum",
                 overload: "SumElementsAsInt32s",
                 overloadReturnType: "int",
-                overloadTypeParameters: "", //// TODO
+                overloadTypeParameters: "",
                 overloadParameters: "Func<object, int> selector",
                 resultType: "int",
                 arguments: "element => (int)element.GetHashCode()"
@@ -120,7 +120,7 @@
                 operation: "Sum",
                 overload: "SumElementsAsInt64s",
                 overloadReturnType: "long",
-                overloadTypeParameters: "", //// TODO
+                overloadTypeParameters: "",
                 overloadParameters: "Func<object, long> selector",
                 resultType: "long",
                 arguments: "element => (long)element.GetHashCode()"
@@ -130,7 +130,7 @@
                 operation: "Sum",
                 overload: "SumElementsAsNullableDoubles",
                 overloadReturnType: "double?",
-                overloadTypeParameters: "", //// TODO
+                overloadTypeParameters: "",
                 overloadParameters: "Func<object, double?> selector",
                 resultType: "double?",
                 arguments: "element => (double?)element.GetHashCode()"
@@ -139,7 +139,7 @@
                 operation: "Sum",
                 overload: "SumElementsAsDecimals",
                 overloadReturnType: "decimal",
-                overloadTypeParameters: "", //// TODO
+                overloadTypeParameters: "",
                 overloadParameters: "Func<object, decimal> selector",
                 resultType: "decimal",
                 arguments: "element => (decimal)element.GetHashCode()"
