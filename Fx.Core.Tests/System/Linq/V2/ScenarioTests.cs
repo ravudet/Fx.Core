@@ -107,6 +107,18 @@
                 arguments: "new object(), (first, second) => singleton, accumulate => singleton"
                 );
 
+            //// TODO do you want to redo the existing tests here as generated tests?
+
+            GenerateTerminal(
+                operation: "First",
+                overload: "First",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "object",
+                arguments: ""
+                );
+
             GenerateTerminal(
                 operation: "SingleOrDefault",
                 overload: "SingleOrDefaultWithDefaultValue",
