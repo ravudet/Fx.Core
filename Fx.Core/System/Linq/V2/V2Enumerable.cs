@@ -151,7 +151,7 @@
     {
         public static TSource Aggregate<TSource>(this IV2Enumerable<TSource> self, Func<TSource, TSource, TSource> func)
         {
-            if (self is IAggregatableMixin<TSource> aggregate)
+            if (self is IAggregateableMixin<TSource> aggregate)
             {
                 return aggregate.Aggregate(func);
             }
@@ -161,7 +161,7 @@
 
         public static TAccumulate Aggregate<TSource, TAccumulate>(this IV2Enumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
         {
-            if (self is IAggregatableMixin<TSource> aggregate)
+            if (self is IAggregateableMixin<TSource> aggregate)
             {
                 return aggregate.Aggregate(seed, func);
             }
@@ -175,7 +175,7 @@
             Func<TAccumulate, TSource, TAccumulate> func,
             Func<TAccumulate, TResult> resultSelector)
         {
-            if (self is IAggregatableMixin<TSource> aggregate)
+            if (self is IAggregateableMixin<TSource> aggregate)
             {
                 return aggregate.Aggregate(seed, func, resultSelector);
             }

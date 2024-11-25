@@ -1,6 +1,6 @@
 ﻿namespace System.Linq.V2
 {
-    public interface IAggregatableMixin<TSource> : IV2Enumerable<TSource>
+    public interface IAggregateableMixin<TSource> : IV2Enumerable<TSource>
     {
         public TSource Aggregate(Func<TSource, TSource, TSource> func)
         {

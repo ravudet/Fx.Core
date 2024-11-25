@@ -78,6 +78,16 @@
         private static void GenerateTerminal()
         {
             GenerateTerminal(
+                operation: "Aggregate",
+                overload: "Aggregate",
+                overloadReturnType: "object",
+                overloadTypeParameters: "", //// TODO
+                overloadParameters: "Func<object, object, object> func",
+                resultType: "object",
+                arguments: "(first, second) => singleton"
+                );
+
+            GenerateTerminal(
                 operation: "SingleOrDefault",
                 overload: "SingleOrDefaultWithDefaultValue",
                 overloadReturnType: "object",

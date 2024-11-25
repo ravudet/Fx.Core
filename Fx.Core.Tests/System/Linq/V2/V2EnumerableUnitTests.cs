@@ -59,7 +59,7 @@ namespace System.Linq.V2
             Assert.AreEqual("asdf", enumerable.AsEnumerable().Aggregate(seed, func, resultSelector));
         }
 
-        private sealed class AggregatableMock : IAggregatableMixin<string>
+        private sealed class AggregatableMock : IAggregateableMixin<string>
         {
             public AggregatableMock()
             {
