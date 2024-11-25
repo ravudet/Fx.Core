@@ -129,6 +129,16 @@
                 arguments: "element => true"
                 );
 
+            GenerateTerminal(
+                operation: "FirstOrDefault",
+                overload: "FirstOrDefault",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "object",
+                arguments: ""
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
