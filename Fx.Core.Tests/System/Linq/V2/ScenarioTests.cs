@@ -219,6 +219,16 @@
                 arguments: "element => true"
                 );
 
+            GenerateTerminal(
+                operation: "LastOrDefault",
+                overload: "LastOrDefaultWithDefault",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "object defaultValue",
+                resultType: "object",
+                arguments: "singleton"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
