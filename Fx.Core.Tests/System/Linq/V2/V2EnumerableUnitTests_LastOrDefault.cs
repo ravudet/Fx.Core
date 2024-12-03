@@ -250,7 +250,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastOrDefaultMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockLastOrDefaultMixinWithoutOverloadAndNoMonad.Element;
             var lastordefaulted = enumerable.LastOrDefault();
-            Assert.AreEqual(singleton.GetHashCode(), lastordefaulted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), lastordefaulted.GetHashCode());
         }
 
         private sealed class MockLastOrDefaultMixinWithoutOverloadAndNoMonad : ILastOrDefaultableMixin<object>
@@ -390,7 +390,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastOrDefaultNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockLastOrDefaultNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var lastordefaulted = enumerable.LastOrDefault();
-            Assert.AreEqual(singleton.GetHashCode(), lastordefaulted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), lastordefaulted.GetHashCode());
         }
 
         private sealed class MockLastOrDefaultNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>

@@ -250,7 +250,7 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsNullableDoublesMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockSumElementsAsNullableDoublesMixinWithoutOverloadAndNoMonad.Element;
             var sumed = enumerable.Sum(element => (double?)element.GetHashCode());
-            Assert.AreEqual(singleton.GetHashCode(), sumed.GetHashCode());
+            Assert.AreEqual<double?>(singleton.GetHashCode(), sumed.GetHashCode());
         }
 
         private sealed class MockSumElementsAsNullableDoublesMixinWithoutOverloadAndNoMonad : ISumableMixin<object>
@@ -390,7 +390,7 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockSumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var sumed = enumerable.Sum(element => (double?)element.GetHashCode());
-            Assert.AreEqual(singleton.GetHashCode(), sumed.GetHashCode());
+            Assert.AreEqual<double?>(singleton.GetHashCode(), sumed.GetHashCode());
         }
 
         private sealed class MockSumElementsAsNullableDoublesNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>

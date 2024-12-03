@@ -119,6 +119,8 @@
                 arguments: "element => !((BoolAdapter)(singleton.GetHashCode()))"
                 );
 
+            //// TODO pick up here...
+
             GenerateTerminal(
                 operation: "First",
                 overload: "First",
