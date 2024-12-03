@@ -158,12 +158,12 @@ namespace System.Linq.V2
             var enumerable = new MockFirstWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockFirstWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var firsted = enumerable.First(element => true);
-            Assert.AreEqual<object>(singleton.GetHashCode(), firsted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), firsted);
         }
 
         private sealed class MockFirstWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IFirstableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (object)new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -250,12 +250,12 @@ namespace System.Linq.V2
             var enumerable = new MockFirstWithPredicateMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockFirstWithPredicateMixinWithoutOverloadAndNoMonad.Element;
             var firsted = enumerable.First(element => true);
-            Assert.AreEqual<object>(singleton.GetHashCode(), firsted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), firsted);
         }
 
         private sealed class MockFirstWithPredicateMixinWithoutOverloadAndNoMonad : IFirstableMixin<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (object)new object().GetHashCode();
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -393,7 +393,7 @@ namespace System.Linq.V2
             var enumerable = new MockFirstWithPredicateNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockFirstWithPredicateNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var firsted = enumerable.First(element => true);
-            Assert.AreEqual<object>(singleton.GetHashCode(), firsted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), firsted);
         }
 
         private sealed class MockFirstWithPredicateNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -431,7 +431,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (object)new object().GetHashCode();
 
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
@@ -506,12 +506,12 @@ namespace System.Linq.V2
             var enumerable = new MockFirstWithPredicateNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockFirstWithPredicateNoMixinAndNoMonad.Element;
             var firsted = enumerable.First(element => true);
-            Assert.AreEqual<object>(singleton.GetHashCode(), firsted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), firsted);
         }
 
         private sealed class MockFirstWithPredicateNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (object)new object().GetHashCode();
 
             public IEnumerator<object> GetEnumerator()
             {

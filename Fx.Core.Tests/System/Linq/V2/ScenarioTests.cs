@@ -117,7 +117,7 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, bool> predicate",
                 resultType: "BoolAdapter",
-                arguments: "element => !((BoolAdapter)(singleton.GetHashCode()))",
+                arguments: "element => (BoolAdapter)(singleton.GetHashCode())",
                 sourceElementCount: "1"
                 );
 
@@ -139,7 +139,20 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, bool> predicate",
                 resultType: "BoolAdapter",
-                arguments: "element => !((BoolAdapter)(singleton.GetHashCode()))",
+                arguments: "element => (BoolAdapter)(singleton.GetHashCode())",
+                sourceElementCount: "1"
+                );
+
+            //// TODO skipping average overloads that define the type of the elements
+
+            GenerateTerminal(
+                operation: "Average",
+                overload: "AverageWithIntSelector",
+                overloadReturnType: "double",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, int> selector",
+                resultType: "double",
+                arguments: "element => singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
 

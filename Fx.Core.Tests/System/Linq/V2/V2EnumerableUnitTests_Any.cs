@@ -158,12 +158,12 @@ namespace System.Linq.V2
             var enumerable = new MockAnyMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockAnyMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var anyed = enumerable.Any();
-            Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), anyed.GetHashCode());
+            Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), anyed);
         }
 
         private sealed class MockAnyMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IAnyableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (BoolAdapter)new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -250,12 +250,12 @@ namespace System.Linq.V2
             var enumerable = new MockAnyMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockAnyMixinWithoutOverloadAndNoMonad.Element;
             var anyed = enumerable.Any();
-            Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), anyed.GetHashCode());
+            Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), anyed);
         }
 
         private sealed class MockAnyMixinWithoutOverloadAndNoMonad : IAnyableMixin<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (BoolAdapter)new object().GetHashCode();
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -393,7 +393,7 @@ namespace System.Linq.V2
             var enumerable = new MockAnyNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockAnyNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var anyed = enumerable.Any();
-            Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), anyed.GetHashCode());
+            Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), anyed);
         }
 
         private sealed class MockAnyNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -431,7 +431,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (BoolAdapter)new object().GetHashCode();
 
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
@@ -506,12 +506,12 @@ namespace System.Linq.V2
             var enumerable = new MockAnyNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockAnyNoMixinAndNoMonad.Element;
             var anyed = enumerable.Any();
-            Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), anyed.GetHashCode());
+            Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), anyed);
         }
 
         private sealed class MockAnyNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (BoolAdapter)new object().GetHashCode();
 
             public IEnumerator<object> GetEnumerator()
             {

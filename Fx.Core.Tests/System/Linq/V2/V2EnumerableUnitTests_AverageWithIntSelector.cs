@@ -8,21 +8,21 @@ namespace System.Linq.V2
     public sealed partial class V2EnumerableUnitTests
     {
         [TestMethod]
-        public void AggregateWithSelectorMixinWithOverload()
+        public void AverageWithIntSelectorMixinWithOverload()
         {
-            var enumerable = new MockAggregateWithSelectorMixinWithOverload().AsV2Enumerable();
-            var singleton = MockAggregateWithSelectorMixinWithOverload.Result;
-            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton, accumulate => singleton);
-            Assert.AreEqual<object>(singleton, aggregateed);
+            var enumerable = new MockAverageWithIntSelectorMixinWithOverload().AsV2Enumerable();
+            var singleton = MockAverageWithIntSelectorMixinWithOverload.Result;
+            var averageed = enumerable.Average(element => singleton.GetHashCode());
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
-        private sealed class MockAggregateWithSelectorMixinWithOverload : IAggregateableMixin<object>
+        private sealed class MockAverageWithIntSelectorMixinWithOverload : IAverageableMixin<object>
         {
-            public static object Result { get; } = new object().GetHashCode();
+            public static double Result { get; } = new object().GetHashCode();
 
-            public TResult Aggregate<TAccumulate, TResult>(TAccumulate seed, Func<TAccumulate, object, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+            public double Average(Func<object, int> selector)
             {
-                return (TResult)Result;
+                return (double)Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -37,17 +37,17 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void AggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void AverageWithIntSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
-            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton, accumulate => singleton);
-            Assert.AreEqual<object>(singleton, aggregateed);
+            var enumerable = new MockAverageWithIntSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockAverageWithIntSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+            var averageed = enumerable.Average(element => singleton.GetHashCode());
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
-        private sealed class MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin : IAggregateableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockAverageWithIntSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin : IAverageableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Result { get; } = new object().GetHashCode();
+            public static double Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -82,7 +82,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IAggregateableMixin<object>
+            private sealed class SourceEnumerable : IAverageableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -90,9 +90,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public TResult Aggregate<TAccumulate, TResult>(TAccumulate seed, Func<TAccumulate, object, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+                public double Average(Func<object, int> selector)
                 {
-                    return (TResult)MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (double)MockAverageWithIntSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -153,17 +153,17 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void AggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void AverageWithIntSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton, accumulate => singleton);
-            Assert.AreEqual<object>(singleton.GetHashCode(), aggregateed);
+            var enumerable = new MockAverageWithIntSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockAverageWithIntSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
+            var averageed = enumerable.Average(element => singleton.GetHashCode());
+            Assert.AreEqual<double>(singleton.GetHashCode(), averageed);
         }
 
-        private sealed class MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IAggregateableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockAverageWithIntSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IAverageableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = (object)new object().GetHashCode();
+            public static object Element { get; } = (double)new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -196,7 +196,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = Enumerable.Repeat(MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, 1).ToV2Enumerable();
+            public IV2Enumerable<object> Source { get; } = Enumerable.Repeat(MockAverageWithIntSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, 1).ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -245,17 +245,17 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void AggregateWithSelectorMixinWithoutOverloadAndNoMonad()
+        public void AverageWithIntSelectorMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new MockAggregateWithSelectorMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var singleton = MockAggregateWithSelectorMixinWithoutOverloadAndNoMonad.Element;
-            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton, accumulate => singleton);
-            Assert.AreEqual<object>(singleton.GetHashCode(), aggregateed);
+            var enumerable = new MockAverageWithIntSelectorMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var singleton = MockAverageWithIntSelectorMixinWithoutOverloadAndNoMonad.Element;
+            var averageed = enumerable.Average(element => singleton.GetHashCode());
+            Assert.AreEqual<double>(singleton.GetHashCode(), averageed);
         }
 
-        private sealed class MockAggregateWithSelectorMixinWithoutOverloadAndNoMonad : IAggregateableMixin<object>
+        private sealed class MockAverageWithIntSelectorMixinWithoutOverloadAndNoMonad : IAverageableMixin<object>
         {
-            public static object Element { get; } = (object)new object().GetHashCode();
+            public static object Element { get; } = (double)new object().GetHashCode();
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -272,17 +272,17 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void AggregateWithSelectorNoMixinAndMonadWhereSourceIsMixin()
+        public void AverageWithIntSelectorNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockAggregateWithSelectorNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockAggregateWithSelectorNoMixinAndMonadWhereSourceIsMixin.Result;
-            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton, accumulate => singleton);
-            Assert.AreEqual<object>(singleton, aggregateed);
+            var enumerable = new MockAverageWithIntSelectorNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockAverageWithIntSelectorNoMixinAndMonadWhereSourceIsMixin.Result;
+            var averageed = enumerable.Average(element => singleton.GetHashCode());
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
-        private sealed class MockAggregateWithSelectorNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockAverageWithIntSelectorNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
-            public static object Result { get; } = new object().GetHashCode();
+            public static double Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -317,7 +317,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IAggregateableMixin<object>
+            private sealed class SourceEnumerable : IAverageableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -325,9 +325,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public TResult Aggregate<TAccumulate, TResult>(TAccumulate seed, Func<TAccumulate, object, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+                public double Average(Func<object, int> selector)
                 {
-                    return (TResult)MockAggregateWithSelectorNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (double)MockAverageWithIntSelectorNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -388,15 +388,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void AggregateWithSelectorNoMixinAndMonadWhereSourceIsNotMixin()
+        public void AverageWithIntSelectorNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockAggregateWithSelectorNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockAggregateWithSelectorNoMixinAndMonadWhereSourceIsNotMixin.Element;
-            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton, accumulate => singleton);
-            Assert.AreEqual<object>(singleton.GetHashCode(), aggregateed);
+            var enumerable = new MockAverageWithIntSelectorNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockAverageWithIntSelectorNoMixinAndMonadWhereSourceIsNotMixin.Element;
+            var averageed = enumerable.Average(element => singleton.GetHashCode());
+            Assert.AreEqual<double>(singleton.GetHashCode(), averageed);
         }
 
-        private sealed class MockAggregateWithSelectorNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockAverageWithIntSelectorNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -431,7 +431,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = (object)new object().GetHashCode();
+            public static object Element { get; } = (double)new object().GetHashCode();
 
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
@@ -501,17 +501,17 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void AggregateWithSelectorNoMixinAndNoMonad()
+        public void AverageWithIntSelectorNoMixinAndNoMonad()
         {
-            var enumerable = new MockAggregateWithSelectorNoMixinAndNoMonad().AsV2Enumerable();
-            var singleton = MockAggregateWithSelectorNoMixinAndNoMonad.Element;
-            var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton, accumulate => singleton);
-            Assert.AreEqual<object>(singleton.GetHashCode(), aggregateed);
+            var enumerable = new MockAverageWithIntSelectorNoMixinAndNoMonad().AsV2Enumerable();
+            var singleton = MockAverageWithIntSelectorNoMixinAndNoMonad.Element;
+            var averageed = enumerable.Average(element => singleton.GetHashCode());
+            Assert.AreEqual<double>(singleton.GetHashCode(), averageed);
         }
 
-        private sealed class MockAggregateWithSelectorNoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockAverageWithIntSelectorNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object Element { get; } = (object)new object().GetHashCode();
+            public static object Element { get; } = (double)new object().GetHashCode();
 
             public IEnumerator<object> GetEnumerator()
             {

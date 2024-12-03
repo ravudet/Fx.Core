@@ -21,7 +21,7 @@ namespace System.Linq.V2
 
             public static implicit operator BoolAdapter(int value)
             {
-                return value % 2 == 0 ? True : False;
+                return value % 2 == 0 ? False : True;
             }
 
             public static implicit operator bool(BoolAdapter adapter)
@@ -32,6 +32,11 @@ namespace System.Linq.V2
             public static implicit operator BoolAdapter(bool value)
             {
                 return value ? True : False;
+            }
+
+            public override int GetHashCode()
+            {
+                return object.ReferenceEquals(this, True) ? 1 : 0;
             }
         }
 

@@ -158,12 +158,12 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsInt64sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockSumElementsAsInt64sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var sumed = enumerable.Sum(element => (long)element.GetHashCode());
-            Assert.AreEqual<long>(singleton.GetHashCode(), sumed.GetHashCode());
+            Assert.AreEqual<long>(singleton.GetHashCode(), sumed);
         }
 
         private sealed class MockSumElementsAsInt64sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ISumableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (long)new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -250,12 +250,12 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsInt64sMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockSumElementsAsInt64sMixinWithoutOverloadAndNoMonad.Element;
             var sumed = enumerable.Sum(element => (long)element.GetHashCode());
-            Assert.AreEqual<long>(singleton.GetHashCode(), sumed.GetHashCode());
+            Assert.AreEqual<long>(singleton.GetHashCode(), sumed);
         }
 
         private sealed class MockSumElementsAsInt64sMixinWithoutOverloadAndNoMonad : ISumableMixin<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (long)new object().GetHashCode();
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -393,7 +393,7 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsInt64sNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockSumElementsAsInt64sNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var sumed = enumerable.Sum(element => (long)element.GetHashCode());
-            Assert.AreEqual<long>(singleton.GetHashCode(), sumed.GetHashCode());
+            Assert.AreEqual<long>(singleton.GetHashCode(), sumed);
         }
 
         private sealed class MockSumElementsAsInt64sNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -431,7 +431,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (long)new object().GetHashCode();
 
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
@@ -506,12 +506,12 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsInt64sNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockSumElementsAsInt64sNoMixinAndNoMonad.Element;
             var sumed = enumerable.Sum(element => (long)element.GetHashCode());
-            Assert.AreEqual<long>(singleton.GetHashCode(), sumed.GetHashCode());
+            Assert.AreEqual<long>(singleton.GetHashCode(), sumed);
         }
 
         private sealed class MockSumElementsAsInt64sNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (long)new object().GetHashCode();
 
             public IEnumerator<object> GetEnumerator()
             {

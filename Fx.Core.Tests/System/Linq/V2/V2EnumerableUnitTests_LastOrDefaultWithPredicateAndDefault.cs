@@ -158,12 +158,12 @@ namespace System.Linq.V2
             var enumerable = new MockLastOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockLastOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var lastordefaulted = enumerable.LastOrDefault(element => true, singleton);
-            Assert.AreEqual<object>(singleton.GetHashCode(), lastordefaulted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), lastordefaulted);
         }
 
         private sealed class MockLastOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ILastOrDefaultableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (object)new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -250,12 +250,12 @@ namespace System.Linq.V2
             var enumerable = new MockLastOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockLastOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndNoMonad.Element;
             var lastordefaulted = enumerable.LastOrDefault(element => true, singleton);
-            Assert.AreEqual<object>(singleton.GetHashCode(), lastordefaulted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), lastordefaulted);
         }
 
         private sealed class MockLastOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndNoMonad : ILastOrDefaultableMixin<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (object)new object().GetHashCode();
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -393,7 +393,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastOrDefaultWithPredicateAndDefaultNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockLastOrDefaultWithPredicateAndDefaultNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var lastordefaulted = enumerable.LastOrDefault(element => true, singleton);
-            Assert.AreEqual<object>(singleton.GetHashCode(), lastordefaulted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), lastordefaulted);
         }
 
         private sealed class MockLastOrDefaultWithPredicateAndDefaultNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -431,7 +431,7 @@ namespace System.Linq.V2
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (object)new object().GetHashCode();
 
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
@@ -506,12 +506,12 @@ namespace System.Linq.V2
             var enumerable = new MockLastOrDefaultWithPredicateAndDefaultNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockLastOrDefaultWithPredicateAndDefaultNoMixinAndNoMonad.Element;
             var lastordefaulted = enumerable.LastOrDefault(element => true, singleton);
-            Assert.AreEqual<object>(singleton.GetHashCode(), lastordefaulted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), lastordefaulted);
         }
 
         private sealed class MockLastOrDefaultWithPredicateAndDefaultNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object Element { get; } = new object();
+            public static object Element { get; } = (object)new object().GetHashCode();
 
             public IEnumerator<object> GetEnumerator()
             {
