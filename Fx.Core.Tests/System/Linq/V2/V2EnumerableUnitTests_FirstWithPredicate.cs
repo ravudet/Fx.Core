@@ -13,7 +13,7 @@ namespace System.Linq.V2
             var enumerable = new MockFirstWithPredicateMixinWithOverload().AsV2Enumerable();
             var singleton = MockFirstWithPredicateMixinWithOverload.Result;
             var firsted = enumerable.First(element => true);
-            Assert.AreEqual((object)singleton, (object)firsted);
+            Assert.AreEqual<object>(singleton, firsted);
         }
 
         private sealed class MockFirstWithPredicateMixinWithOverload : IFirstableMixin<object>
@@ -42,7 +42,7 @@ namespace System.Linq.V2
             var enumerable = new MockFirstWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockFirstWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var firsted = enumerable.First(element => true);
-            Assert.AreEqual((object)singleton, (object)firsted);
+            Assert.AreEqual<object>(singleton, firsted);
         }
 
         private sealed class MockFirstWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsMixin : IFirstableMixin<object>, IEnumerableMonad<object>
@@ -274,7 +274,7 @@ namespace System.Linq.V2
             var enumerable = new MockFirstWithPredicateNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockFirstWithPredicateNoMixinAndMonadWhereSourceIsMixin.Result;
             var firsted = enumerable.First(element => true);
-            Assert.AreEqual((object)singleton, (object)firsted);
+            Assert.AreEqual<object>(singleton, firsted);
         }
 
         private sealed class MockFirstWithPredicateNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>

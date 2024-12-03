@@ -13,7 +13,7 @@ namespace System.Linq.V2
             var enumerable = new MockAggregateMixinWithOverload().AsV2Enumerable();
             var singleton = MockAggregateMixinWithOverload.Result;
             var aggregateed = enumerable.Aggregate((first, second) => singleton);
-            Assert.AreEqual((object)singleton, (object)aggregateed);
+            Assert.AreEqual<object>(singleton, aggregateed);
         }
 
         private sealed class MockAggregateMixinWithOverload : IAggregateableMixin<object>
@@ -42,7 +42,7 @@ namespace System.Linq.V2
             var enumerable = new MockAggregateMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockAggregateMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var aggregateed = enumerable.Aggregate((first, second) => singleton);
-            Assert.AreEqual((object)singleton, (object)aggregateed);
+            Assert.AreEqual<object>(singleton, aggregateed);
         }
 
         private sealed class MockAggregateMixinWithoutOverloadAndMonadWhereSourceIsMixin : IAggregateableMixin<object>, IEnumerableMonad<object>
@@ -274,7 +274,7 @@ namespace System.Linq.V2
             var enumerable = new MockAggregateNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockAggregateNoMixinAndMonadWhereSourceIsMixin.Result;
             var aggregateed = enumerable.Aggregate((first, second) => singleton);
-            Assert.AreEqual((object)singleton, (object)aggregateed);
+            Assert.AreEqual<object>(singleton, aggregateed);
         }
 
         private sealed class MockAggregateNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>

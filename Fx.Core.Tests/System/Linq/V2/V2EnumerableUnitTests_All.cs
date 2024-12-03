@@ -13,7 +13,7 @@ namespace System.Linq.V2
             var enumerable = new MockAllMixinWithOverload().AsV2Enumerable();
             var singleton = MockAllMixinWithOverload.Result;
             var alled = enumerable.All(element => !((BoolAdapter)(singleton.GetHashCode())));
-            Assert.AreEqual((BoolAdapter)singleton, (BoolAdapter)alled);
+            Assert.AreEqual<BoolAdapter>(singleton, alled);
         }
 
         private sealed class MockAllMixinWithOverload : IAllableMixin<object>
@@ -42,7 +42,7 @@ namespace System.Linq.V2
             var enumerable = new MockAllMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockAllMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var alled = enumerable.All(element => !((BoolAdapter)(singleton.GetHashCode())));
-            Assert.AreEqual((BoolAdapter)singleton, (BoolAdapter)alled);
+            Assert.AreEqual<BoolAdapter>(singleton, alled);
         }
 
         private sealed class MockAllMixinWithoutOverloadAndMonadWhereSourceIsMixin : IAllableMixin<object>, IEnumerableMonad<object>
@@ -274,7 +274,7 @@ namespace System.Linq.V2
             var enumerable = new MockAllNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockAllNoMixinAndMonadWhereSourceIsMixin.Result;
             var alled = enumerable.All(element => !((BoolAdapter)(singleton.GetHashCode())));
-            Assert.AreEqual((BoolAdapter)singleton, (BoolAdapter)alled);
+            Assert.AreEqual<BoolAdapter>(singleton, alled);
         }
 
         private sealed class MockAllNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>

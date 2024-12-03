@@ -13,7 +13,7 @@ namespace System.Linq.V2
             var enumerable = new MockAggregateWithSelectorMixinWithOverload().AsV2Enumerable();
             var singleton = MockAggregateWithSelectorMixinWithOverload.Result;
             var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton, accumulate => singleton);
-            Assert.AreEqual((object)singleton, (object)aggregateed);
+            Assert.AreEqual<object>(singleton, aggregateed);
         }
 
         private sealed class MockAggregateWithSelectorMixinWithOverload : IAggregateableMixin<object>
@@ -42,7 +42,7 @@ namespace System.Linq.V2
             var enumerable = new MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton, accumulate => singleton);
-            Assert.AreEqual((object)singleton, (object)aggregateed);
+            Assert.AreEqual<object>(singleton, aggregateed);
         }
 
         private sealed class MockAggregateWithSelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin : IAggregateableMixin<object>, IEnumerableMonad<object>
@@ -274,7 +274,7 @@ namespace System.Linq.V2
             var enumerable = new MockAggregateWithSelectorNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockAggregateWithSelectorNoMixinAndMonadWhereSourceIsMixin.Result;
             var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton, accumulate => singleton);
-            Assert.AreEqual((object)singleton, (object)aggregateed);
+            Assert.AreEqual<object>(singleton, aggregateed);
         }
 
         private sealed class MockAggregateWithSelectorNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
