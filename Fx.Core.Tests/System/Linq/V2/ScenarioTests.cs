@@ -84,7 +84,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, object, object> func",
                 resultType: "object",
-                arguments: "(first, second) => singleton"
+                arguments: "(first, second) => singleton",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -94,7 +95,8 @@
                 overloadTypeParameters: "<TAccumulate>",
                 overloadParameters: "TAccumulate seed, Func<TAccumulate, object, TAccumulate> func",
                 resultType: "object",
-                arguments: "new object(), (first, second) => singleton"
+                arguments: "new object(), (first, second) => singleton",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -104,11 +106,10 @@
                 overloadTypeParameters: "<TAccumulate, TResult>",
                 overloadParameters: "TAccumulate seed, Func<TAccumulate, object, TAccumulate> func, Func<TAccumulate, TResult> resultSelector",
                 resultType: "object",
-                arguments: "new object(), (first, second) => singleton, accumulate => singleton"
+                arguments: "new object(), (first, second) => singleton, accumulate => singleton",
+                sourceElementCount: "1"
                 );
 
-            //// TODO do you want to redo the existing tests here as generated tests? TODO it appears that the existing tests are just for the correctness of the default implementation, not the mixin or monad aspects
-            
             GenerateTerminal(
                 operation: "All",
                 overload: "All",
@@ -116,7 +117,19 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, bool> predicate",
                 resultType: "BoolAdapter",
-                arguments: "element => !((BoolAdapter)(singleton.GetHashCode()))"
+                arguments: "element => !((BoolAdapter)(singleton.GetHashCode()))",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Any",
+                overload: "Any",
+                overloadReturnType: "bool",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "BoolAdapter",
+                arguments: "",
+                sourceElementCount: "Element.GetHashCode() % 2"
                 );
 
             //// TODO pick up here...
@@ -128,7 +141,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "",
                 resultType: "object",
-                arguments: ""
+                arguments: "",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -138,7 +152,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, bool> predicate",
                 resultType: "object",
-                arguments: "element => true"
+                arguments: "element => true",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -148,7 +163,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "",
                 resultType: "object",
-                arguments: ""
+                arguments: "",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -158,7 +174,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, bool> predicate",
                 resultType: "object",
-                arguments: "element => true"
+                arguments: "element => true",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -168,7 +185,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, bool> predicate, object defaultValue",
                 resultType: "object",
-                arguments: "element => true, singleton"
+                arguments: "element => true, singleton",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -178,7 +196,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "object defaultValue",
                 resultType: "object",
-                arguments: "singleton"
+                arguments: "singleton",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -188,7 +207,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "",
                 resultType: "object",
-                arguments: ""
+                arguments: "",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -198,7 +218,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, bool> predicate",
                 resultType: "object",
-                arguments: "element => true"
+                arguments: "element => true",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -208,7 +229,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "",
                 resultType: "object",
-                arguments: ""
+                arguments: "",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -218,7 +240,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, bool> predicate, object defaultValue",
                 resultType: "object",
-                arguments: "element => true, singleton"
+                arguments: "element => true, singleton",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -228,7 +251,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, bool> predicate",
                 resultType: "object",
-                arguments: "element => true"
+                arguments: "element => true",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -238,7 +262,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "object defaultValue",
                 resultType: "object",
-                arguments: "singleton"
+                arguments: "singleton",
+                sourceElementCount: "1"
                 );
 
             //// TODO pick up here...
@@ -250,7 +275,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "object defaultValue",
                 resultType: "object",
-                arguments: "singleton.GetHashCode()"
+                arguments: "singleton.GetHashCode()",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -260,7 +286,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, int> selector",
                 resultType: "int",
-                arguments: "element => (int)element.GetHashCode()"
+                arguments: "element => (int)element.GetHashCode()",
+                sourceElementCount: "1"
                 );
             GenerateTerminal(
                 operation: "Sum",
@@ -269,7 +296,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, long> selector",
                 resultType: "long",
-                arguments: "element => (long)element.GetHashCode()"
+                arguments: "element => (long)element.GetHashCode()",
+                sourceElementCount: "1"
                 );
 
             GenerateTerminal(
@@ -279,8 +307,10 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, double?> selector",
                 resultType: "double?",
-                arguments: "element => (double?)element.GetHashCode()"
+                arguments: "element => (double?)element.GetHashCode()",
+                sourceElementCount: "1"
                 );
+
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsAsDecimals",
@@ -288,7 +318,8 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, decimal> selector",
                 resultType: "decimal",
-                arguments: "element => (decimal)element.GetHashCode()"
+                arguments: "element => (decimal)element.GetHashCode()",
+                sourceElementCount: "1"
                 );
         }
 
@@ -299,7 +330,8 @@
             string overloadTypeParameters,
             string overloadParameters,
             string resultType,
-            string arguments)
+            string arguments,
+            string sourceElementCount)
         {
             var template = System.IO.File.ReadAllText(@"C:\github\Fx.Core\TerminalTemplate.txt");
             var escapedTemplate = template
@@ -313,6 +345,7 @@
                 .Replace("{{5}}", "{5}")
                 .Replace("{{6}}", "{6}")
                 .Replace("{{7}}", "{7}")
+                .Replace("{{8}}", "{8}")
                 ;
 
             var generated = string.Format(
@@ -324,6 +357,7 @@
                 overloadParameters,
                 resultType,
                 arguments,
+                sourceElementCount,
                 operation.ToLower()
                 );
 

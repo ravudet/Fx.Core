@@ -196,7 +196,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = new[] { MockFirstOrDefaultWithDefaultMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element }.ToV2Enumerable();
+            public IV2Enumerable<object> Source { get; } = Enumerable.Repeat(MockFirstOrDefaultWithDefaultMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, 1).ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -259,7 +259,10 @@ namespace System.Linq.V2
 
             public IEnumerator<object> GetEnumerator()
             {
-                yield return Element;
+                for (int i = 0; i < 1; ++i)
+                {
+                    yield return Element;
+                }
             }
 
             IEnumerator IEnumerable.GetEnumerator()
@@ -440,7 +443,10 @@ namespace System.Linq.V2
 
                 public IEnumerator<object> GetEnumerator()
                 {
-                    yield return Element;
+                    for (int i = 0; i < 1; ++i)
+                    {
+                        yield return Element;
+                    }
                 }
 
                 IEnumerator IEnumerable.GetEnumerator()
@@ -509,7 +515,10 @@ namespace System.Linq.V2
 
             public IEnumerator<object> GetEnumerator()
             {
-                yield return Element;
+                for (int i = 0; i < 1; ++i)
+                {
+                    yield return Element;
+                }
             }
 
             IEnumerator IEnumerable.GetEnumerator()
