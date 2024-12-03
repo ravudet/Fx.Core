@@ -158,7 +158,7 @@ namespace System.Linq.V2
             var enumerable = new MockFirstOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockFirstOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var firstordefaulted = enumerable.FirstOrDefault(element => true, singleton);
-            Assert.AreEqual(singleton.GetHashCode(), firstordefaulted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), firstordefaulted.GetHashCode());
         }
 
         private sealed class MockFirstOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IFirstOrDefaultableMixin<object>, IEnumerableMonad<object>

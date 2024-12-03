@@ -158,7 +158,7 @@ namespace System.Linq.V2
             var enumerable = new MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var aggregateed = enumerable.Aggregate(new object(), (first, second) => singleton);
-            Assert.AreEqual(singleton.GetHashCode(), aggregateed.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), aggregateed.GetHashCode());
         }
 
         private sealed class MockAggregateWithSeedMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IAggregateableMixin<object>, IEnumerableMonad<object>

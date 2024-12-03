@@ -158,7 +158,7 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsInt64sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockSumElementsAsInt64sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var sumed = enumerable.Sum(element => (long)element.GetHashCode());
-            Assert.AreEqual(singleton.GetHashCode(), sumed.GetHashCode());
+            Assert.AreEqual<long>(singleton.GetHashCode(), sumed.GetHashCode());
         }
 
         private sealed class MockSumElementsAsInt64sMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ISumableMixin<object>, IEnumerableMonad<object>

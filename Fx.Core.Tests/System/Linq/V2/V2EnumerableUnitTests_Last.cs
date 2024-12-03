@@ -158,7 +158,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockLastMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var lasted = enumerable.Last();
-            Assert.AreEqual(singleton.GetHashCode(), lasted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), lasted.GetHashCode());
         }
 
         private sealed class MockLastMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ILastableMixin<object>, IEnumerableMonad<object>

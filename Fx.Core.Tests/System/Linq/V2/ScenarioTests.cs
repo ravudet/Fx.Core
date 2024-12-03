@@ -116,7 +116,7 @@
                 overloadTypeParameters: "",
                 overloadParameters: "Func<object, bool> predicate",
                 resultType: "BoolAdapter",
-                arguments: "element => true"
+                arguments: "element => !((BoolAdapter)(singleton.GetHashCode()))"
                 );
 
             GenerateTerminal(
