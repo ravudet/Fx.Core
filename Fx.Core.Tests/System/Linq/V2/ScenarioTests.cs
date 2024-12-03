@@ -132,6 +132,17 @@
                 sourceElementCount: "Element.GetHashCode() % 2"
                 );
 
+            GenerateTerminal(
+                operation: "Any",
+                overload: "AnyWithPredicate",
+                overloadReturnType: "bool",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate",
+                resultType: "BoolAdapter",
+                arguments: "element => !((BoolAdapter)(singleton.GetHashCode()))",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
