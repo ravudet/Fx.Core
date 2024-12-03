@@ -500,7 +500,7 @@ namespace System.Linq.V2
             var enumerable = new MockSingleOrDefaultWithDefaultValueNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockSingleOrDefaultWithDefaultValueNoMixinAndNoMonad.Element;
             var singleordefaulted = enumerable.SingleOrDefault(singleton.GetHashCode());
-            Assert.AreEqual(singleton.GetHashCode(), singleordefaulted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), singleordefaulted.GetHashCode());
         }
 
         private sealed class MockSingleOrDefaultWithDefaultValueNoMixinAndNoMonad : IV2Enumerable<object>

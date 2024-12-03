@@ -500,7 +500,7 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsDecimalsNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockSumElementsAsDecimalsNoMixinAndNoMonad.Element;
             var sumed = enumerable.Sum(element => (decimal)element.GetHashCode());
-            Assert.AreEqual(singleton.GetHashCode(), sumed.GetHashCode());
+            Assert.AreEqual<decimal>(singleton.GetHashCode(), sumed.GetHashCode());
         }
 
         private sealed class MockSumElementsAsDecimalsNoMixinAndNoMonad : IV2Enumerable<object>

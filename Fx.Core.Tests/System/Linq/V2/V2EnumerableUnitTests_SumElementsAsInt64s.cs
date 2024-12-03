@@ -500,7 +500,7 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsInt64sNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockSumElementsAsInt64sNoMixinAndNoMonad.Element;
             var sumed = enumerable.Sum(element => (long)element.GetHashCode());
-            Assert.AreEqual(singleton.GetHashCode(), sumed.GetHashCode());
+            Assert.AreEqual<long>(singleton.GetHashCode(), sumed.GetHashCode());
         }
 
         private sealed class MockSumElementsAsInt64sNoMixinAndNoMonad : IV2Enumerable<object>

@@ -500,7 +500,7 @@ namespace System.Linq.V2
             var enumerable = new MockFirstOrDefaultWithDefaultNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockFirstOrDefaultWithDefaultNoMixinAndNoMonad.Element;
             var firstordefaulted = enumerable.FirstOrDefault(singleton);
-            Assert.AreEqual(singleton.GetHashCode(), firstordefaulted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), firstordefaulted.GetHashCode());
         }
 
         private sealed class MockFirstOrDefaultWithDefaultNoMixinAndNoMonad : IV2Enumerable<object>

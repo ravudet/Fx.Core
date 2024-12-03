@@ -500,7 +500,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockLastNoMixinAndNoMonad.Element;
             var lasted = enumerable.Last();
-            Assert.AreEqual(singleton.GetHashCode(), lasted.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), lasted.GetHashCode());
         }
 
         private sealed class MockLastNoMixinAndNoMonad : IV2Enumerable<object>

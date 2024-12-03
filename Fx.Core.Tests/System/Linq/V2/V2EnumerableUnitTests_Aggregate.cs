@@ -500,7 +500,7 @@ namespace System.Linq.V2
             var enumerable = new MockAggregateNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockAggregateNoMixinAndNoMonad.Element;
             var aggregateed = enumerable.Aggregate((first, second) => singleton);
-            Assert.AreEqual(singleton.GetHashCode(), aggregateed.GetHashCode());
+            Assert.AreEqual<object>(singleton.GetHashCode(), aggregateed.GetHashCode());
         }
 
         private sealed class MockAggregateNoMixinAndNoMonad : IV2Enumerable<object>

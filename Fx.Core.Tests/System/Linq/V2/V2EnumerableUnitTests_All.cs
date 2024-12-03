@@ -500,7 +500,7 @@ namespace System.Linq.V2
             var enumerable = new MockAllNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockAllNoMixinAndNoMonad.Element;
             var alled = enumerable.All(element => !((BoolAdapter)(singleton.GetHashCode())));
-            Assert.AreEqual(singleton.GetHashCode(), alled.GetHashCode());
+            Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), alled.GetHashCode());
         }
 
         private sealed class MockAllNoMixinAndNoMonad : IV2Enumerable<object>
