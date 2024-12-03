@@ -108,6 +108,16 @@
                 );
 
             //// TODO do you want to redo the existing tests here as generated tests? TODO it appears that the existing tests are just for the correctness of the default implementation, not the mixin or monad aspects
+            
+            GenerateTerminal(
+                operation: "All",
+                overload: "All",
+                overloadReturnType: "bool",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate",
+                resultType: "BoolAdapter",
+                arguments: "element => true"
+                );
 
             GenerateTerminal(
                 operation: "First",

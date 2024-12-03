@@ -13,7 +13,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastOrDefaultWithPredicateMixinWithOverload().AsV2Enumerable();
             var singleton = MockLastOrDefaultWithPredicateMixinWithOverload.Result;
             var lastordefaulted = enumerable.LastOrDefault(element => true);
-            Assert.AreEqual(singleton, lastordefaulted);
+            Assert.AreEqual((object)singleton, (object)lastordefaulted);
         }
 
         private sealed class MockLastOrDefaultWithPredicateMixinWithOverload : ILastOrDefaultableMixin<object>
@@ -42,7 +42,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastOrDefaultWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockLastOrDefaultWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var lastordefaulted = enumerable.LastOrDefault(element => true);
-            Assert.AreEqual(singleton, lastordefaulted);
+            Assert.AreEqual((object)singleton, (object)lastordefaulted);
         }
 
         private sealed class MockLastOrDefaultWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsMixin : ILastOrDefaultableMixin<object>, IEnumerableMonad<object>
@@ -274,7 +274,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastOrDefaultWithPredicateNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockLastOrDefaultWithPredicateNoMixinAndMonadWhereSourceIsMixin.Result;
             var lastordefaulted = enumerable.LastOrDefault(element => true);
-            Assert.AreEqual(singleton, lastordefaulted);
+            Assert.AreEqual((object)singleton, (object)lastordefaulted);
         }
 
         private sealed class MockLastOrDefaultWithPredicateNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>

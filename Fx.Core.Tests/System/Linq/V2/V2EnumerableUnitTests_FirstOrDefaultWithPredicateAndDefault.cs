@@ -13,7 +13,7 @@ namespace System.Linq.V2
             var enumerable = new MockFirstOrDefaultWithPredicateAndDefaultMixinWithOverload().AsV2Enumerable();
             var singleton = MockFirstOrDefaultWithPredicateAndDefaultMixinWithOverload.Result;
             var firstordefaulted = enumerable.FirstOrDefault(element => true, singleton);
-            Assert.AreEqual(singleton, firstordefaulted);
+            Assert.AreEqual((object)singleton, (object)firstordefaulted);
         }
 
         private sealed class MockFirstOrDefaultWithPredicateAndDefaultMixinWithOverload : IFirstOrDefaultableMixin<object>
@@ -42,7 +42,7 @@ namespace System.Linq.V2
             var enumerable = new MockFirstOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockFirstOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var firstordefaulted = enumerable.FirstOrDefault(element => true, singleton);
-            Assert.AreEqual(singleton, firstordefaulted);
+            Assert.AreEqual((object)singleton, (object)firstordefaulted);
         }
 
         private sealed class MockFirstOrDefaultWithPredicateAndDefaultMixinWithoutOverloadAndMonadWhereSourceIsMixin : IFirstOrDefaultableMixin<object>, IEnumerableMonad<object>
@@ -274,7 +274,7 @@ namespace System.Linq.V2
             var enumerable = new MockFirstOrDefaultWithPredicateAndDefaultNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockFirstOrDefaultWithPredicateAndDefaultNoMixinAndMonadWhereSourceIsMixin.Result;
             var firstordefaulted = enumerable.FirstOrDefault(element => true, singleton);
-            Assert.AreEqual(singleton, firstordefaulted);
+            Assert.AreEqual((object)singleton, (object)firstordefaulted);
         }
 
         private sealed class MockFirstOrDefaultWithPredicateAndDefaultNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>

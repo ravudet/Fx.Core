@@ -3,11 +3,38 @@ namespace System.Linq.V2
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Text.RegularExpressions;
 
     [TestClass]
     public sealed partial class V2EnumerableUnitTests
     {
+        private sealed class BoolAdapter
+        {
+            private BoolAdapter()
+            {
+            }
+
+            private static BoolAdapter True { get; } = new BoolAdapter();
+
+            private static BoolAdapter False { get; } = new BoolAdapter();
+
+            public static implicit operator BoolAdapter(int value)
+            {
+                return value % 2 == 0 ? True : False;
+            }
+
+            public static implicit operator bool(BoolAdapter adapter)
+            {
+                return object.ReferenceEquals(adapter, True);
+            }
+
+            public static implicit operator BoolAdapter(bool value)
+            {
+                return value ? True : False;
+            }
+        }
+
         /// <summary>
         /// Aggregates a sequence
         /// </summary>

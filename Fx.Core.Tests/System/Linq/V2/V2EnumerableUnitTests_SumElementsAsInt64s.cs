@@ -13,7 +13,7 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsInt64sMixinWithOverload().AsV2Enumerable();
             var singleton = MockSumElementsAsInt64sMixinWithOverload.Result;
             var sumed = enumerable.Sum(element => (long)element.GetHashCode());
-            Assert.AreEqual(singleton, sumed);
+            Assert.AreEqual((long)singleton, (long)sumed);
         }
 
         private sealed class MockSumElementsAsInt64sMixinWithOverload : ISumableMixin<object>
@@ -42,7 +42,7 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsInt64sMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockSumElementsAsInt64sMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var sumed = enumerable.Sum(element => (long)element.GetHashCode());
-            Assert.AreEqual(singleton, sumed);
+            Assert.AreEqual((long)singleton, (long)sumed);
         }
 
         private sealed class MockSumElementsAsInt64sMixinWithoutOverloadAndMonadWhereSourceIsMixin : ISumableMixin<object>, IEnumerableMonad<object>
@@ -274,7 +274,7 @@ namespace System.Linq.V2
             var enumerable = new MockSumElementsAsInt64sNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockSumElementsAsInt64sNoMixinAndMonadWhereSourceIsMixin.Result;
             var sumed = enumerable.Sum(element => (long)element.GetHashCode());
-            Assert.AreEqual(singleton, sumed);
+            Assert.AreEqual((long)singleton, (long)sumed);
         }
 
         private sealed class MockSumElementsAsInt64sNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>

@@ -13,7 +13,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastMixinWithOverload().AsV2Enumerable();
             var singleton = MockLastMixinWithOverload.Result;
             var lasted = enumerable.Last();
-            Assert.AreEqual(singleton, lasted);
+            Assert.AreEqual((object)singleton, (object)lasted);
         }
 
         private sealed class MockLastMixinWithOverload : ILastableMixin<object>
@@ -42,7 +42,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockLastMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var lasted = enumerable.Last();
-            Assert.AreEqual(singleton, lasted);
+            Assert.AreEqual((object)singleton, (object)lasted);
         }
 
         private sealed class MockLastMixinWithoutOverloadAndMonadWhereSourceIsMixin : ILastableMixin<object>, IEnumerableMonad<object>
@@ -274,7 +274,7 @@ namespace System.Linq.V2
             var enumerable = new MockLastNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockLastNoMixinAndMonadWhereSourceIsMixin.Result;
             var lasted = enumerable.Last();
-            Assert.AreEqual(singleton, lasted);
+            Assert.AreEqual((object)singleton, (object)lasted);
         }
 
         private sealed class MockLastNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
