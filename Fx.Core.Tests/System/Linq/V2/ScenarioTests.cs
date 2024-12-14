@@ -255,6 +255,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "Contains",
+                overload: "ContainsWithComparer",
+                overloadReturnType: "bool",
+                overloadTypeParameters: "",
+                overloadParameters: "object value, IEqualityComparer<object>? comparer",
+                resultType: "BoolAdapter",
+                arguments: "singleton, EqualityComparer<object>.Default",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
