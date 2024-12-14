@@ -143,7 +143,7 @@
                 sourceElementCount: "1"
                 );
 
-            //// TODO skipping average overloads that define the type of the elements
+            //// TODO skipping average overloads that define the type of the elements; they probably belong in a different category than the other "terminal" tests
 
             GenerateTerminal(
                 operation: "Average",
