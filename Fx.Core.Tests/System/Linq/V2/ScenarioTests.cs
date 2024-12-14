@@ -156,6 +156,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "Average",
+                overload: "AverageWithNullableIntSelector",
+                overloadReturnType: "double?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, int?> selector",
+                resultType: "double?",
+                arguments: "element => (int?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
