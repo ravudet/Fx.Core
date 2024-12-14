@@ -167,6 +167,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "Average",
+                overload: "AverageWithDecimalSelector",
+                overloadReturnType: "decimal",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, decimal> selector",
+                resultType: "decimal",
+                arguments: "element => (decimal)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
