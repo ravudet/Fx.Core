@@ -211,6 +211,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "Average",
+                overload: "AverageWithSingleSelector",
+                overloadReturnType: "float",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, float> selector",
+                resultType: "float",
+                arguments: "element => (float)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
