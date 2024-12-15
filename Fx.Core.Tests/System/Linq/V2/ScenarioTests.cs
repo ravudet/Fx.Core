@@ -277,6 +277,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "Count",
+                overload: "Count",
+                overloadReturnType: "int",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "int",
+                arguments: "",
+                sourceElementCount: "Element.GetHashCode()"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
