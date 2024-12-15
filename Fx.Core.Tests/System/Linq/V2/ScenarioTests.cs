@@ -321,6 +321,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "ElementAtOrDefault",
+                overload: "ElementAtOrDefaultIndex",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "",
+                overloadParameters: "Index index",
+                resultType: "object?",
+                arguments: "new Index(0)",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
