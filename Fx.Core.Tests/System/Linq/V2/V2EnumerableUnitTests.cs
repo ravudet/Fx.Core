@@ -15,9 +15,9 @@ namespace System.Linq.V2
             {
             }
 
-            private static BoolAdapter True { get; } = new BoolAdapter();
+            public static BoolAdapter True { get; } = new BoolAdapter();
 
-            private static BoolAdapter False { get; } = new BoolAdapter();
+            public static BoolAdapter False { get; } = new BoolAdapter();
 
             public static implicit operator BoolAdapter(int value)
             {
@@ -37,6 +37,46 @@ namespace System.Linq.V2
             public override int GetHashCode()
             {
                 return object.ReferenceEquals(this, True) ? 1 : 0;
+            }
+
+            public sealed class Comparer : IEqualityComparer<object>
+            {
+                private Comparer()
+                {
+                }
+
+                public static Comparer Instance { get; } = new Comparer();
+
+                public bool Equals(object? x, object? y)
+                {
+                    if (object.ReferenceEquals(x, y))
+                    {
+                        return true;
+                    }
+
+                    if (x == null || y == null)
+                    {
+                        return false;
+                    }
+
+                    if (x is BoolAdapter xBoolAdapter && y is BoolAdapter yBoolAdapter)
+                    {
+                        // we already checked for reference equality, so there's only one other option
+                        return false;
+                    }
+
+                    throw new InvalidOperationException("Comparing to other object types is not supported");
+                }
+
+                public int GetHashCode(object obj)
+                {
+                    if (obj is BoolAdapter boolAdapter)
+                    {
+                        return boolAdapter.GetHashCode();
+                    }
+
+                    throw new InvalidOperationException("Comparing to other object types is not supported");
+                }
             }
         }
 

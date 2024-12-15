@@ -8,19 +8,19 @@ namespace System.Linq.V2
     public sealed partial class V2EnumerableUnitTests
     {
         [TestMethod]
-        public void ContainsWithComparerMixinWithOverload()
+        public void ContainsMixinWithOverload()
         {
-            var enumerable = new MockContainsWithComparerMixinWithOverload().AsV2Enumerable();
-            var singleton = MockContainsWithComparerMixinWithOverload.Result;
-            var containsed = enumerable.Contains(BoolAdapter.True, BoolAdapter.Comparer.Instance);
+            var enumerable = new MockContainsMixinWithOverload().AsV2Enumerable();
+            var singleton = MockContainsMixinWithOverload.Result;
+            var containsed = enumerable.Contains(BoolAdapter.True);
             Assert.AreEqual<BoolAdapter>(singleton, containsed);
         }
 
-        private sealed class MockContainsWithComparerMixinWithOverload : IContainsableMixin<object>
+        private sealed class MockContainsMixinWithOverload : IContainsableMixin<object>
         {
             public static BoolAdapter Result { get; } = new object().GetHashCode();
 
-            public bool Contains(object value, IEqualityComparer<object>? comparer)
+            public bool Contains(object value)
             {
                 return (bool)Result;
             }
@@ -37,15 +37,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void ContainsWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void ContainsMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockContainsWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockContainsWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
-            var containsed = enumerable.Contains(BoolAdapter.True, BoolAdapter.Comparer.Instance);
+            var enumerable = new MockContainsMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockContainsMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+            var containsed = enumerable.Contains(BoolAdapter.True);
             Assert.AreEqual<BoolAdapter>(singleton, containsed);
         }
 
-        private sealed class MockContainsWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin : IContainsableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockContainsMixinWithoutOverloadAndMonadWhereSourceIsMixin : IContainsableMixin<object>, IEnumerableMonad<object>
         {
             public static BoolAdapter Result { get; } = new object().GetHashCode();
 
@@ -90,9 +90,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public bool Contains(object value, IEqualityComparer<object>? comparer)
+                public bool Contains(object value)
                 {
-                    return (bool)MockContainsWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (bool)MockContainsMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -153,15 +153,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void ContainsWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void ContainsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockContainsWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockContainsWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var containsed = enumerable.Contains(BoolAdapter.True, BoolAdapter.Comparer.Instance);
+            var enumerable = new MockContainsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockContainsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
+            var containsed = enumerable.Contains(BoolAdapter.True);
             Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), containsed);
         }
 
-        private sealed class MockContainsWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IContainsableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockContainsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IContainsableMixin<object>, IEnumerableMonad<object>
         {
             public static object Element { get; } = (BoolAdapter)new object().GetHashCode();
 
@@ -196,7 +196,7 @@ namespace System.Linq.V2
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = Enumerable.Repeat(MockContainsWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, 1).ToV2Enumerable();
+            public IV2Enumerable<object> Source { get; } = Enumerable.Repeat(MockContainsMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, 1).ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -245,15 +245,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void ContainsWithComparerMixinWithoutOverloadAndNoMonad()
+        public void ContainsMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new MockContainsWithComparerMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var singleton = MockContainsWithComparerMixinWithoutOverloadAndNoMonad.Element;
-            var containsed = enumerable.Contains(BoolAdapter.True, BoolAdapter.Comparer.Instance);
+            var enumerable = new MockContainsMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var singleton = MockContainsMixinWithoutOverloadAndNoMonad.Element;
+            var containsed = enumerable.Contains(BoolAdapter.True);
             Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), containsed);
         }
 
-        private sealed class MockContainsWithComparerMixinWithoutOverloadAndNoMonad : IContainsableMixin<object>
+        private sealed class MockContainsMixinWithoutOverloadAndNoMonad : IContainsableMixin<object>
         {
             public static object Element { get; } = (BoolAdapter)new object().GetHashCode();
 
@@ -272,15 +272,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void ContainsWithComparerNoMixinAndMonadWhereSourceIsMixin()
+        public void ContainsNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockContainsWithComparerNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockContainsWithComparerNoMixinAndMonadWhereSourceIsMixin.Result;
-            var containsed = enumerable.Contains(BoolAdapter.True, BoolAdapter.Comparer.Instance);
+            var enumerable = new MockContainsNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockContainsNoMixinAndMonadWhereSourceIsMixin.Result;
+            var containsed = enumerable.Contains(BoolAdapter.True);
             Assert.AreEqual<BoolAdapter>(singleton, containsed);
         }
 
-        private sealed class MockContainsWithComparerNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockContainsNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
             public static BoolAdapter Result { get; } = new object().GetHashCode();
 
@@ -325,9 +325,9 @@ namespace System.Linq.V2
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public bool Contains(object value, IEqualityComparer<object>? comparer)
+                public bool Contains(object value)
                 {
-                    return (bool)MockContainsWithComparerNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (bool)MockContainsNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -388,15 +388,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void ContainsWithComparerNoMixinAndMonadWhereSourceIsNotMixin()
+        public void ContainsNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockContainsWithComparerNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockContainsWithComparerNoMixinAndMonadWhereSourceIsNotMixin.Element;
-            var containsed = enumerable.Contains(BoolAdapter.True, BoolAdapter.Comparer.Instance);
+            var enumerable = new MockContainsNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockContainsNoMixinAndMonadWhereSourceIsNotMixin.Element;
+            var containsed = enumerable.Contains(BoolAdapter.True);
             Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), containsed);
         }
 
-        private sealed class MockContainsWithComparerNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockContainsNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -501,15 +501,15 @@ namespace System.Linq.V2
         }
 
         [TestMethod]
-        public void ContainsWithComparerNoMixinAndNoMonad()
+        public void ContainsNoMixinAndNoMonad()
         {
-            var enumerable = new MockContainsWithComparerNoMixinAndNoMonad().AsV2Enumerable();
-            var singleton = MockContainsWithComparerNoMixinAndNoMonad.Element;
-            var containsed = enumerable.Contains(BoolAdapter.True, BoolAdapter.Comparer.Instance);
+            var enumerable = new MockContainsNoMixinAndNoMonad().AsV2Enumerable();
+            var singleton = MockContainsNoMixinAndNoMonad.Element;
+            var containsed = enumerable.Contains(BoolAdapter.True);
             Assert.AreEqual<BoolAdapter>(singleton.GetHashCode(), containsed);
         }
 
-        private sealed class MockContainsWithComparerNoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockContainsNoMixinAndNoMonad : IV2Enumerable<object>
         {
             public static object Element { get; } = (BoolAdapter)new object().GetHashCode();
 

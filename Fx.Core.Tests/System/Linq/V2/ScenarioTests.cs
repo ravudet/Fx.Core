@@ -262,7 +262,18 @@
                 overloadTypeParameters: "",
                 overloadParameters: "object value, IEqualityComparer<object>? comparer",
                 resultType: "BoolAdapter",
-                arguments: "singleton, EqualityComparer<object>.Default",
+                arguments: "BoolAdapter.True, BoolAdapter.Comparer.Instance",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Contains",
+                overload: "Contains",
+                overloadReturnType: "bool",
+                overloadTypeParameters: "",
+                overloadParameters: "object value",
+                resultType: "BoolAdapter",
+                arguments: "BoolAdapter.True",
                 sourceElementCount: "1"
                 );
 
