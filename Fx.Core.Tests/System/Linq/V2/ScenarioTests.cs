@@ -343,8 +343,6 @@
                 sourceElementCount: "1"
                 );
 
-            //// TODO pick up here...
-
             GenerateTerminal(
                 operation: "First",
                 overload: "First",
