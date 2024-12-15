@@ -486,6 +486,17 @@
                 sourceElementCount: "Element.GetHashCode()"
                 );
 
+            GenerateTerminal(
+                operation: "LongCount",
+                overload: "LongCount",
+                overloadReturnType: "long",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "long",
+                arguments: "",
+                sourceElementCount: "Element.GetHashCode()"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
