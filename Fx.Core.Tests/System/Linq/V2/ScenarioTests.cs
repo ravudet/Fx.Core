@@ -600,6 +600,17 @@
 
             GenerateTerminal(
                 operation: "Max",
+                overload: "MaxWithSelector",
+                overloadReturnType: "TResult?",
+                overloadTypeParameters: "<TResult>",
+                overloadParameters: "Func<object, TResult> selector",
+                resultType: "object",
+                arguments: "element => element",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
                 overload: "MaxWithSingleSelector",
                 overloadReturnType: "float",
                 overloadTypeParameters: "",
