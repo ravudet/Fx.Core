@@ -299,6 +299,17 @@
                 sourceElementCount: "Element.GetHashCode()"
                 );
 
+            GenerateTerminal(
+                operation: "ElementAt",
+                overload: "ElementAtIndex",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Index index",
+                resultType: "object",
+                arguments: "new Index(0)",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
