@@ -510,6 +510,127 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithNullableInt64Selector",
+                overloadReturnType: "long?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, long?> selector",
+                resultType: "long?",
+                arguments: "element => (long?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithNullableSingleSelector",
+                overloadReturnType: "float?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, float?> selector",
+                resultType: "float?",
+                arguments: "element => (float?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithNullableInt32Selector",
+                overloadReturnType: "int?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, int?> selector",
+                resultType: "int?",
+                arguments: "element => (int?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithComparer",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "",
+                overloadParameters: "IComparer<object>? comparer",
+                resultType: "object",
+                arguments: "Comparer<object>.Default",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithNullableDecimalSelector",
+                overloadReturnType: "decimal?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, decimal?> selector",
+                resultType: "decimal?",
+                arguments: "element => (decimal?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithInt32Selector",
+                overloadReturnType: "int",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, int> selector",
+                resultType: "int",
+                arguments: "element => (int)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithDoubleSelector",
+                overloadReturnType: "double",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, double> selector",
+                resultType: "double",
+                arguments: "element => (double)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithDecimalSelector",
+                overloadReturnType: "decimal",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, decimal> selector",
+                resultType: "decimal",
+                arguments: "element => (decimal)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithSingleSelector",
+                overloadReturnType: "float",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, float> selector",
+                resultType: "float",
+                arguments: "element => (float)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "Max",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "object",
+                arguments: "",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithNullableDoubleSelector",
+                overloadReturnType: "double?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, double?> selector",
+                resultType: "double?",
+                arguments: "element => (double?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
