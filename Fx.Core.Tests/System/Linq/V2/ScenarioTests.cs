@@ -497,6 +497,19 @@
                 sourceElementCount: "Element.GetHashCode()"
                 );
 
+            //// TODO skipping max overloads that define the type of the elements; they probably belong in a different category than the other "terminal" tests
+
+            GenerateTerminal(
+                operation: "Max",
+                overload: "MaxWithInt64Selector",
+                overloadReturnType: "long",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, long> selector",
+                resultType: "long",
+                arguments: "element => (long)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
