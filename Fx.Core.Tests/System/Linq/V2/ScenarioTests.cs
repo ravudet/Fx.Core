@@ -310,6 +310,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "ElementAt",
+                overload: "ElementAt",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "int index",
+                resultType: "object",
+                arguments: "0",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
