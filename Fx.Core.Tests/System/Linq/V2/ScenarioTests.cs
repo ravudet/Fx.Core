@@ -475,6 +475,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "LongCount",
+                overload: "LongCountWithPredicate",
+                overloadReturnType: "long",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate",
+                resultType: "long",
+                arguments: "element => true",
+                sourceElementCount: "Element.GetHashCode()"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
