@@ -288,6 +288,17 @@
                 sourceElementCount: "Element.GetHashCode()"
                 );
 
+            GenerateTerminal(
+                operation: "Count",
+                overload: "CountWithPredicate",
+                overloadReturnType: "int",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate",
+                resultType: "int",
+                arguments: "element => true",
+                sourceElementCount: "Element.GetHashCode()"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
