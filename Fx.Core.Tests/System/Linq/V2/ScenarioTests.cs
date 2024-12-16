@@ -823,6 +823,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "MinBy",
+                overload: "MinBy",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector",
+                resultType: "object?",
+                arguments: "element => element",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
