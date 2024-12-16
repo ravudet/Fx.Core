@@ -783,7 +783,7 @@
                 overloadTypeParameters: "",
                 overloadParameters: "",
                 resultType: "object?",
-                arguments: "element => element",
+                arguments: "",
                 sourceElementCount: "1"
                 );
 

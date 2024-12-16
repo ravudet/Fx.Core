@@ -12,7 +12,7 @@ namespace System.Linq.V2
         {
             var enumerable = new MockMinMixinWithOverload().AsV2Enumerable();
             var singleton = MockMinMixinWithOverload.Result;
-            var mined = enumerable.Min(element => element);
+            var mined = enumerable.Min();
             Assert.AreEqual<object?>(singleton, mined);
         }
 
@@ -41,7 +41,7 @@ namespace System.Linq.V2
         {
             var enumerable = new MockMinMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockMinMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
-            var mined = enumerable.Min(element => element);
+            var mined = enumerable.Min();
             Assert.AreEqual<object?>(singleton, mined);
         }
 
@@ -157,7 +157,7 @@ namespace System.Linq.V2
         {
             var enumerable = new MockMinMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockMinMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var mined = enumerable.Min(element => element);
+            var mined = enumerable.Min();
             Assert.AreEqual<object?>(singleton.GetHashCode(), mined);
         }
 
@@ -249,7 +249,7 @@ namespace System.Linq.V2
         {
             var enumerable = new MockMinMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockMinMixinWithoutOverloadAndNoMonad.Element;
-            var mined = enumerable.Min(element => element);
+            var mined = enumerable.Min();
             Assert.AreEqual<object?>(singleton.GetHashCode(), mined);
         }
 
@@ -276,7 +276,7 @@ namespace System.Linq.V2
         {
             var enumerable = new MockMinNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockMinNoMixinAndMonadWhereSourceIsMixin.Result;
-            var mined = enumerable.Min(element => element);
+            var mined = enumerable.Min();
             Assert.AreEqual<object?>(singleton, mined);
         }
 
@@ -392,7 +392,7 @@ namespace System.Linq.V2
         {
             var enumerable = new MockMinNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockMinNoMixinAndMonadWhereSourceIsNotMixin.Element;
-            var mined = enumerable.Min(element => element);
+            var mined = enumerable.Min();
             Assert.AreEqual<object?>(singleton.GetHashCode(), mined);
         }
 
@@ -505,7 +505,7 @@ namespace System.Linq.V2
         {
             var enumerable = new MockMinNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockMinNoMixinAndNoMonad.Element;
-            var mined = enumerable.Min(element => element);
+            var mined = enumerable.Min();
             Assert.AreEqual<object?>(singleton.GetHashCode(), mined);
         }
 
