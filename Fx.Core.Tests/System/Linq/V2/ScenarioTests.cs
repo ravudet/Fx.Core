@@ -849,6 +849,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "SequenceEqual",
+                overload: "SequenceEqualWithComparer",
+                overloadReturnType: "bool",
+                overloadTypeParameters: "",
+                overloadParameters: "IV2Enumerable<object> second, IEqualityComparer<object>? comparer",
+                resultType: "BoolAdapter",
+                arguments: "new[] { BoolAdapter.True }.ToV2Enumerable(), EqualityComparer<object>.Default",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
