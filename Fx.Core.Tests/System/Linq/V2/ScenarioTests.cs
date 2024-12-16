@@ -73,6 +73,9 @@
         {
             GenerateFluent();
             GenerateTerminal();
+
+            //// TODO icastablemixin; you never really figured out the design for this
+            //// TODO ioftypeable; this is suposed to be non-generic...
         }
 
         private static void GenerateTerminal()
@@ -806,6 +809,17 @@
                 overloadParameters: "Func<object, decimal> selector",
                 resultType: "decimal",
                 arguments: "element => (decimal)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "MinBy",
+                overload: "MinByWithComparer",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector, IComparer<TKey>? comparer",
+                resultType: "object?",
+                arguments: "element => element, Comparer<object>.Default",
                 sourceElementCount: "1"
                 );
 
