@@ -950,6 +950,72 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumElementsWithSingleSelector",
+                overloadReturnType: "float",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, float> selector",
+                resultType: "float",
+                arguments: "element => (float)element.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumElementsWithNullableSingleSelector",
+                overloadReturnType: "float?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, float?> selector",
+                resultType: "float?",
+                arguments: "element => (float?)element.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumElementsWithNullableInt32Selector",
+                overloadReturnType: "int?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, int?> selector",
+                resultType: "int?",
+                arguments: "element => (int?)element.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumElementsWithDoubleSelector",
+                overloadReturnType: "double",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, double> selector",
+                resultType: "double",
+                arguments: "element => (double)element.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumElementsWithNullableInt64Selector",
+                overloadReturnType: "long?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, long?> selector",
+                resultType: "long?",
+                arguments: "element => (long?)element.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumElementsWithNullableDecimalSelector",
+                overloadReturnType: "decimal?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, decimal?> selector",
+                resultType: "decimal?",
+                arguments: "element => (decimal?)element.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
