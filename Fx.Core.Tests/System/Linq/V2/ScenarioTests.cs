@@ -886,6 +886,17 @@
 
             GenerateTerminal(
                 operation: "SingleOrDefault",
+                overload: "SingleOrDefaultWithPredicate",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate",
+                resultType: "object",
+                arguments: "element => true",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "SingleOrDefault",
                 overload: "SingleOrDefault",
                 overloadReturnType: "object?",
                 overloadTypeParameters: "",
