@@ -838,6 +838,17 @@
 
             //// TODO skipping orderbyable and orderbydescendingable; they probably deserve their own category
 
+            GenerateTerminal(
+                operation: "SequenceEqual",
+                overload: "SequenceEqual",
+                overloadReturnType: "bool",
+                overloadTypeParameters: "",
+                overloadParameters: "IV2Enumerable<object> second",
+                resultType: "BoolAdapter",
+                arguments: "new[] { BoolAdapter.True }.ToV2Enumerable()",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
