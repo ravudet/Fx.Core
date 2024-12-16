@@ -882,8 +882,6 @@
                 sourceElementCount: "1"
                 );
 
-            //// TODO pick up here...
-
             GenerateTerminal(
                 operation: "SingleOrDefault",
                 overload: "SingleOrDefaultWithPredicateAndDefaultValue",
@@ -928,6 +926,8 @@
                 sourceElementCount: "1"
                 );
 
+            //// TODO skipping sum overloads that define the type of the elements; they probably belong in a different category than the other "terminal" tests
+
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsAsInt32s",
@@ -936,16 +936,6 @@
                 overloadParameters: "Func<object, int> selector",
                 resultType: "int",
                 arguments: "element => (int)element.GetHashCode()",
-                sourceElementCount: "1"
-                );
-            GenerateTerminal(
-                operation: "Sum",
-                overload: "SumElementsAsInt64s",
-                overloadReturnType: "long",
-                overloadTypeParameters: "",
-                overloadParameters: "Func<object, long> selector",
-                resultType: "long",
-                arguments: "element => (long)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
 
@@ -957,6 +947,19 @@
                 overloadParameters: "Func<object, double?> selector",
                 resultType: "double?",
                 arguments: "element => (double?)element.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            //// TODO pick up here...
+
+            GenerateTerminal(
+                operation: "Sum",
+                overload: "SumElementsAsInt64s",
+                overloadReturnType: "long",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, long> selector",
+                resultType: "long",
+                arguments: "element => (long)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
 
