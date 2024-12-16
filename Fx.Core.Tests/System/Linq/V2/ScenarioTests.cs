@@ -886,6 +886,17 @@
 
             GenerateTerminal(
                 operation: "SingleOrDefault",
+                overload: "SingleOrDefaultWithPredicateAndDefaultValue",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate, object defaultValue",
+                resultType: "object",
+                arguments: "element => true, singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "SingleOrDefault",
                 overload: "SingleOrDefaultWithPredicate",
                 overloadReturnType: "object?",
                 overloadTypeParameters: "",
