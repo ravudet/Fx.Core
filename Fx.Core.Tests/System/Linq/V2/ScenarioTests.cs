@@ -664,6 +664,19 @@
                 sourceElementCount: "1"
                 );
 
+            //// TODO skipping min overloads that define the type of the elements; they probably belong in a different category than the other "terminal" tests
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithInt32Selector",
+                overloadReturnType: "int",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, int> selector",
+                resultType: "int",
+                arguments: "element => (int)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
