@@ -68,11 +68,18 @@
     [TestClass]
     public sealed class ScenarioTests
     {
+        private static void GenerateTyped()
+        {
+            //// TODO fill in the "nonsense" column of the "typed" template
+            //// TODO pick up here
+        }
+
         [TestMethod]
         public void Generate()
         {
             GenerateFluent();
             GenerateTerminal();
+            GenerateTyped();
 
             //// TODO icastablemixin; you never really figured out the design for this
             //// TODO ioftypeable; this is suposed to be non-generic...
@@ -288,7 +295,7 @@
                 overloadReturnType: "int",
                 overloadTypeParameters: "",
                 overloadParameters: "",
-                resultType: "int",
+                resultType: "BoolAdapter",
                 arguments: "",
                 sourceElementCount: "Element.GetHashCode()"
                 );
@@ -1038,7 +1045,11 @@
                 sourceElementCount: "1"
                 );
 
-            //// TODO pick up here...
+            //// TODO skipping toarray, todictionary, tohashset, and tolist; they result in concrete collection types and probably deserve their own category
+
+            //// TODO skipping tolookupable; probably belongs in the same category as orderby
+
+            //// TODO skipping TryGetNonEnumeratedCount because it has an out parameter
         }
 
         private static void GenerateTerminal(

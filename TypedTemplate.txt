@@ -1,0 +1,555 @@
+namespace System.Linq.V2
+{
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    public sealed partial class V2EnumerableUnitTests
+    {
+        // mixin vs no mixin
+        // overload vs no overload
+        // monad vs no monad
+        // source is mixin vs source is not mixin
+
+/*
+        fluent   terminal    mixin   overload    monad   sourcemixin    nonsense
+                             T       T           T       T              if there's an overload, the monad won't get called
+                             T       T           T       F              if there's an overload, the monad won't get called
+                             T       T           F       T              if there's an overload, the monad won't get called
+                             T       T           F       F              if there's an overload, the monad won't get called
+                             T       F           T       T
+                             T       F           T       F
+                             T       F           F       T
+                             T       F           F       F
+                             F       T           T       T
+                             F       T           T       F
+                             F       T           F       T
+                             F       T           F       F
+                             F       F           T       T
+                             F       F           T       F
+                             F       F           F       T
+                             F       F           F       F
+*/
+
+        [TestMethod]
+        public void {1}MixinWithOverload()
+        {
+            var enumerable = new Mock{1}MixinWithOverload().AsV2Enumerable();
+            var singleton = Mock{1}MixinWithOverload.Result;
+            var {8}ed = enumerable.{0}({6});
+            Assert.AreEqual<{5}>(singleton, {8}ed);
+        }
+
+        private sealed class Mock{1}MixinWithOverload : I{0}ableMixin<object>
+        {
+            public static {5} Result { get; } = new object().GetHashCode();
+
+            public {2} {0}{3}({4})
+            {
+                return ({2})Result;
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [TestMethod]
+        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        {
+            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+            var {8}ed = enumerable.{0}({6});
+            Assert.AreEqual<{5}>(singleton, {8}ed);
+        }
+
+        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        {
+            public static {5} Result { get; } = new object().GetHashCode();
+
+            private static class ResultMonadFactory<T>
+            {
+                private static Unit<T> factory;
+
+                static ResultMonadFactory()
+                {
+                    ResultMonad<T>.SetFactory();
+                    if (factory == null)
+                    {
+                        throw new NotSupportedException("The SetFactory method did not set the factory");
+                    }
+                }
+
+                public static Unit<T> Factory
+                {
+                    get
+                    {
+                        return factory;
+                    }
+                    set
+                    {
+                        if (factory != null)
+                        {
+                            throw new NotSupportedException("Cannot set the factory after initialization");
+                        }
+
+                        factory = value;
+                    }
+                }
+            }
+
+            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
+
+            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            {
+                private SourceEnumerable()
+                {
+                }
+
+                public static SourceEnumerable Instance { get; } = new SourceEnumerable();
+
+                public {2} {0}{3}({4})
+                {
+                    return ({2})Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                }
+
+                public IEnumerator<object> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return ResultMonadFactory<TSource>.Factory;
+            }
+
+            public sealed class ResultMonad<T> : IEnumerableMonad<T>
+            {
+                public static void SetFactory()
+                {
+                    ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
+                }
+
+                private ResultMonad(IV2Enumerable<T> source)
+                {
+                    this.Source = source;
+                }
+
+                public IV2Enumerable<T> Source { get; }
+
+                public Unit<TSource> Unit<TSource>()
+                {
+                    return ResultMonadFactory<TSource>.Factory;
+                }
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [TestMethod]
+        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        {
+            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
+            var {8}ed = enumerable.{0}({6});
+            Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
+        }
+
+        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        {
+            public static object Element { get; } = ({5})new object().GetHashCode();
+
+            private static class ResultMonadFactory<T>
+            {
+                private static Unit<T> factory;
+
+                static ResultMonadFactory()
+                {
+                    ResultMonad<T>.SetFactory();
+                    if (factory == null)
+                    {
+                        throw new NotSupportedException("The SetFactory method did not set the factory");
+                    }
+                }
+
+                public static Unit<T> Factory
+                {
+                    get
+                    {
+                        return factory;
+                    }
+                    set
+                    {
+                        if (factory != null)
+                        {
+                            throw new NotSupportedException("Cannot set the factory after initialization");
+                        }
+
+                        factory = value;
+                    }
+                }
+            }
+
+            public IV2Enumerable<object> Source { get; } = Enumerable.Repeat(Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, {7}).ToV2Enumerable();
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return ResultMonadFactory<TSource>.Factory;
+            }
+
+            public sealed class ResultMonad<T> : IEnumerableMonad<T>
+            {
+                public static void SetFactory()
+                {
+                    ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
+                }
+
+                private ResultMonad(IV2Enumerable<T> source)
+                {
+                    this.Source = source;
+                }
+
+                public IV2Enumerable<T> Source { get; }
+
+                public Unit<TSource> Unit<TSource>()
+                {
+                    return ResultMonadFactory<TSource>.Factory;
+                }
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [TestMethod]
+        public void {1}MixinWithoutOverloadAndNoMonad()
+        {
+            var enumerable = new Mock{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var singleton = Mock{1}MixinWithoutOverloadAndNoMonad.Element;
+            var {8}ed = enumerable.{0}({6});
+            Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
+        }
+
+        private sealed class Mock{1}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>
+        {
+            public static object Element { get; } = ({5})new object().GetHashCode();
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                for (int i = 0; i < {7}; ++i)
+                {
+                    yield return Element;
+                }
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [TestMethod]
+        public void {1}NoMixinAndMonadWhereSourceIsMixin()
+        {
+            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result;
+            var {8}ed = enumerable.{0}({6});
+            Assert.AreEqual<{5}>(singleton, {8}ed);
+        }
+
+        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        {
+            public static {5} Result { get; } = new object().GetHashCode();
+
+            private static class ResultMonadFactory<T>
+            {
+                private static Unit<T> factory;
+
+                static ResultMonadFactory()
+                {
+                    ResultMonad<T>.SetFactory();
+                    if (factory == null)
+                    {
+                        throw new NotSupportedException("The SetFactory method did not set the factory");
+                    }
+                }
+
+                public static Unit<T> Factory
+                {
+                    get
+                    {
+                        return factory;
+                    }
+                    set
+                    {
+                        if (factory != null)
+                        {
+                            throw new NotSupportedException("Cannot set the factory after initialization");
+                        }
+
+                        factory = value;
+                    }
+                }
+            }
+
+            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
+
+            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            {
+                private SourceEnumerable()
+                {
+                }
+
+                public static SourceEnumerable Instance { get; } = new SourceEnumerable();
+
+                public {2} {0}{3}({4})
+                {
+                    return ({2})Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result;
+                }
+
+                public IEnumerator<object> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return ResultMonadFactory<TSource>.Factory;
+            }
+
+            public sealed class ResultMonad<T> : IEnumerableMonad<T>
+            {
+                public static void SetFactory()
+                {
+                    ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
+                }
+
+                private ResultMonad(IV2Enumerable<T> source)
+                {
+                    this.Source = source;
+                }
+
+                public IV2Enumerable<T> Source { get; }
+
+                public Unit<TSource> Unit<TSource>()
+                {
+                    return ResultMonadFactory<TSource>.Factory;
+                }
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [TestMethod]
+        public void {1}NoMixinAndMonadWhereSourceIsNotMixin()
+        {
+            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = Mock{1}NoMixinAndMonadWhereSourceIsNotMixin.Element;
+            var {8}ed = enumerable.{0}({6});
+            Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
+        }
+
+        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        {
+            private static class ResultMonadFactory<T>
+            {
+                private static Unit<T> factory;
+
+                static ResultMonadFactory()
+                {
+                    ResultMonad<T>.SetFactory();
+                    if (factory == null)
+                    {
+                        throw new NotSupportedException("The SetFactory method did not set the factory");
+                    }
+                }
+
+                public static Unit<T> Factory
+                {
+                    get
+                    {
+                        return factory;
+                    }
+                    set
+                    {
+                        if (factory != null)
+                        {
+                            throw new NotSupportedException("Cannot set the factory after initialization");
+                        }
+
+                        factory = value;
+                    }
+                }
+            }
+
+            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
+
+            public static object Element { get; } = ({5})new object().GetHashCode();
+
+            private sealed class SourceEnumerable : IV2Enumerable<object>
+            {
+                private SourceEnumerable()
+                {
+                }
+
+                public static SourceEnumerable Instance { get; } = new SourceEnumerable();
+
+                public IEnumerator<object> GetEnumerator()
+                {
+                    for (int i = 0; i < {7}; ++i)
+                    {
+                        yield return Element;
+                    }
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            public Unit<TSource> Unit<TSource>()
+            {
+                return ResultMonadFactory<TSource>.Factory;
+            }
+
+            public sealed class ResultMonad<T> : IEnumerableMonad<T>
+            {
+                public static void SetFactory()
+                {
+                    ResultMonadFactory<T>.Factory = (IV2Enumerable<T> source) => new ResultMonad<T>(source);
+                }
+
+                private ResultMonad(IV2Enumerable<T> source)
+                {
+                    this.Source = source;
+                }
+
+                public IV2Enumerable<T> Source { get; }
+
+                public Unit<TSource> Unit<TSource>()
+                {
+                    return ResultMonadFactory<TSource>.Factory;
+                }
+
+                public IEnumerator<T> GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+
+                IEnumerator IEnumerable.GetEnumerator()
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [TestMethod]
+        public void {1}NoMixinAndNoMonad()
+        {
+            var enumerable = new Mock{1}NoMixinAndNoMonad().AsV2Enumerable();
+            var singleton = Mock{1}NoMixinAndNoMonad.Element;
+            var {8}ed = enumerable.{0}({6});
+            Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
+        }
+
+        private sealed class Mock{1}NoMixinAndNoMonad : IV2Enumerable<object>
+        {
+            public static object Element { get; } = ({5})new object().GetHashCode();
+
+            public IEnumerator<object> GetEnumerator()
+            {
+                for (int i = 0; i < {7}; ++i)
+                {
+                    yield return Element;
+                }
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+    }
+}
