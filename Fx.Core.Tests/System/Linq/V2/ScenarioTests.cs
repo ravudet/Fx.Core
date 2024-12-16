@@ -76,6 +76,8 @@
 
             //// TODO icastablemixin; you never really figured out the design for this
             //// TODO ioftypeable; this is suposed to be non-generic...
+            //// TODO any other TODOs from the rest of this class
+            //// TODO figure out how you want to add this code generation to the repo for real (t4 or something?)
         }
 
         private static void GenerateTerminal()
@@ -833,6 +835,8 @@
                 arguments: "element => element",
                 sourceElementCount: "1"
                 );
+
+            //// TODO skipping orderbyable and orderbydescendingable; they probably deserve their own category
 
             //// TODO pick up here...
 
