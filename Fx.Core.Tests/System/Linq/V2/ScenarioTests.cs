@@ -653,6 +653,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "MaxBy",
+                overload: "MaxByWithComparer",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector, IComparer<TKey>? comparer",
+                resultType: "object?",
+                arguments: "element => element, Comparer<object>.Default",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
