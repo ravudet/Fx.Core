@@ -1016,8 +1016,6 @@
                 sourceElementCount: "1"
                 );
 
-            //// TODO pick up here...
-
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsAsInt64s",
@@ -1039,6 +1037,8 @@
                 arguments: "element => (decimal)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
+
+            //// TODO pick up here...
         }
 
         private static void GenerateTerminal(
