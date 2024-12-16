@@ -871,6 +871,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "Single",
+                overload: "SingleWithPredicate",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, bool> predicate",
+                resultType: "object",
+                arguments: "element => true",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
