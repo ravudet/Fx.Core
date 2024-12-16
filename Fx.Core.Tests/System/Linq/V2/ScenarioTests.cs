@@ -886,6 +886,17 @@
 
             GenerateTerminal(
                 operation: "SingleOrDefault",
+                overload: "SingleOrDefault",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "object",
+                arguments: "",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "SingleOrDefault",
                 overload: "SingleOrDefaultWithDefaultValue",
                 overloadReturnType: "object",
                 overloadTypeParameters: "",
