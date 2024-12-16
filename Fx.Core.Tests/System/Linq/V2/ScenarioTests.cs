@@ -642,6 +642,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "MaxBy",
+                overload: "MaxBy",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector",
+                resultType: "object?",
+                arguments: "element => element",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
