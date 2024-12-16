@@ -677,6 +677,138 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithInt64Selector",
+                overloadReturnType: "long",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, long> selector",
+                resultType: "long",
+                arguments: "element => (long)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithNullableDecimalSelector",
+                overloadReturnType: "decimal?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, decimal?> selector",
+                resultType: "decimal?",
+                arguments: "element => (decimal?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithNullableDoubleSelector",
+                overloadReturnType: "double?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, double?> selector",
+                resultType: "double?",
+                arguments: "element => (double?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithNullableInt32Selector",
+                overloadReturnType: "int?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, int?> selector",
+                resultType: "int?",
+                arguments: "element => (int?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithNullableSingleSelector",
+                overloadReturnType: "float?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, float?> selector",
+                resultType: "float?",
+                arguments: "element => (float?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithSingleSelector",
+                overloadReturnType: "float",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, float> selector",
+                resultType: "float",
+                arguments: "element => (float)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithSelector",
+                overloadReturnType: "TResult?",
+                overloadTypeParameters: "<TResult>",
+                overloadParameters: "Func<object, TResult> selector",
+                resultType: "object?",
+                arguments: "element => element",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithDoubleSelector",
+                overloadReturnType: "double",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, double> selector",
+                resultType: "double",
+                arguments: "element => (double)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithNullableInt64Selector",
+                overloadReturnType: "long?",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, long?> selector",
+                resultType: "long?",
+                arguments: "element => (long?)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "Min",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "object?",
+                arguments: "element => element",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithComparer",
+                overloadReturnType: "object?",
+                overloadTypeParameters: "",
+                overloadParameters: "IComparer<object>? comparer",
+                resultType: "object?",
+                arguments: "Comparer<object>.Default",
+                sourceElementCount: "1"
+                );
+
+            GenerateTerminal(
+                operation: "Min",
+                overload: "MinWithDecimalSelector",
+                overloadReturnType: "decimal",
+                overloadTypeParameters: "",
+                overloadParameters: "Func<object, decimal> selector",
+                resultType: "decimal",
+                arguments: "element => (decimal)singleton.GetHashCode()",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
