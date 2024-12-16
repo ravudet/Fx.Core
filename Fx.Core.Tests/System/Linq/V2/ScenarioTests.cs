@@ -860,6 +860,17 @@
                 sourceElementCount: "1"
                 );
 
+            GenerateTerminal(
+                operation: "Single",
+                overload: "Single",
+                overloadReturnType: "object",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "object",
+                arguments: "",
+                sourceElementCount: "1"
+                );
+
             //// TODO pick up here...
 
             GenerateTerminal(
