@@ -8,6 +8,35 @@
     using System.Numerics;
     using System.Reflection.Metadata.Ecma335;
 
+    public sealed partial class V2EnumerableUnitTests
+    {
+        [TestMethod]
+        public void AverageDecimalMixinWithOverload()
+        {
+
+        }
+
+        private sealed class MockAverageDecimalMixinWithOverload : IAverageableDecimalMixin
+        {
+            public static decimal Result { get; } = new object().GetHashCode();
+
+            public decimal Average()
+            {
+                return Result;
+            }
+
+            public IEnumerator<decimal> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+        }
+    }
+
     public interface IEnumerableFactories
     {
         static abstract IV2Enumerable<T> Empty<T>();
@@ -148,10 +177,62 @@
     [TestClass]
     public sealed class ScenarioTests
     {
+        private static void GenerateTyped(
+            string operation,
+            string overload,
+            string overloadReturnType,
+            string overloadTypeParameters,
+            string overloadParameters,
+            string resultType/*,
+            string arguments,
+            string sourceElementCount*/)
+        {
+            var template = System.IO.File.ReadAllText(@"C:\github\Fx.Core\TypedTemplate.txt");
+            var escapedTemplate = template
+                .Replace("{", "{{")
+                .Replace("}", "}}")
+                .Replace("{{0}}", "{0}")
+                .Replace("{{1}}", "{1}")
+                .Replace("{{2}}", "{2}")
+                .Replace("{{3}}", "{3}")
+                .Replace("{{4}}", "{4}")
+                .Replace("{{5}}", "{5}")
+                /*.Replace("{{6}}", "{6}")
+                .Replace("{{7}}", "{7}")
+                .Replace("{{8}}", "{8}")*/
+                ;
+
+            var generated = string.Format(
+                escapedTemplate,
+                operation,
+                overload,
+                overloadReturnType,
+                overloadTypeParameters,
+                overloadParameters,
+                resultType,
+                /*arguments,
+                sourceElementCount,*/
+                operation.ToLower()
+                );
+
+            var unescapedGenerated = generated
+                .Replace("{{", "{")
+                .Replace("}}", "}");
+            System.IO.File.WriteAllText($@"C:\github\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{overload}.cs", unescapedGenerated);
+        }
+
         private static void GenerateTyped()
         {
             //// TODO fill in a table for the typed template
             //// TODO pick up here
+
+            GenerateTyped(
+                operation: "Average",
+                overload: "Decimal",
+                overloadReturnType: "decimal",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "decimal");
         }
 
         [TestMethod]
@@ -375,7 +456,7 @@
                 overloadReturnType: "int",
                 overloadTypeParameters: "",
                 overloadParameters: "",
-                resultType: "BoolAdapter",
+                resultType: "int",
                 arguments: "",
                 sourceElementCount: "Element.GetHashCode()"
                 );
