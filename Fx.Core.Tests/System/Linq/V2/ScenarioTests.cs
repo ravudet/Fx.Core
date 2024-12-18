@@ -65,54 +65,86 @@
         }
     }
 
-    /// <summary>
-    /// these are some extensions that include, among other things (though left out of this implementation because i was lazy), the ability to compute the average of sequence of decimals in some optimal way
-    /// 
-    /// this means that if we end up going from `t` -> `decimal` at some point (like a select), we should be able to average in teh optimal way
-    /// 
-    /// it also means that if we end up going from `t` -> `decimal` -> `string` -> `decimal`, we should still be able to avarege in teh optimal way 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public sealed class SomeExtensions<T> : IEnumerableMonad<T>
+    public static class SomeExtensionsExtensions
     {
-        public IV2Enumerable<T> Source => throw new NotImplementedException();
-
-        public IEnumerator<T> GetEnumerator()
+        public static IEnumerableMonad<T> ToSomeExtensions<T>(this IV2Enumerable<T> enumerable)
         {
-            throw new NotImplementedException();
+            if (typeof(decimal) == typeof(T))
+            {
+                return (IEnumerableMonad<T>)new AverageDecimalMixin((IV2Enumerable<decimal>)enumerable).AsV2Enumerable();
+            }
+            else
+            {
+                return new SomeExtensions<T>(enumerable);
+            }
         }
 
-        public Unit<TSource> Unit<TSource>()
+        /// <summary>
+        /// these are some extensions that include, among other things (though left out of this implementation because i was lazy), the ability to compute the average of sequence of decimals in some optimal way
+        /// 
+        /// this means that if we end up going from `t` -> `decimal` at some point (like a select), we should be able to average in teh optimal way
+        /// 
+        /// it also means that if we end up going from `t` -> `decimal` -> `string` -> `decimal`, we should still be able to avarege in teh optimal way 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        private sealed class SomeExtensions<T> : IEnumerableMonad<T>
         {
-            
+            public SomeExtensions(IV2Enumerable<T> source)
+            {
+                // it is imperative that this is only called by `tosomeextensions` because otherwise we have no way to overload the average of decimal functionality
+                this.Source = source;
+            }
+
+            public IV2Enumerable<T> Source { get; }
+
+            public IEnumerator<T> GetEnumerator()
+            {
+                return this.Source.GetEnumerator();
+            }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return ToSomeExtensions;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return ((IEnumerable)this.Source).GetEnumerator();
+            }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        private sealed class AverageDecimalMixin : IAverageableDecimalMixin, IEnumerableMonad<decimal>
         {
-            throw new NotImplementedException();
+            public AverageDecimalMixin(IV2Enumerable<decimal> source)
+            {
+                this.Source = source;
+            }
+
+            public IV2Enumerable<decimal> Source { get; }
+
+            public IEnumerator<decimal> GetEnumerator()
+            {
+                return this.Source.GetEnumerator();
+            }
+
+            public Unit<TSource> Unit<TSource>()
+            {
+                return ToSomeExtensions;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return ((IEnumerable)this.Source).GetEnumerator();
+            }
+
+            public decimal Average()
+            {
+                // no wonder it's so fast!
+                return 0;
+            }
         }
     }
-
-    public sealed class AverageDecimalMixin : IAverageableDecimalMixin, IEnumerableMonad<decimal>
-    {
-        public IV2Enumerable<decimal> Source => throw new NotImplementedException();
-
-        public IEnumerator<decimal> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Unit<TSource> Unit<TSource>()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
+    
     [TestClass]
     public sealed class ScenarioTests
     {

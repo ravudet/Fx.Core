@@ -2,7 +2,7 @@
 {
     public delegate IEnumerableMonad<TSource> Unit<TSource>(IV2Enumerable<TSource> source);
 
-    public interface IEnumerableMonad<TElement> : IV2Enumerable<TElement>
+    public interface IEnumerableMonad<out TElement> : IV2Enumerable<TElement>
     {
         IV2Enumerable<TElement> Source { get; }
 
