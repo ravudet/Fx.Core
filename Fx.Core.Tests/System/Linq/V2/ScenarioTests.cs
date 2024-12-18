@@ -226,13 +226,13 @@
             //// TODO fill in a table for the typed template
             //// TODO pick up here
 
-            GenerateTyped(
+            /*GenerateTyped(
                 operation: "Average",
                 overload: "Decimal",
                 overloadReturnType: "decimal",
                 overloadTypeParameters: "",
                 overloadParameters: "",
-                resultType: "decimal");
+                resultType: "decimal");*/
         }
 
         [TestMethod]
