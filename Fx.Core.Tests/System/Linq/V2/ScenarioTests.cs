@@ -65,6 +65,54 @@
         }
     }
 
+    /// <summary>
+    /// these are some extensions that include, among other things (though left out of this implementation because i was lazy), the ability to compute the average of sequence of decimals in some optimal way
+    /// 
+    /// this means that if we end up going from `t` -> `decimal` at some point (like a select), we should be able to average in teh optimal way
+    /// 
+    /// it also means that if we end up going from `t` -> `decimal` -> `string` -> `decimal`, we should still be able to avarege in teh optimal way 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public sealed class SomeExtensions<T> : IEnumerableMonad<T>
+    {
+        public IV2Enumerable<T> Source => throw new NotImplementedException();
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Unit<TSource> Unit<TSource>()
+        {
+            
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public sealed class AverageDecimalMixin : IAverageableDecimalMixin, IEnumerableMonad<decimal>
+    {
+        public IV2Enumerable<decimal> Source => throw new NotImplementedException();
+
+        public IEnumerator<decimal> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Unit<TSource> Unit<TSource>()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     [TestClass]
     public sealed class ScenarioTests
     {
