@@ -70,7 +70,7 @@
     {
         private static void GenerateTyped()
         {
-            //// TODO fill in the "nonsense" column of the "typed" template
+            //// TODO fill in a table for the typed template
             //// TODO pick up here
         }
 
