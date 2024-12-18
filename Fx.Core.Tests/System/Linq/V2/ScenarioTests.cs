@@ -197,12 +197,12 @@
                 .Replace("{{3}}", "{3}")
                 .Replace("{{4}}", "{4}")
                 .Replace("{{5}}", "{5}")
+                /*.Replace("{{6}}", "{6}")
+                .Replace("{{7}}", "{7}")*/
                 .Replace("{{6}}", string.Empty)
                 .Replace("{{7}}", string.Empty)
+                ////.Replace("{{8}}", "{8}")
                 .Replace("{{8}}", string.Empty)
-                /*.Replace("{{6}}", "{6}")
-                .Replace("{{7}}", "{7}")
-                .Replace("{{8}}", "{8}")*/
                 ;
 
             var generated = string.Format(
@@ -226,9 +226,7 @@
 
         private static void GenerateTyped()
         {
-            //// TODO fill in a table for the typed template
-            //// TODO pick up here
-
+            //// TODO get this one working for all tests, then move on
             GenerateTyped(
                 operation: "Average",
                 overload: "Decimal",
@@ -236,6 +234,9 @@
                 overloadTypeParameters: "",
                 overloadParameters: "",
                 resultType: "decimal");
+
+            //// TODO put tables in each corresponding file
+            //// TODO pick up here
         }
 
         [TestMethod]

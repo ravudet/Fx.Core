@@ -63,7 +63,7 @@ mixin   overload    monad   sourcemixin     nonsense                            
 T       T           T       T               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
 T       T           T       F               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
 T       T           F       T               if there's no monad, there's won't be a sourcemixin
-T       T           F       F
+T       T           F       F                                                                           MixinWithOverload
 T       F           T       T
 T       F           T       F
 T       F           F       T               if there's no monad, there's won't be a sourcemixin
@@ -108,16 +108,16 @@ F       F           F       F
             }
         }
 
-        /*[TestMethod]
-        public void DecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        [TestMethod]
+        public void AverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+            var enumerable = new MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var ed = enumerable.Average();
             Assert.AreEqual<decimal>(singleton, ed);
         }
 
-        private sealed class MockDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin : IAverageableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin : IAverageableDecimalMixin, IEnumerableMonad<decimal>
         {
             public static decimal Result { get; } = new object().GetHashCode();
 
@@ -152,9 +152,9 @@ F       F           F       F
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
+            public IV2Enumerable<decimal> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IAverageableMixin<object>
+            private sealed class SourceEnumerable : IAverageableMixin<decimal>
             {
                 private SourceEnumerable()
                 {
@@ -164,10 +164,10 @@ F       F           F       F
 
                 public decimal Average()
                 {
-                    return (decimal)MockDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (decimal)MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
-                public IEnumerator<object> GetEnumerator()
+                public IEnumerator<decimal> GetEnumerator()
                 {
                     throw new NotImplementedException();
                 }
@@ -213,7 +213,7 @@ F       F           F       F
                 }
             }
 
-            public IEnumerator<object> GetEnumerator()
+            public IEnumerator<Decimal> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -224,7 +224,7 @@ F       F           F       F
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void DecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();

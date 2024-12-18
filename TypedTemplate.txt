@@ -63,7 +63,7 @@ mixin   overload    monad   sourcemixin     nonsense                            
 T       T           T       T               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
 T       T           T       F               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
 T       T           F       T               if there's no monad, there's won't be a sourcemixin
-T       T           F       F
+T       T           F       F                                                                           MixinWithOverload
 T       F           T       T
 T       F           T       F
 T       F           F       T               if there's no monad, there's won't be a sourcemixin
@@ -108,16 +108,16 @@ F       F           F       F
             }
         }
 
-        /*[TestMethod]
-        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        [TestMethod]
+        public void {0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+            var enumerable = new Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var {8}ed = enumerable.{0}({6});
             Assert.AreEqual<{5}>(singleton, {8}ed);
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}able{1}Mixin, IEnumerableMonad<decimal>
         {
             public static {5} Result { get; } = new object().GetHashCode();
 
@@ -152,9 +152,9 @@ F       F           F       F
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
+            public IV2Enumerable<decimal> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            private sealed class SourceEnumerable : I{0}ableMixin<decimal>
             {
                 private SourceEnumerable()
                 {
@@ -164,10 +164,10 @@ F       F           F       F
 
                 public {2} {0}{3}({4})
                 {
-                    return ({2})Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return ({2})Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
-                public IEnumerator<object> GetEnumerator()
+                public IEnumerator<decimal> GetEnumerator()
                 {
                     throw new NotImplementedException();
                 }
@@ -213,7 +213,7 @@ F       F           F       F
                 }
             }
 
-            public IEnumerator<object> GetEnumerator()
+            public IEnumerator<{1}> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -224,7 +224,7 @@ F       F           F       F
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void {1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
