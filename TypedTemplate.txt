@@ -53,6 +53,30 @@ F       F           T       T                                                   
 F       F           T       F                                                                           NoMixinAndMonadWhereSourceIsNotMixin
 F       F           F       T               if there's no monad, there's won't be a sourcemixin
 F       F           F       F                                                                           NoMixinAndNoMonad
+
+
+
+
+
+
+mixin   overload    monad   sourcemixin     nonsense                                                    typed
+T       T           T       T               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
+T       T           T       F               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
+T       T           F       T               if there's no monad, there's won't be a sourcemixin
+T       T           F       F
+T       F           T       T
+T       F           T       F
+T       F           F       T               if there's no monad, there's won't be a sourcemixin
+T       F           F       F
+F       T           T       T               if there's no mixin, there can't be an overload
+F       T           T       F               if there's no mixin, there can't be an overload
+F       T           F       T               if there's no mixin, there can't be an overload
+F       T           F       F               if there's no mixin, there can't be an overload
+F       F           T       T
+F       F           T       F
+F       F           F       T               if there's no monad, there's won't be a sourcemixin
+F       F           F       F
+
 */
 
         [TestMethod]
