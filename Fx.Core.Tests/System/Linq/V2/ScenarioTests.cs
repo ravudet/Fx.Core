@@ -197,6 +197,9 @@
                 .Replace("{{3}}", "{3}")
                 .Replace("{{4}}", "{4}")
                 .Replace("{{5}}", "{5}")
+                .Replace("{{6}}", string.Empty)
+                .Replace("{{7}}", string.Empty)
+                .Replace("{{8}}", string.Empty)
                 /*.Replace("{{6}}", "{6}")
                 .Replace("{{7}}", "{7}")
                 .Replace("{{8}}", "{8}")*/
@@ -226,13 +229,13 @@
             //// TODO fill in a table for the typed template
             //// TODO pick up here
 
-            /*GenerateTyped(
+            GenerateTyped(
                 operation: "Average",
                 overload: "Decimal",
                 overloadReturnType: "decimal",
                 overloadTypeParameters: "",
                 overloadParameters: "",
-                resultType: "decimal");*/
+                resultType: "decimal");
         }
 
         [TestMethod]
