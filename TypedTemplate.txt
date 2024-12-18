@@ -13,8 +13,6 @@ namespace System.Linq.V2
         // source is mixin vs source is not mixin
 
 /*
-        fluent                                                  
-
 mixin   overload    monad   sourcemixin     nonsense                                                     terminal
 T       T           T       T               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
 T       T           T       F               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
