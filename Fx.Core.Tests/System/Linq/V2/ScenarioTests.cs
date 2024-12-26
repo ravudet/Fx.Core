@@ -335,6 +335,16 @@
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
+            GenerateTyped(
+                operation: "Max",
+                overload: "Double",
+                overloadReturnType: "double",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "double",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
             //// TODO pick up here
         }
 
