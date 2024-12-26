@@ -183,9 +183,9 @@
             string overloadReturnType,
             string overloadTypeParameters,
             string overloadParameters,
-            string resultType/*,
+            string resultType,
             string arguments,
-            string sourceElementCount*/)
+            string sourceElementCount)
         {
             var template = System.IO.File.ReadAllText(@"C:\github\Fx.Core\TypedTemplate.txt");
             var escapedTemplate = template
@@ -197,12 +197,11 @@
                 .Replace("{{3}}", "{3}")
                 .Replace("{{4}}", "{4}")
                 .Replace("{{5}}", "{5}")
-                /*.Replace("{{6}}", "{6}")
-                .Replace("{{7}}", "{7}")*/
+                .Replace("{{6}}", "{6}")
+                .Replace("{{7}}", "{7}")
                 .Replace("{{6}}", string.Empty)
                 .Replace("{{7}}", string.Empty)
-                ////.Replace("{{8}}", "{8}")
-                .Replace("{{8}}", string.Empty)
+                .Replace("{{8}}", "{8}")
                 ;
 
             var generated = string.Format(
@@ -213,8 +212,8 @@
                 overloadTypeParameters,
                 overloadParameters,
                 resultType,
-                /*arguments,
-                sourceElementCount,*/
+                arguments,
+                sourceElementCount,
                 operation.ToLower()
                 );
 
@@ -233,7 +232,9 @@
                 overloadReturnType: "decimal",
                 overloadTypeParameters: "",
                 overloadParameters: "",
-                resultType: "decimal");
+                resultType: "decimal",
+                arguments: string.Empty,
+                sourceElementCount: "1");
 
             //// TODO put tables in each corresponding file
             //// TODO pick up here

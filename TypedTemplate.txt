@@ -64,7 +64,7 @@ T       T           T       T               if there's an overload, the monad wo
 T       T           T       F               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
 T       T           F       T               if there's no monad, there's won't be a sourcemixin
 T       T           F       F                                                                           MixinWithOverload
-T       F           T       T
+T       F           T       T                                                                           MixinWithoutOverloadAndMonadWhereSourceIsMixin
 T       F           T       F
 T       F           F       T               if there's no monad, there's won't be a sourcemixin
 T       F           F       F
@@ -224,18 +224,18 @@ F       F           F       F
             }
         }
 
-        /*[TestMethod]
-        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        [TestMethod]
+        public void {0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
+            var enumerable = new Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var {8}ed = enumerable.{0}({6});
             Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}able{1}Mixin, IEnumerableMonad<{2}>
         {
-            public static object Element { get; } = ({5})new object().GetHashCode();
+            public static {5} Element { get; } = ({5})new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -268,7 +268,7 @@ F       F           F       F
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = Enumerable.Repeat(Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, {7}).ToV2Enumerable();
+            public IV2Enumerable<{2}> Source { get; } = Enumerable.Repeat(Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, {7}).ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -305,7 +305,7 @@ F       F           F       F
                 }
             }
 
-            public IEnumerator<object> GetEnumerator()
+            public IEnumerator<{2}> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -316,7 +316,7 @@ F       F           F       F
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void {1}MixinWithoutOverloadAndNoMonad()
         {
             var enumerable = new Mock{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
