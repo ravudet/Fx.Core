@@ -235,7 +235,6 @@
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
-            //// TODO put tables in each corresponding file
             //// TODO pick up here
         }
 
