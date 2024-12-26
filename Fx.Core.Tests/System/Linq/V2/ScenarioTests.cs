@@ -235,6 +235,16 @@
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
+            GenerateTyped(
+                operation: "Average",
+                overload: "Double",
+                overloadReturnType: "double",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                resultType: "double",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
             //// TODO pick up here
         }
 
