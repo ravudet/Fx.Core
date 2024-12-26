@@ -305,6 +305,16 @@
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
+            GenerateTyped(
+                operation: "Average",
+                overload: "NullableSingle",
+                overloadReturnType: "float?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "float?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
             //// TODO pick up here
         }
 
