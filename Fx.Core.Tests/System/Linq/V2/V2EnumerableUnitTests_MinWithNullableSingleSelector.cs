@@ -7,6 +7,32 @@ namespace System.Linq.V2
 
     public sealed partial class V2EnumerableUnitTests
     {
+/*
+dimension under test:
+1. mixin vs not a mixin
+2. mixin overload is implemented vs mixin overload is not implement
+3. monad is implemented vs monad is not implemented
+4. monad source is mixin vs monad source is not mixin
+
+mixin   overload    monad   sourcemixin     why the test sku doesn't make sense                         test name
+T       T           T       T               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
+T       T           T       F               if there's an overload, the monad won't get called and the result is terminal so it's not wrappable in the monad
+T       T           F       T               if there's no monad, there's won't be a sourcemixin
+T       T           F       F                                                                           MixinWithOverload
+T       F           T       T                                                                           MixinWithoutOverloadAndMonadWhereSourceIsMixin
+T       F           T       F                                                                           MixinWithoutOverloadAndMonadWhereSourceIsNotMixin
+T       F           F       T               if there's no monad, there's won't be a sourcemixin
+T       F           F       F                                                                           MixinWithoutOverloadAndNoMonad
+F       T           T       T               if there's no mixin, there can't be an overload
+F       T           T       F               if there's no mixin, there can't be an overload
+F       T           F       T               if there's no mixin, there can't be an overload
+F       T           F       F               if there's no mixin, there can't be an overload
+F       F           T       T                                                                           NoMixinAndMonadWhereSourceIsMixin
+F       F           T       F                                                                           NoMixinAndMonadWhereSourceIsNotMixin
+F       F           F       T               if there's no monad, there's won't be a sourcemixin
+F       F           F       F                                                                           NoMixinAndNoMonad
+*/
+
         [TestMethod]
         public void MinWithNullableSingleSelectorMixinWithOverload()
         {
