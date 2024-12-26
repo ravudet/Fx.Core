@@ -316,20 +316,20 @@ F       F           F       F
             }
         }
 
-        /*[TestMethod]
-        public void DecimalMixinWithoutOverloadAndNoMonad()
+        [TestMethod]
+        public void AverageableDecimalMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new MockDecimalMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var singleton = MockDecimalMixinWithoutOverloadAndNoMonad.Element;
+            var enumerable = new MockAverageableDecimalMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var singleton = MockAverageableDecimalMixinWithoutOverloadAndNoMonad.Element;
             var averageed = enumerable.Average();
             Assert.AreEqual<decimal>(singleton.GetHashCode(), averageed);
         }
 
-        private sealed class MockDecimalMixinWithoutOverloadAndNoMonad : IAverageableMixin<object>
+        private sealed class MockAverageableDecimalMixinWithoutOverloadAndNoMonad : IAverageableDecimalMixin
         {
-            public static object Element { get; } = (decimal)new object().GetHashCode();
+            public static decimal Element { get; } = (decimal)new object().GetHashCode();
 
-            public IEnumerator<object> GetEnumerator()
+            public IEnumerator<decimal> GetEnumerator()
             {
                 for (int i = 0; i < 1; ++i)
                 {
@@ -343,7 +343,7 @@ F       F           F       F
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void DecimalNoMixinAndMonadWhereSourceIsMixin()
         {
             var enumerable = new MockDecimalNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();

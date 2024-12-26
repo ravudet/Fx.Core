@@ -316,20 +316,20 @@ F       F           F       F
             }
         }
 
-        /*[TestMethod]
-        public void {1}MixinWithoutOverloadAndNoMonad()
+        [TestMethod]
+        public void {0}able{1}MixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var singleton = Mock{1}MixinWithoutOverloadAndNoMonad.Element;
+            var enumerable = new Mock{0}able{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var singleton = Mock{0}able{1}MixinWithoutOverloadAndNoMonad.Element;
             var {8}ed = enumerable.{0}({6});
             Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>
+        private sealed class Mock{0}able{1}MixinWithoutOverloadAndNoMonad : I{0}able{1}Mixin
         {
-            public static object Element { get; } = ({5})new object().GetHashCode();
+            public static {5} Element { get; } = ({5})new object().GetHashCode();
 
-            public IEnumerator<object> GetEnumerator()
+            public IEnumerator<{5}> GetEnumerator()
             {
                 for (int i = 0; i < {7}; ++i)
                 {
@@ -343,7 +343,7 @@ F       F           F       F
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void {1}NoMixinAndMonadWhereSourceIsMixin()
         {
             var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
