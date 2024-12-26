@@ -184,7 +184,7 @@ F       F           F       F                                                   
             var enumerable = new MockAverageableDoubleMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockAverageableDoubleMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var averageed = enumerable.Average();
-            Assert.AreEqual<double>(singleton.GetHashCode(), averageed);
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
         private sealed class MockAverageableDoubleMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IAverageableDoubleMixin, IEnumerableMonad<double>
@@ -276,7 +276,7 @@ F       F           F       F                                                   
             var enumerable = new MockAverageableDoubleMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockAverageableDoubleMixinWithoutOverloadAndNoMonad.Element;
             var averageed = enumerable.Average();
-            Assert.AreEqual<double>(singleton.GetHashCode(), averageed);
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
         private sealed class MockAverageableDoubleMixinWithoutOverloadAndNoMonad : IAverageableDoubleMixin
@@ -419,7 +419,7 @@ F       F           F       F                                                   
             var enumerable = new MockAverageableDoubleNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockAverageableDoubleNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var averageed = enumerable.Average();
-            Assert.AreEqual<double>(singleton.GetHashCode(), averageed);
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
         private sealed class MockAverageableDoubleNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<double>
@@ -533,7 +533,7 @@ F       F           F       F                                                   
             var enumerable = new MockAverageableDoubleNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockAverageableDoubleNoMixinAndNoMonad.Element;
             var averageed = enumerable.Average();
-            Assert.AreEqual<double>(singleton.GetHashCode(), averageed);
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
         private sealed class MockAverageableDoubleNoMixinAndNoMonad : IV2Enumerable<double>

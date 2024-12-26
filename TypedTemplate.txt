@@ -184,7 +184,7 @@ F       F           F       F                                                   
             var enumerable = new Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
+            Assert.AreEqual<{5}>(singleton, {8}ed);
         }
 
         private sealed class Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}able{1}Mixin, IEnumerableMonad<{2}>
@@ -276,7 +276,7 @@ F       F           F       F                                                   
             var enumerable = new Mock{0}able{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = Mock{0}able{1}MixinWithoutOverloadAndNoMonad.Element;
             var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
+            Assert.AreEqual<{5}>(singleton, {8}ed);
         }
 
         private sealed class Mock{0}able{1}MixinWithoutOverloadAndNoMonad : I{0}able{1}Mixin
@@ -419,7 +419,7 @@ F       F           F       F                                                   
             var enumerable = new Mock{0}able{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = Mock{0}able{1}NoMixinAndMonadWhereSourceIsNotMixin.Element;
             var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
+            Assert.AreEqual<{5}>(singleton, {8}ed);
         }
 
         private sealed class Mock{0}able{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<{2}>
@@ -533,7 +533,7 @@ F       F           F       F                                                   
             var enumerable = new Mock{0}able{1}NoMixinAndNoMonad().AsV2Enumerable();
             var singleton = Mock{0}able{1}NoMixinAndNoMonad.Element;
             var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
+            Assert.AreEqual<{5}>(singleton, {8}ed);
         }
 
         private sealed class Mock{0}able{1}NoMixinAndNoMonad : IV2Enumerable<{2}>

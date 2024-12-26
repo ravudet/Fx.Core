@@ -184,7 +184,7 @@ F       F           F       F                                                   
             var enumerable = new MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton.GetHashCode(), averageed);
+            Assert.AreEqual<decimal>(singleton, averageed);
         }
 
         private sealed class MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IAverageableDecimalMixin, IEnumerableMonad<decimal>
@@ -276,7 +276,7 @@ F       F           F       F                                                   
             var enumerable = new MockAverageableDecimalMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockAverageableDecimalMixinWithoutOverloadAndNoMonad.Element;
             var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton.GetHashCode(), averageed);
+            Assert.AreEqual<decimal>(singleton, averageed);
         }
 
         private sealed class MockAverageableDecimalMixinWithoutOverloadAndNoMonad : IAverageableDecimalMixin
@@ -419,7 +419,7 @@ F       F           F       F                                                   
             var enumerable = new MockAverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockAverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton.GetHashCode(), averageed);
+            Assert.AreEqual<decimal>(singleton, averageed);
         }
 
         private sealed class MockAverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<decimal>
@@ -533,7 +533,7 @@ F       F           F       F                                                   
             var enumerable = new MockAverageableDecimalNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockAverageableDecimalNoMixinAndNoMonad.Element;
             var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton.GetHashCode(), averageed);
+            Assert.AreEqual<decimal>(singleton, averageed);
         }
 
         private sealed class MockAverageableDecimalNoMixinAndNoMonad : IV2Enumerable<decimal>
