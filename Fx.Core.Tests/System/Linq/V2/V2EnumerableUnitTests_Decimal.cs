@@ -34,19 +34,19 @@ F       F           F       F                                                   
 */
 
         [TestMethod]
-        public void AverageableDecimalMixinWithOverload()
+        public void MaxableDecimalMixinWithOverload()
         {
-            var enumerable = new MockAverageableDecimalMixinWithOverload().AsV2Enumerable();
-            var singleton = MockAverageableDecimalMixinWithOverload.Result;
-            var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton, averageed);
+            var enumerable = new MockMaxableDecimalMixinWithOverload().AsV2Enumerable();
+            var singleton = MockMaxableDecimalMixinWithOverload.Result;
+            var maxed = enumerable.Max();
+            Assert.AreEqual<decimal>(singleton, maxed);
         }
 
-        private sealed class MockAverageableDecimalMixinWithOverload : IAverageableDecimalMixin
+        private sealed class MockMaxableDecimalMixinWithOverload : IMaxableDecimalMixin
         {
             public static decimal Result { get; } = new object().GetHashCode();
 
-            public decimal Average()
+            public decimal Max()
             {
                 return (decimal)Result;
             }
@@ -63,15 +63,15 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void AverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void MaxableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
-            var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton, averageed);
+            var enumerable = new MockMaxableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockMaxableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+            var maxed = enumerable.Max();
+            Assert.AreEqual<decimal>(singleton, maxed);
         }
 
-        private sealed class MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin : IAverageableDecimalMixin, IEnumerableMonad<decimal>
+        private sealed class MockMaxableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin : IMaxableDecimalMixin, IEnumerableMonad<decimal>
         {
             public static decimal Result { get; } = new object().GetHashCode();
 
@@ -108,7 +108,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<decimal> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IAverageableDecimalMixin
+            private sealed class SourceEnumerable : IMaxableDecimalMixin
             {
                 private SourceEnumerable()
                 {
@@ -116,9 +116,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public decimal Average()
+                public decimal Max()
                 {
-                    return (decimal)MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (decimal)MockMaxableDecimalMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<decimal> GetEnumerator()
@@ -179,15 +179,15 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void AverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void MaxableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton, averageed);
+            var enumerable = new MockMaxableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockMaxableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
+            var maxed = enumerable.Max();
+            Assert.AreEqual<decimal>(singleton, maxed);
         }
 
-        private sealed class MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IAverageableDecimalMixin, IEnumerableMonad<decimal>
+        private sealed class MockMaxableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IMaxableDecimalMixin, IEnumerableMonad<decimal>
         {
             public static decimal Element { get; } = (decimal)new object().GetHashCode();
 
@@ -222,7 +222,7 @@ F       F           F       F                                                   
                 }
             }
 
-            public IV2Enumerable<decimal> Source { get; } = Enumerable.Repeat(MockAverageableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, 1).ToV2Enumerable();
+            public IV2Enumerable<decimal> Source { get; } = Enumerable.Repeat(MockMaxableDecimalMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, 1).ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -271,15 +271,15 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void AverageableDecimalMixinWithoutOverloadAndNoMonad()
+        public void MaxableDecimalMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new MockAverageableDecimalMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var singleton = MockAverageableDecimalMixinWithoutOverloadAndNoMonad.Element;
-            var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton, averageed);
+            var enumerable = new MockMaxableDecimalMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var singleton = MockMaxableDecimalMixinWithoutOverloadAndNoMonad.Element;
+            var maxed = enumerable.Max();
+            Assert.AreEqual<decimal>(singleton, maxed);
         }
 
-        private sealed class MockAverageableDecimalMixinWithoutOverloadAndNoMonad : IAverageableDecimalMixin
+        private sealed class MockMaxableDecimalMixinWithoutOverloadAndNoMonad : IMaxableDecimalMixin
         {
             public static decimal Element { get; } = (decimal)new object().GetHashCode();
 
@@ -298,15 +298,15 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void AverageableDecimalNoMixinAndMonadWhereSourceIsMixin()
+        public void MaxableDecimalNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockAverageableDecimalNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockAverageableDecimalNoMixinAndMonadWhereSourceIsMixin.Result;
-            var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton, averageed);
+            var enumerable = new MockMaxableDecimalNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockMaxableDecimalNoMixinAndMonadWhereSourceIsMixin.Result;
+            var maxed = enumerable.Max();
+            Assert.AreEqual<decimal>(singleton, maxed);
         }
 
-        private sealed class MockAverageableDecimalNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<decimal>
+        private sealed class MockMaxableDecimalNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<decimal>
         {
             public static decimal Result { get; } = new object().GetHashCode();
 
@@ -343,7 +343,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<decimal> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IAverageableDecimalMixin
+            private sealed class SourceEnumerable : IMaxableDecimalMixin
             {
                 private SourceEnumerable()
                 {
@@ -351,9 +351,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public decimal Average()
+                public decimal Max()
                 {
-                    return (decimal)MockAverageableDecimalNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (decimal)MockMaxableDecimalNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<decimal> GetEnumerator()
@@ -414,15 +414,15 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void AverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin()
+        public void MaxableDecimalNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockAverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockAverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin.Element;
-            var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton, averageed);
+            var enumerable = new MockMaxableDecimalNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockMaxableDecimalNoMixinAndMonadWhereSourceIsNotMixin.Element;
+            var maxed = enumerable.Max();
+            Assert.AreEqual<decimal>(singleton, maxed);
         }
 
-        private sealed class MockAverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<decimal>
+        private sealed class MockMaxableDecimalNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<decimal>
         {
             private static class ResultMonadFactory<T>
             {
@@ -528,15 +528,15 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void AverageableDecimalNoMixinAndNoMonad()
+        public void MaxableDecimalNoMixinAndNoMonad()
         {
-            var enumerable = new MockAverageableDecimalNoMixinAndNoMonad().AsV2Enumerable();
-            var singleton = MockAverageableDecimalNoMixinAndNoMonad.Element;
-            var averageed = enumerable.Average();
-            Assert.AreEqual<decimal>(singleton, averageed);
+            var enumerable = new MockMaxableDecimalNoMixinAndNoMonad().AsV2Enumerable();
+            var singleton = MockMaxableDecimalNoMixinAndNoMonad.Element;
+            var maxed = enumerable.Max();
+            Assert.AreEqual<decimal>(singleton, maxed);
         }
 
-        private sealed class MockAverageableDecimalNoMixinAndNoMonad : IV2Enumerable<decimal>
+        private sealed class MockMaxableDecimalNoMixinAndNoMonad : IV2Enumerable<decimal>
         {
             public static decimal Element { get; } = (decimal)new object().GetHashCode();
 

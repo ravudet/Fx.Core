@@ -325,6 +325,16 @@
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
+            GenerateTyped(
+                operation: "Max",
+                overload: "Decimal",
+                overloadReturnType: "decimal",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "decimal",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
             //// TODO pick up here
         }
 
@@ -408,8 +418,6 @@
                 arguments: "element => (BoolAdapter)(singleton.GetHashCode())",
                 sourceElementCount: "1"
                 );
-
-            //// TODO skipping average overloads that define the type of the elements; they probably belong in a different category than the other "terminal" tests
 
             GenerateTerminal(
                 operation: "Average",
