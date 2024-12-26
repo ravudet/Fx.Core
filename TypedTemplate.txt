@@ -75,7 +75,7 @@ F       T           F       F               if there's no mixin, there can't be 
 F       F           T       T                                                                           NoMixinAndMonadWhereSourceIsMixin
 F       F           T       F                                                                           NoMixinAndMonadWhereSourceIsNotMixin
 F       F           F       T               if there's no monad, there's won't be a sourcemixin
-F       F           F       F
+F       F           F       F                                                                           NoMixinAndNoMonad
 
 */
 

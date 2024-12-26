@@ -225,7 +225,6 @@
 
         private static void GenerateTyped()
         {
-            //// TODO get this one working for all tests, then move on
             GenerateTyped(
                 operation: "Average",
                 overload: "Decimal",
