@@ -220,7 +220,7 @@
             var unescapedGenerated = generated
                 .Replace("{{", "{")
                 .Replace("}}", "}");
-            System.IO.File.WriteAllText($@"C:\github\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{overload}.cs", unescapedGenerated);
+            System.IO.File.WriteAllText($@"C:\github\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{operation}{overload}.cs", unescapedGenerated);
         }
 
         private static void GenerateTyped()
