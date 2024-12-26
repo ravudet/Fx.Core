@@ -73,7 +73,7 @@ F       T           T       F               if there's no mixin, there can't be 
 F       T           F       T               if there's no mixin, there can't be an overload
 F       T           F       F               if there's no mixin, there can't be an overload
 F       F           T       T                                                                           NoMixinAndMonadWhereSourceIsMixin
-F       F           T       F
+F       F           T       F                                                                           NoMixinAndMonadWhereSourceIsNotMixin
 F       F           F       T               if there's no monad, there's won't be a sourcemixin
 F       F           F       F
 
@@ -573,20 +573,20 @@ F       F           F       F
             }
         }
 
-        /*[TestMethod]
-        public void DecimalNoMixinAndNoMonad()
+        [TestMethod]
+        public void AverageableDecimalNoMixinAndNoMonad()
         {
-            var enumerable = new MockDecimalNoMixinAndNoMonad().AsV2Enumerable();
-            var singleton = MockDecimalNoMixinAndNoMonad.Element;
+            var enumerable = new MockAverageableDecimalNoMixinAndNoMonad().AsV2Enumerable();
+            var singleton = MockAverageableDecimalNoMixinAndNoMonad.Element;
             var averageed = enumerable.Average();
             Assert.AreEqual<decimal>(singleton.GetHashCode(), averageed);
         }
 
-        private sealed class MockDecimalNoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockAverageableDecimalNoMixinAndNoMonad : IV2Enumerable<decimal>
         {
-            public static object Element { get; } = (decimal)new object().GetHashCode();
+            public static decimal Element { get; } = (decimal)new object().GetHashCode();
 
-            public IEnumerator<object> GetEnumerator()
+            public IEnumerator<decimal> GetEnumerator()
             {
                 for (int i = 0; i < 1; ++i)
                 {
@@ -598,6 +598,6 @@ F       F           F       F
             {
                 throw new NotImplementedException();
             }
-        }*/
+        }
     }
 }
