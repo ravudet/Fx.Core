@@ -34,24 +34,24 @@ F       F           F       F                                                   
 */
 
         [TestMethod]
-        public void {0}able{1}MixinWithOverload()
+        public void AverageableInt32MixinWithOverload()
         {
-            var enumerable = new Mock{0}able{1}MixinWithOverload().AsV2Enumerable();
-            var singleton = Mock{0}able{1}MixinWithOverload.Result;
-            var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{2}>(singleton, {8}ed);
+            var enumerable = new MockAverageableInt32MixinWithOverload().AsV2Enumerable();
+            var singleton = MockAverageableInt32MixinWithOverload.Result;
+            var averageed = enumerable.Average();
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
-        private sealed class Mock{0}able{1}MixinWithOverload : I{0}able{1}Mixin
+        private sealed class MockAverageableInt32MixinWithOverload : IAverageableInt32Mixin
         {
-            public static {5} Result { get; } = new object().GetHashCode();
+            public static int Result { get; } = new object().GetHashCode();
 
-            public {2} {0}{3}({4})
+            public double Average()
             {
-                return ({2})Result;
+                return (double)Result;
             }
 
-            public IEnumerator<{5}> GetEnumerator()
+            public IEnumerator<int> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -63,17 +63,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void AverageableInt32MixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
-            var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{2}>(singleton, {8}ed);
+            var enumerable = new MockAverageableInt32MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockAverageableInt32MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+            var averageed = enumerable.Average();
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
-        private sealed class Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}able{1}Mixin, IEnumerableMonad<{5}>
+        private sealed class MockAverageableInt32MixinWithoutOverloadAndMonadWhereSourceIsMixin : IAverageableInt32Mixin, IEnumerableMonad<int>
         {
-            public static {5} Result { get; } = new object().GetHashCode();
+            public static int Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -106,9 +106,9 @@ F       F           F       F                                                   
                 }
             }
 
-            public IV2Enumerable<{5}> Source { get; } = SourceEnumerable.Instance;
+            public IV2Enumerable<int> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}able{1}Mixin
+            private sealed class SourceEnumerable : IAverageableInt32Mixin
             {
                 private SourceEnumerable()
                 {
@@ -116,12 +116,12 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public {2} {0}{3}({4})
+                public double Average()
                 {
-                    return ({2})Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (double)MockAverageableInt32MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
-                public IEnumerator<{5}> GetEnumerator()
+                public IEnumerator<int> GetEnumerator()
                 {
                     throw new NotImplementedException();
                 }
@@ -167,7 +167,7 @@ F       F           F       F                                                   
                 }
             }
 
-            public IEnumerator<{5}> GetEnumerator()
+            public IEnumerator<int> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -179,17 +179,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void AverageableInt32MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{2}>(singleton, {8}ed);
+            var enumerable = new MockAverageableInt32MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockAverageableInt32MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
+            var averageed = enumerable.Average();
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
-        private sealed class Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}able{1}Mixin, IEnumerableMonad<{5}>
+        private sealed class MockAverageableInt32MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IAverageableInt32Mixin, IEnumerableMonad<int>
         {
-            public static {5} Element { get; } = ({5})new object().GetHashCode();
+            public static int Element { get; } = (int)new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -222,7 +222,7 @@ F       F           F       F                                                   
                 }
             }
 
-            public IV2Enumerable<{5}> Source { get; } = Enumerable.Repeat(Mock{0}able{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, {7}).ToV2Enumerable();
+            public IV2Enumerable<int> Source { get; } = Enumerable.Repeat(MockAverageableInt32MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, 1).ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -259,7 +259,7 @@ F       F           F       F                                                   
                 }
             }
 
-            public IEnumerator<{5}> GetEnumerator()
+            public IEnumerator<int> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -271,21 +271,21 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {0}able{1}MixinWithoutOverloadAndNoMonad()
+        public void AverageableInt32MixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new Mock{0}able{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var singleton = Mock{0}able{1}MixinWithoutOverloadAndNoMonad.Element;
-            var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{2}>(singleton, {8}ed);
+            var enumerable = new MockAverageableInt32MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var singleton = MockAverageableInt32MixinWithoutOverloadAndNoMonad.Element;
+            var averageed = enumerable.Average();
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
-        private sealed class Mock{0}able{1}MixinWithoutOverloadAndNoMonad : I{0}able{1}Mixin
+        private sealed class MockAverageableInt32MixinWithoutOverloadAndNoMonad : IAverageableInt32Mixin
         {
-            public static {5} Element { get; } = ({5})new object().GetHashCode();
+            public static int Element { get; } = (int)new object().GetHashCode();
 
-            public IEnumerator<{5}> GetEnumerator()
+            public IEnumerator<int> GetEnumerator()
             {
-                for (int i = 0; i < {7}; ++i)
+                for (int i = 0; i < 1; ++i)
                 {
                     yield return Element;
                 }
@@ -298,17 +298,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {0}able{1}NoMixinAndMonadWhereSourceIsMixin()
+        public void AverageableInt32NoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new Mock{0}able{1}NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = Mock{0}able{1}NoMixinAndMonadWhereSourceIsMixin.Result;
-            var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{2}>(singleton, {8}ed);
+            var enumerable = new MockAverageableInt32NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockAverageableInt32NoMixinAndMonadWhereSourceIsMixin.Result;
+            var averageed = enumerable.Average();
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
-        private sealed class Mock{0}able{1}NoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<{5}>
+        private sealed class MockAverageableInt32NoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<int>
         {
-            public static {5} Result { get; } = new object().GetHashCode();
+            public static int Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -341,9 +341,9 @@ F       F           F       F                                                   
                 }
             }
 
-            public IV2Enumerable<{5}> Source { get; } = SourceEnumerable.Instance;
+            public IV2Enumerable<int> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}able{1}Mixin
+            private sealed class SourceEnumerable : IAverageableInt32Mixin
             {
                 private SourceEnumerable()
                 {
@@ -351,12 +351,12 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public {2} {0}{3}({4})
+                public double Average()
                 {
-                    return ({2})Mock{0}able{1}NoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (double)MockAverageableInt32NoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
-                public IEnumerator<{5}> GetEnumerator()
+                public IEnumerator<int> GetEnumerator()
                 {
                     throw new NotImplementedException();
                 }
@@ -402,7 +402,7 @@ F       F           F       F                                                   
                 }
             }
 
-            public IEnumerator<{5}> GetEnumerator()
+            public IEnumerator<int> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -414,15 +414,15 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {0}able{1}NoMixinAndMonadWhereSourceIsNotMixin()
+        public void AverageableInt32NoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{0}able{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = Mock{0}able{1}NoMixinAndMonadWhereSourceIsNotMixin.Element;
-            var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{2}>(singleton, {8}ed);
+            var enumerable = new MockAverageableInt32NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockAverageableInt32NoMixinAndMonadWhereSourceIsNotMixin.Element;
+            var averageed = enumerable.Average();
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
-        private sealed class Mock{0}able{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<{5}>
+        private sealed class MockAverageableInt32NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<int>
         {
             private static class ResultMonadFactory<T>
             {
@@ -455,11 +455,11 @@ F       F           F       F                                                   
                 }
             }
 
-            public IV2Enumerable<{5}> Source { get; } = SourceEnumerable.Instance;
+            public IV2Enumerable<int> Source { get; } = SourceEnumerable.Instance;
 
-            public static {5} Element { get; } = ({5})new object().GetHashCode();
+            public static int Element { get; } = (int)new object().GetHashCode();
 
-            private sealed class SourceEnumerable : IV2Enumerable<{5}>
+            private sealed class SourceEnumerable : IV2Enumerable<int>
             {
                 private SourceEnumerable()
                 {
@@ -467,9 +467,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IEnumerator<{5}> GetEnumerator()
+                public IEnumerator<int> GetEnumerator()
                 {
-                    for (int i = 0; i < {7}; ++i)
+                    for (int i = 0; i < 1; ++i)
                     {
                         yield return Element;
                     }
@@ -516,7 +516,7 @@ F       F           F       F                                                   
                 }
             }
 
-            public IEnumerator<{5}> GetEnumerator()
+            public IEnumerator<int> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -528,21 +528,21 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {0}able{1}NoMixinAndNoMonad()
+        public void AverageableInt32NoMixinAndNoMonad()
         {
-            var enumerable = new Mock{0}able{1}NoMixinAndNoMonad().AsV2Enumerable();
-            var singleton = Mock{0}able{1}NoMixinAndNoMonad.Element;
-            var {8}ed = enumerable.{0}({6});
-            Assert.AreEqual<{2}>(singleton, {8}ed);
+            var enumerable = new MockAverageableInt32NoMixinAndNoMonad().AsV2Enumerable();
+            var singleton = MockAverageableInt32NoMixinAndNoMonad.Element;
+            var averageed = enumerable.Average();
+            Assert.AreEqual<double>(singleton, averageed);
         }
 
-        private sealed class Mock{0}able{1}NoMixinAndNoMonad : IV2Enumerable<{5}>
+        private sealed class MockAverageableInt32NoMixinAndNoMonad : IV2Enumerable<int>
         {
-            public static {5} Element { get; } = ({5})new object().GetHashCode();
+            public static int Element { get; } = (int)new object().GetHashCode();
 
-            public IEnumerator<{5}> GetEnumerator()
+            public IEnumerator<int> GetEnumerator()
             {
-                for (int i = 0; i < {7}; ++i)
+                for (int i = 0; i < 1; ++i)
                 {
                     yield return Element;
                 }

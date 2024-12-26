@@ -183,7 +183,7 @@
             string overloadReturnType,
             string overloadTypeParameters,
             string overloadParameters,
-            string resultType,
+            string elementType,
             string arguments,
             string sourceElementCount)
         {
@@ -211,7 +211,7 @@
                 overloadReturnType,
                 overloadTypeParameters,
                 overloadParameters,
-                resultType,
+                elementType,
                 arguments,
                 sourceElementCount,
                 operation.ToLower()
@@ -231,7 +231,7 @@
                 overloadReturnType: "decimal",
                 overloadTypeParameters: "",
                 overloadParameters: "",
-                resultType: "decimal",
+                elementType: "decimal",
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
@@ -241,7 +241,17 @@
                 overloadReturnType: "double",
                 overloadTypeParameters: "",
                 overloadParameters: "",
-                resultType: "double",
+                elementType: "double",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Average",
+                overload: "Int32",
+                overloadReturnType: "double",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "int",
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
