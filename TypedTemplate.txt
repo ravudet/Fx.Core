@@ -459,16 +459,16 @@ F       F           F       F
             }
         }
 
-        /*[TestMethod]
-        public void {1}NoMixinAndMonadWhereSourceIsNotMixin()
+        [TestMethod]
+        public void {0}able{1}NoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = Mock{1}NoMixinAndMonadWhereSourceIsNotMixin.Element;
+            var enumerable = new Mock{0}able{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = Mock{0}able{1}NoMixinAndMonadWhereSourceIsNotMixin.Element;
             var {8}ed = enumerable.{0}({6});
             Assert.AreEqual<{5}>(singleton.GetHashCode(), {8}ed);
         }
 
-        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class Mock{0}able{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<{2}>
         {
             private static class ResultMonadFactory<T>
             {
@@ -501,11 +501,11 @@ F       F           F       F
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
+            public IV2Enumerable<{2}> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = ({5})new object().GetHashCode();
+            public static {5} Element { get; } = ({5})new object().GetHashCode();
 
-            private sealed class SourceEnumerable : IV2Enumerable<object>
+            private sealed class SourceEnumerable : IV2Enumerable<{2}>
             {
                 private SourceEnumerable()
                 {
@@ -513,7 +513,7 @@ F       F           F       F
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IEnumerator<object> GetEnumerator()
+                public IEnumerator<{2}> GetEnumerator()
                 {
                     for (int i = 0; i < {7}; ++i)
                     {
@@ -526,6 +526,7 @@ F       F           F       F
                     throw new NotImplementedException();
                 }
             }
+
             public Unit<TSource> Unit<TSource>()
             {
                 return ResultMonadFactory<TSource>.Factory;
@@ -561,7 +562,7 @@ F       F           F       F
                 }
             }
 
-            public IEnumerator<object> GetEnumerator()
+            public IEnumerator<{2}> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -572,7 +573,7 @@ F       F           F       F
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void {1}NoMixinAndNoMonad()
         {
             var enumerable = new Mock{1}NoMixinAndNoMonad().AsV2Enumerable();

@@ -72,7 +72,7 @@ F       T           T       T               if there's no mixin, there can't be 
 F       T           T       F               if there's no mixin, there can't be an overload
 F       T           F       T               if there's no mixin, there can't be an overload
 F       T           F       F               if there's no mixin, there can't be an overload
-F       F           T       T
+F       F           T       T                                                                           NoMixinAndMonadWhereSourceIsMixin
 F       F           T       F
 F       F           F       T               if there's no monad, there's won't be a sourcemixin
 F       F           F       F
@@ -459,16 +459,16 @@ F       F           F       F
             }
         }
 
-        /*[TestMethod]
-        public void DecimalNoMixinAndMonadWhereSourceIsNotMixin()
+        [TestMethod]
+        public void AverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockDecimalNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockDecimalNoMixinAndMonadWhereSourceIsNotMixin.Element;
+            var enumerable = new MockAverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockAverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var averageed = enumerable.Average();
             Assert.AreEqual<decimal>(singleton.GetHashCode(), averageed);
         }
 
-        private sealed class MockDecimalNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockAverageableDecimalNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<decimal>
         {
             private static class ResultMonadFactory<T>
             {
@@ -501,11 +501,11 @@ F       F           F       F
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
+            public IV2Enumerable<decimal> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = (decimal)new object().GetHashCode();
+            public static decimal Element { get; } = (decimal)new object().GetHashCode();
 
-            private sealed class SourceEnumerable : IV2Enumerable<object>
+            private sealed class SourceEnumerable : IV2Enumerable<decimal>
             {
                 private SourceEnumerable()
                 {
@@ -513,7 +513,7 @@ F       F           F       F
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public IEnumerator<object> GetEnumerator()
+                public IEnumerator<decimal> GetEnumerator()
                 {
                     for (int i = 0; i < 1; ++i)
                     {
@@ -526,6 +526,7 @@ F       F           F       F
                     throw new NotImplementedException();
                 }
             }
+
             public Unit<TSource> Unit<TSource>()
             {
                 return ResultMonadFactory<TSource>.Factory;
@@ -561,7 +562,7 @@ F       F           F       F
                 }
             }
 
-            public IEnumerator<object> GetEnumerator()
+            public IEnumerator<decimal> GetEnumerator()
             {
                 throw new NotImplementedException();
             }
@@ -572,7 +573,7 @@ F       F           F       F
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void DecimalNoMixinAndNoMonad()
         {
             var enumerable = new MockDecimalNoMixinAndNoMonad().AsV2Enumerable();
