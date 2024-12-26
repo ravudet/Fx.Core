@@ -154,7 +154,7 @@ F       F           F       F
 
             public IV2Enumerable<decimal> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IAverageableMixin<decimal>
+            private sealed class SourceEnumerable : IAverageableDecimalMixin
             {
                 private SourceEnumerable()
                 {

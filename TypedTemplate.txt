@@ -154,7 +154,7 @@ F       F           F       F
 
             public IV2Enumerable<decimal> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}ableMixin<decimal>
+            private sealed class SourceEnumerable : I{0}able{1}Mixin
             {
                 private SourceEnumerable()
                 {
