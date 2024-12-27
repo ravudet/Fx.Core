@@ -634,8 +634,6 @@
                 elementType: "float",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
-            //// TODO pick up here
         }
 
         [TestMethod]
@@ -1490,8 +1488,6 @@
                 arguments: "singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
-            //// TODO skipping sum overloads that define the type of the elements; they probably belong in a different category than the other "terminal" tests
 
             GenerateTerminal(
                 operation: "Sum",
