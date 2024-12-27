@@ -861,8 +861,6 @@
                 sourceElementCount: "Element.GetHashCode()"
                 );
 
-            //// TODO skipping max overloads that define the type of the elements; they probably belong in a different category than the other "terminal" tests
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithInt64Selector",
