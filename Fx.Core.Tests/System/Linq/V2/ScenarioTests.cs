@@ -535,6 +535,106 @@
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
+            GenerateTyped(
+                operation: "Sum",
+                overload: "Decimal",
+                overloadReturnType: "decimal",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "decimal",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Sum",
+                overload: "Double",
+                overloadReturnType: "double",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "double",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Sum",
+                overload: "Int32",
+                overloadReturnType: "int",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "int",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Sum",
+                overload: "Int64",
+                overloadReturnType: "long",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "long",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Sum",
+                overload: "NullableDecimal",
+                overloadReturnType: "decimal?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "decimal?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Sum",
+                overload: "NullableDouble",
+                overloadReturnType: "double?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "double?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Sum",
+                overload: "NullableInt32",
+                overloadReturnType: "int?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "int?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Sum",
+                overload: "NullableInt64",
+                overloadReturnType: "long?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "long?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Sum",
+                overload: "NullableSingle",
+                overloadReturnType: "float?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "float?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Sum",
+                overload: "Single",
+                overloadReturnType: "float",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "float",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
             //// TODO pick up here
         }
 
@@ -1135,8 +1235,6 @@
                 arguments: "element => element, Comparer<object>.Default",
                 sourceElementCount: "1"
                 );
-
-            //// TODO skipping min overloads that define the type of the elements; they probably belong in a different category than the other "terminal" tests
 
             GenerateTerminal(
                 operation: "Min",
