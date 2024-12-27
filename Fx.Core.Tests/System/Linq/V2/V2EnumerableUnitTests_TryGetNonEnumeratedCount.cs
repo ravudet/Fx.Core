@@ -182,16 +182,16 @@ F       F           F       F                                                   
             }
         }
 
-        /*[TestMethod]
-        public void CountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        [TestMethod]
+        public void TryGetNonEnumeratedCountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockCountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockCountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var counted = enumerable.Count();
-            Assert.AreEqual<int>(singleton.GetHashCode(), counted);
+            var enumerable = new MockTryGetNonEnumeratedCountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockTryGetNonEnumeratedCountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
+            var counted = enumerable.TryGetNonEnumeratedCount(out var count);
+            Assert.IsFalse(counted);
         }
 
-        private sealed class MockCountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ICountableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockTryGetNonEnumeratedCountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ICountableMixin<object>, IEnumerableMonad<object>
         {
             public static object Element { get; } = (int)new object().GetHashCode();
 
@@ -226,7 +226,7 @@ F       F           F       F                                                   
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = Enumerable.Repeat(MockCountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, Element.GetHashCode()).ToV2Enumerable();
+            public IV2Enumerable<object> Source { get; } = Enumerable.Repeat(MockTryGetNonEnumeratedCountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, Element.GetHashCode()).ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -274,7 +274,7 @@ F       F           F       F                                                   
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void CountMixinWithoutOverloadAndNoMonad()
         {
             var enumerable = new MockCountMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
