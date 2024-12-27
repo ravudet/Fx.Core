@@ -419,16 +419,16 @@ F       F           F       F                                                   
             }
         }
 
-        /*[TestMethod]
-        public void CountNoMixinAndMonadWhereSourceIsNotMixin()
+        [TestMethod]
+        public void TryGetNonEnumeratedCountNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockCountNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockCountNoMixinAndMonadWhereSourceIsNotMixin.Element;
-            var counted = enumerable.Count();
-            Assert.AreEqual<int>(singleton.GetHashCode(), counted);
+            var enumerable = new MockTryGetNonEnumeratedCountNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockTryGetNonEnumeratedCountNoMixinAndMonadWhereSourceIsNotMixin.Element;
+            var counted = enumerable.TryGetNonEnumeratedCount(out var count);
+            Assert.IsFalse(counted);
         }
 
-        private sealed class MockCountNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockTryGetNonEnumeratedCountNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -532,7 +532,7 @@ F       F           F       F                                                   
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void CountNoMixinAndNoMonad()
         {
             var enumerable = new MockCountNoMixinAndNoMonad().AsV2Enumerable();
