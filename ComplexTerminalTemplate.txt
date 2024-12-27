@@ -62,18 +62,18 @@ F       F           F       F                                                   
             }
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void {1}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
             var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var {9}ed = enumerable.{0}({6});
-            Assert.AreEqual<{5}>(singleton, {9}ed);
+            Assert.AreEqual(singleton, {9}ed);
         }
 
         private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
         {
-            public static {5} Result { get; } = new object().GetHashCode();
+            public static {2} Result { get; } = {8};
 
             private static class ResultMonadFactory<T>
             {
@@ -178,7 +178,7 @@ F       F           F       F                                                   
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void {1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
