@@ -365,6 +365,66 @@
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
+            GenerateTyped(
+                operation: "Max",
+                overload: "NullableDecimal",
+                overloadReturnType: "decimal?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "decimal?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Max",
+                overload: "NullableDouble",
+                overloadReturnType: "double?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "double?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Max",
+                overload: "NullableInt32",
+                overloadReturnType: "int?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "int?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Max",
+                overload: "NullableInt64",
+                overloadReturnType: "long?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "long?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Max",
+                overload: "NullableSingle",
+                overloadReturnType: "float?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "float?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Max",
+                overload: "Single",
+                overloadReturnType: "float",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "float",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
             //// TODO pick up here
         }
 
