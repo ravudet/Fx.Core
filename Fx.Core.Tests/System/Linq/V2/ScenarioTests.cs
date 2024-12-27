@@ -1497,9 +1497,8 @@
                 sourceElementCount: "1"
                 );
 
-            //// TODO skipping toarray, todictionary, tohashset, and tolist; they result in concrete collection types and probably deserve their own category
-
             //// TODO skipping TryGetNonEnumeratedCount because it has an out parameter
+            //// TODO skipping toarray, todictionary, tohashset, and tolist; they result in concrete collection types and probably deserve their own category
         }
 
         private static void GenerateTerminal(
