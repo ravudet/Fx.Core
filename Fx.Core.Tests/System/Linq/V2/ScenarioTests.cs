@@ -425,6 +425,116 @@
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
+            GenerateTyped(
+                operation: "Min",
+                overload: "Decimal",
+                overloadReturnType: "decimal",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "decimal",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Min",
+                overload: "Double",
+                overloadReturnType: "double",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "double",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Min",
+                overload: "Int32",
+                overloadReturnType: "int",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "int",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Min",
+                overload: "Int64",
+                overloadReturnType: "long",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "long",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Min",
+                overload: "NullableDecimal",
+                overloadReturnType: "decimal?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "decimal?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Min",
+                overload: "Decimal",
+                overloadReturnType: "decimal",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "decimal",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Min",
+                overload: "NullableDouble",
+                overloadReturnType: "double?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "double?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Min",
+                overload: "NullableInt32",
+                overloadReturnType: "int?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "int?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Min",
+                overload: "NullableInt64",
+                overloadReturnType: "long?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "long?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Min",
+                overload: "NullableSingle",
+                overloadReturnType: "float?",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "float?",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
+            GenerateTyped(
+                operation: "Min",
+                overload: "Single",
+                overloadReturnType: "float",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "float",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
             //// TODO pick up here
         }
 
