@@ -355,6 +355,16 @@
                 arguments: string.Empty,
                 sourceElementCount: "1");
 
+            GenerateTyped(
+                operation: "Max",
+                overload: "Int64",
+                overloadReturnType: "long",
+                overloadTypeParameters: "",
+                overloadParameters: "",
+                elementType: "long",
+                arguments: string.Empty,
+                sourceElementCount: "1");
+
             //// TODO pick up here
         }
 
