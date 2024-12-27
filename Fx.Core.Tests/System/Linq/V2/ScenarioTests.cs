@@ -661,7 +661,6 @@
                 arguments: "(first, second) => singleton",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Aggregate",
                 overload: "AggregateWithSeed",
@@ -672,7 +671,6 @@
                 arguments: "new object(), (first, second) => singleton",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Aggregate",
                 overload: "AggregateWithSelector",
@@ -705,7 +703,6 @@
                 arguments: "",
                 sourceElementCount: "Element.GetHashCode() % 2"
                 );
-
             GenerateTerminal(
                 operation: "Any",
                 overload: "AnyWithPredicate",
@@ -727,7 +724,6 @@
                 arguments: "element => singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Average",
                 overload: "AverageWithNullableIntSelector",
@@ -738,7 +734,6 @@
                 arguments: "element => (int?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Average",
                 overload: "AverageWithDecimalSelector",
@@ -749,7 +744,6 @@
                 arguments: "element => (decimal)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Average",
                 overload: "AverageWithDoubleSelector",
@@ -760,7 +754,6 @@
                 arguments: "element => (double)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Average",
                 overload: "AverageWithNullableSingleSelector",
@@ -771,7 +764,6 @@
                 arguments: "element => (float?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Average",
                 overload: "AverageWithNullableInt64Selector",
@@ -782,7 +774,6 @@
                 arguments: "element => (long?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Average",
                 overload: "AverageWithSingleSelector",
@@ -793,7 +784,6 @@
                 arguments: "element => (float)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Average",
                 overload: "AverageWithNullableDoubleSelector",
@@ -804,7 +794,6 @@
                 arguments: "element => (double?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Average",
                 overload: "AverageWithInt64Selector",
@@ -815,7 +804,6 @@
                 arguments: "element => (long)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Average",
                 overload: "AverageWithNullableDecimalSelector",
@@ -837,7 +825,6 @@
                 arguments: "BoolAdapter.True, BoolAdapter.Comparer.Instance",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Contains",
                 overload: "Contains",
@@ -859,7 +846,6 @@
                 arguments: "",
                 sourceElementCount: "Element.GetHashCode()"
                 );
-
             GenerateTerminal(
                 operation: "Count",
                 overload: "CountWithPredicate",
@@ -881,7 +867,6 @@
                 arguments: "new Index(0)",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "ElementAt",
                 overload: "ElementAt",
@@ -903,7 +888,6 @@
                 arguments: "new Index(0)",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "ElementAtOrDefault",
                 overload: "ElementAtOrDefault",
@@ -925,7 +909,6 @@
                 arguments: "",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "First",
                 overload: "FirstWithPredicate",
@@ -947,7 +930,6 @@
                 arguments: "",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "FirstOrDefault",
                 overload: "FirstOrDefaultWithPredicate",
@@ -958,7 +940,6 @@
                 arguments: "element => true",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "FirstOrDefault",
                 overload: "FirstOrDefaultWithPredicateAndDefault",
@@ -969,7 +950,6 @@
                 arguments: "element => true, singleton",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "FirstOrDefault",
                 overload: "FirstOrDefaultWithDefault",
@@ -991,7 +971,6 @@
                 arguments: "",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Last",
                 overload: "LastWithPredicate",
@@ -1013,7 +992,6 @@
                 arguments: "",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "LastOrDefault",
                 overload: "LastOrDefaultWithPredicateAndDefault",
@@ -1024,7 +1002,6 @@
                 arguments: "element => true, singleton",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "LastOrDefault",
                 overload: "LastOrDefaultWithPredicate",
@@ -1035,7 +1012,6 @@
                 arguments: "element => true",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "LastOrDefault",
                 overload: "LastOrDefaultWithDefault",
@@ -1057,7 +1033,6 @@
                 arguments: "element => true",
                 sourceElementCount: "Element.GetHashCode()"
                 );
-
             GenerateTerminal(
                 operation: "LongCount",
                 overload: "LongCount",
@@ -1079,7 +1054,6 @@
                 arguments: "element => (long)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithNullableInt64Selector",
@@ -1090,7 +1064,6 @@
                 arguments: "element => (long?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithNullableSingleSelector",
@@ -1101,7 +1074,6 @@
                 arguments: "element => (float?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithNullableInt32Selector",
@@ -1112,7 +1084,6 @@
                 arguments: "element => (int?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithComparer",
@@ -1123,7 +1094,6 @@
                 arguments: "Comparer<object>.Default",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithNullableDecimalSelector",
@@ -1134,7 +1104,6 @@
                 arguments: "element => (decimal?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithInt32Selector",
@@ -1145,7 +1114,6 @@
                 arguments: "element => (int)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithDoubleSelector",
@@ -1156,7 +1124,6 @@
                 arguments: "element => (double)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithDecimalSelector",
@@ -1167,7 +1134,6 @@
                 arguments: "element => (decimal)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithSelector",
@@ -1178,7 +1144,6 @@
                 arguments: "element => element",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithSingleSelector",
@@ -1189,7 +1154,6 @@
                 arguments: "element => (float)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "Max",
@@ -1200,7 +1164,6 @@
                 arguments: "",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Max",
                 overload: "MaxWithNullableDoubleSelector",
@@ -1222,7 +1185,6 @@
                 arguments: "element => element",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "MaxBy",
                 overload: "MaxByWithComparer",
@@ -1244,7 +1206,6 @@
                 arguments: "element => (int)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithInt64Selector",
@@ -1255,7 +1216,6 @@
                 arguments: "element => (long)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithNullableDecimalSelector",
@@ -1266,7 +1226,6 @@
                 arguments: "element => (decimal?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithNullableDoubleSelector",
@@ -1277,7 +1236,6 @@
                 arguments: "element => (double?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithNullableInt32Selector",
@@ -1288,7 +1246,6 @@
                 arguments: "element => (int?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithNullableSingleSelector",
@@ -1299,7 +1256,6 @@
                 arguments: "element => (float?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithSingleSelector",
@@ -1310,7 +1266,6 @@
                 arguments: "element => (float)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithSelector",
@@ -1321,7 +1276,6 @@
                 arguments: "element => element",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithDoubleSelector",
@@ -1332,7 +1286,6 @@
                 arguments: "element => (double)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithNullableInt64Selector",
@@ -1343,7 +1296,6 @@
                 arguments: "element => (long?)singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "Min",
@@ -1354,7 +1306,6 @@
                 arguments: "",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithComparer",
@@ -1365,7 +1316,6 @@
                 arguments: "Comparer<object>.Default",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Min",
                 overload: "MinWithDecimalSelector",
@@ -1387,7 +1337,6 @@
                 arguments: "element => element, Comparer<object>.Default",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "MinBy",
                 overload: "MinBy",
@@ -1411,7 +1360,6 @@
                 arguments: "new[] { BoolAdapter.True }.ToV2Enumerable()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "SequenceEqual",
                 overload: "SequenceEqualWithComparer",
@@ -1433,7 +1381,6 @@
                 arguments: "",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Single",
                 overload: "SingleWithPredicate",
@@ -1455,7 +1402,6 @@
                 arguments: "element => true, singleton.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "SingleOrDefault",
                 overload: "SingleOrDefaultWithPredicate",
@@ -1466,7 +1412,6 @@
                 arguments: "element => true",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "SingleOrDefault",
                 overload: "SingleOrDefault",
@@ -1477,7 +1422,6 @@
                 arguments: "",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "SingleOrDefault",
                 overload: "SingleOrDefaultWithDefaultValue",
@@ -1499,7 +1443,6 @@
                 arguments: "element => (int)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsAsNullableDoubles",
@@ -1510,7 +1453,6 @@
                 arguments: "element => (double?)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsWithSingleSelector",
@@ -1521,7 +1463,6 @@
                 arguments: "element => (float)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsWithNullableSingleSelector",
@@ -1532,7 +1473,6 @@
                 arguments: "element => (float?)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsWithNullableInt32Selector",
@@ -1543,7 +1483,6 @@
                 arguments: "element => (int?)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsWithDoubleSelector",
@@ -1554,7 +1493,6 @@
                 arguments: "element => (double)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsWithNullableInt64Selector",
@@ -1565,7 +1503,6 @@
                 arguments: "element => (long?)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsWithNullableDecimalSelector",
@@ -1576,7 +1513,6 @@
                 arguments: "element => (decimal?)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsAsInt64s",
@@ -1587,7 +1523,6 @@
                 arguments: "element => (long)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
             GenerateTerminal(
                 operation: "Sum",
                 overload: "SumElementsAsDecimals",
