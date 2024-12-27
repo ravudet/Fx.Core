@@ -44,7 +44,7 @@ F       F           F       F                                                   
 
         private sealed class Mock{1}MixinWithOverload : I{0}ableMixin<object>
         {
-            public static {2} Result { get; } = {8};
+            public static {5} Result { get; } = {8};
 
             public {2} {0}{3}({4})
             {
@@ -73,7 +73,7 @@ F       F           F       F                                                   
 
         private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
         {
-            public static {2} Result { get; } = {8};
+            public static {5} Result { get; } = {8};
 
             private static class ResultMonadFactory<T>
             {
@@ -189,7 +189,7 @@ F       F           F       F                                                   
 
         private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
         {
-            public static {2} Element { get; } = {8};
+            public static {5} Element { get; } = {8};
 
             private static class ResultMonadFactory<T>
             {
@@ -281,7 +281,7 @@ F       F           F       F                                                   
 
         private sealed class Mock{1}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>
         {
-            public static {2} Element { get; } = {8};
+            public static {5} Element { get; } = {8};
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -305,7 +305,7 @@ F       F           F       F                                                   
 
         private sealed class Mock{1}NoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
-            public static {2} Result { get; } = {8};
+            public static {5} Result { get; } = {8};
 
             private static class ResultMonadFactory<T>
             {

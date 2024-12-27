@@ -654,10 +654,22 @@
                 overloadReturnType: "object[]",
                 overloadTypeParameters: string.Empty,
                 overloadParameters: string.Empty,
-                resultType: string.Empty,
+                resultType: "object[]",
                 arguments: string.Empty,
                 defaultResult: "new object[0]",
                 customResult: "new[] { new object(), new object() }"
+                );
+
+            GenerateComplexTerminal(
+                operation: "ToDictionary",
+                overload: "ToDictionaryWithKeySelector",
+                overloadReturnType: "Dictionary<TKey, object>",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector",
+                resultType: "Dictionary<object, object>",
+                arguments: "_ => _",
+                defaultResult: "new Dictionary<object, object>()",
+                customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
                 );
         }
 
@@ -675,8 +687,6 @@
             //// TODO either implement monad checks or remove entirely tolookup; then implement test cases for it
 
             //// TODO test toarray, todictionary, tohashset, and tolist; they result in concrete collection types and probably deserve their own category
-
-            //// TODO remove `resulttype` parameter from `generatecomplexterminal`?
 
             //// TODO figure out how you want to add this code generation to the repo for real (t4 or something?)
         }
