@@ -608,6 +608,8 @@
 
             //// TODO icastablemixin; you never really figured out the design for this
             //// TODO ioftypeable; this is suposed to be non-generic...
+            //// TODO either implement monad checks or remove entirely orderby and orderbydescending; then implement test cases for them
+            //// TODO either implement monad checks or remove entirely tolookup; then implement test cases for it
             //// TODO any other TODOs from the rest of this class
             //// TODO figure out how you want to add this code generation to the repo for real (t4 or something?)
         }
@@ -1311,8 +1313,6 @@
                 sourceElementCount: "1"
                 );
 
-            //// TODO skipping orderbyable and orderbydescendingable; they probably deserve their own category
-
             GenerateTerminal(
                 operation: "SequenceEqual",
                 overload: "SequenceEqual",
@@ -1498,8 +1498,6 @@
                 );
 
             //// TODO skipping toarray, todictionary, tohashset, and tolist; they result in concrete collection types and probably deserve their own category
-
-            //// TODO skipping tolookupable; probably belongs in the same category as orderby
 
             //// TODO skipping TryGetNonEnumeratedCount because it has an out parameter
         }
