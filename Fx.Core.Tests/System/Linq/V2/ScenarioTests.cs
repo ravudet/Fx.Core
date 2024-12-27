@@ -599,18 +599,85 @@
                 sourceElementCount: "1");
         }
 
+        private static void GenerateComplexTerminal(
+            string operation,
+            string overload,
+            string overloadReturnType,
+            string overloadTypeParameters,
+            string overloadParameters,
+            string resultType,
+            string arguments,
+            string defaultResult,
+            string customResult)
+        {
+            var template = System.IO.File.ReadAllText(@"C:\github\Fx.Core\ComplexTerminalTemplate.txt");
+            var escapedTemplate = template
+                .Replace("{", "{{")
+                .Replace("}", "}}")
+                .Replace("{{0}}", "{0}")
+                .Replace("{{1}}", "{1}")
+                .Replace("{{2}}", "{2}")
+                .Replace("{{3}}", "{3}")
+                .Replace("{{4}}", "{4}")
+                .Replace("{{5}}", "{5}")
+                .Replace("{{6}}", "{6}")
+                .Replace("{{7}}", "{7}")
+                .Replace("{{8}}", "{8}")
+                .Replace("{{9}}", "{9}")
+                ;
+
+            var generated = string.Format(
+                escapedTemplate,
+                operation,
+                overload,
+                overloadReturnType,
+                overloadTypeParameters,
+                overloadParameters,
+                resultType,
+                arguments,
+                defaultResult,
+                customResult,
+                operation.ToLower()
+                );
+
+            var unescapedGenerated = generated
+                .Replace("{{", "{")
+                .Replace("}}", "}");
+            System.IO.File.WriteAllText($@"C:\github\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{overload}.cs", unescapedGenerated);
+        }
+
+        private static void GenerateComplexTerminal()
+        {
+            GenerateComplexTerminal(
+                operation: "ToArray",
+                overload: "ToArray",
+                overloadReturnType: "object[]",
+                overloadTypeParameters: string.Empty,
+                overloadParameters: string.Empty,
+                resultType: string.Empty,
+                arguments: string.Empty,
+                defaultResult: "object[0]",
+                customResult: "new[] { new object(), new object() }"
+                );
+        }
+
         [TestMethod]
         public void Generate()
         {
             GenerateFluent();
             GenerateTerminal();
             GenerateTyped();
+            GenerateComplexTerminal();
 
             //// TODO icastablemixin; you never really figured out the design for this
             //// TODO ioftypeable; this is suposed to be non-generic...
             //// TODO either implement monad checks or remove entirely orderby and orderbydescending; then implement test cases for them
             //// TODO either implement monad checks or remove entirely tolookup; then implement test cases for it
-            //// TODO any other TODOs from the rest of this class
+
+            //// TODO test toarray, todictionary, tohashset, and tolist; they result in concrete collection types and probably deserve their own category
+
+            //// TODO remove `resulttype` parameter from `generatecomplexterminal`?
+
             //// TODO figure out how you want to add this code generation to the repo for real (t4 or something?)
         }
 
@@ -1496,9 +1563,6 @@
                 arguments: "element => (decimal)element.GetHashCode()",
                 sourceElementCount: "1"
                 );
-
-            //// TODO skipping TryGetNonEnumeratedCount because it has an out parameter
-            //// TODO skipping toarray, todictionary, tohashset, and tolist; they result in concrete collection types and probably deserve their own category
         }
 
         private static void GenerateTerminal(
