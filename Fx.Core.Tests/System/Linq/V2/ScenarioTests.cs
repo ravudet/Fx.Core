@@ -234,7 +234,6 @@
                 elementType: "decimal",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Average",
                 overload: "Double",
@@ -244,7 +243,6 @@
                 elementType: "double",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Average",
                 overload: "Int32",
@@ -254,7 +252,6 @@
                 elementType: "int",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Average",
                 overload: "Int64",
@@ -264,7 +261,6 @@
                 elementType: "long",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Average",
                 overload: "NullableDecimal",
@@ -274,7 +270,6 @@
                 elementType: "decimal?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Average",
                 overload: "NullableDouble",
@@ -284,7 +279,6 @@
                 elementType: "double?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Average",
                 overload: "NullableInt32",
@@ -294,7 +288,6 @@
                 elementType: "int?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Average",
                 overload: "NullableInt64",
@@ -304,7 +297,6 @@
                 elementType: "long?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Average",
                 overload: "NullableSingle",
@@ -314,7 +306,6 @@
                 elementType: "float?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Average",
                 overload: "Single",
@@ -334,7 +325,6 @@
                 elementType: "decimal",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Max",
                 overload: "Double",
@@ -344,7 +334,6 @@
                 elementType: "double",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Max",
                 overload: "Int32",
@@ -354,7 +343,6 @@
                 elementType: "int",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Max",
                 overload: "Int64",
@@ -364,7 +352,6 @@
                 elementType: "long",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Max",
                 overload: "NullableDecimal",
@@ -374,7 +361,6 @@
                 elementType: "decimal?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Max",
                 overload: "NullableDouble",
@@ -384,7 +370,6 @@
                 elementType: "double?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Max",
                 overload: "NullableInt32",
@@ -394,7 +379,6 @@
                 elementType: "int?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Max",
                 overload: "NullableInt64",
@@ -404,7 +388,6 @@
                 elementType: "long?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Max",
                 overload: "NullableSingle",
@@ -414,7 +397,6 @@
                 elementType: "float?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Max",
                 overload: "Single",
@@ -434,7 +416,6 @@
                 elementType: "decimal",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Min",
                 overload: "Double",
@@ -444,7 +425,6 @@
                 elementType: "double",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Min",
                 overload: "Int32",
@@ -454,7 +434,6 @@
                 elementType: "int",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Min",
                 overload: "Int64",
@@ -464,7 +443,6 @@
                 elementType: "long",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Min",
                 overload: "NullableDecimal",
@@ -474,7 +452,6 @@
                 elementType: "decimal?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Min",
                 overload: "Decimal",
@@ -484,7 +461,6 @@
                 elementType: "decimal",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Min",
                 overload: "NullableDouble",
@@ -494,7 +470,6 @@
                 elementType: "double?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Min",
                 overload: "NullableInt32",
@@ -504,7 +479,6 @@
                 elementType: "int?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Min",
                 overload: "NullableInt64",
@@ -514,7 +488,6 @@
                 elementType: "long?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Min",
                 overload: "NullableSingle",
@@ -524,7 +497,6 @@
                 elementType: "float?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Min",
                 overload: "Single",
@@ -544,7 +516,6 @@
                 elementType: "decimal",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Sum",
                 overload: "Double",
@@ -554,7 +525,6 @@
                 elementType: "double",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Sum",
                 overload: "Int32",
@@ -564,7 +534,6 @@
                 elementType: "int",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Sum",
                 overload: "Int64",
@@ -574,7 +543,6 @@
                 elementType: "long",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Sum",
                 overload: "NullableDecimal",
@@ -584,7 +552,6 @@
                 elementType: "decimal?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Sum",
                 overload: "NullableDouble",
@@ -594,7 +561,6 @@
                 elementType: "double?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Sum",
                 overload: "NullableInt32",
@@ -604,7 +570,6 @@
                 elementType: "int?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Sum",
                 overload: "NullableInt64",
@@ -614,7 +579,6 @@
                 elementType: "long?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Sum",
                 overload: "NullableSingle",
@@ -624,7 +588,6 @@
                 elementType: "float?",
                 arguments: string.Empty,
                 sourceElementCount: "1");
-
             GenerateTyped(
                 operation: "Sum",
                 overload: "Single",
