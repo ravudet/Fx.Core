@@ -410,13 +410,12 @@ F       F           F       F                                                   
             }
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void ToArrayNoMixinAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockToArrayNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockToArrayNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var toarrayed = enumerable.ToArray();
-            Assert.AreEqual<>(singleton.GetHashCode(), toarrayed);
+            CollectionAssert.AreEqual(new object[0], toarrayed);
         }
 
         private sealed class MockToArrayNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -454,8 +453,6 @@ F       F           F       F                                                   
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = ()new object().GetHashCode();
-
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
                 private SourceEnumerable()
@@ -466,10 +463,7 @@ F       F           F       F                                                   
 
                 public IEnumerator<object> GetEnumerator()
                 {
-                    for (int i = 0; i < new object[0]; ++i)
-                    {
-                        yield return Element;
-                    }
+                    yield break;
                 }
 
                 IEnumerator IEnumerable.GetEnumerator()
@@ -477,6 +471,7 @@ F       F           F       F                                                   
                     throw new NotImplementedException();
                 }
             }
+
             public Unit<TSource> Unit<TSource>()
             {
                 return ResultMonadFactory<TSource>.Factory;
@@ -523,7 +518,7 @@ F       F           F       F                                                   
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void ToArrayNoMixinAndNoMonad()
         {
             var enumerable = new MockToArrayNoMixinAndNoMonad().AsV2Enumerable();
