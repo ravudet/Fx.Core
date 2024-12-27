@@ -1662,7 +1662,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "(object)this"
+                arguments: "(object)this",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -1689,7 +1690,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "V2Enumerable.Empty<object>()"
+                arguments: "V2Enumerable.Empty<object>()",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -1702,7 +1704,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: ""
+                arguments: "",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "DefaultIfEmpty",
@@ -1714,7 +1717,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "(object)this"
+                arguments: "(object)this",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -1727,7 +1731,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: ""
+                arguments: "",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "Distinct",
@@ -1739,7 +1744,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "null"
+                arguments: "null",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -1752,7 +1758,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "element => element"
+                arguments: "element => element",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "DistinctBy",
@@ -1764,7 +1771,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "element => element, null"
+                arguments: "element => element, null",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -1777,7 +1785,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "V2Enumerable.Empty<object>()"
+                arguments: "V2Enumerable.Empty<object>()",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "Except",
@@ -1789,7 +1798,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "V2Enumerable.Empty<object>(), null"
+                arguments: "V2Enumerable.Empty<object>(), null",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -1802,7 +1812,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "V2Enumerable.Empty<object>(), element => element"
+                arguments: "V2Enumerable.Empty<object>(), element => element",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "ExceptBy",
@@ -1814,7 +1825,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "V2Enumerable.Empty<object>(), element => element, null"
+                arguments: "V2Enumerable.Empty<object>(), element => element, null",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -1932,7 +1944,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "V2Enumerable.Empty<object>(), outer => outer, inner => inner, (outer, inners) => (object)this, null"
+                arguments: "V2Enumerable.Empty<object>(), outer => outer, inner => inner, (outer, inners) => (object)this, null",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "GroupJoin",
@@ -1944,7 +1957,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "V2Enumerable.Empty<object>(), outer => outer, inner => inner, (outer, inners) => (object)this"
+                arguments: "V2Enumerable.Empty<object>(), outer => outer, inner => inner, (outer, inners) => (object)this",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -1957,7 +1971,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "V2Enumerable.Empty<object>(), null"
+                arguments: "V2Enumerable.Empty<object>(), null",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "Intersect",
@@ -1969,7 +1984,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "V2Enumerable.Empty<object>()"
+                arguments: "V2Enumerable.Empty<object>()",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -1982,7 +1998,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "V2Enumerable.Empty<object>(), element => element"
+                arguments: "V2Enumerable.Empty<object>(), element => element",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "IntersectBy",
@@ -1994,7 +2011,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "V2Enumerable.Empty<object>(), element => element, null"
+                arguments: "V2Enumerable.Empty<object>(), element => element, null",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2007,7 +2025,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "V2Enumerable.Empty<object>(), outer => outer, inner => inner, (outer, inner) => (object)this"
+                arguments: "V2Enumerable.Empty<object>(), outer => outer, inner => inner, (outer, inner) => (object)this",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "Join",
@@ -2019,7 +2038,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "V2Enumerable.Empty<object>(), outer => outer, inner => inner, (outer, inner) => (object)this, null"
+                arguments: "V2Enumerable.Empty<object>(), outer => outer, inner => inner, (outer, inner) => (object)this, null",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2032,7 +2052,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "this"
+                arguments: "this",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2045,7 +2066,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: ""
+                arguments: "",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2058,7 +2080,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "(element, index) => element"
+                arguments: "(element, index) => element",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "Select",
@@ -2070,7 +2093,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "element => element"
+                arguments: "element => element",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2083,7 +2107,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "(element, index) => V2Enumerable.Empty<object>()"
+                arguments: "(element, index) => V2Enumerable.Empty<object>()",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "SelectMany",
@@ -2095,7 +2120,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "element => V2Enumerable.Empty<object>(), (element, collection) => collection"
+                arguments: "element => V2Enumerable.Empty<object>(), (element, collection) => collection",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "SelectMany",
@@ -2107,7 +2133,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "(element, index) => V2Enumerable.Empty<object>(), (element, collection) => collection"
+                arguments: "(element, index) => V2Enumerable.Empty<object>(), (element, collection) => collection",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "SelectMany",
@@ -2119,7 +2146,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "element => V2Enumerable.Empty<object>()"
+                arguments: "element => V2Enumerable.Empty<object>()",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2132,7 +2160,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "4"
+                arguments: "4",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2145,7 +2174,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "4"
+                arguments: "4",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2158,7 +2188,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "element => true"
+                arguments: "element => true",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "SkipWhile",
@@ -2170,7 +2201,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "(element, index) => true"
+                arguments: "(element, index) => true",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2183,7 +2215,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "new Range(new Index(2), new Index(5))"
+                arguments: "new Range(new Index(2), new Index(5))",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "Take",
@@ -2195,7 +2228,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "4"
+                arguments: "4",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2208,7 +2242,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "4"
+                arguments: "4",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2221,7 +2256,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "element => true"
+                arguments: "element => true",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "TakeWhile",
@@ -2233,7 +2269,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "(element, index) => true"
+                arguments: "(element, index) => true",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2246,7 +2283,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "new[] { string.Empty }.ToV2Enumerable()"
+                arguments: "new[] { string.Empty }.ToV2Enumerable()",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "Union",
@@ -2258,7 +2296,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "new[] { string.Empty }.ToV2Enumerable(), null"
+                arguments: "new[] { string.Empty }.ToV2Enumerable(), null",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2271,7 +2310,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "new[] { string.Empty }.ToV2Enumerable(), (element) => new object()"
+                arguments: "new[] { string.Empty }.ToV2Enumerable(), (element) => new object()",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "UnionBy",
@@ -2283,7 +2323,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null"
+                arguments: "new[] { string.Empty }.ToV2Enumerable(), (element) => new object(), null",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2296,7 +2337,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "element => true"
+                arguments: "element => true",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "Where",
@@ -2308,7 +2350,8 @@
                 resultTypeArguments: "",
                 resultTypeParameters: "",
                 resultReturnTypeParameters: "object",
-                arguments: "(element, index) => true"
+                arguments: "(element, index) => true",
+                collectionComparer: string.Empty
                 );
 
             GenerateFluent(
@@ -2321,7 +2364,8 @@
                 resultTypeArguments: "<string, string>",
                 resultTypeParameters: "<TSecond, TThird>",
                 resultReturnTypeParameters: "(object, TSecond, TThird)",
-                arguments: "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()"
+                arguments: "new[] { string.Empty }.ToV2Enumerable(), new[] { string.Empty }.ToV2Enumerable()",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "Zip",
@@ -2333,7 +2377,8 @@
                 resultTypeArguments: "<string>",
                 resultTypeParameters: "<TSecond>",
                 resultReturnTypeParameters: "(object, TSecond)",
-                arguments: "new[] { string.Empty }.ToV2Enumerable()"
+                arguments: "new[] { string.Empty }.ToV2Enumerable()",
+                collectionComparer: string.Empty
                 );
             GenerateFluent(
                 operation: "Zip",
@@ -2345,7 +2390,8 @@
                 resultTypeArguments: "<object>",
                 resultTypeParameters: "<TResult>",
                 resultReturnTypeParameters: "TResult",
-                arguments: "new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this"
+                arguments: "new[] { string.Empty }.ToV2Enumerable(), (first, second) => (object)this",
+                collectionComparer: string.Empty
                 );
         }
 
@@ -2360,7 +2406,7 @@
             string resultTypeParameters,
             string resultReturnTypeParameters,
             string arguments,
-            string collectionComparer = "") //// TODO don't use default parameter
+            string collectionComparer)
         {
             var template = System.IO.File.ReadAllText(@"C:\github\Fx.Core\FluentTemplate.txt");
             var escapedTemplate = template
