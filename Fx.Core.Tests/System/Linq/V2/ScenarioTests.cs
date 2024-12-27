@@ -656,7 +656,7 @@
                 overloadParameters: string.Empty,
                 resultType: string.Empty,
                 arguments: string.Empty,
-                defaultResult: "object[0]",
+                defaultResult: "new object[0]",
                 customResult: "new[] { new object(), new object() }"
                 );
         }

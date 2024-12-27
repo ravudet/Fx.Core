@@ -178,18 +178,18 @@ F       F           F       F                                                   
             }
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void ToArrayMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var toarrayed = enumerable.ToArray();
-            Assert.AreEqual<>(singleton.GetHashCode(), toarrayed);
+            CollectionAssert.AreEqual(new object[0], toarrayed);
         }
 
         private sealed class MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IToArrayableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = ()new object().GetHashCode();
+            public static object Element { get; } = new[] { new object(), new object() };
 
             private static class ResultMonadFactory<T>
             {
@@ -222,7 +222,7 @@ F       F           F       F                                                   
                 }
             }
 
-            public IV2Enumerable<object> Source { get; } = Enumerable.Repeat(MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element, object[0]).ToV2Enumerable();
+            public IV2Enumerable<object> Source { get; } = Enumerable.Empty<object>().ToV2Enumerable();
 
             public Unit<TSource> Unit<TSource>()
             {
@@ -270,7 +270,7 @@ F       F           F       F                                                   
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void ToArrayMixinWithoutOverloadAndNoMonad()
         {
             var enumerable = new MockToArrayMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
@@ -285,7 +285,7 @@ F       F           F       F                                                   
 
             public IEnumerator<object> GetEnumerator()
             {
-                for (int i = 0; i < object[0]; ++i)
+                for (int i = 0; i < new object[0]; ++i)
                 {
                     yield return Element;
                 }
@@ -469,7 +469,7 @@ F       F           F       F                                                   
 
                 public IEnumerator<object> GetEnumerator()
                 {
-                    for (int i = 0; i < object[0]; ++i)
+                    for (int i = 0; i < new object[0]; ++i)
                     {
                         yield return Element;
                     }
@@ -541,7 +541,7 @@ F       F           F       F                                                   
 
             public IEnumerator<object> GetEnumerator()
             {
-                for (int i = 0; i < object[0]; ++i)
+                for (int i = 0; i < new object[0]; ++i)
                 {
                     yield return Element;
                 }
