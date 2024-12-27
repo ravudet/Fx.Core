@@ -532,16 +532,16 @@ F       F           F       F                                                   
             }
         }
 
-        /*[TestMethod]
-        public void CountNoMixinAndNoMonad()
+        [TestMethod]
+        public void TryGetNonEnumeratedCountNoMixinAndNoMonad()
         {
-            var enumerable = new MockCountNoMixinAndNoMonad().AsV2Enumerable();
-            var singleton = MockCountNoMixinAndNoMonad.Element;
-            var counted = enumerable.Count();
-            Assert.AreEqual<int>(singleton.GetHashCode(), counted);
+            var enumerable = new MockTryGetNonEnumeratedCountNoMixinAndNoMonad().AsV2Enumerable();
+            var singleton = MockTryGetNonEnumeratedCountNoMixinAndNoMonad.Element;
+            var counted = enumerable.TryGetNonEnumeratedCount(out var count);
+            Assert.IsFalse(counted);
         }
 
-        private sealed class MockCountNoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockTryGetNonEnumeratedCountNoMixinAndNoMonad : IV2Enumerable<object>
         {
             public static object Element { get; } = (int)new object().GetHashCode();
 
@@ -557,6 +557,6 @@ F       F           F       F                                                   
             {
                 throw new NotImplementedException();
             }
-        }*/
+        }
     }
 }
