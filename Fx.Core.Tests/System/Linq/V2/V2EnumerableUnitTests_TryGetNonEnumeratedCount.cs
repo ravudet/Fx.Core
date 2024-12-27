@@ -301,16 +301,17 @@ F       F           F       F                                                   
             }
         }
 
-        /*[TestMethod]
-        public void CountNoMixinAndMonadWhereSourceIsMixin()
+        [TestMethod]
+        public void TryGetNonEnumeratedCountNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockCountNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockCountNoMixinAndMonadWhereSourceIsMixin.Result;
-            var counted = enumerable.Count();
-            Assert.AreEqual<int>(singleton, counted);
+            var enumerable = new MockTryGetNonEnumeratedCountNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockTryGetNonEnumeratedCountNoMixinAndMonadWhereSourceIsMixin.Result;
+            var counted = enumerable.TryGetNonEnumeratedCount(out var count);
+            Assert.IsTrue(counted);
+            Assert.AreEqual<int>(singleton, count);
         }
 
-        private sealed class MockCountNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockTryGetNonEnumeratedCountNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
             public static int Result { get; } = new object().GetHashCode();
 
@@ -347,7 +348,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : ICountableMixin<object>
+            private sealed class SourceEnumerable : ITryGetNonEnumeratedCountableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -355,9 +356,10 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public int Count()
+                public bool TryGetNonEnumeratedCount(out int count)
                 {
-                    return (int)MockCountNoMixinAndMonadWhereSourceIsMixin.Result;
+                    count = (int)MockTryGetNonEnumeratedCountNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return true;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -417,7 +419,7 @@ F       F           F       F                                                   
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void CountNoMixinAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockCountNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
