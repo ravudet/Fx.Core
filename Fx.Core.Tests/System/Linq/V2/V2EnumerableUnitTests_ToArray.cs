@@ -189,7 +189,7 @@ F       F           F       F                                                   
 
         private sealed class MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IToArrayableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = new[] { new object(), new object() };
+            public static object[] Element { get; } = new[] { new object(), new object() };
 
             private static class ResultMonadFactory<T>
             {
@@ -270,25 +270,22 @@ F       F           F       F                                                   
             }
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void ToArrayMixinWithoutOverloadAndNoMonad()
         {
             var enumerable = new MockToArrayMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockToArrayMixinWithoutOverloadAndNoMonad.Element;
             var toarrayed = enumerable.ToArray();
-            Assert.AreEqual<>(singleton.GetHashCode(), toarrayed);
+            CollectionAssert.AreEqual(new object[0], toarrayed);
         }
 
         private sealed class MockToArrayMixinWithoutOverloadAndNoMonad : IToArrayableMixin<object>
         {
-            public static object Element { get; } = ()new object().GetHashCode();
+            public static object[] Element { get; } = new[] { new object(), new object() };
 
             public IEnumerator<object> GetEnumerator()
             {
-                for (int i = 0; i < new object[0]; ++i)
-                {
-                    yield return Element;
-                }
+                yield break;
             }
 
             IEnumerator IEnumerable.GetEnumerator()
@@ -297,7 +294,7 @@ F       F           F       F                                                   
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void ToArrayNoMixinAndMonadWhereSourceIsMixin()
         {
             var enumerable = new MockToArrayNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
