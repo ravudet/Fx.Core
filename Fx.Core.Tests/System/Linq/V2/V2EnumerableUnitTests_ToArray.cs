@@ -294,18 +294,18 @@ F       F           F       F                                                   
             }
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void ToArrayNoMixinAndMonadWhereSourceIsMixin()
         {
             var enumerable = new MockToArrayNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockToArrayNoMixinAndMonadWhereSourceIsMixin.Result;
             var toarrayed = enumerable.ToArray();
-            Assert.AreEqual<>(singleton, toarrayed);
+            Assert.AreEqual(singleton, toarrayed);
         }
 
         private sealed class MockToArrayNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
-            public static  Result { get; } = new object().GetHashCode();
+            public static object[] Result { get; } = new[] { new object(), new object() };
 
             private static class ResultMonadFactory<T>
             {
@@ -410,7 +410,7 @@ F       F           F       F                                                   
             }
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void ToArrayNoMixinAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockToArrayNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
