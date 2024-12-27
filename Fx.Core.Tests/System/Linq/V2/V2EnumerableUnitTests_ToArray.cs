@@ -518,31 +518,25 @@ F       F           F       F                                                   
             }
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void ToArrayNoMixinAndNoMonad()
         {
             var enumerable = new MockToArrayNoMixinAndNoMonad().AsV2Enumerable();
-            var singleton = MockToArrayNoMixinAndNoMonad.Element;
             var toarrayed = enumerable.ToArray();
-            Assert.AreEqual<>(singleton.GetHashCode(), toarrayed);
+            CollectionAssert.AreEqual(new object[0], toarrayed);
         }
 
         private sealed class MockToArrayNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object Element { get; } = ()new object().GetHashCode();
-
             public IEnumerator<object> GetEnumerator()
             {
-                for (int i = 0; i < new object[0]; ++i)
-                {
-                    yield return Element;
-                }
+                yield break;
             }
 
             IEnumerator IEnumerable.GetEnumerator()
             {
                 throw new NotImplementedException();
             }
-        }*/
+        }
     }
 }
