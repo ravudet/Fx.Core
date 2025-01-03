@@ -695,6 +695,18 @@
                 defaultResult: "new HashSet<object>()",
                 customResult: "new HashSet<object>(new[] { new object(), new object() })"
                 );
+
+            GenerateComplexTerminal(
+                operation: "ToList",
+                overload: "ToList",
+                overloadReturnType: "List<object>",
+                overloadTypeParameters: string.Empty,
+                overloadParameters: string.Empty,
+                resultType: "List<object>",
+                arguments: string.Empty,
+                defaultResult: "new List<object>()",
+                customResult: "new List<object>(new[] { new object(), new object() })"
+                );
         }
 
         [TestMethod]
