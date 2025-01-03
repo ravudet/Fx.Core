@@ -118,7 +118,7 @@ F       F           F       F                                                   
 
                 public {2} {0}{3}({4})
                 {
-                    return ({2})Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()

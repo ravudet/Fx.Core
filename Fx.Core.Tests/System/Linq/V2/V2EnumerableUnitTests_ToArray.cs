@@ -118,7 +118,7 @@ F       F           F       F                                                   
 
                 public object[] ToArray()
                 {
-                    return (object[])MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
