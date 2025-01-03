@@ -1099,10 +1099,10 @@
             GenerateTerminal(
                 operation: "FirstOrDefault",
                 overload: "FirstOrDefault",
-                overloadReturnType: "object",
+                overloadReturnType: "object?",
                 overloadTypeParameters: "",
                 overloadParameters: "",
-                resultType: "object",
+                resultType: "object?",
                 arguments: "",
                 sourceElementCount: "1"
                 );

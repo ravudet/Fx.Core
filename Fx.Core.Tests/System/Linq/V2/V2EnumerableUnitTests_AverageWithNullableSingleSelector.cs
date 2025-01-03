@@ -189,7 +189,7 @@ F       F           F       F                                                   
 
         private sealed class MockAverageWithNullableSingleSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IAverageableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = (float?)new object().GetHashCode();
+            public static object Element { get; } = (float?)new object().GetHashCode()!;
 
             private static class ResultMonadFactory<T>
             {
@@ -281,7 +281,7 @@ F       F           F       F                                                   
 
         private sealed class MockAverageWithNullableSingleSelectorMixinWithoutOverloadAndNoMonad : IAverageableMixin<object>
         {
-            public static object Element { get; } = (float?)new object().GetHashCode();
+            public static object Element { get; } = (float?)new object().GetHashCode()!;
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -457,7 +457,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = (float?)new object().GetHashCode();
+            public static object Element { get; } = (float?)new object().GetHashCode()!;
 
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
@@ -537,7 +537,7 @@ F       F           F       F                                                   
 
         private sealed class MockAverageWithNullableSingleSelectorNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object Element { get; } = (float?)new object().GetHashCode();
+            public static object Element { get; } = (float?)new object().GetHashCode()!;
 
             public IEnumerator<object> GetEnumerator()
             {

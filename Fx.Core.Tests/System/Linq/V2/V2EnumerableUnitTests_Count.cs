@@ -189,7 +189,7 @@ F       F           F       F                                                   
 
         private sealed class MockCountMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ICountableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = (int)new object().GetHashCode();
+            public static object Element { get; } = (int)new object().GetHashCode()!;
 
             private static class ResultMonadFactory<T>
             {
@@ -281,7 +281,7 @@ F       F           F       F                                                   
 
         private sealed class MockCountMixinWithoutOverloadAndNoMonad : ICountableMixin<object>
         {
-            public static object Element { get; } = (int)new object().GetHashCode();
+            public static object Element { get; } = (int)new object().GetHashCode()!;
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -457,7 +457,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = (int)new object().GetHashCode();
+            public static object Element { get; } = (int)new object().GetHashCode()!;
 
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
@@ -537,7 +537,7 @@ F       F           F       F                                                   
 
         private sealed class MockCountNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object Element { get; } = (int)new object().GetHashCode();
+            public static object Element { get; } = (int)new object().GetHashCode()!;
 
             public IEnumerator<object> GetEnumerator()
             {

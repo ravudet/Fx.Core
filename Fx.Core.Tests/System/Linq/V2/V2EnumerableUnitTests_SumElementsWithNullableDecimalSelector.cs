@@ -189,7 +189,7 @@ F       F           F       F                                                   
 
         private sealed class MockSumElementsWithNullableDecimalSelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : ISumableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = (decimal?)new object().GetHashCode();
+            public static object Element { get; } = (decimal?)new object().GetHashCode()!;
 
             private static class ResultMonadFactory<T>
             {
@@ -281,7 +281,7 @@ F       F           F       F                                                   
 
         private sealed class MockSumElementsWithNullableDecimalSelectorMixinWithoutOverloadAndNoMonad : ISumableMixin<object>
         {
-            public static object Element { get; } = (decimal?)new object().GetHashCode();
+            public static object Element { get; } = (decimal?)new object().GetHashCode()!;
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -457,7 +457,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = (decimal?)new object().GetHashCode();
+            public static object Element { get; } = (decimal?)new object().GetHashCode()!;
 
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
@@ -537,7 +537,7 @@ F       F           F       F                                                   
 
         private sealed class MockSumElementsWithNullableDecimalSelectorNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object Element { get; } = (decimal?)new object().GetHashCode();
+            public static object Element { get; } = (decimal?)new object().GetHashCode()!;
 
             public IEnumerator<object> GetEnumerator()
             {
