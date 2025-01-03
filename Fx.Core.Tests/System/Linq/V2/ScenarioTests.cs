@@ -777,6 +777,32 @@
                 defaultResult: "new Dictionary<object, object>()",
                 customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
                 );
+            GenerateComplexMultipleTypesTerminal(
+                operation: "ToDictionary",
+                overload: "ToDictionaryWithKeySelectorAndElementSelector",
+                overloadReturnType: "Dictionary<TKey, TElement>",
+                overloadTypeParameters: "<TKey, TElement>",
+                overloadParameters: "Func<object, TKey> keySelector, Func<object, TElement> elementSelector",
+                overloadGenericTypeConstraints: "where TKey : notnull",
+                resultType: "Dictionary<object, object>",
+                resultCast: "IDictionary<TKey, TElement>",
+                arguments: "_ => _, _ => _",
+                defaultResult: "new Dictionary<object, object>()",
+                customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
+                );
+            GenerateComplexMultipleTypesTerminal(
+                operation: "ToDictionary",
+                overload: "ToDictionaryWithKeySelectorAndComparer",
+                overloadReturnType: "Dictionary<TKey, object>",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector, IEqualityComparer<TKey>? comparer",
+                overloadGenericTypeConstraints: "where TKey : notnull",
+                resultType: "Dictionary<object, object>",
+                resultCast: "IDictionary<TKey, object>",
+                arguments: "_ => _, _ => _",
+                defaultResult: "new Dictionary<object, object>()",
+                customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
+                );
         }
 
         [TestMethod]
