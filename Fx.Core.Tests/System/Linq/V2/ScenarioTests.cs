@@ -819,7 +819,11 @@
             //// TODO either implement monad checks or remove entirely orderby and orderbydescending; then implement test cases for them //// TODO here's a through for this category of mixins: you could have the v2 variants be 1:1 with the v1 variants, but underlying, we still use the enumerable monad, but we don't create a new e.g. orderbymonad; it's also possible that you do this at a later time (create a work item and move on)
             //// TODO either implement monad checks or remove entirely tolookup; then implement test cases for it (//// TODO revmoe groupby if you do remove this)
 
-            //// TODO cover the remaining branches
+            //// TODO move mixin tests to their own folder or give them a name prefix
+            //// TODO change the existing test class to be v1 tests
+            //// TODO use the base test class name for the things that are "infrastructure" (like booladapter)
+            //// TODO cover the remaining branches non-v1 branches
+            //// TODO cover the remaining v1 branches
             //// TODO figure out how you want to add this code generation to the repo for real (t4 or something?)
             //// TODO look at todos elsewhere
             //// TODO code quality?
