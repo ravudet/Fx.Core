@@ -660,18 +660,6 @@
                 customResult: "new[] { new object(), new object() }"
                 );
 
-            /*GenerateComplexTerminal(
-                operation: "ToDictionary",
-                overload: "ToDictionaryWithKeySelector",
-                overloadReturnType: "Dictionary<TKey, object>",
-                overloadTypeParameters: "<TKey>",
-                overloadParameters: "Func<object, TKey> keySelector",
-                resultType: "Dictionary<object, object>",
-                arguments: "_ => _",
-                defaultResult: "new Dictionary<object, object>()",
-                customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
-                );*/
-
             GenerateComplexTerminal(
                 operation: "ToHashSet",
                 overload: "ToHashSet",
@@ -709,6 +697,68 @@
                 );
         }
 
+        private static void GenerateComplexMultipleTypesTerminal(
+            string operation,
+            string overload,
+            string overloadReturnType,
+            string overloadTypeParameters,
+            string overloadParameters,
+            string resultType,
+            string arguments,
+            string defaultResult,
+            string customResult)
+        {
+            var template = System.IO.File.ReadAllText(@"C:\github\Fx.Core\ComplexTerminalMultipleTypesTemplate.txt");
+            var escapedTemplate = template
+                .Replace("{", "{{")
+                .Replace("}", "}}")
+                .Replace("{{0}}", "{0}")
+                .Replace("{{1}}", "{1}")
+                .Replace("{{2}}", "{2}")
+                .Replace("{{3}}", "{3}")
+                .Replace("{{4}}", "{4}")
+                .Replace("{{5}}", "{5}")
+                .Replace("{{6}}", "{6}")
+                .Replace("{{7}}", "{7}")
+                .Replace("{{8}}", "{8}")
+                .Replace("{{9}}", "{9}")
+                ;
+
+            var generated = string.Format(
+                escapedTemplate,
+                operation,
+                overload,
+                overloadReturnType,
+                overloadTypeParameters,
+                overloadParameters,
+                resultType,
+                arguments,
+                defaultResult,
+                customResult,
+                operation.ToLower()
+                );
+
+            var unescapedGenerated = generated
+                .Replace("{{", "{")
+                .Replace("}}", "}");
+            System.IO.File.WriteAllText($@"C:\github\Fx.Core\Fx.Core.Tests\System\Linq\V2\V2EnumerableUnitTests_{overload}.cs", unescapedGenerated);
+        }
+
+        private static void GenerateComplexMultipleTypesTerminal()
+        {
+            GenerateComplexMultipleTypesTerminal(
+                operation: "ToDictionary",
+                overload: "ToDictionaryWithKeySelector",
+                overloadReturnType: "Dictionary<TKey, object>",
+                overloadTypeParameters: "<TKey>",
+                overloadParameters: "Func<object, TKey> keySelector",
+                resultType: "Dictionary<object, object>",
+                arguments: "_ => _",
+                defaultResult: "new Dictionary<object, object>()",
+                customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
+                );
+        }
+
         [TestMethod]
         public void Generate()
         {
@@ -716,13 +766,14 @@
             GenerateTerminal();
             GenerateTyped();
             GenerateComplexTerminal();
+            GenerateComplexMultipleTypesTerminal();
 
             //// TODO icastablemixin; you never really figured out the design for this
             //// TODO ioftypeable; this is suposed to be non-generic...
             //// TODO either implement monad checks or remove entirely orderby and orderbydescending; then implement test cases for them
             //// TODO either implement monad checks or remove entirely tolookup; then implement test cases for it
 
-            //// TODO test toarray, todictionary, tohashset, and tolist; they result in concrete collection types and probably deserve their own category
+            //// TODO test  todictionary,  and  they result in concrete collection types and probably deserve their own category
 
             //// TODO figure out how you want to add this code generation to the repo for real (t4 or something?)
         }
