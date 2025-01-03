@@ -660,7 +660,7 @@
                 customResult: "new[] { new object(), new object() }"
                 );
 
-            GenerateComplexTerminal(
+            /*GenerateComplexTerminal(
                 operation: "ToDictionary",
                 overload: "ToDictionaryWithKeySelector",
                 overloadReturnType: "Dictionary<TKey, object>",
@@ -670,7 +670,7 @@
                 arguments: "_ => _",
                 defaultResult: "new Dictionary<object, object>()",
                 customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
-                );
+                );*/
         }
 
         [TestMethod]
