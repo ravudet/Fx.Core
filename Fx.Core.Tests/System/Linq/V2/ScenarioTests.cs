@@ -671,7 +671,6 @@
                 defaultResult: "new HashSet<object>()",
                 customResult: "new HashSet<object>(new[] { new object(), new object() })"
                 );
-
             GenerateComplexTerminal(
                 operation: "ToHashSet",
                 overload: "ToHashSetWithComparer",
@@ -765,6 +764,19 @@
                 defaultResult: "new Dictionary<object, object>()",
                 customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
                 );
+            GenerateComplexMultipleTypesTerminal(
+                operation: "ToDictionary",
+                overload: "ToDictionaryWithKeySelectorElementSelectorAndComparer",
+                overloadReturnType: "Dictionary<TKey, TElement>",
+                overloadTypeParameters: "<TKey, TElement>",
+                overloadParameters: "Func<object, TKey> keySelector, Func<object, TElement> elementSelector, IEqualityComparer<TKey>? comparer",
+                overloadGenericTypeConstraints: "where TKey : notnull",
+                resultType: "Dictionary<object, object>",
+                resultCast: "IDictionary<TKey, TElement>",
+                arguments: "_ => _, _ => _, EqualityComparer<object>.Default",
+                defaultResult: "new Dictionary<object, object>()",
+                customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
+                );
         }
 
         [TestMethod]
@@ -775,6 +787,8 @@
             GenerateTyped();
             GenerateComplexTerminal();
             GenerateComplexMultipleTypesTerminal();
+
+            //// TODO fix warnings in generated code
 
             //// TODO icastablemixin; you never really figured out the design for this
             //// TODO ioftypeable; this is suposed to be non-generic...
