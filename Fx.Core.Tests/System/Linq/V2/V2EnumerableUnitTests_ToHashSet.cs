@@ -34,19 +34,19 @@ F       F           F       F                                                   
 */
 
         [TestMethod]
-        public void ToArrayMixinWithOverload()
+        public void ToHashSetMixinWithOverload()
         {
-            var enumerable = new MockToArrayMixinWithOverload().AsV2Enumerable();
-            var singleton = MockToArrayMixinWithOverload.Result;
-            var toarrayed = enumerable.ToArray();
-            Assert.AreEqual(singleton, toarrayed);
+            var enumerable = new MockToHashSetMixinWithOverload().AsV2Enumerable();
+            var singleton = MockToHashSetMixinWithOverload.Result;
+            var tohashseted = enumerable.ToHashSet();
+            Assert.AreEqual(singleton, tohashseted);
         }
 
-        private sealed class MockToArrayMixinWithOverload : IToArrayableMixin<object>
+        private sealed class MockToHashSetMixinWithOverload : IToHashSetableMixin<object>
         {
-            public static object[] Result { get; } = new[] { new object(), new object() };
+            public static HashSet<object> Result { get; } = new HashSet<object>(new[] { new object(), new object() });
 
-            public object[] ToArray()
+            public HashSet<object> ToHashSet()
             {
                 return Result;
             }
@@ -63,17 +63,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void ToArrayMixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void ToHashSetMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
-            var toarrayed = enumerable.ToArray();
-            Assert.AreEqual(singleton, toarrayed);
+            var enumerable = new MockToHashSetMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockToHashSetMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+            var tohashseted = enumerable.ToHashSet();
+            Assert.AreEqual(singleton, tohashseted);
         }
 
-        private sealed class MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsMixin : IToArrayableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockToHashSetMixinWithoutOverloadAndMonadWhereSourceIsMixin : IToHashSetableMixin<object>, IEnumerableMonad<object>
         {
-            public static object[] Result { get; } = new[] { new object(), new object() };
+            public static HashSet<object> Result { get; } = new HashSet<object>(new[] { new object(), new object() });
 
             private static class ResultMonadFactory<T>
             {
@@ -108,7 +108,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IToArrayableMixin<object>
+            private sealed class SourceEnumerable : IToHashSetableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -116,9 +116,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public object[] ToArray()
+                public HashSet<object> ToHashSet()
                 {
-                    return MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return MockToHashSetMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -179,17 +179,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void ToArrayMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void ToHashSetMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var toarrayed = enumerable.ToArray();
-            CollectionAssert.AreEqual(ToNonGenericCollection(new object[0]), ToNonGenericCollection(toarrayed));
+            var enumerable = new MockToHashSetMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockToHashSetMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
+            var tohashseted = enumerable.ToHashSet();
+            CollectionAssert.AreEqual(ToNonGenericCollection(new HashSet<object>()), ToNonGenericCollection(tohashseted));
         }
 
-        private sealed class MockToArrayMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IToArrayableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockToHashSetMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IToHashSetableMixin<object>, IEnumerableMonad<object>
         {
-            public static object[] Element { get; } = new[] { new object(), new object() };
+            public static HashSet<object> Element { get; } = new HashSet<object>(new[] { new object(), new object() });
 
             private static class ResultMonadFactory<T>
             {
@@ -271,17 +271,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void ToArrayMixinWithoutOverloadAndNoMonad()
+        public void ToHashSetMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new MockToArrayMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var singleton = MockToArrayMixinWithoutOverloadAndNoMonad.Element;
-            var toarrayed = enumerable.ToArray();
-            CollectionAssert.AreEqual(ToNonGenericCollection(new object[0]), ToNonGenericCollection(toarrayed));
+            var enumerable = new MockToHashSetMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var singleton = MockToHashSetMixinWithoutOverloadAndNoMonad.Element;
+            var tohashseted = enumerable.ToHashSet();
+            CollectionAssert.AreEqual(ToNonGenericCollection(new HashSet<object>()), ToNonGenericCollection(tohashseted));
         }
 
-        private sealed class MockToArrayMixinWithoutOverloadAndNoMonad : IToArrayableMixin<object>
+        private sealed class MockToHashSetMixinWithoutOverloadAndNoMonad : IToHashSetableMixin<object>
         {
-            public static object[] Element { get; } = new[] { new object(), new object() };
+            public static HashSet<object> Element { get; } = new HashSet<object>(new[] { new object(), new object() });
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -295,17 +295,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void ToArrayNoMixinAndMonadWhereSourceIsMixin()
+        public void ToHashSetNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new MockToArrayNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = MockToArrayNoMixinAndMonadWhereSourceIsMixin.Result;
-            var toarrayed = enumerable.ToArray();
-            Assert.AreEqual(singleton, toarrayed);
+            var enumerable = new MockToHashSetNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockToHashSetNoMixinAndMonadWhereSourceIsMixin.Result;
+            var tohashseted = enumerable.ToHashSet();
+            Assert.AreEqual(singleton, tohashseted);
         }
 
-        private sealed class MockToArrayNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockToHashSetNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
-            public static object[] Result { get; } = new[] { new object(), new object() };
+            public static HashSet<object> Result { get; } = new HashSet<object>(new[] { new object(), new object() });
 
             private static class ResultMonadFactory<T>
             {
@@ -340,7 +340,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : IToArrayableMixin<object>
+            private sealed class SourceEnumerable : IToHashSetableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -348,9 +348,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public object[] ToArray()
+                public HashSet<object> ToHashSet()
                 {
-                    return (object[])MockToArrayNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (HashSet<object>)MockToHashSetNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -411,14 +411,14 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void ToArrayNoMixinAndMonadWhereSourceIsNotMixin()
+        public void ToHashSetNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new MockToArrayNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var toarrayed = enumerable.ToArray();
-            CollectionAssert.AreEqual(ToNonGenericCollection(new object[0]), ToNonGenericCollection(toarrayed));
+            var enumerable = new MockToHashSetNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var tohashseted = enumerable.ToHashSet();
+            CollectionAssert.AreEqual(ToNonGenericCollection(new HashSet<object>()), ToNonGenericCollection(tohashseted));
         }
 
-        private sealed class MockToArrayNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockToHashSetNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -519,14 +519,14 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void ToArrayNoMixinAndNoMonad()
+        public void ToHashSetNoMixinAndNoMonad()
         {
-            var enumerable = new MockToArrayNoMixinAndNoMonad().AsV2Enumerable();
-            var toarrayed = enumerable.ToArray();
-            CollectionAssert.AreEqual(ToNonGenericCollection(new object[0]), ToNonGenericCollection(toarrayed));
+            var enumerable = new MockToHashSetNoMixinAndNoMonad().AsV2Enumerable();
+            var tohashseted = enumerable.ToHashSet();
+            CollectionAssert.AreEqual(ToNonGenericCollection(new HashSet<object>()), ToNonGenericCollection(tohashseted));
         }
 
-        private sealed class MockToArrayNoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockToHashSetNoMixinAndNoMonad : IV2Enumerable<object>
         {
             public IEnumerator<object> GetEnumerator()
             {

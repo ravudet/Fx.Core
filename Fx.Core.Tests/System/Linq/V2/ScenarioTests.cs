@@ -671,6 +671,18 @@
                 defaultResult: "new Dictionary<object, object>()",
                 customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
                 );*/
+
+            GenerateComplexTerminal(
+                operation: "ToHashSet",
+                overload: "ToHashSet",
+                overloadReturnType: "HashSet<object>",
+                overloadTypeParameters: string.Empty,
+                overloadParameters: string.Empty,
+                resultType: "HashSet<object>",
+                arguments: string.Empty,
+                defaultResult: "new HashSet<object>()",
+                customResult: "new HashSet<object>(new[] { new object(), new object() })"
+                );
         }
 
         [TestMethod]

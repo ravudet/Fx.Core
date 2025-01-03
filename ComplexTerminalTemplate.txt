@@ -184,7 +184,7 @@ F       F           F       F                                                   
             var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var {9}ed = enumerable.{0}({6});
-            CollectionAssert.AreEqual({7}, {9}ed);
+            CollectionAssert.AreEqual(ToNonGenericCollection({7}), ToNonGenericCollection({9}ed));
         }
 
         private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
@@ -276,7 +276,7 @@ F       F           F       F                                                   
             var enumerable = new Mock{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = Mock{1}MixinWithoutOverloadAndNoMonad.Element;
             var {9}ed = enumerable.{0}({6});
-            CollectionAssert.AreEqual({7}, {9}ed);
+            CollectionAssert.AreEqual(ToNonGenericCollection({7}), ToNonGenericCollection({9}ed));
         }
 
         private sealed class Mock{1}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>
@@ -415,7 +415,7 @@ F       F           F       F                                                   
         {
             var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var {9}ed = enumerable.{0}({6});
-            CollectionAssert.AreEqual({7}, {9}ed);
+            CollectionAssert.AreEqual(ToNonGenericCollection({7}), ToNonGenericCollection({9}ed));
         }
 
         private sealed class Mock{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -523,7 +523,7 @@ F       F           F       F                                                   
         {
             var enumerable = new Mock{1}NoMixinAndNoMonad().AsV2Enumerable();
             var {9}ed = enumerable.{0}({6});
-            CollectionAssert.AreEqual({7}, {9}ed);
+            CollectionAssert.AreEqual(ToNonGenericCollection({7}), ToNonGenericCollection({9}ed));
         }
 
         private sealed class Mock{1}NoMixinAndNoMonad : IV2Enumerable<object>

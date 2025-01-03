@@ -80,6 +80,54 @@ namespace System.Linq.V2
             }
         }
 
+        private static ICollection ToNonGenericCollection<T>(ICollection<T> collection)
+        {
+            return new NonGenericCollection<T>(collection);
+        }
+
+        private sealed class NonGenericCollection<T> : ICollection
+        {
+            private readonly ICollection<T> collection;
+
+            public NonGenericCollection(ICollection<T> collection)
+            {
+                this.collection = collection;
+            }
+
+            public int Count
+            {
+                get
+                {
+                    return this.collection.Count;
+                }
+            }
+
+            public bool IsSynchronized
+            {
+                get
+                {
+                    return false;
+                }
+            }
+
+            public object SyncRoot { get; } = new object();
+
+            public void CopyTo(Array array, int index)
+            {
+                var buffer = new T[array.Length];
+                this.collection.CopyTo(buffer, index);
+                for (int i = index; i < this.collection.Count; ++i)
+                {
+                    array.SetValue(buffer[i], i);
+                }
+            }
+
+            public IEnumerator GetEnumerator()
+            {
+                return ((IEnumerable)this.collection).GetEnumerator();
+            }
+        }
+
         /// <summary>
         /// Aggregates a sequence
         /// </summary>
