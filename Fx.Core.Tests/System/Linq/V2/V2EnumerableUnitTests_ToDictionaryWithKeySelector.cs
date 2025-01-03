@@ -46,7 +46,7 @@ F       F           F       F                                                   
         {
             public static Dictionary<object, object> Result { get; } = new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) });
 
-            public Dictionary<TKey, object> ToDictionary<TKey>(Func<object, TKey> keySelector)
+            public Dictionary<TKey, object> ToDictionary<TKey>(Func<object, TKey> keySelector) where TKey : notnull
             {
                 return (Dictionary<TKey, object>)(IDictionary<TKey, object>)Result;
             }
@@ -116,7 +116,7 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public Dictionary<TKey, object> ToDictionary<TKey>(Func<object, TKey> keySelector)
+                public Dictionary<TKey, object> ToDictionary<TKey>(Func<object, TKey> keySelector) where TKey : notnull
                 {
                     return (Dictionary<TKey, object>)(IDictionary<TKey, object>)MockToDictionaryWithKeySelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
@@ -348,7 +348,7 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public Dictionary<TKey, object> ToDictionary<TKey>(Func<object, TKey> keySelector)
+                public Dictionary<TKey, object> ToDictionary<TKey>(Func<object, TKey> keySelector) where TKey : notnull
                 {
                     return (Dictionary<TKey, object>)(IDictionary<TKey, object>)MockToDictionaryWithKeySelectorNoMixinAndMonadWhereSourceIsMixin.Result;
                 }

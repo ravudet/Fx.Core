@@ -38,17 +38,17 @@ F       F           F       F                                                   
         {
             var enumerable = new Mock{1}MixinWithOverload().AsV2Enumerable();
             var singleton = Mock{1}MixinWithOverload.Result;
-            var {10}ed = enumerable.{0}({7});
-            Assert.AreEqual(singleton, {10}ed);
+            var {11}ed = enumerable.{0}({8});
+            Assert.AreEqual(singleton, {11}ed);
         }
 
         private sealed class Mock{1}MixinWithOverload : I{0}ableMixin<object>
         {
-            public static {5} Result { get; } = {9};
+            public static {6} Result { get; } = {10};
 
-            public {2} {0}{3}({4})
+            public {2} {0}{3}({4}) {5}
             {
-                return ({2})({6})Result;
+                return ({2})({7})Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -67,13 +67,13 @@ F       F           F       F                                                   
         {
             var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
-            var {10}ed = enumerable.{0}({7});
-            Assert.AreEqual(singleton, {10}ed);
+            var {11}ed = enumerable.{0}({8});
+            Assert.AreEqual(singleton, {11}ed);
         }
 
         private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
         {
-            public static {5} Result { get; } = {9};
+            public static {6} Result { get; } = {10};
 
             private static class ResultMonadFactory<T>
             {
@@ -116,9 +116,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public {2} {0}{3}({4})
+                public {2} {0}{3}({4}) {5}
                 {
-                    return ({2})({6})Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return ({2})({7})Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -183,13 +183,13 @@ F       F           F       F                                                   
         {
             var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var {10}ed = enumerable.{0}({7});
-            CollectionAssert.AreEqual(ToNonGenericCollection({8}), ToNonGenericCollection({10}ed));
+            var {11}ed = enumerable.{0}({8});
+            CollectionAssert.AreEqual(ToNonGenericCollection({9}), ToNonGenericCollection({11}ed));
         }
 
         private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
         {
-            public static {5} Element { get; } = {9};
+            public static {6} Element { get; } = {10};
 
             private static class ResultMonadFactory<T>
             {
@@ -275,13 +275,13 @@ F       F           F       F                                                   
         {
             var enumerable = new Mock{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = Mock{1}MixinWithoutOverloadAndNoMonad.Element;
-            var {10}ed = enumerable.{0}({7});
-            CollectionAssert.AreEqual(ToNonGenericCollection({8}), ToNonGenericCollection({10}ed));
+            var {11}ed = enumerable.{0}({8});
+            CollectionAssert.AreEqual(ToNonGenericCollection({9}), ToNonGenericCollection({11}ed));
         }
 
         private sealed class Mock{1}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>
         {
-            public static {5} Element { get; } = {9};
+            public static {6} Element { get; } = {10};
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -299,13 +299,13 @@ F       F           F       F                                                   
         {
             var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result;
-            var {10}ed = enumerable.{0}({7});
-            Assert.AreEqual(singleton, {10}ed);
+            var {11}ed = enumerable.{0}({8});
+            Assert.AreEqual(singleton, {11}ed);
         }
 
         private sealed class Mock{1}NoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
-            public static {5} Result { get; } = {9};
+            public static {6} Result { get; } = {10};
 
             private static class ResultMonadFactory<T>
             {
@@ -348,9 +348,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public {2} {0}{3}({4})
+                public {2} {0}{3}({4}) {5}
                 {
-                    return ({2})({6})Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result;
+                    return ({2})({7})Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -414,8 +414,8 @@ F       F           F       F                                                   
         public void {1}NoMixinAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {10}ed = enumerable.{0}({7});
-            CollectionAssert.AreEqual(ToNonGenericCollection({8}), ToNonGenericCollection({10}ed));
+            var {11}ed = enumerable.{0}({8});
+            CollectionAssert.AreEqual(ToNonGenericCollection({9}), ToNonGenericCollection({11}ed));
         }
 
         private sealed class Mock{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -522,8 +522,8 @@ F       F           F       F                                                   
         public void {1}NoMixinAndNoMonad()
         {
             var enumerable = new Mock{1}NoMixinAndNoMonad().AsV2Enumerable();
-            var {10}ed = enumerable.{0}({7});
-            CollectionAssert.AreEqual(ToNonGenericCollection({8}), ToNonGenericCollection({10}ed));
+            var {11}ed = enumerable.{0}({8});
+            CollectionAssert.AreEqual(ToNonGenericCollection({9}), ToNonGenericCollection({11}ed));
         }
 
         private sealed class Mock{1}NoMixinAndNoMonad : IV2Enumerable<object>

@@ -703,6 +703,7 @@
             string overloadReturnType,
             string overloadTypeParameters,
             string overloadParameters,
+            string overloadGenericTypeConstraints,
             string resultType,
             string resultCast,
             string arguments,
@@ -724,6 +725,7 @@
                 .Replace("{{8}}", "{8}")
                 .Replace("{{9}}", "{9}")
                 .Replace("{{10}}", "{10}")
+                .Replace("{{11}}", "{11}")
                 ;
 
             var generated = string.Format(
@@ -733,6 +735,7 @@
                 overloadReturnType,
                 overloadTypeParameters,
                 overloadParameters,
+                overloadGenericTypeConstraints,
                 resultType,
                 resultCast,
                 arguments,
@@ -755,6 +758,7 @@
                 overloadReturnType: "Dictionary<TKey, object>",
                 overloadTypeParameters: "<TKey>",
                 overloadParameters: "Func<object, TKey> keySelector",
+                overloadGenericTypeConstraints: "where TKey : notnull",
                 resultType: "Dictionary<object, object>",
                 resultCast: "IDictionary<TKey, object>",
                 arguments: "_ => _",
