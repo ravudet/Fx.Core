@@ -704,6 +704,7 @@
             string overloadTypeParameters,
             string overloadParameters,
             string resultType,
+            string resultCast,
             string arguments,
             string defaultResult,
             string customResult)
@@ -722,6 +723,7 @@
                 .Replace("{{7}}", "{7}")
                 .Replace("{{8}}", "{8}")
                 .Replace("{{9}}", "{9}")
+                .Replace("{{10}}", "{10}")
                 ;
 
             var generated = string.Format(
@@ -732,6 +734,7 @@
                 overloadTypeParameters,
                 overloadParameters,
                 resultType,
+                resultCast,
                 arguments,
                 defaultResult,
                 customResult,
@@ -753,6 +756,7 @@
                 overloadTypeParameters: "<TKey>",
                 overloadParameters: "Func<object, TKey> keySelector",
                 resultType: "Dictionary<object, object>",
+                resultCast: "IDictionary<TKey, object>",
                 arguments: "_ => _",
                 defaultResult: "new Dictionary<object, object>()",
                 customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"

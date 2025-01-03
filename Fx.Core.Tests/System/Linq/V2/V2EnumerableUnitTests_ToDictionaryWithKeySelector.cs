@@ -34,21 +34,21 @@ F       F           F       F                                                   
 */
 
         [TestMethod]
-        public void {1}MixinWithOverload()
+        public void ToDictionaryWithKeySelectorMixinWithOverload()
         {
-            var enumerable = new Mock{1}MixinWithOverload().AsV2Enumerable();
-            var singleton = Mock{1}MixinWithOverload.Result;
-            var {10}ed = enumerable.{0}({7});
-            Assert.AreEqual(singleton, {10}ed);
+            var enumerable = new MockToDictionaryWithKeySelectorMixinWithOverload().AsV2Enumerable();
+            var singleton = MockToDictionaryWithKeySelectorMixinWithOverload.Result;
+            var todictionaryed = enumerable.ToDictionary(_ => _);
+            Assert.AreEqual(singleton, todictionaryed);
         }
 
-        private sealed class Mock{1}MixinWithOverload : I{0}ableMixin<object>
+        private sealed class MockToDictionaryWithKeySelectorMixinWithOverload : IToDictionaryableMixin<object>
         {
-            public static {5} Result { get; } = {9};
+            public static Dictionary<object, object> Result { get; } = new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) });
 
-            public {2} {0}{3}({4})
+            public Dictionary<TKey, object> ToDictionary<TKey>(Func<object, TKey> keySelector)
             {
-                return ({2})({6})Result;
+                return (Dictionary<TKey, object>)(IDictionary<TKey, object>)Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -63,17 +63,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsMixin()
+        public void ToDictionaryWithKeySelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
-            var {10}ed = enumerable.{0}({7});
-            Assert.AreEqual(singleton, {10}ed);
+            var enumerable = new MockToDictionaryWithKeySelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockToDictionaryWithKeySelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+            var todictionaryed = enumerable.ToDictionary(_ => _);
+            Assert.AreEqual(singleton, todictionaryed);
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockToDictionaryWithKeySelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin : IToDictionaryableMixin<object>, IEnumerableMonad<object>
         {
-            public static {5} Result { get; } = {9};
+            public static Dictionary<object, object> Result { get; } = new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) });
 
             private static class ResultMonadFactory<T>
             {
@@ -108,7 +108,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            private sealed class SourceEnumerable : IToDictionaryableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -116,9 +116,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public {2} {0}{3}({4})
+                public Dictionary<TKey, object> ToDictionary<TKey>(Func<object, TKey> keySelector)
                 {
-                    return ({2})({6})Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (Dictionary<TKey, object>)(IDictionary<TKey, object>)MockToDictionaryWithKeySelectorMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -179,17 +179,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
+        public void ToDictionaryWithKeySelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var singleton = Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var {10}ed = enumerable.{0}({7});
-            CollectionAssert.AreEqual(ToNonGenericCollection({8}), ToNonGenericCollection({10}ed));
+            var enumerable = new MockToDictionaryWithKeySelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var singleton = MockToDictionaryWithKeySelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
+            var todictionaryed = enumerable.ToDictionary(_ => _);
+            CollectionAssert.AreEqual(ToNonGenericCollection(new Dictionary<object, object>()), ToNonGenericCollection(todictionaryed));
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndMonadWhereSourceIsNotMixin : I{0}ableMixin<object>, IEnumerableMonad<object>
+        private sealed class MockToDictionaryWithKeySelectorMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IToDictionaryableMixin<object>, IEnumerableMonad<object>
         {
-            public static {5} Element { get; } = {9};
+            public static Dictionary<object, object> Element { get; } = new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) });
 
             private static class ResultMonadFactory<T>
             {
@@ -271,17 +271,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {1}MixinWithoutOverloadAndNoMonad()
+        public void ToDictionaryWithKeySelectorMixinWithoutOverloadAndNoMonad()
         {
-            var enumerable = new Mock{1}MixinWithoutOverloadAndNoMonad().AsV2Enumerable();
-            var singleton = Mock{1}MixinWithoutOverloadAndNoMonad.Element;
-            var {10}ed = enumerable.{0}({7});
-            CollectionAssert.AreEqual(ToNonGenericCollection({8}), ToNonGenericCollection({10}ed));
+            var enumerable = new MockToDictionaryWithKeySelectorMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
+            var singleton = MockToDictionaryWithKeySelectorMixinWithoutOverloadAndNoMonad.Element;
+            var todictionaryed = enumerable.ToDictionary(_ => _);
+            CollectionAssert.AreEqual(ToNonGenericCollection(new Dictionary<object, object>()), ToNonGenericCollection(todictionaryed));
         }
 
-        private sealed class Mock{1}MixinWithoutOverloadAndNoMonad : I{0}ableMixin<object>
+        private sealed class MockToDictionaryWithKeySelectorMixinWithoutOverloadAndNoMonad : IToDictionaryableMixin<object>
         {
-            public static {5} Element { get; } = {9};
+            public static Dictionary<object, object> Element { get; } = new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) });
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -295,17 +295,17 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {1}NoMixinAndMonadWhereSourceIsMixin()
+        public void ToDictionaryWithKeySelectorNoMixinAndMonadWhereSourceIsMixin()
         {
-            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
-            var singleton = Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result;
-            var {10}ed = enumerable.{0}({7});
-            Assert.AreEqual(singleton, {10}ed);
+            var enumerable = new MockToDictionaryWithKeySelectorNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
+            var singleton = MockToDictionaryWithKeySelectorNoMixinAndMonadWhereSourceIsMixin.Result;
+            var todictionaryed = enumerable.ToDictionary(_ => _);
+            Assert.AreEqual(singleton, todictionaryed);
         }
 
-        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
+        private sealed class MockToDictionaryWithKeySelectorNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
-            public static {5} Result { get; } = {9};
+            public static Dictionary<object, object> Result { get; } = new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) });
 
             private static class ResultMonadFactory<T>
             {
@@ -340,7 +340,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            private sealed class SourceEnumerable : I{0}ableMixin<object>
+            private sealed class SourceEnumerable : IToDictionaryableMixin<object>
             {
                 private SourceEnumerable()
                 {
@@ -348,9 +348,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public {2} {0}{3}({4})
+                public Dictionary<TKey, object> ToDictionary<TKey>(Func<object, TKey> keySelector)
                 {
-                    return ({2})({6})Mock{1}NoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (Dictionary<TKey, object>)(IDictionary<TKey, object>)MockToDictionaryWithKeySelectorNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -411,14 +411,14 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {1}NoMixinAndMonadWhereSourceIsNotMixin()
+        public void ToDictionaryWithKeySelectorNoMixinAndMonadWhereSourceIsNotMixin()
         {
-            var enumerable = new Mock{1}NoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var {10}ed = enumerable.{0}({7});
-            CollectionAssert.AreEqual(ToNonGenericCollection({8}), ToNonGenericCollection({10}ed));
+            var enumerable = new MockToDictionaryWithKeySelectorNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
+            var todictionaryed = enumerable.ToDictionary(_ => _);
+            CollectionAssert.AreEqual(ToNonGenericCollection(new Dictionary<object, object>()), ToNonGenericCollection(todictionaryed));
         }
 
-        private sealed class Mock{1}NoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
+        private sealed class MockToDictionaryWithKeySelectorNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
         {
             private static class ResultMonadFactory<T>
             {
@@ -519,14 +519,14 @@ F       F           F       F                                                   
         }
 
         [TestMethod]
-        public void {1}NoMixinAndNoMonad()
+        public void ToDictionaryWithKeySelectorNoMixinAndNoMonad()
         {
-            var enumerable = new Mock{1}NoMixinAndNoMonad().AsV2Enumerable();
-            var {10}ed = enumerable.{0}({7});
-            CollectionAssert.AreEqual(ToNonGenericCollection({8}), ToNonGenericCollection({10}ed));
+            var enumerable = new MockToDictionaryWithKeySelectorNoMixinAndNoMonad().AsV2Enumerable();
+            var todictionaryed = enumerable.ToDictionary(_ => _);
+            CollectionAssert.AreEqual(ToNonGenericCollection(new Dictionary<object, object>()), ToNonGenericCollection(todictionaryed));
         }
 
-        private sealed class Mock{1}NoMixinAndNoMonad : IV2Enumerable<object>
+        private sealed class MockToDictionaryWithKeySelectorNoMixinAndNoMonad : IV2Enumerable<object>
         {
             public IEnumerator<object> GetEnumerator()
             {
