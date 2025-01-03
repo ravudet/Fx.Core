@@ -1266,7 +1266,7 @@
                 overloadReturnType: "object?",
                 overloadTypeParameters: "",
                 overloadParameters: "IComparer<object>? comparer",
-                resultType: "object",
+                resultType: "object?",
                 arguments: "Comparer<object>.Default",
                 sourceElementCount: "1"
                 );
@@ -1316,7 +1316,7 @@
                 overloadReturnType: "TResult?",
                 overloadTypeParameters: "<TResult>",
                 overloadParameters: "Func<object, TResult> selector",
-                resultType: "object",
+                resultType: "object?",
                 arguments: "element => element",
                 sourceElementCount: "1"
                 );

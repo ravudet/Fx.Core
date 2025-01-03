@@ -39,12 +39,12 @@ F       F           F       F                                                   
             var enumerable = new MockMaxWithComparerMixinWithOverload().AsV2Enumerable();
             var singleton = MockMaxWithComparerMixinWithOverload.Result;
             var maxed = enumerable.Max(Comparer<object>.Default);
-            Assert.AreEqual<object>(singleton, maxed);
+            Assert.AreEqual<object?>(singleton, maxed);
         }
 
         private sealed class MockMaxWithComparerMixinWithOverload : IMaxableMixin<object>
         {
-            public static object Result { get; } = new object().GetHashCode();
+            public static object? Result { get; } = new object().GetHashCode();
 
             public object? Max(IComparer<object>? comparer)
             {
@@ -68,12 +68,12 @@ F       F           F       F                                                   
             var enumerable = new MockMaxWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockMaxWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
             var maxed = enumerable.Max(Comparer<object>.Default);
-            Assert.AreEqual<object>(singleton, maxed);
+            Assert.AreEqual<object?>(singleton, maxed);
         }
 
         private sealed class MockMaxWithComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin : IMaxableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Result { get; } = new object().GetHashCode();
+            public static object? Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -184,12 +184,12 @@ F       F           F       F                                                   
             var enumerable = new MockMaxWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockMaxWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
             var maxed = enumerable.Max(Comparer<object>.Default);
-            Assert.AreEqual<object>(singleton.GetHashCode(), maxed);
+            Assert.AreEqual<object?>(singleton.GetHashCode(), maxed);
         }
 
         private sealed class MockMaxWithComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin : IMaxableMixin<object>, IEnumerableMonad<object>
         {
-            public static object Element { get; } = (object)new object().GetHashCode()!;
+            public static object Element { get; } = (object?)new object().GetHashCode()!;
 
             private static class ResultMonadFactory<T>
             {
@@ -276,12 +276,12 @@ F       F           F       F                                                   
             var enumerable = new MockMaxWithComparerMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockMaxWithComparerMixinWithoutOverloadAndNoMonad.Element;
             var maxed = enumerable.Max(Comparer<object>.Default);
-            Assert.AreEqual<object>(singleton.GetHashCode(), maxed);
+            Assert.AreEqual<object?>(singleton.GetHashCode(), maxed);
         }
 
         private sealed class MockMaxWithComparerMixinWithoutOverloadAndNoMonad : IMaxableMixin<object>
         {
-            public static object Element { get; } = (object)new object().GetHashCode()!;
+            public static object Element { get; } = (object?)new object().GetHashCode()!;
 
             public IEnumerator<object> GetEnumerator()
             {
@@ -303,12 +303,12 @@ F       F           F       F                                                   
             var enumerable = new MockMaxWithComparerNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockMaxWithComparerNoMixinAndMonadWhereSourceIsMixin.Result;
             var maxed = enumerable.Max(Comparer<object>.Default);
-            Assert.AreEqual<object>(singleton, maxed);
+            Assert.AreEqual<object?>(singleton, maxed);
         }
 
         private sealed class MockMaxWithComparerNoMixinAndMonadWhereSourceIsMixin : IEnumerableMonad<object>
         {
-            public static object Result { get; } = new object().GetHashCode();
+            public static object? Result { get; } = new object().GetHashCode();
 
             private static class ResultMonadFactory<T>
             {
@@ -419,7 +419,7 @@ F       F           F       F                                                   
             var enumerable = new MockMaxWithComparerNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockMaxWithComparerNoMixinAndMonadWhereSourceIsNotMixin.Element;
             var maxed = enumerable.Max(Comparer<object>.Default);
-            Assert.AreEqual<object>(singleton.GetHashCode(), maxed);
+            Assert.AreEqual<object?>(singleton.GetHashCode(), maxed);
         }
 
         private sealed class MockMaxWithComparerNoMixinAndMonadWhereSourceIsNotMixin : IEnumerableMonad<object>
@@ -457,7 +457,7 @@ F       F           F       F                                                   
 
             public IV2Enumerable<object> Source { get; } = SourceEnumerable.Instance;
 
-            public static object Element { get; } = (object)new object().GetHashCode()!;
+            public static object Element { get; } = (object?)new object().GetHashCode()!;
 
             private sealed class SourceEnumerable : IV2Enumerable<object>
             {
@@ -532,12 +532,12 @@ F       F           F       F                                                   
             var enumerable = new MockMaxWithComparerNoMixinAndNoMonad().AsV2Enumerable();
             var singleton = MockMaxWithComparerNoMixinAndNoMonad.Element;
             var maxed = enumerable.Max(Comparer<object>.Default);
-            Assert.AreEqual<object>(singleton.GetHashCode(), maxed);
+            Assert.AreEqual<object?>(singleton.GetHashCode(), maxed);
         }
 
         private sealed class MockMaxWithComparerNoMixinAndNoMonad : IV2Enumerable<object>
         {
-            public static object Element { get; } = (object)new object().GetHashCode()!;
+            public static object Element { get; } = (object?)new object().GetHashCode()!;
 
             public IEnumerator<object> GetEnumerator()
             {
