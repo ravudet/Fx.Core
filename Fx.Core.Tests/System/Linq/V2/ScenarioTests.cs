@@ -683,6 +683,18 @@
                 defaultResult: "new HashSet<object>()",
                 customResult: "new HashSet<object>(new[] { new object(), new object() })"
                 );
+
+            GenerateComplexTerminal(
+                operation: "ToHashSet",
+                overload: "ToHashSetWithComparer",
+                overloadReturnType: "HashSet<object>",
+                overloadTypeParameters: string.Empty,
+                overloadParameters: "IEqualityComparer<object>? comparer",
+                resultType: "HashSet<object>",
+                arguments: "EqualityComparer<object>.Default",
+                defaultResult: "new HashSet<object>()",
+                customResult: "new HashSet<object>(new[] { new object(), new object() })"
+                );
         }
 
         [TestMethod]
