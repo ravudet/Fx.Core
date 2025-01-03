@@ -814,8 +814,6 @@
             GenerateComplexTerminal();
             GenerateComplexMultipleTypesTerminal();
 
-            //// TODO fix warnings in generated code
-
             //// TODO icastablemixin; you never really figured out the design for this
             //// TODO ioftypeable; this is suposed to be non-generic...
             //// TODO either implement monad checks or remove entirely orderby and orderbydescending; then implement test cases for them
