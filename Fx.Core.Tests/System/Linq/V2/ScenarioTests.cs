@@ -799,7 +799,7 @@
                 overloadGenericTypeConstraints: "where TKey : notnull",
                 resultType: "Dictionary<object, object>",
                 resultCast: "IDictionary<TKey, object>",
-                arguments: "_ => _, _ => _",
+                arguments: "_ => _, EqualityComparer<object>.Default",
                 defaultResult: "new Dictionary<object, object>()",
                 customResult: "new Dictionary<object, object>(new[] { KeyValuePair.Create(new object(), new object()) })"
                 );

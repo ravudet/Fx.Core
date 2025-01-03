@@ -38,7 +38,7 @@ F       F           F       F                                                   
         {
             var enumerable = new MockToDictionaryWithKeySelectorAndComparerMixinWithOverload().AsV2Enumerable();
             var singleton = MockToDictionaryWithKeySelectorAndComparerMixinWithOverload.Result;
-            var todictionaryed = enumerable.ToDictionary(_ => _, _ => _);
+            var todictionaryed = enumerable.ToDictionary(_ => _, EqualityComparer<object>.Default);
             Assert.AreEqual(singleton, todictionaryed);
         }
 
@@ -67,7 +67,7 @@ F       F           F       F                                                   
         {
             var enumerable = new MockToDictionaryWithKeySelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockToDictionaryWithKeySelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
-            var todictionaryed = enumerable.ToDictionary(_ => _, _ => _);
+            var todictionaryed = enumerable.ToDictionary(_ => _, EqualityComparer<object>.Default);
             Assert.AreEqual(singleton, todictionaryed);
         }
 
@@ -183,7 +183,7 @@ F       F           F       F                                                   
         {
             var enumerable = new MockToDictionaryWithKeySelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
             var singleton = MockToDictionaryWithKeySelectorAndComparerMixinWithoutOverloadAndMonadWhereSourceIsNotMixin.Element;
-            var todictionaryed = enumerable.ToDictionary(_ => _, _ => _);
+            var todictionaryed = enumerable.ToDictionary(_ => _, EqualityComparer<object>.Default);
             CollectionAssert.AreEqual(ToNonGenericCollection(new Dictionary<object, object>()), ToNonGenericCollection(todictionaryed));
         }
 
@@ -275,7 +275,7 @@ F       F           F       F                                                   
         {
             var enumerable = new MockToDictionaryWithKeySelectorAndComparerMixinWithoutOverloadAndNoMonad().AsV2Enumerable();
             var singleton = MockToDictionaryWithKeySelectorAndComparerMixinWithoutOverloadAndNoMonad.Element;
-            var todictionaryed = enumerable.ToDictionary(_ => _, _ => _);
+            var todictionaryed = enumerable.ToDictionary(_ => _, EqualityComparer<object>.Default);
             CollectionAssert.AreEqual(ToNonGenericCollection(new Dictionary<object, object>()), ToNonGenericCollection(todictionaryed));
         }
 
@@ -299,7 +299,7 @@ F       F           F       F                                                   
         {
             var enumerable = new MockToDictionaryWithKeySelectorAndComparerNoMixinAndMonadWhereSourceIsMixin().AsV2Enumerable();
             var singleton = MockToDictionaryWithKeySelectorAndComparerNoMixinAndMonadWhereSourceIsMixin.Result;
-            var todictionaryed = enumerable.ToDictionary(_ => _, _ => _);
+            var todictionaryed = enumerable.ToDictionary(_ => _, EqualityComparer<object>.Default);
             Assert.AreEqual(singleton, todictionaryed);
         }
 
@@ -414,7 +414,7 @@ F       F           F       F                                                   
         public void ToDictionaryWithKeySelectorAndComparerNoMixinAndMonadWhereSourceIsNotMixin()
         {
             var enumerable = new MockToDictionaryWithKeySelectorAndComparerNoMixinAndMonadWhereSourceIsNotMixin().AsV2Enumerable();
-            var todictionaryed = enumerable.ToDictionary(_ => _, _ => _);
+            var todictionaryed = enumerable.ToDictionary(_ => _, EqualityComparer<object>.Default);
             CollectionAssert.AreEqual(ToNonGenericCollection(new Dictionary<object, object>()), ToNonGenericCollection(todictionaryed));
         }
 
@@ -522,7 +522,7 @@ F       F           F       F                                                   
         public void ToDictionaryWithKeySelectorAndComparerNoMixinAndNoMonad()
         {
             var enumerable = new MockToDictionaryWithKeySelectorAndComparerNoMixinAndNoMonad().AsV2Enumerable();
-            var todictionaryed = enumerable.ToDictionary(_ => _, _ => _);
+            var todictionaryed = enumerable.ToDictionary(_ => _, EqualityComparer<object>.Default);
             CollectionAssert.AreEqual(ToNonGenericCollection(new Dictionary<object, object>()), ToNonGenericCollection(todictionaryed));
         }
 
