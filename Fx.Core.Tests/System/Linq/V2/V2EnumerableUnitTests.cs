@@ -2723,27 +2723,27 @@ namespace System.Linq.V2
 
         //// TODO discuss design decision 3 with others; if you rename the interface methods, confusion can be avoided; also, having separate interfaces for every method avoids the need for the "default" behavior at all
         //// 
-        //// TODO summablesinglemixin, summabledoublemixin, etc
         //// TODO tests for TryGetNonEnumeratedCount
         //// TODO tests for tolist
         //// TODO tests for tohashset
         //// TODO tests for todictionary
         //// TODO tests for toarray
-        //// TODO test that, for example, iaggregatablemixin does the right thing even if it only implements one of the overloads
-        //// TODO use code generation for C:\source\Fx.Core\TextFile1.txt
+        ///
         //// TODO you skpped tests for the the adapter methods (tov2enumerable, tov2lookup, etc.); you should have a separate implementation and test file for those
         ////
         //// TODO should the orderby variants use monad checks somehow? maybe not, maybe they should be treated list toarray and tolist?
         //// TODO write tests for orderby variants
         //// TODO should the tolookup variants use monad checks somehow? maybe not, maybe they should be treated list toarray and tolist?
+        ///
         //// TODO should the factories actually be part of this release? you aren't allowing them to be extensible (for example, enumerable.repeat could be a countable mixin, but you're not doing that, and no one else can override that...); maybe the factories should be static interface methods? if they are static interface methods, then having "defaults" of them would make sense
-        //// TODO should unit be a static method?
+        ///
         //// TODO make sure the names of the variables make sense (like, you change from aggregatedoverload to monad, so the default extensions use the old name)
         //// TODO do you need the non-generic type? can you add it later?
         //// TODO add default implementation for icastablemixin if you keep the non-generic type
         //// TODO uncomment the cast extension method
         //// TODO add default implementation for ioftypeablemixin; you will want the mixin whether or not you keep the non-generic type, but it may look different if you keep the non-generic
         //// TODO uncomment the oftype extension method
+        ///
         //// TODO should you remove iv2 : iv1? that way no one accidentally escapes back to v1?
         //// TODO if you remove v2: v1 then you should change asv2enumerable to asenumerable; otherwise, you should document in the design doc that having a different name is good to make it clear to callers which framework they are in
         //// TODO normalize on TElement everywhere
@@ -2753,10 +2753,6 @@ namespace System.Linq.V2
         //// TODO check if you should make anything public that's internal or private
         //// TODO remove spike tests from ScenarioTests
         //// TODO productize scenario tests
-
-        //// TODO recording:
-        //// open sound settings; make sure output and input are both the airpods hands-free
-        //// https://app.clipchamp.com/
     }
 
     internal static class TestTODO
