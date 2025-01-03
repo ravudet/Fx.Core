@@ -47,7 +47,7 @@ namespace System.Linq.V2
 
                 public static Comparer Instance { get; } = new Comparer();
 
-                public bool Equals(object? x, object? y)
+                bool IEqualityComparer<object>.Equals(object? x, object? y)
                 {
                     if (object.ReferenceEquals(x, y))
                     {
