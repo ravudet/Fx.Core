@@ -817,7 +817,7 @@
             //// TODO icastablemixin; you never really figured out the design for this
             //// TODO ioftypeable; this is suposed to be non-generic...
             //// TODO either implement monad checks or remove entirely orderby and orderbydescending; then implement test cases for them
-            //// TODO either implement monad checks or remove entirely tolookup; then implement test cases for it
+            //// TODO either implement monad checks or remove entirely tolookup; then implement test cases for it //// TODO you implemented and tested groupby, you can probably do tolookup...
 
             //// TODO cover the remaining branches
             //// TODO figure out how you want to add this code generation to the repo for real (t4 or something?)
