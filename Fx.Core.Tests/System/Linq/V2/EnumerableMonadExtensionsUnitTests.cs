@@ -65,7 +65,7 @@
 
             public Unit<TSource> Unit<TSource>()
             {
-                return enumerable => new AnyFalseMonad<TSource>(enumerable);
+                return enumerable => new CountNegative<TSource>(enumerable);
             }
 
             public int Count()
