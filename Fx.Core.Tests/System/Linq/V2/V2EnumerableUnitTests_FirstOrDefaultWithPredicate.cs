@@ -46,9 +46,9 @@ F       F           F       F                                                   
         {
             public static object Result { get; } = new object().GetHashCode();
 
-            public object FirstOrDefault(Func<object, bool> predicate)
+            public object? FirstOrDefault(Func<object, bool> predicate)
             {
-                return (object)Result;
+                return (object?)Result;
             }
 
             public IEnumerator<object> GetEnumerator()
@@ -116,9 +116,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public object FirstOrDefault(Func<object, bool> predicate)
+                public object? FirstOrDefault(Func<object, bool> predicate)
                 {
-                    return (object)MockFirstOrDefaultWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
+                    return (object?)MockFirstOrDefaultWithPredicateMixinWithoutOverloadAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
@@ -351,9 +351,9 @@ F       F           F       F                                                   
 
                 public static SourceEnumerable Instance { get; } = new SourceEnumerable();
 
-                public object FirstOrDefault(Func<object, bool> predicate)
+                public object? FirstOrDefault(Func<object, bool> predicate)
                 {
-                    return (object)MockFirstOrDefaultWithPredicateNoMixinAndMonadWhereSourceIsMixin.Result;
+                    return (object?)MockFirstOrDefaultWithPredicateNoMixinAndMonadWhereSourceIsMixin.Result;
                 }
 
                 public IEnumerator<object> GetEnumerator()
