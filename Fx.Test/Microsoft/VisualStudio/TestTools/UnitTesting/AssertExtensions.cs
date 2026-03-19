@@ -93,7 +93,7 @@
 
         /// <param name="assert">The <see cref="Assert"/> instance that is being extended</param>
         /// <inheritdoc cref="Assert.IsNull(object)"/>
-        public static void IsNull(this Assert assert, object value)
+        public static void IsNull(this Assert assert, object? value)
         {
             Assert.IsNull(value);
         }
