@@ -9,17 +9,10 @@
     {
         public static void Foo()
         {
-            switch (5)
-            {
-                case 0:
-                    throw new Exception("tODO");
-                case 5:
-                    {
-                        break;
-                    }
-                case 6:
-                    throw new Exception("TODO");
-            }
+            goto foo;
+
+        foo:
+            return;
         }
 
         /// <param name="assert">The <see cref="Assert"/> instance that is being extended</param>
