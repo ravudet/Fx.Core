@@ -11,7 +11,8 @@
         /// <inheritdoc cref="Assert.IsTrue(bool)"/>
         public static void IsTrue(this Assert assert, [DoesNotReturnIf(false)] bool condition)
         {
-            Assert.IsTrue(condition);
+            Assert.
+                IsTrue(condition);
         }
 
         /// <param name="assert">The <see cref="Assert"/> instance that is being extended</param>
