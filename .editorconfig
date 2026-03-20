@@ -13,8 +13,12 @@ dotnet_style_operator_placement_when_wrapping = beginning_of_line
 ## identation and spacing
 
 indent_style = space
-tab_width = 4
+tab_width = 1
 indent_size = 4
+
+## indentation preferences
+
+csharp_indent_block_contents = false
 
 
 
@@ -209,7 +213,7 @@ csharp_new_line_before_open_brace = all
 csharp_new_line_between_query_expression_clauses = true
 
 # Indentation preferences
-csharp_indent_block_contents = true
+
 csharp_indent_braces = false
 csharp_indent_case_contents = true
 csharp_indent_case_contents_when_block = false # TODO i'm not convinced about this rule, i don't usually write `switch` statements, let alone ones with blocks
@@ -310,3 +314,4 @@ dotnet_style_predefined_type_for_member_access = true:silent
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
 dotnet_style_allow_multiple_blank_lines_experimental = true:silent
 dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
+csharp_indent_block_contents = false
