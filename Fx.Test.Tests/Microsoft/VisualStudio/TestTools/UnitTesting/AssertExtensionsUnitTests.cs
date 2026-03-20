@@ -3,7 +3,8 @@
     [TestClass]
     public sealed class AssertExtensionsUnitTests
     {
-        //// TODO you finished identation preferences, but you went back to double check expression-level preferences
+        //// TODO you are at identation preferences and you are re-ordering the config file to follow the ui; make sure there are no duplicates
+        
         //// TODO i'm not convinced that the UI is a canonical list
 
         [TestMethod]
