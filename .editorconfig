@@ -1,9 +1,12 @@
 # https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories
 
-# Remove the line below if you want to inherit .editorconfig settings from higher directories
 root = true
 
 [*.{cs,vb}]
+
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+tab_width = 4
+indent_size = 4
 dotnet_style_coalesce_expression = true:suggestion
 dotnet_style_null_propagation = true:suggestion
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
@@ -26,12 +29,8 @@ dotnet_style_predefined_type_for_member_access = true:silent
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
 dotnet_style_allow_multiple_blank_lines_experimental = true:silent
 dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
-dotnet_style_operator_placement_when_wrapping = beginning_of_line
-tab_width = 4
-indent_size = 4
 end_of_line = crlf
 
-# C# files
 [*.cs]
 
 #### Core EditorConfig Options ####
