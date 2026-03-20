@@ -4,9 +4,20 @@ root = true
 
 [*.{cs,vb}]
 
+# whitespace
+
+## expression-level preferences
+
 dotnet_style_operator_placement_when_wrapping = beginning_of_line
+
+## identation and spacing
+
 tab_width = 4
 indent_size = 4
+
+
+
+
 
 dotnet_style_coalesce_expression = true:suggestion
 dotnet_style_null_propagation = true:suggestion
