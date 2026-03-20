@@ -176,7 +176,7 @@ csharp_indent_block_contents = true
 csharp_indent_braces = false
 csharp_indent_case_contents = true
 csharp_indent_case_contents_when_block = false # TODO i'm not convinced about this rule, i don't usually write `switch` statements, let alone ones with blocks
-csharp_indent_labels = one_less_than_current # TODO i'm not convinced about this rule, i don't usually write `goto` statements
+csharp_indent_labels = flush_left# TODO i'm not convinced about this rule, i don't usually write `goto` statements
 csharp_indent_switch_labels = true
 
 # Space preferences
@@ -250,7 +250,7 @@ dotnet_naming_style.begins_with_i.word_separator =
 dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
 [*.{cs,vb}]
-dotnet_style_operator_placement_when_wrapping = beginning_of_line
+dotnet_style_operator_placement_when_wrapping = end_of_line
 tab_width = 4
 indent_size = 4
 end_of_line = crlf

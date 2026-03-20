@@ -9,10 +9,10 @@
     {
         public static void Foo()
         {
-            goto foo;
-
-        foo:
-            return;
+            if (true
+                && false)
+            {
+            }
         }
 
         /// <param name="assert">The <see cref="Assert"/> instance that is being extended</param>

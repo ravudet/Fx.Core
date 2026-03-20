@@ -3,6 +3,9 @@
     [TestClass]
     public sealed class AssertExtensionsUnitTests
     {
+        //// TODO you finished identation preferences, but you went back to double check expression-level preferences
+        //// TODO i'm not convinced that the UI is a canonical list
+
         [TestMethod]
         public void IsTrue()
         {
