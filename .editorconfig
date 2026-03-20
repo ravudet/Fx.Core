@@ -12,6 +12,7 @@ dotnet_style_operator_placement_when_wrapping = beginning_of_line
 
 ## identation and spacing
 
+indent_style = space
 tab_width = 4
 indent_size = 4
 
@@ -48,9 +49,7 @@ end_of_line = crlf
 #### Core EditorConfig Options ####
 
 # Indentation and spacing
-indent_size = 4
-indent_style = space
-tab_width = 4
+
 
 # New line preferences
 end_of_line = crlf
