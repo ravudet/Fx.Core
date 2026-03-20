@@ -175,7 +175,7 @@ csharp_new_line_between_query_expression_clauses = true
 csharp_indent_block_contents = true
 csharp_indent_braces = false
 csharp_indent_case_contents = true
-csharp_indent_case_contents_when_block = true
+csharp_indent_case_contents_when_block = false # TODO i'm not convinced about this rule, i don't usually write `switch` statements, let alone ones with blocks
 csharp_indent_labels = one_less_than_current
 csharp_indent_switch_labels = true
 

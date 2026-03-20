@@ -7,6 +7,21 @@
 
     public static class AssertExtensions
     {
+        public static void Foo()
+        {
+            switch (5)
+            {
+                case 0:
+                    throw new Exception("tODO");
+                case 5:
+                    {
+                        break;
+                    }
+                case 6:
+                    throw new Exception("TODO");
+            }
+        }
+
         /// <param name="assert">The <see cref="Assert"/> instance that is being extended</param>
         /// <inheritdoc cref="Assert.IsTrue(bool)"/>
         public static void IsTrue(this Assert assert, [DoesNotReturnIf(false)] bool condition)
