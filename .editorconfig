@@ -13,12 +13,16 @@ dotnet_style_operator_placement_when_wrapping = beginning_of_line
 ## identation and spacing
 
 indent_style = space
-tab_width = 1
+tab_width = 4
 indent_size = 4
+
+[*.cs]
+
+# whitespace
 
 ## indentation preferences
 
-csharp_indent_block_contents = false
+csharp_indent_block_contents = true
 
 
 
@@ -314,4 +318,3 @@ dotnet_style_predefined_type_for_member_access = true:silent
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
 dotnet_style_allow_multiple_blank_lines_experimental = true:silent
 dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
-csharp_indent_block_contents = true
