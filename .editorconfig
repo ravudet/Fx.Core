@@ -26,6 +26,21 @@ csharp_indent_case_contents_when_block = false # TODO i'm not convinced about th
 csharp_indent_switch_labels = true
 csharp_indent_labels = one_less_than_current# TODO i'm not convinced about this rule, i don't usually write `goto` statements
 
+## new line preferences
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
