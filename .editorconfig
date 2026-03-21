@@ -2,12 +2,12 @@
 
 root = true
 
-[*.{cs,vb}]
-
 # whitespace
 
 ## expression-level preferences
 
+
+[*.{cs,vb}]
 dotnet_style_operator_placement_when_wrapping = beginning_of_line
 
 ## identation and spacing
@@ -16,12 +16,9 @@ indent_style = space
 tab_width = 4
 indent_size = 4
 
-[*.cs]
-
-# whitespace
-
 ## indentation preferences
 
+[*.cs]
 csharp_indent_block_contents = true
 csharp_indent_braces = false
 
