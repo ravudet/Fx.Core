@@ -1,5 +1,7 @@
 ﻿namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
+    using System;
+
     [TestClass]
     public sealed class AssertExtensionsUnitTests
     {
@@ -42,6 +44,12 @@
         [TestMethod]
         public void IsTrueMessage()
         {
+            ////AssertExtensionsUnitTests foo = new AssertExtensionsUnitTests();
+            ////var x = 0;
+
+            int x = 0;
+            Console.WriteLine(x);
+
             var message = "some message";
             bool condition = true;
             Assert.That.IsTrue(condition, message);

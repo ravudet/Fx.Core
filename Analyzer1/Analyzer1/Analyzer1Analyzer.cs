@@ -34,7 +34,15 @@
 
             // TODO: Consider registering other actions that act on syntax instead of or in addition to symbols
             // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/Analyzer%20Actions%20Semantics.md for more information
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
+            ////context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
+
+            //// TODO i think you'll want to check these out for `assert.that`:
+            ////SyntaxKind.PointerMemberAccessExpression
+            ////SyntaxKind.ConditionalAccessExpression
+            ////SyntaxKind.SimpleMemberAccessExpression
+            //// this is the expression type: https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.syntax.memberaccessexpressionsyntax?view=roslyn-dotnet-5.0.0
+
+            context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.LocalDeclarationStatement);
         }
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
@@ -50,6 +58,29 @@
 
                 context.ReportDiagnostic(diagnostic);
             }
+        }
+
+        private void AnalyzeNode(SyntaxNodeAnalysisContext context)
+        {
+            var localDeclaration = (LocalDeclarationStatementSyntax)context.Node;
+            if (localDeclaration.Modifiers.Any(SyntaxKind.ConstKeyword))
+            {
+                return;
+            }
+
+            // Perform data flow analysis on the local declaration.
+            DataFlowAnalysis dataFlowAnalysis = context.SemanticModel.AnalyzeDataFlow(localDeclaration);
+
+            // Retrieve the local symbol for each variable in the local declaration
+            // and ensure that it is not written outside of the data flow analysis region.
+            VariableDeclaratorSyntax variable = localDeclaration.Declaration.Variables.Single();
+            ISymbol variableSymbol = context.SemanticModel.GetDeclaredSymbol(variable, context.CancellationToken);
+            if (dataFlowAnalysis.WrittenOutside.Contains(variableSymbol))
+            {
+                return;
+            }
+
+            context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation(), localDeclaration.Declaration.Variables.First().Identifier.ValueText));
         }
     }
 }
