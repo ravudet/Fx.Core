@@ -9,15 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Analyzer1" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Fx.Test\Fx.Test.csproj" />
-    <ProjectReference Include="..\Analyzer1\Analyzer1\Analyzer1.csproj">
+    <!--<ProjectReference Include="..\Analyzer1\Analyzer1\Analyzer1.csproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Analyzer</OutputItemType>
     </ProjectReference>
     <ProjectReference Include="..\Analyzer1\Analyzer1.CodeFixes\Analyzer1.CodeFixes.csproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Analyzer</OutputItemType>
-    </ProjectReference>
+    </ProjectReference>-->
   </ItemGroup>
 
 </Project>

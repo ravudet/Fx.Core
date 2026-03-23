@@ -50,7 +50,7 @@
             Console.WriteLine();
             Console.WriteLine();
 
-            int x = 0;
+            const int x = 0;
             Console.WriteLine(x);
 
             var message = "some message";
