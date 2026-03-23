@@ -6,6 +6,15 @@
         //// TODO you are at identation preferences and you are re-ordering the config file to follow the ui; make sure there are no duplicates
         
         //// TODO i'm not convinced that the UI is a canonical list
+        
+
+
+        //// TODO add custom roslyn analayzer for `assert.that`
+        
+
+
+
+
 
         [TestMethod]
         public void IsTrue()
