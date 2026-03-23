@@ -56,11 +56,11 @@
             LocalDeclarationStatementSyntax localDeclaration,
             CancellationToken cancellationToken)
         {
-            //// TODO does it fix `var`s?
-            //// TODO does it "accidentally" fix things that can't be const?
+            //// TODO you are pulling from https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/tutorials/how-to-write-csharp-analyzer-code-fix
+            //// TODO fix the syntax highlighting on that page for the block starting with `TypeSyntax variableTypeName = localDeclaration.Declaration.Type;`
+            //// TODO you are on "Create tests for valid declarations"
 
 
-            
 
             // Remove the leading trivia from the local declaration.
             SyntaxToken firstToken = localDeclaration.GetFirstToken();
