@@ -74,6 +74,18 @@
             var memberAccessExpression = (MemberAccessExpressionSyntax)context.Node;
 
             var containingObject = memberAccessExpression.Expression;
+
+            if (containingObject.Kind() == SyntaxKind.IdentifierName)
+            {
+                var identifierSyntax = (IdentifierNameSyntax)containingObject;
+                var identifier = identifierSyntax.Identifier;
+
+                ////var foo = memberAccessExpression.Name;
+
+                var typeInfo = context.SemanticModel.GetTypeInfo(identifierSyntax);
+
+
+            }
         }
     }
 }

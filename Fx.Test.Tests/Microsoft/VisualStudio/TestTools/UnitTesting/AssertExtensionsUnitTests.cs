@@ -53,6 +53,9 @@
             const int x = 0;
             Console.WriteLine(x);
 
+            var y = 0;
+            Console.WriteLine(y);
+
             var message = "some message";
             bool condition = true;
             Assert.That.IsTrue(condition, message);

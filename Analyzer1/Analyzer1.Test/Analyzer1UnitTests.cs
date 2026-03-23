@@ -57,5 +57,27 @@
             var expected = VerifyCS.Diagnostic("Analyzer1").WithLocation(0).WithArguments("TypeName");
             await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
         }
+
+        [TestMethod]
+        public async Task LocalIntCouldBeConstant_Diagnostic()
+        {
+            var offendingCode =
+@"
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        [|int i = 0;|]
+        Console.WriteLine(i);
+    }
+}
+";
+
+            await VerifyCS.VerifyAnalyzerAsync(
+                offendingCode,
+                new Microsoft.CodeAnalysis.Testing.DiagnosticResult()).ConfigureAwait(false);
+        }
     }
 }
