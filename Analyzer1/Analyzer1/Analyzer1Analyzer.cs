@@ -43,6 +43,7 @@
             //// this is the expression type: https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.syntax.memberaccessexpressionsyntax?view=roslyn-dotnet-5.0.0
 
             context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.LocalDeclarationStatement);
+            context.RegisterSyntaxNodeAction(AnalyzeNode2, SyntaxKind.SimpleMemberAccessExpression);
         }
 
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
@@ -66,6 +67,13 @@
             }
 
             context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation(), localDeclaration.Declaration.Variables.First().Identifier.ValueText));
+        }
+
+        private void AnalyzeNode2(SyntaxNodeAnalysisContext context)
+        {
+            var memberAccessExpression = (MemberAccessExpressionSyntax)context.Node;
+
+            var containingObject = memberAccessExpression.Expression;
         }
     }
 }

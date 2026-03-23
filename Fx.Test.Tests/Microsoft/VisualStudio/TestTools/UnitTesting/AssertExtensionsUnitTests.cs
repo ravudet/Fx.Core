@@ -47,6 +47,9 @@
             ////AssertExtensionsUnitTests foo = new AssertExtensionsUnitTests();
             ////var x = 0;
 
+            Console.WriteLine();
+            Console.WriteLine();
+
             int x = 0;
             Console.WriteLine(x);
 
