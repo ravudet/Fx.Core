@@ -108,6 +108,13 @@
             }
 
             context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation(), symbol.MetadataName));
+
+            //// TODO make each rule configurably enabled
+
+
+            //// TODO if they don't have fx.test, add it as a nuget package
+            ////context.SemanticModel.Compilation.ReferencedAssemblyNames.First()
+            //// TODO if fx.test doesn't support it, add a local extensions file
         }
 
         private void AnalyzeNode2(SyntaxNodeAnalysisContext context)
@@ -141,19 +148,6 @@
                     }
                 }
 
-
-
-
-
-
-
-                //// TODO make each rule configurably enabled
-
-
-                //// TODO if they don't depend on unit testing, there is no error
-                //// TODO if they don't have fx.test, add it as a nuget package
-                ////context.SemanticModel.Compilation.ReferencedAssemblyNames.First()
-                //// TODO if fx.test doesn't support it, add a local extensions file
             }
         }
 
