@@ -58,6 +58,19 @@
 
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
+            var config = context.Options.AnalyzerConfigOptionsProvider.GetOptions(context.Node.SyntaxTree);
+            config.TryGetValue("dotnet_diagnostic.Analyzer1.const_thing", out var configValue);
+
+            if (string.IsNullOrEmpty(configValue))
+            {
+                return;
+            }
+
+            if (bool.TryParse(configValue, out var isConfigured) && !isConfigured)
+            {
+                return;
+            }
+
             var localDeclaration = (LocalDeclarationStatementSyntax)context.Node;
             if (localDeclaration.Modifiers.Any(SyntaxKind.ConstKeyword))
             {
@@ -118,7 +131,7 @@
 
             context.ReportDiagnostic(Diagnostic.Create(Rule2, context.Node.GetLocation(), symbol.MetadataName));
 
-            //// TODO make each rule configurably enabled
+            //// TODO add `dotnet_diagnostic.Analyzer1.const_thing = false` to disable the other rule, for example
 
 
             //// TODO if they don't have fx.test, add it as a nuget package
