@@ -69,14 +69,14 @@ class Program
 {
     static void Main()
     {
-        Assert.IsTrue(false);
+        {|#0:Assert.IsTrue(false)|};
     }
 }
 ";
 
             await VerifyCS.VerifyAnalyzerAsync(
                 offendingCode,
-                VerifyCS.Diagnostic("Analyzer1").WithLocation(8, 9).WithArguments("IsTrue")).ConfigureAwait(false);
+                VerifyCS.Diagnostic("Analyzer1").WithLocation(0).WithArguments("IsTrue")).ConfigureAwait(false);
         }
     }
 }
