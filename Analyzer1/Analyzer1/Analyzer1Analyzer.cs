@@ -96,7 +96,7 @@
                         )
                     {
                         //// TODO check that it's a method access
-                        
+                        var members = context.SemanticModel.GetMemberGroup(memberAccessExpression);
                     }
                 }
 
