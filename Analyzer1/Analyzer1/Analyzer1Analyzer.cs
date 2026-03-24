@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Linq;
+    using System.Reflection;
+    using System.Security.Cryptography;
     using System.Threading;
 
     using Microsoft.CodeAnalysis;
@@ -129,6 +131,14 @@
                 return;
             }
 
+
+            var apiName = GetOverloadUrl(symbol);
+
+            var xml = symbol.GetDocumentationCommentXml();
+            var id = DocumentationCommentId.CreateDeclarationId(symbol);
+            var url = $"https://learn.microsoft.com/en-us/dotnet/api/{id.ToLowerInvariant()}";
+
+
             context.ReportDiagnostic(Diagnostic.Create(Rule2, context.Node.GetLocation(), symbol.MetadataName));
 
             //// TODO add `dotnet_diagnostic.Analyzer1.const_thing = false` to disable the other rule, for example
@@ -137,6 +147,49 @@
             //// TODO if they don't have fx.test, add it as a nuget package
             ////context.SemanticModel.Compilation.ReferencedAssemblyNames.First()
             //// TODO if fx.test doesn't support it, add a local extensions file
+        }
+        private static string GetOverloadUrl(IMethodSymbol methodSymbol)
+        {
+            // Base URL (type + method name)
+            string apiName = $"{methodSymbol.ContainingType.ToDisplayString(SymbolDisplayFormat.CSharpErrorMessageFormat)}.{methodSymbol.Name}"
+                .ToLowerInvariant()
+                .Replace("<", "")
+                .Replace(">", "");
+
+            ////apiName = apiName.Replace(".", "/"); // Learn prefers slashes in the path
+
+            string baseUrl = $"https://learn.microsoft.com/dotnet/api/{apiName}?view=mstest-net-3.11";
+
+            // Get Roslyn doc ID, e.g. "M:System.String.Contains(System.String,System.StringComparison)"
+            string docId = methodSymbol.GetDocumentationCommentId();
+            if (docId == null)
+                return baseUrl;
+
+            // Convert doc ID to Learn anchor format
+            string anchor = ConvertDocIdToAnchor(docId);
+
+            return $"{baseUrl}#{anchor}";
+        }
+
+        private static string ConvertDocIdToAnchor(string docId)
+        {
+            // Example input:
+            //   M:System.String.Contains(System.String,System.StringComparison)
+
+            // Strip the leading "M:"
+            string s = docId.Substring(2);
+
+            // Replace punctuation with underscores
+            s = s.Replace(".", "-")
+                 /*.Replace("(", "_")
+                 .Replace(")", "_")
+                 .Replace(",", "__")*/
+                 .ToLower();
+
+            // Learn/MSDN uses underscores for namespace/type separators
+            // and double-underscores for parameter separators
+
+            return s;
         }
 
         private void AnalyzeNode2(SyntaxNodeAnalysisContext context)

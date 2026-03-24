@@ -16,13 +16,20 @@
     using Microsoft.CodeAnalysis.Formatting;
     using Microsoft.CodeAnalysis.Rename;
     using Microsoft.CodeAnalysis.Text;
+    using Microsoft.VisualStudio;
+    using Microsoft.VisualStudio.ComponentModelHost;
+    using Microsoft.VisualStudio.Shell;
+    using Microsoft.VisualStudio.Shell.Interop;
+
+    using NuGet;
+    using NuGet.VisualStudio;
 
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(Analyzer1CodeFixProvider)), Shared]
     public class Analyzer1CodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(Analyzer1Analyzer.DiagnosticId); }
+            get { return ImmutableArray.Create("Analyzer2"); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
@@ -43,12 +50,55 @@
             var declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<LocalDeclarationStatementSyntax>().First();
 
             // Register a code action that will invoke the fix.
-            context.RegisterCodeFix(
+            /*context.RegisterCodeFix(
                 CodeAction.Create(
                     title: CodeFixResources.CodeFixTitle,
                     createChangedDocument: c => MakeConstAsync(context.Document, declaration, c),
                     equivalenceKey: nameof(CodeFixResources.CodeFixTitle)),
+                diagnostic);*/
+            context.RegisterCodeFix(
+                CodeAction.Create(
+                    "Install Foo.Bar NuGet package",
+                    ct => InstallPackageAsync(context.Document.Project, ct),
+                    equivalenceKey: "InstallFooBar"),
                 diagnostic);
+        }
+
+        private async Task<Document> InstallPackageAsync(Project project, CancellationToken ct)
+        {
+            var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+            var installer = componentModel.GetService<IVsPackageInstaller>();
+
+            installer.InstallPackage(
+                source: null,                 // use default sources
+                project: GetDteProject(project),
+                packageId: "NewtonSoft.Json",
+                version: (string)null, //// TODO "latest"
+                ignoreDependencies: false);
+
+            return project.Documents.First(); // Roslyn requires returning a Document
+        }
+
+        private EnvDTE.Project GetDteProject(Project roslynProject)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
+            var vsSolution = (IVsSolution)Package.GetGlobalService(typeof(SVsSolution));
+
+            // Roslyn project has a unique name that VS understands
+            string uniqueName = roslynProject.FilePath ?? roslynProject.Name;
+
+            vsSolution.GetProjectOfUniqueName(uniqueName, out IVsHierarchy hierarchy);
+
+            if (hierarchy == null)
+                return null;
+
+            hierarchy.GetProperty(
+                VSConstants.VSITEMID_ROOT,
+                (int)__VSHPROPID.VSHPROPID_ExtObject,
+                out object extObject);
+
+            return extObject as EnvDTE.Project;
         }
 
         private static async Task<Document> MakeConstAsync(

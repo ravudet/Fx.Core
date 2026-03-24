@@ -58,6 +58,43 @@
             await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
         }
 
+
+        //Diagnostic and CodeFix both triggered and checked for
+        [TestMethod]
+        public async Task Foo()
+        {
+            var test = @"
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+class Program
+{
+    static void Main()
+    {
+        {|#0:Assert.IsTrue(false)|};
+        Assert.That.IsFalse(true);
+    }
+}
+";
+
+            var fixtest = @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        class TYPENAME
+        {   
+        }
+    }";
+
+            await VerifyCS.VerifyCodeFixAsync(test, fixtest);
+        }
+
+
         [TestMethod]
         public async Task LocalIntCouldBeConstant_Diagnostic()
         {
