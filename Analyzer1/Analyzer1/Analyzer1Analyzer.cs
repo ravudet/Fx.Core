@@ -107,7 +107,7 @@
                 return;
             }
 
-
+            //// TODO this also catches `assert.that` when it shouldn't (i think because `that.istrue` is a static invocation that has a receiver type of `assert` (even though the receiver isn't static)
             context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation(), symbol.MetadataName));
         }
 
