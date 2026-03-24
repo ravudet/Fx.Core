@@ -24,6 +24,7 @@
         private const string Category = "Naming";
 
         private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, isEnabledByDefault: true, description: Description);
+        private static readonly DiagnosticDescriptor Rule2 = new DiagnosticDescriptor("Analyzer2", Title, MessageFormat, Category, DiagnosticSeverity.Warning, isEnabledByDefault: true, description: Description);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
         {
@@ -31,13 +32,7 @@
             {
                 return ImmutableArray.Create(
                     Rule,
-                    new DiagnosticDescriptor(
-                        "Analyzer2",
-                        Title,
-                        MessageFormat, Category,
-                        DiagnosticSeverity.Warning,
-                        isEnabledByDefault: true,
-                        description: Description));
+                    Rule2);
             }
         }
 
@@ -121,7 +116,7 @@
                 return;
             }
 
-            context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation(), symbol.MetadataName));
+            context.ReportDiagnostic(Diagnostic.Create(Rule2, context.Node.GetLocation(), symbol.MetadataName));
 
             //// TODO make each rule configurably enabled
 
