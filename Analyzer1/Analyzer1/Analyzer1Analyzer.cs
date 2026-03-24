@@ -85,6 +85,8 @@
                 var typeInfo = context.SemanticModel.GetTypeInfo(identifierSyntax);
 
 
+                //// TODO if they don't depend on unit testing, there is no error
+                //// TODO if they don't have fx.test, add it as a nuget package
             }
         }
     }
