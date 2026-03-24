@@ -43,7 +43,8 @@
             //// this is the expression type: https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.syntax.memberaccessexpressionsyntax?view=roslyn-dotnet-5.0.0
 
             context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.LocalDeclarationStatement);
-            context.RegisterSyntaxNodeAction(AnalyzeNode2, SyntaxKind.SimpleMemberAccessExpression);
+            ////context.RegisterSyntaxNodeAction(AnalyzeNode2, SyntaxKind.SimpleMemberAccessExpression);
+            context.RegisterSyntaxNodeAction(AnalyzeNode3, SyntaxKind.InvocationExpression);
         }
 
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
@@ -67,6 +68,43 @@
             }
 
             context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation(), localDeclaration.Declaration.Variables.First().Identifier.ValueText));
+        }
+
+        private void AnalyzeNode3(SyntaxNodeAnalysisContext context)
+        {
+            var invocationExpression = (InvocationExpressionSyntax)context.Node;
+
+            var symbol = context.SemanticModel.GetSymbolInfo(invocationExpression).Symbol as IMethodSymbol;
+            if (symbol == null)
+            {
+                return;
+            }
+
+
+            if (!symbol.ReceiverType.MetadataName.Equals("Assert"))
+            {
+                return;
+            }
+
+            var assemblyIdentity = symbol.ContainingAssembly.Identity;
+
+            if (!assemblyIdentity.Name.Equals("Microsoft.VisualStudio.TestPlatform.TestFramework"))
+            {
+                return;
+            }
+
+            if (!assemblyIdentity.HasPublicKey)
+            {
+                return;
+            }
+
+            if (!assemblyIdentity.PublicKey.SequenceEqual(StringToByteArrayFastest("002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293")))
+            {
+                return;
+            }
+
+
+            context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation(), symbol.MetadataName));
         }
 
         private void AnalyzeNode2(SyntaxNodeAnalysisContext context)

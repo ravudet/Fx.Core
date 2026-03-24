@@ -77,7 +77,7 @@ class Program
 
             await VerifyCS.VerifyAnalyzerAsync(
                 offendingCode,
-                new Microsoft.CodeAnalysis.Testing.DiagnosticResult()).ConfigureAwait(false);
+                VerifyCS.Diagnostic("Analyzer1").WithLocation(9, 9).WithArguments("IsTrue")).ConfigureAwait(false);
         }
     }
 }
