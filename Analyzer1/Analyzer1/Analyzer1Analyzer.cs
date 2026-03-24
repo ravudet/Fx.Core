@@ -95,22 +95,24 @@
                         assemblyIdentity.PublicKey.SequenceEqual(StringToByteArrayFastest("002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293"))
                         )
                     {
+                        //// TODO check that it's a method access
+                        
                     }
                 }
 
 
-                //// 002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293
-
-                ////context.SemanticModel.Compilation.ReferencedAssemblyNames.First()
 
 
-                //// Assembly Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+
+
 
                 //// TODO make each rule configurably enabled
 
 
                 //// TODO if they don't depend on unit testing, there is no error
                 //// TODO if they don't have fx.test, add it as a nuget package
+                ////context.SemanticModel.Compilation.ReferencedAssemblyNames.First()
+                //// TODO if fx.test doesn't support it, add a local extensions file
             }
         }
 
