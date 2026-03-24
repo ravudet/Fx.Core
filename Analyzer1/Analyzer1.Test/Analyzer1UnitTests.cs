@@ -73,6 +73,13 @@ class Program
         Assert.That.IsFalse(true);
     }
 }
+
+static class Extensions
+{
+    public static void IsFalse(this Assert assert, bool condition)
+    {
+    }
+}
 ";
 
             await VerifyCS.VerifyAnalyzerAsync(
