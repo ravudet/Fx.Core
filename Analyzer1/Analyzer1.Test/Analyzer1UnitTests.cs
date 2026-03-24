@@ -69,7 +69,6 @@ class Program
 {
     static void Main()
     {
-        [|int i = 0;|]
         Assert.IsTrue(false);
     }
 }
@@ -77,7 +76,7 @@ class Program
 
             await VerifyCS.VerifyAnalyzerAsync(
                 offendingCode,
-                VerifyCS.Diagnostic("Analyzer1").WithLocation(9, 9).WithArguments("IsTrue")).ConfigureAwait(false);
+                VerifyCS.Diagnostic("Analyzer1").WithLocation(8, 9).WithArguments("IsTrue")).ConfigureAwait(false);
         }
     }
 }
