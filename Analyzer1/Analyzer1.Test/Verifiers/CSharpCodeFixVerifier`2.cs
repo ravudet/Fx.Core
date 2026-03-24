@@ -9,6 +9,7 @@
     using Microsoft.CodeAnalysis.Diagnostics;
     using Microsoft.CodeAnalysis.Testing;
     using Microsoft.CodeAnalysis.Testing.Verifiers;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     public static partial class CSharpCodeFixVerifier<TAnalyzer, TCodeFix>
         where TAnalyzer : DiagnosticAnalyzer, new()
@@ -33,6 +34,8 @@
             {
                 TestCode = source,
             };
+
+            test.TestState.AdditionalReferences.Add(MetadataReference.CreateFromFile(typeof(Assert).Assembly.Location));
 
             test.ExpectedDiagnostics.AddRange(expected);
             await test.RunAsync(CancellationToken.None);

@@ -85,6 +85,16 @@
                 var typeInfo = context.SemanticModel.GetTypeInfo(identifierSyntax);
 
 
+
+
+                ////context.SemanticModel.Compilation.ReferencedAssemblyNames.First()
+
+
+                //// Assembly Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+
+                //// TODO make each rule configurably enabled
+
+
                 //// TODO if they don't depend on unit testing, there is no error
                 //// TODO if they don't have fx.test, add it as a nuget package
             }
