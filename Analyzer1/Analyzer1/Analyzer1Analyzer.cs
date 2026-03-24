@@ -80,6 +80,10 @@
                 return;
             }
 
+            if (!symbol.IsStatic)
+            {
+                return;
+            }
 
             if (!symbol.ReceiverType.MetadataName.Equals("Assert"))
             {
