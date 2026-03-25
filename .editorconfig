@@ -78,6 +78,7 @@ csharp_using_directive_placement = inside_namespace:warning
 ## code-block preferences
 
 csharp_prefer_simple_using_statement = false:warning
+csharp_prefer_braces = true:warning
 
 
 
@@ -232,7 +233,7 @@ csharp_style_prefer_readonly_struct = true:suggestion
 csharp_style_prefer_readonly_struct_member = true:suggestion
 
 # Code-block preferences
-csharp_prefer_braces = true:silent
+
 
 csharp_prefer_system_threading_lock = true:suggestion
 csharp_style_namespace_declarations = block_scoped:silent
