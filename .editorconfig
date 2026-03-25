@@ -21,7 +21,7 @@ indent_size = 4
 csharp_indent_block_contents = true
 csharp_indent_braces = false
 csharp_indent_case_contents = true
-csharp_indent_case_contents_when_block = false # TODO i'm not convinced about this rule, i don't usually write `switch` statements, let alone ones with blocks
+csharp_indent_case_contents_when_block = false# TODO i'm not convinced about this rule, i don't usually write `switch` statements, let alone ones with blocks
 csharp_indent_switch_labels = true
 csharp_indent_labels = one_less_than_current# TODO i'm not convinced about this rule, i don't usually write `goto` statements
 
@@ -31,7 +31,7 @@ csharp_indent_labels = one_less_than_current# TODO i'm not convinced about this 
 end_of_line = crlf
 insert_final_newline = true
 [*.cs]
-csharp_new_line_before_open_brace = all # NOTE: these only apply if the entire "node" is not on the same line; so, `class Foo {\r\n}` would *not* be ok, but `class Foo {}` *is* ok
+csharp_new_line_before_open_brace = all# NOTE: these only apply if the entire "node" is not on the same line; so, `class Foo {\r\n}` would *not* be ok, but `class Foo {}` *is* ok
 csharp_new_line_before_else = true
 csharp_new_line_before_catch = true
 csharp_new_line_before_finally = true
