@@ -54,6 +54,7 @@ csharp_space_around_declaration_statements = false
 csharp_space_before_open_square_brackets = false
 csharp_space_between_empty_square_brackets = false
 csharp_space_between_square_brackets = false
+csharp_space_after_colon_in_inheritance_clause = true
 
 
 
@@ -265,7 +266,7 @@ dotnet_diagnostic.IDE0055.severity = warning
 
 # Space preferences
 
-csharp_space_after_colon_in_inheritance_clause = true
+
 csharp_space_after_comma = true
 csharp_space_after_dot = false
 
