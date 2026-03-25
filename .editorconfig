@@ -30,7 +30,8 @@ csharp_indent_labels = one_less_than_current# TODO i'm not convinced about this 
 [*.{cs,vb}]
 end_of_line = crlf
 insert_final_newline = true
-
+[*.cs]
+csharp_new_line_before_open_brace = all
 
 
 
@@ -236,7 +237,7 @@ csharp_new_line_before_else = true
 csharp_new_line_before_finally = true
 csharp_new_line_before_members_in_anonymous_types = true
 csharp_new_line_before_members_in_object_initializers = true
-csharp_new_line_before_open_brace = all
+
 csharp_new_line_between_query_expression_clauses = true
 
 # Indentation preferences
@@ -335,3 +336,4 @@ dotnet_style_predefined_type_for_member_access = true:silent
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
 dotnet_style_allow_multiple_blank_lines_experimental = true:silent
 dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
+
