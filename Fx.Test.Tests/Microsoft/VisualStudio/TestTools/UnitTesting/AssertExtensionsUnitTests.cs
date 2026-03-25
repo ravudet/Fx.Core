@@ -5,8 +5,8 @@
     [TestClass]
     public sealed class AssertExtensionsUnitTests
     {
-        //// TODO you are at identation preferences and you are re-ordering the config file to follow the ui; make sure there are no duplicates
-
+        //// TODO you are re-ordering the config file to follow the ui; make sure there are no duplicates
+        //// TODO what is making the "whitespace" rules warnings? in the other tabs, you can set the severity
 
 
 
