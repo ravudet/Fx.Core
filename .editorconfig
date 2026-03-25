@@ -29,7 +29,7 @@ csharp_indent_labels = one_less_than_current# TODO i'm not convinced about this 
 
 [*.{cs,vb}]
 end_of_line = crlf
-
+insert_final_newline = true
 
 
 
@@ -76,6 +76,7 @@ dotnet_style_allow_multiple_blank_lines_experimental = true:silent
 dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
 
 
+
 [*.cs]
 
 #### Core EditorConfig Options ####
@@ -84,7 +85,6 @@ dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
 
 
 # New line preferences
-insert_final_newline = true
 
 #### .NET Code Actions ####
 
