@@ -30,6 +30,7 @@
 
             var doubled = from datum in data from datum2 in data 
                           select datum * datum2;
+
         }
 
 
