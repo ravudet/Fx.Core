@@ -62,6 +62,7 @@ csharp_space_before_colon_in_inheritance_clause = true
 csharp_space_before_comma = false
 csharp_space_before_dot = false
 csharp_space_before_semicolon_in_for_statement = false
+csharp_space_around_binary_operators = before_and_after
 
 
 
@@ -277,7 +278,7 @@ dotnet_diagnostic.IDE0055.severity = warning
 
 
 
-csharp_space_around_binary_operators = before_and_after
+
 
 
 
