@@ -95,6 +95,7 @@ csharp_style_namespace_declarations = block_scoped:warning
 
 
 
+[*.{cs,vb}]
 dotnet_style_coalesce_expression = true:suggestion
 dotnet_style_null_propagation = true:suggestion
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
