@@ -67,6 +67,7 @@ csharp_space_around_binary_operators = before_and_after
 ## wrapping preferences
 
 csharp_preserve_single_line_blocks = true
+csharp_preserve_single_line_statements = false
 
 
 
@@ -299,7 +300,7 @@ dotnet_diagnostic.IDE0055.severity = warning
 
 # Wrapping preferences
 
-csharp_preserve_single_line_statements = true
+
 
 #### Naming styles ####
 
