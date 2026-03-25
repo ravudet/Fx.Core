@@ -1,6 +1,6 @@
 ﻿namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
-    using System;
+    using System.Linq;
 
     [TestClass]
     public sealed class AssertExtensionsUnitTests
@@ -26,15 +26,18 @@
 
         public static void Foo()
         {
-            var thing = new[] { 1, 2, 3 };
+            var data = new[] { 1, 2, 3 };
+
+            var doubled = from datum in data from datum2 in data 
+                          select datum * datum2;
         }
 
 
-
-        public void Fizz() { 
-            Console.WriteLine("asdf"); }
-
-
+        class Bar
+        {
+            public string? Fizz { get; set; }
+            public string? Buzz { get; set; }
+        }
 
 
 
