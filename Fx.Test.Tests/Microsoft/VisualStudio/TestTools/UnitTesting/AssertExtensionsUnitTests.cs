@@ -1,5 +1,6 @@
 ﻿namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
+    using System;
     using System.Linq;
 
 
@@ -33,6 +34,11 @@
             var doubled = from datum in data from datum2 in data 
                           select datum * datum2;
 
+            Fizz(() => Foo());
+        }
+
+        public static void Fizz(Action action)
+        {
         }
 
 
