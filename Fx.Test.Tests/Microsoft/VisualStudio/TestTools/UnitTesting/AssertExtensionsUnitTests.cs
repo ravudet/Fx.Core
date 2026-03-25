@@ -8,7 +8,8 @@
         //// TODO you are at identation preferences and you are re-ordering the config file to follow the ui; make sure there are no duplicates
 
         //// TODO i'm not sure i'm going to like `csharp_new_line_before_open_brace = all`; things like anonymous types and object/array initializers are sometimes small enough that inline works better, and having to use a suppression to get inline will ruin the look
-
+        //// TODO csharp_new_line_before_members_in_object_initializers, same reasons as above
+        //// TODO csharp_new_line_before_members_in_anonymous_types, same reasons as above
 
 
 
