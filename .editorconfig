@@ -69,6 +69,10 @@ csharp_space_around_binary_operators = before_and_after
 csharp_preserve_single_line_blocks = true
 csharp_preserve_single_line_statements = false
 
+# code style
+
+## 'using' directive preferences
+
 
 
 
