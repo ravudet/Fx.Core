@@ -7,9 +7,6 @@
     {
         //// TODO you are at identation preferences and you are re-ordering the config file to follow the ui; make sure there are no duplicates
 
-        //// TODO i'm not sure i'm going to like `csharp_new_line_before_open_brace = all`; things like anonymous types and object/array initializers are sometimes small enough that inline works better, and having to use a suppression to get inline will ruin the look
-        //// TODO csharp_new_line_before_members_in_object_initializers, same reasons as above
-        //// TODO csharp_new_line_before_members_in_anonymous_types, same reasons as above
 
 
 
@@ -22,6 +19,36 @@
 
 
         //// TODO add custom roslyn analayzer for `assert.that`
+
+
+
+
+
+        public static void Foo()
+        {
+            var thing = new[] { 1, 2, 3 };
+        }
+
+
+
+        public void Fizz() { 
+            Console.WriteLine("asdf"); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -54,18 +81,6 @@
         [TestMethod]
         public void IsTrueMessage()
         {
-            ////AssertExtensionsUnitTests foo = new AssertExtensionsUnitTests();
-            ////var x = 0;
-
-            Console.WriteLine();
-            Console.WriteLine();
-
-            const int x = 0;
-            Console.WriteLine(x);
-
-            var y = 0;
-            Console.WriteLine(y);
-
             var message = "some message";
             bool condition = true;
             Assert.That.IsTrue(condition, message);

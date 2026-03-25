@@ -31,7 +31,7 @@ csharp_indent_labels = one_less_than_current# TODO i'm not convinced about this 
 end_of_line = crlf
 insert_final_newline = true
 [*.cs]
-csharp_new_line_before_open_brace = all
+csharp_new_line_before_open_brace = all # NOTE: these only apply if the entire "node" is not on the same line; so, `class Foo {\r\n}` would *not* be ok, but `class Foo {}` *is* ok
 csharp_new_line_before_else = true
 csharp_new_line_before_catch = true
 csharp_new_line_before_finally = true
