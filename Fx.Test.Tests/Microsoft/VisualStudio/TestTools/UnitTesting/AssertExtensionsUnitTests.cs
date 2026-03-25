@@ -13,6 +13,8 @@
 
 
 
+        //// TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` just the same as `csharp_style_prefer_method_group_conversion = true:warning` does
+
 
 
 
@@ -37,9 +39,7 @@
             Fizz(() => Foo());
         }
 
-        public static void Fizz(Action action)
-        {
-        }
+        public static void Fizz(Action action) { }
 
 
         class Bar
