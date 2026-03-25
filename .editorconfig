@@ -81,6 +81,7 @@ csharp_prefer_simple_using_statement = false:warning
 csharp_prefer_braces = true:warning
 csharp_style_namespace_declarations = block_scoped:warning
 csharp_style_prefer_method_group_conversion = false:silent
+csharp_style_prefer_top_level_statements = false:warning
 
 
 
@@ -243,7 +244,7 @@ csharp_prefer_system_threading_lock = true:suggestion
 
 
 csharp_style_prefer_primary_constructors = true:suggestion
-csharp_style_prefer_top_level_statements = true:silent
+
 
 # Expression-level preferences
 csharp_prefer_simple_default_expression = true:suggestion
