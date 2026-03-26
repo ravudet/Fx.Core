@@ -5,6 +5,11 @@
 
 
 
+    public class Buzz(int c)
+    {
+        public int C { get; } = c;
+    }
+
     [TestClass]
     public sealed class AssertExtensionsUnitTests
     {
@@ -24,6 +29,7 @@
 
 
         //// TODO add custom roslyn analayzer for `assert.that`
+        //// TODO add an analyzer that *disallows* primary constructors (the opposite of csharp_style_prefer_primary_constructors)
 
 
 
@@ -31,6 +37,9 @@
 
         public static void Foo()
         {
+            var buzz = new Buzz(1234);
+
+
             var data = new[] { 1, 2, 3 };
 
             var doubled = from datum in data from datum2 in data 
