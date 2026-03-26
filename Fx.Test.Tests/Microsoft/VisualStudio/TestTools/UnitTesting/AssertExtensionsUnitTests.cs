@@ -55,6 +55,8 @@
         {
             public string? Fizz { get; set; }
             public string? Buzz { get; set; }
+
+            public string? GetOther() => this.Fizz;
         }
 
 
