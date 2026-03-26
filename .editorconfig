@@ -87,8 +87,9 @@ csharp_prefer_system_threading_lock = true:warning
 
 ## expression-bodied members
 
-csharp_style_expression_bodied_methods = false:warning
-csharp_style_expression_bodied_constructors = false:warning
+csharp_style_expression_bodied_methods = false:silent
+csharp_style_expression_bodied_constructors = false:silent
+csharp_style_expression_bodied_operators = false:silent
 
 
 
@@ -230,7 +231,7 @@ csharp_style_expression_bodied_indexers = true:silent
 csharp_style_expression_bodied_lambdas = true:silent
 csharp_style_expression_bodied_local_functions = false:silent
 
-csharp_style_expression_bodied_operators = false:silent
+
 csharp_style_expression_bodied_properties = true:silent
 
 # Pattern matching preferences

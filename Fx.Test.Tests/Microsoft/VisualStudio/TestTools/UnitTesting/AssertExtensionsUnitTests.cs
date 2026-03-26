@@ -53,10 +53,9 @@
 
         class Bar
         {
-            public Bar() => throw new Exception("TODO");
-
             public string? Fizz { get; set; }
-            public string? Buzz { get; set; }
+
+            public Bar(string? fizz) => Fizz = fizz;
 
             public string? GetOther() => this.Fizz;
         }
