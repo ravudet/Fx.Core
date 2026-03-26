@@ -98,6 +98,8 @@ csharp_style_expression_bodied_local_functions = false:warning
 
 ## expression-level preferences
 
+[*.{cs,vb}]
+dotnet_style_coalesce_expression = true:warning
 
 
 
@@ -120,7 +122,6 @@ csharp_style_expression_bodied_local_functions = false:warning
 
 
 [*.{cs,vb}]
-dotnet_style_coalesce_expression = true:suggestion
 dotnet_style_null_propagation = true:suggestion
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
 dotnet_style_prefer_auto_properties = true:silent

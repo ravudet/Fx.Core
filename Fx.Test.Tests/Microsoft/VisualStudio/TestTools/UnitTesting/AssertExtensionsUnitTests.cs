@@ -13,6 +13,7 @@
     [TestClass]
     public sealed class AssertExtensionsUnitTests
     {
+        //// TODO you are still on `dotnet_style_coalesce_expression`; is there a way to have 0029 and 0030, but not 0270?
         //// TODO you are re-ordering the config file to follow the ui; make sure there are no duplicates
         //// TODO what is making the "whitespace" rules warnings? in the other tabs, you can set the severity
 
