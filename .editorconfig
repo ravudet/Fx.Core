@@ -94,6 +94,7 @@ csharp_style_expression_bodied_properties = false:silent
 csharp_style_expression_bodied_indexers = false:silent
 csharp_style_expression_bodied_accessors = false:silent
 csharp_style_expression_bodied_lambdas = true:warning
+csharp_style_expression_bodied_local_functions = false:warning
 
 
 
@@ -232,7 +233,7 @@ csharp_style_var_when_type_is_apparent = false
 
 
 
-csharp_style_expression_bodied_local_functions = false:silent
+
 
 
 
