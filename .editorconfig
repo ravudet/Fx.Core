@@ -100,6 +100,7 @@ csharp_style_expression_bodied_local_functions = false:warning
 
 [*.{cs,vb}]
 dotnet_style_coalesce_expression = true:warning
+dotnet_diagnostic.IDE0270.severity = none # IDE0270: Use coalesce expression
 
 
 
@@ -144,6 +145,8 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
 dotnet_style_allow_multiple_blank_lines_experimental = true:silent
 dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
 dotnet_code_quality_unused_parameters = all:suggestion
+
+
 
 
 
