@@ -19,7 +19,7 @@
 
 
         //// TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does
-
+        //// TODO `dotnet_style_prefer_conditional_expression_over_assignment = false:warning` doesn't warn for `string something = true ? "asdf" : "qwer";`
 
 
 
@@ -51,6 +51,9 @@
             {
                 throw new Exception("tODO");
             }
+
+            string something = true ? "asdf" : "qwer";
+            Console.WriteLine(something);
         }
 
 
