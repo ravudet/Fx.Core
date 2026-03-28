@@ -2,8 +2,7 @@
 {
     using System;
     using System.Linq;
-
-
+    using System.Xml.Linq;
 
     public class Buzz(int c)
     {
@@ -19,7 +18,7 @@
 
 
 
-        //// TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` just the same as `csharp_style_prefer_method_group_conversion = true:warning` does
+        //// TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does
 
 
 
@@ -31,6 +30,7 @@
 
         //// TODO add custom roslyn analayzer for `assert.that`
         //// TODO add an analyzer that *disallows* primary constructors (the opposite of csharp_style_prefer_primary_constructors)
+        //// TODO write articles to justify the non-style rules
 
 
 
@@ -80,6 +80,42 @@
         }
 
 
+
+
+        /*[TestMethod]
+        public void Equality()
+        {
+            var first = new EqualsThing();
+            var second = new EqualsThing();
+
+            Assert.IsFalse(object.ReferenceEquals(first, second));
+            Assert.IsTrue(object.ReferenceEquals(first, first));
+
+            var third = new EqualsStruct();
+            Assert.IsFalse(object.ReferenceEquals(third, null));
+
+            if (third is null)
+            {
+            }
+        }
+
+        public struct EqualsStruct
+        {
+        }
+
+        public class EqualsThing
+        {
+            public static bool operator ==(EqualsThing left, EqualsThing right)
+            {
+                return false;
+            }
+
+            public static bool operator !=(EqualsThing left, EqualsThing right)
+            {
+                return true;
+            }
+        }*/
+        
 
 
 
