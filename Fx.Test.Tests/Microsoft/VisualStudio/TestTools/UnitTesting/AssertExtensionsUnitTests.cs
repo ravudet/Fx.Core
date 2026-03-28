@@ -36,6 +36,24 @@
 
 
 
+        public static void Frob(string? thing)
+        {
+            var other = thing != null ? thing : "asdf";
+            other = thing == null ? "Asdf" : thing;
+
+            if (thing == null)
+            {
+                throw new Exception("TODO");
+            }
+
+            var another = thing as object;
+            if (another == null)
+            {
+                throw new Exception("tODO");
+            }
+        }
+
+
         public static void Foo()
         {
             var buzz = new Buzz(1234);
