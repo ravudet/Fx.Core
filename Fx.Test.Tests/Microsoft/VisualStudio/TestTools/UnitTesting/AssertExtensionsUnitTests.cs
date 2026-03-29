@@ -85,7 +85,7 @@
 
 
 
-        /*[TestMethod]
+        [TestMethod]
         public void Equality()
         {
             var first = new EqualsThing();
@@ -97,7 +97,17 @@
             var third = new EqualsStruct();
             Assert.IsFalse(object.ReferenceEquals(third, null));
 
-            if (third is null)
+            /*if (third is null)
+            {
+            }*/
+        }
+
+        public void Equality2<T>(T something)
+        {
+            // notice, this won't be noticed by CA2013 if t is a struct
+            Assert.IsTrue(object.ReferenceEquals(something, null));
+
+            if (something is null) // TODO unclear if this is just as bad as `object.referenceequals`
             {
             }
         }
@@ -117,8 +127,8 @@
             {
                 return true;
             }
-        }*/
-        
+        }
+
 
 
 
