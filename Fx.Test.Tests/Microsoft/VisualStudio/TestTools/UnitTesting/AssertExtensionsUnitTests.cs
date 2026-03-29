@@ -72,7 +72,7 @@
             return ("ASdf", 1234);
         }
 
-        public static void Foo()
+        public static void Foo2()
         {
             var buzz = new Buzz(1234);
 
@@ -87,7 +87,7 @@
             var doubled = from datum in data from datum2 in data 
                           select datum * datum2;
 
-            Fizz(() => Foo());
+            Fizz(() => Foo2());
         }
 
         public static void Fizz(Action action) { }
