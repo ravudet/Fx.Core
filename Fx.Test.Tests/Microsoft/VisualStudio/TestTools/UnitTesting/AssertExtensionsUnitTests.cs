@@ -20,7 +20,7 @@
 
         //// TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does
         //// TODO `dotnet_style_prefer_conditional_expression_over_assignment = false:warning` doesn't warn for `string something = true ? "asdf" : "qwer";`
-
+        //// TODO `dotnet_style_prefer_compound_assignment = false:warning` doesn't warn for `var value = 1324; value += 5;`
 
 
 
@@ -34,6 +34,7 @@
         ////    TODO dotnet_style_explicit_tuple_names is really saying "*when* explicit names are available, use them", not "always add explicit names"
         ////    TODO dotnet_style_prefer_inferred_tuple_names is saying that, if a name is not changing, don't be explicit about this; i don't think i like any way that this rule can be configured, i would prefer that it's always either all inferred or all explicit; i'm disabling this rule and i'm going to write my own i think
         ////    TODO dotnet_style_prefer_inferred_anonymous_type_member_names is the same as inferred tuple names, and i have the same thoughts on it
+
 
 
 
@@ -76,6 +77,7 @@
             var buzz = new Buzz(1234);
 
             var value = 1234;
+            value += 5;
 
             var something = new { C2 = buzz.C, value2 = value };
 

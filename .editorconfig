@@ -112,6 +112,7 @@ dotnet_style_prefer_conditional_expression_over_return = false:silent
 dotnet_style_explicit_tuple_names = true:warning
 #dotnet_style_prefer_inferred_tuple_names = true:warning
 dotnet_style_prefer_inferred_anonymous_type_member_names = true:warning
+#dotnet_style_prefer_compound_assignment = false:warning
 
 
 
@@ -145,7 +146,7 @@ dotnet_style_prefer_inferred_anonymous_type_member_names = true:warning
 
 
 
-dotnet_style_prefer_compound_assignment = true:suggestion
+
 dotnet_style_prefer_simplified_interpolation = true:suggestion
 dotnet_style_prefer_collection_expression = when_types_loosely_match:suggestion
 dotnet_style_namespace_match_folder = true:suggestion
@@ -212,7 +213,7 @@ dotnet_prefer_system_hash_code = true
 dotnet_style_namespace_match_folder = true
 
 dotnet_style_prefer_collection_expression = when_types_loosely_match
-dotnet_style_prefer_compound_assignment = true
+
 
 dotnet_style_prefer_foreach_explicit_cast_in_source = when_strongly_typed
 
@@ -398,7 +399,7 @@ dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
 
 
-dotnet_style_prefer_compound_assignment = true:suggestion
+
 dotnet_style_prefer_simplified_interpolation = true:suggestion
 dotnet_style_prefer_collection_expression = when_types_loosely_match:suggestion
 dotnet_style_namespace_match_folder = true:suggestion
