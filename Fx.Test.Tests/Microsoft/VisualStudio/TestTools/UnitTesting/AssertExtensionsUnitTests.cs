@@ -33,6 +33,7 @@
         //// TODO write articles to justify the non-style rules //// TODO do you want articles, or do you want to put them as comments in the config file?
         ////    TODO dotnet_style_explicit_tuple_names is really saying "*when* explicit names are available, use them", not "always add explicit names"
         ////    TODO dotnet_style_prefer_inferred_tuple_names is saying that, if a name is not changing, don't be explicit about this; i don't think i like any way that this rule can be configured, i would prefer that it's always either all inferred or all explicit; i'm disabling this rule and i'm going to write my own i think
+        ////    TODO dotnet_style_prefer_inferred_anonymous_type_member_names is the same as inferred tuple names, and i have the same thoughts on it
 
 
 
@@ -61,6 +62,7 @@
 
             var more = (name2: customer.name, customer.age);
 
+
         }
 
 
@@ -72,6 +74,10 @@
         public static void Foo()
         {
             var buzz = new Buzz(1234);
+
+            var value = 1234;
+
+            var something = new { C2 = buzz.C, value2 = value };
 
 
             var data = new[] { 1, 2, 3 };
