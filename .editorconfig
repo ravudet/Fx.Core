@@ -110,6 +110,7 @@ dotnet_style_prefer_simplified_boolean_expressions = true:warning
 dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 dotnet_style_prefer_conditional_expression_over_return = false:silent
 dotnet_style_explicit_tuple_names = true:warning
+#dotnet_style_prefer_inferred_tuple_names = true:warning
 
 
 
@@ -141,7 +142,7 @@ dotnet_style_explicit_tuple_names = true:warning
 
 
 
-dotnet_style_prefer_inferred_tuple_names = true:suggestion
+
 dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
 dotnet_style_prefer_compound_assignment = true:suggestion
 dotnet_style_prefer_simplified_interpolation = true:suggestion
@@ -214,7 +215,7 @@ dotnet_style_prefer_compound_assignment = true
 
 dotnet_style_prefer_foreach_explicit_cast_in_source = when_strongly_typed
 dotnet_style_prefer_inferred_anonymous_type_member_names = true
-dotnet_style_prefer_inferred_tuple_names = true
+
 
 
 dotnet_style_prefer_simplified_interpolation = true
@@ -395,7 +396,7 @@ dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
 
 
-dotnet_style_prefer_inferred_tuple_names = true:suggestion
+
 dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
 dotnet_style_prefer_compound_assignment = true:suggestion
 dotnet_style_prefer_simplified_interpolation = true:suggestion

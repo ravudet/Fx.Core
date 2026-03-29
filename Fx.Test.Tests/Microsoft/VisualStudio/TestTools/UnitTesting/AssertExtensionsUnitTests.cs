@@ -32,7 +32,7 @@
         //// TODO add an analyzer that *disallows* primary constructors (the opposite of csharp_style_prefer_primary_constructors)
         //// TODO write articles to justify the non-style rules
         ////    TODO dotnet_style_explicit_tuple_names is really saying "*when* explicit names are available, use them", not "always add explicit names"
-
+        ////    TODO dotnet_style_prefer_inferred_tuple_names is saying that, if a name is not changing, don't be explicit about this; i don't think i like any way that this rule can be configured, i would prefer that it's always either all inferred or all explicit; i'm disabling this rule and i'm going to write my own i think
 
 
 
@@ -58,6 +58,9 @@
 
             var customer = GetTuple();
             Console.WriteLine(customer.Item1);
+
+            var more = (name2: customer.name, customer.age);
+
         }
 
 
