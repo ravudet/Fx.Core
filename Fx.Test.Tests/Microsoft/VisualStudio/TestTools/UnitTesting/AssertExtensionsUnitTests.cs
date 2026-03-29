@@ -126,7 +126,7 @@
             }*/
         }
 
-        // TODO: i think this plus the struct thing demonstrate the differences if you look at the decompiled code
+        // TODO: i think this plus the struct thing (plus maybe something with generics) demonstrate the differences if you look at the decompiled code
         public void M(Foo foo)
         {
             if (foo is null)
