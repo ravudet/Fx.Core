@@ -109,6 +109,10 @@
         public void Equality()
         {
             var first = new EqualsThing();
+
+            Assert.IsTrue(first == null);
+            Assert.IsFalse(object.ReferenceEquals(first, null));
+
             var second = new EqualsThing();
 
             Assert.IsFalse(object.ReferenceEquals(first, second));
@@ -121,6 +125,36 @@
             {
             }*/
         }
+
+        // TODO: i think this plus the struct thing demonstrate the differences if you look at the decompiled code
+        public void M(Foo foo)
+        {
+            if (foo is null)
+            {
+            }
+
+            if (object.ReferenceEquals(foo, null))
+            {
+            }
+
+            if (foo == null)
+            {
+            }
+        }
+
+        public class Foo
+        {
+            public static bool operator ==(Foo? first, Foo? second)
+            {
+                return true;
+            }
+
+            public static bool operator !=(Foo? first, Foo? second)
+            {
+                return false;
+            }
+        }
+        // ENDTODO
 
         public void Equality2<T>(T something)
         {
@@ -138,14 +172,14 @@
 
         public class EqualsThing
         {
-            public static bool operator ==(EqualsThing left, EqualsThing right)
+            public static bool operator ==(EqualsThing? left, EqualsThing? right)
             {
-                return false;
+                return true;
             }
 
             public static bool operator !=(EqualsThing left, EqualsThing right)
             {
-                return true;
+                return false;
             }
         }
 
