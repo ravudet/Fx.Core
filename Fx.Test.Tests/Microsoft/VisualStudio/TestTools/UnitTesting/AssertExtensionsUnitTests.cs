@@ -31,6 +31,7 @@
         //// TODO add custom roslyn analayzer for `assert.that`
         //// TODO add an analyzer that *disallows* primary constructors (the opposite of csharp_style_prefer_primary_constructors)
         //// TODO write articles to justify the non-style rules
+        ////    TODO dotnet_style_explicit_tuple_names is really saying "*when* explicit names are available, use them", not "always add explicit names"
 
 
 
@@ -54,8 +55,16 @@
 
             string something = true ? "asdf" : "qwer";
             Console.WriteLine(something);
+
+            var customer = GetTuple();
+            Console.WriteLine(customer.Item1);
         }
 
+
+        public static (string name, int age) GetTuple()
+        {
+            return ("ASdf", 1234);
+        }
 
         public static void Foo()
         {
