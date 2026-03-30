@@ -104,6 +104,8 @@
 
         public static void Foo2()
         {
+            byte[] bytes = "ABC"u8.ToArray();
+
             var buzz = new Buzz(1234);
 
             var value = 1234;
