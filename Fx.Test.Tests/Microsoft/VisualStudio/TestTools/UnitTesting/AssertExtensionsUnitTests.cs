@@ -63,6 +63,8 @@
 
             var more = (name2: customer.name, customer.age);
 
+            Console.WriteLine(customer.ToString());
+            Console.WriteLine($"{customer.ToString()}");
 
         }
 
