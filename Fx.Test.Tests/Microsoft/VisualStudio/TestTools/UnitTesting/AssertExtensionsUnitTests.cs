@@ -147,6 +147,8 @@
         [TestMethod]
         public void Equality()
         {
+            Console.WriteLine(nameof(System.Collections.Generic.List<string>));
+
             var first = new EqualsThing();
 
             Assert.IsTrue(first == null);
