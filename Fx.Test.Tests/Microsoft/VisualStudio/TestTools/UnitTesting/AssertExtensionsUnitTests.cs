@@ -107,6 +107,8 @@
             var tuple = GetTuple();
             var notTuple = AnotherParse("asdf");
 
+            AnotherParse("asdf");
+
             Console.WriteLine("asdF");
         }
 
