@@ -72,6 +72,7 @@
             Console.WriteLine(customer.ToString());
             Console.WriteLine($"{customer.ToString()}");
 
+            Exception? subsequent = default;
         }
 
 
