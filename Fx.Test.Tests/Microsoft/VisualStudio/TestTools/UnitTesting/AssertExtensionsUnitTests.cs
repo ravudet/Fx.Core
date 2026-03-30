@@ -28,8 +28,7 @@
 
 
 
-
-
+        //// TODO i can't get csharp_style_unused_value_assignment_preference to trigger, and it looks like CS0219 covers it anyway?
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0042 seems to indicate `var person = GetPersonTuple();` is illegal, but it doesn't seem flagged to me; *i* prefer this, because i only want `(int x, int y) point = GetPointTuple();` to be fixed; this is either a bug or a doc issue, though
 
 
@@ -104,6 +103,11 @@
             Console.WriteLine($"{customer.ToString()}");
 
             Exception? subsequent = default;
+
+            var tuple = GetTuple();
+            var notTuple = AnotherParse("asdf");
+
+            Console.WriteLine("asdF");
         }
 
 
@@ -119,8 +123,19 @@
             return value;
         }
 
+        public struct Structure
+        {
+        }
+
+        public static Structure AnotherParse(string toParse)
+        {
+            return new Structure();
+        }
+
         public static void Foo2()
         {
+            var wasParsed = AnotherParse("asdf");
+
             while (!CustomParse("asdf", out var parsed))
             {
                 parsed = 5;

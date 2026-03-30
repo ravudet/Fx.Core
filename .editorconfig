@@ -130,6 +130,7 @@ csharp_style_prefer_unbound_generic_type_in_nameof = true:warning
 csharp_style_prefer_utf8_string_literals = true:warning
 csharp_style_inlined_variable_declaration = true:warning
 csharp_style_deconstructed_variable_declaration = true:warning
+csharp_style_unused_value_assignment_preference = discard_variable:silent
 
 
 
@@ -306,7 +307,7 @@ csharp_style_prefer_readonly_struct_member = true:suggestion
 
 
 
-csharp_style_unused_value_assignment_preference = discard_variable:suggestion
+
 csharp_style_unused_value_expression_statement_preference = discard_variable:silent
 
 # 'using' directive preferences
