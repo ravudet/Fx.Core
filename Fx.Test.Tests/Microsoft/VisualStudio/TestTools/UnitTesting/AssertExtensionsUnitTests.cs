@@ -42,13 +42,20 @@
         ////    TODO dotnet_style_explicit_tuple_names is really saying "*when* explicit names are available, use them", not "always add explicit names"
         ////    TODO dotnet_style_prefer_inferred_tuple_names is saying that, if a name is not changing, don't be explicit about this; i don't think i like any way that this rule can be configured, i would prefer that it's always either all inferred or all explicit; i'm disabling this rule and i'm going to write my own i think
         ////    TODO dotnet_style_prefer_inferred_anonymous_type_member_names is the same as inferred tuple names, and i have the same thoughts on it
+        ////    TODO csharp_style_prefer_implicitly_typed_lambda_expression also triggers cases where you are passing a lambda as a parameter to a method `Frub((int x) => { });`
 
 
 
 
+
+        public static void Frub(Action<int> action)
+        {
+        }
 
         public static void Frob(string? thing, object bar)
         {
+            Frub((int x) => { });
+
             Bar fizz = new("asdf");
 
             var derived = bar as Derived;
