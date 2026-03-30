@@ -30,6 +30,11 @@
 
 
 
+        //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0042 seems to indicate `var person = GetPersonTuple();` is illegal, but it doesn't seem flagged to me; *i* prefer this, because i only want `(int x, int y) point = GetPointTuple();` to be fixed; this is either a bug or a doc issue, though
+
+
+
+
         //// TODO i'm not convinced that the UI is a canonical list; go through the rule reference documentation to see if there are any missing: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories
 
 
@@ -87,8 +92,11 @@
             string something = true ? "asdf" : "qwer";
             Console.WriteLine(something);
 
+
             var customer = GetTuple();
             Console.WriteLine(customer.Item1);
+
+            (string name, int age) anotherCustomer = GetTuple();
 
             var more = (name2: customer.name, customer.age);
 
@@ -118,7 +126,7 @@
                 parsed = 5;
             }
 
-            Console.WriteLine(parsed);
+            ////Console.WriteLine(parsed);
 
             byte[] bytes = "ABC"u8.ToArray();
 
