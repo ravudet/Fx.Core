@@ -38,6 +38,7 @@
 
         //// TODO add custom roslyn analayzer for `assert.that`
         //// TODO add an analyzer that *disallows* primary constructors (the opposite of csharp_style_prefer_primary_constructors)
+        //// TODO you know, the old style cop docs used to actually have pretty good justifications for why you want to change your code...
         //// TODO write articles to justify the non-style rules //// TODO do you want articles, or do you want to put them as comments in the config file?
         ////    TODO dotnet_style_explicit_tuple_names is really saying "*when* explicit names are available, use them", not "always add explicit names"
         ////    TODO dotnet_style_prefer_inferred_tuple_names is saying that, if a name is not changing, don't be explicit about this; i don't think i like any way that this rule can be configured, i would prefer that it's always either all inferred or all explicit; i'm disabling this rule and i'm going to write my own i think
