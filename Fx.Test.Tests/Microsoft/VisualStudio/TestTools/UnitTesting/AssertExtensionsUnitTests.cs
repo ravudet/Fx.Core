@@ -25,7 +25,7 @@
 
 
 
-        //// TODO i'm not convinced that the UI is a canonical list
+        //// TODO i'm not convinced that the UI is a canonical list; go through the rule reference documentation to see if there are any missing: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories
 
 
 
