@@ -14,7 +14,7 @@
     {
         //// TODO you are re-ordering the config file to follow the ui; make sure there are no duplicates
         //// TODO what is making the "whitespace" rules warnings? in the other tabs, you can set the severity
-        //// TODO go back through and determine which ones are "disabled" when `false` (rather than warning for the opposite)
+        //// TODO go back through and determine which ones are "disabled" when `false` (rather than warning for the opposite); for these, decide on what "severity" you want to set (can you remove the severity altogether?)
         ////    TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does
         ////    TODO `dotnet_style_prefer_conditional_expression_over_assignment = false:warning` doesn't warn for `string something = true ? "asdf" : "qwer";`
         ////    TODO `dotnet_style_prefer_compound_assignment = false:warning` doesn't warn for `var value = 1324; value += 5;`
