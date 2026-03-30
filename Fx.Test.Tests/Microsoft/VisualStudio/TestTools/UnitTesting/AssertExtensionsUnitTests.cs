@@ -1,6 +1,7 @@
 ﻿namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Xml.Linq;
 
@@ -45,6 +46,7 @@
         ////    TODO dotnet_style_prefer_inferred_anonymous_type_member_names is the same as inferred tuple names, and i have the same thoughts on it
         ////    TODO csharp_style_prefer_implicitly_typed_lambda_expression also triggers cases where you are passing a lambda as a parameter to a method `Frub((int x) => { });`
         ////    TODO for `csharp_style_prefer_tuple_swap` i wonder if the compiler or jiter do magic here; isn't the tuple going to take extra (stack) memory? i do think it looks neat though
+        ////    TODO i think `csharp_style_inlined_variable_declaration` would make a lot more sense if `while (!int.TryParse(value, out var parsed)) { } Console.WriteLine(parsed);` worked
 
 
 
@@ -102,8 +104,22 @@
             return ("ASdf", 1234);
         }
 
+        public static bool CustomParse(string toParse, [NotNullWhen(true)] out int? parsed)
+        {
+            var value = int.TryParse(toParse, out var intermediate);
+            parsed = intermediate;
+            return value;
+        }
+
         public static void Foo2()
         {
+            while (!CustomParse("asdf", out var parsed))
+            {
+                parsed = 5;
+            }
+
+            Console.WriteLine(parsed);
+
             byte[] bytes = "ABC"u8.ToArray();
 
             var buzz = new Buzz(1234);
