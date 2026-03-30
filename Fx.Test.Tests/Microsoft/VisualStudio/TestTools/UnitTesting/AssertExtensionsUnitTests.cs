@@ -43,8 +43,14 @@
 
 
 
-        public static void Frob(string? thing)
+        public static void Frob(string? thing, object bar)
         {
+            var derived = bar as Derived;
+
+            if (derived is not Derived)
+            {
+            }
+
             var other = thing != null ? thing : "asdf";
             other = thing == null ? "Asdf" : thing;
 
@@ -102,13 +108,20 @@
         public static void Fizz(Action action) { }
 
 
-        class Bar
+        public class Bar
         {
             public string? Fizz { get; set; }
 
             public Bar(string? fizz) => Fizz = fizz;
 
             public string? GetOther() => this.Fizz;
+        }
+
+        public class Derived : Bar
+        {
+            public Derived(string? fizz) : base(fizz)
+            {
+            }
         }
 
 
