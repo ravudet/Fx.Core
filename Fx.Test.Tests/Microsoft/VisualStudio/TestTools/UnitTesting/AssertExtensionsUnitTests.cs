@@ -22,6 +22,12 @@
         //// TODO `dotnet_style_prefer_conditional_expression_over_assignment = false:warning` doesn't warn for `string something = true ? "asdf" : "qwer";`
         //// TODO `dotnet_style_prefer_compound_assignment = false:warning` doesn't warn for `var value = 1324; value += 5;`
         //// TODO `csharp_style_throw_expression = false:warning` doesn't warn for `var assigned = another ?? throw new Exception("TODO");`
+        //// TODO `csharp_style_prefer_index_operator = false:warning` doesn't warn for `var index = data[^1];`
+        
+
+
+
+
 
 
 
@@ -98,6 +104,7 @@
 
 
             var data = new[] { 1, 2, 3 };
+            var index = data[^1];
 
             var doubled = from datum in data from datum2 in data 
                           select datum * datum2;
