@@ -103,7 +103,7 @@ dotnet_style_coalesce_expression = true:warning
 dotnet_diagnostic.IDE0270.severity = none#IDE0270: Use coalesce expression
 dotnet_style_null_propagation = true:warning
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
-dotnet_style_prefer_auto_properties = true:silent
+dotnet_style_prefer_auto_properties = true:suggestion
 #dotnet_style_object_initializer = true:warning
 #dotnet_style_collection_initializer = true:silent
 dotnet_style_prefer_simplified_boolean_expressions = true:warning
@@ -122,6 +122,7 @@ csharp_style_prefer_null_check_over_type_check = true:warning
 #csharp_prefer_simple_default_expression = false:warning
 csharp_style_prefer_local_over_anonymous_function = true:warning
 csharp_style_prefer_index_operator = false:warning
+csharp_style_prefer_range_operator = true:suggestion
 
 
 
@@ -295,7 +296,7 @@ csharp_style_prefer_implicitly_typed_lambda_expression = true:suggestion
 
 
 
-csharp_style_prefer_range_operator = true:suggestion
+
 csharp_style_prefer_tuple_swap = true:suggestion
 csharp_style_prefer_unbound_generic_type_in_nameof = true:suggestion
 csharp_style_prefer_utf8_string_literals = true:suggestion

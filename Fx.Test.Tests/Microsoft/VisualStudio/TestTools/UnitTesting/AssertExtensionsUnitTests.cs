@@ -105,6 +105,7 @@
 
             var data = new[] { 1, 2, 3 };
             var index = data[^1];
+            var more = data[1..4];
 
             var doubled = from datum in data from datum2 in data 
                           select datum * datum2;
