@@ -115,6 +115,7 @@ dotnet_style_prefer_inferred_anonymous_type_member_names = true:warning
 #dotnet_style_prefer_compound_assignment = false:warning
 dotnet_style_prefer_simplified_interpolation = true:warning
 #dotnet_style_prefer_collection_expression = when_types_loosely_match:warning
+dotnet_style_namespace_match_folder = true:warning
 
 
 
@@ -151,7 +152,7 @@ dotnet_style_prefer_simplified_interpolation = true:warning
 
 
 
-dotnet_style_namespace_match_folder = true:suggestion
+
 dotnet_style_readonly_field = true:suggestion
 dotnet_style_predefined_type_for_locals_parameters_members = true:silent
 dotnet_style_predefined_type_for_member_access = true:silent
@@ -212,7 +213,7 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members
 # Expression-level preferences
 dotnet_prefer_system_hash_code = true
 
-dotnet_style_namespace_match_folder = true
+
 
 
 
@@ -404,7 +405,6 @@ dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
 
 
-dotnet_style_namespace_match_folder = true:suggestion
 dotnet_style_readonly_field = true:suggestion
 dotnet_style_predefined_type_for_locals_parameters_members = true:silent
 dotnet_style_predefined_type_for_member_access = true:silent

@@ -28,6 +28,9 @@
 
 
 
+        //// TODO dotnet_style_namespace_match_folder is really good for me, but the article https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0130 mentions it's not going to work for command line builds without additional csproj maniupulation... (though it will work for vs builds)
+
+
         //// TODO add custom roslyn analayzer for `assert.that`
         //// TODO add an analyzer that *disallows* primary constructors (the opposite of csharp_style_prefer_primary_constructors)
         //// TODO write articles to justify the non-style rules //// TODO do you want articles, or do you want to put them as comments in the config file?
