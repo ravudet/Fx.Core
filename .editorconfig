@@ -187,6 +187,7 @@ csharp_style_prefer_switch_expression = true:suggestion # this is so limited in 
 csharp_style_prefer_pattern_matching = false:warning # i really wish i could make this warn *against* the pattern matching stuff
 csharp_style_pattern_matching_over_is_with_cast_check = true:warning # great because it avoids hard casts; mistakes can be made while *maintaining*, but this was the compiler handles all of it
 csharp_style_pattern_matching_over_as_with_null_check = true:warning # great because it makes clear a pattern that used exist, and sometimes wasn't always followed
+csharp_style_prefer_not_pattern = true:suggestion # suggestion for discovery; it's way easier to type the new way, but both are fine, even in terms of readability
 
 
 
@@ -310,7 +311,7 @@ csharp_style_var_when_type_is_apparent = false
 
 
 csharp_style_prefer_extended_property_pattern = true
-csharp_style_prefer_not_pattern = true
+
 
 
 
