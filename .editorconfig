@@ -161,6 +161,7 @@ dotnet_style_allow_statement_immediately_after_block_experimental = false:warnin
 csharp_style_allow_embedded_statements_on_same_line_experimental = false:warning
 csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false:warning
 csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = false:warning
+csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = false:warning
 
 
 
@@ -345,7 +346,7 @@ csharp_preferred_modifier_order = public,private,protected,internal,file,static,
 # New line preferences
 
 csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental = true:silent
-csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = true:silent
+
 
 
 
