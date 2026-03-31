@@ -73,8 +73,12 @@
             {
             }
 
+            ////var cValue = derived.Buzz.C;
+
 
             var sum = GetValue() * 3 + 2;
+
+
 
 
 
@@ -209,6 +213,8 @@
             public void DoWork(int parameter)
             {
             }
+
+            public Buzz Buzz { get; set; }
         }
 
         public interface ISomething
