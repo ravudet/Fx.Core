@@ -225,6 +225,11 @@ dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
 
 ### correctness
 
+[*.{cs,vb}]
+dotnet_diagnostic.RS1010.severity = none #todo i don't know enough about this to make a decision # TODO should you make something an *error* to indicate to yourself that you didn't fully investigate? that way you'll be notified to investigate it when you have relevant code?
+dotnet_diagnostic.RS1011.severity = none #todo i don't know enough about this to make a decision
+dotnet_diagnostic.RS1016.severity = none #todo i don't know enough about this to make a decision
+
 # naming style definitions
 
 dotnet_naming_style.pascal_case.required_prefix = 
