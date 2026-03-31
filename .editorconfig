@@ -184,6 +184,7 @@ dotnet_style_parentheses_in_other_operators = never_if_unnecessary:warning # i d
 
 [*.cs]
 csharp_style_prefer_switch_expression = true:suggestion # this is so limited in use, it's fine to suggest to move me towards c# 8 (and to add in refactors), but it's not something to shoehorn in
+csharp_style_prefer_pattern_matching = false:warning # i really wish i could make this warn *against* the pattern matching stuff
 
 
 
@@ -308,7 +309,7 @@ csharp_style_pattern_matching_over_as_with_null_check = true
 csharp_style_pattern_matching_over_is_with_cast_check = true
 csharp_style_prefer_extended_property_pattern = true
 csharp_style_prefer_not_pattern = true
-csharp_style_prefer_pattern_matching = true
+
 
 
 # Null-checking preferences
