@@ -173,6 +173,10 @@
                           select datum * datum2;
 
             Fizz(() => Foo2());
+
+            var result = data.Select(
+                foo
+                    => foo * 2);
         }
 
         public static void Fizz(Action action) { }
@@ -182,7 +186,8 @@
         {
             public string? Fizz { get; set; }
 
-            public Bar(string? fizz) => Fizz = fizz;
+            public Bar(string? fizz) =>
+                Fizz = fizz;
 
             public string? GetOther() => this.Fizz;
         }
