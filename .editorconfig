@@ -315,43 +315,6 @@ csharp_preferred_modifier_order = public,private,protected,internal,file,static,
 
 
 
-# Code-block preferences
-
-
-
-
-
-
-
-
-# Expression-level preferences
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 'using' directive preferences
-
-
-# New line preferences
-
-
-
-
-
-
-#### C# Formatting Rules ####
-
 dotnet_diagnostic.IDE0055.severity = warning
 
 # New line preferences
