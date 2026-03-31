@@ -21,6 +21,7 @@
         ////    TODO `dotnet_style_prefer_compound_assignment = false:warning` doesn't warn for `var value = 1324; value += 5;`
         ////    TODO `csharp_style_throw_expression = false:warning` doesn't warn for `var assigned = another ?? throw new Exception("TODO");`
         ////    TODO `csharp_style_prefer_index_operator = false:warning` doesn't warn for `var index = data[^1];`
+        //// TODO for each rule, toggling back and forth should result in no change to the file (except the rules that you deleted)
         //// TODO go back through the rules again to see which ones you deleted; just comment them out instead
 
 
