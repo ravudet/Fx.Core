@@ -317,19 +317,6 @@ csharp_preferred_modifier_order = public,private,protected,internal,file,static,
 
 dotnet_diagnostic.IDE0055.severity = warning
 
-# New line preferences
-
-
-
-
-
-
-
-
-# Indentation preferences
-
-
-# Space preferences
 
 
 
@@ -341,24 +328,6 @@ dotnet_diagnostic.IDE0055.severity = warning
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-# Wrapping preferences
-
-
-
-#### Naming styles ####
-
-# Naming rules
 
 
 
