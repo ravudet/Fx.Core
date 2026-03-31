@@ -173,58 +173,51 @@ csharp_style_conditional_delegate_call = false:silent
 [*.{cs,vb}]
 dotnet_code_quality_unused_parameters = all:warning#NOTE: doesn't count interface implementations, which is probably for the best
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## parentheses preferences
 
 [*.cs]
 
-#### Core EditorConfig Options ####
-
-# Indentation and spacing
 
 
-# New line preferences
 
-#### .NET Code Actions ####
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Type members
 dotnet_hide_advanced_members = false
