@@ -93,6 +93,10 @@
                 throw new Exception("tODO");
             }
 
+
+            if (assigned == null) throw new Exception("tODO");
+
+
             string something = true ? "asdf" : "qwer";
             Console.WriteLine(something);
 
