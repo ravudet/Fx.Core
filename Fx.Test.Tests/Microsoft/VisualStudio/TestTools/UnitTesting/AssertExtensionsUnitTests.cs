@@ -187,9 +187,12 @@
             public string? GetOther() => this.Fizz;
         }
 
-        public class Derived : Bar
+        public class Derived :
+            Bar
         {
-            public Derived(string? fizz) : base(fizz)
+            public Derived(string? fizz)
+                : base(
+                      fizz)
             {
             }
         }
