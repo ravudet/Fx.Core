@@ -200,14 +200,10 @@ dotnet_style_qualification_for_property = true:warning
 
 ## var preferences
 
-
-
-
-
-
-
 [*.cs]
-
+csharp_style_var_elsewhere = true:warning
+csharp_style_var_for_built_in_types = true:warning
+csharp_style_var_when_type_is_apparent = true:warning
 
 
 
@@ -307,9 +303,7 @@ dotnet_remove_unnecessary_suppression_exclusions = none
 #### C# Coding Conventions ####
 
 # var preferences
-csharp_style_var_elsewhere = false
-csharp_style_var_for_built_in_types = false
-csharp_style_var_when_type_is_apparent = false
+
 
 # Expression-bodied members
 
