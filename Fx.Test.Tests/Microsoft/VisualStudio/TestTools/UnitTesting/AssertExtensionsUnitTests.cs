@@ -56,6 +56,17 @@
 
 
 
+        public record Point(int X, int Y);
+        public record Segment(Point Start, Point End);
+
+        // Violates IDE0170.
+        static bool IsEndOnXAxis(Segment segment) =>
+            segment is { Start: { Y: 0, X: 5 } } or { End: { Y: 0 } };
+
+        // Fixed code.
+        static bool IsEndOnXAxis2(Segment segment) =>
+            segment is { Start.Y: 0, Start.X: 5 } or { End.Y: 0 };
+
 
         public static void Frub(Action<int> action)
         {

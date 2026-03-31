@@ -188,6 +188,7 @@ csharp_style_prefer_pattern_matching = false:warning # i really wish i could mak
 csharp_style_pattern_matching_over_is_with_cast_check = true:warning # great because it avoids hard casts; mistakes can be made while *maintaining*, but this was the compiler handles all of it
 csharp_style_pattern_matching_over_as_with_null_check = true:warning # great because it makes clear a pattern that used exist, and sometimes wasn't always followed
 csharp_style_prefer_not_pattern = true:suggestion # suggestion for discovery; it's way easier to type the new way, but both are fine, even in terms of readability
+csharp_style_prefer_extended_property_pattern = true:warning # i hate this syntax, but if you're going to use it, i think this is good because the rule only applies for cases where there is a single "inner" check (TODO find the right names to refer to these constructs)
 
 
 
@@ -310,7 +311,7 @@ csharp_style_var_when_type_is_apparent = false
 # Pattern matching preferences
 
 
-csharp_style_prefer_extended_property_pattern = true
+
 
 
 
