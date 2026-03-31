@@ -193,13 +193,23 @@
         }
 
         public class Derived :
-            Bar
+            Bar,
+            ISomething
         {
             public Derived(string? fizz)
                 : base(
                       fizz)
             {
             }
+
+            public void DoWork(int parameter)
+            {
+            }
+        }
+
+        public interface ISomething
+        {
+            void DoWork(int parameter);
         }
 
 

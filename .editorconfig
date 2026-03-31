@@ -170,23 +170,8 @@ csharp_style_conditional_delegate_call = false:silent
 
 ## parameter preferences
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [*.{cs,vb}]
+dotnet_code_quality_unused_parameters = all:warning#NOTE: doesn't count interface implementations, which is probably for the best
 
 
 
@@ -208,7 +193,23 @@ csharp_style_conditional_delegate_call = false:silent
 
 
 
-dotnet_code_quality_unused_parameters = all:suggestion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -278,7 +279,7 @@ dotnet_style_prefer_foreach_explicit_cast_in_source = when_strongly_typed
 
 
 # Parameter preferences
-dotnet_code_quality_unused_parameters = all
+
 
 # Suppression preferences
 dotnet_remove_unnecessary_suppression_exclusions = none
