@@ -74,7 +74,7 @@
             }
 
 
-
+            var sum = GetValue() * 3 + 2;
 
 
 
@@ -122,6 +122,10 @@
             Console.WriteLine("asdF");
         }
 
+        public static int GetValue()
+        {
+            return 5;
+        }
 
         public static (string name, int age) GetTuple()
         {

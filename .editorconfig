@@ -175,7 +175,8 @@ dotnet_code_quality_unused_parameters = all:warning#NOTE: doesn't count interfac
 
 ## parentheses preferences
 
-dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:silent#i like the clarity, but i only like it for others; if someone else writes it without them, that's fine, but refactoring is good to have them
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:warning#i like the clarity, but i only like it for others; if someone else writes it without them, that's fine, but refactoring is good to have them # TODO that was your previous rationale, but then you realized that this also triggers when some of the components of the expression are method calls and such; we need parentheses for clarity for sure when they aren't simple variables; it might be nice to implement an analyzer that can tell the difference
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:warning# i think that the boolean operators are less clear, especially when method calls occur and things like that # TODO also check the above rationale about method calls
 [*.cs]
 
 
@@ -247,7 +248,7 @@ dotnet_style_qualification_for_property = false
 
 # Parentheses preferences
 
-dotnet_style_parentheses_in_other_binary_operators = always_for_clarity
+
 dotnet_style_parentheses_in_other_operators = never_if_unnecessary
 dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity
 
