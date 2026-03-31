@@ -175,6 +175,7 @@ dotnet_code_quality_unused_parameters = all:warning#NOTE: doesn't count interfac
 
 ## parentheses preferences
 
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:silent#i like the clarity, but i only like it for others; if someone else writes it without them, that's fine, but refactoring is good to have them
 [*.cs]
 
 
@@ -245,7 +246,7 @@ dotnet_style_qualification_for_property = false
 
 
 # Parentheses preferences
-dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity
+
 dotnet_style_parentheses_in_other_binary_operators = always_for_clarity
 dotnet_style_parentheses_in_other_operators = never_if_unnecessary
 dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity
