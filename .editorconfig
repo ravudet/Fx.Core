@@ -154,6 +154,8 @@ csharp_style_prefer_readonly_struct_member = true:warning
 
 ## new line preferences
 
+[*.{cs,vb}]
+dotnet_style_allow_multiple_blank_lines_experimental = false:warning
 
 
 
@@ -192,7 +194,7 @@ csharp_style_prefer_readonly_struct_member = true:warning
 
 
 
-dotnet_style_allow_multiple_blank_lines_experimental = true:silent
+
 dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
 dotnet_code_quality_unused_parameters = all:suggestion
 
@@ -270,7 +272,7 @@ dotnet_code_quality_unused_parameters = all
 dotnet_remove_unnecessary_suppression_exclusions = none
 
 # New line preferences
-dotnet_style_allow_multiple_blank_lines_experimental = true
+
 dotnet_style_allow_statement_immediately_after_block_experimental = true
 
 #### C# Coding Conventions ####
@@ -443,6 +445,6 @@ dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
 
 
-dotnet_style_allow_multiple_blank_lines_experimental = true:silent
+
 dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
 

@@ -72,6 +72,11 @@
             {
             }
 
+
+
+
+
+
             var other = thing != null ? thing : "asdf";
             other = thing == null ? "Asdf" : thing;
 
