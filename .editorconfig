@@ -152,6 +152,8 @@ csharp_prefer_static_anonymous_function = true:warning#TODO i have a feeling tha
 csharp_style_prefer_readonly_struct = true:warning
 csharp_style_prefer_readonly_struct_member = true:warning
 
+## new line preferences
+
 
 
 
