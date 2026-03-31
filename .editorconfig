@@ -190,6 +190,8 @@ csharp_style_pattern_matching_over_as_with_null_check = true:warning # great bec
 csharp_style_prefer_not_pattern = true:suggestion # suggestion for discovery; it's way easier to type the new way, but both are fine, even in terms of readability
 csharp_style_prefer_extended_property_pattern = true:warning # i hate this syntax, but if you're going to use it, i think this is good because the rule only applies for cases where there is a single "inner" check (TODO find the right names to refer to these constructs)
 
+## this. and Me. preferences
+
 
 
 
