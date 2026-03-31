@@ -307,46 +307,8 @@ dotnet_style_prefer_foreach_explicit_cast_in_source = when_strongly_typed
 
 
 
-
-# Field preferences
-
-
-# Parameter preferences
-
-
 # Suppression preferences
 dotnet_remove_unnecessary_suppression_exclusions = none
-
-# New line preferences
-
-
-
-#### C# Coding Conventions ####
-
-# var preferences
-
-
-# Expression-bodied members
-
-
-
-
-
-
-
-
-# Pattern matching preferences
-
-
-
-
-
-
-
-# Null-checking preferences
-
-
-# Modifier preferences
 
 
 csharp_preferred_modifier_order = public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async
