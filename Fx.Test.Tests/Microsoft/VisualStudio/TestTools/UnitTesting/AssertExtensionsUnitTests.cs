@@ -79,9 +79,6 @@
             var sum = GetValue() * 3 + 2;
 
 
-
-
-
             var other = thing != null ? thing : "asdf";
             other = thing == null ? "Asdf" : thing;
 
