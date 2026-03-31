@@ -166,6 +166,7 @@ csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimenta
 
 ## null-checking preferences
 
+csharp_style_conditional_delegate_call = false:silent
 
 
 
@@ -309,7 +310,7 @@ csharp_style_prefer_pattern_matching = true
 csharp_style_prefer_switch_expression = true
 
 # Null-checking preferences
-csharp_style_conditional_delegate_call = true:suggestion
+
 
 # Modifier preferences
 
