@@ -150,6 +150,7 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
 csharp_prefer_static_local_function = true:warning
 csharp_prefer_static_anonymous_function = true:warning#TODO i have a feeling that i will regret this one because, although it's absolutely the "right" thing to do, linq queries will now have an extra step that i'm not used to reading or writing
 csharp_style_prefer_readonly_struct = true:warning
+csharp_style_prefer_readonly_struct_member = true:warning
 
 
 
@@ -302,7 +303,7 @@ csharp_style_conditional_delegate_call = true:suggestion
 
 csharp_preferred_modifier_order = public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async
 
-csharp_style_prefer_readonly_struct_member = true:suggestion
+
 
 # Code-block preferences
 
