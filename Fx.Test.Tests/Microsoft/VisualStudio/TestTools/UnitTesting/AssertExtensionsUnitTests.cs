@@ -43,6 +43,7 @@
 
 
         //// TODO add custom roslyn analayzer for `assert.that`
+        ////    TODO allow unsafe is an example of a codefix that updates the project
         //// TODO add an analyzer that *disallows* primary constructors (the opposite of csharp_style_prefer_primary_constructors)
         //// TODO you know, the old style cop docs used to actually have pretty good justifications for why you want to change your code...
         //// TODO write articles to justify the non-style rules //// TODO do you want articles, or do you want to put them as comments in the config file? //// TODO probably write articles and link to them in the rules
