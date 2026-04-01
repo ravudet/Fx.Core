@@ -74,6 +74,11 @@
 
 
 
+        public enum Foo
+        {
+            First = 0,
+        }
+
 
         public class Container<T>
         {
