@@ -15,7 +15,8 @@ dotnet_diagnostic.CA1002.severity = warning
 dotnet_code_quality.CA1002.api_surface = all
 dotnet_diagnostic.CA1003.severity = warning
 dotnet_code_quality.CA1003.api_surface = all
-
+dotnet_diagnostic.CA1005.severity = warning
+dotnet_code_quality.CA1005.api_surface = all
 
 
 
