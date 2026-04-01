@@ -44,6 +44,8 @@ dotnet_diagnostic.CA1024.severity = warning
 dotnet_code_quality.CA1024.api_surface = all
 # NOTE: there is no CA1025
 # NOTE: there is no CA1026
+dotnet_diagnostic.CA1027.severity = warning
+dotnet_code_quality.CA1027.api_surface = all
 
 
 
