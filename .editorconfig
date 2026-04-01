@@ -37,6 +37,8 @@ dotnet_diagnostic.CA1016.severity = none # TODO i don't know if you do this with
 dotnet_code_quality.CA1016.api_surface = all
 dotnet_diagnostic.CA1017.severity = none # TODO i don't know anything about this
 dotnet_code_quality.CA1017.api_surface = all
+dotnet_diagnostic.CA1018.severity = warning
+dotnet_code_quality.CA1018.api_surface = all
 
 
 
