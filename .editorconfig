@@ -36,7 +36,8 @@ dotnet_diagnostic.CA1016.severity = none # TODO i don't know if you do this with
 dotnet_diagnostic.CA1017.severity = none # TODO i don't know anything about this
 dotnet_diagnostic.CA1018.severity = warning
 dotnet_diagnostic.CA1019.severity = none # TODO seems like overkill; the parameters maybe be combined in a way that is still useful; if the parameter is needed, the attribute itself won't be useful, and who is defining a custom attribute type without also provided code that leverages it?
-
+# NOTE: there is no CA1020
+dotnet_diagnostic.CA1021.severity = warning # TODO a key to this one is that the "try" naming convention avoids triggering the rule; i'm not 100% sure i like this rule though
 
 
 

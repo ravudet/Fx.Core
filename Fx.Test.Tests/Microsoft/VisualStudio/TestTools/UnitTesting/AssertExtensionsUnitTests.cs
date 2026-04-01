@@ -210,7 +210,7 @@
             return ("ASdf", 1234);
         }
 
-        public static bool CustomParse(string toParse, [NotNullWhen(true)] out int? parsed)
+        public static bool TryCustomParse(string toParse, [NotNullWhen(true)] out int? parsed)
         {
             var value = int.TryParse(toParse, out var intermediate);
             parsed = intermediate;
@@ -230,7 +230,7 @@
         {
             var wasParsed = AnotherParse("asdf");
 
-            while (!CustomParse("asdf", out var parsed))
+            while (!TryCustomParse("asdf", out var parsed))
             {
                 parsed = 5;
             }
