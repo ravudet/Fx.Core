@@ -1,6 +1,7 @@
 ﻿namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Xml.Linq;
@@ -79,6 +80,8 @@
             public static void DoWork()
             {
             }
+
+            public List<T> List { get; }
         }
 
         public class AnotherContainer
