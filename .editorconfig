@@ -55,6 +55,12 @@ dotnet_diagnostic.CA1031.severity = warning
 dotnet_diagnostic.CA1032.severity = warning # TODO although i agree with this greatly, i think i often violate it; maybe it shouldn't apply to interfaces or something?
 dotnet_diagnostic.CA1033.severity = warning # TODO so i guess the point is that the derived type "has an instance" of the interface (from the base type), but has no way to call the method from the interface, and if they try to be clever, they get a stackoverflow; first of all, the stack overflow bug should be caught during unit testing; but otherwise, i guess it makes sense to have a protected member; this is a neat trick though that i want to remember, i can have a publicly exposed method that's not available to derived types; i wonder when that might be useful?
 dotnet_diagnostic.CA1034.severity = warning # TODO i agree with this, but i'm going to break it a lot with discriminated unions; i wonder if there's a way to extend the rule to ignore nestsed types that derive the containing type and the containing type is abstract and has a private constructor?
+# NOTE: there is no CA1035
+dotnet_diagnostic.CA1036.severity = warning
+
+
+
+
 
 
 
