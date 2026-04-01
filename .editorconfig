@@ -53,6 +53,7 @@ dotnet_diagnostic.CA1030.severity = warning # TODO the rule makes sense to me, b
 dotnet_code_quality.CA1030.api_surface = all
 dotnet_diagnostic.CA1031.severity = warning
 dotnet_diagnostic.CA1032.severity = warning # TODO although i agree with this greatly, i think i often violate it; maybe it shouldn't apply to interfaces or something?
+dotnet_diagnostic.CA1033.severity = warning # TODO so i guess the point is that the derived type *has an instance* of the interface (from the base type), but has no way to call the method from the interface, and if they try to be clever, they get a stackoverflow; first of all, the stack overflow bug should be caught during unit testing; but otherwise, i guess it makes sense to have a protected member; this is a neat trick though that i want to remember, i can have a publicly exposed method that's not available to derived types; i wonder when that might be useful?
 
 
 

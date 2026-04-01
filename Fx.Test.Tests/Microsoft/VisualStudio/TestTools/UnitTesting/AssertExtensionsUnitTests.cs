@@ -121,6 +121,22 @@
             void Test();
         }
 
+        public class BaseTest : ITest
+        {
+            void ITest.Test()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public class DerivedTest : BaseTest, ITest
+        {
+            public void Test()
+            {
+                ////((BaseTest)this).Test();
+            }
+        }
+
         public record Point(int X, int Y);
         public record Segment(Point Start, Point End);
 
