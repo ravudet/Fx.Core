@@ -57,6 +57,7 @@ dotnet_diagnostic.CA1033.severity = warning # TODO so i guess the point is that 
 dotnet_diagnostic.CA1034.severity = warning # TODO i agree with this, but i'm going to break it a lot with discriminated unions; i wonder if there's a way to extend the rule to ignore nestsed types that derive the containing type and the containing type is abstract and has a private constructor?
 # NOTE: there is no CA1035
 dotnet_diagnostic.CA1036.severity = warning
+dotnet_code_quality.CA1036.api_surface = all
 # NOTE: there is no CA1037
 # NOTE: there is no CA1038
 # NOTE: there is no CA1039
