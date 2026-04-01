@@ -48,6 +48,9 @@ dotnet_diagnostic.CA1027.severity = warning
 dotnet_code_quality.CA1027.api_surface = all
 dotnet_diagnostic.CA1028.severity = none # TODO this rule seems dumb to me; struct size is dependent on fields which can be enums, so having smaller enums makes a difference even if the enum itself has no specific performance benefits; and it's definitely possible to have an enum with 33 values, so going larger also makes sense; i suppose the case could be made that if someone wants to use a different base, they should justify it instead of doing it "just because"
 dotnet_code_quality.CA1028.api_surface = all
+# NOTE: there is no CA1029
+dotnet_diagnostic.CA1030.severity = warning # TODO the rule makes sense to me, but i have no experience
+dotnet_code_quality.CA1030.api_surface = all
 
 
 
