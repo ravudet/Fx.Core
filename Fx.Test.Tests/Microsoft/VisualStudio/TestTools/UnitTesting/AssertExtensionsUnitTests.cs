@@ -76,6 +76,11 @@
 
 
 
+
+        private interface IMany : IEquatable<IMany>, IEnumerable<string>, IComparable
+        {
+        }
+
         public class NonGenericCollection : IEnumerable<string>, IEnumerable
         {
             public IEnumerator<string> GetEnumerator()

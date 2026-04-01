@@ -61,7 +61,8 @@ dotnet_code_quality.CA1036.api_surface = all
 # NOTE: there is no CA1037
 # NOTE: there is no CA1038
 # NOTE: there is no CA1039
-
+dotnet_diagnostic.CA1040.severity = none # TODO i don't agree with the rule description; attributes are *not* the best way to mark something; consider, for example, generic type constraints
+dotnet_code_quality.CA1040.api_surface = all
 
 
 
