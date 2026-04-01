@@ -89,7 +89,7 @@
         }
 
 
-        public enum Foo
+        public enum Foo4
         {
             First = 0,
         }
