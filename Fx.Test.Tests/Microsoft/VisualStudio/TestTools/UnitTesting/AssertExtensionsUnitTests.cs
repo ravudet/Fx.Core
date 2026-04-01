@@ -140,7 +140,13 @@
 
         public static void Frob(string? thing, object bar)
         {
-            Frub((int x) => { });
+            try
+            {
+                Frub((int x) => { });
+            }
+            catch (Exception)
+            {
+            }
 
             Bar fizz = new("asdf");
 
