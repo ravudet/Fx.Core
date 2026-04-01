@@ -9,7 +9,7 @@ root = true
 ### design
 
 [*.{cs,vb}]
-dotnet_diagnostic.CA1000.severity = warning # i agree with the purpose of the rule; i'm concerned about false positives; and if the method call is *supposed* to be flagged, that's just unavoidable design-wise, so i would set this rule to `none` if that's the case; and regarding the case it *does* catch, i think those situations should be caught in unit testing because the code will be painful to write
+dotnet_diagnostic.CA1000.severity = warning # TODO i agree with the purpose of the rule; i'm concerned about false positives; and if the method call is *supposed* to be flagged, that's just unavoidable design-wise, so i would set this rule to `none` if that's the case; and regarding the case it *does* catch, i think those situations should be caught in unit testing because the code will be painful to write
 dotnet_diagnostic.CA1000.severity = warning # you better have a good reason to not dispose things
 dotnet_diagnostic.CA1002.severity = warning
 dotnet_code_quality.CA1002.api_surface = all
