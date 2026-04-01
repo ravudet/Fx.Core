@@ -88,6 +88,10 @@
             }
         }
 
+        public enum LongEnum : int
+        {
+        }
+
 
         public enum Foo4
         {
