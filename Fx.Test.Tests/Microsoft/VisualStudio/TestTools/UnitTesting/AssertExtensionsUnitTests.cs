@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Xml.Linq;
@@ -438,10 +439,11 @@
             foreach (var element in queryResult)
             {
             }
-            withError (Exception exception)
+            withError (Exception exception) //// TODO this block *could* be optional, but i'm not sure that's a good idea; it would only make sense to do in an "iterator"; so, maybe it's optional if `yield return` is used?
             {
                 // error found
-                throw exception;
+                process; // but pass it through
+                process new InvalidOperationException("TODO", exception); // or translate it
             }
 
             // no error found, or we already processed the error; now do something else
@@ -450,8 +452,67 @@
             //// TODO what about if they want to just passthrough the error?
         }
 
+        public static IQueryResult<TResultElement, TError> Select<TSourceElement, TError, TResultElement>(
+            IQueryResult<TSourceElement, TError> source,
+            Func<TSourceElement, TResultElement> selector)
+        {
+            /*foreach (var element in source)
+            {
+                yield return selector(element);
+            }
+            withError (TError error)
+            {
+                process;
+            }*/
 
+            return new SelectIterator<TSourceElement, TError, TResultElement>(source, selector);
+        }
 
+        private sealed class SelectIterator<TSourceElement, TError, TResultElement> : IQueryResult<TResultElement, TError>
+        {
+            private readonly IQueryResult<TSourceElement, TError> source;
+            private readonly Func<TSourceElement, TResultElement> selector;
+
+            public SelectIterator(
+                IQueryResult<TSourceElement, TError> source,
+                Func<TSourceElement, TResultElement> selector)
+            {
+                this.source = source;
+                this.selector = selector;
+            }
+
+            public IQueryResultEnumerator<TResultElement, TError> GetEnumerator()
+            {
+                return new Enumerator(this.source.GetEnumerator(), this.selector);
+            }
+
+            private sealed class Enumerator : IQueryResultEnumerator<TResultElement, TError>
+            {
+                private readonly IQueryResultEnumerator<TSourceElement, TError> source;
+                private readonly Func<TSourceElement, TResultElement> selector;
+
+                public Enumerator(
+                    IQueryResultEnumerator<TSourceElement, TError> source,
+                    Func<TSourceElement, TResultElement> selector)
+                {
+                    this.source = source;
+                    this.selector = selector;
+                }
+
+                public TResultElement Current
+                {
+                    get
+                    {
+                        return this.selector(this.source.Current);
+                    }
+                }
+
+                public bool MoveNext([MaybeNullWhen(false)] out TError error)
+                {
+                    return this.source.MoveNext(out error);
+                }
+            }
+        }
 
 
 
