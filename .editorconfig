@@ -23,8 +23,9 @@ dotnet_code_quality.CA1005.api_surface = all
 # NOTE: there is no CA1007
 dotnet_diagnostic.CA1008.severity = warning # TODO i agree with this for flags enums (and would be fine with a reasonably justified exception or two); for non-flags, the description *as written* i don't really agree with because i think there are plenty of cases where the `0` member doesn't exist or shouldn't be called "none"; however, the rule doesn't trigger if a `0` member is defined that is called something else; so, if the rule triggers because there is no "0" member, that's actually an implementation detail and design leak; the members should all be shifted to reach 0; 
 dotnet_code_quality.CA1008.api_surface = all
-
-
+# NOTE: there is no CA1009
+dotnet_diagnostic.CA1010.severity = warning # TODO i'm good with this one because it doesn't trigger if you implement the non-generic *and* the generic
+dotnet_code_quality.CA1010.api_surface = all
 
 
 
