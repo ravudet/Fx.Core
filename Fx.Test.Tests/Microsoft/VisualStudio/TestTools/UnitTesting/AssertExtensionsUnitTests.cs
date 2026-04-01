@@ -13,6 +13,23 @@
     [TestClass]
     public sealed class AssertExtensionsUnitTests
     {
+        //// TODO dotnet_diagnostic.CA1000.severity = warning doesn't flag the method call like the doc says
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //// TODO you are re-ordering the config file to follow the ui; make sure there are no duplicates
         //// TODO what is making the "whitespace" rules warnings? in the other tabs, you can set the severity
         //// TODO go back through and determine which ones are "disabled" when `false` (rather than warning for the opposite); for these, decide on what "severity" you want to set (can you remove the severity altogether?)
@@ -57,6 +74,21 @@
 
 
 
+        public class Container<T>
+        {
+            public static void DoWork()
+            {
+            }
+        }
+
+        public class AnotherContainer
+        {
+            public void DoWork<T>()
+            {
+            }
+        }
+
+
         public interface ITest
         {
             void Test();
@@ -76,6 +108,7 @@
 
         public static void Frub(Action<int> action)
         {
+            new AnotherContainer().DoWork<int>();
         }
 
         public static void Frob(string? thing, object bar)
