@@ -30,11 +30,13 @@ dotnet_code_quality.CA1010.api_surface = all
 dotnet_diagnostic.CA1012.severity = warning
 dotnet_code_quality.CA1012.api_surface = all
 # NOTE: there is no CA1013
-dotnet_diagnostic.CA1014.severity = warning # TODO you're not clscompliant right now probably, but it wouldn't hurt to do so; but not right now
+dotnet_diagnostic.CA1014.severity = none # TODO you're not clscompliant right now probably, but it wouldn't hurt to do so; but not right now
 dotnet_code_quality.CA1014.api_surface = all
 # NOTE: there is no CA1015
-dotnet_diagnostic.CA1016.severity = warning # TODO i don't know if you do this with nuget packages; figure that out
+dotnet_diagnostic.CA1016.severity = none # TODO i don't know if you do this with nuget packages; figure that out
 dotnet_code_quality.CA1016.api_surface = all
+dotnet_diagnostic.CA1017.severity = none # TODO i don't know anything about this
+dotnet_code_quality.CA1017.api_surface = all
 
 
 
