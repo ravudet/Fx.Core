@@ -434,13 +434,20 @@
 
         public void UseQueryResult(IQueryResult<string, Exception> queryResult)
         {
-            /*foreach (var element in queryResult)
+            /*
+            foreach (var element in queryResult)
             {
             }
-            with (Exception exception)
+            withError (Exception exception)
             {
+                // error found
                 throw exception;
-            }*/
+            }
+
+            // no error found, or we already processed the error; now do something else
+            */
+
+            //// TODO what about if they want to just passthrough the error?
         }
 
 
