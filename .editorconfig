@@ -35,7 +35,7 @@ dotnet_diagnostic.CA1014.severity = none # TODO you're not clscompliant right no
 dotnet_diagnostic.CA1016.severity = none # TODO i don't know if you do this with nuget packages; figure that out
 dotnet_diagnostic.CA1017.severity = none # TODO i don't know anything about this
 dotnet_diagnostic.CA1018.severity = warning
-
+dotnet_diagnostic.CA1019.severity = none # TODO seems like overkill; the parameters maybe be combined in a way that is still useful; if the parameter is needed, the attribute itself won't be useful, and who is defining a custom attribute type without also provided code that leverages it?
 
 
 
