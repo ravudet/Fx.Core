@@ -125,7 +125,6 @@
         {
             void ITest.Test()
             {
-                throw new NotImplementedException();
             }
         }
 
@@ -133,8 +132,22 @@
         {
             public void Test()
             {
-                ////((BaseTest)this).Test();
+                /*var baseTest = AsTest(base);
+                var iTest = (ITest)baseTest;
+
+                ((ITest)(BaseTest)this).Test();*/
             }
+
+            private static ITest AsTest(ITest test)
+            {
+                return test;
+            }
+        }
+
+        [TestMethod]
+        public void DerivedRecursion()
+        {
+            new DerivedTest().Test();
         }
 
         public record Point(int X, int Y);
@@ -404,6 +417,45 @@
                 return false;
             }
         }
+
+        //// TODO query result *could* look like this
+
+        public interface IQueryResult<TElement, TError>
+        {
+            IQueryResultEnumerator<TElement, TError> GetEnumerator();
+        }
+
+        public interface IQueryResultEnumerator<TElement, TError>
+        {
+            TElement Current { get; }
+
+            bool MoveNext([MaybeNullWhen(false)] out TError error);
+        }
+
+        public void UseQueryResult(IQueryResult<string, Exception> queryResult)
+        {
+            /*foreach (var element in queryResult)
+            {
+            }
+            with (Exception exception)
+            {
+                throw exception;
+            }*/
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
