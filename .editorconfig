@@ -167,6 +167,7 @@ dotnet_diagnostic.CA1511.severity = warning
 dotnet_diagnostic.CA1512.severity = warning
 dotnet_diagnostic.CA1513.severity = warning
 dotnet_diagnostic.CA1514.severity = warning
+dotnet_diagnostic.CA1515.severity = none # TODO this one is difficult, because i think `internal` should *always* be considered so that there is less surface that potentially leads to breaking change in the future; but enabling this rule for dlls basically means that the entire public api surface has to be justified, which i don't think makes sense; further, i don't really agree with the assessment that exes shouldn't have public stuff; i think it's actually quite convenient for some utilities to have a single exe binary that has all of the apis but also contains a console application to run those utilities
 
 
 
