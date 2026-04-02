@@ -122,6 +122,8 @@ dotnet_code_quality.CA1070.api_surface = all
 
 dotnet_diagnostic.CA1200.severity = warning
 
+### globalization
+
 
 
 
