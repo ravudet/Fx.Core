@@ -86,7 +86,8 @@ dotnet_code_quality.ca1051.exclude_structs = true # excluding structs because th
 dotnet_diagnostic.CA1052.severity = warning
 dotnet_code_quality.CA1052.api_surface = all
 dotnet_diagnostic.CA1053.severity = none # TODO i don't get what this is talking about with the "default constructor" on a `static` type; also, ca1052 says the it subsumes this functionality now; i can't seem to get this part of the rule to trigger
-
+dotnet_diagnostic.CA1054.severity = warning
+dotnet_code_quality.CA1054.api_surface = all
 
 
 
