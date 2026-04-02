@@ -98,7 +98,7 @@ dotnet_code_quality.CA1058.api_surface = all
 # NOTE: there is no CA1059
 dotnet_diagnostic.CA1060.severity = warning
 dotnet_diagnostic.CA1061.severity = warning # this one almost feels like a form of aliasing; try to come up with a good example
-dotnet_diagnostic.CA1062.severity = warning
+dotnet_diagnostic.CA1062.severity = warning # TODO i don't think you need `dotnet_code_quality.CA1062.null_check_validation_methods` since there's the `[notnull]` attribute now, but just in case, i'm leaving it here
 dotnet_code_quality.CA1062.api_surface = all
 dotnet_code_quality.CA1062.exclude_extension_method_this_parameter = false # why would the `this` parameter be special? and if it *is* special, then there will be a reasonable justification, right?
 
