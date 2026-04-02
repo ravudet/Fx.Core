@@ -162,7 +162,10 @@ dotnet_diagnostic.CA1506.severity = warning # TODO you'll have to see if you hav
 dotnet_diagnostic.CA1507.severity = warning
 dotnet_diagnostic.CA1508.severity = warning # TODO great rule, but you should play around with if it's making builds slower; and if it is making builds slower, can this be the sort of thing that only runs on the "official" build?
 dotnet_diagnostic.CA1509.severity = none # TODO i really like this rule in principle, but i hate how the codemetricsconfig.txt needs to be added to the individual projects, so i'm not using that file; if i need to configure anything there, i should enable this rule though; maybe i should go ahead and enable it so that i don't forget to do it if i add the file? since it won't trigger when there's no file anyway...
-
+dotnet_diagnostic.CA1510.severity = warning
+dotnet_diagnostic.CA1511.severity = warning
+dotnet_diagnostic.CA1512.severity = warning
+dotnet_diagnostic.CA1513.severity = warning
 
 
 
