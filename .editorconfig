@@ -124,6 +124,8 @@ dotnet_diagnostic.CA1200.severity = warning
 
 ### globalization
 
+# TODO i haven't tried doing globalization in so long, i don't know what violating code even looks like anymore; go through these at some point (the ones available at time of writing are ca1303, ca1304, ca1305, ca1307, ca1308, ca1309, ca1310, ca1311, ca2101)
+
 
 
 
