@@ -105,9 +105,20 @@
         }
 
 
-        public class Container<T>
+        public struct ByRef
         {
-            public static void DoWork()
+        }
+
+        public ref struct Container<T>
+        {
+            private readonly ref ByRef foo;
+
+            public Container(ref ByRef foo)
+            {
+                this.foo = ref foo;
+            }
+
+            public static void DoWork(ref ByRef foo)
             {
             }
 

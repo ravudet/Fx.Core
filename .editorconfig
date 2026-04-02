@@ -37,7 +37,7 @@ dotnet_diagnostic.CA1017.severity = none # TODO i don't know anything about this
 dotnet_diagnostic.CA1018.severity = warning
 dotnet_diagnostic.CA1019.severity = none # TODO seems like overkill; the parameters maybe be combined in a way that is still useful; if the parameter is needed, the attribute itself won't be useful, and who is defining a custom attribute type without also provided code that leverages it?
 # NOTE: there is no CA1020
-dotnet_diagnostic.CA1021.severity = warning # TODO a key to this one is that the "try" naming convention avoids triggering the rule; i'm not 100% sure i like this rule though
+dotnet_diagnostic.CA1021.severity = warning # TODO a key to this one is that the "try" naming convention avoids triggering the rule; i'm not 100% sure i like this rule though TODO i actually really don't like it because this one doesn't actually trigger for `ref` parameters, it looks like; that's rule ca1045
 # NOTE: there is no CA1022
 # NOTE: there is no CA1023
 dotnet_diagnostic.CA1024.severity = warning
@@ -70,7 +70,8 @@ dotnet_diagnostic.CA1043.severity = none # TODO i'm not clear at all why this re
 dotnet_code_quality.CA1043.api_surface = all
 dotnet_diagnostic.CA1044.severity = warning # TODO i can't imagine who is trying to have write-only properties, except for people who actually know what they are doing and are just going to need to suppress this rule; but i guess those folks with have a reasonable justification, so might as well have the rule
 dotnet_code_quality.CA1044.api_surface = all
-
+dotnet_diagnostic.CA1045.severity = warning # absolutely, ref parameters are bad; however, i think this should account for ref fields of ref structs, and also parameters that are ref structs
+dotnet_code_quality.CA1045.api_surface = all
 
 
 
