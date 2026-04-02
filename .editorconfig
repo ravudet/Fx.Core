@@ -153,6 +153,32 @@ dotnet_diagnostic.CA1419.severity = warning
 
 ### maintainability
 
+dotnet_diagnostic.CA1501.severity = warning # TODO i'm not a huge fan that the system namespace is excluded
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
