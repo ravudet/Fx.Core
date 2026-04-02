@@ -129,6 +129,22 @@ dotnet_diagnostic.CA1200.severity = warning
 ### portability and interoperability
 
 dotnet_diagnostic.CA1401.severity = warning
+# NOTE: there is no CA1402
+# NOTE: there is no CA1403
+# NOTE: there is no CA1404
+# NOTE: there is no CA1405
+# NOTE: there is no CA1406
+# NOTE: there is no CA1407
+# NOTE: there is no CA1408
+# NOTE: there is no CA1409
+# NOTE: there is no CA1410
+# NOTE: there is no CA1411
+# NOTE: there is no CA1412
+# NOTE: there is no CA1413
+# NOTE: there is no CA1414
+# NOTE: there is no CA1415
+# TODO i don't know anything about platform compatibility; look into ca1416
+dotnet_diagnostic.CA1417.severity = warning
 
 
 
