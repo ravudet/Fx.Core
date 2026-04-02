@@ -159,8 +159,8 @@ dotnet_diagnostic.CA1502.severity = warning # TODO you'll have to see if you hav
 # NOTE: there is no CA1504
 dotnet_diagnostic.CA1505.severity = warning # TODO you'll have to see if you have a lot of violations of this rule before writing an article
 dotnet_diagnostic.CA1506.severity = warning # TODO you'll have to see if you have a lot of violations of this rule before writing an article
-
-
+dotnet_diagnostic.CA1507.severity = warning
+dotnet_diagnostic.CA1508.severity = warning # TODO great rule, but you should play around with if it's making builds slower
 
 
 
