@@ -105,7 +105,8 @@ dotnet_diagnostic.CA1063.severity = warning
 dotnet_code_quality.CA1063.api_surface = all
 dotnet_diagnostic.CA1064.severity = warning # i think this rule is a good idea, but i'm sure i break it all the time
 dotnet_code_quality.CA1064.api_surface = all
-
+dotnet_diagnostic.CA1065.severity = warning
+dotnet_code_quality.CA1065.api_surface = all
 
 
 
