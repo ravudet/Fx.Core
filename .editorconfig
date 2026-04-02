@@ -66,7 +66,8 @@ dotnet_code_quality.CA1040.api_surface = all
 dotnet_diagnostic.CA1041.severity = warning
 dotnet_code_quality.CA1041.api_surface = all
 # NOTE: there is no CA1042
-
+dotnet_diagnostic.CA1043.severity = none # TODO i'm not clear at all why this restriction is recommended
+dotnet_code_quality.CA1043.api_surface = all
 
 
 
