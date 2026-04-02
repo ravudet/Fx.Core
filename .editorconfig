@@ -93,9 +93,13 @@ dotnet_code_quality.CA1055.api_surface = all
 dotnet_diagnostic.CA1056.severity = warning
 dotnet_code_quality.CA1056.api_surface = all
 # NOTE: there is no CA1057
-dotnet_diagnostic.CA1056.severity = warning # i'm only familiar with the collection parts of this, but the rule seems reasonable enough
-dotnet_code_quality.CA1056.api_surface = all
-
+dotnet_diagnostic.CA1058.severity = warning # i'm only familiar with the collection parts of this, but the rule seems reasonable enough
+dotnet_code_quality.CA1058.api_surface = all
+# NOTE: there is no CA1059
+dotnet_diagnostic.CA1060.severity = warning
+dotnet_code_quality.CA1060.api_surface = all
+dotnet_diagnostic.CA1061.severity = warning # this one almost feels like a form of aliasing; try to come up with a good example
+dotnet_code_quality.CA1061.api_surface = all
 
 
 
