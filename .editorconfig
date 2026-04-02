@@ -88,6 +88,8 @@ dotnet_code_quality.CA1052.api_surface = all
 dotnet_diagnostic.CA1053.severity = none # TODO i don't get what this is talking about with the "default constructor" on a `static` type; also, ca1052 says the it subsumes this functionality now; i can't seem to get this part of the rule to trigger
 dotnet_diagnostic.CA1054.severity = warning
 dotnet_code_quality.CA1054.api_surface = all
+dotnet_diagnostic.CA1055.severity = warning # TODO this one might not actually be useful, it's certainly less direct than ca1054
+dotnet_code_quality.CA1055.api_surface = all
 
 
 
