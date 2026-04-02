@@ -145,8 +145,9 @@ dotnet_diagnostic.CA1401.severity = warning
 # NOTE: there is no CA1415
 # TODO i don't know anything about platform compatibility; look into ca1416
 dotnet_diagnostic.CA1417.severity = warning
-
-
+# TODO i don't know anything about platform compatibility; look into ca1418
+dotnet_diagnostic.CA1419.severity = warning
+# TODO i don't know what runtime marshalling is; look more into ca1420
 
 
 
