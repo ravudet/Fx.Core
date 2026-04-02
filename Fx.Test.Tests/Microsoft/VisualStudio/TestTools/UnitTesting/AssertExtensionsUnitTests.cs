@@ -145,6 +145,8 @@
             public void DoWork<T>()
             {
             }
+
+            public virtual event EventHandler Foo;
         }
 
 
