@@ -90,6 +90,8 @@ dotnet_diagnostic.CA1054.severity = warning
 dotnet_code_quality.CA1054.api_surface = all
 dotnet_diagnostic.CA1055.severity = warning # TODO this one might not actually be useful, it's certainly less direct than ca1054
 dotnet_code_quality.CA1055.api_surface = all
+dotnet_diagnostic.CA1056.severity = warning
+dotnet_code_quality.CA1056.api_surface = all
 
 
 
