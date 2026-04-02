@@ -101,6 +101,8 @@ dotnet_diagnostic.CA1061.severity = warning # this one almost feels like a form 
 dotnet_diagnostic.CA1062.severity = warning # TODO i don't think you need `dotnet_code_quality.CA1062.null_check_validation_methods` since there's the `[notnull]` attribute now, but just in case, i'm leaving it here # TODO i don't know enough about the dataflow analysis stuff to rasonably configure anything; look into that sometime
 dotnet_code_quality.CA1062.api_surface = all
 dotnet_code_quality.CA1062.exclude_extension_method_this_parameter = false # why would the `this` parameter be special? and if it *is* special, then there will be a reasonable justification, right?
+dotnet_diagnostic.CA1063.severity = warning
+dotnet_code_quality.CA1063.api_surface = all
 
 
 
