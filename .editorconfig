@@ -78,7 +78,8 @@ dotnet_diagnostic.CA1047.severity = warning
 dotnet_code_quality.CA1047.api_surface = all
 # NOTE: there is no CA1048
 # NOTE: there is no CA1049
-
+dotnet_diagnostic.CA1050.severity = warning
+dotnet_code_quality.CA1050.api_surface = all
 
 
 
