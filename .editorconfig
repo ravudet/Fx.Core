@@ -72,6 +72,8 @@ dotnet_diagnostic.CA1044.severity = warning # TODO i can't imagine who is trying
 dotnet_code_quality.CA1044.api_surface = all
 dotnet_diagnostic.CA1045.severity = warning # absolutely, ref parameters are bad; however, i think this should account for ref fields of ref structs, and also parameters that are ref structs
 dotnet_code_quality.CA1045.api_surface = all
+dotnet_diagnostic.CA1046.severity = warning # despite the rule about using `is null` for null checks, we don't control others' code and shouldn't assume that they follow best practice, so we don't want to accidentally overload `==` in a way that breaks null checks
+dotnet_code_quality.CA1046.api_surface = all
 
 
 
