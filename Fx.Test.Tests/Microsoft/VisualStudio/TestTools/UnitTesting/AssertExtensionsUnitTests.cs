@@ -77,6 +77,21 @@
 
 
 
+
+        public class Holder
+        {
+            static Holder()
+            {
+                Holder.Property = 1;
+            }
+
+            public static int Property { get; private set; }
+
+            public static void DoWork()
+            {
+            }
+        }
+
         private interface IMany : IEquatable<IMany>, IEnumerable<string>, IComparable
         {
         }
