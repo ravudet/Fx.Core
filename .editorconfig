@@ -174,7 +174,12 @@ dotnet_diagnostic.CA1516.severity = none # TODO the docs seems just on the cusp 
 
 dotnet_diagnostic.CA1700.severity = warning
 dotnet_code_quality.CA1700.api_surface = all
-
+# NOTE: there is no CA1701
+# NOTE: there is no CA1702
+# NOTE: there is no CA1703
+# NOTE: there is no CA1704
+# NOTE: there is no CA1705
+# NOTE: there is no CA1706
 
 
 
