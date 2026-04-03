@@ -172,6 +172,8 @@ dotnet_diagnostic.CA1516.severity = none # TODO the docs seems just on the cusp 
 
 ### naming
 
+dotnet_diagnostic.CA1700.severity = warning
+dotnet_code_quality.CA1700.api_surface = all
 
 
 
