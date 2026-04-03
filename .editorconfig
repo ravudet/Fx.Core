@@ -182,6 +182,8 @@ dotnet_code_quality.CA1700.api_surface = all
 # NOTE: there is no CA1706
 dotnet_diagnostic.CA1707.severity = warning
 dotnet_code_quality.CA1707.api_surface = all
+dotnet_diagnostic.CA1708.severity = warning
+dotnet_code_quality.CA1708.api_surface = all
 
 
 
