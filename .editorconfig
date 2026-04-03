@@ -180,6 +180,8 @@ dotnet_code_quality.CA1700.api_surface = all
 # NOTE: there is no CA1704
 # NOTE: there is no CA1705
 # NOTE: there is no CA1706
+dotnet_diagnostic.CA1707.severity = warning
+dotnet_code_quality.CA1707.api_surface = all
 
 
 
