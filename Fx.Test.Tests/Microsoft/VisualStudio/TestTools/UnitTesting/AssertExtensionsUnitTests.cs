@@ -472,6 +472,8 @@
         {
             public bool TryGetValue([MaybeNullWhen(false)] out T value)
             {
+                value = default;
+                return false;
             }
         }
 
