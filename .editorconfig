@@ -198,6 +198,8 @@ dotnet_diagnostic.CA1714.severity = warning
 dotnet_code_quality.CA1714.api_surface = all
 dotnet_diagnostic.CA1715.severity = warning
 dotnet_code_quality.CA1715.api_surface = all
+dotnet_diagnostic.CA1715.severity = none # names should be good regardless of what .NET chose to make keywords (in both directions: it needs to be good even if it's not similar to a keyword, and it needs to be good if it *is* (e.g. `object` type in `json` namespace))
+dotnet_code_quality.CA1715.api_surface = all
 
 
 
