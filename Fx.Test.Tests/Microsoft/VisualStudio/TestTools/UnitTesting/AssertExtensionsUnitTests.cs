@@ -465,7 +465,14 @@
         {
             TElement Current { get; }
 
-            bool MoveNext([MaybeNullWhen(false)] out TError error);
+            bool MoveNext([NotNullWhen(false)] out NewNullable<TError>? error);
+        }
+
+        public struct NewNullable<T>
+        {
+            public bool TryGetValue([MaybeNullWhen(false)] out T value)
+            {
+            }
         }
 
         public void UseQueryResult(IQueryResult<string, Exception> queryResult)
@@ -474,11 +481,10 @@
             foreach (var element in queryResult)
             {
             }
-            withError (Exception exception) //// TODO this block *could* be optional, but i'm not sure that's a good idea; it would only make sense to do in an "iterator"; so, maybe it's optional if `yield return` is used?
+            followedBy (Exception exception) //// TODO this block *could* be optional, but i'm not sure that's a good idea; it would only make sense to do in an "iterator"; so, maybe it's optional if `yield return` is used?
             {
                 // error found
-                process; // but pass it through
-                process new InvalidOperationException("TODO", exception); // or translate it
+                throw new InvalidOperationException("TODO", exception); 
             }
 
             // no error found, or we already processed the error; now do something else
@@ -495,9 +501,10 @@
             {
                 yield return selector(element);
             }
-            withError (TError error)
+            followedBy (TError error)
             {
-                process;
+                process; // pass the error through
+                process new InvalidOperationException($"{error}"); // or translate it (wouldn't be used for `select`, but maybe `selecterror`)
             }*/
 
             return new SelectIterator<TSourceElement, TError, TResultElement>(source, selector);
