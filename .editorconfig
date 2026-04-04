@@ -191,6 +191,8 @@ dotnet_code_quality.CA1710.additional_required_suffixes = T:System.Collections.I
 dotnet_diagnostic.CA1710.severity = warning
 dotnet_code_quality.CA1710.api_surface = all
 dotnet_code_quality.CA1710.additional_required_suffixes = Collection|Dictionary|Queue|Stack # same rationale as above; i also particularly like the suffixes that aren't based on derivation
+dotnet_diagnostic.CA1712.severity = warning
+dotnet_code_quality.CA1712.enum_values_prefix_trigger = AnyEnumValue
 
 
 
