@@ -180,6 +180,17 @@ class C {
 
 
 
+
+
+        //// TODO look into "contracts" (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.contract?view=net-10.0) and the `pure` attribute (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.pureattribute?view=net-10.0)
+
+
+
+
+
+
+
+
         public static class Required
         {
             public static readonly string Foo = "asdf";
