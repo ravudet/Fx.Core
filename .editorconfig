@@ -245,6 +245,8 @@ dotnet_diagnostic.CA1819.severity = warning
 dotnet_code_quality.CA1819.api_surface = all
 dotnet_diagnostic.CA1820.severity = warning
 dotnet_diagnostic.CA1821.severity = warning
+dotnet_diagnostic.CA1822.severity = warning
+dotnet_code_quality.CA1822.api_surface = all
 
 
 
