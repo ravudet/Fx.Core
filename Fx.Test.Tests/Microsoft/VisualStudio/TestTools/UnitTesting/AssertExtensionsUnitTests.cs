@@ -191,9 +191,23 @@ class C {
 
 
 
+
+
         public static class Required
         {
             public static readonly string Foo = "asdf";
+
+            public static void Bar()
+            {
+                _ = new Holder();
+
+                Frob();
+            }
+
+            public static Holder Frob()
+            {
+                return new Holder();
+            }
         }
 
 
