@@ -213,6 +213,8 @@ dotnet_code_quality.CA1721.api_surface = all
 dotnet_diagnostic.CA1724.severity = warning # TODO you can demonstrate how someone could use this for "aliasing" i think
 dotnet_diagnostic.CA1725.severity = warning
 dotnet_code_quality.CA1725.api_surface = all
+# NOTE: there is no CA1726
+dotnet_diagnostic.CA1727.severity = warning
 
 
 
