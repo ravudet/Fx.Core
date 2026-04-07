@@ -258,6 +258,7 @@ dotnet_diagnostic.CA1828.severity = warning
 dotnet_diagnostic.CA1829.severity = warning # TODO does 1826 already cover this? even if it does, keep both rules in case someone disables one in the future
 dotnet_diagnostic.CA1830.severity = warning
 dotnet_diagnostic.CA1831.severity = warning
+dotnet_diagnostic.CA1832.severity = warning
 
 
 
