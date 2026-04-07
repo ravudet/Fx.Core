@@ -249,6 +249,7 @@ dotnet_diagnostic.CA1822.severity = warning
 dotnet_code_quality.CA1822.api_surface = all
 dotnet_diagnostic.CA1823.severity = warning
 dotnet_code_quality.CA1823.api_surface = all
+# dotnet_diagnostic.CA1824.severity = none TODO i don't know enough about this rule
 
 
 
