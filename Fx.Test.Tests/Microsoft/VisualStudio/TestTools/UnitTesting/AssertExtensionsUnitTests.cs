@@ -180,6 +180,12 @@ class C {
 
 
 
+        public static class Required
+        {
+            public static readonly string Foo = "asdf";
+        }
+
+
 
         public class Holder
         {
