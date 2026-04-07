@@ -218,7 +218,8 @@ dotnet_diagnostic.CA1727.severity = warning
 
 ### performance
 
-
+# NOTE: there is no CA1800
+# NOTE: there is no CA1801
 
 
 
