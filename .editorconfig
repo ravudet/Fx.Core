@@ -241,6 +241,8 @@ dotnet_code_quality.CA1815.api_surface = all
 # NOTE: there is no CA1816
 # NOTE: there is no CA1817
 # NOTE: there is no CA1818
+dotnet_diagnostic.CA1819.severity = warning
+dotnet_code_quality.CA1819.api_surface = all
 
 
 
