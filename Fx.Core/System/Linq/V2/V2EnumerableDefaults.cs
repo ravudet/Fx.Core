@@ -9,8 +9,15 @@
     using System.Runtime.InteropServices;
     using System.Xml.Linq;
 
+    using Microsoft.CodeAnalysis.Text;
+
     public static partial class V2Enumerable
     {
+        public static void Foo()
+        {
+            var analyzerConfig = Microsoft.CodeAnalysis.AnalyzerConfig.Parse(SourceText.From("ASdf"), "path");
+        }
+
         internal static TSource AggregateDefault<TSource>(this IV2Enumerable<TSource> self, Func<TSource, TSource, TSource> func)
         {
             if (self is IAggregatedOverloadEnumerable<TSource> aggregatedOverload)

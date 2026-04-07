@@ -2,9 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace />
   </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeAnalysis">
+      <HintPath>..\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Scripting">
+      <HintPath>..\Microsoft.CodeAnalysis.CSharp.Scripting.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 
 </Project>

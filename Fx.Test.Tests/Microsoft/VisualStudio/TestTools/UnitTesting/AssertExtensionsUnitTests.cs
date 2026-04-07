@@ -3,14 +3,114 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.Immutable;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
     using System.Xml.Linq;
+
+    using Microsoft.CodeAnalysis;
+    using Microsoft.CodeAnalysis.CSharp.Scripting;
+    using Microsoft.CodeAnalysis.Diagnostics;
+    using Microsoft.CodeAnalysis.Scripting;
+    using Microsoft.CodeAnalysis.Text;
 
     public class Buzz(int c)
     {
         public int C { get; } = c;
+    }
+
+    [TestClass]
+    public sealed class EditorConfigTests
+    {
+        [TestMethod]
+        public async Task Test()
+        {
+            var editorConfigPath = @"C:\github\OddTrotter\Fx.Core\.editorconfig";
+            var editorConfigText = System.IO.File.ReadAllText(editorConfigPath);
+
+            var analyzerConfig = AnalyzerConfig.Parse(
+                SourceText.From(editorConfigText),
+                editorConfigPath
+            );
+
+            ////var optionsProvider = new OptionsProvider(analyzerConfig);
+
+            // 2. Create ScriptOptions
+            var scriptOptions = ScriptOptions.Default
+                .WithReferences(typeof(object).Assembly)
+                .WithImports("System");
+
+            // 3. Create a script
+            var script = CSharpScript.Create(@"
+class C {
+    void M() {
+        int x = 0;
+    }
+}
+", scriptOptions);
+
+            // 4. Force Roslyn to build the compilation
+            var compilation = script.GetCompilation();
+
+            // 5. Apply .editorconfig options to analyzers
+            var analyzers = new DiagnosticAnalyzer[]
+            {
+    ////new Microsoft.CodeAnalysis.CSharp.Diagnostics.CSharpCompilerDiagnosticAnalyzer()
+            };
+
+
+            var compilationWithAnalyzers = compilation.WithAnalyzers(
+                ImmutableArray<DiagnosticAnalyzer>.Empty,
+                new AnalyzerOptions(ImmutableArray<AdditionalText>.Empty.Add(new AdditionalFile(editorConfigPath)).ToImmutableArray())
+            );
+
+            // 6. Run analyzers
+            var diagnostics = await compilationWithAnalyzers.GetAnalyzerDiagnosticsAsync();
+
+            foreach (var d in diagnostics)
+            {
+                Console.WriteLine($"{d.Id}: {d.GetMessage()}");
+            }
+        }
+
+        private sealed class OptionsProvider : AnalyzerConfigOptionsProvider
+        {
+            public OptionsProvider(AnalyzerConfigOptions analyzerConfigOptions)
+            {
+                this.GlobalOptions = analyzerConfigOptions;
+            }
+
+            public override AnalyzerConfigOptions GlobalOptions { get; }
+
+            public override AnalyzerConfigOptions GetOptions(SyntaxTree tree)
+            {
+                return this.GlobalOptions;
+            }
+
+            public override AnalyzerConfigOptions GetOptions(AdditionalText textFile)
+            {
+                return this.GlobalOptions;
+            }
+        }
+
+        private sealed class AdditionalFile : AdditionalText
+        {
+            public AdditionalFile(string path)
+            {
+                this.Path = path;
+            }
+
+            public override string Path { get; }
+
+            public override SourceText? GetText(CancellationToken cancellationToken = default)
+            {
+                var text = System.IO.File.ReadAllText(this.Path);
+                return SourceText.From(text);
+            }
+        }
     }
 
     [TestClass]
@@ -552,7 +652,7 @@
                     }
                 }
 
-                public bool MoveNext([MaybeNullWhen(false)] out TError error)
+                public bool MoveNext([MaybeNullWhen(false)] out NewNullable<TError>? error)
                 {
                     return this.source.MoveNext(out error);
                 }
