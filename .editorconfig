@@ -236,6 +236,11 @@ dotnet_diagnostic.CA1812.severity = warning
 dotnet_code_quality.CA1812.ignore_internalsvisibleto = true # internals visible to should generally only be used for testing purposes, so if an internal type is only used to be tested, then the type and its tests should be removed; for cases where the type should remain, they should be easy to justify (since it's a deliberate design choice to share that type across assemblies, but not make the type public)
 dotnet_diagnostic.CA1813.severity = warning
 dotnet_diagnostic.CA1814.severity = none # i get the point of this rule, but it seems weird; when am i using an array of arrays where they *would* be jagged? and for cases where multidimensional makes sense design-wise, with jagged i need to check the length of the inner arrays, which can have an inconsistency with what is "known" as the size to the design; multi-dimensional remove this ambiguity by letting the compiler know what the lengths are
+dotnet_diagnostic.CA1815.severity = warning
+dotnet_code_quality.CA1815.api_surface = all
+# NOTE: there is no CA1816
+# NOTE: there is no CA1817
+# NOTE: there is no CA1818
 
 
 
