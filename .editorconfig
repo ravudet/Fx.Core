@@ -251,6 +251,8 @@ dotnet_diagnostic.CA1823.severity = warning
 dotnet_code_quality.CA1823.api_surface = all
 # dotnet_diagnostic.CA1824.severity = none TODO i don't know enough about this rule
 dotnet_diagnostic.CA1825.severity = warning
+dotnet_diagnostic.CA1826.severity = warning
+# dotnet_code_quality.CA1826.exclude_ordefault_methods = true # i think this configuration is actually pretty reasonable, but i'm not adding it mostly because the "ordefault" variants are largely over used
 
 
 
