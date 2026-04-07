@@ -227,6 +227,9 @@ dotnet_code_quality.CA1802.api_surface = all
 # NOTE: there is no CA1804
 dotnet_diagnostic.CA1805.severity = warning # the reason *i* like this rule is because doing this potentially hides cs0649
 dotnet_diagnostic.CA1806.severity = warning # TODO ide0058 covers a wider range of cases, i think it probably supersedes this
+# NOTE: there is no CA1807
+# NOTE: there is no CA1808
+# NOTE: there is no CA1809
 
 
 
