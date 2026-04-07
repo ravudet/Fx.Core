@@ -216,6 +216,8 @@ dotnet_code_quality.CA1725.api_surface = all
 # NOTE: there is no CA1726
 dotnet_diagnostic.CA1727.severity = warning
 
+### performance
+
 
 
 
