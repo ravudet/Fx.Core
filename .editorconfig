@@ -223,6 +223,8 @@ dotnet_diagnostic.CA1727.severity = warning
 dotnet_diagnostic.CA1802.severity = warning
 dotnet_code_quality.CA1802.api_surface = all
 # dotnet_code_quality.CA1802.required_modifiers = none # TODO i couldn't get this to trigger on anything besides `static readonly`; i'm not sure what it's supposed to do
+# NOTE: there is no CA1803
+# NOTE: there is no CA1804
 
 
 
