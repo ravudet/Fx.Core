@@ -254,6 +254,7 @@ dotnet_diagnostic.CA1825.severity = warning
 dotnet_diagnostic.CA1826.severity = warning
 # dotnet_code_quality.CA1826.exclude_ordefault_methods = true # i think this configuration is actually pretty reasonable, but i'm not adding it mostly because the "ordefault" variants are largely over used and i want it to be painful to use them
 dotnet_diagnostic.CA1827.severity = warning
+dotnet_diagnostic.CA1828.severity = warning
 
 
 
