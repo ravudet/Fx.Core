@@ -259,6 +259,8 @@ dotnet_diagnostic.CA1829.severity = warning # TODO does 1826 already cover this?
 dotnet_diagnostic.CA1830.severity = warning
 dotnet_diagnostic.CA1831.severity = warning
 dotnet_diagnostic.CA1832.severity = warning
+dotnet_diagnostic.CA1833.severity = warning
+dotnet_diagnostic.CA1834.severity = warning
 
 
 
