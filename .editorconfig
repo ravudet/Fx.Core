@@ -268,6 +268,8 @@ dotnet_diagnostic.CA1838.severity = warning
 dotnet_diagnostic.CA1839.severity = warning
 dotnet_diagnostic.CA1840.severity = warning
 dotnet_diagnostic.CA1841.severity = warning
+dotnet_diagnostic.CA1842.severity = warning # TODO prove this
+dotnet_diagnostic.CA1843.severity = warning # TODO prove this
 
 
 
