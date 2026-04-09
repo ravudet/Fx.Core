@@ -234,6 +234,11 @@ class C {
             {
                 var values = enumerable.Select(_ => _.Length).ToList();
 
+                return Enumerate2(enumerable);
+            }
+
+            private static IEnumerable<int> Enumerate2(IEnumerable<string> enumerable)
+            {
                 return enumerable.Select(_ => _.Length).ToList().Select(_ => _ * 2).ToList();
             }
         }
