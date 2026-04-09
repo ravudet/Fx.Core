@@ -285,6 +285,8 @@ dotnet_code_quality.CA1852.ignore_internalsvisibleto = true # same justification
 dotnet_diagnostic.CA1853.severity = warning
 dotnet_diagnostic.CA1854.severity = warning
 dotnet_diagnostic.CA1855.severity = warning # TODO prove this
+dotnet_diagnostic.CA1856.severity = warning # TODO i don't really know enough about this; however, the documentation seems to indicate that this is not really performance and more about "correctness"
+dotnet_diagnostic.CA1857.severity = warning # it's weird that the attribute exists but isn't directly used by the compiler; i guess without this configuration, the compiler can't know how much the developer cares about the performance of calling the method
 
 
 
