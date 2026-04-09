@@ -6,6 +6,7 @@
     using System.Collections.Immutable;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -207,6 +208,12 @@ class C {
             public static Holder Frob()
             {
                 return new Holder();
+            }
+
+            public static async Task Stream(Stream stream)
+            {
+                var buffer = new byte[] { 0x38 };
+                await stream.WriteAsync(buffer);
             }
         }
 
