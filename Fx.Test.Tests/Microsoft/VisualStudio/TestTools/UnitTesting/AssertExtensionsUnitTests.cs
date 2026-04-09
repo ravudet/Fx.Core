@@ -191,6 +191,25 @@ class C {
 
 
 
+        abstract class A
+        {
+            public virtual void M() { }
+        }
+
+        sealed class B : A
+        { }
+
+        internal class C
+        {
+            private readonly A _a = new B();
+
+            public void Trigger()
+            {
+                // This performs a virtual call because
+                // _a is defined as an abstract class.
+                _a.M();
+            }
+        }
 
 
 
@@ -242,6 +261,7 @@ class C {
                 return enumerable.Select(_ => _.Length).ToList().Select(_ => _ * 2).ToList();
             }
         }
+
 
 
 

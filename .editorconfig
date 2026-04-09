@@ -287,6 +287,8 @@ dotnet_diagnostic.CA1854.severity = warning
 dotnet_diagnostic.CA1855.severity = warning # TODO prove this
 dotnet_diagnostic.CA1856.severity = warning # TODO i don't really know enough about this; however, the documentation seems to indicate that this is not really performance and more about "correctness"
 dotnet_diagnostic.CA1857.severity = warning # it's weird that the attribute exists but isn't directly used by the compiler; i guess without this configuration, the compiler can't know how much the developer cares about the performance of calling the method
+dotnet_diagnostic.CA1858.severity = warning
+dotnet_diagnostic.CA1859.severity = warning # TODO i feel like i have a lot to learn from this rule, but the code provided in the documentaiton doesn't seem to actaully trigger the rule... # TODO it *does* trigger for something like `static IEnumerable<int> Foo() { return new List<int>{ 1 }; }`, saying that the return type should be `list`
 
 
 
