@@ -229,6 +229,11 @@ class C {
 
                 return Task.CompletedTask;
             }
+
+            public static IEnumerable<int> Enumerate(IEnumerable<string> enumerable)
+            {
+                return enumerable.Select(_ => _.Length).ToList().Select(_ => _ * 2).ToList();
+            }
         }
 
 

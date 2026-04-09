@@ -277,6 +277,7 @@ dotnet_diagnostic.CA1847.severity = warning
 dotnet_diagnostic.CA1848.severity = warning # i kind of really hate this; it seems like it should be generated code from the messages; *possibly* there could be different loglevels for the same message (though that seems unlikely)
 dotnet_diagnostic.CA1849.severity = warning # this *doesn't* appear to trigger for APIs outside of the framework (and likely misses something in the framework too from time to time); you could make it more general by actually looking for every method if there is an "async" equivalent; doing this would mean that there might be some naming in the `either` stuff that you should rethink
 dotnet_diagnostic.CA1850.severity = warning # there's no way this is actually a performance benefit, but i like it for maintainability
+dotnet_diagnostic.CA1851.severity = warning # good rule, but unfortunately missed `tolist` being called multiple times when no "work" is done in between the calls
 
 
 
