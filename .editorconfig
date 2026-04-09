@@ -261,7 +261,7 @@ dotnet_diagnostic.CA1831.severity = warning
 dotnet_diagnostic.CA1832.severity = warning
 dotnet_diagnostic.CA1833.severity = warning
 dotnet_diagnostic.CA1834.severity = warning
-dotnet_diagnostic.CA1835.severity = warning
+dotnet_diagnostic.CA1835.severity = warning # TODO discover exactly how this is more "efficient"
 
 
 
