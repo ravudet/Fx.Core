@@ -270,6 +270,11 @@ dotnet_diagnostic.CA1840.severity = warning
 dotnet_diagnostic.CA1841.severity = warning
 dotnet_diagnostic.CA1842.severity = warning # TODO prove this
 dotnet_diagnostic.CA1843.severity = warning # TODO prove this
+dotnet_diagnostic.CA1844.severity = warning
+dotnet_diagnostic.CA1845.severity = warning # TODO is there a more general version of this that notices that there is a span overload of something? maybe it really only makes sense with strings because of the allocations resulting from immutability
+dotnet_diagnostic.CA1846.severity = warning
+dotnet_diagnostic.CA1847.severity = warning
+dotnet_diagnostic.CA1848.severity = warning # i kind of really hate this; it seems like it should be generated code from the messages; *possibly* there could be different loglevels for the same message (though that seems unlikely)
 
 
 
