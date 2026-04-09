@@ -284,6 +284,7 @@ dotnet_diagnostic.CA1852.severity = warning
 dotnet_code_quality.CA1852.ignore_internalsvisibleto = true # same justification as ca1812
 dotnet_diagnostic.CA1853.severity = warning
 dotnet_diagnostic.CA1854.severity = warning
+dotnet_diagnostic.CA1855.severity = warning # TODO prove this
 
 
 
