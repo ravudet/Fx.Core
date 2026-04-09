@@ -201,13 +201,13 @@ class C {
 
         internal class C
         {
-            private readonly A _a = new B();
+            private readonly IEnumerable<int> _a = new List<int>();
 
             public void Trigger()
             {
                 // This performs a virtual call because
                 // _a is defined as an abstract class.
-                _a.M();
+                var dictionary = this._a.ToDictionary(_ => _);
             }
         }
 
