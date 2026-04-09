@@ -215,6 +215,20 @@ class C {
                 var buffer = new byte[] { 0x38 };
                 await stream.WriteAsync(buffer);
             }
+
+            public static async Task StreamAsync(Stream stream)
+            {
+                var buffer = new byte[] { 0x38 };
+                await stream.WriteAsync(buffer);
+            }
+
+            public static Task Stream2(Stream stream)
+            {
+                var buffer = new byte[1024];
+                var read = Stream(stream);
+
+                return Task.CompletedTask;
+            }
         }
 
 
