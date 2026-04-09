@@ -232,6 +232,8 @@ class C {
 
             public static IEnumerable<int> Enumerate(IEnumerable<string> enumerable)
             {
+                var values = enumerable.Select(_ => _.Length).ToList();
+
                 return enumerable.Select(_ => _.Length).ToList().Select(_ => _ * 2).ToList();
             }
         }
