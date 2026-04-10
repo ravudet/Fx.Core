@@ -203,11 +203,17 @@ class C {
         {
             private readonly IEnumerable<int> _a = new List<int>();
 
-            public void Trigger()
+            public void Trigger(string value)
             {
+                ArgumentNullException.ThrowIfNull(value);
+
                 // This performs a virtual call because
                 // _a is defined as an abstract class.
                 var dictionary = this._a.ToDictionary(_ => _);
+
+                if (value.CompareTo("asdf") == 0)
+                {
+                }
             }
         }
 
