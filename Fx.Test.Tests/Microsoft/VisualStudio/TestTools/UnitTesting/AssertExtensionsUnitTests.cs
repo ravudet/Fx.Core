@@ -203,6 +203,8 @@ class C {
         {
             private readonly IEnumerable<int> _a = new List<int>();
 
+            private static readonly string format = "test {0}";
+
             public void Trigger(string value)
             {
                 ArgumentNullException.ThrowIfNull(value);
@@ -214,6 +216,8 @@ class C {
                 if (value.CompareTo("asdf") == 0)
                 {
                 }
+
+                Console.WriteLine(string.Format(format, "asdf"));
             }
         }
 

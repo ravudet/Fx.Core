@@ -292,6 +292,7 @@ dotnet_diagnostic.CA1859.severity = warning # TODO i feel like i have a lot to l
 dotnet_diagnostic.CA1860.severity = warning
 dotnet_diagnostic.CA1861.severity = warning
 dotnet_diagnostic.CA1862.severity = warning # TODO this is good to do "always"; does this rule catch cases *without* `tolower` etc? # TODO it does *not* catch those cases; also note that this is *only* `compareto`, not `equals`
+dotnet_diagnostic.CA1863.severity = warning # TODO i think we should warn on this just to "be safe", but this rule doesn't catch normal `string.format("some {0}", "value")` type stuff, only when the format is a static member; so i think the analyzer could be extended; also, we should really be using string resource files for localization purposes, and those will hopefully automatically be generated using `compositeformat` (or the code generation should be updated if they don't)
 
 
 
