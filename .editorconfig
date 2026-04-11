@@ -283,7 +283,7 @@ dotnet_code_quality.CA1851.assume_method_enumerates_parameters = true # it's jus
 dotnet_diagnostic.CA1852.severity = warning
 dotnet_code_quality.CA1852.ignore_internalsvisibleto = true # same justification as ca1812
 dotnet_diagnostic.CA1853.severity = warning
-dotnet_diagnostic.CA1854.severity = warning
+dotnet_diagnostic.CA1854.severity = warning # talk about multithreading, even though it's not 100% relevant here
 dotnet_diagnostic.CA1855.severity = warning # TODO prove this
 dotnet_diagnostic.CA1856.severity = warning # TODO i don't really know enough about this; however, the documentation seems to indicate that this is not really performance and more about "correctness"
 dotnet_diagnostic.CA1857.severity = warning # it's weird that the attribute exists but isn't directly used by the compiler; i guess without this configuration, the compiler can't know how much the developer cares about the performance of calling the method
@@ -293,7 +293,7 @@ dotnet_diagnostic.CA1860.severity = warning
 dotnet_diagnostic.CA1861.severity = warning
 dotnet_diagnostic.CA1862.severity = warning # TODO this is good to do "always"; does this rule catch cases *without* `tolower` etc? # TODO it does *not* catch those cases; also note that this is *only* `compareto`, not `equals`
 dotnet_diagnostic.CA1863.severity = warning # TODO i think we should warn on this just to "be safe", but this rule doesn't catch normal `string.format("some {0}", "value")` type stuff, only when the format is a static member; so i think the analyzer could be extended; also, we should really be using string resource files for localization purposes, and those will hopefully automatically be generated using `compositeformat` (or the code generation should be updated if they don't)
-dotnet_diagnostic.CA1864.severity = warning
+dotnet_diagnostic.CA1864.severity = warning # talk about multithreading, even though it's not 100% relevant here
 
 
 
