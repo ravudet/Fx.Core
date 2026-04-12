@@ -332,6 +332,7 @@ dotnet_diagnostic.CA2013.severity = warning
 dotnet_diagnostic.CA2014.severity = warning # i struggle with rules like this where i have violated it, but really i was violating it in an exceptional case, and those cases should be "easy" to justify a suppression
 dotnet_diagnostic.CA2015.severity = warning # i don't really understand this at all
 dotnet_diagnostic.CA2016.severity = warning # i definitely don't do this and should
+dotnet_diagnostic.CA2017.severity = warning # TODO does this apply to the weird attribute based logging methods?
 
 
 
