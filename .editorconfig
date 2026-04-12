@@ -329,6 +329,7 @@ dotnet_diagnostic.CA2009.severity = warning # this seems more like a perf rule t
 dotnet_diagnostic.CA2011.severity = warning # should be caught during unit testing; plus, we are preferring autoprops in the style rules; not exactly sure when this will come up
 dotnet_diagnostic.CA2012.severity = warning
 dotnet_diagnostic.CA2013.severity = warning
+dotnet_diagnostic.CA2014.severity = warning # i struggle with rules like this where i have violated it, but really i was violating it in an exceptional case, and those cases should be "easy" to justify a suppression
 
 
 
