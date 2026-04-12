@@ -324,6 +324,8 @@ dotnet_diagnostic.CA2002.severity = warning
 dotnet_diagnostic.CA2007.severity = warning # remind about the note that this is for "framework" type packages
 dotnet_code_quality.CA2007.exclude_async_void_methods = false # this rule is good for everything
 dotnet_diagnostic.CA2008.severity = warning
+dotnet_diagnostic.CA2009.severity = warning # this seems more like a perf rule to me
+# NOTE: there is no CA2010
 
 
 
