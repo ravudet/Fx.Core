@@ -335,6 +335,10 @@ dotnet_diagnostic.CA2016.severity = warning # i definitely don't do this and sho
 dotnet_diagnostic.CA2017.severity = warning # TODO does this apply to the weird attribute based logging methods?
 dotnet_diagnostic.CA2018.severity = warning # is there a codefix for this?
 dotnet_diagnostic.CA2019.severity = warning
+dotnet_diagnostic.CA2020.severity = warning
+dotnet_diagnostic.CA2021.severity = warning
+dotnet_diagnostic.CA2022.severity = warning
+dotnet_diagnostic.CA2023.severity = warning
 
 
 
