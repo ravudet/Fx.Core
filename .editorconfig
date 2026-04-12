@@ -303,6 +303,7 @@ dotnet_diagnostic.CA1870.severity = warning
 dotnet_diagnostic.CA1871.severity = warning # i really hate that this needs to exist; i think generics might resolve this issue; i also think that you could do something similar to `assert.that`, like `argumentexception.throw().ifnull`; look into this
 dotnet_diagnostic.CA1872.severity = warning
 dotnet_diagnostic.CA1873.severity = warning # i really hate this, but i'm not used to it, so maybe it's actually brilliant
+dotnet_diagnostic.CA1874.severity = warning # i'm not sure i like this for maintainability reasons
 
 
 
