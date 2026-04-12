@@ -333,6 +333,7 @@ dotnet_diagnostic.CA2014.severity = warning # i struggle with rules like this wh
 dotnet_diagnostic.CA2015.severity = warning # i don't really understand this at all
 dotnet_diagnostic.CA2016.severity = warning # i definitely don't do this and should
 dotnet_diagnostic.CA2017.severity = warning # TODO does this apply to the weird attribute based logging methods?
+dotnet_diagnostic.CA2018.severity = warning # is there a codefix for this?
 
 
 
