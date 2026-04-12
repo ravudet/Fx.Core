@@ -114,6 +114,30 @@ class C {
         }
     }
 
+
+
+    public sealed class ArgumentValidation
+    {
+        private ArgumentValidation()
+        {
+        }
+
+        public static ArgumentValidation Throw { get; } = new ArgumentValidation();
+    }
+
+    public static class ArgumentValidationExtensions
+    {
+        public static void IfNull<T>(this ArgumentValidation argumentValidation, T value, string paramName)
+        {
+            if (value is null)
+            {
+                throw new ArgumentNullException(paramName);
+            }
+        }
+    }
+
+
+
     [TestClass]
     public sealed class AssertExtensionsUnitTests
     {
@@ -196,7 +220,7 @@ class C {
 
 
 
-
+        
 
 
 
