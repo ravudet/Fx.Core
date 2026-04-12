@@ -297,6 +297,7 @@ dotnet_diagnostic.CA1864.severity = warning # talk about multithreading, even th
 dotnet_diagnostic.CA1865.severity = warning # `value.StartsWith("a", StringComparison.InvariantCulture)`; i'm not 100% sure which stringcomparisons are caught here vs in 1867; this might have something to do with why there isn't a code fix for 1866 or 1867
 dotnet_diagnostic.CA1866.severity = warning # `value.StartsWith("a")`; why doesn't this have a code fix?
 dotnet_diagnostic.CA1867.severity = warning # `value.StartsWith("a", StringComparison.OrdinalIgnoreCase)`; why doesn't this have a code fix?
+dotnet_diagnostic.CA1868.severity = warning # talk about multithreading, even though it's not 100% relevant here
 
 
 
