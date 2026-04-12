@@ -141,6 +141,14 @@ class C {
     [TestClass]
     public sealed class AssertExtensionsUnitTests
     {
+
+        //// TODO does CA2008 change anything about your `either` stuff?
+
+
+
+
+
+
         //// TODO dotnet_diagnostic.CA1000.severity = warning doesn't flag the method call like the doc says
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1031 the first example says `systemexception` but should say `system.exception`
 
@@ -220,7 +228,7 @@ class C {
 
 
 
-        
+
 
 
 
