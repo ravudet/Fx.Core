@@ -321,6 +321,8 @@ dotnet_diagnostic.CA2002.severity = warning
 # NOTE: there is no CA2004
 # NOTE: there is no CA2005
 # NOTE: there is no CA2006
+dotnet_diagnostic.CA2007.severity = warning # remind about the note that this is for "framework" type packages
+dotnet_code_quality.CA2007.exclude_async_void_methods = false # this rule is good for everything
 
 
 
