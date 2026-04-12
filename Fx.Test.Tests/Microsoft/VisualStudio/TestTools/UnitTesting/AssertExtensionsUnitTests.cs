@@ -217,6 +217,18 @@ class C {
                 {
                 }
 
+                if (value.StartsWith("a", StringComparison.OrdinalIgnoreCase))
+                {
+                }
+
+                if (value.StartsWith("a"))
+                {
+                }
+
+                if (value.StartsWith("a", StringComparison.InvariantCulture))
+                {
+                }
+
                 Console.WriteLine(string.Format(format, "asdf"));
             }
         }
