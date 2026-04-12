@@ -310,6 +310,12 @@ dotnet_diagnostic.CA1877.severity = warning # it would be great if there were a 
 
 ### singlefile
 
+# TODO https://learn.microsoft.com/en-us/dotnet/core/deploying/single-file/warnings/overview i have a feeling that these are relevant, but i really hate that the singlefile option even exists; maybe write a rule that disallows that feature
+
+### reliability
+
+dotnet_diagnostic.CA2000.severity = warning
+
 
 
 
