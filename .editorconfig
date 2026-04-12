@@ -305,6 +305,8 @@ dotnet_diagnostic.CA1872.severity = warning
 dotnet_diagnostic.CA1873.severity = warning # i really hate this, but i'm not used to it, so maybe it's actually brilliant
 dotnet_diagnostic.CA1874.severity = warning # i'm not sure i like this for maintainability reasons
 dotnet_diagnostic.CA1875.severity = warning # i'm not sure i like this for maintainability reasons
+# NOTE: there is no CA1876
+dotnet_diagnostic.CA1877.severity = warning # it would be great if there were a "pathbuilder" or something like `stringbuilder` to really formalize this
 
 
 
