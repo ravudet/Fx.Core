@@ -315,6 +315,12 @@ dotnet_diagnostic.CA1877.severity = warning # it would be great if there were a 
 ### reliability
 
 dotnet_diagnostic.CA2000.severity = warning
+# NOTE: there is no CA2001
+dotnet_diagnostic.CA2002.severity = warning
+# NOTE: there is no CA2003
+# NOTE: there is no CA2004
+# NOTE: there is no CA2005
+# NOTE: there is no CA2006
 
 
 
