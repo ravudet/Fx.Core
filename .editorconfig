@@ -327,6 +327,8 @@ dotnet_diagnostic.CA2008.severity = warning
 dotnet_diagnostic.CA2009.severity = warning # this seems more like a perf rule to me
 # NOTE: there is no CA2010
 dotnet_diagnostic.CA2011.severity = warning # should be caught during unit testing; plus, we are preferring autoprops in the style rules; not exactly sure when this will come up
+dotnet_diagnostic.CA2012.severity = warning
+dotnet_diagnostic.CA2013.severity = warning
 
 
 
