@@ -191,6 +191,16 @@ class C {
 
 
 
+
+
+
+
+
+
+
+
+
+
         abstract class A
         {
             public virtual void M() { }

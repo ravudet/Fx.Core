@@ -299,6 +299,7 @@ dotnet_diagnostic.CA1866.severity = warning # `value.StartsWith("a")`; why doesn
 dotnet_diagnostic.CA1867.severity = warning # `value.StartsWith("a", StringComparison.OrdinalIgnoreCase)`; why doesn't this have a code fix?
 dotnet_diagnostic.CA1868.severity = warning # talk about multithreading, even though it's not 100% relevant here
 dotnet_diagnostic.CA1869.severity = warning # TODO any mulitthreading concerns here?
+dotnet_diagnostic.CA1870.severity = warning # i really hate that this needs to exist; i think generics might resolve this issue; i also think that you could do something similar to `assert.that`, like `argumentexception.throw().ifnull`; look into this
 
 
 
