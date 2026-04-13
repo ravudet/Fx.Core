@@ -471,6 +471,8 @@ dotnet_diagnostic.CA3004.severity = warning
 dotnet_diagnostic.CA3005.severity = warning
 dotnet_diagnostic.CA3006.severity = warning
 dotnet_diagnostic.CA3007.severity = warning
+dotnet_diagnostic.CA3008.severity = warning
+dotnet_diagnostic.CA3009.severity = warning
 
 
 
