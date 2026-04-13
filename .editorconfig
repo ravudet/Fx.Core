@@ -380,6 +380,9 @@ dotnet_diagnostic.CA5361.severity = warning
 dotnet_diagnostic.CA5362.severity = warning # TODO i think the "fixes" are woefully insufficient in the documentation; this is a totally real and normal use-case for serialization, and even cycles are fine...; plus, it doesn't really explain how someone could craft the serialized data to show a cycle
 dotnet_diagnostic.CA5363.severity = warning
 dotnet_diagnostic.CA5364.severity = warning
+dotnet_diagnostic.CA5365.severity = warning
+dotnet_diagnostic.CA5366.severity = warning
+dotnet_diagnostic.CA5367.severity = warning # TODO these fixes aren't good examples; they do nothing to actually help the person address their issue; for example, solution 1 will just cause people to serialize the memory address, and they'll just start converting that field to a property, which doesn't address the security issue at all
 
 
 
