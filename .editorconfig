@@ -464,6 +464,8 @@ dotnet_diagnostic.CA2356.severity = warning
 dotnet_diagnostic.CA2361.severity = warning
 dotnet_diagnostic.CA2362.severity = warning
 # NOTE: there are no rules from CA2363-CA3000
+dotnet_diagnostic.CA3001.severity = warning
+dotnet_diagnostic.CA3002.severity = warning
 
 
 
