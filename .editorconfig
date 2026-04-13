@@ -383,6 +383,9 @@ dotnet_diagnostic.CA5364.severity = warning
 dotnet_diagnostic.CA5365.severity = warning
 dotnet_diagnostic.CA5366.severity = warning
 dotnet_diagnostic.CA5367.severity = warning # TODO these fixes aren't good examples; they do nothing to actually help the person address their issue; for example, solution 1 will just cause people to serialize the memory address, and they'll just start converting that field to a property, which doesn't address the security issue at all
+dotnet_diagnostic.CA5368.severity = warning
+dotnet_diagnostic.CA5369.severity = warning
+dotnet_diagnostic.CA5370.severity = warning
 
 
 
