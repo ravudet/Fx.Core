@@ -413,6 +413,8 @@ dotnet_diagnostic.CA2305.severity = warning
 dotnet_diagnostic.CA2310.severity = warning
 dotnet_diagnostic.CA2311.severity = warning
 dotnet_diagnostic.CA2312.severity = warning
+# NOTE: there is no CA2313
+# NOTE: there is no CA2314
 
 
 
