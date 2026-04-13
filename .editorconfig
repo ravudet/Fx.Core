@@ -365,6 +365,39 @@ dotnet_diagnostic.CA2109.severity = warning
 # NOTE: there is no CA2117
 # NOTE: there is no CA2118
 dotnet_diagnostic.CA2119.severity = none # i don't think i've ever used `internal` or `private` for "security" reasons; i use them because certain APIs aren't quality enough or because they don't have clear contracts or because the contracts have assumptions that i can't trust the caller or implementer to know and follow; if the implementer (in this rule's case) is exposing the API publicly, then that's totally fine as long as the API has a clear contract with enforceable assumptions; these requirements are true of *all* public APIs, and has nothing to do with exposing internal or private ones; so i'm disabling this rule because it will lead to inconsistent enforcement
+# NOTE: there is no CA2120
+# NOTE: there is no CA2121
+# NOTE: there is no CA2122
+# NOTE: there is no CA2123
+# NOTE: there is no CA2124
+# NOTE: there is no CA2125
+# NOTE: there is no CA2126
+# NOTE: there is no CA2127
+# NOTE: there is no CA2128
+# NOTE: there is no CA2129
+# NOTE: there is no CA2130
+# NOTE: there is no CA2131
+# NOTE: there is no CA2132
+# NOTE: there is no CA2133
+# NOTE: there is no CA2134
+# NOTE: there is no CA2135
+# NOTE: there is no CA2136
+# NOTE: there is no CA2137
+# NOTE: there is no CA2138
+# NOTE: there is no CA2139
+# NOTE: there is no CA2140
+# NOTE: there is no CA2141
+# NOTE: there is no CA2142
+# NOTE: there is no CA2143
+# NOTE: there is no CA2144
+# NOTE: there is no CA2145
+# NOTE: there is no CA2146
+# NOTE: there is no CA2147
+# NOTE: there is no CA2148
+# NOTE: there is no CA2149
+# NOTE: there is no CA2150
+# NOTE: there is no CA2151
+# NOTE: there is no CA2152
 
 
 
