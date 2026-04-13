@@ -525,6 +525,19 @@ dotnet_diagnostic.CA3012.severity = warning
 # NOTE: there is no CA3059
 # NOTE: there is no CA3060
 dotnet_diagnostic.CA3061.severity = warning
+# NOTE: there is no CA3062
+# NOTE: there is no CA3063
+# NOTE: there is no CA3064
+# NOTE: there is no CA3065
+# NOTE: there is no CA3066
+# NOTE: there is no CA3067
+# NOTE: there is no CA3068
+# NOTE: there is no CA3069
+# NOTE: there is no CA3070
+# NOTE: there is no CA3071
+# NOTE: there is no CA3072
+# NOTE: there is no CA3073
+# NOTE: there is no CA3074
 
 
 
