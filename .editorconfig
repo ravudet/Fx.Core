@@ -331,33 +331,13 @@ dotnet_diagnostic.CA2315.severity = warning
 # NOTE: there are no rules from CA2316-CA2320
 dotnet_diagnostic.CA2321.severity = warning
 dotnet_diagnostic.CA2322.severity = warning
-# NOTE: there is no CA2323
-# NOTE: there is no CA2324
-# NOTE: there is no CA2325
+# NOTE: there are no rules from CA2323-CA2325
 dotnet_diagnostic.CA2326.severity = warning
 dotnet_diagnostic.CA2327.severity = warning
 dotnet_diagnostic.CA2328.severity = warning
 dotnet_diagnostic.CA2329.severity = warning
 dotnet_diagnostic.CA2330.severity = warning
-# NOTE: there is no CA2331
-# NOTE: there is no CA2332
-# NOTE: there is no CA2333
-# NOTE: there is no CA2334
-# NOTE: there is no CA2335
-# NOTE: there is no CA2336
-# NOTE: there is no CA2337
-# NOTE: there is no CA2338
-# NOTE: there is no CA2339
-# NOTE: there is no CA2340
-# NOTE: there is no CA2341
-# NOTE: there is no CA2342
-# NOTE: there is no CA2343
-# NOTE: there is no CA2344
-# NOTE: there is no CA2345
-# NOTE: there is no CA2346
-# NOTE: there is no CA2347
-# NOTE: there is no CA2348
-# NOTE: there is no CA2349
+# NOTE: there are no rules from CA2331-CA2349
 dotnet_diagnostic.CA2350.severity = warning
 dotnet_diagnostic.CA2351.severity = warning
 dotnet_diagnostic.CA2352.severity = warning
@@ -365,10 +345,7 @@ dotnet_diagnostic.CA2353.severity = warning
 dotnet_diagnostic.CA2354.severity = warning
 dotnet_diagnostic.CA2355.severity = warning
 dotnet_diagnostic.CA2356.severity = warning
-# NOTE: there is no CA2357
-# NOTE: there is no CA2358
-# NOTE: there is no CA2359
-# NOTE: there is no CA2360
+# NOTE: there are no rules from CA2357-CA2360
 dotnet_diagnostic.CA2361.severity = warning
 dotnet_diagnostic.CA2362.severity = warning
 # NOTE: there are no rules from CA2363-CA3000
@@ -384,54 +361,7 @@ dotnet_diagnostic.CA3009.severity = warning
 dotnet_diagnostic.CA3010.severity = warning
 dotnet_diagnostic.CA3011.severity = warning
 dotnet_diagnostic.CA3012.severity = warning
-# NOTE: there is no CA3013
-# NOTE: there is no CA3014
-# NOTE: there is no CA3015
-# NOTE: there is no CA3016
-# NOTE: there is no CA3017
-# NOTE: there is no CA3018
-# NOTE: there is no CA3019
-# NOTE: there is no CA3020
-# NOTE: there is no CA3021
-# NOTE: there is no CA3022
-# NOTE: there is no CA3023
-# NOTE: there is no CA3024
-# NOTE: there is no CA3025
-# NOTE: there is no CA3026
-# NOTE: there is no CA3027
-# NOTE: there is no CA3028
-# NOTE: there is no CA3029
-# NOTE: there is no CA3030
-# NOTE: there is no CA3031
-# NOTE: there is no CA3032
-# NOTE: there is no CA3033
-# NOTE: there is no CA3034
-# NOTE: there is no CA3035
-# NOTE: there is no CA3036
-# NOTE: there is no CA3037
-# NOTE: there is no CA3038
-# NOTE: there is no CA3039
-# NOTE: there is no CA3040
-# NOTE: there is no CA3041
-# NOTE: there is no CA3042
-# NOTE: there is no CA3043
-# NOTE: there is no CA3044
-# NOTE: there is no CA3045
-# NOTE: there is no CA3046
-# NOTE: there is no CA3047
-# NOTE: there is no CA3048
-# NOTE: there is no CA3049
-# NOTE: there is no CA3050
-# NOTE: there is no CA3051
-# NOTE: there is no CA3052
-# NOTE: there is no CA3053
-# NOTE: there is no CA3054
-# NOTE: there is no CA3055
-# NOTE: there is no CA3056
-# NOTE: there is no CA3057
-# NOTE: there is no CA3058
-# NOTE: there is no CA3059
-# NOTE: there is no CA3060
+# NOTE: there are no rules from CA3013-CA3060
 dotnet_diagnostic.CA3061.severity = warning
 # NOTE: there is no CA3062
 # NOTE: there is no CA3063
