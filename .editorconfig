@@ -370,7 +370,11 @@ dotnet_diagnostic.CA3077.severity = warning
 # NOTE: there are no rules from CA3078-CA3146
 dotnet_diagnostic.CA3147.severity = warning
 # NOTE: there are no rules from CA3148-CA5349
-
+dotnet_diagnostic.CA5350.severity = warning
+dotnet_diagnostic.CA5351.severity = warning
+# NOTE: there are no rules from CA5352-CA5357
+dotnet_diagnostic.CA5358.severity = warning
+dotnet_diagnostic.CA5359.severity = warning
 
 
 
