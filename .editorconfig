@@ -398,6 +398,10 @@ dotnet_diagnostic.CA2119.severity = none # i don't think i've ever used `interna
 # NOTE: there is no CA2150
 # NOTE: there is no CA2151
 # NOTE: there is no CA2152
+dotnet_diagnostic.CA2153.severity = warning
+# NOTE: there are no rules from CA2154-CA2299
+dotnet_diagnostic.CA2300.severity = warning # TODO i'm going to have to try really hard to demonstrate this...
+
 
 
 
