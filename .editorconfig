@@ -182,8 +182,7 @@ dotnet_diagnostic.CA1720.severity = warning # i think this will be my biggest vi
 dotnet_code_quality.CA1720.api_surface = all
 dotnet_diagnostic.CA1721.severity = warning
 dotnet_code_quality.CA1721.api_surface = all
-# NOTE: there is no CA1722
-# NOTE: there is no CA1723
+# NOTE: there are no rules from CA1722-CA1723
 dotnet_diagnostic.CA1724.severity = warning # TODO you can demonstrate how someone could use this for "aliasing" i think
 dotnet_diagnostic.CA1725.severity = warning
 dotnet_code_quality.CA1725.api_surface = all
@@ -192,18 +191,14 @@ dotnet_diagnostic.CA1727.severity = warning
 
 ### performance
 
-# NOTE: there is no CA1800
-# NOTE: there is no CA1801
+# NOTE: there are no rules from CA1800-CA1801
 dotnet_diagnostic.CA1802.severity = warning
 dotnet_code_quality.CA1802.api_surface = all
 # dotnet_code_quality.CA1802.required_modifiers = none # TODO i couldn't get this to trigger on anything besides `static readonly`; i'm not sure what it's supposed to do
-# NOTE: there is no CA1803
-# NOTE: there is no CA1804
+# NOTE: there are no rules from CA1803-CA1804
 dotnet_diagnostic.CA1805.severity = warning # the reason *i* like this rule is because doing this potentially hides cs0649
 dotnet_diagnostic.CA1806.severity = warning # TODO ide0058 covers a wider range of cases, i think it probably supersedes this
-# NOTE: there is no CA1807
-# NOTE: there is no CA1808
-# NOTE: there is no CA1809
+# NOTE: there are no rules from CA1807-CA1809
 dotnet_diagnostic.CA1810.severity = warning # i've certainly had cases where i needed a static constructor, but those cases would be easy to justify with this rule
 # NOTE: there is no CA1811
 dotnet_diagnostic.CA1812.severity = warning
@@ -212,9 +207,7 @@ dotnet_diagnostic.CA1813.severity = warning
 dotnet_diagnostic.CA1814.severity = none # i get the point of this rule, but it seems weird; when am i using an array of arrays where they *would* be jagged? and for cases where multidimensional makes sense design-wise, with jagged i need to check the length of the inner arrays, which can have an inconsistency with what is "known" as the size to the design; multi-dimensional remove this ambiguity by letting the compiler know what the lengths are
 dotnet_diagnostic.CA1815.severity = warning
 dotnet_code_quality.CA1815.api_surface = all
-# NOTE: there is no CA1816
-# NOTE: there is no CA1817
-# NOTE: there is no CA1818
+# NOTE: there are no rules from CA1816-CA1818
 dotnet_diagnostic.CA1819.severity = warning
 dotnet_code_quality.CA1819.api_surface = all
 dotnet_diagnostic.CA1820.severity = warning
