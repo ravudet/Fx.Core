@@ -426,6 +426,11 @@ dotnet_diagnostic.CA2322.severity = warning
 # NOTE: there is no CA2323
 # NOTE: there is no CA2324
 # NOTE: there is no CA2325
+dotnet_diagnostic.CA2326.severity = warning
+dotnet_diagnostic.CA2327.severity = warning
+dotnet_diagnostic.CA2328.severity = warning
+dotnet_diagnostic.CA2329.severity = warning
+dotnet_diagnostic.CA2330.severity = warning
 
 
 
