@@ -19,8 +19,7 @@ dotnet_code_quality.CA1003.api_surface = all
 # NOTE: there is no CA1004
 dotnet_diagnostic.CA1005.severity = warning
 dotnet_code_quality.CA1005.api_surface = all
-# NOTE: there is no CA1006
-# NOTE: there is no CA1007
+# NOTE: there are no rules from CA1006-CA1007
 dotnet_diagnostic.CA1008.severity = warning # TODO i agree with this for flags enums (and would be fine with a reasonably justified exception or two); for non-flags, the description *as written* i don't really agree with because i think there are plenty of cases where the `0` member doesn't exist or shouldn't be called "none"; however, the rule doesn't trigger if a `0` member is defined that is called something else; so, if the rule triggers because there is no "0" member, that's actually an implementation detail and design leak; the members should all be shifted to reach 0; 
 dotnet_code_quality.CA1008.api_surface = all
 # NOTE: there is no CA1009
@@ -38,12 +37,10 @@ dotnet_diagnostic.CA1018.severity = warning
 dotnet_diagnostic.CA1019.severity = none # TODO seems like overkill; the parameters maybe be combined in a way that is still useful; if the parameter is needed, the attribute itself won't be useful, and who is defining a custom attribute type without also provided code that leverages it?
 # NOTE: there is no CA1020
 dotnet_diagnostic.CA1021.severity = warning # TODO a key to this one is that the "try" naming convention avoids triggering the rule; i'm not 100% sure i like this rule though TODO i actually really don't like it because this one doesn't actually trigger for `ref` parameters, it looks like; that's rule ca1045
-# NOTE: there is no CA1022
-# NOTE: there is no CA1023
+# NOTE: there are no rules from CA1022-CA1023
 dotnet_diagnostic.CA1024.severity = warning
 dotnet_code_quality.CA1024.api_surface = all
-# NOTE: there is no CA1025
-# NOTE: there is no CA1026
+# NOTE: there are no rules from CA1025-CA1026
 dotnet_diagnostic.CA1027.severity = warning
 dotnet_code_quality.CA1027.api_surface = all
 dotnet_diagnostic.CA1028.severity = none # TODO this rule seems dumb to me; struct size is dependent on fields which can be enums, so having smaller enums makes a difference even if the enum itself has no specific performance benefits; and it's definitely possible to have an enum with 33 values, so going larger also makes sense; i suppose the case could be made that if someone wants to use a different base, they should justify it instead of doing it "just because"
@@ -58,9 +55,7 @@ dotnet_diagnostic.CA1034.severity = warning # TODO i agree with this, but i'm go
 # NOTE: there is no CA1035
 dotnet_diagnostic.CA1036.severity = warning
 dotnet_code_quality.CA1036.api_surface = all
-# NOTE: there is no CA1037
-# NOTE: there is no CA1038
-# NOTE: there is no CA1039
+# NOTE: there are no rules from CA1037-CA1039
 dotnet_diagnostic.CA1040.severity = none # TODO i don't agree with the rule description; attributes are *not* the best way to mark something; consider, for example, generic type constraints
 dotnet_code_quality.CA1040.api_surface = all
 dotnet_diagnostic.CA1041.severity = warning
@@ -76,8 +71,7 @@ dotnet_diagnostic.CA1046.severity = warning # despite the rule about using `is n
 dotnet_code_quality.CA1046.api_surface = all
 dotnet_diagnostic.CA1047.severity = warning
 dotnet_code_quality.CA1047.api_surface = all
-# NOTE: there is no CA1048
-# NOTE: there is no CA1049
+# NOTE: there are no rules from CA1048-CA1049
 dotnet_diagnostic.CA1050.severity = warning
 dotnet_code_quality.CA1050.api_surface = all
 dotnet_diagnostic.CA1051.severity = warning
@@ -129,20 +123,7 @@ dotnet_diagnostic.CA1200.severity = warning
 ### portability and interoperability
 
 dotnet_diagnostic.CA1401.severity = warning
-# NOTE: there is no CA1402
-# NOTE: there is no CA1403
-# NOTE: there is no CA1404
-# NOTE: there is no CA1405
-# NOTE: there is no CA1406
-# NOTE: there is no CA1407
-# NOTE: there is no CA1408
-# NOTE: there is no CA1409
-# NOTE: there is no CA1410
-# NOTE: there is no CA1411
-# NOTE: there is no CA1412
-# NOTE: there is no CA1413
-# NOTE: there is no CA1414
-# NOTE: there is no CA1415
+# NOTE: there are no rules from CA1402-CA1416
 # TODO i don't know anything about platform compatibility; look into ca1416
 dotnet_diagnostic.CA1417.severity = warning
 # TODO i don't know anything about platform compatibility; look into ca1418
