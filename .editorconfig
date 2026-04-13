@@ -386,6 +386,12 @@ dotnet_diagnostic.CA5367.severity = warning # TODO these fixes aren't good examp
 dotnet_diagnostic.CA5368.severity = warning
 dotnet_diagnostic.CA5369.severity = warning
 dotnet_diagnostic.CA5370.severity = warning
+dotnet_diagnostic.CA5371.severity = warning
+dotnet_diagnostic.CA5372.severity = warning
+dotnet_diagnostic.CA5373.severity = warning
+dotnet_diagnostic.CA5374.severity = warning
+dotnet_diagnostic.CA5375.severity = warning # TODO why are you using the storage SDK in the first place?
+dotnet_diagnostic.CA5376.severity = warning # TODO more storage sdk
 
 
 
