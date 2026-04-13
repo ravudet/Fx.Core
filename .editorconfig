@@ -346,6 +346,15 @@ dotnet_diagnostic.CA2026.severity = warning
 ### security
 
 dotnet_diagnostic.CA2100.severity = warning # you can configure interprocedural analysis and stuff, but i don't know enough about that to make a good decision
+# NOTE: there is no CA2101
+# NOTE: there is no CA2102
+# NOTE: there is no CA2103
+# NOTE: there is no CA2104
+# NOTE: there is no CA2105
+# NOTE: there is no CA2106
+# NOTE: there is no CA2107
+# NOTE: there is no CA2108
+dotnet_diagnostic.CA2109.severity = warning
 
 
 
