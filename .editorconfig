@@ -284,10 +284,7 @@ dotnet_diagnostic.CA1877.severity = warning # it would be great if there were a 
 dotnet_diagnostic.CA2000.severity = warning
 # NOTE: there is no CA2001
 dotnet_diagnostic.CA2002.severity = warning
-# NOTE: there is no CA2003
-# NOTE: there is no CA2004
-# NOTE: there is no CA2005
-# NOTE: there is no CA2006
+# NOTE: there are no rules from CA2003-CA2006
 dotnet_diagnostic.CA2007.severity = warning # remind about the note that this is for "framework" type packages
 dotnet_code_quality.CA2007.exclude_async_void_methods = false # this rule is good for everything
 dotnet_diagnostic.CA2008.severity = warning
@@ -313,24 +310,9 @@ dotnet_diagnostic.CA2026.severity = warning
 ### security
 
 dotnet_diagnostic.CA2100.severity = warning # you can configure interprocedural analysis and stuff, but i don't know enough about that to make a good decision
-# NOTE: there is no CA2101
-# NOTE: there is no CA2102
-# NOTE: there is no CA2103
-# NOTE: there is no CA2104
-# NOTE: there is no CA2105
-# NOTE: there is no CA2106
-# NOTE: there is no CA2107
-# NOTE: there is no CA2108
+# NOTE: there are no rules from CA2101-CA2108
 dotnet_diagnostic.CA2109.severity = warning
-# NOTE: there is no CA2110
-# NOTE: there is no CA2111
-# NOTE: there is no CA2112
-# NOTE: there is no CA2113
-# NOTE: there is no CA2114
-# NOTE: there is no CA2115
-# NOTE: there is no CA2116
-# NOTE: there is no CA2117
-# NOTE: there is no CA2118
+# NOTE: there are no rules from CA2110-CA2118
 dotnet_diagnostic.CA2119.severity = none # i don't think i've ever used `internal` or `private` for "security" reasons; i use them because certain APIs aren't quality enough or because they don't have clear contracts or because the contracts have assumptions that i can't trust the caller or implementer to know and follow; if the implementer (in this rule's case) is exposing the API publicly, then that's totally fine as long as the API has a clear contract with enforceable assumptions; these requirements are true of *all* public APIs, and has nothing to do with exposing internal or private ones; so i'm disabling this rule because it will lead to inconsistent enforcement
 # NOTE: there is no CA2120
 # NOTE: there is no CA2121
