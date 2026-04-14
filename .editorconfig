@@ -423,6 +423,10 @@ dotnet_diagnostic.CA5403.severity = warning # this one *does* allow the cert con
 dotnet_diagnostic.CA5404.severity = warning # TODO do you really want this enabled? why would you be using that library? and why shouldn't you be allowed to configure validation?
 dotnet_diagnostic.CA5405.severity = warning # TODO same as above
 
+### usage
+
+
+
 
 
 
