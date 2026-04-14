@@ -413,6 +413,8 @@ dotnet_code_quality.CA5393.unsafe_DllImportSearchPath_bits = 770
 dotnet_diagnostic.CA5394.severity = warning # this feels a bit much; it's a good idea, but way too many false positives
 dotnet_diagnostic.CA5395.severity = warning # the documentation notes that `get` is fine because of no side effects, but then uses it as the example; i also don't know what the verb attributes have to do with antiforgery
 dotnet_diagnostic.CA5396.severity = warning # i didn't know that there is a `cookie` header and the browser sends it to the server; i thought if the server wanted the data, there would have to be a script that reads the cookie and sends it to the server; my understanding was wrong though
+dotnet_diagnostic.CA5397.severity = warning
+dotnet_diagnostic.CA5398.severity = warning # TODO i don't really know that i like this one; it seems like trying to give me something "for free"; similar to ca5386
 
 
 
