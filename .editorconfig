@@ -404,6 +404,14 @@ dotnet_diagnostic.CA5385.severity = warning
 dotnet_diagnostic.CA5386.severity = warning # TODO i don't really know that i like this one; it seems like trying to give me something "for free"
 dotnet_diagnostic.CA5387.severity = warning
 dotnet_diagnostic.CA5388.severity = warning # how is this different from ca5387?
+dotnet_diagnostic.CA5389.severity = warning # the comments in the documented "solution" give other good practices that i don't think are captured by this rule
+dotnet_diagnostic.CA5390.severity = warning
+dotnet_diagnostic.CA5391.severity = warning
+dotnet_diagnostic.CA5392.severity = warning
+dotnet_diagnostic.CA5393.severity = none # TODO i'm not sure why the dlls directory is not safe; i actually kind of think it's the *only* "safe" thing (assuming signed binaries); you should probably enable this and configure it below once you understand what the different search paths really mean
+dotnet_code_quality.CA5393.unsafe_DllImportSearchPath_bits = 770
+dotnet_diagnostic.CA5394.severity = warning # this feels a bit much; it's a good idea, but way too many false positives
+dotnet_diagnostic.CA5395.severity = warning # the documentation notes that `get` is fine because of no side effects, but then uses it as the example; i also don't know what the verb attributes have to do with antiforgery
 
 
 

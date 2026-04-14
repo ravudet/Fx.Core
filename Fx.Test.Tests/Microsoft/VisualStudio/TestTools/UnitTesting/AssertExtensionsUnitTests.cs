@@ -151,6 +151,7 @@ class C {
 
         //// TODO dotnet_diagnostic.CA1000.severity = warning doesn't flag the method call like the doc says
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1031 the first example says `systemexception` but should say `system.exception`
+        //// TODO broken xml: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca5393
 
         //// TODO when you go back through to write the articles, consider the severity of the rules; some of them should likely be `suggestion` or `silent`
         //// TODO "suggestion" really means "message", but anything becomes noise when you don't suppress them; would a good SOP be to suppress messages into the suppression file? (so that you don't reduce readability)
