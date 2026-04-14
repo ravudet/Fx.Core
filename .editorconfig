@@ -419,6 +419,7 @@ dotnet_diagnostic.CA5399.severity = warning
 dotnet_diagnostic.CA5400.severity = warning # the documentation for this one seems to admit that it can lead to false positives
 dotnet_diagnostic.CA5401.severity = none # i don't think it's crazy to have the initialization vector be chosen by something besides .net; is the random iv generator that .net uses not exposed publicly? is it somehow more secure than the cryptographically secure rng they provide?
 dotnet_diagnostic.CA5402.severity = none # same as above; also, the false positives thing
+dotnet_diagnostic.CA5403.severity = warning # this one *does* allow the cert contents to be parameterized by the method, so this seems like a good idea to me
 
 
 

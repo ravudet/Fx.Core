@@ -8,6 +8,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Xml.Linq;
@@ -231,7 +232,23 @@ class C {
 
 
 
+        public static class CertTest
+        {
+            public static void Foo(byte[] certBytes)
+            {
+                var path = "foo";
+                File.WriteAllBytes(path, certBytes);
+                using (new X509Certificate2(path))
+                {
+                }
 
+                var otherCertBytes = new byte[] { 1, 2, 3 };
+                File.WriteAllBytes(path, otherCertBytes);
+                using (new X509Certificate2(path))
+                {
+                }
+            }
+        }
 
 
         abstract class A
