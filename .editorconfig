@@ -428,6 +428,10 @@ dotnet_diagnostic.CA5405.severity = warning # TODO same as above
 dotnet_diagnostic.CA1801.severity = warning
 dotnet_code_quality.CA1801.api_surface = all
 # NOTE: there are no rules from CA1802-CA1815
+dotnet_diagnostic.CA1816.severity = warning
+# NOTE: there are no rules from CA1817-CA2199
+dotnet_diagnostic.CA2200.severity = warning
+dotnet_diagnostic.CA2201.severity = warning # this rule made me realize that invalidoperationexception (and its derived type objectdisposedexception (and probably other derived types)) are *also* precondition checks, but they are precondition checks on the state of the called object, rather than checks on the state of the provided arguments; the name might be slightly misleading (compare to notsupportedexception and overflowexception; those exceptions are the result of "invalid operation"s, but they cannot be checked as precondition requirements (well, maybe notsupported can be, but that's used in design failure situations; the type system should be check those things, not the caller or implementer)
 
 
 
