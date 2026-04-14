@@ -400,6 +400,10 @@ dotnet_diagnostic.CA5381.severity = warning # TODO i'm not clear how this is dif
 dotnet_diagnostic.CA5382.severity = warning # TODO i'm not clear what other ways to send headers there are...
 dotnet_diagnostic.CA5383.severity = warning # TODO i'm not clear what other ways to send headers there are...also, the documentation for this one seems to admit that it can lead to false positives
 dotnet_diagnostic.CA5384.severity = warning
+dotnet_diagnostic.CA5385.severity = warning
+dotnet_diagnostic.CA5386.severity = warning # TODO i don't really know that i like this one; it seems like trying to give me something "for free"
+dotnet_diagnostic.CA5387.severity = warning
+dotnet_diagnostic.CA5388.severity = warning # how is this different from ca5387?
 
 
 
