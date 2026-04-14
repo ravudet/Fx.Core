@@ -392,6 +392,14 @@ dotnet_diagnostic.CA5373.severity = warning
 dotnet_diagnostic.CA5374.severity = warning
 dotnet_diagnostic.CA5375.severity = warning # TODO why are you using the storage SDK in the first place?
 dotnet_diagnostic.CA5376.severity = warning # TODO more storage sdk
+dotnet_diagnostic.CA5377.severity = warning # TODO more storage sdk
+dotnet_diagnostic.CA5378.severity = warning
+dotnet_diagnostic.CA5379.severity = warning
+dotnet_diagnostic.CA5380.severity = warning # TODO hmm...i wonder why it's bad for me to choose my own CA? is it really better to trust microsoft?
+dotnet_diagnostic.CA5381.severity = warning # TODO i'm not clear how this is different from ca5380
+dotnet_diagnostic.CA5382.severity = warning # TODO i'm not clear what other ways to send headers there are...
+dotnet_diagnostic.CA5383.severity = warning # TODO i'm not clear what other ways to send headers there are...also, the documentation for this one seems to admit that it can lead to false positives
+dotnet_diagnostic.CA5384.severity = warning
 
 
 
