@@ -415,6 +415,8 @@ dotnet_diagnostic.CA5395.severity = warning # the documentation notes that `get`
 dotnet_diagnostic.CA5396.severity = warning # i didn't know that there is a `cookie` header and the browser sends it to the server; i thought if the server wanted the data, there would have to be a script that reads the cookie and sends it to the server; my understanding was wrong though
 dotnet_diagnostic.CA5397.severity = warning
 dotnet_diagnostic.CA5398.severity = warning # TODO i don't really know that i like this one; it seems like trying to give me something "for free"; similar to ca5386
+dotnet_diagnostic.CA5399.severity = warning
+dotnet_diagnostic.CA5400.severity = warning # the documentation for this one seems to admit that it can lead to false positives
 
 
 
