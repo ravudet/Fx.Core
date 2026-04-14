@@ -427,6 +427,7 @@ dotnet_diagnostic.CA5405.severity = warning # TODO same as above
 
 dotnet_diagnostic.CA1801.severity = warning
 dotnet_code_quality.CA1801.api_surface = all
+# NOTE: there are no rules from CA1802-CA1815
 
 
 
