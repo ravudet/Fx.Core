@@ -421,6 +421,7 @@ dotnet_diagnostic.CA5401.severity = none # i don't think it's crazy to have the 
 dotnet_diagnostic.CA5402.severity = none # same as above; also, the false positives thing
 dotnet_diagnostic.CA5403.severity = warning # this one *does* allow the cert contents to be parameterized by the method, so this seems like a good idea to me; that said, it also makes it kind of trivial to avoid this rule
 dotnet_diagnostic.CA5404.severity = warning # TODO do you really want this enabled? why would you be using that library? and why shouldn't you be allowed to configure validation?
+dotnet_diagnostic.CA5405.severity = warning # TODO same as above
 
 
 
