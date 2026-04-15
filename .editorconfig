@@ -453,6 +453,7 @@ dotnet_diagnostic.CA2225.severity = none # TODO i question this because, if i un
 dotnet_code_quality.CA2225.api_surface = all
 dotnet_diagnostic.CA2226.severity = warning
 dotnet_code_quality.CA2226.api_surface = all
+dotnet_diagnostic.CA2227.severity = none # i think this is a bad rule; *maybe* someone is making an argument about object allocations or something?
 
 
 
