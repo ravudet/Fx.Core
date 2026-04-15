@@ -231,6 +231,8 @@ class C {
         [TestMethod]
         public void Enumerate()
         {
+            new TaskCompletionSource<int>(TaskContinuationOptions.RunContinuationsAsynchronously);
+
             var enumerable = GetSomeEnumerable();
 
             var enumerator = enumerable.GetEnumerator();

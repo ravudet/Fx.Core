@@ -473,6 +473,9 @@ dotnet_diagnostic.CA2242.severity = warning
 dotnet_diagnostic.CA2243.severity = warning
 dotnet_diagnostic.CA2244.severity = warning
 dotnet_diagnostic.CA2245.severity = warning # nice, these cases should be easy to justify
+dotnet_diagnostic.CA2246.severity = warning # should a become b and then a.field becomes a? or should a.field become b, and a becomes b?
+dotnet_diagnostic.CA2247.severity = warning # what an absolutely bizarre rule; this should obviously be a more general rule, but how do you create a heuristic that determines how "close" it is to accidentally call the object overload with something
+dotnet_diagnostic.CA2248.severity = warning
 
 
 
