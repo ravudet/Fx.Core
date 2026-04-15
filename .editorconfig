@@ -454,6 +454,12 @@ dotnet_code_quality.CA2225.api_surface = all
 dotnet_diagnostic.CA2226.severity = warning
 dotnet_code_quality.CA2226.api_surface = all
 dotnet_diagnostic.CA2227.severity = none # i think this is a bad rule; *maybe* someone is making an argument about object allocations or something?
+# NOTE: there is no CA2228
+dotnet_diagnostic.CA2229.severity = warning
+# NOTE: there is no CA2230
+dotnet_diagnostic.CA2231.severity = warning
+dotnet_code_quality.CA2231.api_surface = all
+# NOTE: there are no rules from CA2232-CA2233
 
 
 
