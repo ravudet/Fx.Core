@@ -469,6 +469,7 @@ dotnet_diagnostic.CA2237.severity = warning
 dotnet_diagnostic.CA2241.severity = warning
 dotnet_code_quality.CA2241.additional_string_formatting_methods = # TODO i'm not sure how to remind yourself to add things to this list...
 dotnet_code_quality.CA2241.try_determine_additional_string_formatting_methods_automatically = true # disable this if it gets too noisy
+dotnet_diagnostic.CA2242.severity = warning
 
 
 
