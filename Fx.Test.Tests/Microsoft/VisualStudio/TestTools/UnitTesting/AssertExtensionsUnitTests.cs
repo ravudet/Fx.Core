@@ -227,8 +227,25 @@ class C {
 
 
 
+        [TestMethod]
+        public void DoStaticInit()
+        {
+            var array = new StaticInit[10];
+            Assert.AreEqual(0, Value);
 
+            StaticInit staticinit = default;
+            Assert.AreEqual(0, Value);
+        }
 
+        public struct StaticInit
+        {
+            static StaticInit()
+            {
+                Value = 1;
+            }
+        }
+
+        public static int Value { get; set; } = 0;
 
 
 
@@ -265,6 +282,13 @@ class C {
             private readonly IEnumerable<int> _a = new List<int>();
 
             private static readonly string format = "test {0}";
+
+            private readonly int value;
+
+            public C()
+            {
+                this.value = 0;
+            }
 
             public void Trigger(string value)
             {

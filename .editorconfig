@@ -196,7 +196,7 @@ dotnet_diagnostic.CA1802.severity = warning
 dotnet_code_quality.CA1802.api_surface = all
 # dotnet_code_quality.CA1802.required_modifiers = none # TODO i couldn't get this to trigger on anything besides `static readonly`; i'm not sure what it's supposed to do
 # NOTE: there are no rules from CA1803-CA1804
-dotnet_diagnostic.CA1805.severity = warning # the reason *i* like this rule is because doing this potentially hides cs0649
+dotnet_diagnostic.CA1805.severity = warning # the reason *i* like this rule is because doing this potentially hides cs0649 # hmm, this actually conflicts with the "don't use static initializers" thing a little; without a static initializer, i like being explicit about the initial value, but then this rule will trigger when that is the default value; i think i like this rule when it's for instance members, but not when it's for static members
 dotnet_diagnostic.CA1806.severity = warning # TODO ide0058 covers a wider range of cases, i think it probably supersedes this
 # NOTE: there are no rules from CA1807-CA1809
 dotnet_diagnostic.CA1810.severity = warning # i've certainly had cases where i needed a static constructor, but those cases would be easy to justify with this rule
@@ -433,6 +433,7 @@ dotnet_diagnostic.CA1816.severity = warning
 dotnet_diagnostic.CA2200.severity = warning
 dotnet_diagnostic.CA2201.severity = warning # this rule made me realize that invalidoperationexception (and its derived type objectdisposedexception (and probably other derived types)) are *also* precondition checks, but they are precondition checks on the state of the called object, rather than checks on the state of the provided arguments; the name might be slightly misleading (compare to notsupportedexception and overflowexception; those exceptions are the result of "invalid operation"s, but they cannot be checked as precondition requirements (well, maybe notsupported can be, but that's used in design failure situations; the type system should be check those things, not the caller or implementer); i kind of want an analyzer that requires a justification for using `invalidoperationexception`; i also want an analyzer that ensures that argument exceptions are used on arguments specifically (and maybe also before any other logic is run)
 # NOTE: there are no rules from CA2202-CA2206
+dotnet_diagnostic.CA2207.severity = warning
 #TODO 2207 you could totally demonstrate with a field that produces a side effect and initializing the struct using `default` or an array
 
 
