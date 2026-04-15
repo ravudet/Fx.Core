@@ -450,7 +450,9 @@ dotnet_diagnostic.CA2219.severity = warning # TODO it's not clear to me what a f
 # NOTE: there are no rules from CA2219-CA2223
 dotnet_diagnostic.CA2224.severity = warning
 dotnet_diagnostic.CA2225.severity = none # TODO i question this because, if i understand right, it's basically saying that vb.net doesn't have all of the symbolic operators, so there should be a method with that name, so we'd be doubling the c# api surface so taht we can support vb consumers; not sure i like that
-dotnet_code_quality.CA2217.api_surface = all
+dotnet_code_quality.CA2225.api_surface = all
+dotnet_diagnostic.CA2226.severity = warning
+dotnet_code_quality.CA2226.api_surface = all
 
 
 
