@@ -231,7 +231,14 @@ class C {
         [TestMethod]
         public void Enumerate()
         {
-            GetSomeEnumerable().ToArray();
+            var enumerable = GetSomeEnumerable();
+
+            var enumerator = enumerable.GetEnumerator();
+
+            Assert.ThrowsException<InvalidOperationException>(() => enumerator.MoveNext());
+
+            /*Assert.IsTrue(enumerator.MoveNext());
+            Assert.IsTrue(enumerator.MoveNext());*/
         }
 
         public System.Collections.Generic.IEnumerable<string> GetSomeEnumerable()
@@ -244,12 +251,24 @@ class C {
             }
             finally
             {
+                Console.WriteLine("asdf");
                 disposable.Dispose();
             }
         }
 
         private sealed class Disposable : IDisposable
         {
+            private static int initializations = 0;
+
+            public Disposable()
+            {
+                if (initializations == 0)
+                {
+                    ++initializations;
+                    ////throw new InvalidOperationException("TODO");
+                }
+            }
+
             public void Dispose()
             {
                 throw new NotImplementedException();
