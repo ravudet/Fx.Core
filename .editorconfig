@@ -449,6 +449,8 @@ dotnet_diagnostic.CA2218.severity = warning
 dotnet_diagnostic.CA2219.severity = warning # TODO it's not clear to me what a fault or filter clause are; copilot seems to think it might be windows workflow foundation, but i'm not finding anything concrete # this rule is referring to CIL constructs; `finally` is used for `try/finally`, `filter` is used for `try/catch/when`, and `fault` is used (at least) with a `using` surrounding a `yield return` (`public IEnumerable<string> GetSomeEnumerable() { using (Enumerable.Empty<string>().GetEnumerator()) { yield return "asdf"; } }`); i'm not clear if there are other situations where `fault` is used; in fact, if you replace the `using` with a `try/finally`, it will still use `fault`; it's probably worth comparing the generated c# with the compiled IL
 # NOTE: there are no rules from CA2219-CA2223
 dotnet_diagnostic.CA2224.severity = warning
+dotnet_diagnostic.CA2225.severity = none # TODO i question this because, if i understand right, it's basically saying that vb.net doesn't have all of the symbolic operators, so there should be a method with that name, so we'd be doubling the c# api surface so taht we can support vb consumers; not sure i like that
+dotnet_code_quality.CA2217.api_surface = all
 
 
 
