@@ -436,7 +436,7 @@ dotnet_diagnostic.CA2201.severity = warning # this rule made me realize that inv
 dotnet_diagnostic.CA2207.severity = warning # you could totally demonstrate with a field that produces a side effect and initializing the struct using `default` or an array; note that this rule only catchs fields, not properties
 dotnet_diagnostic.CA2208.severity = warning # this seems a little redundant since the static factories should be used for these exceptions instead, but i guess this rule makes sense in case we have our own custom static factory
 # NOTE: there are no rules from CA2209-CA2210
-dotnet_diagnostic.CA2211.severity = warning # i don't find the documentation compelling; i like this rule, but i don't know why; i think it's more of a style thing to me, like "hidden" things are fields and "visible" things are properties, but there's already syntax (access modifiers) that make this distinction
+dotnet_diagnostic.CA2211.severity = warning # i don't find the documentation compelling; i like this rule, but i don't know why; i think it's more of a style thing to me, like "hidden" things are fields and "visible" things are properties, but there's already syntax (access modifiers) that make this distinction # TODO it's so that you can change the "behavior" of the member without breaking all of the callers (including derived types)
 # NOTE: there is no CA2212
 dotnet_diagnostic.CA2213.severity = warning
 # TODO there are data flow analysis configurations; you should probably figure those out at some point because disposables are kind of important
