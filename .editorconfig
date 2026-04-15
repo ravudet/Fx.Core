@@ -446,7 +446,7 @@ dotnet_diagnostic.CA2216.severity = warning
 dotnet_diagnostic.CA2217.severity = warning
 dotnet_code_quality.CA2217.api_surface = all
 dotnet_diagnostic.CA2218.severity = warning
-dotnet_diagnostic.CA2219.severity = warning # TODO it's not clear to me what a fault or filter clause are; copilot seems to think it might be windows workflow foundation, but i'm not finding anything concrete # this rule is referring to CIL constructs; `finally` is used for `try/finally`, `filter` is used for `try/catch/when`, and `fault` is used (at least) with a `using` surrounding a `yield return` (`public IEnumerable<string> GetSomeEnumerable() { using (Enumerable.Empty<string>().GetEnumerator()) { yield return "asdf"; } }`); i'm not clear if there are other situations where `fault` is used
+dotnet_diagnostic.CA2219.severity = warning # TODO it's not clear to me what a fault or filter clause are; copilot seems to think it might be windows workflow foundation, but i'm not finding anything concrete # this rule is referring to CIL constructs; `finally` is used for `try/finally`, `filter` is used for `try/catch/when`, and `fault` is used (at least) with a `using` surrounding a `yield return` (`public IEnumerable<string> GetSomeEnumerable() { using (Enumerable.Empty<string>().GetEnumerator()) { yield return "asdf"; } }`); i'm not clear if there are other situations where `fault` is used; in fact, if you replace the `using` with a `try/finally`, it will stil use `fault`
 
 
 
