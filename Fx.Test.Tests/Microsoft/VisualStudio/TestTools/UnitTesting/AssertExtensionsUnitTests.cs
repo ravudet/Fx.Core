@@ -227,6 +227,45 @@ class C {
 
 
 
+
+        [TestMethod]
+        public void Enumerate()
+        {
+            GetSomeEnumerable().ToArray();
+        }
+
+        public System.Collections.Generic.IEnumerable<string> GetSomeEnumerable()
+        {
+            var disposable = new Disposable();
+            try
+            {
+                yield return "asdf";
+                yield return "asdf";
+            }
+            finally
+            {
+                disposable.Dispose();
+            }
+        }
+
+        private sealed class Disposable : IDisposable
+        {
+            public void Dispose()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
         [TestMethod]
         public void DoStaticInit()
         {
