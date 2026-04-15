@@ -460,8 +460,15 @@ dotnet_diagnostic.CA2229.severity = warning
 dotnet_diagnostic.CA2231.severity = warning
 dotnet_code_quality.CA2231.api_surface = all
 # NOTE: there are no rules from CA2232-CA2233
-
-
+dotnet_diagnostic.CA2234.severity = warning
+dotnet_code_quality.CA2234.api_surface = all
+dotnet_diagnostic.CA2235.severity = warning
+# NOTE: there is no CA2236
+dotnet_diagnostic.CA2237.severity = warning
+# NOTE: there are no rules from CA2238-CA2240
+dotnet_diagnostic.CA2241.severity = warning
+dotnet_code_quality.CA2241.additional_string_formatting_methods = # TODO i'm not sure how to remind yourself to add things to this list...
+dotnet_code_quality.CA2241.try_determine_additional_string_formatting_methods_automatically = true # disable this if it gets too noisy
 
 
 
