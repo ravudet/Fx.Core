@@ -433,9 +433,8 @@ dotnet_diagnostic.CA1816.severity = warning
 dotnet_diagnostic.CA2200.severity = warning
 dotnet_diagnostic.CA2201.severity = warning # this rule made me realize that invalidoperationexception (and its derived type objectdisposedexception (and probably other derived types)) are *also* precondition checks, but they are precondition checks on the state of the called object, rather than checks on the state of the provided arguments; the name might be slightly misleading (compare to notsupportedexception and overflowexception; those exceptions are the result of "invalid operation"s, but they cannot be checked as precondition requirements (well, maybe notsupported can be, but that's used in design failure situations; the type system should be check those things, not the caller or implementer); i kind of want an analyzer that requires a justification for using `invalidoperationexception`; i also want an analyzer that ensures that argument exceptions are used on arguments specifically (and maybe also before any other logic is run)
 # NOTE: there are no rules from CA2202-CA2206
-dotnet_diagnostic.CA2207.severity = warning
-#TODO 2207 you could totally demonstrate with a field that produces a side effect and initializing the struct using `default` or an array
-
+dotnet_diagnostic.CA2207.severity = warning # you could totally demonstrate with a field that produces a side effect and initializing the struct using `default` or an array; note that this rule only catchs fields, not properties
+dotnet_diagnostic.CA2208.severity = warning # this seems a little redundant since the static factories should be used for these exceptions instead, but i guess this rule makes sense in case we have our own custom static factory
 
 
 
