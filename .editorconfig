@@ -478,6 +478,8 @@ dotnet_diagnostic.CA2247.severity = warning # what an absolutely bizarre rule; t
 dotnet_diagnostic.CA2248.severity = warning
 dotnet_diagnostic.CA2249.severity = warning # meh, i kind of see it both ways; if i ever want to *use* that index, the `indexof` call is more maintainable, but the `contains` call is more readable for such a check without a subsequent need for the index
 dotnet_diagnostic.CA2250.severity = warning
+dotnet_diagnostic.CA2251.severity = warning
+dotnet_diagnostic.CA2252.severity = warning # communication is key; this is like surfacing exceptions or permissions requirements
 
 
 
