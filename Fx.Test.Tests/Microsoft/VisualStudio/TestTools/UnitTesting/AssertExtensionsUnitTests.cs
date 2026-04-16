@@ -274,7 +274,7 @@ class C {
 
 
         [System.Runtime.InteropServices.DynamicInterfaceCastableImplementation]
-        interface ICast
+        public interface ICast
         {
             void Dispose()
             {
@@ -319,7 +319,7 @@ class C {
             }
         }
 
-        class Castable3 : System.Runtime.InteropServices.IDynamicInterfaceCastable
+        public class Castable3 : System.Runtime.InteropServices.IDynamicInterfaceCastable
         {
             public RuntimeTypeHandle GetInterfaceImplementation(RuntimeTypeHandle interfaceType)
             {
