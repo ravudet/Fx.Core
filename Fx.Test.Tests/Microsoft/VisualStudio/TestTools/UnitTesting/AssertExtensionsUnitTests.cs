@@ -8,6 +8,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Runtime.InteropServices;
     using System.Security.Cryptography.X509Certificates;
     using System.Threading;
@@ -139,6 +140,36 @@ class C {
     }
 
 
+    public static class CastExtensions
+    {
+        public static Source<TSource> Is<TSource>(this ref TSource source)
+            where TSource : struct, IDynamicInterfaceCastable, allows ref struct
+        {
+            return new Source<TSource>(ref source);
+        }
+
+        public readonly ref struct Source<TSource>
+            where TSource : struct, IDynamicInterfaceCastable, allows ref struct
+        {
+            private readonly TSource source;
+
+            public Source(ref TSource source)
+            {
+                this.source = source; //// TODO use a pointer?
+            }
+
+            public bool Type<TCast>(out TCast cast)
+            {
+                var typeHandle = this.source.GetInterfaceImplementation(typeof(TCast).TypeHandle);
+                cast = Marshal.PtrToStructure<TCast>(typeHandle.Value);
+
+
+                ////cast = default!; //// TODO implement this
+                return true;
+            }
+        }
+    }
+
 
     [TestClass]
     public sealed class AssertExtensionsUnitTests
@@ -236,6 +267,19 @@ class C {
             }
         }
 
+        ref struct Castable2 : IDynamicInterfaceCastable
+        {
+            public RuntimeTypeHandle GetInterfaceImplementation(RuntimeTypeHandle interfaceType)
+            {
+                return typeof(ICast).TypeHandle;
+            }
+
+            public bool IsInterfaceImplemented(RuntimeTypeHandle interfaceType, bool throwIfNotImplemented)
+            {
+                return true;
+            }
+        }
+
         class Castable : IDynamicInterfaceCastable
         {
             public RuntimeTypeHandle GetInterfaceImplementation(RuntimeTypeHandle interfaceType)
@@ -261,6 +305,21 @@ class C {
             {
                 Assert.Fail();
             }
+
+            var castable2 = new Castable2();
+            if (castable is Castable2)
+            {
+                Console.WriteLine("could cast");
+            }
+
+            /*if (castable2.Is().Type<ICast>(out var disposable2))
+            {
+                disposable2.Dispose();
+            }
+            else
+            {
+                Assert.Fail();
+            }*/
         }
 
 
