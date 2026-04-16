@@ -482,6 +482,7 @@ dotnet_diagnostic.CA2251.severity = warning
 dotnet_diagnostic.CA2252.severity = warning # communication is key; this is like surfacing exceptions or permissions requirements
 dotnet_diagnostic.CA2253.severity = warning
 dotnet_diagnostic.CA2254.severity = warning # such a bummer that we have to avoid string interpolation...
+dotnet_diagnostic.CA2255.severity = warning # i like this rule because of composition and inversion of control; i don't really know what "trimming abilities" are or how two `moduleinitializer` attributes could conflict
 
 
 

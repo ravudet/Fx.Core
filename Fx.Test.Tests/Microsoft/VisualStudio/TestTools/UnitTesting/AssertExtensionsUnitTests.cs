@@ -8,6 +8,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
+    using System.Runtime.InteropServices;
     using System.Security.Cryptography.X509Certificates;
     using System.Threading;
     using System.Threading.Tasks;
@@ -224,6 +225,43 @@ class C {
 
 
 
+        [DynamicInterfaceCastableImplementation]
+        interface ICast
+        {
+            void Dispose()
+            {
+                //// TODO look at this sample (`getvtbl`) to learn how to use members from the instance being cast to `icast`: https://github.com/dotnet/samples/blob/main/core/interop/IDynamicInterfaceCastable/src/ManagedApp/NativeObject.cs
+
+                Console.WriteLine("hello");
+            }
+        }
+
+        class Castable : IDynamicInterfaceCastable
+        {
+            public RuntimeTypeHandle GetInterfaceImplementation(RuntimeTypeHandle interfaceType)
+            {
+                return typeof(ICast).TypeHandle;
+            }
+
+            public bool IsInterfaceImplemented(RuntimeTypeHandle interfaceType, bool throwIfNotImplemented)
+            {
+                return true;
+            }
+        }
+
+        [TestMethod]
+        public void Cast()
+        {
+            var castable = new Castable();
+            if (castable is ICast disposable)
+            {
+                disposable.Dispose();
+            }
+            else
+            {
+                Assert.Fail();
+            }
+        }
 
 
 
