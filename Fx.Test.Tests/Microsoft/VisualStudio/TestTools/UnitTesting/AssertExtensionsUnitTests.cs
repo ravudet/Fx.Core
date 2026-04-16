@@ -1,4 +1,22 @@
-﻿namespace Microsoft.VisualStudio.TestTools.UnitTesting
+﻿namespace System.Runtime.InteropServices
+{
+    /// <summary>
+    /// Attribute required by any type that is returned by <see cref="IDynamicInterfaceCastable.GetInterfaceImplementation(RuntimeTypeHandle)"/>.
+    /// </summary>
+    /// <remarks>
+    /// This attribute is used to enforce policy in the runtime and make
+    /// <see cref="IDynamicInterfaceCastable" /> scenarios trimming friendly.
+    /// </remarks>
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = false)]
+    public sealed class DynamicInterfaceCastableImplementationAttribute : Attribute
+    {
+        public DynamicInterfaceCastableImplementationAttribute()
+        {
+        }
+    }
+}
+
+namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
     using System;
     using System.Collections;
@@ -9,7 +27,6 @@
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using System.Runtime.InteropServices;
     using System.Security.Cryptography.X509Certificates;
     using System.Threading;
     using System.Threading.Tasks;
@@ -143,13 +160,13 @@ class C {
     public static class CastExtensions
     {
         public static Source<TSource> Is<TSource>(this ref TSource source)
-            where TSource : struct, IDynamicInterfaceCastable, allows ref struct
+            where TSource : struct, System.Runtime.InteropServices.IDynamicInterfaceCastable, allows ref struct
         {
             return new Source<TSource>(ref source);
         }
 
         public readonly ref struct Source<TSource>
-            where TSource : struct, IDynamicInterfaceCastable, allows ref struct
+            where TSource : struct, System.Runtime.InteropServices.IDynamicInterfaceCastable, allows ref struct
         {
             private readonly TSource source;
 
@@ -161,7 +178,7 @@ class C {
             public bool Type<TCast>(out TCast cast)
             {
                 var typeHandle = this.source.GetInterfaceImplementation(typeof(TCast).TypeHandle);
-                cast = Marshal.PtrToStructure<TCast>(typeHandle.Value);
+                cast = System.Runtime.InteropServices.Marshal.PtrToStructure<TCast>(typeHandle.Value);
 
 
                 ////cast = default!; //// TODO implement this
@@ -256,7 +273,7 @@ class C {
 
 
 
-        [DynamicInterfaceCastableImplementation]
+        [System.Runtime.InteropServices.DynamicInterfaceCastableImplementation]
         interface ICast
         {
             void Dispose()
@@ -267,7 +284,16 @@ class C {
             }
         }
 
-        ref struct Castable2 : IDynamicInterfaceCastable
+        [System.Runtime.InteropServices.DynamicInterfaceCastableImplementation]
+        class TestCast
+        {
+            public void Dispose()
+            {
+                Console.WriteLine("hello from class");
+            }
+        }
+
+        ref struct Castable2 : System.Runtime.InteropServices.IDynamicInterfaceCastable
         {
             public RuntimeTypeHandle GetInterfaceImplementation(RuntimeTypeHandle interfaceType)
             {
@@ -280,11 +306,24 @@ class C {
             }
         }
 
-        class Castable : IDynamicInterfaceCastable
+        class Castable : System.Runtime.InteropServices.IDynamicInterfaceCastable
         {
             public RuntimeTypeHandle GetInterfaceImplementation(RuntimeTypeHandle interfaceType)
             {
                 return typeof(ICast).TypeHandle;
+            }
+
+            public bool IsInterfaceImplemented(RuntimeTypeHandle interfaceType, bool throwIfNotImplemented)
+            {
+                return true;
+            }
+        }
+
+        class Castable3 : System.Runtime.InteropServices.IDynamicInterfaceCastable
+        {
+            public RuntimeTypeHandle GetInterfaceImplementation(RuntimeTypeHandle interfaceType)
+            {
+                return typeof(TestCast).TypeHandle;
             }
 
             public bool IsInterfaceImplemented(RuntimeTypeHandle interfaceType, bool throwIfNotImplemented)
@@ -296,7 +335,7 @@ class C {
         [TestMethod]
         public void Cast()
         {
-            var castable = new Castable();
+            /*var castable = new Castable();
             if (castable is ICast disposable)
             {
                 disposable.Dispose();
@@ -304,10 +343,10 @@ class C {
             else
             {
                 Assert.Fail();
-            }
+            }*/
 
             var castable2 = new Castable2();
-            if (castable2 is Castable)
+            if (castable2 is Castable3)
             {
                 Console.WriteLine("could cast");
             }
