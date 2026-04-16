@@ -307,7 +307,7 @@ class C {
             }
 
             var castable2 = new Castable2();
-            if (castable is Castable2)
+            if (castable2 is Castable)
             {
                 Console.WriteLine("could cast");
             }
