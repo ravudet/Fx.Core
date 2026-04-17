@@ -1,4 +1,4 @@
-﻿namespace System.Runtime.InteropServices
+﻿/*namespace System.Runtime.InteropServices
 {
     /// <summary>
     /// Attribute required by any type that is returned by <see cref="IDynamicInterfaceCastable.GetInterfaceImplementation(RuntimeTypeHandle)"/>.
@@ -14,7 +14,7 @@
         {
         }
     }
-}
+}*/
 
 namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
@@ -273,10 +273,16 @@ class C {
 
 
 
-        [System.Runtime.InteropServices.DynamicInterfaceCastableImplementation]
-        public interface ICast
+        public interface ICastBase
         {
-            void Dispose()
+            void Dispose();
+        }
+
+
+        [System.Runtime.InteropServices.DynamicInterfaceCastableImplementation]
+        public interface ICast : ICastBase
+        {
+            void ICastBase.Dispose()
             {
                 //// TODO look at this sample (`getvtbl`) to learn how to use members from the instance being cast to `icast`: https://github.com/dotnet/samples/blob/main/core/interop/IDynamicInterfaceCastable/src/ManagedApp/NativeObject.cs
 
@@ -284,7 +290,7 @@ class C {
             }
         }
 
-        [System.Runtime.InteropServices.DynamicInterfaceCastableImplementation]
+        //[System.Runtime.InteropServices.DynamicInterfaceCastableImplementation]
         class TestCast
         {
             public void Dispose()
@@ -335,7 +341,7 @@ class C {
         [TestMethod]
         public void Cast()
         {
-            /*var castable = new Castable();
+            var castable = new Castable();
             if (castable is ICast disposable)
             {
                 disposable.Dispose();
@@ -343,13 +349,13 @@ class C {
             else
             {
                 Assert.Fail();
-            }*/
+            }
 
-            var castable2 = new Castable2();
+            /*var castable2 = new Castable2();
             if (castable2 is Castable3)
             {
                 Console.WriteLine("could cast");
-            }
+            }*/
 
             /*if (castable2.Is().Type<ICast>(out var disposable2))
             {
