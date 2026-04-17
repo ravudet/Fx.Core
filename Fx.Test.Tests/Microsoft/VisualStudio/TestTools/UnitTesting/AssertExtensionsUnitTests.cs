@@ -193,7 +193,7 @@ class C {
     {
 
         //// TODO does CA2008 change anything about your `either` stuff?
-
+        //// TODO ca2261 your tasks should all the options and also strongly type that task<T> shouldn't allow this option 
 
 
 
@@ -208,7 +208,46 @@ class C {
         //// TODO "suggestion" really means "message", but anything becomes noise when you don't suppress them; would a good SOP be to suppress messages into the suppression file? (so that you don't reduce readability)
         //// TODO should you have a test project for your config file?
 
+
+
+
+
+
+
+
+
+
+
+
         //// TODO you can use ref properties now for interlocked methods probably
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

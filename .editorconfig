@@ -488,6 +488,7 @@ dotnet_diagnostic.CA2257.severity = none # i first thought this rule was going t
 dotnet_diagnostic.CA2258.severity = warning
 dotnet_diagnostic.CA2259.severity = warning
 dotnet_diagnostic.CA2260.severity = warning # you use this pattern yourself; do you want to create an analyzer? maybe the analyzer could find "tself" parameters and guess that those are recurring (also check that they are constrained to implement the interface using themselves)?
+dotnet_diagnostic.CA2261.severity = warning # why is this even allowed in the first place? it's like someone didn't want `task<T>` to have different configure options from `task`; make sure your tasks deal with this
 
 
 
