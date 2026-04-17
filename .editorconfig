@@ -487,7 +487,7 @@ dotnet_diagnostic.CA2256.severity = warning # this rule seems crazy specific, bu
 dotnet_diagnostic.CA2257.severity = none # i first thought this rule was going to, in a backwards way, find the methods that don't have explicit interface implementations, but it doesn't it *really* does trigger for any non-static method defined directly on the marked interface; i feel like someone tightly fit these rules with the sample they created here: https://github.com/dotnet/samples/blob/main/core/interop/IDynamicInterfaceCastable/src/ManagedApp where the marked interfaces *derive* from an unmarked interface; this rule is dumb if inheritance isn't used
 dotnet_diagnostic.CA2258.severity = warning
 dotnet_diagnostic.CA2259.severity = warning
-dotnet_diagnostic.CA2260.severity = warning # you use this pattern yourself; do you want to create an analyzer? maybe the analyzer could find "tself" parameters and guess that those are recurring?
+dotnet_diagnostic.CA2260.severity = warning # you use this pattern yourself; do you want to create an analyzer? maybe the analyzer could find "tself" parameters and guess that those are recurring (also check that they are constrained to implement the interface)?
 
 
 
