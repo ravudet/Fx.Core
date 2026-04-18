@@ -494,7 +494,13 @@ dotnet_diagnostic.CA2263.severity = warning
 dotnet_diagnostic.CA2264.severity = warning # i do wonder why they chose not to make this static helper generic, it would resolve this issue
 dotnet_diagnostic.CA2265.severity = warning # this one is weirdly needed; normally, a struct (even a ref struct) compared to null will get boxed and use the `==` defined on objects; in the case of a ref struct, this will result in a compiler error, and in the case of a struct, this will result in a statement that always evaluates to false; for span, though, the null gets converted to span.empty, and so the comparison happens anyway; not sure why that is the behavior; since normally this would be a compiler error, i think it makes sense to have this rule enabled; i *don't* think it makes sense to also have the rule check for `default`, since that's a totally normal ref struct thing to do; maybe it's a perf thing because, for empty cases, `span == default` is going to compare the length and a null pointer, where `span.isempty` will just check the length
 
+## code style
 
+### language and unnecessary code
+
+dotnet_diagnostic.IDE0001.severity = warning
+dotnet_diagnostic.IDE0002.severity = none # TODO i would actually like a rule that requires being more explicit; copy/paste code is more painful and error prone when implicit
+dotnet_diagnostic.IDE0003.severity = none # same as above, plus `this` vs `base` explicitness
 
 
 
