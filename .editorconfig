@@ -489,9 +489,10 @@ dotnet_diagnostic.CA2258.severity = warning
 dotnet_diagnostic.CA2259.severity = warning
 dotnet_diagnostic.CA2260.severity = warning # you use this pattern yourself; do you want to create an analyzer? maybe the analyzer could find "tself" parameters and guess that those are recurring (also check that they are constrained to implement the interface using themselves)?
 dotnet_diagnostic.CA2261.severity = warning # why is this even allowed in the first place? it's like someone didn't want `task<T>` to have different configure options from `task`; make sure your tasks deal with this
-dotnet_diagnostic.CA2261.severity = none # why is there even a configuration to set the limit?
-dotnet_diagnostic.CA2262.severity = warning
-dotnet_diagnostic.CA2263.severity = warning # i do wonder why they chose not to make this static helper generic, it would resolve this issue
+dotnet_diagnostic.CA2262.severity = none # why is there even a configuration to set the limit?
+dotnet_diagnostic.CA2263.severity = warning
+dotnet_diagnostic.CA2264.severity = warning # i do wonder why they chose not to make this static helper generic, it would resolve this issue
+dotnet_diagnostic.CA2265.severity = warning # this one is weirdly needed; normally, a struct (even a ref struct) compared to null will get boxed and use the `==` defined on objects; in the case of a ref struct, this will result in a compiler error, and in the case of a struct, this will result in a statement that always evaluates to false; for span, though, the null gets converted to span.empty, and so the comparison happens anyway; not sure why that is the behavior; since normally this would be a compiler error, i think it makes sense to have this rule enabled; i *don't* think it makes sense to also have the rule check for `default`, since that's a totally normal ref struct thing to do; maybe it's a perf thing because, for empty cases, `span == default` is going to compare the length and a null pointer, where `span.isempty` will just check the length
 
 
 

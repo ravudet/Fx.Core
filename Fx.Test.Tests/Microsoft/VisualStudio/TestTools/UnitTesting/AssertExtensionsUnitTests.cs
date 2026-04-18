@@ -37,6 +37,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using Microsoft.CodeAnalysis.Diagnostics;
     using Microsoft.CodeAnalysis.Scripting;
     using Microsoft.CodeAnalysis.Text;
+    using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 
     public class Buzz(int c)
     {
@@ -307,6 +308,60 @@ class C {
 
 
         //// TODO look into "contracts" (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.contract?view=net-10.0) and the `pure` attribute (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.pureattribute?view=net-10.0)
+
+
+
+
+
+
+
+
+
+
+
+
+        struct StructEquals
+        {
+            public static bool operator ==(StructEquals first, StructEquals second)
+            {
+                throw new Exception("HERE");
+            }
+            public static bool operator !=(StructEquals first, StructEquals second)
+            {
+                return !(first == second);
+            }
+        }
+
+
+
+
+
+        [TestMethod]
+        public void NullStruct()
+        {
+            StructEquals foo = default;
+            if (foo == null)
+            {
+
+            }
+        }
+
+
+
+
+        [TestMethod]
+        public void NullSpan()
+        {
+            Span<int> span = new[] { 1, 2, 3 };
+            if (span == null)
+            {
+
+            }
+        }
+
+
+
+
 
 
 
