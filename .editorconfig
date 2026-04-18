@@ -502,6 +502,8 @@ dotnet_diagnostic.IDE0001.severity = warning
 dotnet_diagnostic.IDE0002.severity = none # TODO i would actually like a rule that requires being more explicit; copy/paste code is more painful and error prone when implicit
 dotnet_diagnostic.IDE0003.severity = none # same as above, plus `this` vs `base` explicitness
 dotnet_diagnostic.IDE0004.severity = warning # i have a feeling i will hit this somewhat often, but also that i should be able to justify it in such cases
+dotnet_diagnostic.IDE0005.severity = warning
+# NOTE: there is no IDE0006
 
 
 
