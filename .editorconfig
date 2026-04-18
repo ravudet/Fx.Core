@@ -504,8 +504,11 @@ dotnet_diagnostic.IDE0003.severity = none # same as above, plus `this` vs `base`
 dotnet_diagnostic.IDE0004.severity = warning # i have a feeling i will hit this somewhat often, but also that i should be able to justify it in such cases
 dotnet_diagnostic.IDE0005.severity = warning
 # NOTE: there is no IDE0006
-
-
+dotnet_diagnostic.IDE0007.severity = warning # explicit types are a pain when generics are used; variable names should be helpful enough, plus you either are constructing the instance or have a factory method with a name that should be helpful; var also helps when refactoring spike code; plus there are cases where you literally have to use var, so its the kernel
+csharp_style_var_elsewhere = true:warning
+csharp_style_var_for_built_in_types = true:warning
+csharp_style_var_when_type_is_apparent = true:warning
+# TODO TODO TODO how do the option severities interact with the rule severity?
 
 
 
@@ -732,9 +735,7 @@ dotnet_style_qualification_for_property = true:warning
 ### var preferences
 
 [*.cs]
-csharp_style_var_elsewhere = true:warning
-csharp_style_var_for_built_in_types = true:warning
-csharp_style_var_when_type_is_apparent = true:warning
+
 csharp_prefer_simple_default_expression = true:suggestion
 
 ## naming style
