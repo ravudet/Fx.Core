@@ -320,6 +320,13 @@ class C {
 
 
 
+        class ThisAccessor
+        {
+            private int foo;
+
+
+        }
+
 
 
 
