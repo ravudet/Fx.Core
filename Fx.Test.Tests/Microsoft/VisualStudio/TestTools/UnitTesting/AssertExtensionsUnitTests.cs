@@ -204,6 +204,7 @@ class C {
         //// TODO dotnet_diagnostic.CA1000.severity = warning doesn't flag the method call like the doc says
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1031 the first example says `systemexception` but should say `system.exception`
         //// TODO broken xml: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca5393
+        //// TODO ide0007 and ide0008 links both "appear" as ide0008 (compare with ide0003 and ide0009) in the list on the left https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0007-ide0008
 
         //// TODO distributing via nuget: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#distribution-in-nuget-packages
         //// TODO note early on in the article series that you are big on "don't just enable something because it's a rule; you need to understand it"; anything else is superstition
