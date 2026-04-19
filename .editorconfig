@@ -505,10 +505,10 @@ dotnet_diagnostic.IDE0004.severity = warning # i have a feeling i will hit this 
 dotnet_diagnostic.IDE0005.severity = warning
 # NOTE: there is no IDE0006
 dotnet_diagnostic.IDE0007.severity = warning # explicit types are a pain when generics are used; variable names should be helpful enough, plus you either are constructing the instance or have a factory method with a name that should be helpful; var also helps when refactoring spike code; plus there are cases where you literally have to use var, so its the kernel
-csharp_style_var_elsewhere = true:warning
-csharp_style_var_for_built_in_types = true:warning
-csharp_style_var_when_type_is_apparent = true:warning
-# TODO TODO TODO how do the option severities interact with the rule severity?
+csharp_style_var_elsewhere = true # NOTE: you are able to specify "severities" for the options; however, they only seem to apply when the `ide0007` rule isn't present at all; setting the rule to none, silent, warning, or error, and then setting the option to silent will always take the rule severity; if you comment out the rule, however, the severity on the option is honored; this might not be true for all rules and options, but it is true in this case
+csharp_style_var_for_built_in_types = true
+csharp_style_var_when_type_is_apparent = true
+dotnet_diagnostic.IDE0008.severity = none
 
 
 
