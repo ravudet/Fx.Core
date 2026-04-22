@@ -518,9 +518,7 @@ dotnet_diagnostic.IDE0010.severity = warning # this is good when a new enum memb
 dotnet_diagnostic.IDE0011.severity = warning # goto fail
 csharp_prefer_braces = true # adding it to be explicit; the idea of multiline is exactly why we want the rule anyway; this is a maintainability issue, not a style issue
 # NOTE: there are no rules from IDE0012-IDE0015
-dotnet_diagnostic.IDE0009.severity = none # i'm not opposed to this style, but it seems to be a pretty specific case of argument checking, which should be done through `argument.throwif...` instead
-
-
+# dotnet_diagnostic.IDE0016.severity = none # i'm not opposed to this style, but it seems to be a pretty specific case of argument checking, which should be done through `argument.throwif...` instead; also, i couldn't get this to trigger
 
 
 
