@@ -517,6 +517,9 @@ dotnet_style_qualification_for_event = true
 dotnet_diagnostic.IDE0010.severity = warning # this is good when a new enum member is added to ensure all consumers are covered; but this doesn't work for public api changes, so really what i'd like to see is: you always have to have a default case, and if the enum is assembly local, then you have to add the missing cases (which can passthrough to the default)
 dotnet_diagnostic.IDE0011.severity = warning # goto fail
 csharp_prefer_braces = true # adding it to be explicit; the idea of multiline is exactly why we want the rule anyway; this is a maintainability issue, not a style issue
+# NOTE: there are no rules from IDE0012-IDE0015
+dotnet_diagnostic.IDE0009.severity = none # i'm not opposed to this style, but it seems to be a pretty specific case of argument checking, which should be done through `argument.throwif...` instead
+
 
 
 
