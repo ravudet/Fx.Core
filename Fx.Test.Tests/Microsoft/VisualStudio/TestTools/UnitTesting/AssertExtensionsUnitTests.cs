@@ -333,6 +333,13 @@ class C {
 
         struct StructEquals
         {
+            private readonly int foo;
+
+            public void Foo()
+            {
+                Foo();
+            }
+
             public static bool operator ==(StructEquals first, StructEquals second)
             {
                 throw new Exception("HERE");

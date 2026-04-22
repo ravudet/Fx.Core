@@ -509,7 +509,12 @@ csharp_style_var_elsewhere = true # NOTE: you are able to specify "severities" f
 csharp_style_var_for_built_in_types = true
 csharp_style_var_when_type_is_apparent = true
 dotnet_diagnostic.IDE0008.severity = none
-dotnet_diagnostic.IDE0009.severity = warning # TODO configure this?
+dotnet_diagnostic.IDE0009.severity = warning
+dotnet_style_qualification_for_field = true # you are configuring these to be explicit
+dotnet_style_qualification_for_property = true
+dotnet_style_qualification_for_method = true
+dotnet_style_qualification_for_event = true
+
 
 
 
