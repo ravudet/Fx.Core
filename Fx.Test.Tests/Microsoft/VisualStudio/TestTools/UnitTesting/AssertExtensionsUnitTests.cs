@@ -321,6 +321,33 @@ class C {
 
 
 
+
+
+
+
+
+        public class ObjectInitializer
+        {
+            public string Foo { private get; init; } = "test";
+        }
+
+        public static class ObjectInitializerDriver
+        {
+            public static void DoWork()
+            {
+                var foo = new ObjectInitializer()
+                {
+                    Foo = "asdf",
+                };
+
+                Console.WriteLine(foo.Foo);
+            }
+        }
+
+
+
+
+
         class ThisAccessor
         {
             private int foo;
