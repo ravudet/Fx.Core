@@ -335,12 +335,17 @@ class C {
         {
             public static void DoWork()
             {
+                int value;
+                while (int.TryParse("42", out value))
+                {
+                }
+
                 var foo = new ObjectInitializer()
                 {
                     Foo = "asdf",
                 };
 
-                Console.WriteLine(foo.Foo);
+                //Console.WriteLine(foo.Foo);
             }
         }
 
