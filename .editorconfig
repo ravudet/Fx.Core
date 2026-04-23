@@ -541,6 +541,8 @@ dotnet_style_collection_initializer = false
 dotnet_style_prefer_collection_expression = when_types_exactly_match # if we *were* to have the granularity, i only want when the types match exactly; we should be explicit about what type ends up in a field or property since we potentially need to know how to cast for internal logic, and we need to protect against our caller for external logic
 dotnet_diagnostic.IDE0029.severity = warning # it's easy to get these backwards accidentally and stuff, especially when the inner expressions get more complex; also, cases where `x` computes some value, it gets recomputed (like `foo.Expensive() != null ? foo.Expensive() : foo.Default()`)
 dotnet_diagnostic.IDE0030.severity = warning # see ide0029
+dotnet_diagnostic.IDE0031.severity = warning # null propagations can be chained, ternaries can't
+dotnet_diagnostic.IDE0032.severity = warning # we don't need to duplicate boilerplate code; there used to be cases where you legitimately did this because you needed the backing field to be readonly; there might still be use cases to avoid autoprops, but those should be justified
 
 
 
@@ -668,9 +670,7 @@ csharp_prefer_system_threading_lock = true:warning
 
 [*.{cs,vb}]
 dotnet_diagnostic.IDE0270.severity = none#IDE0270: Use coalesce expression
-dotnet_style_null_propagation = true:warning
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
-dotnet_style_prefer_auto_properties = true:suggestion
 dotnet_style_prefer_simplified_boolean_expressions = true:warning
 dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 dotnet_style_prefer_conditional_expression_over_return = false:silent
