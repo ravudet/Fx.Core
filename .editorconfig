@@ -545,6 +545,7 @@ dotnet_diagnostic.IDE0031.severity = warning # null propagations can be chained,
 dotnet_diagnostic.IDE0032.severity = warning # we don't need to duplicate boilerplate code; there used to be cases where you legitimately did this because you needed the backing field to be readonly; there might still be use cases to avoid autoprops, but those should be justified
 
 
+# TODO remember that you need to remove the options from down below as you go along
 
 
 dotnet_diagnostic.IDE0038.severity = warning # see ide0020
