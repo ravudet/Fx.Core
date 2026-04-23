@@ -530,7 +530,16 @@ csharp_style_expression_bodied_methods = false
 dotnet_diagnostic.IDE0023.severity = warning # conversion operators should usually be a one-liner that just returns the new type from fields in the current type (or vice versa); deviations from this should be easily justified
 csharp_style_expression_bodied_operators = true # added to be explicit
 dotnet_diagnostic.IDE0024.severity = none # see ide0021
-
+dotnet_diagnostic.IDE0025.severity = none # this really only makes sense for properties taht shold be auto-props in the first place
+csharp_style_expression_bodied_properties = false
+dotnet_diagnostic.IDE0026.severity = none # see ide0021
+csharp_style_expression_bodied_indexers = false
+dotnet_diagnostic.IDE0027.severity = none # see ide0025
+csharp_style_expression_bodied_accessors = false
+# TODO you are here
+dotnet_diagnostic.IDE0028.severity = none
+dotnet_style_collection_initializer
+dotnet_style_prefer_collection_expression
 
 
 dotnet_diagnostic.IDE0038.severity = warning # see ide0020
@@ -635,7 +644,7 @@ csharp_using_directive_placement = inside_namespace:warning
 ### code-block preferences
 
 csharp_prefer_simple_using_statement = false:warning
-csharp_prefer_braces = true:warning
+
 csharp_style_namespace_declarations = block_scoped:warning
 csharp_style_prefer_method_group_conversion = false:silent
 csharp_style_prefer_top_level_statements = false:warning
@@ -644,12 +653,11 @@ csharp_prefer_system_threading_lock = true:warning
 
 ### expression-bodied members
 
-#csharp_style_expression_bodied_methods = false:silent
-#csharp_style_expression_bodied_constructors = false:silent
-#csharp_style_expression_bodied_operators = false:silent
-#csharp_style_expression_bodied_properties = false:silent
-#csharp_style_expression_bodied_indexers = false:silent
-#csharp_style_expression_bodied_accessors = false:silent
+
+
+
+
+
 #csharp_style_expression_bodied_lambdas = true:warning
 #csharp_style_expression_bodied_local_functions = false:warning
 
@@ -662,7 +670,6 @@ dotnet_style_null_propagation = true:warning
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
 dotnet_style_prefer_auto_properties = true:suggestion
 #dotnet_style_object_initializer = true:warning
-#dotnet_style_collection_initializer = true:silent
 dotnet_style_prefer_simplified_boolean_expressions = true:warning
 dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 dotnet_style_prefer_conditional_expression_over_return = false:silent
@@ -671,7 +678,7 @@ dotnet_style_explicit_tuple_names = true:warning
 dotnet_style_prefer_inferred_anonymous_type_member_names = true:warning
 #dotnet_style_prefer_compound_assignment = false:warning
 dotnet_style_prefer_simplified_interpolation = true:warning
-#dotnet_style_prefer_collection_expression = when_types_loosely_match:warning
+
 dotnet_style_namespace_match_folder = true:warning
 [*.cs]
 csharp_style_throw_expression = false:warning
@@ -890,7 +897,7 @@ dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, meth
 dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
 dotnet_naming_symbols.non_field_members.required_modifiers = 
 dotnet_style_object_initializer = true:suggestion
-dotnet_style_collection_initializer = true:suggestion
+
 dotnet_style_prefer_inferred_tuple_names = true:suggestion
 dotnet_style_prefer_compound_assignment = true:suggestion
-dotnet_style_prefer_collection_expression = when_types_loosely_match:suggestion
+
