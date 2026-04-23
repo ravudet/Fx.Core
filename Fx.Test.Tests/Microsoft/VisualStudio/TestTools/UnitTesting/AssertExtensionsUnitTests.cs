@@ -208,6 +208,7 @@ class C {
         //// TODO ide0007 and ide0008 links both "appear" as ide0008 (compare with ide0003 and ide0009; compare with ide0020 and ide0038) in the list on the left https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0007-ide0008
         //// TODO couldn't get this to trigger: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0016
         //// TODO ide0023 and ide0024 both "appear" as ide0024 (compare with ide0003 and ide0009; compare with ide0020 and ide0038); https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0023-ide0024
+        //// TODO ide0029 and ide0030 both "appear" as ide0030 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0029-ide0030-ide0270
 
         //// TODO distributing via nuget: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#distribution-in-nuget-packages
         //// TODO note early on in the article series that you are big on "don't just enable something because it's a rule; you need to understand it"; anything else is superstition
@@ -340,6 +341,9 @@ class C {
             public static int operator +(ObjectInitializer first, ObjectInitializer second)
             {
                 IEnumerable<int> foo = new List<int> { 1, 2, 3 };
+
+                var something = first.Foo != null ? first.Foo : "Asdf";
+
                 return 0;
             }
         }
