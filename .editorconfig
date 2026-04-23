@@ -536,10 +536,9 @@ dotnet_diagnostic.IDE0026.severity = none # see ide0021
 csharp_style_expression_bodied_indexers = false
 dotnet_diagnostic.IDE0027.severity = none # see ide0025
 csharp_style_expression_bodied_accessors = false
-# TODO you are here
-dotnet_diagnostic.IDE0028.severity = none
-dotnet_style_collection_initializer
-dotnet_style_prefer_collection_expression
+dotnet_diagnostic.IDE0028.severity = none # you can't have `var` on the left-hand side so i don't really see the point; implicit constructors are the other case, and instance constructors shouldn't be implicit (not sure if there's a rule for that...; but this is because the order of the properties and fields within a file is necessarily influenced by the construction order of operations, but we want the file layout to be whatever is good for maintainability and understandability; an explicit constructor lets us have the best file layout and have the proper order of operations); there is a performance rule for static constructors that says to prefer implicit, so we *might* use the collection initializer in those cases, and i would be a fan of doing it in those cases, but this rule doesn't allow that granularity
+dotnet_style_collection_initializer = false
+dotnet_style_prefer_collection_expression = when_types_exactly_match
 
 
 dotnet_diagnostic.IDE0038.severity = warning # see ide0020

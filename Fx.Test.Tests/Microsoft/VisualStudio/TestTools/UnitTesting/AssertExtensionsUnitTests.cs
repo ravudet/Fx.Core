@@ -27,6 +27,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.InteropServices.Marshalling;
     using System.Security.Cryptography.X509Certificates;
     using System.Threading;
     using System.Threading.Tasks;
@@ -338,6 +339,7 @@ class C {
 
             public static int operator +(ObjectInitializer first, ObjectInitializer second)
             {
+                IEnumerable<int> foo = new List<int> { 1, 2, 3 };
                 return 0;
             }
         }
