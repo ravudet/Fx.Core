@@ -526,7 +526,10 @@ dotnet_diagnostic.IDE0020.severity = warning # combined with ide0038; 20 is when
 dotnet_diagnostic.IDE0021.severity = none # i wish i could *require* a body; but we certainly aren't going to *prefer* this
 csharp_style_expression_bodied_constructors = false # adding to be explicit; single line configuration shouldn't have anything to do with this decision; this is about overall readability and changing from one syntax to another when reading across different method/classes/file/projects; it's the same reason i don't want to allow linq query syntax (not sure if there's a rule for that) (plus, with the linq query syntax, there's the point that some things can only be written from that syntax, so it's clear that those things are being invoked)
 dotnet_diagnostic.IDE0022.severity = none # see ide0021
-csharp_style_expression_bodied_constructors = false
+csharp_style_expression_bodied_methods = false
+#dotnet_diagnostic.IDE0023.severity = warning # conversion operators should usually be a one-liner that just returns the new type from fields in the current type (or vice versa); deviations from this should be easily justified # TODO i can't get this to trigger
+csharp_style_expression_bodied_operators = true # added to be explicit
+#dotnet_diagnostic.IDE0024.severity = none # see ide0021
 
 
 
@@ -641,14 +644,14 @@ csharp_prefer_system_threading_lock = true:warning
 
 ### expression-bodied members
 
-csharp_style_expression_bodied_methods = false:silent
-csharp_style_expression_bodied_constructors = false:silent
-csharp_style_expression_bodied_operators = false:silent
-csharp_style_expression_bodied_properties = false:silent
-csharp_style_expression_bodied_indexers = false:silent
-csharp_style_expression_bodied_accessors = false:silent
-csharp_style_expression_bodied_lambdas = true:warning
-csharp_style_expression_bodied_local_functions = false:warning
+#csharp_style_expression_bodied_methods = false:silent
+#csharp_style_expression_bodied_constructors = false:silent
+#csharp_style_expression_bodied_operators = false:silent
+#csharp_style_expression_bodied_properties = false:silent
+#csharp_style_expression_bodied_indexers = false:silent
+#csharp_style_expression_bodied_accessors = false:silent
+#csharp_style_expression_bodied_lambdas = true:warning
+#csharp_style_expression_bodied_local_functions = false:warning
 
 ### expression-level preferences
 

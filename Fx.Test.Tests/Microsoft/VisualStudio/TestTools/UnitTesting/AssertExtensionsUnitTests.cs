@@ -194,7 +194,7 @@ class C {
     {
 
         //// TODO does CA2008 change anything about your `either` stuff?
-        //// TODO ca2261 your tasks should all the options and also strongly type that task<T> shouldn't allow this option 
+        //// TODO ca2261 your tasks should have all the options and also strongly type that task<T> shouldn't allow this option 
 
 
 
@@ -207,6 +207,7 @@ class C {
         //// TODO ide0007 and ide0008 links both "appear" as ide0008 (compare with ide0003 and ide0009; compare with ide0020 and ide0038) in the list on the left https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0007-ide0008
         //// TODO couldn't get this to trigger: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0016
         //// TODO ide0023 and ide0024 both "appear" as ide0024 (compare with ide0003 and ide0009; compare with ide0020 and ide0038); https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0023-ide0024
+        //// TODO couldn't get this to trigger: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0023-ide0024
 
         //// TODO distributing via nuget: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#distribution-in-nuget-packages
         //// TODO note early on in the article series that you are big on "don't just enable something because it's a rule; you need to understand it"; anything else is superstition
@@ -330,6 +331,16 @@ class C {
         public class ObjectInitializer
         {
             public string Foo { private get; init; } = "test";
+
+            public static implicit operator string(ObjectInitializer objectInitializer)
+            {
+                return objectInitializer.Foo;
+            }
+
+            public static int operator +(ObjectInitializer first, ObjectInitializer second)
+            {
+                return 0;
+            }
         }
 
         public static class ObjectInitializerDriver
