@@ -525,6 +525,8 @@ dotnet_diagnostic.IDE0019.severity = warning # there's no functional difference,
 dotnet_diagnostic.IDE0020.severity = warning # combined with ide0038; 20 is when there is a local variant, 38 is when there's not; 20 is a good idea because we can make mistakes with the hard cast after the `is`, and the code maintainer is even more likely to make that mistake; 38 is a good idea because it's someone wanting to avoid creating a name for something that clearly exists in the method scope, which means they need to improve their design (or at least their understanding of the design)
 dotnet_diagnostic.IDE0021.severity = none # i wish i could *require* a body; but we certainly aren't going to *prefer* this
 csharp_style_expression_bodied_constructors = false # adding to be explicit; single line configuration shouldn't have anything to do with this decision; this is about overall readability and changing from one syntax to another when reading across different method/classes/file/projects; it's the same reason i don't want to allow linq query syntax (not sure if there's a rule for that) (plus, with the linq query syntax, there's the point that some things can only be written from that syntax, so it's clear that those things are being invoked)
+dotnet_diagnostic.IDE0022.severity = none # see ide0021
+csharp_style_expression_bodied_constructors = false
 
 
 
