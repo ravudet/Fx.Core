@@ -194,7 +194,7 @@ class C {
     {
 
         //// TODO does CA2008 change anything about your `either` stuff?
-        //// TODO ca2261 your tasks should have all the options and also strongly type that task<T> shouldn't allow this option 
+        //// TODO ca2261 your tasks should have all the options and also strongly type that task<T> shouldn't allow this option //// TODO i think you're using task<nothing> as equivalent to task, so maybe just have an extension on task<nothing> that has the additional option
 
 
 
