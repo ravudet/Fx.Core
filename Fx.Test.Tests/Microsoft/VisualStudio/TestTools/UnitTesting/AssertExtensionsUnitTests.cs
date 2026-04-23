@@ -209,6 +209,7 @@ class C {
         //// TODO couldn't get this to trigger: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0016
         //// TODO ide0023 and ide0024 both "appear" as ide0024 (compare with ide0003 and ide0009; compare with ide0020 and ide0038); https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0023-ide0024
         //// TODO ide0029 and ide0030 both "appear" as ide0030 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0029-ide0030-ide0270
+        //// TODO i can't get ide0270 to trigger
 
         //// TODO distributing via nuget: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#distribution-in-nuget-packages
         //// TODO note early on in the article series that you are big on "don't just enable something because it's a rule; you need to understand it"; anything else is superstition
@@ -344,7 +345,21 @@ class C {
 
                 var something = first.Foo != null ? first.Foo : "Asdf";
 
+                something = first.Foo is object ? first.Foo : throw new Exception();
+
                 return 0;
+            }
+
+            class C
+            {
+                void M()
+                {
+                    var item = FindItem() as C;
+                    if (item == null)
+                        throw new System.InvalidOperationException();
+                }
+
+                object? FindItem() => null;
             }
         }
 

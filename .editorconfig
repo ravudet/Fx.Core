@@ -544,7 +544,7 @@ dotnet_diagnostic.IDE0030.severity = warning # see ide0029
 
 
 dotnet_diagnostic.IDE0038.severity = warning # see ide0020
-
+dotnet_diagnostic.IDE0270.severity = none # see ide0029 # TODO i thought this would catch `first.Foo is not null ? first.Foo : "asdf"`, but it doesn't... # TODO i can't get this rule to trigger # TODO making this `none` for now, because i don't know what it actually triggers against
 
 
 
