@@ -212,9 +212,11 @@ class C {
         //// TODO i can't get ide0270 to trigger
 
         //// TODO distributing via nuget: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#distribution-in-nuget-packages
+        ////    TODO consider that you have the rules; but you also have your custom rules, and some of those custom rules will rely on fx.core (like the `assert.that` rule), and some of those rules will not rely on fx.core (like exception documentation); how can you combine all of these cases? are there too many nuget package permutations, or can you make it work? (also, think about the fact that you might have rules that rely on libraries *other than* fx.core, like fx.test or something (actually this is the exact `assert.that` situation))
         //// TODO note early on in the article series that you are big on "don't just enable something because it's a rule; you need to understand it"; anything else is superstition
         //// TODO when you go back through to write the articles, double check that, for the IDE rules, that the option severities are always overridden by the rule severity, and if that is the desireable behavior
         //// TODO when you go back through to write the articles, consider the severity of the rules; some of them should likely be `suggestion` or `silent`
+        //// TODO when you go back through to write the articles, consider if any rules should be `error`
         //// TODO "suggestion" really means "message", but anything becomes noise when you don't suppress them; would a good SOP be to suppress messages into the suppression file? (so that you don't reduce readability)
         //// TODO should you have a test project for your config file?
 
@@ -943,6 +945,7 @@ class C {
             if (another == null)
             {
                 throw new Exception("tODO");
+                Console.WriteLine("asdf");
             }
 
 
