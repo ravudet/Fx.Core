@@ -543,6 +543,9 @@ dotnet_diagnostic.IDE0029.severity = warning # it's easy to get these backwards 
 dotnet_diagnostic.IDE0030.severity = warning # see ide0029
 dotnet_diagnostic.IDE0031.severity = warning # null propagations can be chained, ternaries can't
 dotnet_diagnostic.IDE0032.severity = warning # we don't need to duplicate boilerplate code; there used to be cases where you legitimately did this because you needed the backing field to be readonly; there might still be use cases to avoid autoprops, but those should be justified
+dotnet_diagnostic.IDE0033.severity = warning # readability
+dotnet_diagnostic.IDE0034.severity = warning # i'm torn; i agree with this for cases like the documentation uses where the left hand side *requires* declaring the type (there are also cases like static fields being initialized in a static constructor); but the rule might give the wrong impression that we prefer `string? value = default` over `var value = default(string)`; maybe you should write a rule that demonstrates this?
+
 
 
 # TODO remember that you need to remove the options from down below as you go along
@@ -675,7 +678,6 @@ dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
 dotnet_style_prefer_simplified_boolean_expressions = true:warning
 dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 dotnet_style_prefer_conditional_expression_over_return = false:silent
-dotnet_style_explicit_tuple_names = true:warning
 #dotnet_style_prefer_inferred_tuple_names = true:warning
 dotnet_style_prefer_inferred_anonymous_type_member_names = true:warning
 #dotnet_style_prefer_compound_assignment = false:warning
@@ -684,7 +686,6 @@ dotnet_style_prefer_simplified_interpolation = true:warning
 dotnet_style_namespace_match_folder = true:warning
 [*.cs]
 csharp_style_prefer_null_check_over_type_check = true:warning
-#csharp_prefer_simple_default_expression = false:warning
 csharp_style_prefer_local_over_anonymous_function = true:warning
 csharp_style_prefer_index_operator = false:warning
 csharp_style_prefer_range_operator = true:suggestion
@@ -758,7 +759,6 @@ csharp_style_prefer_extended_property_pattern = true:warning # i hate this synta
 
 [*.cs]
 
-csharp_prefer_simple_default_expression = true:suggestion
 
 ## naming style
 

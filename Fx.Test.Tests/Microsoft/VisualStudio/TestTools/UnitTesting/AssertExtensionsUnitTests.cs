@@ -965,6 +965,10 @@ class C {
 
             Exception? subsequent = default;
 
+            var again = default(Exception);
+
+            Exception? again2 = default;
+
             var tuple = GetTuple();
             var notTuple = AnotherParse("asdf");
 
