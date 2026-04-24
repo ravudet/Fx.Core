@@ -334,6 +334,8 @@ class C {
             void DoWork();
 
             internal void DoWork2();
+
+            protected void DoWork3();
         }
 
 
@@ -344,9 +346,25 @@ class C {
                 throw new NotImplementedException();
             }
 
-            internal void DoWork2()
+            void IModifiersExample.DoWork3()
             {
                 throw new NotImplementedException();
+            }
+
+            void IModifiersExample.DoWork2()
+            {
+                throw new NotImplementedException();
+            }
+
+            public static void Test(ModifiersExample modifiersExample)
+            {
+                modifiersExample.DoWork();
+            }
+
+            public static void Test(IModifiersExample modifiersExample)
+            {
+                modifiersExample.DoWork();
+                modifiersExample.DoWork2(); // TODO i am pretty sure this won't be available when called from another library
             }
         }
 
