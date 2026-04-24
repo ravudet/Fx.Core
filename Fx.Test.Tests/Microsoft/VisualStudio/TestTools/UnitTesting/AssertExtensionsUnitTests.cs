@@ -329,6 +329,29 @@ class C {
 
 
 
+        public interface IModifiersExample
+        {
+            void DoWork();
+
+            internal void DoWork2();
+        }
+
+
+        public class ModifiersExample : IModifiersExample
+        {
+            public void DoWork()
+            {
+                throw new NotImplementedException();
+            }
+
+            internal void DoWork2()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+
 
 
         sealed public class ObjectInitializer
