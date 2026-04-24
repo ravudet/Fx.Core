@@ -962,7 +962,7 @@ class C {
 
             (string name, int age) anotherCustomer = GetTuple();
 
-            var more = (name2: customer.name, customer.age);
+            var more = (name2: customer.name, age: customer.age);
 
             Console.WriteLine(customer.ToString());
             Console.WriteLine($"{customer.ToString()}");
