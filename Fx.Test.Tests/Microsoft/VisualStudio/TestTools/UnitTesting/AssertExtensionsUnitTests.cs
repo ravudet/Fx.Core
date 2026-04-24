@@ -306,9 +306,6 @@ class C {
         //// TODO add an analyzer that *disallows* primary constructors (the opposite of csharp_style_prefer_primary_constructors)
         //// TODO you know, the old style cop docs used to actually have pretty good justifications for why you want to change your code...
         //// TODO write articles to justify the non-style rules //// TODO do you want articles, or do you want to put them as comments in the config file? //// TODO probably write articles and link to them in the rules
-        ////    TODO dotnet_style_explicit_tuple_names is really saying "*when* explicit names are available, use them", not "always add explicit names"
-        ////    TODO dotnet_style_prefer_inferred_tuple_names is saying that, if a name is not changing, don't be explicit about this; i don't think i like any way that this rule can be configured, i would prefer that it's always either all inferred or all explicit; i'm disabling this rule and i'm going to write my own i think
-        ////    TODO dotnet_style_prefer_inferred_anonymous_type_member_names is the same as inferred tuple names, and i have the same thoughts on it
         ////    TODO csharp_style_prefer_implicitly_typed_lambda_expression also triggers cases where you are passing a lambda as a parameter to a method `Frub((int x) => { });`
         ////    TODO for `csharp_style_prefer_tuple_swap` i wonder if the compiler or jiter do magic here; isn't the tuple going to take extra (stack) memory? i do think it looks neat though
         ////    TODO i think `csharp_style_inlined_variable_declaration` would make a lot more sense if `while (!int.TryParse(value, out var parsed)) { } Console.WriteLine(parsed);` worked
