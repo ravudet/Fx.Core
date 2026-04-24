@@ -212,6 +212,7 @@ class C {
         //// TODO i can't get ide0270 to trigger
 
         //// TODO ide0037 makes a good point about options on disabled rules; you should do another pass to add all of the options as disabled for the `none` rules, making the same note that ide0037 has
+        //// TODO you should do the same thing for enabled rules, and explicitly select the default; this is in regards to "don't just enable something because it's a rule, you need to understand it
         //// TODO distributing via nuget: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#distribution-in-nuget-packages
         ////    TODO consider that you have the rules; but you also have your custom rules, and some of those custom rules will rely on fx.core (like the `assert.that` rule), and some of those rules will not rely on fx.core (like exception documentation); how can you combine all of these cases? are there too many nuget package permutations, or can you make it work? (also, think about the fact that you might have rules that rely on libraries *other than* fx.core, like fx.test or something (actually this is the exact `assert.that` situation))
         //// TODO "suggestion" really means "message", but anything becomes noise when you don't suppress them; would a good SOP be to suppress messages into the suppression file? (so that you don't reduce readability); note this early on in the article series
