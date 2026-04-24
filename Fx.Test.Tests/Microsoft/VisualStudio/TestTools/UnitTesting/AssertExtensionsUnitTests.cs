@@ -342,6 +342,8 @@ class C {
 
             public static int operator +(ObjectInitializer first, ObjectInitializer second)
             {
+                Func<int, int> func = val => val * 2;
+
                 IEnumerable<int> foo = new List<int> { 1, 2, 3 };
 
                 var something = first.Foo != null ? first.Foo : "Asdf";
