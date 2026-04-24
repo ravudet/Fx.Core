@@ -332,7 +332,7 @@ class C {
 
 
 
-        public class ObjectInitializer
+        sealed public class ObjectInitializer
         {
             public string Foo { private get; init; } = "test";
 
@@ -354,6 +354,10 @@ class C {
 
             class C
             {
+                static async public void Foo()
+                {
+                }
+
                 void M()
                 {
                     var item = FindItem() as C;
