@@ -574,9 +574,11 @@ dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity #i 
 dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:suggestion # for sure people don't have a good intuition of the precedence for these operators, so we should require them
 dotnet_style_parentheses_in_other_binary_operators = always_for_clarity # i think that the boolean operators are less clear, especially when method calls occur and things like that # TODO also check the above rationale about method calls
 dotnet_style_parentheses_in_other_operators = never_if_unnecessary  # i don't know what all of the operators are here, but `.` is one of them, and parens for that is awful; making it a suggestion to remove them when unnecessary because they really should be *added* when clarity is poor for a specific situation
+dotnet_diagnostic.IDE0049.severity = warning
+dotnet_style_predefined_type_for_locals_parameters_members = true
+dotnet_style_predefined_type_for_member_access = true
 
-
-
+# TODO can you indent to the options so that everything is easier to read?
 
 
 # TODO remember that you need to remove the options from down below as you go along
@@ -724,11 +726,6 @@ csharp_style_prefer_utf8_string_literals = true:warning
 csharp_style_unused_value_assignment_preference = unused_local_variable:silent
 csharp_style_unused_value_expression_statement_preference = discard_variable:warning
 
-
-### language keywords vs bcl types preferences
-
-dotnet_style_predefined_type_for_locals_parameters_members = true:warning
-dotnet_style_predefined_type_for_member_access = true:warning
 
 ### modifier preferences
 
