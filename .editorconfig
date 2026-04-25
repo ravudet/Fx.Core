@@ -557,6 +557,12 @@ dotnet_diagnostic.IDE0039.severity = warning # way easier to read; with the anon
 csharp_style_prefer_local_over_anonymous_function = true
 dotnet_diagnostic.IDE0040.severity = warning # i want to be explicit; and for interfaces they are always public, so adding the modifier doesn't matter, except for `internal`, in which case i want those to stand out because they are exceptional; in fact, i would prefer the rule *disallow* anything except `internal` on interfaces # TODO actually, protected works on interfaces too; i don't have a good reason why you shoulnd't have the `public` modifiers for interfaces...
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
+dotnet_diagnostic.IDE0041.severity = warning # look at the `Equality` test method
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true
+dotnet_diagnostic.IDE0042.severity = warning
+csharp_style_deconstructed_variable_declaration = true
+# NOTE: there is no IDE0043
+
 
 
 
@@ -686,7 +692,7 @@ csharp_prefer_system_threading_lock = true:warning
 
 [*.{cs,vb}]
 dotnet_diagnostic.IDE0270.severity = none#IDE0270: Use coalesce expression
-dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
+
 dotnet_style_prefer_simplified_boolean_expressions = true:warning
 dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 dotnet_style_prefer_conditional_expression_over_return = false:silent
@@ -703,7 +709,6 @@ csharp_style_prefer_implicitly_typed_lambda_expression = true:warning
 csharp_style_prefer_tuple_swap = true:suggestion
 csharp_style_prefer_unbound_generic_type_in_nameof = true:warning
 csharp_style_prefer_utf8_string_literals = true:warning
-csharp_style_deconstructed_variable_declaration = true:warning
 csharp_style_unused_value_assignment_preference = unused_local_variable:silent
 csharp_style_unused_value_expression_statement_preference = discard_variable:warning
 
