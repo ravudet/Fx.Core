@@ -555,7 +555,7 @@ dotnet_style_prefer_inferred_anonymous_type_member_names = false # TODO dotnet_s
 dotnet_diagnostic.IDE0038.severity = warning # see ide0020
 dotnet_diagnostic.IDE0039.severity = warning # way easier to read; with the anonymous syntax, you either declare the parameter types twice, or the types are declared on the `func` type and are less explicit on the parameter names
 csharp_style_prefer_local_over_anonymous_function = true
-dotnet_diagnostic.IDE0040.severity = warning # i want to be explicit; and for interfaces they are always public, so adding the modifier doesn't matter, except for `internal`, in which case i want those to stand out because they are exceptional; in fact, i would prefer the rule *disallow* anything except `internal` on interfaces
+dotnet_diagnostic.IDE0040.severity = warning # i want to be explicit; and for interfaces they are always public, so adding the modifier doesn't matter, except for `internal`, in which case i want those to stand out because they are exceptional; in fact, i would prefer the rule *disallow* anything except `internal` on interfaces # TODO actually, protected works on interfaces too; i don't have a good reason why you shoulnd't have the `public` modifiers for interfaces...
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
 
 

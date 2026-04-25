@@ -368,6 +368,19 @@ class C {
             }
         }
 
+        public class ModifiersExample2 : ModifiersExample
+        {
+            public void DoWork4()
+            {
+                AsBase(this).DoWork2();
+            }
+
+            private static IModifiersExample AsBase(ModifiersExample foo)
+            {
+                return foo;
+            }
+        }
+
 
 
 
