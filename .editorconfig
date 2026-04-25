@@ -566,6 +566,10 @@ dotnet_diagnostic.IDE0044.severity = warning
 dotnet_style_readonly_field = true
 dotnet_diagnostic.IDE0045.severity = none # TODO i would prefer to warn when if statements *aren't* used
 dotnet_style_prefer_conditional_expression_over_assignment = false
+dotnet_diagnostic.IDE0046.severity = none # TODO i don't care if if statements are used or not
+dotnet_style_prefer_conditional_expression_over_return = false
+
+
 
 
 # TODO remember that you need to remove the options from down below as you go along
@@ -697,7 +701,6 @@ dotnet_diagnostic.IDE0270.severity = none#IDE0270: Use coalesce expression
 
 dotnet_style_prefer_simplified_boolean_expressions = true:warning
 dotnet_style_prefer_conditional_expression_over_assignment = false:silent
-dotnet_style_prefer_conditional_expression_over_return = false:silent
 #dotnet_style_prefer_compound_assignment = false:warning
 dotnet_style_prefer_simplified_interpolation = true:warning
 
