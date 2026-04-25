@@ -568,6 +568,13 @@ dotnet_diagnostic.IDE0045.severity = none # TODO i would prefer to warn when if 
 dotnet_style_prefer_conditional_expression_over_assignment = false
 dotnet_diagnostic.IDE0046.severity = none # TODO i don't care if if statements are used or not
 dotnet_style_prefer_conditional_expression_over_return = false
+dotnet_diagnostic.IDE0047.severity = warning # this and 48 are a little weird; the options only "apply" when the rule with that option value is enabled
+dotnet_diagnostic.IDE0048.severity = warning
+dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity #i like the clarity, but i only like it for others; if someone else writes it without them, that's fine, but refactoring is good to have them # TODO that was your previous rationale, but then you realized that this also triggers when some of the components of the expression are method calls and such; we need parentheses for clarity for sure when they aren't simple variables; it might be nice to implement an analyzer that can tell the difference
+dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:suggestion # for sure people don't have a good intuition of the precedence for these operators, so we should require them
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity # i think that the boolean operators are less clear, especially when method calls occur and things like that # TODO also check the above rationale about method calls
+dotnet_style_parentheses_in_other_operators = never_if_unnecessary  # i don't know what all of the operators are here, but `.` is one of them, and parens for that is awful; making it a suggestion to remove them when unnecessary because they really should be *added* when clarity is poor for a specific situation
+
 
 
 
@@ -752,12 +759,6 @@ csharp_style_conditional_delegate_call = false:silent
 [*.{cs,vb}]
 dotnet_code_quality_unused_parameters = all:warning#NOTE: doesn't count interface implementations, which is probably for the best
 
-### parentheses preferences
-
-dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity:warning#i like the clarity, but i only like it for others; if someone else writes it without them, that's fine, but refactoring is good to have them # TODO that was your previous rationale, but then you realized that this also triggers when some of the components of the expression are method calls and such; we need parentheses for clarity for sure when they aren't simple variables; it might be nice to implement an analyzer that can tell the difference
-dotnet_style_parentheses_in_other_binary_operators = always_for_clarity:warning# i think that the boolean operators are less clear, especially when method calls occur and things like that # TODO also check the above rationale about method calls
-dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:suggestion # for sure people don't have a good intuition of the precedence for these operators, so we should require them
-dotnet_style_parentheses_in_other_operators = never_if_unnecessary:warning # i don't know what all of the operators are here, but `.` is one of them, and parens for that is awful; making it a suggestion to remove them when unnecessary because they really should be *added* when clarity is poor for a specific situation
 
 ### pattern matching preferences
 

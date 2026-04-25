@@ -210,6 +210,7 @@ class C {
         //// TODO ide0023 and ide0024 both "appear" as ide0024 (compare with ide0003 and ide0009; compare with ide0020 and ide0038); https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0023-ide0024
         //// TODO ide0029 and ide0030 both "appear" as ide0030 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0029-ide0030-ide0270
         //// TODO i can't get ide0270 to trigger
+        //// TODO ide0047 and ide0048 both "appear" as ide0048 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0047-ide0048
 
         //// TODO ide0037 makes a good point about options on disabled rules; you should do another pass to add all of the options as disabled for the `none` rules, making the same note that ide0037 has
         //// TODO you should do the same thing for enabled rules, and explicitly select the default; this is in regards to "don't just enable something because it's a rule, you need to understand it
@@ -983,6 +984,10 @@ class C {
 
 
             var sum = GetValue() * 3 + 2;
+
+            if ((3 > 2) == (5 < 4))
+            {
+            }
 
             if (sum is default(int) or 5)
             {
