@@ -10,24 +10,24 @@ root = true
 
 [*.{cs,vb}]
 dotnet_diagnostic.CA1000.severity = warning # TODO i agree with the purpose of the rule; i'm concerned about false positives; and if the method call is *supposed* to be flagged, that's just unavoidable design-wise, so i would set this rule to `none` if that's the case; and regarding the case it *does* catch, i think those situations should be caught in unit testing because the code will be painful to write
-dotnet_code_quality.CA1000.api_surface = all # TODO write down at some point that you apply things to all api surfaces because, if it's good for my customer, it's good for me too
+	dotnet_code_quality.CA1000.api_surface = all # TODO write down at some point that you apply things to all api surfaces because, if it's good for my customer, it's good for me too
 dotnet_diagnostic.CA1001.severity = warning # you better have a good reason to not dispose things
 dotnet_diagnostic.CA1002.severity = warning
-dotnet_code_quality.CA1002.api_surface = all
+	dotnet_code_quality.CA1002.api_surface = all
 dotnet_diagnostic.CA1003.severity = warning
-dotnet_code_quality.CA1003.api_surface = all
+	dotnet_code_quality.CA1003.api_surface = all
 # NOTE: there is no CA1004
 dotnet_diagnostic.CA1005.severity = warning
-dotnet_code_quality.CA1005.api_surface = all
+	dotnet_code_quality.CA1005.api_surface = all
 # NOTE: there are no rules from CA1006-CA1007
 dotnet_diagnostic.CA1008.severity = warning # TODO i agree with this for flags enums (and would be fine with a reasonably justified exception or two); for non-flags, the description *as written* i don't really agree with because i think there are plenty of cases where the `0` member doesn't exist or shouldn't be called "none"; however, the rule doesn't trigger if a `0` member is defined that is called something else; so, if the rule triggers because there is no "0" member, that's actually an implementation detail and design leak; the members should all be shifted to reach 0; 
-dotnet_code_quality.CA1008.api_surface = all
+	dotnet_code_quality.CA1008.api_surface = all
 # NOTE: there is no CA1009
 dotnet_diagnostic.CA1010.severity = warning # TODO i'm good with this one because it doesn't trigger if you implement the non-generic *and* the generic
-dotnet_code_quality.CA1010.api_surface = all
+	dotnet_code_quality.CA1010.api_surface = all
 # NOTE: there is no CA1011
 dotnet_diagnostic.CA1012.severity = warning
-dotnet_code_quality.CA1012.api_surface = all
+	dotnet_code_quality.CA1012.api_surface = all
 # NOTE: there is no CA1013
 dotnet_diagnostic.CA1014.severity = none # TODO you're not clscompliant right now probably, but it wouldn't hurt to do so; but not right now
 # NOTE: there is no CA1015
@@ -39,78 +39,78 @@ dotnet_diagnostic.CA1019.severity = none # TODO seems like overkill; the paramet
 dotnet_diagnostic.CA1021.severity = warning # TODO a key to this one is that the "try" naming convention avoids triggering the rule; i'm not 100% sure i like this rule though TODO i actually really don't like it because this one doesn't actually trigger for `ref` parameters, it looks like; that's rule ca1045
 # NOTE: there are no rules from CA1022-CA1023
 dotnet_diagnostic.CA1024.severity = warning
-dotnet_code_quality.CA1024.api_surface = all
+	dotnet_code_quality.CA1024.api_surface = all
 # NOTE: there are no rules from CA1025-CA1026
 dotnet_diagnostic.CA1027.severity = warning
-dotnet_code_quality.CA1027.api_surface = all
+	dotnet_code_quality.CA1027.api_surface = all
 dotnet_diagnostic.CA1028.severity = none # TODO this rule seems dumb to me; struct size is dependent on fields which can be enums, so having smaller enums makes a difference even if the enum itself has no specific performance benefits; and it's definitely possible to have an enum with 33 values, so going larger also makes sense; i suppose the case could be made that if someone wants to use a different base, they should justify it instead of doing it "just because"
-dotnet_code_quality.CA1028.api_surface = all
+	dotnet_code_quality.CA1028.api_surface = all
 # NOTE: there is no CA1029
 dotnet_diagnostic.CA1030.severity = warning # TODO the rule makes sense to me, but i have no experience
-dotnet_code_quality.CA1030.api_surface = all
+	dotnet_code_quality.CA1030.api_surface = all
 dotnet_diagnostic.CA1031.severity = warning
 dotnet_diagnostic.CA1032.severity = warning # TODO although i agree with this greatly, i think i often violate it; maybe it shouldn't apply to interfaces or something?
 dotnet_diagnostic.CA1033.severity = warning # TODO so i guess the point is that the derived type "has an instance" of the interface (from the base type), but has no way to call the method from the interface, and if they try to be clever, they get a stackoverflow; first of all, the stack overflow bug should be caught during unit testing; but otherwise, i guess it makes sense to have a protected member; this is a neat trick though that i want to remember, i can have a publicly exposed method that's not available to derived types; i wonder when that might be useful?
 dotnet_diagnostic.CA1034.severity = warning # TODO i agree with this, but i'm going to break it a lot with discriminated unions; i wonder if there's a way to extend the rule to ignore nestsed types that derive the containing type and the containing type is abstract and has a private constructor?
 # NOTE: there is no CA1035
 dotnet_diagnostic.CA1036.severity = warning
-dotnet_code_quality.CA1036.api_surface = all
+	dotnet_code_quality.CA1036.api_surface = all
 # NOTE: there are no rules from CA1037-CA1039
 dotnet_diagnostic.CA1040.severity = none # TODO i don't agree with the rule description; attributes are *not* the best way to mark something; consider, for example, generic type constraints
-dotnet_code_quality.CA1040.api_surface = all
+	dotnet_code_quality.CA1040.api_surface = all
 dotnet_diagnostic.CA1041.severity = warning
-dotnet_code_quality.CA1041.api_surface = all
+	dotnet_code_quality.CA1041.api_surface = all
 # NOTE: there is no CA1042
 dotnet_diagnostic.CA1043.severity = none # TODO i'm not clear at all why this restriction is recommended
-dotnet_code_quality.CA1043.api_surface = all
+	dotnet_code_quality.CA1043.api_surface = all
 dotnet_diagnostic.CA1044.severity = warning # TODO i can't imagine who is trying to have write-only properties, except for people who actually know what they are doing and are just going to need to suppress this rule; but i guess those folks with have a reasonable justification, so might as well have the rule
-dotnet_code_quality.CA1044.api_surface = all
+	dotnet_code_quality.CA1044.api_surface = all
 dotnet_diagnostic.CA1045.severity = warning # absolutely, ref parameters are bad; however, i think this should account for ref fields of ref structs, and also parameters that are ref structs
-dotnet_code_quality.CA1045.api_surface = all
+	dotnet_code_quality.CA1045.api_surface = all
 dotnet_diagnostic.CA1046.severity = warning # despite the rule about using `is null` for null checks, we don't control others' code and shouldn't assume that they follow best practice, so we don't want to accidentally overload `==` in a way that breaks null checks
-dotnet_code_quality.CA1046.api_surface = all
+	dotnet_code_quality.CA1046.api_surface = all
 dotnet_diagnostic.CA1047.severity = warning
-dotnet_code_quality.CA1047.api_surface = all
+	dotnet_code_quality.CA1047.api_surface = all
 # NOTE: there are no rules from CA1048-CA1049
 dotnet_diagnostic.CA1050.severity = warning
-dotnet_code_quality.CA1050.api_surface = all
+	dotnet_code_quality.CA1050.api_surface = all
 dotnet_diagnostic.CA1051.severity = warning
-dotnet_code_quality.CA1051.api_surface = all
+	dotnet_code_quality.CA1051.api_surface = all
 dotnet_code_quality.ca1051.exclude_structs = true # excluding structs because the data on a struct needs to be a field in order to modify it without duplicating the instance
 dotnet_diagnostic.CA1052.severity = warning
-dotnet_code_quality.CA1052.api_surface = all
+	dotnet_code_quality.CA1052.api_surface = all
 dotnet_diagnostic.CA1053.severity = none # TODO i don't get what this is talking about with the "default constructor" on a `static` type; also, ca1052 says the it subsumes this functionality now; i can't seem to get this part of the rule to trigger
 dotnet_diagnostic.CA1054.severity = warning
-dotnet_code_quality.CA1054.api_surface = all
+	dotnet_code_quality.CA1054.api_surface = all
 dotnet_diagnostic.CA1055.severity = warning # TODO this one might not actually be useful, it's certainly less direct than ca1054
-dotnet_code_quality.CA1055.api_surface = all
+	dotnet_code_quality.CA1055.api_surface = all
 dotnet_diagnostic.CA1056.severity = warning
-dotnet_code_quality.CA1056.api_surface = all
+	dotnet_code_quality.CA1056.api_surface = all
 # NOTE: there is no CA1057
 dotnet_diagnostic.CA1058.severity = warning # i'm only familiar with the collection parts of this, but the rule seems reasonable enough
-dotnet_code_quality.CA1058.api_surface = all
+	dotnet_code_quality.CA1058.api_surface = all
 # NOTE: there is no CA1059
 dotnet_diagnostic.CA1060.severity = warning
 dotnet_diagnostic.CA1061.severity = warning # this one almost feels like a form of aliasing; try to come up with a good example
 dotnet_diagnostic.CA1062.severity = warning # TODO i don't think you need `dotnet_code_quality.CA1062.null_check_validation_methods` since there's the `[notnull]` attribute now, but just in case, i'm leaving it here # TODO i don't know enough about the dataflow analysis stuff to rasonably configure anything; look into that sometime
-dotnet_code_quality.CA1062.api_surface = all
-dotnet_code_quality.CA1062.exclude_extension_method_this_parameter = false # why would the `this` parameter be special? and if it *is* special, then there will be a reasonable justification, right?
+	dotnet_code_quality.CA1062.api_surface = all
+	dotnet_code_quality.CA1062.exclude_extension_method_this_parameter = false # why would the `this` parameter be special? and if it *is* special, then there will be a reasonable justification, right?
 dotnet_diagnostic.CA1063.severity = warning
-dotnet_code_quality.CA1063.api_surface = all
+	dotnet_code_quality.CA1063.api_surface = all
 dotnet_diagnostic.CA1064.severity = warning # i think this rule is a good idea, but i'm sure i break it all the time
-dotnet_code_quality.CA1064.api_surface = all
+	dotnet_code_quality.CA1064.api_surface = all
 dotnet_diagnostic.CA1065.severity = warning
-dotnet_code_quality.CA1065.api_surface = all
+	dotnet_code_quality.CA1065.api_surface = all
 dotnet_diagnostic.CA1066.severity = warning
-dotnet_code_quality.CA1066.api_surface = all
+	dotnet_code_quality.CA1066.api_surface = all
 dotnet_diagnostic.CA1067.severity = warning
-dotnet_code_quality.CA1067.api_surface = all
+	dotnet_code_quality.CA1067.api_surface = all
 dotnet_diagnostic.CA1068.severity = warning
-dotnet_code_quality.CA1068.api_surface = all
+	dotnet_code_quality.CA1068.api_surface = all
 dotnet_diagnostic.CA1069.severity = warning
-dotnet_code_quality.CA1069.api_surface = all
+	dotnet_code_quality.CA1069.api_surface = all
 dotnet_diagnostic.CA1070.severity = warning
-dotnet_code_quality.CA1070.api_surface = all
+	dotnet_code_quality.CA1070.api_surface = all
 
 ### documentation
 
@@ -153,39 +153,39 @@ dotnet_diagnostic.CA1516.severity = none # TODO the docs seems just on the cusp 
 ### naming
 
 dotnet_diagnostic.CA1700.severity = warning
-dotnet_code_quality.CA1700.api_surface = all
+	dotnet_code_quality.CA1700.api_surface = all
 # NOTE: there are no rules from CA1701-CA1706
 dotnet_diagnostic.CA1707.severity = warning
-dotnet_code_quality.CA1707.api_surface = all
+	dotnet_code_quality.CA1707.api_surface = all
 dotnet_diagnostic.CA1708.severity = warning
-dotnet_code_quality.CA1708.api_surface = all
+	dotnet_code_quality.CA1708.api_surface = all
 # NOTE: there is no CA1709
 dotnet_diagnostic.CA1710.severity = warning
-dotnet_code_quality.CA1710.api_surface = all
-dotnet_code_quality.CA1710.additional_required_suffixes = T:System.Collections.ICollection->{}|System.Collections.IDictionary->{}|System.Collections.IEnumerable->{}|System.Collections.Generic.IReadOnlyDictionary<TKey,TValue>->{}|System.Collections.Queue->{}|System.Collections.Stack->{}|System.Collections.Generic.ICollection<T>->{}|System.Collections.Generic.IDictionary<TKey,TValue>->{} # TODO i wonder if there's a way to make this more readable # TODO i have found that stuff that implements the collection types are often "their own thing" and the interface is just convenient because it plugs into a bunch of extensions and stuff, so i'm excluding the collection ones; the other types in the rule (besides stream i guess) and more like language constructs than they are data structures, and those i think make sense to have the name, so that the caller is able to immediately recognize the language constructs; regarding stream, i've not found a case where i've derived stream and wanted to call it something else; being a stream has seemed to be part of the nature of the derived types, there's not something that was its own thing but also happened to be a stream (like is the case for collections); i'm only unclear about System.Data.DataSet and System.Data.DataTable, because i've never used them before; i don't think there's a way to mark only them as error, but i could configure the rule so that those have absolutely weird names that are really TODOs 
+	dotnet_code_quality.CA1710.api_surface = all
+	dotnet_code_quality.CA1710.additional_required_suffixes = T:System.Collections.ICollection->{}|System.Collections.IDictionary->{}|System.Collections.IEnumerable->{}|System.Collections.Generic.IReadOnlyDictionary<TKey,TValue>->{}|System.Collections.Queue->{}|System.Collections.Stack->{}|System.Collections.Generic.ICollection<T>->{}|System.Collections.Generic.IDictionary<TKey,TValue>->{} # TODO i wonder if there's a way to make this more readable # TODO i have found that stuff that implements the collection types are often "their own thing" and the interface is just convenient because it plugs into a bunch of extensions and stuff, so i'm excluding the collection ones; the other types in the rule (besides stream i guess) and more like language constructs than they are data structures, and those i think make sense to have the name, so that the caller is able to immediately recognize the language constructs; regarding stream, i've not found a case where i've derived stream and wanted to call it something else; being a stream has seemed to be part of the nature of the derived types, there's not something that was its own thing but also happened to be a stream (like is the case for collections); i'm only unclear about System.Data.DataSet and System.Data.DataTable, because i've never used them before; i don't think there's a way to mark only them as error, but i could configure the rule so that those have absolutely weird names that are really TODOs 
 dotnet_diagnostic.CA1710.severity = warning
-dotnet_code_quality.CA1710.api_surface = all
-dotnet_code_quality.CA1710.additional_required_suffixes = Collection|Dictionary|Queue|Stack # same rationale as above; i also particularly like the suffixes that aren't based on derivation
+	dotnet_code_quality.CA1710.api_surface = all
+	dotnet_code_quality.CA1710.additional_required_suffixes = Collection|Dictionary|Queue|Stack # same rationale as above; i also particularly like the suffixes that aren't based on derivation
 dotnet_diagnostic.CA1712.severity = warning
-dotnet_code_quality.CA1712.enum_values_prefix_trigger = AnyEnumValue
+	dotnet_code_quality.CA1712.enum_values_prefix_trigger = AnyEnumValue
 dotnet_diagnostic.CA1713.severity = warning
 dotnet_diagnostic.CA1714.severity = warning
-dotnet_code_quality.CA1714.api_surface = all
+	dotnet_code_quality.CA1714.api_surface = all
 dotnet_diagnostic.CA1715.severity = warning
-dotnet_code_quality.CA1715.api_surface = all
+	dotnet_code_quality.CA1715.api_surface = all
 dotnet_diagnostic.CA1716.severity = none # names should be good regardless of what .NET chose to make keywords (in both directions: it needs to be good even if it's not similar to a keyword, and it needs to be good if it *is* (e.g. `object` type in `json` namespace))
-dotnet_code_quality.CA1716.api_surface = all
+	dotnet_code_quality.CA1716.api_surface = all
 dotnet_diagnostic.CA1717.severity = warning
-dotnet_code_quality.CA1717.api_surface = all
+	dotnet_code_quality.CA1717.api_surface = all
 # NOTE: there are no rules from CA1718-CA1719
 dotnet_diagnostic.CA1720.severity = warning # i think this will be my biggest violation; the issue is that i'm often working on things of a strong-typing, where it *does* make sense to name something `{type1}` and `{type2}`, because the nature of the method is literally translating from one type to another; further, i've been doing a lot of parsing lately where the goal is to take the data and represent it as the .net type, and again, i think the naming makes sense; in these cases, i don't think it's really the issue that hungarian notation has, and it's more of covering gaps in the type system; regardless, i think each of these cases should be justified
-dotnet_code_quality.CA1720.api_surface = all
+	dotnet_code_quality.CA1720.api_surface = all
 dotnet_diagnostic.CA1721.severity = warning
-dotnet_code_quality.CA1721.api_surface = all
+	dotnet_code_quality.CA1721.api_surface = all
 # NOTE: there are no rules from CA1722-CA1723
 dotnet_diagnostic.CA1724.severity = warning # TODO you can demonstrate how someone could use this for "aliasing" i think
 dotnet_diagnostic.CA1725.severity = warning
-dotnet_code_quality.CA1725.api_surface = all
+	dotnet_code_quality.CA1725.api_surface = all
 # NOTE: there is no CA1726
 dotnet_diagnostic.CA1727.severity = warning
 
@@ -193,7 +193,7 @@ dotnet_diagnostic.CA1727.severity = warning
 
 # NOTE: there are no rules from CA1800-CA1801
 dotnet_diagnostic.CA1802.severity = warning
-dotnet_code_quality.CA1802.api_surface = all
+	dotnet_code_quality.CA1802.api_surface = all
 # dotnet_code_quality.CA1802.required_modifiers = none # TODO i couldn't get this to trigger on anything besides `static readonly`; i'm not sure what it's supposed to do
 # NOTE: there are no rules from CA1803-CA1804
 dotnet_diagnostic.CA1805.severity = warning # the reason *i* like this rule is because doing this potentially hides cs0649 # hmm, this actually conflicts with the "don't use static initializers" thing a little; without a static initializer, i like being explicit about the initial value, but then this rule will trigger when that is the default value; i think i like this rule when it's for instance members, but not when it's for static members
@@ -202,24 +202,24 @@ dotnet_diagnostic.CA1806.severity = warning # TODO ide0058 covers a wider range 
 dotnet_diagnostic.CA1810.severity = warning # i've certainly had cases where i needed a static constructor, but those cases would be easy to justify with this rule
 # NOTE: there is no CA1811
 dotnet_diagnostic.CA1812.severity = warning
-dotnet_code_quality.CA1812.ignore_internalsvisibleto = true # internals visible to should generally only be used for testing purposes, so if an internal type is only used to be tested, then the type and its tests should be removed; for cases where the type should remain, they should be easy to justify (since it's a deliberate design choice to share that type across assemblies, but not make the type public)
+	dotnet_code_quality.CA1812.ignore_internalsvisibleto = true # internals visible to should generally only be used for testing purposes, so if an internal type is only used to be tested, then the type and its tests should be removed; for cases where the type should remain, they should be easy to justify (since it's a deliberate design choice to share that type across assemblies, but not make the type public)
 dotnet_diagnostic.CA1813.severity = warning
 dotnet_diagnostic.CA1814.severity = none # i get the point of this rule, but it seems weird; when am i using an array of arrays where they *would* be jagged? and for cases where multidimensional makes sense design-wise, with jagged i need to check the length of the inner arrays, which can have an inconsistency with what is "known" as the size to the design; multi-dimensional remove this ambiguity by letting the compiler know what the lengths are
 dotnet_diagnostic.CA1815.severity = warning
-dotnet_code_quality.CA1815.api_surface = all
+	dotnet_code_quality.CA1815.api_surface = all
 # NOTE: there are no rules from CA1816-CA1818
 dotnet_diagnostic.CA1819.severity = warning
-dotnet_code_quality.CA1819.api_surface = all
+	dotnet_code_quality.CA1819.api_surface = all
 dotnet_diagnostic.CA1820.severity = warning
 dotnet_diagnostic.CA1821.severity = warning
 dotnet_diagnostic.CA1822.severity = warning
-dotnet_code_quality.CA1822.api_surface = all
+	dotnet_code_quality.CA1822.api_surface = all
 dotnet_diagnostic.CA1823.severity = warning
-dotnet_code_quality.CA1823.api_surface = all
+	dotnet_code_quality.CA1823.api_surface = all
 # dotnet_diagnostic.CA1824.severity = none TODO i don't know enough about this rule
 dotnet_diagnostic.CA1825.severity = warning
 dotnet_diagnostic.CA1826.severity = warning
-# dotnet_code_quality.CA1826.exclude_ordefault_methods = true # i think this configuration is actually pretty reasonable, but i'm not adding it mostly because the "ordefault" variants are largely over used and i want it to be painful to use them
+	# dotnet_code_quality.CA1826.exclude_ordefault_methods = true # i think this configuration is actually pretty reasonable, but i'm not adding it mostly because the "ordefault" variants are largely over used and i want it to be painful to use them
 dotnet_diagnostic.CA1827.severity = warning
 dotnet_diagnostic.CA1828.severity = warning
 dotnet_diagnostic.CA1829.severity = warning # TODO does 1826 already cover this? even if it does, keep both rules in case someone disables one in the future
@@ -245,10 +245,10 @@ dotnet_diagnostic.CA1848.severity = warning # i kind of really hate this; it see
 dotnet_diagnostic.CA1849.severity = warning # this *doesn't* appear to trigger for APIs outside of the framework (and likely misses something in the framework too from time to time); you could make it more general by actually looking for every method if there is an "async" equivalent; doing this would mean that there might be some naming in the `either` stuff that you should rethink
 dotnet_diagnostic.CA1850.severity = warning # there's no way this is actually a performance benefit, but i like it for maintainability
 dotnet_diagnostic.CA1851.severity = warning # good rule, but unfortunately missed `tolist` being called multiple times when no "work" is done in between the calls (like `enumerable.Select(_ => _.Length).ToList().Select(_ => _ * 2).ToList();`)
-dotnet_code_quality.CA1851.linq_chain_methods = # TODO you should add your custom extensions to this configuration (because those methods don't actually enumerate, and this option is to tell the rule to not assume they do enumerate); i wonder if you can have the package installer update the consumer's editorconfig to add these?
-dotnet_code_quality.CA1851.assume_method_enumerates_parameters = true # it's just too easy to avoid the rule if we don't assume this
+	dotnet_code_quality.CA1851.linq_chain_methods = # TODO you should add your custom extensions to this configuration (because those methods don't actually enumerate, and this option is to tell the rule to not assume they do enumerate); i wonder if you can have the package installer update the consumer's editorconfig to add these?
+	dotnet_code_quality.CA1851.assume_method_enumerates_parameters = true # it's just too easy to avoid the rule if we don't assume this
 dotnet_diagnostic.CA1852.severity = warning
-dotnet_code_quality.CA1852.ignore_internalsvisibleto = true # same justification as ca1812
+	dotnet_code_quality.CA1852.ignore_internalsvisibleto = true # same justification as ca1812
 dotnet_diagnostic.CA1853.severity = warning
 dotnet_diagnostic.CA1854.severity = warning # talk about multithreading, even though it's not 100% relevant here
 dotnet_diagnostic.CA1855.severity = warning # TODO prove this
