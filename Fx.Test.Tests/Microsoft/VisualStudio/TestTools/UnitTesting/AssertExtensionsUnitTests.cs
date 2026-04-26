@@ -214,6 +214,7 @@ class C {
 
         //// TODO go through your TODOs below and write down your guiding principles, and create a page that has those listed so you can reference them from the articles
         //// TODO you maybe should go through all of the notes in the editorconfig to see if there are any guiding principles there that you missed
+        //// TODO you have a guiding principle to enable multiple rules even if they are duplicates or one supersedes another, because thought was put into enabling the rule, so disabling it should be painful (but not hard) and thought-provoking
         //// TODO ide0037 makes a good point about options on disabled rules; you should do another pass to add all of the options as disabled for the `none` rules, making the same note that ide0037 has
         //// TODO you should do the same thing for enabled rules, and explicitly select the default; this is in regards to "don't just enable something because it's a rule, you need to understand it
         //// TODO distributing via nuget: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#distribution-in-nuget-packages
