@@ -575,8 +575,8 @@ dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:s
 dotnet_style_parentheses_in_other_binary_operators = always_for_clarity # i think that the boolean operators are less clear, especially when method calls occur and things like that # TODO also check the above rationale about method calls
 dotnet_style_parentheses_in_other_operators = never_if_unnecessary  # i don't know what all of the operators are here, but `.` is one of them, and parens for that is awful; making it a suggestion to remove them when unnecessary because they really should be *added* when clarity is poor for a specific situation
 dotnet_diagnostic.IDE0049.severity = warning
-dotnet_style_predefined_type_for_locals_parameters_members = true
-dotnet_style_predefined_type_for_member_access = true
+	dotnet_style_predefined_type_for_locals_parameters_members = true
+	dotnet_style_predefined_type_for_member_access = true
 
 # TODO can you indent to the options so that everything is easier to read?
 

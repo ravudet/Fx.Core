@@ -962,7 +962,7 @@ class C {
             new AnotherContainer().DoWork<int>();
         }
 
-        public static void Frob(string? thing, object bar)
+        public static void Frob(String? thing, object bar)
         {
             try
             {
