@@ -212,6 +212,8 @@ class C {
         //// TODO i can't get ide0270 to trigger
         //// TODO ide0047 and ide0048 both "appear" as ide0048 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0047-ide0048
 
+        //// TODO go through your TODOs below and write down your guiding principles, and create a page that has those listed so you can reference them from the articles
+        //// TODO you maybe should go through all of the notes in the editorconfig to see if there are any guiding principles there that you missed
         //// TODO ide0037 makes a good point about options on disabled rules; you should do another pass to add all of the options as disabled for the `none` rules, making the same note that ide0037 has
         //// TODO you should do the same thing for enabled rules, and explicitly select the default; this is in regards to "don't just enable something because it's a rule, you need to understand it
         //// TODO distributing via nuget: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#distribution-in-nuget-packages
@@ -341,6 +343,8 @@ class C {
 
         public class ModifiersExample : IModifiersExample
         {
+            private readonly int test;
+
             public void DoWork()
             {
                 throw new NotImplementedException();
