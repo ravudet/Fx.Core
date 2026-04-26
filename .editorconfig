@@ -286,7 +286,7 @@ dotnet_diagnostic.CA2000.severity = warning
 dotnet_diagnostic.CA2002.severity = warning
 # NOTE: there are no rules from CA2003-CA2006
 dotnet_diagnostic.CA2007.severity = warning # remind about the note that this is for "framework" type packages
-dotnet_code_quality.CA2007.exclude_async_void_methods = false # this rule is good for everything
+	dotnet_code_quality.CA2007.exclude_async_void_methods = false # this rule is good for everything
 dotnet_diagnostic.CA2008.severity = warning
 dotnet_diagnostic.CA2009.severity = warning # this seems more like a perf rule to me
 # NOTE: there is no CA2010
@@ -409,7 +409,7 @@ dotnet_diagnostic.CA5390.severity = warning
 dotnet_diagnostic.CA5391.severity = warning
 dotnet_diagnostic.CA5392.severity = warning
 dotnet_diagnostic.CA5393.severity = none # TODO i'm not sure why the dlls directory is not safe; i actually kind of think it's the *only* "safe" thing (assuming signed binaries); you should probably enable this and configure it below once you understand what the different search paths really mean
-dotnet_code_quality.CA5393.unsafe_DllImportSearchPath_bits = 770
+	dotnet_code_quality.CA5393.unsafe_DllImportSearchPath_bits = 770
 dotnet_diagnostic.CA5394.severity = warning # this feels a bit much; it's a good idea, but way too many false positives
 dotnet_diagnostic.CA5395.severity = warning # the documentation notes that `get` is fine because of no side effects, but then uses it as the example; i also don't know what the verb attributes have to do with antiforgery
 dotnet_diagnostic.CA5396.severity = warning # i didn't know that there is a `cookie` header and the browser sends it to the server; i thought if the server wanted the data, there would have to be a script that reads the cookie and sends it to the server; my understanding was wrong though
@@ -426,7 +426,7 @@ dotnet_diagnostic.CA5405.severity = warning # TODO same as above
 ### usage
 
 dotnet_diagnostic.CA1801.severity = warning
-dotnet_code_quality.CA1801.api_surface = all
+	dotnet_code_quality.CA1801.api_surface = all
 # NOTE: there are no rules from CA1802-CA1815
 dotnet_diagnostic.CA1816.severity = warning
 # NOTE: there are no rules from CA1817-CA2199
@@ -444,31 +444,31 @@ dotnet_diagnostic.CA2214.severity = warning
 dotnet_diagnostic.CA2215.severity = warning
 dotnet_diagnostic.CA2216.severity = warning
 dotnet_diagnostic.CA2217.severity = warning
-dotnet_code_quality.CA2217.api_surface = all
+	dotnet_code_quality.CA2217.api_surface = all
 dotnet_diagnostic.CA2218.severity = warning
 dotnet_diagnostic.CA2219.severity = warning # TODO it's not clear to me what a fault or filter clause are; copilot seems to think it might be windows workflow foundation, but i'm not finding anything concrete # this rule is referring to CIL constructs; `finally` is used for `try/finally`, `filter` is used for `try/catch/when`, and `fault` is used (at least) with a `using` surrounding a `yield return` (`public IEnumerable<string> GetSomeEnumerable() { using (Enumerable.Empty<string>().GetEnumerator()) { yield return "asdf"; } }`); i'm not clear if there are other situations where `fault` is used; in fact, if you replace the `using` with a `try/finally`, it will still use `fault`; it's probably worth comparing the generated c# with the compiled IL
 # NOTE: there are no rules from CA2219-CA2223
 dotnet_diagnostic.CA2224.severity = warning
 dotnet_diagnostic.CA2225.severity = none # TODO i question this because, if i understand right, it's basically saying that vb.net doesn't have all of the symbolic operators, so there should be a method with that name, so we'd be doubling the c# api surface so taht we can support vb consumers; not sure i like that
-dotnet_code_quality.CA2225.api_surface = all
+	dotnet_code_quality.CA2225.api_surface = all
 dotnet_diagnostic.CA2226.severity = warning
-dotnet_code_quality.CA2226.api_surface = all
+	dotnet_code_quality.CA2226.api_surface = all
 dotnet_diagnostic.CA2227.severity = none # i think this is a bad rule; *maybe* someone is making an argument about object allocations or something?
 # NOTE: there is no CA2228
 dotnet_diagnostic.CA2229.severity = warning
 # NOTE: there is no CA2230
 dotnet_diagnostic.CA2231.severity = warning
-dotnet_code_quality.CA2231.api_surface = all
+	dotnet_code_quality.CA2231.api_surface = all
 # NOTE: there are no rules from CA2232-CA2233
 dotnet_diagnostic.CA2234.severity = warning
-dotnet_code_quality.CA2234.api_surface = all
+	dotnet_code_quality.CA2234.api_surface = all
 dotnet_diagnostic.CA2235.severity = warning
 # NOTE: there is no CA2236
 dotnet_diagnostic.CA2237.severity = warning
 # NOTE: there are no rules from CA2238-CA2240
 dotnet_diagnostic.CA2241.severity = warning
-dotnet_code_quality.CA2241.additional_string_formatting_methods = # TODO i'm not sure how to remind yourself to add things to this list...
-dotnet_code_quality.CA2241.try_determine_additional_string_formatting_methods_automatically = true # disable this if it gets too noisy
+	dotnet_code_quality.CA2241.additional_string_formatting_methods = # TODO i'm not sure how to remind yourself to add things to this list...
+	dotnet_code_quality.CA2241.try_determine_additional_string_formatting_methods_automatically = true # disable this if it gets too noisy
 dotnet_diagnostic.CA2242.severity = warning
 dotnet_diagnostic.CA2243.severity = warning
 dotnet_diagnostic.CA2244.severity = warning
@@ -505,18 +505,18 @@ dotnet_diagnostic.IDE0004.severity = warning # i have a feeling i will hit this 
 dotnet_diagnostic.IDE0005.severity = warning
 # NOTE: there is no IDE0006
 dotnet_diagnostic.IDE0007.severity = warning # explicit types are a pain when generics are used; variable names should be helpful enough, plus you either are constructing the instance or have a factory method with a name that should be helpful; var also helps when refactoring spike code; plus there are cases where you literally have to use var, so its the kernel
-csharp_style_var_elsewhere = true # NOTE: you are able to specify "severities" for the options; however, they only seem to apply when the `ide0007` rule isn't present at all; setting the rule to none, silent, suggestion, warning, or error, and then setting the option to silent will always take the rule severity; if you comment out the rule, however, the severity on the option is honored; this might not be true for all rules and options, but it is true in this case
-csharp_style_var_for_built_in_types = true
-csharp_style_var_when_type_is_apparent = true
+	csharp_style_var_elsewhere = true # NOTE: you are able to specify "severities" for the options; however, they only seem to apply when the `ide0007` rule isn't present at all; setting the rule to none, silent, suggestion, warning, or error, and then setting the option to silent will always take the rule severity; if you comment out the rule, however, the severity on the option is honored; this might not be true for all rules and options, but it is true in this case
+	csharp_style_var_for_built_in_types = true
+	csharp_style_var_when_type_is_apparent = true
 dotnet_diagnostic.IDE0008.severity = none
 dotnet_diagnostic.IDE0009.severity = warning
-dotnet_style_qualification_for_field = true # you are configuring these to be explicit
-dotnet_style_qualification_for_property = true
-dotnet_style_qualification_for_method = true
-dotnet_style_qualification_for_event = true
+	dotnet_style_qualification_for_field = true # you are configuring these to be explicit
+	dotnet_style_qualification_for_property = true
+	dotnet_style_qualification_for_method = true
+	dotnet_style_qualification_for_event = true
 dotnet_diagnostic.IDE0010.severity = warning # this is good when a new enum member is added to ensure all consumers are covered; but this doesn't work for public api changes, so really what i'd like to see is: you always have to have a default case, and if the enum is assembly local, then you have to add the missing cases (which can passthrough to the default)
 dotnet_diagnostic.IDE0011.severity = warning # goto fail
-csharp_prefer_braces = true # adding it to be explicit; the idea of multiline is exactly why we want the rule anyway; this is a maintainability issue, not a style issue
+	csharp_prefer_braces = true # adding it to be explicit; the idea of multiline is exactly why we want the rule anyway; this is a maintainability issue, not a style issue
 # NOTE: there are no rules from IDE0012-IDE0015
 dotnet_diagnostic.IDE0016.severity = none # i'm not opposed to this style, but it seems to be a pretty specific case of argument checking, which should be done through `argument.throwif...` instead; also, i couldn't get this to trigger
 dotnet_diagnostic.IDE0017.severity = warning # the `init` and `required` keywords on properties remove the issues you have with object initializers; i don't know that it makes sense to *require* initializers; but, if they are a way to remove "settings" objects, then i *do* think you should require them; with that said, to remove settings, i think you would want `public string MyProp { private get; init; } = "default value";`, which goes against the rule ca1044; i suppose maybe there's nothing "wrong" with having a public getter, it's just different from the current settings pattern
@@ -524,21 +524,21 @@ dotnet_diagnostic.IDE0018.severity = warning # i like this, but i feel i'm going
 dotnet_diagnostic.IDE0019.severity = warning # there's no functional difference, but requiring the new syntax means that, when the old syntax is used, deviations from the pattern are immediately noticed and understood; they might have been unobvious before, for example `var s = o as string; if (****o**** != null) { ... }`
 dotnet_diagnostic.IDE0020.severity = warning # combined with ide0038; 20 is when there is a local variant, 38 is when there's not; 20 is a good idea because we can make mistakes with the hard cast after the `is`, and the code maintainer is even more likely to make that mistake; 38 is a good idea because it's someone wanting to avoid creating a name for something that clearly exists in the method scope, which means they need to improve their design (or at least their understanding of the design)
 dotnet_diagnostic.IDE0021.severity = none # i wish i could *require* a body; but we certainly aren't going to *prefer* this
-csharp_style_expression_bodied_constructors = false # adding to be explicit; single line configuration shouldn't have anything to do with this decision; this is about overall readability and changing from one syntax to another when reading across different method/classes/file/projects; it's the same reason i don't want to allow linq query syntax (not sure if there's a rule for that) (plus, with the linq query syntax, there's the point that some things can only be written from that syntax, so it's clear that those things are being invoked)
+	csharp_style_expression_bodied_constructors = false # adding to be explicit; single line configuration shouldn't have anything to do with this decision; this is about overall readability and changing from one syntax to another when reading across different method/classes/file/projects; it's the same reason i don't want to allow linq query syntax (not sure if there's a rule for that) (plus, with the linq query syntax, there's the point that some things can only be written from that syntax, so it's clear that those things are being invoked)
 dotnet_diagnostic.IDE0022.severity = none # see ide0021
-csharp_style_expression_bodied_methods = false
+	csharp_style_expression_bodied_methods = false
 dotnet_diagnostic.IDE0023.severity = warning # conversion operators should usually be a one-liner that just returns the new type from fields in the current type (or vice versa); deviations from this should be easily justified
-csharp_style_expression_bodied_operators = true # added to be explicit
+	csharp_style_expression_bodied_operators = true # added to be explicit
 dotnet_diagnostic.IDE0024.severity = none # see ide0021
 dotnet_diagnostic.IDE0025.severity = none # this really only makes sense for properties taht shold be auto-props in the first place
-csharp_style_expression_bodied_properties = false
+	csharp_style_expression_bodied_properties = false
 dotnet_diagnostic.IDE0026.severity = none # see ide0021
-csharp_style_expression_bodied_indexers = false
+	csharp_style_expression_bodied_indexers = false
 dotnet_diagnostic.IDE0027.severity = none # see ide0025
-csharp_style_expression_bodied_accessors = false
+	csharp_style_expression_bodied_accessors = false
 dotnet_diagnostic.IDE0028.severity = none # you can't have `var` on the left-hand side so i don't really see the point; implicit constructors are the other case, and instance constructors shouldn't be implicit (not sure if there's a rule for that...; but this is because the order of the properties and fields within a file is necessarily influenced by the construction order of operations, but we want the file layout to be whatever is good for maintainability and understandability; an explicit constructor lets us have the best file layout and have the proper order of operations); there is a performance rule for static constructors that says to prefer implicit, so we *might* use the collection initializer in those cases, and i would be a fan of doing it in those cases, but this rule doesn't allow that granularity
-dotnet_style_collection_initializer = false
-dotnet_style_prefer_collection_expression = when_types_exactly_match # if we *were* to have the granularity, i only want when the types match exactly; we should be explicit about what type ends up in a field or property since we potentially need to know how to cast for internal logic, and we need to protect against our caller for external logic
+	dotnet_style_collection_initializer = false
+	dotnet_style_prefer_collection_expression = when_types_exactly_match # if we *were* to have the granularity, i only want when the types match exactly; we should be explicit about what type ends up in a field or property since we potentially need to know how to cast for internal logic, and we need to protect against our caller for external logic
 dotnet_diagnostic.IDE0029.severity = warning # it's easy to get these backwards accidentally and stuff, especially when the inner expressions get more complex; also, cases where `x` computes some value, it gets recomputed (like `foo.Expensive() != null ? foo.Expensive() : foo.Default()`)
 dotnet_diagnostic.IDE0030.severity = warning # see ide0029
 dotnet_diagnostic.IDE0031.severity = warning # null propagations can be chained, ternaries can't
@@ -547,33 +547,33 @@ dotnet_diagnostic.IDE0033.severity = warning # readability TODO dotnet_style_exp
 dotnet_diagnostic.IDE0034.severity = warning # i'm torn; i agree with this for cases like the documentation uses where the left hand side *requires* declaring the type (there are also cases like static fields being initialized in a static constructor); but the rule might give the wrong impression that we prefer `string? value = default` over `var value = default(string)`; maybe you should write a rule that demonstrates this? and i prefer the `var` version for consistency
 dotnet_diagnostic.IDE0035.severity = warning # i'm not sure why this needs to exist when we have cs0162 from the compiler directly, and the `ide` rules don't run on build, only from the ide; but i guess it doesn't hurt to have it twice in case one of them gets disabled or something; it should be an indication to the person disabling that they should think longer about it
 dotnet_diagnostic.IDE0036.severity = warning # rule has to be enabled for the preferred order to be honored, unlike a lot of the other options
-csharp_preferred_modifier_order = public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async
-visual_basic_preferred_modifier_order # i don't know visual basic, so i want to use the default order; i'm adding the option for completeness
+	csharp_preferred_modifier_order = public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async
+	visual_basic_preferred_modifier_order # i don't know visual basic, so i want to use the default order; i'm adding the option for completeness
 dotnet_diagnostic.IDE0037.severity = none # you considered having the rule enabled, and then disabling both options to be explicit (because if other options are added in the future, you might want them), but you are instead disabling the rule and the options; this way, if new fucntionality is added as default, you don't accidentally have it enabled; and if you want the new feature, you can enable the rule and add the option without accidentally enabling the existing options
-dotnet_style_prefer_inferred_tuple_names = false # TODO dotnet_style_prefer_inferred_tuple_names is saying that, if a name is not changing, don't be explicit about this; i don't think i like any way that this rule can be configured, i would prefer that it's always either all inferred or all explicit; i'm disabling this rule and i'm going to write my own i think
-dotnet_style_prefer_inferred_anonymous_type_member_names = false # TODO dotnet_style_prefer_inferred_anonymous_type_member_names is the same as inferred tuple names, and i have the same thoughts on it
+	dotnet_style_prefer_inferred_tuple_names = false # TODO dotnet_style_prefer_inferred_tuple_names is saying that, if a name is not changing, don't be explicit about this; i don't think i like any way that this rule can be configured, i would prefer that it's always either all inferred or all explicit; i'm disabling this rule and i'm going to write my own i think
+	dotnet_style_prefer_inferred_anonymous_type_member_names = false # TODO dotnet_style_prefer_inferred_anonymous_type_member_names is the same as inferred tuple names, and i have the same thoughts on it
 dotnet_diagnostic.IDE0038.severity = warning # see ide0020
 dotnet_diagnostic.IDE0039.severity = warning # way easier to read; with the anonymous syntax, you either declare the parameter types twice, or the types are declared on the `func` type and are less explicit on the parameter names
-csharp_style_prefer_local_over_anonymous_function = true
+	csharp_style_prefer_local_over_anonymous_function = true
 dotnet_diagnostic.IDE0040.severity = warning # i want to be explicit; and for interfaces they are always public, so adding the modifier doesn't matter, except for `internal`, in which case i want those to stand out because they are exceptional; in fact, i would prefer the rule *disallow* anything except `internal` on interfaces # TODO actually, protected works on interfaces too; i don't have a good reason why you shoulnd't have the `public` modifiers for interfaces...
-dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
+	dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
 dotnet_diagnostic.IDE0041.severity = warning # look at the `Equality` test method
-dotnet_style_prefer_is_null_check_over_reference_equality_method = true
+	dotnet_style_prefer_is_null_check_over_reference_equality_method = true
 dotnet_diagnostic.IDE0042.severity = warning
-csharp_style_deconstructed_variable_declaration = true
+	csharp_style_deconstructed_variable_declaration = true
 # NOTE: there is no IDE0043
 dotnet_diagnostic.IDE0044.severity = warning
-dotnet_style_readonly_field = true
+	dotnet_style_readonly_field = true
 dotnet_diagnostic.IDE0045.severity = none # TODO i would prefer to warn when if statements *aren't* used
-dotnet_style_prefer_conditional_expression_over_assignment = false
+	dotnet_style_prefer_conditional_expression_over_assignment = false
 dotnet_diagnostic.IDE0046.severity = none # TODO i don't care if if statements are used or not
-dotnet_style_prefer_conditional_expression_over_return = false
+	dotnet_style_prefer_conditional_expression_over_return = false
 dotnet_diagnostic.IDE0047.severity = warning # this and 48 are a little weird; the options only "apply" when the rule with that option value is enabled
 dotnet_diagnostic.IDE0048.severity = warning
-dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity #i like the clarity, but i only like it for others; if someone else writes it without them, that's fine, but refactoring is good to have them # TODO that was your previous rationale, but then you realized that this also triggers when some of the components of the expression are method calls and such; we need parentheses for clarity for sure when they aren't simple variables; it might be nice to implement an analyzer that can tell the difference
-dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:suggestion # for sure people don't have a good intuition of the precedence for these operators, so we should require them
-dotnet_style_parentheses_in_other_binary_operators = always_for_clarity # i think that the boolean operators are less clear, especially when method calls occur and things like that # TODO also check the above rationale about method calls
-dotnet_style_parentheses_in_other_operators = never_if_unnecessary  # i don't know what all of the operators are here, but `.` is one of them, and parens for that is awful; making it a suggestion to remove them when unnecessary because they really should be *added* when clarity is poor for a specific situation
+	dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity #i like the clarity, but i only like it for others; if someone else writes it without them, that's fine, but refactoring is good to have them # TODO that was your previous rationale, but then you realized that this also triggers when some of the components of the expression are method calls and such; we need parentheses for clarity for sure when they aren't simple variables; it might be nice to implement an analyzer that can tell the difference
+	dotnet_style_parentheses_in_relational_binary_operators = never_if_unnecessary:suggestion # for sure people don't have a good intuition of the precedence for these operators, so we should require them
+	dotnet_style_parentheses_in_other_binary_operators = always_for_clarity # i think that the boolean operators are less clear, especially when method calls occur and things like that # TODO also check the above rationale about method calls
+	dotnet_style_parentheses_in_other_operators = never_if_unnecessary  # i don't know what all of the operators are here, but `.` is one of them, and parens for that is awful; making it a suggestion to remove them when unnecessary because they really should be *added* when clarity is poor for a specific situation
 dotnet_diagnostic.IDE0049.severity = warning
 	dotnet_style_predefined_type_for_locals_parameters_members = true
 	dotnet_style_predefined_type_for_member_access = true
