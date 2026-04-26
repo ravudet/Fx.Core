@@ -577,6 +577,7 @@ dotnet_diagnostic.IDE0048.severity = warning
 dotnet_diagnostic.IDE0049.severity = warning
 	dotnet_style_predefined_type_for_locals_parameters_members = true
 	dotnet_style_predefined_type_for_member_access = true
+dotnet_diagnostic.IDE0050.severity = none # this rule is through provoking; anonymous types are reference types and tuple are value types; i actually don't get what the rule is trying to say, because it applies to basically all cases where you would have a tuple or an anonymous type (when are you creating either with only 1 field?); i'm disabling this rule because i don't think it triggers on the cases i care about; my own guidance is, if the variable is entirely local, use a tuple; if it's being passed as a parameter, use anonymous type (make sure to consider the linq cases here); if it's being returned, use a tuple or a new class definition, because you can't strongly type a return value that is an anonymous type; i think i can probably write my own analyzer for this
 
 
 
