@@ -578,10 +578,10 @@ dotnet_diagnostic.IDE0049.severity = warning
 	dotnet_style_predefined_type_for_locals_parameters_members = true
 	dotnet_style_predefined_type_for_member_access = true
 
-# TODO can you indent to the options so that everything is easier to read?
 
 
 # TODO remember that you need to remove the options from down below as you go along
+# TODO remember to indent the options
 
 
 
