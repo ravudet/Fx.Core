@@ -559,7 +559,7 @@ dotnet_diagnostic.IDE0040.severity = warning # i want to be explicit; and for in
 	dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
 dotnet_diagnostic.IDE0041.severity = warning # look at the `Equality` test method
 	dotnet_style_prefer_is_null_check_over_reference_equality_method = true
-dotnet_diagnostic.IDE0042.severity = warning
+dotnet_diagnostic.IDE0042.severity = warning # TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0042 seems to indicate `var person = GetPersonTuple();` is illegal, but it doesn't seem flagged to me; *i* prefer this, because i only want `(int x, int y) point = GetPointTuple();` to be fixed; this is either a bug or a doc issue, though
 	csharp_style_deconstructed_variable_declaration = true
 # NOTE: there is no IDE0043
 dotnet_diagnostic.IDE0044.severity = warning

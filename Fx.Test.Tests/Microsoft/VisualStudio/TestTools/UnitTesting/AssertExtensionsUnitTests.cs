@@ -212,6 +212,7 @@ class C {
         //// TODO i can't get ide0270 to trigger
         //// TODO ide0047 and ide0048 both "appear" as ide0048 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0047-ide0048
 
+        //// TODO write articles in a github pages repo (or set up your current repo to publish pages if that's possible?) and link to the articles from the editorconfig
         //// TODO go through your TODOs below and write down your guiding principles, and create a page that has those listed so you can reference them from the articles
         //// TODO you maybe should go through all of the notes in the editorconfig to see if there are any guiding principles there that you missed
         //// TODO you have a guiding principle to enable multiple rules even if they are duplicates or one supersedes another, because thought was put into enabling the rule, so disabling it should be painful (but not hard) and thought-provoking
@@ -278,39 +279,23 @@ class C {
 
 
 
-        //// TODO you are re-ordering the config file to follow the ui; make sure there are no duplicates
-        //// TODO what is making the "whitespace" rules warnings? in the other tabs, you can set the severity
         //// TODO go back through and determine which ones are "disabled" when `false` (rather than warning for the opposite); for these, decide on what "severity" you want to set (can you remove the severity altogether?)
         ////    TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does
         ////    TODO `dotnet_style_prefer_compound_assignment = false:warning` doesn't warn for `var value = 1324; value += 5;`
         ////    TODO `csharp_style_throw_expression = false:warning` doesn't warn for `var assigned = another ?? throw new Exception("TODO");`
         ////    TODO `csharp_style_prefer_index_operator = false:warning` doesn't warn for `var index = data[^1];`
-        //// TODO for each rule, toggling back and forth should result in no change to the file (except the rules that you deleted)
-        //// TODO go back through the rules again to see which ones you deleted; just comment them out instead
-
-
-
-
-
-
         //// TODO i can't get csharp_style_unused_value_assignment_preference to trigger, and it looks like CS0219 covers it anyway?
-        //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0042 seems to indicate `var person = GetPersonTuple();` is illegal, but it doesn't seem flagged to me; *i* prefer this, because i only want `(int x, int y) point = GetPointTuple();` to be fixed; this is either a bug or a doc issue, though
-
-
-
-
-        //// TODO i'm not convinced that the UI is a canonical list; go through the rule reference documentation to see if there are any missing: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories
-
-
-
         //// TODO dotnet_style_namespace_match_folder is really good for me, but the article https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0130 mentions it's not going to work for command line builds without additional csproj maniupulation... (though it will work for vs builds)
+
+
+
+
 
 
         //// TODO add custom roslyn analayzer for `assert.that`
         ////    TODO allow unsafe is an example of a codefix that updates the project
         //// TODO add an analyzer that *disallows* primary constructors (the opposite of csharp_style_prefer_primary_constructors)
         //// TODO you know, the old style cop docs used to actually have pretty good justifications for why you want to change your code...
-        //// TODO write articles to justify the non-style rules //// TODO do you want articles, or do you want to put them as comments in the config file? //// TODO probably write articles and link to them in the rules
         ////    TODO csharp_style_prefer_implicitly_typed_lambda_expression also triggers cases where you are passing a lambda as a parameter to a method `Frub((int x) => { });`
         ////    TODO for `csharp_style_prefer_tuple_swap` i wonder if the compiler or jiter do magic here; isn't the tuple going to take extra (stack) memory? i do think it looks neat though
         ////    TODO i think `csharp_style_inlined_variable_declaration` would make a lot more sense if `while (!int.TryParse(value, out var parsed)) { } Console.WriteLine(parsed);` worked
