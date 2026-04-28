@@ -578,14 +578,22 @@ dotnet_diagnostic.IDE0049.severity = warning
 	dotnet_style_predefined_type_for_locals_parameters_members = true
 	dotnet_style_predefined_type_for_member_access = true
 dotnet_diagnostic.IDE0050.severity = none # this rule is through provoking; anonymous types are reference types and tuple are value types; i actually don't get what the rule is trying to say, because it applies to basically all cases where you would have a tuple or an anonymous type (when are you creating either with only 1 field?); i'm disabling this rule because i don't think it triggers on the cases i care about; my own guidance is, if the variable is entirely local, use a tuple; if it's being passed as a parameter, use anonymous type (make sure to consider the linq cases here); if it's being returned, use a tuple or a new class definition, because you can't strongly type a return value that is an anonymous type; i think i can probably write my own analyzer for this
-
+dotnet_diagnostic.IDE0051.severity = warning # duplicate of ca1823
+dotnet_diagnostic.IDE0052.severity = warning
+dotnet_diagnostic.IDE0053.severity = warning # i think this is purely style for you
+	csharp_style_expression_bodied_lambdas = true:warning
+dotnet_diagnostic.IDE0054.severity = none # these seem completely equivalent to me; i'd be open to enabling the rule if someone could tell me why it's good
+	dotnet_style_prefer_compound_assignment = false
+# NOTE: there is no IDE0055
+dotnet_diagnostic.IDE0056.severity = none # personally, i'd prefer to warn against using this new style because i don't like symbolic syntax, but the rule can't be configured that way
+	csharp_style_prefer_index_operator = false
 
 
 # TODO remember that you need to remove the options from down below as you go along
 # TODO remember to indent the options
 
 
-
+dotnet_diagnostic.IDE0074.severity = warning # see ide0054
 dotnet_diagnostic.IDE0270.severity = none # see ide0029 # TODO i thought this would catch `first.Foo is not null ? first.Foo : "asdf"`, but it doesn't... # TODO i can't get this rule to trigger # TODO making this `none` for now, because i don't know what it actually triggers against
 
 
@@ -701,7 +709,6 @@ csharp_prefer_system_threading_lock = true:warning
 
 
 
-#csharp_style_expression_bodied_lambdas = true:warning
 #csharp_style_expression_bodied_local_functions = false:warning
 
 ### expression-level preferences
@@ -711,13 +718,13 @@ dotnet_diagnostic.IDE0270.severity = none#IDE0270: Use coalesce expression
 
 dotnet_style_prefer_simplified_boolean_expressions = true:warning
 dotnet_style_prefer_conditional_expression_over_assignment = false:silent
-#dotnet_style_prefer_compound_assignment = false:warning
+
 dotnet_style_prefer_simplified_interpolation = true:warning
 
 dotnet_style_namespace_match_folder = true:warning
 [*.cs]
 csharp_style_prefer_null_check_over_type_check = true:warning
-csharp_style_prefer_index_operator = false:warning
+
 csharp_style_prefer_range_operator = true:suggestion
 csharp_style_implicit_object_creation_when_type_is_apparent = false:warning
 csharp_style_prefer_implicitly_typed_lambda_expression = true:warning

@@ -215,6 +215,7 @@ class C {
         //// TODO write articles in a github pages repo (or set up your current repo to publish pages if that's possible?) and link to the articles from the editorconfig
         //// TODO go through your TODOs below and write down your guiding principles, and create a page that has those listed so you can reference them from the articles
         //// TODO you maybe should go through all of the notes in the editorconfig to see if there are any guiding principles there that you missed
+        //// TODO when you get to the IDE rules, some of these really are just style, and i think it's fine to admit that
         //// TODO you have a guiding principle to enable multiple rules even if they are duplicates or one supersedes another, because thought was put into enabling the rule, so disabling it should be painful (but not hard) and thought-provoking
         //// TODO ide0037 makes a good point about options on disabled rules; you should do another pass to add all of the options as disabled for the `none` rules, making the same note that ide0037 has
         //// TODO you should do the same thing for enabled rules, and explicitly select the default; this is in regards to "don't just enable something because it's a rule, you need to understand it
@@ -283,7 +284,6 @@ class C {
         ////    TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does
         ////    TODO `dotnet_style_prefer_compound_assignment = false:warning` doesn't warn for `var value = 1324; value += 5;`
         ////    TODO `csharp_style_throw_expression = false:warning` doesn't warn for `var assigned = another ?? throw new Exception("TODO");`
-        ////    TODO `csharp_style_prefer_index_operator = false:warning` doesn't warn for `var index = data[^1];`
         //// TODO i can't get csharp_style_unused_value_assignment_preference to trigger, and it looks like CS0219 covers it anyway?
         //// TODO dotnet_style_namespace_match_folder is really good for me, but the article https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0130 mentions it's not going to work for command line builds without additional csproj maniupulation... (though it will work for vs builds)
 
