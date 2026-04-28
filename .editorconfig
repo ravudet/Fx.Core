@@ -601,6 +601,8 @@ dotnet_diagnostic.IDE0061.severity = none # i don't like this and i think it's j
 	csharp_style_expression_bodied_local_functions = false
 dotnet_diagnostic.IDE0062.severity = warning # only triggers if it's not a closure; i think a rule which alerts about closures would be good, and you could make it a "suggestion" so that the person has to think about it, but it's not inherently bad to have closures, so i don't think it should be a warning; but it'd be good to have a systematic way to find all of your closures
 	csharp_prefer_static_local_function = true
+dotnet_diagnostic.IDE0063.severity = warning # i can't get this to trigger, so maybe i need to change these values and write my own analyzer; i would like to warn *against* using the simple syntax; it's mostly a style preference, but i do like being explicit about the scope of something that is having memory managed by us; also, i would have thought that the compiler finds where the last use of the variable is and puts the dispose after that, but it just scopes the disposable for the rest of the method
+	csharp_prefer_simple_using_statement = false
 
 
 
@@ -714,7 +716,6 @@ csharp_using_directive_placement = inside_namespace:warning
 
 ### code-block preferences
 
-csharp_prefer_simple_using_statement = false:warning
 
 csharp_style_namespace_declarations = block_scoped:warning
 csharp_style_prefer_method_group_conversion = false:silent
