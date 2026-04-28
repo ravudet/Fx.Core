@@ -587,7 +587,7 @@ dotnet_diagnostic.IDE0054.severity = none # these seem completely equivalent to 
 # NOTE: there is no IDE0055
 dotnet_diagnostic.IDE0056.severity = none # personally, i'd prefer to warn against using this new style because i don't like symbolic syntax, but the rule can't be configured that way
 	csharp_style_prefer_index_operator = false
-dotnet_diagnostic.IDE0057.severity = none # TODO make this a suggestion? # as much as i dislike more syntax, creating sub arrays (less so for strings and spans and stuff) has always been weird; you create the new array, then you use array.copy or constrianed copy or buffer.blockcopy, and you need to get the indices correct, when most of them are "boilerplate"; and by the way, which copy method do you call and why? there's not really a good answer
+dotnet_diagnostic.IDE0057.severity = warning # TODO make this a suggestion? # as much as i dislike more syntax, creating sub arrays (less so for strings and spans and stuff) has always been weird; you create the new array, then you use array.copy or constrianed copy or buffer.blockcopy or myarray.copyto, and you need to get the indices correct, when most of them are "boilerplate"; and by the way, which copy method do you call and why? there's not really a good answer # that said, this doesn't catch the array stuff i'm talking about, i'd be great to have a rule that does catch it, but because i think the syntactic sugar is good for something, i think it's good to suggest the new syntax to it gets visibility
 	csharp_style_prefer_range_operator = true
 
 

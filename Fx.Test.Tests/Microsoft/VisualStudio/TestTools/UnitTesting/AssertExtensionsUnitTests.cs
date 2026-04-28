@@ -1084,6 +1084,9 @@ class C {
             var index = data[^1];
             var more = data[1..4];
 
+            var subArray = new int[2];
+            Array.Copy(data, 0, subArray, 0, 4);
+
             var doubled = from datum in data from datum2 in data 
                           select datum * datum2;
 
