@@ -16,6 +16,32 @@
     }
 }*/
 
+namespace Microsoft.VisualStudio.TestTools.UnitTesting.Foo
+{
+    using System;
+
+    public static class Demo
+    {
+        public static void DoWork()
+        {
+            Console.WriteLine("overridden");
+        }
+    }
+}
+
+namespace Foo
+{
+    using System;
+
+    public static class Demo
+    {
+        public static void DoWork()
+        {
+            Console.WriteLine("standard");
+        }
+    }
+}
+
 namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
     using System;
@@ -32,6 +58,8 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using System.Threading;
     using System.Threading.Tasks;
     using System.Xml.Linq;
+
+    using Foo;
 
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp.Scripting;
@@ -317,6 +345,13 @@ class C {
 
 
 
+        [TestMethod]
+        public void NamespacePlacement()
+        {
+            new ReadOnlyAssignment().Foo();
+        }
+
+
 
         public struct ReadOnlyAssignment
         {
@@ -324,6 +359,8 @@ class C {
 
             public void Foo()
             {
+                Demo.DoWork();
+
                 ////this = new ReadOnlyAssignment();
             }
         }
