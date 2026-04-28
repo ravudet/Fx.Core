@@ -589,6 +589,16 @@ dotnet_diagnostic.IDE0056.severity = none # personally, i'd prefer to warn again
 	csharp_style_prefer_index_operator = false
 dotnet_diagnostic.IDE0057.severity = warning # TODO make this a suggestion? # as much as i dislike more syntax, creating sub arrays (less so for strings and spans and stuff) has always been weird; you create the new array, then you use array.copy or constrianed copy or buffer.blockcopy or myarray.copyto, and you need to get the indices correct, when most of them are "boilerplate"; and by the way, which copy method do you call and why? there's not really a good answer # that said, this doesn't catch the array stuff i'm talking about, i'd be great to have a rule that does catch it, but because i think the syntactic sugar is good for something, i think it's good to suggest the new syntax to it gets visibility
 	csharp_style_prefer_range_operator = true
+dotnet_diagnostic.IDE0058.severity = warning # i don't think anyone will really mess up linq queries these days, but the points stands for immutable types and fluent apis that this is really helpful; it's also good when return values represent error conditions like "try" variants
+	csharp_style_unused_value_expression_statement_preference = discard_variable # using a discard because we have things like cs0219 and ide0059 which don't allow unused locals
+	visual_basic_style_unused_value_expression_statement_preference
+dotnet_diagnostic.IDE0059.severity = warning # somewhat a duplicate of cs0219, but they do seem to catch different things at different times
+	csharp_style_unused_value_assignment_preference = discard_variable
+	visual_basic_style_unused_value_assignment_preference
+
+
+
+
 
 
 
@@ -734,8 +744,8 @@ csharp_style_prefer_implicitly_typed_lambda_expression = true:warning
 csharp_style_prefer_tuple_swap = true:suggestion
 csharp_style_prefer_unbound_generic_type_in_nameof = true:warning
 csharp_style_prefer_utf8_string_literals = true:warning
-csharp_style_unused_value_assignment_preference = unused_local_variable:silent
-csharp_style_unused_value_expression_statement_preference = discard_variable:warning
+
+
 
 
 ### modifier preferences

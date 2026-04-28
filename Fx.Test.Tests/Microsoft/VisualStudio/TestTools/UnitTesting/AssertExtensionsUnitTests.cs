@@ -333,6 +333,9 @@ class C {
 
             public void DoWork()
             {
+
+                var unused = int.TryParse("asdf", out var value);
+
                 throw new NotImplementedException();
             }
 
@@ -1024,6 +1027,8 @@ class C {
             var again = default(Exception);
 
             Exception? again2 = default;
+
+            int.TryParse("asdf", out var testingReturnValue);
 
             var tuple = GetTuple();
             var notTuple = AnotherParse("asdf");
