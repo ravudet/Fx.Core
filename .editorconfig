@@ -599,6 +599,10 @@ dotnet_diagnostic.IDE0060.severity = warning # for the option below, note that w
 	dotnet_code_quality_unused_parameters = all # NOTE: doesn't count interface implementations, which is probably for the best
 dotnet_diagnostic.IDE0061.severity = none # i don't like this and i think it's just stylistic; maybe refer to IDE0021-27 to see if you have a good reasoning there
 	csharp_style_expression_bodied_local_functions = false
+dotnet_diagnostic.IDE0062.severity = warning # only triggers if it's not a closure; i think a rule which alerts about closures would be good, and you could make it a "suggestion" so that the person has to think about it, but it's not inherently bad to have closures, so i don't think it should be a warning; but it'd be good to have a systematic way to find all of your closures
+	csharp_prefer_static_local_function = true
+
+
 
 
 
@@ -746,7 +750,6 @@ csharp_style_prefer_utf8_string_literals = true:warning
 ### modifier preferences
 
 [*.cs]
-csharp_prefer_static_local_function = true:warning
 csharp_prefer_static_anonymous_function = true:warning#TODO i have a feeling that i will regret this one because, although it's absolutely the "right" thing to do, linq queries will now have an extra step that i'm not used to reading or writing
 csharp_style_prefer_readonly_struct = true:warning
 csharp_style_prefer_readonly_struct_member = true:warning

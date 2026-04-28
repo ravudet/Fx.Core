@@ -334,6 +334,10 @@ class C {
 
             public void DoWork()
             {
+                void Hello()
+                {
+                    Console.WriteLine(this.test);
+                }
 
                 var unused = int.TryParse("asdf", out var value);
 
