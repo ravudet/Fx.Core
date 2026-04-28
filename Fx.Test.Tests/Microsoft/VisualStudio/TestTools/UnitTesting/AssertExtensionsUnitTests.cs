@@ -318,6 +318,16 @@ class C {
 
 
 
+        public struct ReadOnlyAssignment
+        {
+            public readonly int Bar;
+
+            public void Foo()
+            {
+                ////this = new ReadOnlyAssignment();
+            }
+        }
+
 
         public interface IModifiersExample
         {
@@ -335,7 +345,6 @@ class C {
 
             public void DoWork()
             {
-
                 using (var foo = File.OpenRead("asdf"))
                 {
                 }

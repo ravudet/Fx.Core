@@ -603,6 +603,9 @@ dotnet_diagnostic.IDE0062.severity = warning # only triggers if it's not a closu
 	csharp_prefer_static_local_function = true
 dotnet_diagnostic.IDE0063.severity = warning # i can't get this to trigger, so maybe i need to change these values and write my own analyzer; i would like to warn *against* using the simple syntax; it's mostly a style preference, but i do like being explicit about the scope of something that is having memory managed by us; also, i would have thought that the compiler finds where the last use of the variable is and puts the dispose after that, but it just scopes the disposable for the rest of the method
 	csharp_prefer_simple_using_statement = false
+dotnet_diagnostic.IDE0064.severity = warning # if the struct itself is readonly, the `this` assignment is illegal; ide0250 will suggest making the struct readonly, but it can't do that if `this` assignment is used; structs that trigger this (0064) should either remove the `this` assignment and be made readonly, or should preserve the `this` assignment and remove `readonly` from the fields; so, i think that this rule should trigger because we want to notice this situation, but there should be two automated fixes (as described above), and they require justification 
+
+
 
 
 
