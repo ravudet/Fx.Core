@@ -597,7 +597,8 @@ dotnet_diagnostic.IDE0059.severity = warning # somewhat a duplicate of cs0219, b
 	visual_basic_style_unused_value_assignment_preference
 dotnet_diagnostic.IDE0060.severity = warning # for the option below, note that we are choosing everything because what's good for our customer is good for us and what's good for us is good for our customer
 	dotnet_code_quality_unused_parameters = all # NOTE: doesn't count interface implementations, which is probably for the best
-
+dotnet_diagnostic.IDE0060.severity = none # i don't like this and i think it's just stylistic; maybe refer to IDE0021-27 to see if you have a good reasoning there
+	csharp_style_expression_bodied_local_functions = false
 
 
 
@@ -717,14 +718,7 @@ csharp_style_prefer_top_level_statements = false:warning
 csharp_style_prefer_primary_constructors = false:silent
 csharp_prefer_system_threading_lock = true:warning
 
-### expression-bodied members
 
-
-
-
-
-
-#csharp_style_expression_bodied_local_functions = false:warning
 
 ### expression-level preferences
 
