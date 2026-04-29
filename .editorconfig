@@ -606,11 +606,11 @@ dotnet_diagnostic.IDE0063.severity = warning # i can't get this to trigger, so m
 dotnet_diagnostic.IDE0064.severity = warning # if the struct itself is readonly, the `this` assignment is illegal; ide0250 will suggest making the struct readonly, but it can't do that if `this` assignment is used; structs that trigger this (0064) should either remove the `this` assignment and be made readonly, or should preserve the `this` assignment and remove `readonly` from the fields; so, i think that this rule should trigger because we want to notice this situation, but there should be two automated fixes (as described above), and they require justification 
 dotnet_diagnostic.IDE0065.severity = warning # placing them inside lets you "override" things because the inner directives are *first* relative to the namespace that they are inside of, and global second; i don't know that this is a good thing, though, because it means someone can override `system` or something, for example; i think probably they should go outside, and brought in and justified if there is a need to "override" (like if there is some pacakge that's not available on all target machines, so you have a preprocessor directive to include a duplicate of that packages code or something; honestly, though, in that situation, you just use the "normal" namespace for the package anyway; i'm maybe stretching a bit because i was convinced to put the directives inside during the stylecop days) # todo look at this: https://stackoverflow.com/questions/125319/should-using-directives-be-inside-or-outside-the-namespace-in-c if there are type names used in the `using` namespace that also exist in the current or higher namespace, the current hierarchy is searched first, unless the `using` is inside the namespace; this is actually just bad all around...
 	csharp_using_directive_placement = inside_namespace
-
-
-
-
-
+dotnet_diagnostic.IDE0066.severity = warning # TODO should be suggestion
+	csharp_style_prefer_switch_expression = true # this is so limited in use (because the cases must be expressions and *can't* be statements), it's fine to suggest to move me towards c# 8 (and to add in refactors), but it's not something to shoehorn in
+# NOTE: there are no rules from IDE0067-IDE0069
+dotnet_diagnostic.IDE0070.severity = warning # i tend to use XOR, but that is commutative, so the order of properties doesn't matter; this is not necessarily a good thing if you have, for example, two `int` properties, because if they swap values, you have a collission; i really always knew i should be using an established hashing mechanism but just never bothered to find one; now is a good time
+	dotnet_prefer_system_hash_code = true
 
 
 
@@ -778,7 +778,6 @@ csharp_style_conditional_delegate_call = false:silent
 ### pattern matching preferences
 
 [*.cs]
-csharp_style_prefer_switch_expression = true:suggestion # this is so limited in use, it's fine to suggest to move me towards c# 8 (and to add in refactors), but it's not something to shoehorn in
 csharp_style_prefer_pattern_matching = false:warning # i really wish i could make this warn *against* the pattern matching stuff
 
 csharp_style_prefer_not_pattern = true:suggestion # suggestion for discovery; it's way easier to type the new way, but both are fine, even in terms of readability
@@ -876,9 +875,6 @@ dotnet_separate_import_directive_groups = true
 dotnet_sort_system_directives_first = true
 file_header_template = unset
 
-
-# Expression-level preferences
-dotnet_prefer_system_hash_code = true
 
 
 
