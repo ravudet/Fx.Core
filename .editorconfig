@@ -613,6 +613,7 @@ dotnet_diagnostic.IDE0070.severity = warning # i tend to use XOR, but that is co
 	dotnet_prefer_system_hash_code = true
 dotnet_diagnostic.IDE0071.severity = warning # purely style, but i think most would agree it adds to readability
 	dotnet_style_prefer_simplified_interpolation = true
+dotnet_diagnostic.IDE0072.severity = warning # see IDE0010, this is just for expressions instead
 
 
 
