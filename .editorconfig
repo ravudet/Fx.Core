@@ -611,6 +611,15 @@ dotnet_diagnostic.IDE0066.severity = warning # TODO should be suggestion
 # NOTE: there are no rules from IDE0067-IDE0069
 dotnet_diagnostic.IDE0070.severity = warning # i tend to use XOR, but that is commutative, so the order of properties doesn't matter; this is not necessarily a good thing if you have, for example, two `int` properties, because if they swap values, you have a collission; i really always knew i should be using an established hashing mechanism but just never bothered to find one; now is a good time
 	dotnet_prefer_system_hash_code = true
+dotnet_diagnostic.IDE0071.severity = warning # purely style, but i think most would agree it adds to readability
+	dotnet_style_prefer_simplified_interpolation = true
+
+
+
+
+
+
+
 
 
 
@@ -735,7 +744,6 @@ dotnet_diagnostic.IDE0270.severity = none#IDE0270: Use coalesce expression
 dotnet_style_prefer_simplified_boolean_expressions = true:warning
 dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 
-dotnet_style_prefer_simplified_interpolation = true:warning
 
 dotnet_style_namespace_match_folder = true:warning
 [*.cs]
