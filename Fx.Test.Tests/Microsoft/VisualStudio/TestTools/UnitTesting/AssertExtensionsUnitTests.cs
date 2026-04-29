@@ -241,6 +241,7 @@ class C {
         //// TODO ide0047 and ide0048 both "appear" as ide0048 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0047-ide0048
         //// TODO i can't get IDE0063 to trigger`
 
+        //// TODO can you create a roslyn analyzer for the editorconfig?
         //// TODO write articles in a github pages repo (or set up your current repo to publish pages if that's possible?) and link to the articles from the editorconfig
         //// TODO go through your TODOs below and write down your guiding principles, and create a page that has those listed so you can reference them from the articles
         //// TODO you maybe should go through all of the notes in the editorconfig to see if there are any guiding principles there that you missed
