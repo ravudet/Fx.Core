@@ -614,7 +614,9 @@ dotnet_diagnostic.IDE0070.severity = warning # i tend to use XOR, but that is co
 dotnet_diagnostic.IDE0071.severity = warning # purely style, but i think most would agree it adds to readability
 	dotnet_style_prefer_simplified_interpolation = true
 dotnet_diagnostic.IDE0072.severity = warning # see IDE0010, this is just for expressions instead
-
+dotnet_diagnostic.IDE0073.severity = warning
+	file_header_template = ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// # TODO i really hate that this automatically adds the `// ` comment prefix...
+dotnet_diagnostic.IDE0074.severity = warning # see ide0054
 
 
 
@@ -630,7 +632,6 @@ dotnet_diagnostic.IDE0072.severity = warning # see IDE0010, this is just for exp
 # TODO remember to indent the options
 
 
-dotnet_diagnostic.IDE0074.severity = warning # see ide0054
 dotnet_diagnostic.IDE0270.severity = none # see ide0029 # TODO i thought this would catch `first.Foo is not null ? first.Foo : "asdf"`, but it doesn't... # TODO i can't get this rule to trigger # TODO making this `none` for now, because i don't know what it actually triggers against
 
 
@@ -882,7 +883,6 @@ dotnet_search_reference_assemblies = true
 # Organize usings
 dotnet_separate_import_directive_groups = true
 dotnet_sort_system_directives_first = true
-file_header_template = unset
 
 
 
