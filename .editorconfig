@@ -620,6 +620,9 @@ dotnet_diagnostic.IDE0074.severity = warning # see ide0054
 dotnet_diagnostic.IDE0075.severity = warning # this does more than what's listed in the docs; it really seems to understand boolean logic and simplify (like an algebra "simplify") those logical expressions (e.g. `var result2 = true ? true : false`)
 	dotnet_style_prefer_simplified_boolean_expressions = true
 # NOTE: there are no rules from IDE076-IDE0077
+dotnet_diagnostic.IDE0078.severity = none # i really wish i could make this warn *against* the pattern matching stuff; really much prefer the explicit nature; and what i hate most is that it doesn't have syntax when multiple left-hand-side values are used, and you have to go back to the "old" way (you can't say `if (x is > 5 or y is < 3)`, you have to say `if (x is > 5 || y is < 3)`)
+	csharp_style_prefer_pattern_matching = false
+
 
 
 
@@ -634,6 +637,8 @@ dotnet_diagnostic.IDE0075.severity = warning # this does more than what's listed
 # TODO remember to indent the options
 
 
+dotnet_diagnostic.IDE0260.severity = none # see ide0078 (not sure it's actually relevant here); i think it's good to come up with a name for the post-cast variable, to demonstrate the "meaning" of that variable, and how its meaning is different from the "meaning" of the original variable
+	csharp_style_pattern_matching_over_as_with_null_check = false
 dotnet_diagnostic.IDE0270.severity = none # see ide0029 # TODO i thought this would catch `first.Foo is not null ? first.Foo : "asdf"`, but it doesn't... # TODO i can't get this rule to trigger # TODO making this `none` for now, because i don't know what it actually triggers against
 
 
@@ -789,8 +794,6 @@ csharp_style_conditional_delegate_call = false:silent
 ### pattern matching preferences
 
 [*.cs]
-csharp_style_prefer_pattern_matching = false:warning # i really wish i could make this warn *against* the pattern matching stuff
-
 csharp_style_prefer_not_pattern = true:suggestion # suggestion for discovery; it's way easier to type the new way, but both are fine, even in terms of readability
 csharp_style_prefer_extended_property_pattern = true:warning # i hate this syntax, but if you're going to use it, i think this is good because the rule only applies for cases where there is a single "inner" check (TODO find the right names to refer to these constructs)
 

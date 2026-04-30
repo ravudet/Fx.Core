@@ -362,6 +362,12 @@ class C {
             {
                 var result2 = true ? true : false;
 
+                var value = 4;
+                var value2 = 5;
+                if (value is > 5 or value2 is < 3)
+                {
+                }
+
                 Demo.DoWork();
 
                 ////this = new ReadOnlyAssignment();
