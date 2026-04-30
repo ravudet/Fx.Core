@@ -619,6 +619,7 @@ dotnet_diagnostic.IDE0073.severity = warning # i don't know if there's a line le
 dotnet_diagnostic.IDE0074.severity = warning # see ide0054
 dotnet_diagnostic.IDE0075.severity = warning # this does more than what's listed in the docs; it really seems to understand boolean logic and simplify (like an algebra "simplify") those logical expressions (e.g. `var result2 = true ? true : false`)
 	dotnet_style_prefer_simplified_boolean_expressions = true
+# NOTE: there are no rules from IDE076-IDE0077
 
 
 
