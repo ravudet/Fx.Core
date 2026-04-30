@@ -347,6 +347,44 @@ class C {
 
 
 
+        static void UseIndex(IIndexer<string, int> indexer)
+        {
+            ////indexer["asdf"]
+        }
+
+        class Indexer<TKey, TValue> : IIndexer<TKey, TValue>
+        {
+            public TValue this[TKey key]
+            {
+                set
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            IEnumerable<TValue> IIndexer<TKey, TKey, TValue>.this[TKey key]
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
+
+        interface IIndexer<TKey, TValue> : IIndexer<TKey, TKey, TValue>
+        {
+        }
+
+        interface IIndexer<TKey1, TKey2, TValue>
+        {
+            TValue this[TKey1 key] { set; }
+
+
+            IEnumerable<TValue> this[TKey2 key] { get; }
+        }
+
+
 
         [TestMethod]
         public void NamespacePlacement()
