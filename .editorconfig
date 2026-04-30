@@ -614,10 +614,11 @@ dotnet_diagnostic.IDE0070.severity = warning # i tend to use XOR, but that is co
 dotnet_diagnostic.IDE0071.severity = warning # purely style, but i think most would agree it adds to readability
 	dotnet_style_prefer_simplified_interpolation = true
 dotnet_diagnostic.IDE0072.severity = warning # see IDE0010, this is just for expressions instead
-dotnet_diagnostic.IDE0073.severity = warning
+dotnet_diagnostic.IDE0073.severity = warning # i don't know if there's a line length rule, but i would like there to be (because if your lines are super long, you're not naming things well, or you're nesting things too far (probably other reasons)); and this helps in your IDE to see when you've gone past the line length (maybe only matters when you are using word wrap?)
 	file_header_template = ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// # TODO i really hate that this automatically adds the `// ` comment prefix...
 dotnet_diagnostic.IDE0074.severity = warning # see ide0054
-
+dotnet_diagnostic.IDE0075.severity = warning # this does more than what's listed in the docs; it really seems to understand boolean logic and simplify (like an algebra "simplify") those logical expressions (e.g. `var result2 = true ? true : false`)
+	dotnet_style_prefer_simplified_boolean_expressions = true
 
 
 
@@ -743,7 +744,6 @@ csharp_prefer_system_threading_lock = true:warning
 [*.{cs,vb}]
 dotnet_diagnostic.IDE0270.severity = none#IDE0270: Use coalesce expression
 
-dotnet_style_prefer_simplified_boolean_expressions = true:warning
 dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 
 

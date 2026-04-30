@@ -360,6 +360,8 @@ class C {
 
             public void Foo()
             {
+                var result2 = true ? true : false;
+
                 Demo.DoWork();
 
                 ////this = new ReadOnlyAssignment();
