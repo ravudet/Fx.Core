@@ -583,7 +583,7 @@ dotnet_diagnostic.IDE0052.severity = warning
 dotnet_diagnostic.IDE0053.severity = warning # i think this is purely style for you
 	csharp_style_expression_bodied_lambdas = true:warning
 dotnet_diagnostic.IDE0054.severity = none # these seem completely equivalent to me; i'd be open to enabling the rule if someone could tell me why it's good
-	dotnet_style_prefer_compound_assignment = false
+	dotnet_style_prefer_compound_assignment = false # doesn't warn for `var value = 1324; value += 5;`
 # NOTE: there is no IDE0055
 dotnet_diagnostic.IDE0056.severity = none # personally, i'd prefer to warn against using this new style because i don't like symbolic syntax, but the rule can't be configured that way
 	csharp_style_prefer_index_operator = false
@@ -626,8 +626,9 @@ dotnet_diagnostic.IDE0079.severity = warning # just liters the code, and possibl
 	dotnet_remove_unnecessary_suppression_exclusions = none
 dotnet_diagnostic.IDE0080.severity = warning # same reasons as ide0079; you should also require justifications for null forgiveness
 dotnet_diagnostic.IDE0081.severity = error # applies to vb only, which i know nothing about, so we are making it an error so that the first person who encounters it must confront it
-dotnet_diagnostic.IDE0081.severity = warning # this is a perf thing; `nameof` is more like a compile time "macro", while `typeof` is more like syntactic sugar
-
+dotnet_diagnostic.IDE0081.severity = warning # this is a perf thing; `nameof` is more like a compile time "macro", while `typeof` is more like syntactic sugar; you can compare the IL
+dotnet_diagnostic.IDE0082.severity = warning # make it a suggestion for discovery; it's way easier to type the new way, but both are fine, even in terms of readability
+	csharp_style_prefer_not_pattern = true
 
 
 
@@ -798,7 +799,6 @@ csharp_style_conditional_delegate_call = false:silent
 ### pattern matching preferences
 
 [*.cs]
-csharp_style_prefer_not_pattern = true:suggestion # suggestion for discovery; it's way easier to type the new way, but both are fine, even in terms of readability
 csharp_style_prefer_extended_property_pattern = true:warning # i hate this syntax, but if you're going to use it, i think this is good because the rule only applies for cases where there is a single "inner" check (TODO find the right names to refer to these constructs)
 
 
@@ -925,7 +925,4 @@ dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, meth
 dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
 dotnet_naming_symbols.non_field_members.required_modifiers = 
 dotnet_style_object_initializer = true:suggestion
-
-
-dotnet_style_prefer_compound_assignment = true:suggestion
 

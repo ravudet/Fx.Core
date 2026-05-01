@@ -316,7 +316,6 @@ class C {
 
         //// TODO go back through and determine which ones are "disabled" when `false` (rather than warning for the opposite); for these, decide on what "severity" you want to set (can you remove the severity altogether?)
         ////    TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does
-        ////    TODO `dotnet_style_prefer_compound_assignment = false:warning` doesn't warn for `var value = 1324; value += 5;`
         ////    TODO `csharp_style_throw_expression = false:warning` doesn't warn for `var assigned = another ?? throw new Exception("TODO");`
         //// TODO i can't get csharp_style_unused_value_assignment_preference to trigger, and it looks like CS0219 covers it anyway?
         //// TODO dotnet_style_namespace_match_folder is really good for me, but the article https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0130 mentions it's not going to work for command line builds without additional csproj maniupulation... (though it will work for vs builds)
@@ -362,6 +361,9 @@ class C {
 
             public OneToMany()
             {
+                var value = 1234;
+                value += 5;
+
                 this.dictionary = new Dictionary<TKey, List<TValue>>();
             }
 
