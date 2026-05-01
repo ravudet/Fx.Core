@@ -245,6 +245,7 @@ class C {
         //// TODO write articles in a github pages repo (or set up your current repo to publish pages if that's possible?) and link to the articles from the editorconfig
         //// TODO go through your TODOs below and write down your guiding principles, and create a page that has those listed so you can reference them from the articles
         //// TODO you maybe should go through all of the notes in the editorconfig to see if there are any guiding principles there that you missed
+        //// TODO make things errors if you don't know about them, so that the first person who encounters them must confront it and update the editorconfig
         //// TODO public vs internal vs private: what's good for our customer is good for us, and what's good for us is good for our customer
         //// TODO when you get to the IDE rules, some of these really are just style, and i think it's fine to admit that
         //// TODO you have a guiding principle to enable multiple rules even if they are duplicates or one supersedes another, because thought was put into enabling the rule, so disabling it should be painful (but not hard) and thought-provoking
@@ -341,6 +342,126 @@ class C {
         //// TODO look into "contracts" (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.contract?view=net-10.0) and the `pure` attribute (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.pureattribute?view=net-10.0)
 
 
+
+
+
+
+
+
+        static void TestOneToMany(IOneToMany<string, int> oneToMany)
+        {
+            ////oneToMany["Asdf"] += (Many<int>)4;
+        }
+
+
+#pragma warning disable IDE0060 // Remove unused parameter
+        class OneToMany<TKey, TValue> : IOneToMany<TKey, TValue>
+#pragma warning restore IDE0060 // Remove unused parameter
+        {
+            private readonly Dictionary<TKey, List<TValue>> dictionary;
+
+            public OneToMany()
+            {
+                this.dictionary = new Dictionary<TKey, List<TValue>>();
+            }
+
+            Many<TValue> IOneToMany<TKey, TValue, Many<TValue>>.this[TKey key]
+            {
+                get
+                {
+                    if (!this.dictionary.TryGetValue(key, out var values))
+                    {
+                        values = new List<TValue>();
+                        this.dictionary[key] = values;
+                    }
+
+                    return new Many<TValue>(values);
+                }
+
+                set
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
+
+
+        ref struct One<TValue> : IMany<TValue, One<TValue>>
+        {
+            private readonly TValue value;
+
+            public One(TValue value)
+            {
+                this.value = value;
+            }
+
+            public IEnumerator<TValue> GetEnumerator()
+            {
+                yield return this.value;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+
+            public static IMany<TValue, One<TValue>> operator +(One<TValue> value)
+            {
+                return default;
+            }
+
+            public static implicit operator One<TValue>(TValue value)
+            {
+                return new One<TValue>(value);
+            }
+        }
+
+        interface IMany<TValue> : IMany<TValue, One<TValue>>
+        {
+        }
+
+        interface IMany<TValue, TOne> : IEnumerable<TValue>
+            where TOne : IMany<TValue, TOne>, allows ref struct
+        {
+            static abstract IMany<TValue, TOne> operator +(TOne value);
+        }
+
+        ref struct Many<TValue> : IMany<TValue>
+        {
+            public Many(List<TValue> values)
+            {
+            }
+
+            public IEnumerator<TValue> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+
+            static IMany<TValue, One<TValue>> IMany<TValue, One<TValue>>.operator +(One<TValue> value) => throw new NotImplementedException();
+
+            public static IMany<TValue, One<TValue>> operator +(Many<TValue> value) => throw new NotImplementedException();
+
+            public static implicit operator Many<TValue>(TValue value)
+            {
+                return default;
+            }
+        }
+
+        interface IOneToMany<TKey, TValue> : IOneToMany<TKey, TValue, Many<TValue>>
+        {
+        }
+
+        interface IOneToMany<TKey, TValue, TMany>
+            where TMany : IMany<TValue>, allows ref struct
+        {
+            TMany this[TKey key] { get; set; }
+        }
 
 
 
