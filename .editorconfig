@@ -631,7 +631,9 @@ dotnet_diagnostic.IDE0083.severity = warning # make it a suggestion for discover
 	csharp_style_prefer_not_pattern = true # only as a suggestion though...
 dotnet_diagnostic.IDE0084.severity = error # applies to vb only, which i know nothing about, so we are making it an error so that the first person who encounters it must confront it
 # NOTE: there are no rules from IDE0085-IDE0089
-
+dotnet_diagnostic.IDE0090.severity = none # seems similar to 28 and 34 to me; i'm not opposed to this syntax, but it shouldn't encourage people away from `var`
+	csharp_style_implicit_object_creation_when_type_is_apparent = false
+# NOTE: there are no rules from IDE0091-IDE0099
 
 
 
@@ -764,7 +766,6 @@ dotnet_style_namespace_match_folder = true:warning
 [*.cs]
 csharp_style_prefer_null_check_over_type_check = true:warning
 
-csharp_style_implicit_object_creation_when_type_is_apparent = false:warning
 csharp_style_prefer_implicitly_typed_lambda_expression = true:warning
 csharp_style_prefer_tuple_swap = true:suggestion
 csharp_style_prefer_unbound_generic_type_in_nameof = true:warning
