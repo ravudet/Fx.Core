@@ -634,6 +634,7 @@ dotnet_diagnostic.IDE0084.severity = error # applies to vb only, which i know no
 dotnet_diagnostic.IDE0090.severity = none # seems similar to 28 and 34 to me; i'm not opposed to this syntax, but it shouldn't encourage people away from `var`
 	csharp_style_implicit_object_creation_when_type_is_apparent = false
 # NOTE: there are no rules from IDE0091-IDE0099
+dotnet_diagnostic.IDE0100.severity = warning # if variable and method names are good, this is a readability issue; it should be as simple as `if (branchNeeded)` type naming; if the names make it so `if (branchNeeded == true)` is more readable, the variable is poorly named
 
 
 
