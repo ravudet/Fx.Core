@@ -619,7 +619,7 @@ dotnet_diagnostic.IDE0073.severity = warning # i don't know if there's a line le
 dotnet_diagnostic.IDE0074.severity = warning # see ide0054
 dotnet_diagnostic.IDE0075.severity = warning # this does more than what's listed in the docs; it really seems to understand boolean logic and simplify (like an algebra "simplify") those logical expressions (e.g. `var result2 = true ? true : false`)
 	dotnet_style_prefer_simplified_boolean_expressions = true
-# NOTE: there are no rules from IDE076-IDE0077
+# NOTE: there are no rules from IDE0076-IDE0077
 dotnet_diagnostic.IDE0078.severity = none # i really wish i could make this warn *against* the pattern matching stuff; really much prefer the explicit nature; and what i hate most is that it doesn't have syntax when multiple left-hand-side values are used, and you have to go back to the "old" way (you can't say `if (x is > 5 or y is < 3)`, you have to say `if (x is > 5 || y is < 3)`)
 	csharp_style_prefer_pattern_matching = false
 dotnet_diagnostic.IDE0079.severity = warning # just liters the code, and possible allows for future code that *should* trigger a rule and a re-justification to get through (note i also want to scope these as tightly as possible for the same reasons)
@@ -630,6 +630,7 @@ dotnet_diagnostic.IDE0082.severity = warning # this is a perf thing; `nameof` is
 dotnet_diagnostic.IDE0083.severity = warning # make it a suggestion for discovery; it's way easier to type the new way, but both are fine, even in terms of readability
 	csharp_style_prefer_not_pattern = true # only as a suggestion though...
 dotnet_diagnostic.IDE0084.severity = error # applies to vb only, which i know nothing about, so we are making it an error so that the first person who encounters it must confront it
+# NOTE: there are no rules from IDE0085-IDE0089
 
 
 
