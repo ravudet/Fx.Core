@@ -626,6 +626,7 @@ dotnet_diagnostic.IDE0079.severity = warning # just liters the code, and possibl
 	dotnet_remove_unnecessary_suppression_exclusions = none
 dotnet_diagnostic.IDE0080.severity = warning # same reasons as ide0079; you should also require justifications for null forgiveness
 dotnet_diagnostic.IDE0081.severity = error # applies to vb only, which i know nothing about, so we are making it an error so that the first person who encounters it must confront it
+dotnet_diagnostic.IDE0081.severity = warning # this is a perf thing; `nameof` is more like a compile time "macro", while `typeof` is more like syntactic sugar
 
 
 
