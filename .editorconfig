@@ -638,7 +638,8 @@ dotnet_diagnostic.IDE0100.severity = warning # if variable and method names are 
 # NOTE: there are no rules from IDE0101-IDE0109
 dotnet_diagnostic.IDE0110.severity = warning # purely style, from what i can tell
 # NOTE: there are no rules from IDE0111-IDE0119
-dotnet_diagnostic.IDE0120.severity = none # i actually think all of those "aggregation" overloads are preposterous; i think i should have a rule that *disallows* their use; it's just a convention, and that convention decided on `where`; why not also `select`? or `take`? or `orderby`? or `skip`?
+dotnet_diagnostic.IDE0120.severity = none # i actually think all of those "aggregation" overloads are preposterous; i think i should have a rule that *disallows* their use; it's just a convention, and that convention decided on `where`; why not also `select`? or `take`? or `orderby`? or `skip`? # TODO i suppose i'm probably *fine* if someone *does* use these overloads, but i certainly don't want to encourage their use
+dotnet_diagnostic.IDE0121.severity = warning # i would feel similar to 120 if there existed a `tryselect`; then `oftype` would just be a specialization of `tryselect`; it might then still be a *good* specialization, but in this case, there purpose of the entire `oftype` extension is *specifically* to avoid this pattern (because casting is "expensive"); where the purpose of `any` or `first` or etc has a meaning in the first place, and then someone tried to add an optimization on top of that meaning
 
 
 
