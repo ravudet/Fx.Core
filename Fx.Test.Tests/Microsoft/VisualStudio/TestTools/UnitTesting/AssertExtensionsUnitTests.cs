@@ -253,6 +253,7 @@ class C {
         //// TODO you should do the same thing for enabled rules, and explicitly select the default; this is in regards to "don't just enable something because it's a rule, you need to understand it
         //// TODO distributing via nuget: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#distribution-in-nuget-packages
         ////    TODO consider that you have the rules; but you also have your custom rules, and some of those custom rules will rely on fx.core (like the `assert.that` rule), and some of those rules will not rely on fx.core (like exception documentation); how can you combine all of these cases? are there too many nuget package permutations, or can you make it work? (also, think about the fact that you might have rules that rely on libraries *other than* fx.core, like fx.test or something (actually this is the exact `assert.that` situation))
+        ////    TODO dotnet_style_namespace_match_folder is really good for me, but the article https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0130 mentions it's not going to work for command line builds without additional csproj maniupulation... (though it will work for vs builds)
         //// TODO "suggestion" really means "message", but anything becomes noise when you don't suppress them; would a good SOP be to suppress messages into the suppression file? (so that you don't reduce readability); note this early on in the article series
         //// TODO note early on in the article series that you are big on "don't just enable something because it's a rule; you need to understand it"; anything else is superstition
         //// TODO when you go back through to write the articles, double check that, for the IDE rules, that the option severities are always overridden by the rule severity, and if that is the desireable behavior
@@ -318,7 +319,7 @@ class C {
         ////    TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does
         ////    TODO `csharp_style_throw_expression = false:warning` doesn't warn for `var assigned = another ?? throw new Exception("TODO");`
         //// TODO i can't get csharp_style_unused_value_assignment_preference to trigger, and it looks like CS0219 covers it anyway?
-        //// TODO dotnet_style_namespace_match_folder is really good for me, but the article https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0130 mentions it's not going to work for command line builds without additional csproj maniupulation... (though it will work for vs builds)
+
 
 
 
