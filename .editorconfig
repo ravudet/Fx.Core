@@ -637,6 +637,8 @@ dotnet_diagnostic.IDE0090.severity = none # seems similar to 28 and 34 to me; i'
 dotnet_diagnostic.IDE0100.severity = warning # if variable and method names are good, this is a readability issue; it should be as simple as `if (branchNeeded)` type naming; if the names make it so `if (branchNeeded == true)` is more readable, the variable is poorly named
 # NOTE: there are no rules from IDE0101-IDE0109
 dotnet_diagnostic.IDE0110.severity = warning # purely style, from what i can tell
+# NOTE: there are no rules from IDE0111-IDE0119
+dotnet_diagnostic.IDE0120.severity = none # i actually think all of those "aggregation" overloads are preposterous; i think i should have a rule that *disallows* their use; it's just a convention, and that convention decided on `where`; why not also `select`? or `take`? or `orderby`? or `skip`?
 
 
 
