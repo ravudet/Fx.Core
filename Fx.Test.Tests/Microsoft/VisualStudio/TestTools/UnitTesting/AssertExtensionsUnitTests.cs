@@ -360,7 +360,10 @@ class C {
         {
             var primary = new Primary(1);
 
-            var data = [ "qwer", "asdf" ];
+            Span<int> x = stackalloc int[] { 1, 2, 3 };
+            ////var y = stackalloc int[] { 1, 2, 3 };
+
+            var data = new object[] { "qwer", "asdf" };
             foreach (int datum in data)
             {
             }
