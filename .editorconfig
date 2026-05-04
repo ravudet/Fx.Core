@@ -540,6 +540,7 @@ dotnet_diagnostic.IDE0028.severity = none # you can't have `var` on the left-han
 	dotnet_style_collection_initializer = false
 	dotnet_style_prefer_collection_expression = when_types_exactly_match # if we *were* to have the granularity, i only want when the types match exactly; we should be explicit about what type ends up in a field or property since we potentially need to know how to cast for internal logic, and we need to protect against our caller for external logic
 dotnet_diagnostic.IDE0029.severity = warning # it's easy to get these backwards accidentally and stuff, especially when the inner expressions get more complex; also, cases where `x` computes some value, it gets recomputed (like `foo.Expensive() != null ? foo.Expensive() : foo.Default()`)
+	dotnet_style_coalesce_expression = true
 dotnet_diagnostic.IDE0030.severity = warning # see ide0029
 dotnet_diagnostic.IDE0031.severity = warning # null propagations can be chained, ternaries can't
 dotnet_diagnostic.IDE0032.severity = warning # we don't need to duplicate boilerplate code; there used to be cases where you legitimately did this because you needed the backing field to be readonly; there might still be use cases to avoid autoprops, but those should be justified
@@ -685,7 +686,8 @@ dotnet_diagnostic.IDE0251.severity = warning # readonly should have perf benefis
 # NOTE: there are no rules from IDE0252-IDE0259
 dotnet_diagnostic.IDE0260.severity = none # see ide0078 (not sure it's actually relevant here); i think it's good to come up with a name for the post-cast variable, to demonstrate the "meaning" of that variable, and how its meaning is different from the "meaning" of the original variable
 	csharp_style_pattern_matching_over_as_with_null_check = false
-
+# NOTE: there are no rules from IDE0261-IDE0269
+dotnet_diagnostic.IDE0270.severity = none # see ide0029 # TODO i thought this would catch `first.Foo is not null ? first.Foo : "asdf"`, but it doesn't... # TODO i can't get this rule to trigger # TODO making this `none` for now, because i don't know what it actually triggers against
 
 
 
@@ -702,7 +704,7 @@ dotnet_diagnostic.IDE0260.severity = none # see ide0078 (not sure it's actually 
 
 
 
-dotnet_diagnostic.IDE0270.severity = none # see ide0029 # TODO i thought this would catch `first.Foo is not null ? first.Foo : "asdf"`, but it doesn't... # TODO i can't get this rule to trigger # TODO making this `none` for now, because i don't know what it actually triggers against
+
 
 
 
