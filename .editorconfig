@@ -663,7 +663,7 @@ dotnet_diagnostic.IDE0180.severity = warning # suggestion; i wonder if the compi
 dotnet_diagnostic.IDE0200.severity = none # purely style, i prefer the consistency for readability
 	csharp_style_prefer_method_group_conversion = false
 # NOTE: there are no rules from IDE0201-IDE0209
-dotnet_diagnostic.IDE0210.severity = none # i would prefer a rule against this; i don't same tabs thing as 160, but why are people's mains involved enough that they ever really look at them? this should simply be where factories are called and top-level error handling is done, which definitely shouldn't require nesting, and where the design is already laid out, so variable names should be trivial and scoping practically non-existent; i guess i can admit this is purely style though; maybe i'm just mad that they spent resources creating this feature that does nothing instead of spending those resources on literally anything else
+dotnet_diagnostic.IDE0210.severity = none # i would prefer a rule against this; i don't same tabs thing as 160, but why are people's mains involved enough that they ever really look at them? this should simply be where factories are called and top-level error handling is done, which definitely shouldn't require nesting, and where the design is already laid out, so variable names should be trivial and scoping practically non-existent; i guess i can admit this is purely style though; maybe i'm just mad that they spent resources creating this feature that does nothing instead of spending those resources on literally anything else # TODO 211 is actually the rule against this
 	csharp_style_prefer_top_level_statements = false
 
 
