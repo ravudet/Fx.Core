@@ -689,7 +689,8 @@ dotnet_diagnostic.IDE0260.severity = none # see ide0078 (not sure it's actually 
 # NOTE: there are no rules from IDE0261-IDE0269
 dotnet_diagnostic.IDE0270.severity = none # see ide0029 # TODO i thought this would catch `first.Foo is not null ? first.Foo : "asdf"`, but it doesn't... # TODO i can't get this rule to trigger # TODO making this `none` for now, because i don't know what it actually triggers against
 # NOTE: there are no rules from IDE0271-IDE0279
-dotnet_diagnostic.IDE0280.severity = warning # maintainability, this guarantees that you are always consistent and if you do a visual studio refactor it finds the token and "knows" that it's the same name
+dotnet_diagnostic.IDE0280.severity = warning # maintainability, this guarantees that you are always consistent and if you do a visual studio refactor it finds it by token instead of value
+# NOTE: there are no rules from IDE0281-IDE0289
 
 
 
