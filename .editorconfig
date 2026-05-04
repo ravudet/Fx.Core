@@ -683,7 +683,8 @@ dotnet_diagnostic.IDE0250.severity = warning # readonly should have perf benefit
 dotnet_diagnostic.IDE0251.severity = warning # readonly should have perf benefist in almost all cases; further, this allows 250 to trigger more accurately
 	csharp_style_prefer_readonly_struct_member = true
 # NOTE: there are no rules from IDE0252-IDE0259
-
+dotnet_diagnostic.IDE0260.severity = none # see ide0078 (not sure it's actually relevant here); i think it's good to come up with a name for the post-cast variable, to demonstrate the "meaning" of that variable, and how its meaning is different from the "meaning" of the original variable
+	csharp_style_pattern_matching_over_as_with_null_check = false
 
 
 
@@ -700,8 +701,7 @@ dotnet_diagnostic.IDE0251.severity = warning # readonly should have perf benefis
 # TODO remember to indent the options
 
 
-dotnet_diagnostic.IDE0260.severity = none # see ide0078 (not sure it's actually relevant here); i think it's good to come up with a name for the post-cast variable, to demonstrate the "meaning" of that variable, and how its meaning is different from the "meaning" of the original variable
-	csharp_style_pattern_matching_over_as_with_null_check = false
+
 dotnet_diagnostic.IDE0270.severity = none # see ide0029 # TODO i thought this would catch `first.Foo is not null ? first.Foo : "asdf"`, but it doesn't... # TODO i can't get this rule to trigger # TODO making this `none` for now, because i don't know what it actually triggers against
 
 
