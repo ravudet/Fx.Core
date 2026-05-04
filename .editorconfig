@@ -693,6 +693,8 @@ dotnet_diagnostic.IDE0280.severity = warning # maintainability, this guarantees 
 # NOTE: there are no rules from IDE0281-IDE0289
 dotnet_diagnostic.IDE0290.severity = none # todo i think you want a rule taht *disallows* primary constructors; you still have to declare fields and set the values, the values are just now set with initializer syntax (is that the right feature name?); and so the order of operations is now based on the order of the field declarations, which isn't how we should decide the order that the fields are in
 	csharp_style_prefer_primary_constructors = false
+# NOTE: there are no rules from IDE0291-IDE0299
+dotnet_diagnostic.IDE0300.severity = none # just like IDE0028
 
 
 

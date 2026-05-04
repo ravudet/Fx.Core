@@ -360,7 +360,7 @@ class C {
         {
             var primary = new Primary(1);
 
-            var data = new object[] { 1, "asdf" };
+            var data = [ "qwer", "asdf" ];
             foreach (int datum in data)
             {
             }
