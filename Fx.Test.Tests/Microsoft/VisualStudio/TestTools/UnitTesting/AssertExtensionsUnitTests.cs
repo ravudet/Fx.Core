@@ -53,6 +53,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices.Marshalling;
     using System.Security.Cryptography.X509Certificates;
     using System.Threading;
@@ -343,12 +344,36 @@ class C {
 
 
 
+
+        [TestMethod]
+        public void CollectionInit()
+        {
+            IEnumerable<int> foo = [1, 2, 3];
+        }
+
+
+        static partial class MyCollection
+        {
+            public static MyCollection<T> Create<T>(System.ReadOnlySpan<T> values) => default;
+            public static MyCollection<T> Create<T>(T t1, T t2, T t3) => throw new InvalidDataException("TODO");
+        }
+
+        [CollectionBuilder(typeof(MyCollection), "Create")]
+        class MyCollection<T> : IEnumerable<T>
+        {
+            public IEnumerator<T> GetEnumerator() => default;
+            IEnumerator IEnumerable.GetEnumerator() => default;
+        }
+
+
+
         class Primary(int i)
         {
             private readonly int i = i;
 
             public void Foo()
             {
+                MyCollection<int> foo = [1, 2, 3];
             }
 
         }
