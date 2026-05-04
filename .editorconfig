@@ -643,6 +643,19 @@ dotnet_diagnostic.IDE0121.severity = warning # i would feel similar to 120 if th
 # NOTE: there are no rules from IDE0122-IDE0129
 dotnet_diagnostic.IDE0130.severity = warning # purely "style", but so helpful when you're needing to find things on the file system or in solution explorer and you remember some stuff but not everything, and probably you have a keyword or two that makes "find" really hard; i dunno, it seems like there's good application since i've been doing this
 	dotnet_style_namespace_match_folder = true
+# NOTE: there are no rules from IDE0131-IDE0139
+dotnet_diagnostic.IDE0140.severity = error # VB, i don't know anything about it
+	visual_basic_style_prefer_simplified_object_creation
+# NOTE: there are no rules from IDE0141-IDE0149
+dotnet_diagnostic.IDE0150.severity = warning # this is just a really dumb way to do a null check, i'm not sure who would be doing it this way; notably, it gets compiled the same either way, but reading the code, it's not clear if the author thinks something else is happening; just doing a null check makes the most sense
+	csharp_style_prefer_null_check_over_type_check = true
+# NOTE: there are no rules from IDE0151-IDE0159
+dotnet_diagnostic.IDE0160.severity = warning # i *guess* this is purely style; i don't get what people's obsession with saving the tab is, though; and if i'm to *attempt* to justify myself here, if the tab is really affecting you, you need to get a bigger screen, or your code needs to be properly factored so that you don't nest so many scopes (particularly loops), or you're trying to do oneliners to avoid creating variables that would add clarity to your code because the design is so bad that the variable names are hard to come up with
+	csharp_style_namespace_declarations = block_scoped
+dotnet_diagnostic.IDE0161.severity = none
+
+
+
 
 
 
@@ -755,7 +768,7 @@ csharp_preserve_single_line_statements = false
 ### code-block preferences
 
 
-csharp_style_namespace_declarations = block_scoped:warning
+
 csharp_style_prefer_method_group_conversion = false:silent
 csharp_style_prefer_top_level_statements = false:warning
 csharp_style_prefer_primary_constructors = false:silent
@@ -772,7 +785,6 @@ dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 
 
 [*.cs]
-csharp_style_prefer_null_check_over_type_check = true:warning
 
 csharp_style_prefer_implicitly_typed_lambda_expression = true:warning
 csharp_style_prefer_tuple_swap = true:suggestion

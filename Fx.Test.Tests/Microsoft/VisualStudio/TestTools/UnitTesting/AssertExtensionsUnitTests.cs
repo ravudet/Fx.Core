@@ -240,6 +240,7 @@ class C {
         //// TODO i can't get ide0270 to trigger
         //// TODO ide0047 and ide0048 both "appear" as ide0048 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0047-ide0048
         //// TODO i can't get IDE0063 to trigger`
+        //// TODO ide0160 and ide0161 both "appear" as ide0161 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0160-ide0161
 
         //// TODO can you create a roslyn analyzer for the editorconfig?
         //// TODO write articles in a github pages repo (or set up your current repo to publish pages if that's possible?) and link to the articles from the editorconfig
@@ -351,6 +352,11 @@ class C {
         static void TestOneToMany(IOneToMany<string, int> oneToMany)
         {
             ////oneToMany["Asdf"] += (Many<int>)4;
+
+
+            if (oneToMany is not IOneToMany<string, int>)
+            {
+            }
         }
 
 
