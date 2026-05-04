@@ -697,8 +697,11 @@ dotnet_diagnostic.IDE0290.severity = none # todo i think you want a rule taht *d
 dotnet_diagnostic.IDE0300.severity = none # just like IDE0028
 dotnet_diagnostic.IDE0301.severity = none # just like ide0028
 dotnet_diagnostic.IDE0302.severity = warning # this is different from 0028, 0300, and 0301 because if you aren't in an unsafe context, you *have* to write `span<t>` (or readonlyspan), so the type *can* be inferred by the collection expression, and therefore results in not having to write the type twice
-dotnet_diagnostic.IDE0302.severity = none # just like ide0028
-dotnet_diagnostic.IDE0303.severity = none # way to much symbolic syntax; plus, event as the doc represents, you have to use the object initializer syntax anyway in the middle of the collection expression syntax
+dotnet_diagnostic.IDE0303.severity = none # just like ide0028
+dotnet_diagnostic.IDE0304.severity = none # way to much symbolic syntax; plus, event as the doc represents, you have to use the object initializer syntax anyway in the middle of the collection expression syntax
+dotnet_diagnostic.IDE0305.severity = none # this at least probably has some merit, but it still requires the LHS type declaration; what is the point? and if there are good reasons to use this syntax (like perf), they should be justified
+dotnet_diagnostic.IDE0306.severity = none # still terrible syntax
+# NOTE: there are no rules from IDE0307-IDE0319
 
 
 
