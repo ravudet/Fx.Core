@@ -678,7 +678,11 @@ dotnet_diagnostic.IDE0230.severity = warning # this is great so that the code li
 dotnet_diagnostic.IDE0240.severity = warning # the expectation should by nullable enabled; so if you have any changes, they should be explicit, but not counter to the expectation or redundant to the expectation or a previous deviation; the presence of one will confuse the maintainer, and probably indicates that the original author was coding by superstition; further, we are preventing the original author from coding by superstition without justifying it
 dotnet_diagnostic.IDE0241.severity = warning # same as above
 # NOTE: there are no rules from IDE0242-IDE0249
-
+dotnet_diagnostic.IDE0250.severity = warning # readonly should have perf benefits in almost all cases; further, it demonstrates to the caller an intention, so they are able to make assumptions based on that intention (like thread-safety)
+	csharp_style_prefer_readonly_struct = true
+dotnet_diagnostic.IDE0251.severity = warning # readonly should have perf benefist in almost all cases; further, this allows 250 to trigger more accurately
+	csharp_style_prefer_readonly_struct_member = true
+# NOTE: there are no rules from IDE0252-IDE0259
 
 
 
@@ -821,8 +825,7 @@ csharp_style_prefer_unbound_generic_type_in_nameof = true:warning
 
 [*.cs]
 csharp_prefer_static_anonymous_function = true:warning#TODO i have a feeling that i will regret this one because, although it's absolutely the "right" thing to do, linq queries will now have an extra step that i'm not used to reading or writing
-csharp_style_prefer_readonly_struct = true:warning
-csharp_style_prefer_readonly_struct_member = true:warning
+
 
 ### new line preferences
 
