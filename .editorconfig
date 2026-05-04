@@ -671,7 +671,9 @@ dotnet_diagnostic.IDE0220.severity = none # i don't really get this one; adding 
 	dotnet_style_prefer_foreach_explicit_cast_in_source
 dotnet_diagnostic.IDE0221.severity = warning # when *any* explicit cast is required, i think it makes sense to require the entire chain for clarity; because there could be multiple explicit casts from castable to base, in the example given in the documentation, i think it's better for the maintainer to see the chain rather than have to go find the chain
 	dotnet_style_prefer_non_hidden_explicit_cast_in_source = true
-
+# NOTE: there are no rules from IDE0222-IDE0229
+dotnet_diagnostic.IDE0230.severity = warning # this is great so that the code literals are more readable, and then you don't have to jump through runtime hoops to get the memory format (byte array) that you want
+	csharp_style_prefer_utf8_string_literals = true
 
 
 
@@ -807,7 +809,6 @@ dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 
 csharp_style_prefer_implicitly_typed_lambda_expression = true:warning
 csharp_style_prefer_unbound_generic_type_in_nameof = true:warning
-csharp_style_prefer_utf8_string_literals = true:warning
 
 
 
