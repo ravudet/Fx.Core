@@ -691,7 +691,8 @@ dotnet_diagnostic.IDE0270.severity = none # see ide0029 # TODO i thought this wo
 # NOTE: there are no rules from IDE0271-IDE0279
 dotnet_diagnostic.IDE0280.severity = warning # maintainability, this guarantees that you are always consistent and if you do a visual studio refactor it finds it by token instead of value
 # NOTE: there are no rules from IDE0281-IDE0289
-
+dotnet_diagnostic.IDE0290.severity = none # todo i think you want a rule taht *disallows* primary constructors; you still have to declare fields and set the values, the values are just now set with initializer syntax (is that the right feature name?); and so the order of operations is now based on the order of the field declarations, which isn't how we should decide the order that the fields are in
+	csharp_style_prefer_primary_constructors = false
 
 
 
@@ -805,7 +806,6 @@ csharp_preserve_single_line_statements = false
 ### code-block preferences
 
 
-csharp_style_prefer_primary_constructors = false:silent
 csharp_prefer_system_threading_lock = true:warning
 
 
