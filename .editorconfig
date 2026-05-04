@@ -676,6 +676,7 @@ dotnet_diagnostic.IDE0230.severity = warning # this is great so that the code li
 	csharp_style_prefer_utf8_string_literals = true
 # NOTE: there are no rules from IDE0231-IDE0239
 dotnet_diagnostic.IDE0240.severity = warning # the expectation should by nullable enabled; so if you have any changes, they should be explicit, but not counter to the expectation or redundant to the expectation or a previous deviation; the presence of one will confuse the maintainer, and probably indicates that the original author was coding by superstition; further, we are preventing the original author from coding by superstition without justifying it
+dotnet_diagnostic.IDE0241.severity = warning # same as above
 
 
 
