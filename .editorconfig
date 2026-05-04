@@ -667,9 +667,10 @@ dotnet_diagnostic.IDE0210.severity = none # i would prefer a rule against this; 
 	csharp_style_prefer_top_level_statements = false
 dotnet_diagnostic.IDE0211.severity = warning
 # NOTE: there are no rules from IDE0212-IDE0219
-dotnet_diagnostic.IDE0220.severity = warning # TODO you are here
-
-
+dotnet_diagnostic.IDE0220.severity = none # i don't really get this one; adding the `cast` call definitely makes this slower; both have runtime cast exceptions when the base type collection contains elements that aren't of the derived type; and there's nothing "hidden" here (the element declaration has to contain the type that it's being cast to)
+	dotnet_style_prefer_foreach_explicit_cast_in_source
+dotnet_diagnostic.IDE0221.severity = warning # when *any* explicit cast is required, i think it makes sense to require the entire chain for clarity; because there could be multiple explicit casts from castable to base, in the example given in the documentation, i think it's better for the maintainer to see the chain rather than have to go find the chain
+	dotnet_style_prefer_non_hidden_explicit_cast_in_source = true
 
 
 
@@ -932,7 +933,7 @@ dotnet_sort_system_directives_first = true
 
 
 
-dotnet_style_prefer_foreach_explicit_cast_in_source = when_strongly_typed
+
 
 
 

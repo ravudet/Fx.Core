@@ -344,6 +344,16 @@ class C {
 
 
 
+        [TestMethod]
+        public void ImplicitCast()
+        {
+            var data = new object[] { 1, "asdf" };
+            foreach (int datum in data)
+            {
+            }
+        }
+
+
 
         static void TestOneToMany(IOneToMany<string, int> oneToMany)
         {
@@ -409,7 +419,8 @@ class C {
 
             public IEnumerator<TValue> GetEnumerator()
             {
-                yield return this.value;
+                ////yield return this.value;
+                throw new Exception("TODO");
             }
 
             IEnumerator IEnumerable.GetEnumerator()
