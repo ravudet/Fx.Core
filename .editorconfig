@@ -674,6 +674,7 @@ dotnet_diagnostic.IDE0221.severity = warning # when *any* explicit cast is requi
 # NOTE: there are no rules from IDE0222-IDE0229
 dotnet_diagnostic.IDE0230.severity = warning # this is great so that the code literals are more readable, and then you don't have to jump through runtime hoops to get the memory format (byte array) that you want
 	csharp_style_prefer_utf8_string_literals = true
+# NOTE: there are no rules from IDE0231-IDE0239
 
 
 
