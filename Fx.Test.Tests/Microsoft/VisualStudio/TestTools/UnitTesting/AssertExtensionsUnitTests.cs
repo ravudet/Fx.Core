@@ -353,6 +353,12 @@ class C {
             if (oneToMany is not IOneToMany<string, int>)
             {
             }
+
+            var data = new object[0];
+
+            foreach (string datum in data)
+            {
+            }
         }
 
 
