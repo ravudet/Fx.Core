@@ -332,7 +332,6 @@ class C {
         //// TODO add an analyzer that *disallows* primary constructors (the opposite of csharp_style_prefer_primary_constructors)
         //// TODO you know, the old style cop docs used to actually have pretty good justifications for why you want to change your code...
         ////    TODO csharp_style_prefer_implicitly_typed_lambda_expression also triggers cases where you are passing a lambda as a parameter to a method `Frub((int x) => { });`
-        ////    TODO for `csharp_style_prefer_tuple_swap` i wonder if the compiler or jiter do magic here; isn't the tuple going to take extra (stack) memory? i do think it looks neat though
         ////    TODO i think `csharp_style_inlined_variable_declaration` would make a lot more sense if `while (!int.TryParse(value, out var parsed)) { } Console.WriteLine(parsed);` worked
 
 
@@ -341,9 +340,6 @@ class C {
 
 
         //// TODO look into "contracts" (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.contract?view=net-10.0) and the `pure` attribute (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.pureattribute?view=net-10.0)
-
-
-
 
 
 
@@ -534,7 +530,7 @@ class C {
 
                 var value = 4;
                 var value2 = 5;
-                if (value is > 5 or value2 is < 3)
+                ////if (value is > 5 or value2 is < 3)
                 {
                 }
 

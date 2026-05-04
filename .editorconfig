@@ -653,6 +653,24 @@ dotnet_diagnostic.IDE0150.severity = warning # this is just a really dumb way to
 dotnet_diagnostic.IDE0160.severity = warning # i *guess* this is purely style; i don't get what people's obsession with saving the tab is, though; and if i'm to *attempt* to justify myself here, if the tab is really affecting you, you need to get a bigger screen, or your code needs to be properly factored so that you don't nest so many scopes (particularly loops), or you're trying to do oneliners to avoid creating variables that would add clarity to your code because the design is so bad that the variable names are hard to come up with
 	csharp_style_namespace_declarations = block_scoped
 dotnet_diagnostic.IDE0161.severity = none
+# NOTE: there are no rules from IDE0162-IDE0169
+dotnet_diagnostic.IDE0170.severity = warning
+	csharp_style_prefer_extended_property_pattern = true # i hate this syntax, but if you're going to use it, i think this is good because the rule only applies for cases where there is a single "inner" check (TODO find the right names to refer to these constructs)
+# NOTE: there are no rules from IDE0171-IDE0179
+dotnet_diagnostic.IDE0180.severity = warning # suggestion; i wonder if the compiler or jiter do magic here; isn't the tuple going to take extra (stack) memory? i do think it looks neat though
+	csharp_style_prefer_tuple_swap = true
+# NOTE: there are no rules from IDE0181-IDE0199
+dotnet_diagnostic.IDE0200.severity = none # purely style, i prefer the consistency for readability
+	csharp_style_prefer_method_group_conversion = false
+# NOTE: there are no rules from IDE0201-IDE0209
+dotnet_diagnostic.IDE0210.severity = none # i would prefer a rule against this; i don't same tabs thing as 160, but why are people's mains involved enough that they ever really look at them? this should simply be where factories are called and top-level error handling is done, which definitely shouldn't require nesting, and where the design is already laid out, so variable names should be trivial and scoping practically non-existent; i guess i can admit this is purely style though; maybe i'm just mad that they spent resources creating this feature that does nothing instead of spending those resources on literally anything else
+	csharp_style_prefer_top_level_statements = false
+
+
+
+
+
+
 
 
 
@@ -768,9 +786,6 @@ csharp_preserve_single_line_statements = false
 ### code-block preferences
 
 
-
-csharp_style_prefer_method_group_conversion = false:silent
-csharp_style_prefer_top_level_statements = false:warning
 csharp_style_prefer_primary_constructors = false:silent
 csharp_prefer_system_threading_lock = true:warning
 
@@ -787,7 +802,6 @@ dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 [*.cs]
 
 csharp_style_prefer_implicitly_typed_lambda_expression = true:warning
-csharp_style_prefer_tuple_swap = true:suggestion
 csharp_style_prefer_unbound_generic_type_in_nameof = true:warning
 csharp_style_prefer_utf8_string_literals = true:warning
 
@@ -817,12 +831,6 @@ csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimenta
 
 csharp_style_conditional_delegate_call = false:silent
 
-
-
-### pattern matching preferences
-
-[*.cs]
-csharp_style_prefer_extended_property_pattern = true:warning # i hate this syntax, but if you're going to use it, i think this is good because the rule only applies for cases where there is a single "inner" check (TODO find the right names to refer to these constructs)
 
 
 ### var preferences
