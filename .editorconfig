@@ -713,7 +713,9 @@ dotnet_diagnostic.IDE0340.severity = warning # no effect on the output, less cod
 # NOTE: there are no rules from IDE0341-IDE0349
 dotnet_diagnostic.IDE0350.severity = warning # this also triggers cases where you are passing a lambda as a parameter to a method `Frub((int x) => { });`; redefining the types is maintenance overhead and makes the code verbose and impossible to read, espcially in linq scenarios
 	csharp_style_prefer_implicitly_typed_lambda_expression = true
-
+# NOTE: there are no rules from IDE0351-IDE0359
+dotnet_diagnostic.IDE0360.severity = warning # i'm a bit torn n this; what happens if you change the setter to refer to a different field? now you need to update the getter to use the old field...and if you forget to do that, things go very poorly; even with unit testing catching this, it's probably a pain to investigate
+	csharp_style_prefer_simple_property_accessors = true
 
 
 
