@@ -711,7 +711,7 @@ dotnet_diagnostic.IDE0330.severity = warning # performance
 dotnet_diagnostic.IDE0340.severity = warning # no effect on the output, less code to understand (especially with higher numbers of type parameters), and changing the name of the current methods type parameter won't affect this line of code; also, being in the habit of adding a type parameter can lead to situations of defining types that are undefinable (due to a base class haivng a private constructor, for example), but even if they are definable, dfining a type to use `nameof` so that it satisfies the type constraint is maintenance overhead
 	csharp_style_prefer_unbound_generic_type_in_nameof = true
 # NOTE: there are no rules from IDE0341-IDE0349
-dotnet_diagnostic.IDE0350.severity = warning # TODO this also triggers cases where you are passing a lambda as a parameter to a method `Frub((int x) => { });`
+dotnet_diagnostic.IDE0350.severity = warning # this also triggers cases where you are passing a lambda as a parameter to a method `Frub((int x) => { });`; redefining the types is maintenance overhead and makes the code verbose and impossible to read, espcially in linq scenarios
 	csharp_style_prefer_implicitly_typed_lambda_expression = true
 
 
