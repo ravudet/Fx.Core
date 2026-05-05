@@ -702,6 +702,14 @@ dotnet_diagnostic.IDE0304.severity = none # way to much symbolic syntax; plus, e
 dotnet_diagnostic.IDE0305.severity = none # this at least probably has some merit, but it still requires the LHS type declaration; what is the point? and if there are good reasons to use this syntax (like perf), they should be justified
 dotnet_diagnostic.IDE0306.severity = none # still terrible syntax
 # NOTE: there are no rules from IDE0307-IDE0319
+dotnet_diagnostic.IDE0320.severity = warning # perforamnce, decent enough reason; TODO i have a feeling that i will regret this one because, although it's absolutely the "right" thing to do, linq queries will now have an extra step that i'm not used to reading or writing
+	csharp_prefer_static_anonymous_function = true
+# NOTE: there are no rules from IDE0321-IDE0329
+dotnet_diagnostic.IDE0330.severity = warning # performance
+	csharp_prefer_system_threading_lock = true
+# NOTE: there are no rules from IDE0331-IDE0339
+dotnet_diagnostic.IDE0340.severity = warning # no effect on the output, less code to understand (especially with higher numbers of type parameters), and changing the name of the current methods type parameter won't affect this line of code; also, being in the habit of adding a type parameter can lead to situations of defining types that are undefinable (due to a base class haivng a private constructor, for example), but even if they are definable, dfining a type to use `nameof` so that it satisfies the type constraint is maintenance overhead
+	csharp_style_prefer_unbound_generic_type_in_nameof = true
 
 
 
@@ -809,13 +817,6 @@ csharp_space_around_binary_operators = before_and_after
 csharp_preserve_single_line_blocks = true
 csharp_preserve_single_line_statements = false
 
-## code style
-
-
-### code-block preferences
-
-
-csharp_prefer_system_threading_lock = true:warning
 
 
 
@@ -830,15 +831,8 @@ dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 [*.cs]
 
 csharp_style_prefer_implicitly_typed_lambda_expression = true:warning
-csharp_style_prefer_unbound_generic_type_in_nameof = true:warning
 
 
-
-
-### modifier preferences
-
-[*.cs]
-csharp_prefer_static_anonymous_function = true:warning#TODO i have a feeling that i will regret this one because, although it's absolutely the "right" thing to do, linq queries will now have an extra step that i'm not used to reading or writing
 
 
 ### new line preferences

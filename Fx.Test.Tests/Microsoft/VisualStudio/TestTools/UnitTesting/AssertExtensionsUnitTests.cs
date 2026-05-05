@@ -250,6 +250,7 @@ class C {
         //// TODO make things errors if you don't know about them, so that the first person who encounters them must confront it and update the editorconfig
         //// TODO public vs internal vs private: what's good for our customer is good for us, and what's good for us is good for our customer
         //// TODO when you get to the IDE rules, some of these really are just style, and i think it's fine to admit that; //// TODO is there a way to separate these into their own editorconfig so that folks can make their own decision?
+        //// TODO it'd be good to have a demo for all of the perf ones
         //// TODO you have a guiding principle to enable multiple rules even if they are duplicates or one supersedes another, because thought was put into enabling the rule, so disabling it should be painful (but not hard) and thought-provoking
         //// TODO ide0037 makes a good point about options on disabled rules; you should do another pass to add all of the options as disabled for the `none` rules, making the same note that ide0037 has
         //// TODO you should do the same thing for enabled rules, and explicitly select the default; this is in regards to "don't just enable something because it's a rule, you need to understand it
