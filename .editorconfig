@@ -732,6 +732,10 @@ dotnet_diagnostic.IDE2002.severity = warning # purely style
 	csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false
 dotnet_diagnostic.IDE2003.severity = warning # purely style
 	dotnet_style_allow_statement_immediately_after_block_experimental = false
+dotnet_diagnostic.IDE2004.severity = warning # purely style
+	csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = false
+
+
 
 
 
@@ -857,7 +861,6 @@ dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 ### new line preferences
 
 [*.cs]
-csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = false:warning
 csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = false:warning
 csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental = false:silent
 

@@ -242,6 +242,7 @@ class C {
         //// TODO ide0047 and ide0048 both "appear" as ide0048 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0047-ide0048
         //// TODO i can't get IDE0063 to trigger`
         //// TODO ide0160 and ide0161 both "appear" as ide0161 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0160-ide0161
+        //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide2004 example is missing `class` keyword and should capitalize `base`
 
         //// TODO can you create a roslyn analyzer for the editorconfig?
         //// TODO write articles in a github pages repo (or set up your current repo to publish pages if that's possible?) and link to the articles from the editorconfig
@@ -343,6 +344,18 @@ class C {
         //// TODO look into "contracts" (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.contract?view=net-10.0) and the `pure` attribute (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.pureattribute?view=net-10.0)
 
 
+
+
+
+
+        public class Base
+        {
+        }
+
+        public class Class : 
+            Base
+        {
+        }
 
 
 
