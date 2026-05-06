@@ -726,10 +726,12 @@ dotnet_diagnostic.IDE1005.severity = none # i'm ok with the `?.Invoke()` syntax,
 # NOTE: there are no rules from IDE1006-IDE1999
 dotnet_diagnostic.IDE2000.severity = warning # if code needs to be split up, do it be files, classes, comments, methods, etc. not by injecting line breaks; using language constructs to do this (instead of lines breaks) means that separations are explicit design decisions and require thought, which leads to clearer abstractions
 	dotnet_style_allow_multiple_blank_lines_experimental = false
-dotnet_diagnostic.IDE2001.severity = warning # this is already caught be ide0055, csharp_new_line_before_open_brace; but we are ok with redundancy
+dotnet_diagnostic.IDE2001.severity = warning # this is already caught be ide0055, csharp_new_line_before_open_brace; but we are ok with redundancy; statements should be on their own line so that we don't "gloss over" them when reading
 	csharp_style_allow_embedded_statements_on_same_line_experimental = false
-
-
+dotnet_diagnostic.IDE2002.severity = warning # purely style
+	csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false
+dotnet_diagnostic.IDE2003.severity = warning # purely style
+	dotnet_style_allow_statement_immediately_after_block_experimental = false
 
 
 
@@ -854,10 +856,7 @@ dotnet_style_prefer_conditional_expression_over_assignment = false:silent
 
 ### new line preferences
 
-[*.{cs,vb}]
-dotnet_style_allow_statement_immediately_after_block_experimental = false:warning
 [*.cs]
-csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false:warning
 csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = false:warning
 csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = false:warning
 csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental = false:silent
