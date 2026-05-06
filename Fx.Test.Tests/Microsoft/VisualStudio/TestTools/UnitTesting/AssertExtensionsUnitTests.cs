@@ -345,6 +345,24 @@ class C {
 
 
 
+        public class ResultType
+        {
+            public MemberType? Member { get; }
+
+            public class MemberType
+            {
+                public string SubMember { get; }
+            }
+        }
+
+
+        public void NullDelegate(Func<ResultType>? func)
+        {
+            var foo = func?.Invoke().Member?.SubMember;
+        }
+
+
+
         [TestMethod]
         public void CollectionInit()
         {

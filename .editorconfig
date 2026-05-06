@@ -721,6 +721,9 @@ dotnet_diagnostic.IDE0370.severity = warning # TODO you have at least one previo
 # NOTE: there are no rules from IDE0371-IDE0379
 dotnet_diagnostic.IDE0380.severity = warning # someone could write unsafe code in a way that is easily overlooked by a reviewer because `unsafe` is not being added (which would be a red flag for a reviewer) (for example, `var y = stackalloc int[] { 1, 2, 3 };` is not exactly explicit about being unsafe, especially because normally `y` would be a `span<int>`)
 # NOTE: there are no rules from IDE0381-IDE1004
+dotnet_diagnostic.IDE1005.severity = none # i'm ok with the `?.Invoke()` syntax, but i would like a rule to suggest the opposite; i just think the syntax is more clear calling the delegate as a function, and i don't see when you would want to do something like chain null propagation *after* calling the delegate; something where i've got `func?.Invoke()?.Member?.SubMember` still needs to have a null check done at some point, which would make it `func?.Invoke().Member.SubMember ?? someDefault`, but if anything in the chain is nullable, it's more likely to me that you would want different defaults for different cases, so instead of `func?.Invoke().Member?.SubMember ?? someDefault`, you'd really want `var someMember = func == null ? firstDefault : func(); someMember?.SubMember ?? secondDefault`; plus, what about if `func` returns a nullable? i just think it encourages too much "not thinking about error cases"; i'd be open to changing my mind about this if i had more real-life examples
+	csharp_style_conditional_delegate_call = false
+
 
 
 
@@ -854,10 +857,6 @@ csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false:w
 csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = false:warning
 csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = false:warning
 csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental = false:silent
-
-### null-checking preferences
-
-csharp_style_conditional_delegate_call = false:silent
 
 
 
