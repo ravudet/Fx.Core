@@ -716,6 +716,11 @@ dotnet_diagnostic.IDE0350.severity = warning # this also triggers cases where yo
 # NOTE: there are no rules from IDE0351-IDE0359
 dotnet_diagnostic.IDE0360.severity = warning # i'm a bit torn n this; what happens if you change the setter to refer to a different field? now you need to update the getter to use the old field...and if you forget to do that, things go very poorly; even with unit testing catching this, it's probably a pain to investigate
 	csharp_style_prefer_simple_property_accessors = true
+# NOTE: there are no rules from IDE0361-IDE0369
+dotnet_diagnostic.IDE0370.severity = warning # TODO you have at least one previous rule which discusses similar things; there could be confusion by the maintainer, the maintainer might add something that accidentally takes advantage of the forgiveness, etc.
+# NOTE: there are no rules from IDE0371-IDE0379
+dotnet_diagnostic.IDE0380.severity = warning # someone could write unsafe code in a way that is easily overlooked by a reviewer because `unsafe` is not being added (which would be a red flag for a reviewer) (for example, `var y = stackalloc int[] { 1, 2, 3 };` is not exactly explicit about being unsafe, especially because normally `y` would be a `span<int>`)
+# NOTE: there are no rules from IDE0381-IDE1004
 
 
 

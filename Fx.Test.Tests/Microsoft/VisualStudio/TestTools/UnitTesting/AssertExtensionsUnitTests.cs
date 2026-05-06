@@ -383,6 +383,8 @@ class C {
         [TestMethod]
         public void ImplicitCast()
         {
+            ////var y = stackalloc int[] { 1, 2, 3 };
+
             var primary = new Primary(1);
 
             Span<int> x = stackalloc int[] { 1, 2, 3 };
