@@ -372,6 +372,14 @@ class C {
 
         public void NullDelegate(Func<ResultType>? func)
         {
+
+            var thing = true ?
+                false
+                    ? "asdf"
+                    : "qwer" :
+                "zxcv";
+
+
             var foo = func?.Invoke().Member?.SubMember;
 
             if (true) { Console.WriteLine("asdf"); }
