@@ -732,8 +732,13 @@ dotnet_diagnostic.IDE2002.severity = warning # purely style
 	csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false
 dotnet_diagnostic.IDE2003.severity = warning # purely style
 	dotnet_style_allow_statement_immediately_after_block_experimental = false
-dotnet_diagnostic.IDE2004.severity = warning # purely style
+dotnet_diagnostic.IDE2004.severity = warning # purely style, i don't actually care about this one, but i'm making it a warning so that code is consistent
 	csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = false
+dotnet_diagnostic.IDE2005.severity = warning # putting the operator on the left, where they will all be lined up with each other, makes it trivial to read exactly what is going on; this is useful in potentially ambiguous situations like when boolean operators or arithmetic operations could have been used
+	csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = false
+dotnet_diagnostic.IDE2006.severity = none # TODO i wish the rule was to require the blank line *after* the arrow; that is how you would write a lambda, and i think it's good to have consistent syntax; that's "purely style", except for the part about being consistent with existing idiomatic syntax
+	csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental
+
 
 
 
@@ -854,21 +859,6 @@ csharp_preserve_single_line_statements = false
 dotnet_diagnostic.IDE0270.severity = none#IDE0270: Use coalesce expression
 
 dotnet_style_prefer_conditional_expression_over_assignment = false:silent
-
-
-
-
-### new line preferences
-
-[*.cs]
-csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = false:warning
-csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental = false:silent
-
-
-
-### var preferences
-
-[*.cs]
 
 
 ## naming style

@@ -375,6 +375,9 @@ class C {
             var foo = func?.Invoke().Member?.SubMember;
 
             if (true) { Console.WriteLine("asdf"); }
+
+            Func<int> bar = ()
+                => 1;
         }
 
 
