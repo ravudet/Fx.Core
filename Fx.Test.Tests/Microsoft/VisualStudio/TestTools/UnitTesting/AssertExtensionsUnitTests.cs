@@ -248,6 +248,7 @@ class C {
         //// TODO go through your TODOs below and write down your guiding principles, and create a page that has those listed so you can reference them from the articles
         //// TODO you maybe should go through all of the notes in the editorconfig to see if there are any guiding principles there that you missed
         //// TODO make things errors if you don't know about them, so that the first person who encounters them must confront it and update the editorconfig
+        //// TODO redundant rules is ok because it makes the person removing the rule work a little harder, and it makes the person reviewing consider the magnitude of the change
         //// TODO public vs internal vs private: what's good for our customer is good for us, and what's good for us is good for our customer
         //// TODO when you get to the IDE rules, some of these really are just style, and i think it's fine to admit that; //// TODO is there a way to separate these into their own editorconfig so that folks can make their own decision?
         //// TODO it'd be good to have a demo for all of the perf ones
@@ -359,6 +360,8 @@ class C {
         public void NullDelegate(Func<ResultType>? func)
         {
             var foo = func?.Invoke().Member?.SubMember;
+
+            if (true) { Console.WriteLine("asdf"); }
         }
 
 
