@@ -268,7 +268,25 @@ class C {
 
 
 
-        //// TODO is it possible to have visual studio *display* according to your editor config, but *commit* according to the repo?
+        //// TODO is it possible to have visual studio *display* according to your editor config, but *commit* according to the repo? maybe something like this:
+        /*
+        await this.Extensibility.Editor().EditAsync(
+            batch =>
+            {
+                var editor = document.AsEditable(batch);
+                var snapshot = editor.TextViewSnapshot;
+                var selection = snapshot.Selection;
+
+                // Example: Replace selected text with modified version
+                var newText = "Modified text";
+                editor.Replace(selection.Extent, newText);
+            },
+            cancellationToken);
+        */
+        //// TODO actually, you have a chat labeled "vs extension for rosylyn display", which i think will actually do what you want; you can use `dotnet format --verify-no-changes --report report.json` to determine what text needs to be changed without actually changing the underyling files
+        //// TODO actually, probably the chat labeled "Visual Studio Extension for Custom Code Display" can tell you if roslyn directly is the better approach
+        
+
 
 
 
