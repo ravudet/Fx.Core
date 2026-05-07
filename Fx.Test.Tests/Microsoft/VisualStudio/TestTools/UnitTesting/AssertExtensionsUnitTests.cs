@@ -266,6 +266,12 @@ class C {
         //// TODO when you go back through to write the articles, consider if any rules should be `error`
         //// TODO should you have a test project for your config file?
 
+
+
+        //// TODO is it possible to have visual studio *display* according to your editor config, but *commit* according to the repo?
+
+
+
         //// TODO when you are creating new rules for your coding guidelines, the one about suppressions being minimalist maybe could use IDE0079 as insipiration
 
 
