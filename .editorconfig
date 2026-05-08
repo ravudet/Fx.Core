@@ -739,6 +739,12 @@ dotnet_diagnostic.IDE2005.severity = warning # putting the operator on the left,
 dotnet_diagnostic.IDE2006.severity = none # TODO i wish the rule was to require the blank line *after* the arrow; that is how you would write a lambda, and i think it's good to have consistent syntax; that's "purely style", except for the part about being consistent with existing idiomatic syntax
 	csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental
 
+### miscellaneous rules
+
+dotnet_diagnostic.IDE0076.severity = warning # TODO you've had other rules like this about requiring consistency
+dotnet_diagnostic.IDE0077.severity = warning # sure, the format is equivalent and we don't want slow builds
+# NOTE: there are no rules from IDE0078-IDE2999
+dotnet_diagnostic.IDE3000.severity = warning # i'm going to say i want this rule because it flags notimplementexceptions; whether copilot is used is secondary, in my opinion; i would prefer the rule be split into "you need to implement these" and "here are some quick actions, one of which is copilot"; also, i guess it's worth mentioning, did you really test the code if there are still notimplementedexceptions going on? by the way, does enabling this rule as more than "silent" mean that auto-generated code will have copilot implement things? i actually can't get this rule to trigger...
 
 
 
@@ -755,6 +761,7 @@ dotnet_diagnostic.IDE2006.severity = none # TODO i wish the rule was to require 
 
 # TODO remember that you need to remove the options from down below as you go along
 # TODO remember to indent the options
+# TODO update the "no rules" comment to say "no rules in this category" or something
 
 
 

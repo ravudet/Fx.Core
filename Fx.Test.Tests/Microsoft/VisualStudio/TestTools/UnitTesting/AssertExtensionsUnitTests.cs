@@ -285,7 +285,7 @@ class C {
         */
         //// TODO actually, you have a chat labeled "vs extension for rosylyn display", which i think will actually do what you want; you can use `dotnet format --verify-no-changes --report report.json` to determine what text needs to be changed without actually changing the underyling files
         //// TODO actually, probably the chat labeled "Visual Studio Extension for Custom Code Display" can tell you if roslyn directly is the better approach
-        
+
 
 
 
@@ -369,6 +369,19 @@ class C {
 
 
 
+        public class CopilotProp : ICopilotProp
+        {
+            public string DoWork()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+        public interface ICopilotProp
+        {
+            string DoWork();
+        }
 
 
 
