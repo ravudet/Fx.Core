@@ -748,6 +748,7 @@ dotnet_diagnostic.IDE3000.severity = warning # i'm going to say i want this rule
 
 ### formatting
 
+dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so it's hard to justify without going into the options; there's a lot of pure-style in this though
 
 
 
@@ -967,7 +968,6 @@ dotnet_sort_system_directives_first = true
 
 
 
-dotnet_diagnostic.IDE0055.severity = warning
 
 
 
