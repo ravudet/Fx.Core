@@ -749,8 +749,9 @@ dotnet_diagnostic.IDE3000.severity = warning # i'm going to say i want this rule
 ### formatting
 
 dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so it's hard to justify without going into the options; there's a lot of pure-style in this though
-
-
+# TODO you are here
+	dotnet_sort_system_directives_first = true
+	dotnet_separate_import_directive_groups = true
 
 
 
@@ -948,14 +949,6 @@ dotnet_property_generation_behavior = prefer_throwing_properties
 
 # Symbol search
 dotnet_search_reference_assemblies = true
-
-#### .NET Coding Conventions ####
-
-# Organize usings
-dotnet_separate_import_directive_groups = true
-dotnet_sort_system_directives_first = true
-
-
 
 
 
