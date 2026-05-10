@@ -245,6 +245,7 @@ class C {
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide2004 example is missing `class` keyword and should capitalize `base`
 
         //// TODO can you create a roslyn analyzer for the editorconfig?
+        //// TODO for ide0055, some of them, i don't really care how people write it, but i'd like to have the auto-generated code follow a rule to "encourage" people; for this reason, it *seems* i want 0055 to be warning, but some of the options to be `silent` or `suggestion`; i can't seem to get this to work, though
         //// TODO write articles in a github pages repo (or set up your current repo to publish pages if that's possible?) and link to the articles from the editorconfig
         //// TODO go through your TODOs below and write down your guiding principles, and create a page that has those listed so you can reference them from the articles
         //// TODO you maybe should go through all of the notes in the editorconfig to see if there are any guiding principles there that you missed
