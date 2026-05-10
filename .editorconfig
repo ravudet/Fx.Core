@@ -749,8 +749,8 @@ dotnet_diagnostic.IDE3000.severity = warning # i'm going to say i want this rule
 ### formatting
 
 dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so it's hard to justify without going into the options; there's a lot of pure-style in this though
-	dotnet_sort_system_directives_first = true # TODO i can't get this to trigger
-	dotnet_separate_import_directive_groups = true
+	dotnet_sort_system_directives_first = true # TODO i can't get this to trigger; purely style
+	dotnet_separate_import_directive_groups = true # purely style
 
 
 
