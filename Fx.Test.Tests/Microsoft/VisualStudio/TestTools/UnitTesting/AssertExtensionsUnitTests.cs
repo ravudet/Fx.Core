@@ -370,6 +370,17 @@ class C {
 
 
 
+
+
+
+
+
+
+        private static class NewLine { internal static void DoWork() { } }
+
+
+
+
         public class CopilotProp : ICopilotProp
         {
             public string DoWork()
