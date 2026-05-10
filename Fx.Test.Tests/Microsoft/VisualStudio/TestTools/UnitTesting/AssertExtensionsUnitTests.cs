@@ -385,6 +385,12 @@ class C {
         {
             public string DoWork()
             {
+                if (true)
+                {
+                    Console.WriteLine("asdf");
+                } else {
+                }
+
                 throw new NotImplementedException();
             }
         }
