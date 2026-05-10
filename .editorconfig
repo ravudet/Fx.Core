@@ -751,7 +751,7 @@ dotnet_diagnostic.IDE3000.severity = warning # i'm going to say i want this rule
 dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so it's hard to justify without going into the options; there's a lot of pure-style in this though
 	dotnet_sort_system_directives_first = true # TODO i can't get this to trigger; purely style
 	dotnet_separate_import_directive_groups = true # purely style
-	csharp_new_line_before_open_brace = all #NOTE: these only apply if the entire "node" is not on the same line; so, `class Foo {\r\n}` would *not* be ok, but `class Foo {}` *is* ok; purely style, but idiomatic c# at this point
+	csharp_new_line_before_open_brace = all #NOTE: these only apply if the entire "node" is not on the same line; so, `class Foo {\r\n}` would *not* be ok, but `class Foo {}` *is* ok; i'm not actually a fan of that for some categories of this option (like classes) but i *am* good with that for others (like properties); purely style, but idiomatic c# at this point
 	csharp_new_line_before_else = true # purely style
 	csharp_new_line_before_catch = true # purely style
 
