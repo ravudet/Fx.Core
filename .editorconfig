@@ -751,6 +751,7 @@ dotnet_diagnostic.IDE3000.severity = warning # i'm going to say i want this rule
 dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so it's hard to justify without going into the options; there's a lot of pure-style in this though
 	dotnet_sort_system_directives_first = true # TODO i can't get this to trigger; purely style
 	dotnet_separate_import_directive_groups = true # purely style
+
 	csharp_new_line_before_open_brace = all # NOTE: these only apply if the entire "node" is not on the same line; so, `class Foo {\r\n}` would *not* be ok, but `class Foo {}` *is* ok; i'm not actually a fan of that for some categories of this option (like classes) but i *am* good with that for others (like properties); purely style, but idiomatic c# at this point # TODO make sure to note when the rest of these options are "idiomatic"
 	csharp_new_line_before_else = true # purely style
 	csharp_new_line_before_catch = true # purely style
@@ -758,12 +759,14 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 	csharp_new_line_before_members_in_object_initializers = true # NOTE: this only applies if the initializer is split across lines at all; you can still have one-liners # purely style
 	csharp_new_line_before_members_in_anonymous_types = true # NOTE: this only applies if the type is split across lines at all; you can still have one-liners # purely style
 	csharp_new_line_between_query_expression_clauses = true # NOTE: this only applies if the query expression is split across lines at all; you can still have one-liners # purely style
+
 	csharp_indent_case_contents = true # purely style
 	csharp_indent_switch_labels = true # purely style
 	csharp_indent_labels = one_less_than_current # TODO i'm not convinced about this rule (which means it should be error), i don't usually write `goto` statements # TODO looks 0055 can't have options set their severity: https://github.com/dotnet/roslyn/issues/46243 # purely style
 	csharp_indent_block_contents = true # purely style, but idiomatic c# at this point
 	csharp_indent_braces = false # NOTE: this is one of the few options that where `false` actually means "do the opposite" # purely style  # purely style, but idiomatic c# at this point
 	csharp_indent_case_contents_when_block = false #TODO i'm not convinced about this rule, i don't usually write `switch` statements, let alone ones with blocks # TODO see `csharp_indent_labels` about setting this as error # purely style
+
 	csharp_space_after_cast = false # purely style
 	csharp_space_after_keywords_in_control_flow_statements = true # purely style
 	csharp_space_between_parentheses = false # purely style
@@ -787,6 +790,8 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 	csharp_space_between_empty_square_brackets = false # purely style
 	csharp_space_between_square_brackets = false # purely style
 
+	csharp_preserve_single_line_statements = false # readability, accidentally missing lines
+	csharp_preserve_single_line_blocks = true # i actually hate that this triggers for autoprops; i think you shold be able to write `int Foo { get; set; }`, but i don't think you should be able to write `int Foo { get { return 5; } }`, and this is the readability argument; but this option can't do both; maybe write your own rule
 
 
 
@@ -851,8 +856,7 @@ insert_final_newline = true
 
 ### wrapping preferences
 
-csharp_preserve_single_line_blocks = true
-csharp_preserve_single_line_statements = false
+
 
 
 
