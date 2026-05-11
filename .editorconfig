@@ -786,9 +786,9 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 	csharp_space_after_semicolon_in_for_statement = true # purely style # false enforces the opposite
 	csharp_space_before_semicolon_in_for_statement = false # purely style # false enforces the opposite
 	csharp_space_around_declaration_statements = false # purely style # false means exactly 1 space between everything (no more or less)
-	csharp_space_before_open_square_brackets = false # purely style
-	csharp_space_between_empty_square_brackets = false # purely style
-	csharp_space_between_square_brackets = false # purely style
+	csharp_space_before_open_square_brackets = false # purely style # false enforces the opposite
+	csharp_space_between_empty_square_brackets = false # purely style # false enforces the opposite
+	csharp_space_between_square_brackets = false # purely style # false enforces the opposite
 
 	csharp_preserve_single_line_statements = false # readability, accidentally missing lines
 	csharp_preserve_single_line_blocks = true # i actually hate that this triggers for autoprops; i think you shold be able to write `int Foo { get; set; }`, but i don't think you should be able to write `int Foo { get { return 5; } }`, and this is the readability argument; but this option can't do both; maybe write your own rule
