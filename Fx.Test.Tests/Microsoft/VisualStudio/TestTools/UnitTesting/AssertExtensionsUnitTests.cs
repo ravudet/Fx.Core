@@ -407,12 +407,34 @@ class C {
                 {
                 }
 
+                var foo = new CopilotProp()
+                {
+                    Bar = "Asdf",
+                    Fizz = "qwer",
+                };
+
+                var bar = new
+                {
+                    Bar = "asdf",
+                    Fizz = "qwer",
+                };
+
+                var data = new byte[0];
+                var selected = from @byte in data
+                               where @byte % 2 == 0
+                               select @byte * 2;
+
                 throw new NotImplementedException();
             }
 
             public string Foo { get { throw new Exception("TODO"); } }
 
             public string Bar
+            {
+                get; set;
+            }
+
+            public string Fizz
             {
                 get; set;
             }
