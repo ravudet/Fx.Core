@@ -758,7 +758,11 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 	csharp_new_line_before_members_in_object_initializers = true # NOTE: this only applies if the initializer is split across lines at all; you can still have one-liners # purely style
 	csharp_new_line_before_members_in_anonymous_types = true # NOTE: this only applies if the type is split across lines at all; you can still have one-liners # purely style
 	csharp_new_line_between_query_expression_clauses = true # NOTE: this only applies if the query expression is split across lines at all; you can still have one-liners # purely style
-
+	csharp_indent_case_contents = true # purely style
+	csharp_indent_switch_labels = true # purely style
+	csharp_indent_labels = one_less_than_current # TODO i'm not convinced about this rule (which means it should be error), i don't usually write `goto` statements # TODO looks 0055 can't have options set their severity: https://github.com/dotnet/roslyn/issues/46243
+	csharp_indent_block_contents = true # purely style, but idiomatic c# at this point
+	csharp_indent_braces = false # NOTE: this is one of the few options that where `false` actually means "do the opposite" # purely style  # purely style, but idiomatic c# at this point
 
 
 
@@ -814,12 +818,7 @@ indent_size = 4
 ### indentation preferences
 
 [*.cs]
-csharp_indent_block_contents = true
-csharp_indent_braces = false
-csharp_indent_case_contents = true
 csharp_indent_case_contents_when_block = false#TODO i'm not convinced about this rule, i don't usually write `switch` statements, let alone ones with blocks
-csharp_indent_switch_labels = true
-csharp_indent_labels = one_less_than_current#TODO i'm not convinced about this rule, i don't usually write `goto` statements
 
 ### new line preferences
 
