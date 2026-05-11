@@ -856,11 +856,6 @@ insert_final_newline = true
 
 
 
-### expression-level preferences
-
-[*.{cs,vb}]
-dotnet_style_prefer_conditional_expression_over_assignment = false:silent
-
 
 ## naming style
 
