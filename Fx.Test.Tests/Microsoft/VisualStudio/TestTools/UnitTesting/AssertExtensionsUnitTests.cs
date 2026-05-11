@@ -383,6 +383,10 @@ class C {
 
         public class CopilotProp : ICopilotProp
         {
+            public void DoWork2(int value)
+            {
+            }
+
             public string DoWork()
             {
                 if (
