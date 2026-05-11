@@ -757,7 +757,7 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 	csharp_new_line_before_finally = true # purely style
 	csharp_new_line_before_members_in_object_initializers = true # NOTE: this only applies if the initializer is split across lines at all; you can still have one-liners # purely style
 	csharp_new_line_before_members_in_anonymous_types = true # NOTE: this only applies if the type is split across lines at all; you can still have one-liners # purely style
-	csharp_new_line_between_query_expression_clauses = true # NOTE: this only applies if the query expression is split across lines at all; you can still have one-liners
+	csharp_new_line_between_query_expression_clauses = true # NOTE: this only applies if the query expression is split across lines at all; you can still have one-liners # purely style
 
 
 
