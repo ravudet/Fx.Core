@@ -751,7 +751,7 @@ dotnet_diagnostic.IDE3000.severity = warning # i'm going to say i want this rule
 dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so it's hard to justify without going into the options; there's a lot of pure-style in this though
 	dotnet_sort_system_directives_first = true # TODO i can't get this to trigger; purely style
 	dotnet_separate_import_directive_groups = true # purely style
-	csharp_new_line_before_open_brace = all # NOTE: these only apply if the entire "node" is not on the same line; so, `class Foo {\r\n}` would *not* be ok, but `class Foo {}` *is* ok; i'm not actually a fan of that for some categories of this option (like classes) but i *am* good with that for others (like properties); purely style, but idiomatic c# at this point
+	csharp_new_line_before_open_brace = all # NOTE: these only apply if the entire "node" is not on the same line; so, `class Foo {\r\n}` would *not* be ok, but `class Foo {}` *is* ok; i'm not actually a fan of that for some categories of this option (like classes) but i *am* good with that for others (like properties); purely style, but idiomatic c# at this point # TODO make sure to note when the rest of these options are "idiomatic"
 	csharp_new_line_before_else = true # purely style
 	csharp_new_line_before_catch = true # purely style
 	csharp_new_line_before_finally = true # purely style
@@ -764,7 +764,33 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 	csharp_indent_block_contents = true # purely style, but idiomatic c# at this point
 	csharp_indent_braces = false # NOTE: this is one of the few options that where `false` actually means "do the opposite" # purely style  # purely style, but idiomatic c# at this point
 	csharp_indent_case_contents_when_block = false #TODO i'm not convinced about this rule, i don't usually write `switch` statements, let alone ones with blocks # TODO see `csharp_indent_labels` about setting this as error # purely style
+	csharp_space_after_cast = false # purely style
+	csharp_space_after_keywords_in_control_flow_statements = true # purely style
+	csharp_space_between_parentheses = false # purely style
+	csharp_space_before_colon_in_inheritance_clause = true # purely style
+	csharp_space_after_colon_in_inheritance_clause = true # purely style
+	csharp_space_around_binary_operators = before_and_after # purely style
+	csharp_space_between_method_declaration_parameter_list_parentheses = false # purely style
+	csharp_space_between_method_declaration_empty_parameter_list_parentheses = false # purely style
+	csharp_space_between_method_declaration_name_and_open_parenthesis = false # purely style
+	csharp_space_between_method_call_parameter_list_parentheses = false # purely style
+	csharp_space_between_method_call_empty_parameter_list_parentheses = false # purely style
+	csharp_space_between_method_call_name_and_opening_parenthesis = false # purely style
+	csharp_space_after_comma = true # purely style
+	csharp_space_before_comma = false # purely style
+	csharp_space_after_dot = false # purely style
+	csharp_space_before_dot = false # purely style
+	csharp_space_after_semicolon_in_for_statement = true # purely style
+	csharp_space_before_semicolon_in_for_statement = false # purely style
+	csharp_space_around_declaration_statements = false # purely style
+	csharp_space_before_open_square_brackets = false # purely style
+	csharp_space_between_empty_square_brackets = false # purely style
+	csharp_space_between_square_brackets = false # purely style
 
+
+
+
+# TODO go through the ide0055 options and see which ones have `false` mean "take the opposite stance" vs "take no stance"
 
 
 
@@ -822,35 +848,6 @@ indent_size = 4
 end_of_line = crlf
 insert_final_newline = true
 [*.cs]
-
-
-
-
-
-### space preferences
-
-csharp_space_between_method_declaration_name_and_open_parenthesis = false
-csharp_space_between_method_declaration_parameter_list_parentheses = false
-csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
-csharp_space_between_method_call_name_and_opening_parenthesis = false
-csharp_space_between_method_call_parameter_list_parentheses = false
-csharp_space_between_method_call_empty_parameter_list_parentheses = false
-csharp_space_after_keywords_in_control_flow_statements = true
-csharp_space_between_parentheses = false
-csharp_space_after_cast = false
-csharp_space_around_declaration_statements = false
-csharp_space_before_open_square_brackets = false
-csharp_space_between_empty_square_brackets = false
-csharp_space_between_square_brackets = false
-csharp_space_after_colon_in_inheritance_clause = true
-csharp_space_after_comma = true
-csharp_space_after_dot = false
-csharp_space_after_semicolon_in_for_statement = true
-csharp_space_before_colon_in_inheritance_clause = true
-csharp_space_before_comma = false
-csharp_space_before_dot = false
-csharp_space_before_semicolon_in_for_statement = false
-csharp_space_around_binary_operators = before_and_after
 
 ### wrapping preferences
 
