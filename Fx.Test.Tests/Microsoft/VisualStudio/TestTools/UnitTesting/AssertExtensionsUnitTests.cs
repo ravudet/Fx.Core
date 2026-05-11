@@ -445,6 +445,8 @@ class C {
 
                 var fizz = (object)foo;
                 var buzz = ((2 + 4) * 6) + 1;
+                
+                var @int=5;
 
                 throw new NotImplementedException();
             }
