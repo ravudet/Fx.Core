@@ -396,9 +396,9 @@ class C {
 
             public string Foo { get { throw new Exception("TODO"); } }
 
-            public string Bar 
-            { 
-                get; set; 
+            public string Bar
+            {
+                get; set;
             }
         }
 
