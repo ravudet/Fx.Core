@@ -385,6 +385,12 @@ class C {
         {
             public string DoWork()
             {
+                if (
+                    true &&
+                    false)
+                {
+                }
+
                 if (true)
                 {
                     Console.WriteLine("asdf");

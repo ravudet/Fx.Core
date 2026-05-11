@@ -838,7 +838,7 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 ### expression-level preferences
 
 [*.{cs,vb}]
-dotnet_style_operator_placement_when_wrapping = beginning_of_line
+dotnet_style_operator_placement_when_wrapping = beginning_of_line # https://learn.microsoft.com/en-us/visualstudio/ide/reference/code-styles-refactoring-options?view=visualstudio
 
 ### identation and spacing
 
