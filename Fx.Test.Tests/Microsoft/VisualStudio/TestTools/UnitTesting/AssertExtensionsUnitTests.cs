@@ -424,7 +424,7 @@ class C {
                     Fizz = "qwer",
                 };
 
-                var data = new byte[0];
+                var data = new byte[] { 1, 2, 3 };
                 var selected = from @byte in data
                                where @byte % 2 == 0
                                select @byte * 2;
