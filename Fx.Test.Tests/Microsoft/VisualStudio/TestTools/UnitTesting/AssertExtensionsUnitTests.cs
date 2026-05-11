@@ -385,6 +385,7 @@ class C {
         {
             public void DoWork2(int value)
             {
+                DoWork();
             }
 
             public string DoWork()
