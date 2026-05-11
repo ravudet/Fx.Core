@@ -397,6 +397,16 @@ class C {
                 } else {
                 }
 
+                try
+                {
+                }
+                catch (InvalidOperationException)
+                {
+                }
+                finally
+                {
+                }
+
                 throw new NotImplementedException();
             }
 

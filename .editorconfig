@@ -749,13 +749,13 @@ dotnet_diagnostic.IDE3000.severity = warning # i'm going to say i want this rule
 ### formatting
 
 dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so it's hard to justify without going into the options; there's a lot of pure-style in this though
-	dotnet_sort_system_directives_first = true # TODO i can't get this to trigger; purely style
-	dotnet_separate_import_directive_groups = true # purely style
+	dotnet_sort_system_directives_first = true # TODO i can't get this to trigger; purely style # TODO does false enforce the opposite?
+	dotnet_separate_import_directive_groups = true # purely style # false doesn't enforce the opposite
 
 	csharp_new_line_before_open_brace = all # NOTE: these only apply if the entire "node" is not on the same line; so, `class Foo {\r\n}` would *not* be ok, but `class Foo {}` *is* ok; i'm not actually a fan of that for some categories of this option (like classes) but i *am* good with that for others (like properties); purely style, but idiomatic c# at this point # TODO make sure to note when the rest of these options are "idiomatic"
-	csharp_new_line_before_else = true # purely style
-	csharp_new_line_before_catch = true # purely style
-	csharp_new_line_before_finally = true # purely style
+	csharp_new_line_before_else = true # purely style # false enforces the opposite
+	csharp_new_line_before_catch = true # purely style # false enforces the opposite
+	csharp_new_line_before_finally = true # purely style # false enforces the opposite
 	csharp_new_line_before_members_in_object_initializers = true # NOTE: this only applies if the initializer is split across lines at all; you can still have one-liners # purely style
 	csharp_new_line_before_members_in_anonymous_types = true # NOTE: this only applies if the type is split across lines at all; you can still have one-liners # purely style
 	csharp_new_line_between_query_expression_clauses = true # NOTE: this only applies if the query expression is split across lines at all; you can still have one-liners # purely style
