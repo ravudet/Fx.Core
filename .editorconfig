@@ -794,7 +794,6 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 	csharp_preserve_single_line_blocks = true # i actually hate that this triggers for autoprops; i think you shold be able to write `int Foo { get; set; }`, but i don't think you should be able to write `int Foo { get { return 5; } }`, and this is the readability argument; but this option can't do both; maybe write your own rule # false doesn't enforce the opposite
 
 
-# TODO go through the ide0055 options and see which ones have `false` mean "take the opposite stance" vs "take no stance"
 
 
 
