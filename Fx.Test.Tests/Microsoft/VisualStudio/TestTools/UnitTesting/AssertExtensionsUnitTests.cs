@@ -426,13 +426,16 @@ class C {
 
                 switch (true)
                 {
-                    case true:
-                    {
+                    case true:{
                         break;
                     }
+                    
                     default:
                         throw new Exception();
                 }
+
+                var fizz = (object)foo;
+                var buzz = ((2 + 4) * 6) + 1;
 
                 throw new NotImplementedException();
             }

@@ -767,9 +767,9 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 	csharp_indent_braces = false # NOTE: this is one of the few options that where `false` actually means "do the opposite" # purely style  # purely style, but idiomatic c# at this point # false enforces the opposite
 	csharp_indent_case_contents_when_block = false #TODO i'm not convinced about this rule, i don't usually write `switch` statements, let alone ones with blocks # TODO see `csharp_indent_labels` about setting this as error # purely style # false enforces the opposite
 
-	csharp_space_after_cast = false # purely style
-	csharp_space_after_keywords_in_control_flow_statements = true # purely style
-	csharp_space_between_parentheses = false # purely style
+	csharp_space_after_cast = false # purely style # false enforces the opposite
+	csharp_space_after_keywords_in_control_flow_statements = true # purely style # false enforces the opposite
+	csharp_space_between_parentheses = false # purely style # each option value enforces its own style
 	csharp_space_before_colon_in_inheritance_clause = true # purely style
 	csharp_space_after_colon_in_inheritance_clause = true # purely style
 	csharp_space_around_binary_operators = before_and_after # purely style
