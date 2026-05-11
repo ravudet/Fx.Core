@@ -424,6 +424,16 @@ class C {
                                where @byte % 2 == 0
                                select @byte * 2;
 
+                switch (true)
+                {
+                    case true:
+                    {
+                        break;
+                    }
+                    default:
+                        throw new Exception();
+                }
+
                 throw new NotImplementedException();
             }
 
