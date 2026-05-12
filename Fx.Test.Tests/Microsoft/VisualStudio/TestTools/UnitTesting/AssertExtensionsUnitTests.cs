@@ -243,6 +243,7 @@ class C {
         //// TODO i can't get IDE0063 to trigger`
         //// TODO ide0160 and ide0161 both "appear" as ide0161 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0160-ide0161
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide2004 example is missing `class` keyword and should capitalize `base`
+        //// TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does; the same happens if you enable ide0200 and leave the severity off of the option
 
         //// TODO can you create a roslyn analyzer for the editorconfig?
         //// TODO for ide0055, some of them, i don't really care how people write it, but i'd like to have the auto-generated code follow a rule to "encourage" people; for this reason, it *seems* i want 0055 to be warning, but some of the options to be `silent` or `suggestion`; i can't seem to get this to work, though
@@ -346,7 +347,6 @@ class C {
 
 
         //// TODO go back through and determine which ones are "disabled" when `false` (rather than warning for the opposite); for these, decide on what "severity" you want to set (can you remove the severity altogether?)
-        ////    TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does
         ////    TODO `csharp_style_throw_expression = false:warning` doesn't warn for `var assigned = another ?? throw new Exception("TODO");`
         //// TODO i can't get csharp_style_unused_value_assignment_preference to trigger, and it looks like CS0219 covers it anyway?
 
@@ -372,6 +372,16 @@ class C {
 
 
 
+
+        public static class MethodGroupConversion
+        {
+            public static void Fizz(Action action) { }
+
+            public static void Foo()
+            {
+                Fizz(() => Foo());
+            }
+        }
 
 
 
