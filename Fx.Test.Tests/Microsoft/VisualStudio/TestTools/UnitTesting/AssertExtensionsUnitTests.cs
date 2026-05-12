@@ -398,7 +398,11 @@ class C {
 
         public class CopilotProp : ICopilotProp
         {
+            public const int Foo = 5;
+
             private readonly bool _value;
+
+            public event Action Something;
 
             public void DoWork2(int value)
             {
