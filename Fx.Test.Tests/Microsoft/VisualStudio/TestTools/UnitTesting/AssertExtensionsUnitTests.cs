@@ -246,6 +246,9 @@ class C {
         //// TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does; the same happens if you enable ide0200 and leave the severity off of the option
 
         //// TODO can you create a roslyn analyzer for the editorconfig?
+        ////    TODO don't set the same value twice
+        ////    TODO indent options
+        ////    TODO spacing between data, `#`, and comment
         //// TODO for ide0055, some of them, i don't really care how people write it, but i'd like to have the auto-generated code follow a rule to "encourage" people; for this reason, it *seems* i want 0055 to be warning, but some of the options to be `silent` or `suggestion`; i can't seem to get this to work, though
         //// TODO write articles in a github pages repo (or set up your current repo to publish pages if that's possible?) and link to the articles from the editorconfig
         //// TODO go through your TODOs below and write down your guiding principles, and create a page that has those listed so you can reference them from the articles
