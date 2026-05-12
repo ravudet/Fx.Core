@@ -810,7 +810,7 @@ dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
 
 
 
-
+# TODO make sure to enable IDE1006 
 
 # TODO remember that you need to remove the options from down below as you go along
 # TODO remember to indent the options
