@@ -795,6 +795,12 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 
 ### naming
 
+dotnet_naming_symbols.fields.applicable_kinds = field
+dotnet_naming_symbols.fields.applicable_accessibilities = *
+
+dotnet_naming_style.camelcase_no_prefix.capitalization = camel_case
+
+
 
 
 
