@@ -804,6 +804,10 @@ dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.symbols = fields
 dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.style = camelcase_no_prefix
 dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
 
+# TODO go through this: https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names
+# TODO go through this: https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines
+# TODO go through this: https://github.com/dotnet/roslyn/blob/main/.editorconfig#L63
+
 # private event members should be camel case
 # fields should be camel case
 # TODO should you differentiate static fields and instance fields?
@@ -819,6 +823,8 @@ dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
 # you are choosing to also have local functions be camel case to differentiate them within the method from other functions; you don't want to "override" something just because of naming
 # parameters should be camel case
 # type parameters start with T
+
+# `async` suffix?
 
 
 
