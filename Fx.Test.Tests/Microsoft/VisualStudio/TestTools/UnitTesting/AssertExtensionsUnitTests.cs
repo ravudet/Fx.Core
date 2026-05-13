@@ -297,7 +297,7 @@ class C {
 
 
 
-        //// TODO you should have a rule to always prefix static method calls
+        //// TODO you should have a rule to always prefix static member access; same for `const` member access
         //// TODO when you are creating new rules for your coding guidelines, the one about suppressions being minimalist maybe could use IDE0079 as insipiration
 
 

@@ -864,10 +864,10 @@ dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
 
 # for everything else:
 # i think it'd be a good idea to differentiate between everything
-# to differentiate between private and nonprivate, nonprivate is pascal case, so private will be camelcase
-# for "instance" names, we have `this`
-# for "static" names, we have the type name
-# i think thread static is good to differentiate, so maybe `_` for thread static? TODO do you need to differentiate public thread static? it's probably best to just stick with the idiom...
+# to differentiate between private and nonprivate, nonprivate is pascal case, so private will be camelcase # i'm not really sure why i want to differentiate these, but it's pretty much idiom now; but, for that reason, purely style
+# for "instance" names, we have `this` # knowing when we are affecting other instances (i.e. the *absence* of `this`) is important
+# for "static" names, we have the type name # code *can* be copied when an external static is used; code *can't* be copied when an internal static is used
+# i think thread static is good to differentiate, so maybe `_` for thread static? TODO do you need to differentiate public thread static? it's probably best to just stick with the idiom... # but for private thread static, you need to be even more aware than internal static types because there are additional rules
 # i'd love to differentiate between parameter and local, and because parameters are camel case (by idiom), that would mean that locals need a way to be differentiated; add `_`? TODO *why* do you need to differentiate between parameter and local?
 
 
@@ -879,7 +879,7 @@ dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
 # all other members should be pascal case # TODO including const
 
 
-# `async` suffix?
+# TODO `async` suffix? no one else seems to be making this a requirement
 
 
 
