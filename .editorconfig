@@ -850,7 +850,7 @@ dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
 # for "instance" names, we have `this`
 # for "static" names, we have the type name
 # i think thread static is good to differentiate, so maybe `_` for thread static? TODO do you need to differentiate public thread static? it's probably best to just stick with the idiom...
-# i'd love to differentiate between parameter and local, and because parameters are camel case (by idiom), that would mean that locals need a way to be differentiated; add `_`?
+# i'd love to differentiate between parameter and local, and because parameters are camel case (by idiom), that would mean that locals need a way to be differentiated; add `_`? TODO *why* do you need to differentiate between parameter and local?
 
 
 
