@@ -813,7 +813,6 @@ dotnet_naming_rule.default.severity = error
 
 
 
-
 dotnet_naming_symbols.fields.applicable_kinds = field
 dotnet_naming_symbols.fields.applicable_accessibilities = *
 
