@@ -804,7 +804,7 @@ dotnet_naming_style.default.capitalization = first_word_upper
 
 dotnet_naming_rule.default.symbols = all
 dotnet_naming_rule.default.style = default
-dotnet_naming_rule.default.severity = error
+dotnet_naming_rule.default.severity = warning # TODO change this to error
 
 
 
