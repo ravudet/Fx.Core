@@ -813,9 +813,9 @@ dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
 # paremters, locals, and private fields should be camelcase
 	# you are choosing to also have local functions be camel case to differentiate them within the method from other functions; you don't want to "override" something just because of naming
 # consts (fields and locals) should be pascal case
-	# like above, i think you want local const to be camel case to differentiate them (but actually that should mean c_ or s_...)
+	# like above, i think you want local const to be camel case to differentiate them (but actually that should mean c_ or s_...) (but actually, unlike static where i might modify, here a const is actually no different from a private readonly static, the const part is just an optimization, and private readonly static doesn't really need to be differentiated)
 # private instance fields should start with _
-# static fields start with s_
+# static fields start with s_ (i want to differentiate them because if i write to something static i'm affecting other instances, thread-safety concerns too)
 # type parameters start with T
 
 # from this: https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md
