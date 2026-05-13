@@ -795,6 +795,25 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 
 ### naming
 
+# the below will cause and error for anything that you don't have a rule for (but only because it's so unlikely that someone uses first_word_upper casing for something)
+
+dotnet_naming_symbols.all.applicable_kinds = *
+dotnet_naming_symbols.all.applicable_accessibilities = *
+
+dotnet_naming_style.default.capitalization = first_word_upper
+
+dotnet_naming_rule.default.symbols = all
+dotnet_naming_rule.default.style = default
+dotnet_naming_rule.default.severity = error
+
+
+
+
+
+
+
+
+
 dotnet_naming_symbols.fields.applicable_kinds = field
 dotnet_naming_symbols.fields.applicable_accessibilities = *
 
