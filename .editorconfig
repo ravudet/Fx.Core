@@ -822,9 +822,38 @@ dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
 # t_ for thread static fields
 # public fields should be pascal casing with no prefix
 
+# from this: https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines
 
-# TODO go through this: https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines
+
+
+
 # TODO go through this: https://github.com/dotnet/roslyn/blob/main/.editorconfig#L63
+
+
+
+
+# public, private, parameter, local, instance
+
+# these are all things that the caller sees, and so we need to be "idiomatic":
+# all type names should be pascal case
+# all namespaces should be pascal case
+# all interfaces should start with i
+# public members should be pascal case
+# protected members should be pascal case
+# internal members should be pascal case
+# parameters should be camel case
+# type parameters start with T and pascal case
+
+# for everything else:
+# i think it'd be a good idea to differentiate between everything
+# to differentiate between private and nonprivate, nonprivate is pascal case, so private will be camelcase
+# for "instance" names, we have `this`
+# for "static" names, we have the type name
+# i think thread static is good to differentiate, so maybe `_` for thread static? TODO do you need to differentiate public thread static? it's probably best to just stick with the idiom...
+# i'd love to differentiate between parameter and local, and because parameters are camel case (by idiom), that would mean that locals need a way to be differentiated; add `_`?
+
+
+
 
 
 # private event members should be camel case
