@@ -906,14 +906,14 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 
 
 
-dotnet_naming_symbols.fields.applicable_kinds = field
-dotnet_naming_symbols.fields.applicable_accessibilities = *
+#dotnet_naming_symbols.fields.applicable_kinds = field
+#dotnet_naming_symbols.fields.applicable_accessibilities = *
 
-dotnet_naming_style.camelcase_no_prefix.capitalization = camel_case
+#dotnet_naming_style.camelcase_no_prefix.capitalization = camel_case
 
-dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.symbols = fields
-dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.style = camelcase_no_prefix
-dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
+#dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.symbols = fields
+#dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.style = camelcase_no_prefix
+#dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
 
 # from this: https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names
 # type names should be pascal case
