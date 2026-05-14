@@ -811,6 +811,10 @@ dotnet_naming_rule.namespaces_should_be_pascal_case.symbols = namespaces # idiom
 dotnet_naming_rule.namespaces_should_be_pascal_case.style = pascal_case
 dotnet_naming_rule.namespaces_should_be_pascal_case.severity = warning
 
+dotnet_naming_rule.nonprivate_members_should_be_pascal_case.symbols = nonprivate_members
+dotnet_naming_rule.nonprivate_members_should_be_pascal_case.style = pascal_case
+dotnet_naming_rule.nonprivate_members_should_be_pascal_case.severity = warning
+
 # TODO you are here, implementing the list just below
 
 
@@ -831,6 +835,12 @@ dotnet_naming_symbols.interfaces.applicable_accessibilities = *
 
 dotnet_naming_symbols.namespaces.applicable_kinds = namespace
 dotnet_naming_symbols.namespaces.applicable_accessibilities = *
+
+dotnet_naming_symbols.nonprivate_members.applicable_kinds = property, method, field, event
+dotnet_naming_symbols.nonprivate_members.applicable_accessibilities = public, internal, protected, protected_internal
+
+
+
 
 
 
