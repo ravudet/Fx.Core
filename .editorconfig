@@ -799,7 +799,7 @@ dotnet_naming_rule.uncaptured.symbols = all
 dotnet_naming_rule.uncaptured.style = uncaptured
 dotnet_naming_rule.uncaptured.severity = error # NOTE: anything that there there isn't a rule for will be considered an error (this only works because the `uncaptured` style is `all_upper`, which is unlikely to be used)
 
-dotnet_naming_rule.types_should_be_pascal_case.symbols = noninterface_types # idiom
+dotnet_naming_rule.types_should_be_pascal_case.symbols = noninterface_types # idiom, these are all things that the caller sees
 dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
 dotnet_naming_rule.types_should_be_pascal_case.severity = warning
 
@@ -811,13 +811,17 @@ dotnet_naming_rule.namespaces_should_be_pascal_case.symbols = namespaces # idiom
 dotnet_naming_rule.namespaces_should_be_pascal_case.style = pascal_case
 dotnet_naming_rule.namespaces_should_be_pascal_case.severity = warning
 
-dotnet_naming_rule.nonprivate_members_should_be_pascal_case.symbols = nonprivate_members
+dotnet_naming_rule.nonprivate_members_should_be_pascal_case.symbols = nonprivate_members # idiom
 dotnet_naming_rule.nonprivate_members_should_be_pascal_case.style = pascal_case
 dotnet_naming_rule.nonprivate_members_should_be_pascal_case.severity = warning
 
-dotnet_naming_rule.parameters_should_be_camel_case.symbols = parameters
+dotnet_naming_rule.parameters_should_be_camel_case.symbols = parameters # idiom
 dotnet_naming_rule.parameters_should_be_camel_case.style = camel_case
 dotnet_naming_rule.parameters_should_be_camel_case.severity = warning
+
+dotnet_naming_rule.type_parameters_should_be_pascal_case_and_prefixed_with_t.symbols = type_parameters # idiom
+dotnet_naming_rule.type_parameters_should_be_pascal_case_and_prefixed_with_t.style = pascal_case_with_t_prefix
+dotnet_naming_rule.type_parameters_should_be_pascal_case_and_prefixed_with_t.severity = warning
 
 # TODO you are here, implementing the list just below
 
@@ -846,6 +850,9 @@ dotnet_naming_symbols.nonprivate_members.applicable_accessibilities = public, in
 dotnet_naming_symbols.parameters.applicable_kinds = parameter
 dotnet_naming_symbols.parameters.applicable_accessibilities = *
 
+dotnet_naming_symbols.type_parameters.applicable_kinds = type_parameter
+dotnet_naming_symbols.type_parameters.applicable_accessibilities = *
+
 
 
 
@@ -860,6 +867,8 @@ dotnet_naming_style.pascal_case_with_i_prefix.required_prefix = I
 
 dotnet_naming_style.camel_case.capitalization = camel_case
 
+dotnet_naming_style.pascal_case_with_t_prefix.capitalization = pascal_case
+dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 
 
 

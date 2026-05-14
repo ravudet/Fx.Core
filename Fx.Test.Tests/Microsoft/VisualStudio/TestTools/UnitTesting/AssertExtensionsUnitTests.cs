@@ -549,7 +549,7 @@ class C {
 
         static partial class MyCollection
         {
-            public static MyCollection<T> Create<T>(System.ReadOnlySpan<T> values) => default;
+            public static MyCollection<TThing> Create<TThing>(System.ReadOnlySpan<TThing> values) => default;
             public static MyCollection<T> Create<T>(T t1, T t2, T t3) => throw new InvalidDataException("TODO");
         }
 
