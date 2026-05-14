@@ -377,6 +377,10 @@ class C {
 
 
 
+        public interface MyInterface
+        {
+        }
+
 
 
         public static class MethodGroupConversion
