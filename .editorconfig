@@ -882,6 +882,26 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 # type parameters start with T and pascal case
 
 # for everything else:
+# TODO what's the list?
+#	external static method
+#	external instance method
+#	external static property
+#	external instance property
+#	external static field
+#	external instance field
+#	external static event
+#	external instance event
+#	internal static method
+#	internal instance method
+#	internal static property
+#	internal instance property
+#	internal static field
+#	internal instance field
+#	internal static event
+#	internal instance event
+#	parameter
+#	local
+#	local_function # TODO why would i want local functions to look different from lambdas and funcs?
 # i think it'd be a good idea to differentiate between everything
 # to differentiate between private and nonprivate, nonprivate is pascal case, so private will be camelcase # i'm not really sure why i want to differentiate these, but it's pretty much idiom now; but, for that reason, purely style
 # for "instance" names, we have `this` # knowing when we are affecting other instances (i.e. the *absence* of `this`) is important
