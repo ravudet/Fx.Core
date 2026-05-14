@@ -903,16 +903,16 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	private instance field
 #	private static event
 #	private instance event
-#	nonprivate static method
-#	nonprivate instance method
-#	nonprivate static property
-#	nonprivate instance property
-#	nonprivate static field
-#	nonprivate const field
-#	nonprivate thread static field
-#	nonprivate instance field
-#	nonprivate static event
-#	nonprivate instance event
+#	nonprivate static method			InternalType.Member()
+#	nonprivate instance method			internalType.Member()
+#	nonprivate static property			InternalType.Member
+#	nonprivate instance property		internalType.Member
+#	nonprivate static field				InternalType.Member
+#	nonprivate const field				InternalType.Member
+#	nonprivate thread static field		InternalType.Member
+#	nonprivate instance field			internalType.Member
+#	nonprivate static event				InternalType.Member
+#	nonprivate instance event			internalType.Member
 #	parameter
 #	local
 #	local_function # TODO why would i want local functions to look different from lambdas and funcs?
