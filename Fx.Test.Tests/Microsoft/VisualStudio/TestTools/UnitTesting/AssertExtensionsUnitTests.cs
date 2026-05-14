@@ -244,6 +244,7 @@ class C {
         //// TODO ide0160 and ide0161 both "appear" as ide0161 https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0160-ide0161
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide2004 example is missing `class` keyword and should capitalize `base`
         //// TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does; the same happens if you enable ide0200 and leave the severity off of the option
+        //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/naming-rules#symbol-group-properties applicable_accessibilities is not required, it defaults to `*`
 
         //// TODO can you create a roslyn analyzer for the editorconfig?
         ////    TODO don't set the same value twice
@@ -609,7 +610,6 @@ class C {
             }
         }
 
-
 #pragma warning disable IDE0060 // Remove unused parameter
         class OneToMany<TKey, TValue> : IOneToMany<TKey, TValue>
 #pragma warning restore IDE0060 // Remove unused parameter
@@ -646,7 +646,7 @@ class C {
 
 
 
-        ref struct One<TValue> : IMany<TValue, One<TValue>>
+        public ref struct One<TValue> : IMany<TValue, One<TValue>>
         {
             private readonly TValue value;
 
@@ -677,17 +677,17 @@ class C {
             }
         }
 
-        interface IMany<TValue> : IMany<TValue, One<TValue>>
+        public interface IMany<TValue> : IMany<TValue, One<TValue>>
         {
         }
 
-        interface IMany<TValue, TOne> : IEnumerable<TValue>
+        public interface IMany<TValue, TOne> : IEnumerable<TValue>
             where TOne : IMany<TValue, TOne>, allows ref struct
         {
             static abstract IMany<TValue, TOne> operator +(TOne value);
         }
 
-        ref struct Many<TValue> : IMany<TValue>
+        public ref struct Many<TValue> : IMany<TValue>
         {
             public Many(List<TValue> values)
             {
@@ -713,11 +713,11 @@ class C {
             }
         }
 
-        interface IOneToMany<TKey, TValue> : IOneToMany<TKey, TValue, Many<TValue>>
+        public interface IOneToMany<TKey, TValue> : IOneToMany<TKey, TValue, Many<TValue>>
         {
         }
 
-        interface IOneToMany<TKey, TValue, TMany>
+        public interface IOneToMany<TKey, TValue, TMany>
             where TMany : IMany<TValue>, allows ref struct
         {
             TMany this[TKey key] { get; set; }
