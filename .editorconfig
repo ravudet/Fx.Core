@@ -797,6 +797,7 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 
 #### rules
 
+# start of "external" rules
 dotnet_naming_rule.uncaptured.symbols = all
 dotnet_naming_rule.uncaptured.style = uncaptured
 dotnet_naming_rule.uncaptured.severity = error # NOTE: anything that there there isn't a rule for will be considered an error (this only works because the `uncaptured` style is `all_upper`, which is unlikely to be used)
@@ -824,14 +825,17 @@ dotnet_naming_rule.parameters_should_be_camel_case.severity = warning
 dotnet_naming_rule.type_parameters_should_be_pascal_case_and_prefixed_with_t.symbols = type_parameters # idiom
 dotnet_naming_rule.type_parameters_should_be_pascal_case_and_prefixed_with_t.style = pascal_case_with_t_prefix
 dotnet_naming_rule.type_parameters_should_be_pascal_case_and_prefixed_with_t.severity = warning
+# end of "external" rules
 
+# start of "internal" rules
 # TODO do all of the private stuff here
+# end of "internal" rules
 
-# TODO do all of the local stuff here
-
+# start of "local" rules
 dotnet_naming_rule.locals_should_be_camel_case.symbols = locals # TODO idiom, because if i really want to differentiate, these would be pascal case; they would look different from non-locals because they wouldn't be prefixed by `this` or the type name, and they would look different from parameters, which are camel case by idiom; i think that makes this "purely style" even though it's an idiom because, being local, it's an implementation detail; callers don't ever see this
 dotnet_naming_rule.locals_should_be_camel_case.style = camel_case
 dotnet_naming_rule.locals_should_be_camel_case.severity = warning
+# end of "local" rules
 
 #### symbol groups
 
