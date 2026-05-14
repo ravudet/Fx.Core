@@ -825,7 +825,11 @@ dotnet_naming_rule.type_parameters_should_be_pascal_case_and_prefixed_with_t.sym
 dotnet_naming_rule.type_parameters_should_be_pascal_case_and_prefixed_with_t.style = pascal_case_with_t_prefix
 dotnet_naming_rule.type_parameters_should_be_pascal_case_and_prefixed_with_t.severity = warning
 
-# TODO you are here, implementing the list just below
+# TODO do all of the private stuff here
+
+# TODO do all of the local stuff here
+
+
 
 #### symbol groups
 
@@ -901,7 +905,7 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	nonprivate instance property		this.Member
 #	nonprivate static field				InternalType.Member # a property is syntactic sugar around a generated field and accessor methods; it is *supposed* to look like a field
 #	nonprivate const field				InternalType.Member # the *name* of the member should be used to distinguish between a `const` and other fields
-#	nonprivate thread static field		InternalType.Member # TODO
+#	nonprivate thread static field		InternalType.Member # TODO i think the caller shouldn't need to worry about thread-static; this should be an implementation detail
 #	nonprivate instance field			this.Member
 #	nonprivate static event				InternalType.Member # the *name* of the member should be used to distinguish between a `event` and other fields
 #	nonprivate instance event			this.Member
