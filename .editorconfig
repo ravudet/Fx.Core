@@ -893,26 +893,28 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	external instance field				externalType.Member
 #	external static event				ExternalType.Member
 #	external instance event				externalType.Member
+
 #	private static method
 #	private instance method
 #	private static property
 #	private instance property
-#	private static field
-#	private const field
+#	private static field				InternalType.member
+#	private const field					InternalType.member # the name should distinguish
 #	private thread static field
-#	private instance field
-#	private static event
-#	private instance event
+#	private instance field				this.member
+#	private static event				InternalType.member # the name should distinguish
+#	private instance event				this.member # the name should distinguish
+
 #	nonprivate static method			InternalType.Member() # the parentheses distinguish between methods and other members
-#	nonprivate instance method			internalType.Member() # the type name distinguishes between static and instance members
+#	nonprivate instance method			this.Member() # the type name distinguishes between static and instance members
 #	nonprivate static property			InternalType.Member
-#	nonprivate instance property		internalType.Member
+#	nonprivate instance property		this.Member
 #	nonprivate static field				InternalType.Member # a property is syntactic sugar around a generated field and accessor methods; it is *supposed* to look like a field
 #	nonprivate const field				InternalType.Member # the *name* of the member should be used to distinguish between a `const` and other fields
 #	nonprivate thread static field		InternalType.Member # TODO
-#	nonprivate instance field			internalType.Member
+#	nonprivate instance field			this.Member
 #	nonprivate static event				InternalType.Member # the *name* of the member should be used to distinguish between a `event` and other fields
-#	nonprivate instance event			internalType.Member
+#	nonprivate instance event			this.Member
 #	parameter
 #	local
 #	local_function # TODO why would i want local functions to look different from lambdas and funcs?
