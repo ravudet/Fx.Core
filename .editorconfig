@@ -888,6 +888,8 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	external static property
 #	external instance property
 #	external static field
+#	external const field
+#	external thread static field
 #	external instance field
 #	external static event
 #	external instance event
@@ -896,6 +898,8 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	internal static property
 #	internal instance property
 #	internal static field
+#	internal const field
+#	internal thread static field
 #	internal instance field
 #	internal static event
 #	internal instance event
