@@ -903,15 +903,15 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	private instance field
 #	private static event
 #	private instance event
-#	nonprivate static method			InternalType.Member()
-#	nonprivate instance method			internalType.Member()
+#	nonprivate static method			InternalType.Member() # the parentheses distinguish between methods and other members
+#	nonprivate instance method			internalType.Member() # the type name distinguishes between static and instance members
 #	nonprivate static property			InternalType.Member
 #	nonprivate instance property		internalType.Member
-#	nonprivate static field				InternalType.Member
-#	nonprivate const field				InternalType.Member
-#	nonprivate thread static field		InternalType.Member
+#	nonprivate static field				InternalType.Member # a property is syntactic sugar around a generated field and accessor methods; it is *supposed* to look like a field
+#	nonprivate const field				InternalType.Member # the *name* of the member should be used to distinguish between a `const` and other fields
+#	nonprivate thread static field		InternalType.Member # TODO
 #	nonprivate instance field			internalType.Member
-#	nonprivate static event				InternalType.Member
+#	nonprivate static event				InternalType.Member # the *name* of the member should be used to distinguish between a `event` and other fields
 #	nonprivate instance event			internalType.Member
 #	parameter
 #	local
