@@ -883,26 +883,36 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 
 # for everything else:
 # TODO what's the list?
-#	external static method
-#	external instance method
-#	external static property
-#	external instance property
-#	external static field
-#	external const field
-#	external thread static field
-#	external instance field
-#	external static event
-#	external instance event
-#	internal static method
-#	internal instance method
-#	internal static property
-#	internal instance property
-#	internal static field
-#	internal const field
-#	internal thread static field
-#	internal instance field
-#	internal static event
-#	internal instance event
+#	external static method				ExternalType.Member()
+#	external instance method			externalType.Member()
+#	external static property			ExternalType.Member
+#	external instance property			externalType.Member
+#	external static field				ExternalType.Member
+#	external const field				ExternalType.Member
+#	external thread static field		ExternalType.Member
+#	external instance field				externalType.Member
+#	external static event				ExternalType.Member
+#	external instance event				externalType.Member
+#	private static method
+#	private instance method
+#	private static property
+#	private instance property
+#	private static field
+#	private const field
+#	private thread static field
+#	private instance field
+#	private static event
+#	private instance event
+#	nonprivate static method
+#	nonprivate instance method
+#	nonprivate static property
+#	nonprivate instance property
+#	nonprivate static field
+#	nonprivate const field
+#	nonprivate thread static field
+#	nonprivate instance field
+#	nonprivate static event
+#	nonprivate instance event
 #	parameter
 #	local
 #	local_function # TODO why would i want local functions to look different from lambdas and funcs?
