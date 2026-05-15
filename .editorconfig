@@ -919,31 +919,20 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 	# internal members should be pascal case
 	# parameters should be camel case
 	# type parameters start with T and pascal case
-# for the other 2 categories, because they are "implementation details", i get to pick what i want; my guiding principle is that naming should help me differentiate, at a glance, between all 3 categories
-
-
-
-
-
-
-
-
-
-
-# for everything else:
-# i think it'd be a good idea to differentiate between everything
-#	external static method				ExternalType.Member()
-#	external instance method			externalType.Member()
+# for the other 2 categories, because they are "implementation details", i get to pick what i want; my guiding principle is that naming should help me differentiate, at a glance, between the different symbols in all 3 categories
+# let's first look at how the "everything else" category already differentiates between the symbols inside the category: # TODO you need a better name than "everything else", and "external" isn't really good # TODO note where these are "the same" and why it's ok that they are "the same" # TODO note that this view is from the perspective of a method implementation in a type that "you" (the reader) own
+#	external static method				ExternalType.Member() # the parentheses distinguish between methods and other members
+#	external instance method			externalType.Member() # the type name distinguishes between static and instance members
 #	external static property			ExternalType.Member
 #	external instance property			externalType.Member
-#	external static field				ExternalType.Member
-#	external const field				ExternalType.Member
-#	external thread static field		ExternalType.Member
-#	external instance field				externalType.Member
-#	external static event				ExternalType.Member
+#	external static field				ExternalType.Member # a property is syntactic sugar around a generated field and accessor methods; it is *supposed* to look like a field
+#	external const field				ExternalType.Member # the *name* of the member should be used to distinguish between a `const` and other fields
+#	external thread static field		ExternalType.Member # TODO i think the caller shouldn't need to worry about thread-static; this should be an implementation detail
+#	external instance field				externalType.Member # a property is syntactic sugar around a generated field and accessor methods; it is *supposed* to look like a field
+#	external static event				ExternalType.Member # the *name* of the member should be used to distinguish between a `event` and other fields
 #	external instance event				externalType.Member
 
-# TODO these follow the same naming conventions as external, and this is "by-idiom"
+# so, despite that we are simply following established idioms, the idioms seem well-founded; we have the same basic rationale for stuff "inside the type":
 #	nonprivate static method			InternalType.Member() # the parentheses distinguish between methods and other members
 #	nonprivate instance method			this.Member() # the type name distinguishes between static and instance members
 #	nonprivate static property			InternalType.Member
@@ -954,6 +943,22 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	nonprivate instance field			this.Member
 #	nonprivate static event				InternalType.Member # the *name* of the member should be used to distinguish between a `event` and other fields
 #	nonprivate instance event			this.Member
+
+# but, we can also see that each of this is distinct from it's correspoding "everything else" symbol
+
+
+
+
+
+
+
+
+# for everything else:
+# i think it'd be a good idea to differentiate between everything
+
+
+# TODO these follow the same naming conventions as external, and this is "by-idiom"
+
 
 #	private static method				InternalType.Member() # TODO indistinguishable from nonprivate
 #	private instance method				this.Member() # TODO indistinguishable from nonprivate
