@@ -795,6 +795,8 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 
 ### naming
 
+# TODO for articles, see the notes down below after the style definitions
+
 #### rules
 
 # start of "external" rules
@@ -904,7 +906,7 @@ dotnet_naming_style.pascal_case_with_t_prefix.capitalization = pascal_case
 dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 
 
-
+########################################################################################################################
 
 
 
@@ -1037,7 +1039,7 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 # TODO your "note" comments are just comments, you don't need to say "NOTE"
 
 
-
+########################################################################################################################
 
 
 
