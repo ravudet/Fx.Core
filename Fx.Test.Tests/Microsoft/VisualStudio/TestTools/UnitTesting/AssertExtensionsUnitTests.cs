@@ -297,7 +297,7 @@ class C {
 
 
 
-
+        //// TODO fix this: https://github.com/dotnet/roslyn/issues/24209 and write a rule for yourself
         //// TODO you should have a rule to always prefix static member access; same for `const` member access
         //// TODO when you are creating new rules for your coding guidelines, the one about suppressions being minimalist maybe could use IDE0079 as insipiration
 
@@ -1357,9 +1357,10 @@ class C {
 
         public enum Foo4
         {
-            First = 0,
+            first = 0,
         }
 
+        public const int SomeConst = 0;
 
         public struct ByRef
         {
