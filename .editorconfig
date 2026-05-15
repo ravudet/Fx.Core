@@ -950,7 +950,8 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 # but, we can also see that each of this is distinct from it's correspoding "everything else" symbol; now for the 
 
 
-
+# TODO you are here
+# TODO kind of just cleaning up and structing some of these decisions
 
 
 
