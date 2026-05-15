@@ -478,7 +478,7 @@ class C {
                 throw new NotImplementedException();
             }
 
-            public string Foo { get { throw new Exception("TODO"); } }
+            public string Foo2 { get { throw new Exception("TODO"); } }
 
             public string Bar
             {

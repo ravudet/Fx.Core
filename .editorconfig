@@ -828,9 +828,17 @@ dotnet_naming_rule.type_parameters_should_be_pascal_case_and_prefixed_with_t.sev
 # end of "external" rules
 
 # start of "internal" rules
-dotnet_naming_rule.private_static_methods_should_be_pascal_case.symbols = private_static_methods # TODO
-dotnet_naming_rule.private_static_methods_should_be_pascal_case.style = pascal_case
-dotnet_naming_rule.private_static_methods_should_be_pascal_case.severity = warning
+dotnet_naming_rule.private_methods_should_be_pascal_case.symbols = private_methods # TODO
+dotnet_naming_rule.private_methods_should_be_pascal_case.style = pascal_case
+dotnet_naming_rule.private_methods_should_be_pascal_case.severity = warning
+
+dotnet_naming_rule.private_properties_should_be_pascal_case.symbols = private_properties # TODO
+dotnet_naming_rule.private_properties_should_be_pascal_case.style = pascal_case
+dotnet_naming_rule.private_properties_should_be_pascal_case.severity = warning
+
+dotnet_naming_rule.private_fields_should_be_camel_case.symbols = private_fields # TODO
+dotnet_naming_rule.private_fields_should_be_camel_case.style = camel_case
+dotnet_naming_rule.private_fields_should_be_camel_case.severity = warning
 
 # TODO do all of the private stuff here
 # end of "internal" rules
@@ -856,7 +864,7 @@ dotnet_naming_symbols.namespaces.applicable_kinds = namespace
 dotnet_naming_symbols.namespaces.applicable_accessibilities = *
 
 dotnet_naming_symbols.nonprivate_members.applicable_kinds = property, method, field, event
-dotnet_naming_symbols.nonprivate_members.applicable_accessibilities = public, internal, protected, protected_internal
+dotnet_naming_symbols.nonprivate_members.applicable_accessibilities = public, internal, protected, protected_internal, private_protected # private protected is included here because it's not about "private" as the name suggests, but it's about "externally visibile" and being able to differentiate those cases # TODO for this reason, changing the naming away from "nonprivate"
 
 dotnet_naming_symbols.parameters.applicable_kinds = parameter
 dotnet_naming_symbols.parameters.applicable_accessibilities = *
@@ -868,9 +876,14 @@ dotnet_naming_symbols.type_parameters.applicable_accessibilities = *
 
 
 
-dotnet_naming_symbols.private_static_methods.applicable_kinds = method
-dotnet_naming_symbols.private_static_methods.applicable_accessibilities = private, private_protected
-dotnet_naming_symbols.private_static_methods.required_modifiers = static
+dotnet_naming_symbols.private_methods.applicable_kinds = method
+dotnet_naming_symbols.private_methods.applicable_accessibilities = private
+
+dotnet_naming_symbols.private_properties.applicable_kinds = property
+dotnet_naming_symbols.private_properties.applicable_accessibilities = private
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
 
 
 
