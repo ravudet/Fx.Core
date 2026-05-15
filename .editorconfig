@@ -908,6 +908,7 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 
 ########################################################################################################################
 
+# TODO inside the type isn't actually implementation detail because *some* of the "inside the type" is someone else's "outside the type"; and because i have expectations regarding "outside the type", i should follow those same expectations for my "inside the type" symbols that are someone else's "outside the type" # TODO "outside the type" is better than "everything else"
 # there's 3 categories of "visibility": inside the method, inside the type, and everything else; to me, inside the method and inside the type are "implementation details", but "everything else" is what my callers might see, so i need to follow established idioms; as a result, i am following the rules established for "everything else" (only) from these three sources, which are all aligned on their rules for this category: https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-type-members, https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md, https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md
 # this basically means that "everything else" should be pascal case, except for parameters; it also adds the additional requirements that interfaces start with `i` and type parameters start with `t`
 	# these are all things that the caller sees, and so we need to be "idiomatic":
@@ -919,8 +920,10 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 	# internal members should be pascal case
 	# parameters should be camel case
 	# type parameters start with T and pascal case
-# for the other 2 categories, because they are "implementation details", i get to pick what i want; my guiding principle is that naming should help me differentiate, at a glance, between the different symbols in all 3 categories
+# for the other 2 categories, because they are "implementation details", i get to pick what i want; my guiding principle is that naming should help me differentiate, at a glance, between the different symbols in all 3 categories; i deviate from this principle in noted places
 # let's first look at how the "everything else" category already differentiates between the symbols inside the category: # TODO you need a better name than "everything else", and "external" isn't really good # TODO note where these are "the same" and why it's ok that they are "the same" # TODO note that this view is from the perspective of a method implementation in a type that "you" (the reader) own
+
+# TODO these two sections are actually still the "everything else" category, it's just that, from the perspective of the implementer, some stuff is in the type, and some stuff is outside of the type
 #	external static method				ExternalType.Member() # the parentheses distinguish between methods and other members
 #	external instance method			externalType.Member() # the type name distinguishes between static and instance members
 #	external static property			ExternalType.Member
@@ -944,7 +947,7 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	nonprivate static event				InternalType.Member # the *name* of the member should be used to distinguish between a `event` and other fields
 #	nonprivate instance event			this.Member
 
-# but, we can also see that each of this is distinct from it's correspoding "everything else" symbol
+# but, we can also see that each of this is distinct from it's correspoding "everything else" symbol; now for the 
 
 
 
@@ -952,12 +955,6 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 
 
 
-
-# for everything else:
-# i think it'd be a good idea to differentiate between everything
-
-
-# TODO these follow the same naming conventions as external, and this is "by-idiom"
 
 
 #	private static method				InternalType.Member() # TODO indistinguishable from nonprivate
