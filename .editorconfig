@@ -908,19 +908,27 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 
 ########################################################################################################################
 
+# there's 3 categories of "visibility": inside the method, inside the type, and everything else; to me, inside the method and inside the type are "implementation details", but "everything else" is what my callers might see, so i need to follow established idioms; as a result, i am following the rules established for "everything else" (only) from these three sources, which are all aligned on their rules for this category: https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-type-members, https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md, https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md
+# this basically means that "everything else" should be pascal case, except for parameters; it also adds the additional requirements that interfaces start with `i` and type parameters start with `t`
+	# these are all things that the caller sees, and so we need to be "idiomatic":
+	# all type names should be pascal case
+	# all interfaces should start with i
+	# all namespaces should be pascal case
+	# public members should be pascal case
+	# protected members should be pascal case
+	# internal members should be pascal case
+	# parameters should be camel case
+	# type parameters start with T and pascal case
+# for the other 2 categories, because they are "implementation details", i get to pick what i want; my guiding principle is that naming should help me differentiate, at a glance, between all 3 categories
 
 
-# public, private, parameter, local, instance
 
-# these are all things that the caller sees, and so we need to be "idiomatic":
-# all type names should be pascal case
-# all interfaces should start with i
-# all namespaces should be pascal case
-# public members should be pascal case
-# protected members should be pascal case
-# internal members should be pascal case
-# parameters should be camel case
-# type parameters start with T and pascal case
+
+
+
+
+
+
 
 # for everything else:
 # i think it'd be a good idea to differentiate between everything
