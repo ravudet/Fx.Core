@@ -299,7 +299,7 @@ class C {
 
 
         //// TODO fix this: https://github.com/dotnet/roslyn/issues/24209 and write a rule for yourself
-        //// TODO you should have a rule to always prefix static member access; same for `const` member access
+        //// TODO you should have a rule to always prefix static member access; same for `const` member access; this lets code be copied without having to changing these, and it helps distinguish (at a glance) "external" and "nonexternal" static calls within a method (see `dotnet_naming_rule`s for more information)
         //// TODO when you are creating new rules for your coding guidelines, the one about suppressions being minimalist maybe could use IDE0079 as insipiration
 
 

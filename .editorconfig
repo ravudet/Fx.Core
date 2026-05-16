@@ -935,7 +935,7 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	external static event				ExternalType.Member # the *name* of the member should be used to distinguish between a `event` and other fields
 #	external instance event				externalType.Member
 
-# so, despite that we are simply following established idioms, the idioms seem well-founded; we have the same basic rationale for stuff "inside the type":
+# so, despite that we are simply following established idioms, the idioms seem well-founded; we have the same basic rationale for stuff "inside the type" that is externally visible:
 #	nonprivate static method			InternalType.Member() # the parentheses distinguish between methods and other members
 #	nonprivate instance method			this.Member() # the type name distinguishes between static and instance members
 #	nonprivate static property			InternalType.Member
@@ -947,17 +947,7 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	nonprivate static event				InternalType.Member # the *name* of the member should be used to distinguish between a `event` and other fields
 #	nonprivate instance event			this.Member
 
-# but, we can also see that each of this is distinct from it's correspoding "everything else" symbol; now for the 
-
-
-# TODO you are here
-# TODO kind of just cleaning up and structing some of these decisions
-
-
-
-
-
-
+# but, we can also see that each of these is distinct from it's correspoding "everything else" symbol; now for the "inside the type" stuff that is not visible externally:
 #	private static method				InternalType.Member() # TODO indistinguishable from nonprivate
 #	private instance method				this.Member() # TODO indistinguishable from nonprivate
 #	private static property				InternalType.Member # TODO indistinguishable from nonprivate
@@ -969,6 +959,7 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	private static event				InternalType.member # the name should distinguish
 #	private instance event				this.member # the name should distinguish
 
+# and then the "inside the method" stuff:
 #	parameter							local
 #	local								local
 #	local_function						local # TODO why would i want local functions to look different from lambdas and funcs? the "established" rule sets want this pascal-case
