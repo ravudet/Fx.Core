@@ -795,6 +795,8 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 
 ### naming
 
+#dotnet_diagnostic.IDE1006.severity = error # this isn't necessary for the rules to trigger in the IDE, but it is necessary to for them to trigger on build
+
 # TODO for articles, see the notes down below after the style definitions
 
 #### rules
@@ -923,7 +925,7 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 # for the other 2 categories, because they are "implementation details", i get to pick what i want; my guiding principle is that naming should help me differentiate, at a glance, between the different symbols in all 3 categories; i deviate from this principle in noted places
 # let's first look at how the "everything else" category already differentiates between the symbols inside the category: # TODO you need a better name than "everything else", and "external" isn't really good # TODO note where these are "the same" and why it's ok that they are "the same" # TODO note that this view is from the perspective of a method implementation in a type that "you" (the reader) own
 
-# TODO these two sections are actually still the "everything else" category, it's just that, from the perspective of the implementer, some stuff is in the type, and some stuff is outside of the type
+# TODO these two sections are actually still the "everything else" category, it's just that, from the perspective of the implementer, some stuff is in the type, and some stuff is outside of the type # TODO for the next several sections, explcitly call out how each of these is distinguished from the others # knowing when we are affecting other instances (i.e. the *absence* of `this`) is important 
 #	external static method				ExternalType.Member() # the parentheses distinguish between methods and other members
 #	external instance method			externalType.Member() # the type name distinguishes between static and instance members
 #	external static property			ExternalType.Member
@@ -935,7 +937,7 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	external static event				ExternalType.Member # the *name* of the member should be used to distinguish between a `event` and other fields
 #	external instance event				externalType.Member
 
-# so, despite that we are simply following established idioms, the idioms seem well-founded; we have the same basic rationale for stuff "inside the type" that is externally visible:
+# so, despite that we are simply following established idioms, the idioms seem well-founded; we have the same basic rationale for stuff "inside the type" that is externally visible:  # TODO note that `this` distinguishing static and instance
 #	nonprivate static method			InternalType.Member() # the parentheses distinguish between methods and other members
 #	nonprivate instance method			this.Member() # the type name distinguishes between static and instance members
 #	nonprivate static property			InternalType.Member
@@ -953,81 +955,20 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 #	private static property				InternalType.Member # TODO indistinguishable from nonprivate
 #	private instance property			this.Member # TODO indistinguishable from nonprivate
 #	private static field				InternalType.member
-#	private const field					InternalType.member # the name should distinguish
-#	private thread static field
+#	private const field					InternalType.member # the name should distinguish # i don't think we need to differentiate between const and static; for a const, you're not modifying any state, so there's really nothing to worry about accessing (or even knowing where it "comes from", really, so in that regard `const` is just "inheriting" from `static`)
+#	private thread static field			# TODO it would be good to be able to distinguish when private, because we are the ones who need to be aware of the implementation details that allow the thread static to work correctly
 #	private instance field				this.member
 #	private static event				InternalType.member # the name should distinguish
 #	private instance event				this.member # the name should distinguish
 
 # and then the "inside the method" stuff:
 #	parameter							local
-#	local								local
-#	local_function						local # TODO why would i want local functions to look different from lambdas and funcs? the "established" rule sets want this pascal-case
-
-# to differentiate between private and nonprivate, nonprivate is pascal case, so private will be camelcase # i'm not really sure why i want to differentiate these, but it's pretty much idiom now; but, for that reason, purely style
-# for "instance" names, we have `this` # knowing when we are affecting other instances (i.e. the *absence* of `this`) is important
-# for "static" names, we have the type name # code *can* be copied when an external static is used; code *can't* be copied when an internal static is used
-# i don't think we need to differentiate between const and static; for a const, you're not modifying any state, so there's really nothing to worry about accessing (or even knowing where it "comes from", really, so in that regard `const` is just "inheriting" from `static`)
-# i think thread static is good to differentiate, so maybe `_` for thread static? TODO do you need to differentiate public thread static? it's probably best to just stick with the idiom... # but for private thread static, you need to be even more aware than internal static types because there are additional rules
-# i'd love to differentiate between parameter and local, and because parameters are camel case (by idiom), that would mean that locals need a way to be differentiated; add `_`? TODO *why* do you need to differentiate between parameter and local?
+#	local								local # TODO i don't know why i'm not distinguishing local vs parameter (or why i *would* distinguish them)
+#	local_function						local # TODO why would i want local functions to look different from lambdas and funcs? the "established" rule sets want this pascal-case # you are choosing to also have local functions be camel case to differentiate them within the method from other functions; you don't want to "override" something just because of naming # TODO can this rationale be used elsewhere? # same justification for const locals still being camel case
 
 
 
-
-
-
-
-
-
-
-
-#dotnet_naming_symbols.fields.applicable_kinds = field
-#dotnet_naming_symbols.fields.applicable_accessibilities = *
-
-#dotnet_naming_style.camelcase_no_prefix.capitalization = camel_case
-
-#dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.symbols = fields
-#dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.style = camelcase_no_prefix
-#dotnet_naming_rule.fields_should_be_camelcase_with_no_prefix.severity = warning
-
-# from this: https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names
-# type names should be pascal case
-# namespaces should be pascal case
-# public members should be pascal case
-# interfaces start with i
-# class names and method names should be pascal case
-# paremters, locals, and private fields should be camelcase
-	# you are choosing to also have local functions be camel case to differentiate them within the method from other functions; you don't want to "override" something just because of naming
-# consts (fields and locals) should be pascal case
-	# like above, i think you want local const to be camel case to differentiate them (but actually that should mean c_ or s_...) (but actually, unlike static where i might modify, here a const is actually no different from a private readonly static, the const part is just an optimization, and private readonly static doesn't really need to be differentiated)
-# private instance fields should start with _
-# static fields start with s_ (i want to differentiate them because if i write to something static i'm affecting other instances, thread-safety concerns too)
-# type parameters start with T
-
-# from this: https://github.com/dotnet/runtime/blob/main/docs/coding-guidelines/coding-style.md
-# t_ for thread static fields
-# public fields should be pascal casing with no prefix
-
-# from this: https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines
-
-
-
-
-# TODO go through this: https://github.com/dotnet/roslyn/blob/main/.editorconfig#L63
-
-
-
-
-
-
-
-
-
-
-# private event members should be camel case
-
-
-# TODO `async` suffix? no one else seems to be making this a requirement
+# TODO `async` suffix? no one else seems to be making this a requirement, and i don't follow this myself
 
 
 
@@ -1035,16 +976,18 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 
 # TODO make sure to enable IDE1006 
 
-# TODO remember that you need to remove the options from down below as you go along
-# TODO remember to indent the options
-# TODO update the "no rules" comments to say "no rules in this category" or something
-# TODO your "note" comments are just comments, you don't need to say "NOTE"
+
 
 
 ########################################################################################################################
 
 
 
+
+# TODO remember that you need to remove the options from down below as you go along
+# TODO remember to indent the options
+# TODO update the "no rules" comments to say "no rules in this category" or something
+# TODO your "note" comments are just comments, you don't need to say "NOTE"
 
 
 
