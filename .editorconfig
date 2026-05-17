@@ -795,7 +795,7 @@ dotnet_diagnostic.IDE0055.severity = warning # there's a lot of options here, so
 
 ### naming
 
-#dotnet_diagnostic.IDE1006.severity = error # this isn't necessary for the rules to trigger in the IDE, but it is necessary to for them to trigger on build
+#dotnet_diagnostic.IDE1006.severity = error # this isn't necessary for the rules to trigger in the IDE, but it is necessary to for them to trigger on build; you have an issue here; you want the `uncaptured` rule to be an error, but the rest to be warnings; but if you set this rule, its severity overrides the severity of all of the others; so, you can have warning + error in IDE-only, or you can have warning *or* error on build; not a great situation
 
 # TODO for articles, see the notes down below after the style definitions
 
@@ -974,12 +974,13 @@ dotnet_naming_style.pascal_case_with_t_prefix.required_prefix = T
 
 ########################################################################################################################
 
+## ide-only
 
 
 
 
-# TODO you are here
-# TODO for ide1006, you set that to error and then the options to warning, does this trick work elsewhere?
+
+
 
 
 
