@@ -392,6 +392,14 @@ class C {
             public static void Foo()
             {
                 Fizz(() => Foo());
+
+                // lang=json,strict
+                var json =
+"""
+{
+  "key": "value // comment
+}
+""";
             }
         }
 
