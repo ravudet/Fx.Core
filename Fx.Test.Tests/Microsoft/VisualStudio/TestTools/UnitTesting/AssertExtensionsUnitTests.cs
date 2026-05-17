@@ -394,11 +394,11 @@ class C {
             {
                 Fizz(() => Foo());
 
-                // lang=json,strict
+                //// lang=json,strict
                 var json =
 """
 {
-  "key": "value // comment
+  "key": "value",
 }
 """;
             }
