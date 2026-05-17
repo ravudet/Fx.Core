@@ -56,6 +56,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices.Marshalling;
     using System.Security.Cryptography.X509Certificates;
+    using System.Text.RegularExpressions;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Xml.Linq;
@@ -258,6 +259,7 @@ class C {
         //// TODO write articles in a github pages repo (or set up your current repo to publish pages if that's possible?) and link to the articles from the editorconfig
         //// TODO go through your TODOs below and write down your guiding principles, and create a page that has those listed so you can reference them from the articles
         //// TODO you maybe should go through all of the notes in the editorconfig to see if there are any guiding principles there that you missed
+        //// TODO it's best to catch an issue as close to the code writing as possible (i.e. correct by construction, then ide/intellisense, then "fall into the pit of success" (i.e. design), then compiler, then unit testing, then component testing, then integration testing, then production (likely with steps in between that i've missed))
         //// TODO make things errors if you don't know about them, so that the first person who encounters them must confront it and update the editorconfig
         //// TODO redundant rules is ok because it makes the person removing the rule work a little harder, and it makes the person reviewing consider the magnitude of the change
         //// TODO public vs internal vs private: what's good for our customer is good for us, and what's good for us is good for our customer
@@ -385,9 +387,17 @@ class C {
         }
 
 
+        [TestMethod]
+        public void Regex()
+        {
+            MethodGroupConversion.Regex.Match("asdf");
+        }
+
 
         public static class MethodGroupConversion
         {
+            public static readonly Regex Regex = new Regex(@"\b[M]\w+\");
+
             public static void Fizz(Action action) { }
 
             public static void Foo()
