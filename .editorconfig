@@ -1041,16 +1041,6 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 [*.{cs,vb}]
 dotnet_style_operator_placement_when_wrapping = beginning_of_line # https://learn.microsoft.com/en-us/visualstudio/ide/reference/code-styles-refactoring-options?view=visualstudio
 
-### identation and spacing
-
-
-
-
-### new line preferences
-
-[*.{cs,vb}]
-[*.cs]
-
 
 
 
