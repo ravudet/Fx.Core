@@ -1,8 +1,8 @@
-# https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories
-
 root = true
 
-# rules
+# editor - 
+
+# rules - https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories
 
 ## code quality
 
@@ -1004,7 +1004,7 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 
 
 
-
+# TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-quality-rule-options
 
 
 
