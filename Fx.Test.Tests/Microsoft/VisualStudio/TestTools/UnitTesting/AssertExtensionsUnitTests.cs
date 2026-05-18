@@ -247,7 +247,7 @@ class C {
         //// TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does; the same happens if you enable ide0200 and leave the severity off of the option
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/naming-rules#symbol-group-properties applicable_accessibilities is not required, it defaults to `*`
 
-        //// TODO does `is_global=true` (https://github.com/dotnet/roslyn/issues/42219) help you ship a nuget package where the "purely style" rules are in a separate file?
+        //// TODO does `is_global=true` (https://github.com/dotnet/roslyn/issues/42219) help you ship a nuget package where the "purely style" rules are in a separate file? //// NOTE: the "global" configs don't apply rules that are under "section headers" (things like `[*.cs]`)
         //// TODO for json001, you realized a quirk about ide-only rules: if someone doesn't use the ide and they commit with a violation, the next person to pull is the one who has to deal with the violations; maybe this is fine for the "code style rules" because they are self-fixing with quick actions (TODO verify that this is 100% accurate); but for json001 it's not great
         //// TODO before writing articles, you need a phrase to refer to the consumer of an API; "user" tends to refer to "end-user", "developer" is ambiguous between the caller and the callee, "client" is specific to server/client stuff, "customer" implies payment; maybe "consumer" is best, but i don't think i've seen others using this term
         //// TODO can you create a roslyn analyzer for the editorconfig?
