@@ -1,6 +1,26 @@
 root = true
 
-# editor - 
+# editor - https://learn.microsoft.com/en-us/visualstudio/ide/code-styles-and-code-cleanup?view=visualstudio&pivots=programming-language-dotnet
+
+## style
+
+# TODO you are here
+indent_style = space
+indent_size = 4
+tab_width = 4
+end_of_line = crlf
+#charset
+#trim_trailing_whitespace
+insert_final_newline = true
+
+# TODO get this working
+spelling_languages = en-US
+spelling_checkable_types = identifiers,comments
+spelling_error_severity = error
+
+## conventions
+
+### refactoring
 
 # rules - https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories
 
@@ -1023,15 +1043,12 @@ dotnet_style_operator_placement_when_wrapping = beginning_of_line # https://lear
 
 ### identation and spacing
 
-indent_style = space
-tab_width = 4
-indent_size = 4
+
+
 
 ### new line preferences
 
 [*.{cs,vb}]
-end_of_line = crlf
-insert_final_newline = true
 [*.cs]
 
 
