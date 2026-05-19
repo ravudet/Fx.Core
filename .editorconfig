@@ -13,13 +13,15 @@ end_of_line = crlf
 #trim_trailing_whitespace
 insert_final_newline = true
 
-# TODO get this working
+# TODO get this working https://learn.microsoft.com/en-us/visualstudio/ide/text-spell-checker?view=visualstudio
 # %localappdata%\Microsoft\VisualStudio\<Version>
 # TODO you have to restart visual studio for changes to the exclusion.dic file to take effect
 spelling_languages = en-US
 spelling_checkable_types = string,identifiers,comments
 spelling_error_severity = warning
-spelling_exclusion_path = .\foo.dic # TODO this isn't working
+# TODO this isn't working
+spelling_exclusion_path = C:\github\OddTrotter\Fx.Core\exclusion.dic
+spelling_use_default_exclusion_dictionary = false
 
 ## conventions
 
