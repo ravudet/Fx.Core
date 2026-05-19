@@ -21,7 +21,8 @@ insert_final_newline = true
 # TODO you have to restart visual studio for changes to the exclusion.dic file to take effect
 # TODO saving this file, unchanged, results in all of the options being reset...
 [*.cs]
-spelling_languages = en-us # TODO this can't be `en-US` # TODO an error in any *one* of the options breaks *all* of the options, and then the defaults are used for everything
+# TODO this can't be `en-US` # TODO an error in any *one* of the options breaks *all* of the options, and then the defaults are used for everything
+spelling_languages = en-us
 spelling_checkable_types = strings,identifiers
 spelling_error_severity = error
 # TODO this isn't working
