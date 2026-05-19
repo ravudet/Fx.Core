@@ -368,7 +368,7 @@ class C {
 
 
 
-        //// TODO add custom roslyn analayzer for `assert.that`
+        //// TODO add custom Roslyn analayzer for `assert.that`
         ////    TODO allow unsafe is an example of a codefix that updates the project
         //// TODO you know, the old style cop docs used to actually have pretty good justifications for why you want to change your code...
         ////    TODO i think `csharp_style_inlined_variable_declaration` would make a lot more sense if `while (!int.TryParse(value, out var parsed)) { } Console.WriteLine(parsed);` worked

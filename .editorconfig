@@ -14,9 +14,12 @@ end_of_line = crlf
 insert_final_newline = true
 
 # TODO get this working
+# %localappdata%\Microsoft\VisualStudio\<Version>
+# TODO you have to restart visual studio for changes to the exclusion.dic file to take effect
 spelling_languages = en-US
-spelling_checkable_types = identifiers,comments
-spelling_error_severity = error
+spelling_checkable_types = string,identifiers,comments
+spelling_error_severity = warning
+spelling_exclusion_path = .\foo.dic # TODO this isn't working
 
 ## conventions
 
