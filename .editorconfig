@@ -13,15 +13,17 @@ end_of_line = crlf
 #trim_trailing_whitespace
 insert_final_newline = true
 
+# TODO actually, *none* of these settings are taking effect; i thought it was just the exclusion dictionary, so that makes it more like that i'm doing something wrong
 # TODO i think this feature might still be too much in infancy; or you need to update visual studio; if an update is required, note that somewhere in your onboarding docs
 # TODO also, it might be a moot point because *enabling* spell checking is a visual studio setting, *not* an editorconfig setting
 # TODO get this working https://learn.microsoft.com/en-us/visualstudio/ide/text-spell-checker?view=visualstudio
 # %localappdata%\Microsoft\VisualStudio\<Version>
 # TODO you have to restart visual studio for changes to the exclusion.dic file to take effect
-#[*.cs]
-#spelling_languages = en-US
-#spelling_checkable_types = string,identifiers,comments
-#spelling_error_severity = warning
+# TODO saving this file, unchanged, results in all of the options being reset...
+[*.cs]
+spelling_languages = en-us # TODO this can't be `en-US` # TODO an error in any *one* of the options breaks *all* of the options, and then the defaults are used for everything
+spelling_checkable_types = strings,identifiers
+spelling_error_severity = error
 # TODO this isn't working
 #spelling_exclusion_path = C:\github\OddTrotter\Fx.Core\exclusion.dic
 #spelling_use_default_exclusion_dictionary = false
