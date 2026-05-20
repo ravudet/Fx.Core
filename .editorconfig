@@ -24,11 +24,11 @@ insert_final_newline = true
 [*.cs]
 # TODO this can't be `en-US` # TODO an error in any *one* of the options breaks *all* of the options, and then the defaults are used for everything
 spelling_languages = en-us
-spelling_checkable_types = strings,identifiers
+spelling_checkable_types = strings,identifiers,comments
 spelling_error_severity = error
 # TODO this isn't working
-#spelling_exclusion_path = C:\github\OddTrotter\Fx.Core\exclusion.dic
-#spelling_use_default_exclusion_dictionary = false
+spelling_exclusion_path = C:\github\OddTrotter\Fx.Core\exclusion.dic
+spelling_use_default_exclusion_dictionary = false
 
 ## conventions
 
