@@ -71,8 +71,6 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using Microsoft.CodeAnalysis.VisualBasic.Syntax;
     using Microsoft.VisualBasic;
 
-    using static System.Runtime.InteropServices.JavaScript.JSType;
-
     public class Buzz(int c)
     {
         public int C { get; } = c;
