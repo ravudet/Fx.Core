@@ -14,22 +14,7 @@ end_of_line = crlf
 insert_final_newline = true
 
 
-# TODO this doesn't trigger anything on build, even in the IDE; it only works for "currently opened files"
-# TODO i think this feature might still be too much in infancy; or you need to update visual studio; if an update is required, note that somewhere in your onboarding docs
-# TODO also, it might be a moot point because *enabling* spell checking is a visual studio setting, *not* an editorconfig setting
-# TODO get this working https://learn.microsoft.com/en-us/visualstudio/ide/text-spell-checker?view=visualstudio
-# %localappdata%\Microsoft\VisualStudio\<Version>
-# TODO you have to restart visual studio for changes to the exclusion.dic file to take effect
-# TODO saving this file, unchanged, results in all of the options being reset...
-# TODO you *have* to have the "section header"; this *is* documented, but it's still nonsense
-[*.cs]
-# TODO this can't be `en-US` # TODO an error in any *one* of the options breaks *all* of the options, and then the defaults are used for everything
-spelling_languages = en-us
-spelling_checkable_types = strings,identifiers,comments
-spelling_error_severity = error
-# TODO it *finds* the file, but it doesn't honor it; you can tell it "finds" it by adding a misspelled word to the dictionary, which updates this file instead of the global dictionary
-spelling_exclusion_path = .\exclusion.dic
-spelling_use_default_exclusion_dictionary = false
+
 
 ## conventions
 
@@ -1017,6 +1002,8 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 
 
 
+
+# TODO make a note why you are not going to use the spell checker
 
 
 

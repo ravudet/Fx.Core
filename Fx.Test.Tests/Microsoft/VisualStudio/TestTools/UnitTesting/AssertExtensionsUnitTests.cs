@@ -69,6 +69,9 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using Microsoft.CodeAnalysis.Scripting;
     using Microsoft.CodeAnalysis.Text;
     using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+    using Microsoft.VisualBasic;
+
+    using static System.Runtime.InteropServices.JavaScript.JSType;
 
     public class Buzz(int c)
     {
@@ -246,6 +249,23 @@ class C {
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide2004 example is missing `class` keyword and should capitalize `base`
         //// TODO `csharp_style_prefer_method_group_conversion = false:warning` flags `public static void Fizz(Action action) { } Fizz(() => Foo());` does the same as `csharp_style_prefer_method_group_conversion = true:warning` does; the same happens if you enable ide0200 and leave the severity off of the option
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/naming-rules#symbol-group-properties applicable_accessibilities is not required, it defaults to `*`
+        //// TODO follow up and file bugs for all of this from the spellchecker:
+        ////    # TODO this doesn't trigger anything on build, even in the IDE; it only works for "currently opened files"
+        ////    # TODO i think this feature might still be too much in infancy; or you need to update visual studio; if an update is required, note that somewhere in your onboarding docs
+        ////    # TODO also, it might be a moot point because *enabling* spell checking is a visual studio setting, *not* an editorconfig setting
+        ////    # TODO get this working https://learn.microsoft.com/en-us/visualstudio/ide/text-spell-checker?view=visualstudio
+        ////    # %localappdata%\Microsoft\VisualStudio\<Version>
+        ////    # TODO you have to restart visual studio for changes to the exclusion.dic file to take effect
+        ////    # TODO saving this file, unchanged, results in all of the options being reset...
+        ////    # TODO you *have* to have the "section header"; this *is* documented, but it's still nonsense
+        ////    [*.cs]
+        ////    # TODO this can't be `en-US` # TODO an error in any *one* of the options breaks *all* of the options, and then the defaults are used for everything
+        ////    spelling_languages = en-us
+        ////    spelling_checkable_types = strings, identifiers, comments
+        ////    spelling_error_severity = error
+        ////    # TODO it *finds* the file, but it doesn't honor it; you can tell it "finds" it by adding a misspelled word to the dictionary, which updates this file instead of the global dictionary
+        ////    spelling_exclusion_path = .\exclusion.dic
+        ////    spelling_use_default_exclusion_dictionary = false
 
         //// TODO does `is_global=true` (https://github.com/dotnet/roslyn/issues/42219) help you ship a nuget package where the "purely style" rules are in a separate file? //// NOTE: the "global" configs don't apply rules that are under "section headers" (things like `[*.cs]`)
         //// TODO for json001, you realized a quirk about ide-only rules: if someone doesn't use the ide and they commit with a violation, the next person to pull is the one who has to deal with the violations; maybe this is fine for the "code style rules" because they are self-fixing with quick actions (TODO verify that this is 100% accurate); but for json001 it's not great
