@@ -299,6 +299,20 @@ class C {
 
 
 
+
+
+        //// TODO i think you should have a .gitattributes file
+        //// TODO nuget.config
+        //// TODO add a .vsconfig
+        //// TODO go through all the other files in the repo
+
+
+
+
+
+
+
+
         //// TODO is it possible to have visual studio *display* according to your editor config, but *commit* according to the repo? maybe something like this:
         /*
         await this.Extensibility.Editor().EditAsync(
@@ -401,7 +415,7 @@ class C {
 
 
 
-        public interface MyInterface
+        public interface MyInterface 
         {
         }
 
