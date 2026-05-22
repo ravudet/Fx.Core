@@ -302,10 +302,7 @@ class C {
 
 
 
-        //// TODO i think you should have a .gitattributes file
-        //// TODO nuget.config
-        //// TODO add a .vsconfig
-        //// TODO go through all the other files in the repo
+
 
 
 
@@ -379,18 +376,12 @@ class C {
 
 
 
-
-
+        //// TODO i think you should have a .gitattributes file
+        //// TODO nuget.config
+        //// TODO add a .vsconfig
+        //// TODO go through all the other files in the repo
         //// TODO add custom Roslyn analayzer for `assert.that`
         ////    TODO allow unsafe is an example of a codefix that updates the project
-        //// TODO you know, the old style cop docs used to actually have pretty good justifications for why you want to change your code...
-
-
-
-
-
-
-
         //// TODO look into "contracts" (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.contract?view=net-10.0) and the `pure` attribute (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.pureattribute?view=net-10.0)
 
 
