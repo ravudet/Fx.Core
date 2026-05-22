@@ -225,13 +225,6 @@ class C {
     public sealed class AssertExtensionsUnitTests
     {
 
-        //// TODO does CA2008 change anything about your `either` stuff?
-        //// TODO ca2261 your tasks should have all the options and also strongly type that task<T> shouldn't allow this option //// TODO i think you're using task<nothing> as equivalent to task, so maybe just have an extension on task<nothing> that has the additional option
-
-
-
-
-
 
         //// TODO dotnet_diagnostic.CA1000.severity = warning doesn't flag the method call like the doc says
         //// TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1031 the first example says `systemexception` but should say `system.exception`
@@ -305,6 +298,46 @@ class C {
 
 
 
+        //// TODO i think you should have a .gitattributes file
+        //// TODO nuget.config
+        //// TODO add a .vsconfig
+        //// TODO go through all the other files in the repo
+        //// TODO add custom Roslyn analayzer for `assert.that`
+        ////    TODO allow unsafe is an example of a codefix that updates the project
+        //// TODO look into "contracts" (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.contract?view=net-10.0) and the `pure` attribute (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.pureattribute?view=net-10.0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //// TODO fix this: https://github.com/dotnet/roslyn/issues/24209 and write a rule for yourself
+        //// TODO you should have a rule to always prefix static member access; same for `const` member access; this lets code be copied without having to changing these, and it helps distinguish (at a glance) "external" and "nonexternal" static calls within a method (see `dotnet_naming_rule`s for more information)
+        //// TODO when you are creating new rules for your coding guidelines, the one about suppressions being minimalist maybe could use IDE0079 as insipiration
+
+
+
+
+
+
+
+
+
+
+        //// TODO does CA2008 change anything about your `either` stuff?
+        //// TODO ca2261 your tasks should have all the options and also strongly type that task<T> shouldn't allow this option //// TODO i think you're using task<nothing> as equivalent to task, so maybe just have an extension on task<nothing> that has the additional option
+        //// TODO you can use ref properties now for interlocked methods probably
+
+
+
+
 
 
 
@@ -332,22 +365,6 @@ class C {
 
 
 
-        //// TODO fix this: https://github.com/dotnet/roslyn/issues/24209 and write a rule for yourself
-        //// TODO you should have a rule to always prefix static member access; same for `const` member access; this lets code be copied without having to changing these, and it helps distinguish (at a glance) "external" and "nonexternal" static calls within a method (see `dotnet_naming_rule`s for more information)
-        //// TODO when you are creating new rules for your coding guidelines, the one about suppressions being minimalist maybe could use IDE0079 as insipiration
-
-
-
-
-
-
-
-
-
-
-
-
-        //// TODO you can use ref properties now for interlocked methods probably
 
 
 
@@ -372,17 +389,6 @@ class C {
 
 
 
-
-
-
-
-        //// TODO i think you should have a .gitattributes file
-        //// TODO nuget.config
-        //// TODO add a .vsconfig
-        //// TODO go through all the other files in the repo
-        //// TODO add custom Roslyn analayzer for `assert.that`
-        ////    TODO allow unsafe is an example of a codefix that updates the project
-        //// TODO look into "contracts" (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.contract?view=net-10.0) and the `pure` attribute (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.pureattribute?view=net-10.0)
 
 
 
