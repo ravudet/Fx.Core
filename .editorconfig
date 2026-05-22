@@ -4,6 +4,7 @@ root = true
 
 ## style
 
+[*]
 indent_style = space # i've never thought about this before making this decision; https://www.jwz.org/doc/tabs-vs-spaces.html # my take is that i've used spaces for 13 years and i've never once had this cause a problem for myself or coworkers # TODO consider that some display mechanisms (like ides) don't have a way to configure tab width, so you "have to deal with" whatever that mechanism decides, but if you use spaces, it's always the same across all display mechanisms; this does mean individual developers have less personalization, but it means that there's consistency for everyone when personalization isn't possible; it's also worth noting, though, that those same mechanisms might not have  away to configure tabs to spaces when *writing*, so this can disrupt the flow of actually developing code; *but* this editor config actually takes care of that by allowing us to notice that something was written "wrong" and automatically converting it, so if the display mechansim always writes tabs, that's ok because the repository will still have spaces
 indent_size = 4 # purely style
 tab_width = 4 # purely style
@@ -12,12 +13,11 @@ charset = utf-8 # i'm choosing this because it's what everyone uses, basically; 
 trim_trailing_whitespace = true # this just wastes space; i know it's not something we really think about anymore, but when considering these broad rules, trivial stuff like this is (and should be) the deciding factor
 insert_final_newline = true # purely style
 
-
-
-
 ## conventions
 
 ### refactoring
+
+dotnet_style_operator_placement_when_wrapping = beginning_of_line # https://learn.microsoft.com/en-us/visualstudio/ide/reference/code-styles-refactoring-options?view=visualstudio
 
 # rules - https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories
 
@@ -1038,7 +1038,7 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 ### expression-level preferences
 
 [*.{cs,vb}]
-dotnet_style_operator_placement_when_wrapping = beginning_of_line # https://learn.microsoft.com/en-us/visualstudio/ide/reference/code-styles-refactoring-options?view=visualstudio
+
 
 
 
