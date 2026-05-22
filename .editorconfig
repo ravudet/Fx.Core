@@ -998,7 +998,7 @@ dotnet_diagnostic.JSON001.severity = warning # this rule is so flaky that i'm no
 dotnet_diagnostic.JSON002.severity = warning # this seems to only catch well-formed json, but regardless, for well-formed json it helps us have the correct comment header so that, whenever the json itself is updated in the future, json001 can do validity checks; my like of this rule is really predicated on most of the issues in json001 being resolved; the fact that json001 has so many issues kind of makes this rule a moot point, but if those issues were resolved, then this rule is great because it gives json001 more chances to be successful
 dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer and i'm going to enable it, but it's very flimsy reasoning; the problem with this compared to json is that typos are really easy, and often non-obvious, in json when you're manually typing the json out, and if you've got a literal, probably 50% of the time you're typing it out; but with a regex, are people really manually typing out the expression and *not* doing it within a regex tester tool? in which case, they will know that the expression isn't valid before copying it from the tester tool to their code; so it seems to me *very* unlikely that someone will be manually typing, unverified, a regular expression into their code such that this rule will catch anything useful; *further*, the first unit test that actually uses the regex (and we *are* writing unit tests, aren't we?) will fail because the `regex` instance can't be created on an invalid expression; i'm going to enable this on the off-chance that someone *is* manually typing regex's without a tester tool (some flow that i'm not envisioning), because it will be good for the developer, the rule doesn't *hurt* if it's enabled and no one ever actually needs it, and because, despite unit tests catching this issue, it's always better to catch an issue as close to code-writing time as possible; another note: this rule *does* catch when string literals are used in the `regex` constructor, even if not marked with the `lang=regex` comment header
 
-
+# spell checker - https://learn.microsoft.com/en-us/visualstudio/ide/text-spell-checker?view=visualstudio
 
 
 
@@ -1006,7 +1006,7 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 # TODO this doesn't trigger anything on build, even in the IDE; it only works for "currently opened files"
 # TODO i think this feature might still be too much in infancy; or you need to update visual studio; if an update is required, note that somewhere in your onboarding docs
 # TODO also, it might be a moot point because *enabling* spell checking is a visual studio setting, *not* an editorconfig setting
-# TODO get this working https://learn.microsoft.com/en-us/visualstudio/ide/text-spell-checker?view=visualstudio
+# TODO get this working 
 # %localappdata%\Microsoft\VisualStudio\<Version>
 # TODO you have to restart visual studio for changes to the exclusion.dic file to take effect
 # TODO saving this file, unchanged, results in all of the options being reset...
@@ -1019,6 +1019,13 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 # TODO it *finds* the file, but it doesn't honor it; you can tell it "finds" it by adding a misspelled word to the dictionary, which updates this file instead of the global dictionary
 # spelling_exclusion_path = .\exclusion.dic
 # spelling_use_default_exclusion_dictionary = false
+
+
+
+
+
+
+
 
 
 
