@@ -252,7 +252,7 @@ class C {
         ////    [*.cs]
         ////    # TODO this can't be `en-US` # TODO an error in any *one* of the options breaks *all* of the options, and then the defaults are used for everything
         ////    spelling_languages = en-us
-        ////    spelling_checkable_types = strings, identifiers, comments
+        ////    spelling_checkable_types = strings,identifiers,comments
         ////    spelling_error_severity = error
         ////    # TODO it *finds* the file, but it doesn't honor it; you can tell it "finds" it by adding a misspelled word to the dictionary, which updates this file instead of the global dictionary
         ////    spelling_exclusion_path = .\exclusion.dic
