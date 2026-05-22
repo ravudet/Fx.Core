@@ -248,7 +248,7 @@ class C {
         ////    # %localappdata%\Microsoft\VisualStudio\<Version>
         ////    # TODO you have to restart visual studio for changes to the exclusion.dic file to take effect
         ////    # TODO saving this file, unchanged, results in all of the options being reset...
-        ////    # TODO you *have* to have the "section header"; this *is* documented, but it's still nonsense
+        ////    # TODO you *have* to have the "section header"; this *is* documented, but it's still nonsense //// TODO i guess this is actually true for all of the rules
         ////    [*.cs]
         ////    # TODO this can't be `en-US` # TODO an error in any *one* of the options breaks *all* of the options, and then the defaults are used for everything
         ////    spelling_languages = en-us
