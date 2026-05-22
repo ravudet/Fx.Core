@@ -264,6 +264,7 @@ class C {
         ////    # TODO it *finds* the file, but it doesn't honor it; you can tell it "finds" it by adding a misspelled word to the dictionary, which updates this file instead of the global dictionary
         ////    spelling_exclusion_path = .\exclusion.dic
         ////    spelling_use_default_exclusion_dictionary = false
+        //// TODO i think `csharp_style_inlined_variable_declaration` would make a lot more sense if `while (!int.TryParse(value, out var parsed)) { } Console.WriteLine(parsed);` worked https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0018
 
         //// TODO does `is_global=true` (https://github.com/dotnet/roslyn/issues/42219) help you ship a nuget package where the "purely style" rules are in a separate file? //// NOTE: the "global" configs don't apply rules that are under "section headers" (things like `[*.cs]`)
         //// TODO for json001, you realized a quirk about ide-only rules: if someone doesn't use the ide and they commit with a violation, the next person to pull is the one who has to deal with the violations; maybe this is fine for the "code style rules" because they are self-fixing with quick actions (TODO verify that this is 100% accurate); but for json001 it's not great
@@ -383,7 +384,7 @@ class C {
         //// TODO add custom Roslyn analayzer for `assert.that`
         ////    TODO allow unsafe is an example of a codefix that updates the project
         //// TODO you know, the old style cop docs used to actually have pretty good justifications for why you want to change your code...
-        ////    TODO i think `csharp_style_inlined_variable_declaration` would make a lot more sense if `while (!int.TryParse(value, out var parsed)) { } Console.WriteLine(parsed);` worked
+
 
 
 
