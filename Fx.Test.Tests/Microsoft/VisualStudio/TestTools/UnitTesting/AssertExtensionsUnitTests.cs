@@ -380,25 +380,6 @@ class C {
 
 
 
-
-
-
-
-
-
-
-
-
-
-        ////    TODO `csharp_style_throw_expression = false:warning` doesn't warn for `var assigned = another ?? throw new Exception("TODO");`
-        //// TODO i can't get csharp_style_unused_value_assignment_preference to trigger, and it looks like CS0219 covers it anyway?
-
-
-
-
-
-
-
         //// TODO add custom Roslyn analayzer for `assert.that`
         ////    TODO allow unsafe is an example of a codefix that updates the project
         //// TODO you know, the old style cop docs used to actually have pretty good justifications for why you want to change your code...
