@@ -418,7 +418,9 @@ class C {
         [TestMethod]
         public void Regex()
         {
-            MethodGroupConversion.Regex.Match("asdf");
+            var match = MethodGroupConversion.Regex.Match("asdf");
+
+            
         }
 
 
