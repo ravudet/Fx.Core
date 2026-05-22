@@ -535,6 +535,7 @@ dotnet_diagnostic.IDE0011.severity = warning # goto fail
 	csharp_prefer_braces = true # adding it to be explicit; the idea of multiline is exactly why we want the rule anyway; this is a maintainability issue, not a style issue
 # NOTE: there are no rules from IDE0012-IDE0015
 dotnet_diagnostic.IDE0016.severity = none # i'm not opposed to this style, but it seems to be a pretty specific case of argument checking, which should be done through `argument.throwif...` instead; also, i couldn't get this to trigger
+    csharp_style_throw_expression = false
 dotnet_diagnostic.IDE0017.severity = warning # the `init` and `required` keywords on properties remove the issues you have with object initializers; i don't know that it makes sense to *require* initializers; but, if they are a way to remove "settings" objects, then i *do* think you should require them; with that said, to remove settings, i think you would want `public string MyProp { private get; init; } = "default value";`, which goes against the rule ca1044; i suppose maybe there's nothing "wrong" with having a public getter, it's just different from the current settings pattern
 dotnet_diagnostic.IDE0018.severity = warning # i like this, but i feel i'm going to run into often; the while loop thing is an issue
 dotnet_diagnostic.IDE0019.severity = warning # there's no functional difference, but requiring the new syntax means that, when the old syntax is used, deviations from the pattern are immediately noticed and understood; they might have been unobvious before, for example `var s = o as string; if (****o**** != null) { ... }`
@@ -1023,22 +1024,7 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 
 
 # TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-quality-rule-options
-
-
-
-
-
-
-
-# options
-
-## whitespace
-
-### expression-level preferences
-
-[*.{cs,vb}]
-
-
+# TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
 
 
 

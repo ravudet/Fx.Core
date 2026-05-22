@@ -390,7 +390,6 @@ class C {
 
 
 
-        //// TODO go back through and determine which ones are "disabled" when `false` (rather than warning for the opposite); for these, decide on what "severity" you want to set (can you remove the severity altogether?)
         ////    TODO `csharp_style_throw_expression = false:warning` doesn't warn for `var assigned = another ?? throw new Exception("TODO");`
         //// TODO i can't get csharp_style_unused_value_assignment_preference to trigger, and it looks like CS0219 covers it anyway?
 
@@ -413,6 +412,23 @@ class C {
         //// TODO look into "contracts" (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.contract?view=net-10.0) and the `pure` attribute (https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.contracts.pureattribute?view=net-10.0)
 
 
+
+
+
+        class ThrowExpression
+        {
+            private readonly string s;
+
+            public ThrowExpression(string s)
+            {
+                if (s == null)
+                {
+                    throw new ArgumentNullException(nameof(s));
+                }
+
+                this.s = s;
+            }
+        }
 
 
         public interface MyInterface 
