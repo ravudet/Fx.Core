@@ -17,7 +17,7 @@ insert_final_newline = true # purely style
 
 ### refactoring
 
-dotnet_style_operator_placement_when_wrapping = beginning_of_line # https://learn.microsoft.com/en-us/visualstudio/ide/reference/code-styles-refactoring-options?view=visualstudio
+dotnet_style_operator_placement_when_wrapping = beginning_of_line # TODO this only applies to refactors, but i would really like this to just be a rule # i like this rule because it puts the operators all aligned with each other, so it is easy to tell what *kind* of operation (arithmetic, boolean, etc) is happening, and you can easily see all of the operations at once by look in the left most column; putting the operators at the end of the line means that the won't all be aligned vertically since each line could be a different length
 
 # rules - https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories
 
@@ -25,7 +25,6 @@ dotnet_style_operator_placement_when_wrapping = beginning_of_line # https://lear
 
 ### design
 
-[*.{cs,vb}]
 dotnet_diagnostic.CA1000.severity = warning # TODO i agree with the purpose of the rule; i'm concerned about false positives; and if the method call is *supposed* to be flagged, that's just unavoidable design-wise, so i would set this rule to `none` if that's the case; and regarding the case it *does* catch, i think those situations should be caught in unit testing because the code will be painful to write
 	dotnet_code_quality.CA1000.api_surface = all # TODO write down at some point that you apply things to all api surfaces because, if it's good for my customer, it's good for me too
 dotnet_diagnostic.CA1001.severity = warning # you better have a good reason to not dispose things

@@ -435,6 +435,11 @@ class C {
 
             public static void Foo()
             {
+                if (true &&
+                    false)
+                {
+                }
+
                 Fizz(() => Foo());
 
                 //// lang=json,strict
