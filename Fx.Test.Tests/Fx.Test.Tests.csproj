@@ -31,4 +31,12 @@
     </ProjectReference>-->
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\.editorconfig" />
+  </ItemGroup>
+
 </Project>
