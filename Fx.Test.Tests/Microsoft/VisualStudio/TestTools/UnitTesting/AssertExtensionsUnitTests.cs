@@ -414,6 +414,23 @@ class C {
 
         public interface MyInterface 
         {
+            string AnotherValue { get; }
+        }
+
+        public class MyImplementation 
+        {
+            public MyImplementation(string value, string otherValue, string anotherValue)
+            {
+                this.Value = value;
+                this.OtherValue = otherValue;
+            }
+
+            public string Value { get; }
+            public string OtherValue { get; }
+            public void DoWork()
+            {
+            }
+
         }
 
 
