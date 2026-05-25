@@ -406,6 +406,8 @@ class C {
                 }
 
                 this.s = s;
+
+                new Xyzzy
             }
         }
 
