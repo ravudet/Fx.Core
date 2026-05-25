@@ -1,6 +1,6 @@
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-namespace Foo
+namespace Bar
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,7 @@ namespace Foo
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Xyzzy
+    public class Xyzzy2
     {
     }
 }

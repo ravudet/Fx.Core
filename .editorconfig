@@ -1069,7 +1069,7 @@ dotnet_member_insertion_location = with_other_members_of_the_same_kind
 dotnet_property_generation_behavior = prefer_throwing_properties
 
 # Symbol search
-dotnet_search_reference_assemblies = true
+dotnet_search_reference_assemblies = true # i could actually repro this one; if you have a type defined in a project that is *not* referenced by the project where you're currently writing code, and you're writing something like `new TypeName()`, intellisense will search the projects that *aren't* referenced (in addition to those that are) when trying to find `TypeName`
 
 
 
