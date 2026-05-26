@@ -20,15 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fx.Test\Fx.Test.csproj" />
-    <!--<ProjectReference Include="..\Analyzer1\Analyzer1\Analyzer1.csproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <OutputItemType>Analyzer</OutputItemType>
-    </ProjectReference>
-    <ProjectReference Include="..\Analyzer1\Analyzer1.CodeFixes\Analyzer1.CodeFixes.csproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <OutputItemType>Analyzer</OutputItemType>
-    </ProjectReference>-->
+    <Reference Include="Fx.Test">
+      <HintPath>..\Fx.Test\bin\Debug\net7.0\Fx.Test.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

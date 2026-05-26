@@ -1001,8 +1001,6 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 
 # spell checker - https://learn.microsoft.com/en-us/visualstudio/ide/text-spell-checker?view=visualstudio
 
-
-
 # TODO have an article about why you aren't going to use this
 # TODO this doesn't trigger anything on build, even in the IDE; it only works for "currently opened files"
 # TODO i think this feature might still be too much in infancy; or you need to update visual studio; if an update is required, note that somewhere in your onboarding docs
@@ -1020,6 +1018,18 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 # TODO it *finds* the file, but it doesn't honor it; you can tell it "finds" it by adding a misspelled word to the dictionary, which updates this file instead of the global dictionary
 # spelling_exclusion_path = .\exclusion.dic
 # spelling_use_default_exclusion_dictionary = false
+
+# unknown
+
+[*.cs]
+# TODO https://github.com/search?q=repo%3Adotnet%2Froslyn&type=code
+
+# TODO you got `never` to work by referencing the dll *and* removing the project from the solution, but `advanced` still isn't working
+dotnet_hide_advanced_members = true # https://stackoverflow.com/questions/4441298/why-editorbrowsable-doesnt-work
+dotnet_member_insertion_location = at_the_end # https://github.com/dotnet/roslyn/blob/560c1cca10d974ff096cb051d45c1330420e8e6a/src/Analyzers/Core/CodeFixes/ImplementType/ImplementTypeOptions.cs#L29
+#with_other_members_of_the_same_kind # TODO this is only relevant for implementing interfaces (or abstract classes or whatever), it doesn't affect things like adding a property for a constructor parameter
+dotnet_property_generation_behavior = prefer_throwing_properties # https://github.com/dotnet/roslyn/blob/560c1cca10d974ff096cb051d45c1330420e8e6a/src/Analyzers/Core/CodeFixes/ImplementType/ImplementTypeOptions.cs#L29
+dotnet_search_reference_assemblies = true # i could actually repro this one; if you have a type defined in a project that is *not* referenced by the project where you're currently writing code, and you're writing something like `new TypeName()`, intellisense will search the projects that *aren't* referenced (in addition to those that are) when trying to find `TypeName`
 
 
 
@@ -1049,28 +1059,8 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 
 # TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-quality-rule-options
 # TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
-
-
-
 # TODO https://github.com/dotnet/roslyn/blob/main/docs/roslyn-analyzers/README.md
 
-
-
-# Type members
-[*.cs]
-
-
-# TODO https://github.com/search?q=repo%3Adotnet%2Froslyn&type=code
-
-
-
-dotnet_hide_advanced_members = false
-dotnet_member_insertion_location = at_the_end # https://github.com/dotnet/roslyn/blob/560c1cca10d974ff096cb051d45c1330420e8e6a/src/Analyzers/Core/CodeFixes/ImplementType/ImplementTypeOptions.cs#L29
-#with_other_members_of_the_same_kind # TODO this is only relevant for implementing interfaces (or abstract classes or whatever), it doesn't affect things like adding a property for a constructor parameter
-dotnet_property_generation_behavior = prefer_throwing_properties # https://github.com/dotnet/roslyn/blob/560c1cca10d974ff096cb051d45c1330420e8e6a/src/Analyzers/Core/CodeFixes/ImplementType/ImplementTypeOptions.cs#L29
-
-# Symbol search
-dotnet_search_reference_assemblies = true # i could actually repro this one; if you have a type defined in a project that is *not* referenced by the project where you're currently writing code, and you're writing something like `new TypeName()`, intellisense will search the projects that *aren't* referenced (in addition to those that are) when trying to find `TypeName`
 
 
 

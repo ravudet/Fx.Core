@@ -1,4 +1,4 @@
-﻿namespace Microsoft.VisualStudio.TestTools.UnitTesting
+namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -7,8 +7,12 @@
 
     public static class AssertExtensions
     {
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public static int Value { get; } //// TODO remove this property
+
         public static void Foo()
         {
+            //// TODO remove this method
             if (true
                 && false)
             {

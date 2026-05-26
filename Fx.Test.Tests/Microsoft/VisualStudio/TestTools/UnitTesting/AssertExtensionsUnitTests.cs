@@ -1,4 +1,4 @@
-﻿/*namespace System.Runtime.InteropServices
+/*namespace System.Runtime.InteropServices
 {
     /// <summary>
     /// Attribute required by any type that is returned by <see cref="IDynamicInterfaceCastable.GetInterfaceImplementation(RuntimeTypeHandle)"/>.
@@ -48,6 +48,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using System.Collections;
     using System.Collections.Generic;
     using System.Collections.Immutable;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -406,9 +407,10 @@ class C {
                 }
 
                 this.s = s;
-
-                
             }
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string S => this.s;
         }
 
 
@@ -421,6 +423,9 @@ class C {
         {
             public MyImplementation(string value, string otherValue, string anotherValue)
             {
+                var foo = new ThrowExpression("asdf");
+                Console.WriteLine(AssertExtensions.);
+                
                 this.Value = value;
                 this.OtherValue = otherValue;
             }
