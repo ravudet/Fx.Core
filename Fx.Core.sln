@@ -24,8 +24,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.Test", "Analyzer1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.Vsix", "Analyzer1\Analyzer1.Vsix\Analyzer1.Vsix.csproj", "{0AC2FE41-D0F4-4F53-8B59-CE504702D6EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedMember", "AdvancedMember\AdvancedMember.csproj", "{58209A9F-C253-41E1-AF9D-4C680F78978A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,10 +62,6 @@ Global
 		{0AC2FE41-D0F4-4F53-8B59-CE504702D6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AC2FE41-D0F4-4F53-8B59-CE504702D6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AC2FE41-D0F4-4F53-8B59-CE504702D6EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58209A9F-C253-41E1-AF9D-4C680F78978A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58209A9F-C253-41E1-AF9D-4C680F78978A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58209A9F-C253-41E1-AF9D-4C680F78978A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58209A9F-C253-41E1-AF9D-4C680F78978A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

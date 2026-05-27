@@ -60,6 +60,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using System.Text.RegularExpressions;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Xml;
     using System.Xml.Linq;
 
     using Foo;
@@ -425,10 +426,46 @@ class C {
             {
                 var foo = new ThrowExpression("asdf");
                 AdvancedMember.Class1.DoWork();
-                
+
+                var item = new Microsoft.VisualBasic.FileIO.TextFieldParser("asdf").CommentTokens;
+
+                /*var thing = this["asdf"];
+                this["asdf"] = 5;*/
+
                 this.Value = value;
                 this.OtherValue = otherValue;
             }
+
+            /*public class Base
+            {
+                public static implicit operator Base(string value)
+                {
+                    return new Base();
+                }
+            }
+
+            public class Derived
+            {
+                public static implicit operator Derived(string value)
+                {
+                    return new Derived();
+                }
+            }
+
+            public IEnumerable<int> this[Derived asdf]
+            {
+                get
+                {
+                    return new[] { 1234 };
+                }
+            }
+
+            public int this[Base asdf]
+            {
+                set
+                {
+                }
+            }*/
 
             public string Value { get; }
             public string OtherValue { get; }
