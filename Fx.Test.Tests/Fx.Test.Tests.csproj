@@ -20,9 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Fx.Test">
-      <HintPath>..\Fx.Test\bin\Debug\net7.0\Fx.Test.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Fx.Test\Fx.Test.csproj" />
   </ItemGroup>
 
 </Project>
