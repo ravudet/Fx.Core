@@ -23,4 +23,10 @@
     <ProjectReference Include="..\Fx.Test\Fx.Test.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="AdvancedMember">
+      <HintPath>..\AdvancedMember\bin\Debug\net7.0\AdvancedMember.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

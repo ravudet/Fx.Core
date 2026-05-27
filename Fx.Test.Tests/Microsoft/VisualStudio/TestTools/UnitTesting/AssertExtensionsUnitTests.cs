@@ -424,7 +424,7 @@ class C {
             public MyImplementation(string value, string otherValue, string anotherValue)
             {
                 var foo = new ThrowExpression("asdf");
-                Console.WriteLine(AssertExtensions.);
+                AdvancedMember.Class1.DoWork();
                 
                 this.Value = value;
                 this.OtherValue = otherValue;
