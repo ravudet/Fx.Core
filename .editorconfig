@@ -1028,7 +1028,6 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 # https://stackoverflow.com/questions/4441298/why-editorbrowsable-doesnt-work
 # text editor -> c# -> general ; TODO maybe there's a conflict between vs and editorconfig?
 dotnet_hide_advanced_members = true
-dotnet_hide_advanced_members_in_completion = true
 dotnet_member_insertion_location = at_the_end # https://github.com/dotnet/roslyn/blob/560c1cca10d974ff096cb051d45c1330420e8e6a/src/Analyzers/Core/CodeFixes/ImplementType/ImplementTypeOptions.cs#L29
 #with_other_members_of_the_same_kind # TODO this is only relevant for implementing interfaces (or abstract classes or whatever), it doesn't affect things like adding a property for a constructor parameter
 dotnet_property_generation_behavior = prefer_throwing_properties # https://github.com/dotnet/roslyn/blob/560c1cca10d974ff096cb051d45c1330420e8e6a/src/Analyzers/Core/CodeFixes/ImplementType/ImplementTypeOptions.cs#L29
