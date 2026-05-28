@@ -427,7 +427,8 @@ class C {
                 var foo = new ThrowExpression("asdf");
                 AdvancedMember.Class1.DoWork();
 
-                var item = new Microsoft.VisualBasic.FileIO.TextFieldParser("asdf").CommentTokens;
+                var item = new Microsoft.VisualBasic.FileIO.TextFieldParser(string.Empty).CommentTokens;
+
 
                 /*var thing = this["asdf"];
                 this["asdf"] = 5;*/
