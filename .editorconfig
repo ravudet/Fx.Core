@@ -1025,7 +1025,6 @@ dotnet_diagnostic.RE0001.severity = warning # this one seems like a no-brainer a
 # TODO https://github.com/search?q=repo%3Adotnet%2Froslyn&type=code
 
 # TODO you got `never` to work by referencing the dll *and* removing the project from the solution, but `advanced` still isn't working
-# https://stackoverflow.com/questions/4441298/why-editorbrowsable-doesnt-work
 # text editor -> c# -> general ; TODO maybe there's a conflict between vs and editorconfig?
 dotnet_hide_advanced_members = false # i want to see everything # the investigation was as follows: i found this options in the default `.editorconfig` produced by visual studio, but i couldn't find any documentation for it; at some point, i had the idea to just search the roslyn code base for the option (though in hindsight, it was entirely possible that visual studio had the option and not roslyn, i got lucky i guess)
 # i found it here: https://github.com/dotnet/roslyn/blob/6bd36a3f66f12666ed2adec201c44fde05f9f984/src/Workspaces/SharedUtilitiesAndExtensions/Workspace/Core/Options/MemberDisplayOptions.cs#L31
@@ -1043,9 +1042,8 @@ dotnet_hide_advanced_members = false # i want to see everything # the investigat
 # so, i created a new project, added a class, added a member to that class, and marked the member with `[EditorBrowsable(EditorBrowsableState.Never)]`; however, this didn't work, i could still see the member; so then i thought maybe referencing the project is the issue (not sure why this occurred to me), so i removed the project reference from the calling assembly and added an assembly reference; this still didn't work, so i actually removed the referenced project from the solution entirely; *this* caused intellisense to hide the member; i removed the attribute from the member and recompiled to confirm that intellisense now found the member
 # great, so now i know how this all works, i have a repro that i can play with; now i need to work on advanced members; i found an existing .net type that has an "advanced member": https://source.dot.net/#Microsoft.VisualBasic.Core/Microsoft/VisualBasic/FileIO/TextFieldParser.vb,132
 # back to the mslearn page, i wanted to just observe the behavior, so i configured *visual studio*  Tools > Options > Text Editor > C# -> General -> hide advanced members; sure enough, `commenttokens` isn't visible in intellisense with `new Microsoft.VisualBasic.FileIO.TextFieldParser(string.Empty).CommentTokens`; so, the attribute works, visual studio is supporting it, and toggling off the visual studio setting makes `commenttokens` reappers in intellisense; so everything seems to be working`
-# but i want to do `.editorconfig` stuff
+# but i want to do `.editorconfig` stuff; this is where the story comes to a lame conclusion, i couldn't get it to repro; it seems this might be a known issue: https://github.com/dotnet/roslyn/issues/4434 ; but i now at least know what the option is supposed to be doing, and i don't like the behavior of hiding stuff, so i'm setting the value to `false`
 # TODO you are here
-# TODO finish the above
 # TODO then, write up your thoughts on `.editorconfig` and having editor preferences combined with repo quality requirements
 dotnet_member_insertion_location = at_the_end # https://github.com/dotnet/roslyn/blob/560c1cca10d974ff096cb051d45c1330420e8e6a/src/Analyzers/Core/CodeFixes/ImplementType/ImplementTypeOptions.cs#L29
 #with_other_members_of_the_same_kind # TODO this is only relevant for implementing interfaces (or abstract classes or whatever), it doesn't affect things like adding a property for a constructor parameter
