@@ -392,7 +392,9 @@ class C {
 
 
 
-
+        public class GenericTest<T>
+        {
+        }
 
 
 
