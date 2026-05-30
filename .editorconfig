@@ -1062,8 +1062,6 @@ dotnet_search_reference_assemblies = true # i could actually repro this one; if 
 
 
 
-# TODO remember that you need to remove the options from down below as you go along
-# TODO remember to indent the options
 # TODO update the "no rules" comments to say "no rules in this category" or something
 # TODO your "note" comments are just comments, you don't need to say "NOTE"
 
