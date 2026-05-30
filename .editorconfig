@@ -32,51 +32,38 @@ dotnet_diagnostic.CA1002.severity = warning
 	dotnet_code_quality.CA1002.api_surface = all
 dotnet_diagnostic.CA1003.severity = warning
 	dotnet_code_quality.CA1003.api_surface = all
-# NOTE: there is no CA1004
 dotnet_diagnostic.CA1005.severity = warning
 	dotnet_code_quality.CA1005.api_surface = all
-# NOTE: there are no rules from CA1006-CA1007
 dotnet_diagnostic.CA1008.severity = warning # TODO i agree with this for flags enums (and would be fine with a reasonably justified exception or two); for non-flags, the description *as written* i don't really agree with because i think there are plenty of cases where the `0` member doesn't exist or shouldn't be called "none"; however, the rule doesn't trigger if a `0` member is defined that is called something else; so, if the rule triggers because there is no "0" member, that's actually an implementation detail and design leak; the members should all be shifted to reach 0; 
 	dotnet_code_quality.CA1008.api_surface = all
-# NOTE: there is no CA1009
 dotnet_diagnostic.CA1010.severity = warning # TODO i'm good with this one because it doesn't trigger if you implement the non-generic *and* the generic
 	dotnet_code_quality.CA1010.api_surface = all
-# NOTE: there is no CA1011
 dotnet_diagnostic.CA1012.severity = warning
 	dotnet_code_quality.CA1012.api_surface = all
-# NOTE: there is no CA1013
 dotnet_diagnostic.CA1014.severity = none # TODO you're not clscompliant right now probably, but it wouldn't hurt to do so; but not right now
-# NOTE: there is no CA1015
 dotnet_diagnostic.CA1016.severity = none # TODO i don't know if you do this with nuget packages; figure that out
 dotnet_diagnostic.CA1017.severity = none # TODO i don't know anything about this
 dotnet_diagnostic.CA1018.severity = warning
 dotnet_diagnostic.CA1019.severity = none # TODO seems like overkill; the parameters maybe be combined in a way that is still useful; if the parameter is needed, the attribute itself won't be useful, and who is defining a custom attribute type without also provided code that leverages it?
-# NOTE: there is no CA1020
 dotnet_diagnostic.CA1021.severity = warning # TODO a key to this one is that the "try" naming convention avoids triggering the rule; i'm not 100% sure i like this rule though TODO i actually really don't like it because this one doesn't actually trigger for `ref` parameters, it looks like; that's rule ca1045
-# NOTE: there are no rules from CA1022-CA1023
 dotnet_diagnostic.CA1024.severity = warning
 	dotnet_code_quality.CA1024.api_surface = all
-# NOTE: there are no rules from CA1025-CA1026
 dotnet_diagnostic.CA1027.severity = warning
 	dotnet_code_quality.CA1027.api_surface = all
 dotnet_diagnostic.CA1028.severity = none # TODO this rule seems dumb to me; struct size is dependent on fields which can be enums, so having smaller enums makes a difference even if the enum itself has no specific performance benefits; and it's definitely possible to have an enum with 33 values, so going larger also makes sense; i suppose the case could be made that if someone wants to use a different base, they should justify it instead of doing it "just because"
 	dotnet_code_quality.CA1028.api_surface = all
-# NOTE: there is no CA1029
 dotnet_diagnostic.CA1030.severity = warning # TODO the rule makes sense to me, but i have no experience
 	dotnet_code_quality.CA1030.api_surface = all
 dotnet_diagnostic.CA1031.severity = warning
 dotnet_diagnostic.CA1032.severity = warning # TODO although i agree with this greatly, i think i often violate it; maybe it shouldn't apply to interfaces or something?
 dotnet_diagnostic.CA1033.severity = warning # TODO so i guess the point is that the derived type "has an instance" of the interface (from the base type), but has no way to call the method from the interface, and if they try to be clever, they get a stackoverflow; first of all, the stack overflow bug should be caught during unit testing; but otherwise, i guess it makes sense to have a protected member; this is a neat trick though that i want to remember, i can have a publicly exposed method that's not available to derived types; i wonder when that might be useful?
 dotnet_diagnostic.CA1034.severity = warning # TODO i agree with this, but i'm going to break it a lot with discriminated unions; i wonder if there's a way to extend the rule to ignore nestsed types that derive the containing type and the containing type is abstract and has a private constructor?
-# NOTE: there is no CA1035
 dotnet_diagnostic.CA1036.severity = warning
 	dotnet_code_quality.CA1036.api_surface = all
-# NOTE: there are no rules from CA1037-CA1039
 dotnet_diagnostic.CA1040.severity = none # TODO i don't agree with the rule description; attributes are *not* the best way to mark something; consider, for example, generic type constraints
 	dotnet_code_quality.CA1040.api_surface = all
 dotnet_diagnostic.CA1041.severity = warning
 	dotnet_code_quality.CA1041.api_surface = all
-# NOTE: there is no CA1042
 dotnet_diagnostic.CA1043.severity = none # TODO i'm not clear at all why this restriction is recommended
 	dotnet_code_quality.CA1043.api_surface = all
 dotnet_diagnostic.CA1044.severity = warning # TODO i can't imagine who is trying to have write-only properties, except for people who actually know what they are doing and are just going to need to suppress this rule; but i guess those folks with have a reasonable justification, so might as well have the rule
@@ -87,7 +74,6 @@ dotnet_diagnostic.CA1046.severity = warning # despite the rule about using `is n
 	dotnet_code_quality.CA1046.api_surface = all
 dotnet_diagnostic.CA1047.severity = warning
 	dotnet_code_quality.CA1047.api_surface = all
-# NOTE: there are no rules from CA1048-CA1049
 dotnet_diagnostic.CA1050.severity = warning
 	dotnet_code_quality.CA1050.api_surface = all
 dotnet_diagnostic.CA1051.severity = warning
@@ -102,10 +88,8 @@ dotnet_diagnostic.CA1055.severity = warning # TODO this one might not actually b
 	dotnet_code_quality.CA1055.api_surface = all
 dotnet_diagnostic.CA1056.severity = warning
 	dotnet_code_quality.CA1056.api_surface = all
-# NOTE: there is no CA1057
 dotnet_diagnostic.CA1058.severity = warning # i'm only familiar with the collection parts of this, but the rule seems reasonable enough
 	dotnet_code_quality.CA1058.api_surface = all
-# NOTE: there is no CA1059
 dotnet_diagnostic.CA1060.severity = warning
 dotnet_diagnostic.CA1061.severity = warning # this one almost feels like a form of aliasing; try to come up with a good example
 dotnet_diagnostic.CA1062.severity = warning # TODO i don't think you need `dotnet_code_quality.CA1062.null_check_validation_methods` since there's the `[notnull]` attribute now, but just in case, i'm leaving it here # TODO i don't know enough about the dataflow analysis stuff to rasonably configure anything; look into that sometime
@@ -139,7 +123,6 @@ dotnet_diagnostic.CA1200.severity = warning
 ### portability and interoperability
 
 dotnet_diagnostic.CA1401.severity = warning
-# NOTE: there are no rules from CA1402-CA1416
 # TODO i don't know anything about platform compatibility; look into ca1416
 dotnet_diagnostic.CA1417.severity = warning
 # TODO i don't know anything about platform compatibility; look into ca1418
@@ -152,7 +135,6 @@ dotnet_diagnostic.CA1419.severity = warning
 
 dotnet_diagnostic.CA1501.severity = warning # TODO i'm not a huge fan that the system namespace is excluded
 dotnet_diagnostic.CA1502.severity = warning # TODO you'll have to see if you have a lot of violations of this rule before writing an article
-# NOTE: there are no rules from CA1503-CA1504
 dotnet_diagnostic.CA1505.severity = warning # TODO you'll have to see if you have a lot of violations of this rule before writing an article
 dotnet_diagnostic.CA1506.severity = warning # TODO you'll have to see if you have a lot of violations of this rule before writing an article
 dotnet_diagnostic.CA1507.severity = warning
@@ -170,12 +152,10 @@ dotnet_diagnostic.CA1516.severity = none # TODO the docs seems just on the cusp 
 
 dotnet_diagnostic.CA1700.severity = warning
 	dotnet_code_quality.CA1700.api_surface = all
-# NOTE: there are no rules from CA1701-CA1706
 dotnet_diagnostic.CA1707.severity = warning
 	dotnet_code_quality.CA1707.api_surface = all
 dotnet_diagnostic.CA1708.severity = warning
 	dotnet_code_quality.CA1708.api_surface = all
-# NOTE: there is no CA1709
 dotnet_diagnostic.CA1710.severity = warning
 	dotnet_code_quality.CA1710.api_surface = all
 	dotnet_code_quality.CA1710.additional_required_suffixes = T:System.Collections.ICollection->{}|System.Collections.IDictionary->{}|System.Collections.IEnumerable->{}|System.Collections.Generic.IReadOnlyDictionary<TKey,TValue>->{}|System.Collections.Queue->{}|System.Collections.Stack->{}|System.Collections.Generic.ICollection<T>->{}|System.Collections.Generic.IDictionary<TKey,TValue>->{} # TODO i wonder if there's a way to make this more readable # TODO i have found that stuff that implements the collection types are often "their own thing" and the interface is just convenient because it plugs into a bunch of extensions and stuff, so i'm excluding the collection ones; the other types in the rule (besides stream i guess) and more like language constructs than they are data structures, and those i think make sense to have the name, so that the caller is able to immediately recognize the language constructs; regarding stream, i've not found a case where i've derived stream and wanted to call it something else; being a stream has seemed to be part of the nature of the derived types, there's not something that was its own thing but also happened to be a stream (like is the case for collections); i'm only unclear about System.Data.DataSet and System.Data.DataTable, because i've never used them before; i don't think there's a way to mark only them as error, but i could configure the rule so that those have absolutely weird names that are really TODOs 
@@ -193,37 +173,29 @@ dotnet_diagnostic.CA1716.severity = none # names should be good regardless of wh
 	dotnet_code_quality.CA1716.api_surface = all
 dotnet_diagnostic.CA1717.severity = warning
 	dotnet_code_quality.CA1717.api_surface = all
-# NOTE: there are no rules from CA1718-CA1719
 dotnet_diagnostic.CA1720.severity = warning # i think this will be my biggest violation; the issue is that i'm often working on things of a strong-typing, where it *does* make sense to name something `{type1}` and `{type2}`, because the nature of the method is literally translating from one type to another; further, i've been doing a lot of parsing lately where the goal is to take the data and represent it as the .net type, and again, i think the naming makes sense; in these cases, i don't think it's really the issue that hungarian notation has, and it's more of covering gaps in the type system; regardless, i think each of these cases should be justified
 	dotnet_code_quality.CA1720.api_surface = all
 dotnet_diagnostic.CA1721.severity = warning
 	dotnet_code_quality.CA1721.api_surface = all
-# NOTE: there are no rules from CA1722-CA1723
 dotnet_diagnostic.CA1724.severity = warning # TODO you can demonstrate how someone could use this for "aliasing" i think
 dotnet_diagnostic.CA1725.severity = warning
 	dotnet_code_quality.CA1725.api_surface = all
-# NOTE: there is no CA1726
 dotnet_diagnostic.CA1727.severity = warning
 
 ### performance
 
-# NOTE: there are no rules from CA1800-CA1801
 dotnet_diagnostic.CA1802.severity = warning
 	dotnet_code_quality.CA1802.api_surface = all
 # dotnet_code_quality.CA1802.required_modifiers = none # TODO i couldn't get this to trigger on anything besides `static readonly`; i'm not sure what it's supposed to do
-# NOTE: there are no rules from CA1803-CA1804
 dotnet_diagnostic.CA1805.severity = warning # the reason *i* like this rule is because doing this potentially hides cs0649 # hmm, this actually conflicts with the "don't use static initializers" thing a little; without a static initializer, i like being explicit about the initial value, but then this rule will trigger when that is the default value; i think i like this rule when it's for instance members, but not when it's for static members
 dotnet_diagnostic.CA1806.severity = warning # TODO ide0058 covers a wider range of cases, i think it probably supersedes this
-# NOTE: there are no rules from CA1807-CA1809
 dotnet_diagnostic.CA1810.severity = warning # i've certainly had cases where i needed a static constructor, but those cases would be easy to justify with this rule
-# NOTE: there is no CA1811
 dotnet_diagnostic.CA1812.severity = warning
 	dotnet_code_quality.CA1812.ignore_internalsvisibleto = true # internals visible to should generally only be used for testing purposes, so if an internal type is only used to be tested, then the type and its tests should be removed; for cases where the type should remain, they should be easy to justify (since it's a deliberate design choice to share that type across assemblies, but not make the type public)
 dotnet_diagnostic.CA1813.severity = warning
 dotnet_diagnostic.CA1814.severity = none # i get the point of this rule, but it seems weird; when am i using an array of arrays where they *would* be jagged? and for cases where multidimensional makes sense design-wise, with jagged i need to check the length of the inner arrays, which can have an inconsistency with what is "known" as the size to the design; multi-dimensional remove this ambiguity by letting the compiler know what the lengths are
 dotnet_diagnostic.CA1815.severity = warning
 	dotnet_code_quality.CA1815.api_surface = all
-# NOTE: there are no rules from CA1816-CA1818
 dotnet_diagnostic.CA1819.severity = warning
 	dotnet_code_quality.CA1819.api_surface = all
 dotnet_diagnostic.CA1820.severity = warning
@@ -288,7 +260,6 @@ dotnet_diagnostic.CA1872.severity = warning
 dotnet_diagnostic.CA1873.severity = warning # i really hate this, but i'm not used to it, so maybe it's actually brilliant
 dotnet_diagnostic.CA1874.severity = warning # i'm not sure i like this for maintainability reasons
 dotnet_diagnostic.CA1875.severity = warning # i'm not sure i like this for maintainability reasons
-# NOTE: there is no CA1876
 dotnet_diagnostic.CA1877.severity = warning # it would be great if there were a "pathbuilder" or something like `stringbuilder` to really formalize this
 
 ### singlefile
@@ -298,14 +269,11 @@ dotnet_diagnostic.CA1877.severity = warning # it would be great if there were a 
 ### reliability
 
 dotnet_diagnostic.CA2000.severity = warning
-# NOTE: there is no CA2001
 dotnet_diagnostic.CA2002.severity = warning
-# NOTE: there are no rules from CA2003-CA2006
 dotnet_diagnostic.CA2007.severity = warning # remind about the note that this is for "framework" type packages
 	dotnet_code_quality.CA2007.exclude_async_void_methods = false # this rule is good for everything
 dotnet_diagnostic.CA2008.severity = warning
 dotnet_diagnostic.CA2009.severity = warning # this seems more like a perf rule to me
-# NOTE: there is no CA2010
 dotnet_diagnostic.CA2011.severity = warning # should be caught during unit testing; plus, we are preferring autoprops in the style rules; not exactly sure when this will come up
 dotnet_diagnostic.CA2012.severity = warning
 dotnet_diagnostic.CA2013.severity = warning
@@ -326,34 +294,24 @@ dotnet_diagnostic.CA2026.severity = warning
 ### security
 
 dotnet_diagnostic.CA2100.severity = warning # you can configure interprocedural analysis and stuff, but i don't know enough about that to make a good decision
-# NOTE: there are no rules from CA2101-CA2108
 dotnet_diagnostic.CA2109.severity = warning
-# NOTE: there are no rules from CA2110-CA2118
 dotnet_diagnostic.CA2119.severity = none # i don't think i've ever used `internal` or `private` for "security" reasons; i use them because certain APIs aren't quality enough or because they don't have clear contracts or because the contracts have assumptions that i can't trust the caller or implementer to know and follow; if the implementer (in this rule's case) is exposing the API publicly, then that's totally fine as long as the API has a clear contract with enforceable assumptions; these requirements are true of *all* public APIs, and has nothing to do with exposing internal or private ones; so i'm disabling this rule because it will lead to inconsistent enforcement
-# NOTE: there are no rules from CA2120-CA2152
 dotnet_diagnostic.CA2153.severity = warning
-# NOTE: there are no rules from CA2154-CA2299
 dotnet_diagnostic.CA2300.severity = warning # TODO i'm going to have to try really hard to demonstrate this...https://learn.microsoft.com/en-us/dotnet/standard/serialization/binaryformatter-security-guide
 dotnet_diagnostic.CA2301.severity = warning
 dotnet_diagnostic.CA2302.severity = warning
-# NOTE: there are no rules from CA2303-CA2304
 dotnet_diagnostic.CA2305.severity = warning
-# NOTE: there are no rules from CA2306-CA2309
 dotnet_diagnostic.CA2310.severity = warning
 dotnet_diagnostic.CA2311.severity = warning
 dotnet_diagnostic.CA2312.severity = warning
-# NOTE: there are no rules from CA2313-CA2314
 dotnet_diagnostic.CA2315.severity = warning
-# NOTE: there are no rules from CA2316-CA2320
 dotnet_diagnostic.CA2321.severity = warning
 dotnet_diagnostic.CA2322.severity = warning
-# NOTE: there are no rules from CA2323-CA2325
 dotnet_diagnostic.CA2326.severity = warning
 dotnet_diagnostic.CA2327.severity = warning
 dotnet_diagnostic.CA2328.severity = warning
 dotnet_diagnostic.CA2329.severity = warning
 dotnet_diagnostic.CA2330.severity = warning
-# NOTE: there are no rules from CA2331-CA2349
 dotnet_diagnostic.CA2350.severity = warning
 dotnet_diagnostic.CA2351.severity = warning
 dotnet_diagnostic.CA2352.severity = warning
@@ -361,10 +319,8 @@ dotnet_diagnostic.CA2353.severity = warning
 dotnet_diagnostic.CA2354.severity = warning
 dotnet_diagnostic.CA2355.severity = warning
 dotnet_diagnostic.CA2356.severity = warning
-# NOTE: there are no rules from CA2357-CA2360
 dotnet_diagnostic.CA2361.severity = warning
 dotnet_diagnostic.CA2362.severity = warning
-# NOTE: there are no rules from CA2363-CA3000
 dotnet_diagnostic.CA3001.severity = warning
 dotnet_diagnostic.CA3002.severity = warning
 dotnet_diagnostic.CA3003.severity = warning
@@ -377,18 +333,13 @@ dotnet_diagnostic.CA3009.severity = warning
 dotnet_diagnostic.CA3010.severity = warning
 dotnet_diagnostic.CA3011.severity = warning
 dotnet_diagnostic.CA3012.severity = warning
-# NOTE: there are no rules from CA3013-CA3060
 dotnet_diagnostic.CA3061.severity = warning
-# NOTE: there are no rules from CA3062-CA3074
 dotnet_diagnostic.CA3075.severity = warning
 dotnet_diagnostic.CA3076.severity = warning
 dotnet_diagnostic.CA3077.severity = warning
-# NOTE: there are no rules from CA3078-CA3146
 dotnet_diagnostic.CA3147.severity = warning
-# NOTE: there are no rules from CA3148-CA5349
 dotnet_diagnostic.CA5350.severity = warning
 dotnet_diagnostic.CA5351.severity = warning
-# NOTE: there are no rules from CA5352-CA5357
 dotnet_diagnostic.CA5358.severity = warning
 dotnet_diagnostic.CA5359.severity = warning
 dotnet_diagnostic.CA5360.severity = warning
@@ -443,17 +394,12 @@ dotnet_diagnostic.CA5405.severity = warning # TODO same as above
 
 dotnet_diagnostic.CA1801.severity = warning
 	dotnet_code_quality.CA1801.api_surface = all
-# NOTE: there are no rules from CA1802-CA1815
 dotnet_diagnostic.CA1816.severity = warning
-# NOTE: there are no rules from CA1817-CA2199
 dotnet_diagnostic.CA2200.severity = warning
 dotnet_diagnostic.CA2201.severity = warning # this rule made me realize that invalidoperationexception (and its derived type objectdisposedexception (and probably other derived types)) are *also* precondition checks, but they are precondition checks on the state of the called object, rather than checks on the state of the provided arguments; the name might be slightly misleading (compare to notsupportedexception and overflowexception; those exceptions are the result of "invalid operation"s, but they cannot be checked as precondition requirements (well, maybe notsupported can be, but that's used in design failure situations; the type system should be check those things, not the caller or implementer); i kind of want an analyzer that requires a justification for using `invalidoperationexception`; i also want an analyzer that ensures that argument exceptions are used on arguments specifically (and maybe also before any other logic is run)
-# NOTE: there are no rules from CA2202-CA2206
 dotnet_diagnostic.CA2207.severity = warning # you could totally demonstrate with a field that produces a side effect and initializing the struct using `default` or an array; note that this rule only catchs fields, not properties
 dotnet_diagnostic.CA2208.severity = warning # this seems a little redundant since the static factories should be used for these exceptions instead, but i guess this rule makes sense in case we have our own custom static factory
-# NOTE: there are no rules from CA2209-CA2210
 dotnet_diagnostic.CA2211.severity = warning # i don't find the documentation compelling; i like this rule, but i don't know why; i think it's more of a style thing to me, like "hidden" things are fields and "visible" things are properties, but there's already syntax (access modifiers) that make this distinction # TODO it's so that you can change the "behavior" of the member without breaking all of the callers (including derived types)
-# NOTE: there is no CA2212
 dotnet_diagnostic.CA2213.severity = warning
 # TODO there are data flow analysis configurations; you should probably figure those out at some point because disposables are kind of important
 dotnet_diagnostic.CA2214.severity = warning
@@ -463,25 +409,19 @@ dotnet_diagnostic.CA2217.severity = warning
 	dotnet_code_quality.CA2217.api_surface = all
 dotnet_diagnostic.CA2218.severity = warning
 dotnet_diagnostic.CA2219.severity = warning # TODO it's not clear to me what a fault or filter clause are; copilot seems to think it might be windows workflow foundation, but i'm not finding anything concrete # this rule is referring to CIL constructs; `finally` is used for `try/finally`, `filter` is used for `try/catch/when`, and `fault` is used (at least) with a `using` surrounding a `yield return` (`public IEnumerable<string> GetSomeEnumerable() { using (Enumerable.Empty<string>().GetEnumerator()) { yield return "asdf"; } }`); i'm not clear if there are other situations where `fault` is used; in fact, if you replace the `using` with a `try/finally`, it will still use `fault`; it's probably worth comparing the generated c# with the compiled IL
-# NOTE: there are no rules from CA2219-CA2223
 dotnet_diagnostic.CA2224.severity = warning
 dotnet_diagnostic.CA2225.severity = none # TODO i question this because, if i understand right, it's basically saying that vb.net doesn't have all of the symbolic operators, so there should be a method with that name, so we'd be doubling the c# api surface so taht we can support vb consumers; not sure i like that
 	dotnet_code_quality.CA2225.api_surface = all
 dotnet_diagnostic.CA2226.severity = warning
 	dotnet_code_quality.CA2226.api_surface = all
 dotnet_diagnostic.CA2227.severity = none # i think this is a bad rule; *maybe* someone is making an argument about object allocations or something?
-# NOTE: there is no CA2228
 dotnet_diagnostic.CA2229.severity = warning
-# NOTE: there is no CA2230
 dotnet_diagnostic.CA2231.severity = warning
 	dotnet_code_quality.CA2231.api_surface = all
-# NOTE: there are no rules from CA2232-CA2233
 dotnet_diagnostic.CA2234.severity = warning
 	dotnet_code_quality.CA2234.api_surface = all
 dotnet_diagnostic.CA2235.severity = warning
-# NOTE: there is no CA2236
 dotnet_diagnostic.CA2237.severity = warning
-# NOTE: there are no rules from CA2238-CA2240
 dotnet_diagnostic.CA2241.severity = warning
 	dotnet_code_quality.CA2241.additional_string_formatting_methods = # TODO i'm not sure how to remind yourself to add things to this list...
 	dotnet_code_quality.CA2241.try_determine_additional_string_formatting_methods_automatically = true # disable this if it gets too noisy
@@ -519,7 +459,6 @@ dotnet_diagnostic.IDE0002.severity = none # TODO i would actually like a rule th
 dotnet_diagnostic.IDE0003.severity = none # same as above, plus `this` vs `base` explicitness
 dotnet_diagnostic.IDE0004.severity = warning # i have a feeling i will hit this somewhat often, but also that i should be able to justify it in such cases
 dotnet_diagnostic.IDE0005.severity = warning
-# NOTE: there is no IDE0006
 dotnet_diagnostic.IDE0007.severity = warning # explicit types are a pain when generics are used; variable names should be helpful enough, plus you either are constructing the instance or have a factory method with a name that should be helpful; var also helps when refactoring spike code; plus there are cases where you literally have to use var, so its the kernel
 	csharp_style_var_elsewhere = true # NOTE: you are able to specify "severities" for the options; however, they only seem to apply when the `ide0007` rule isn't present at all; setting the rule to none, silent, suggestion, warning, or error, and then setting the option to silent will always take the rule severity; if you comment out the rule, however, the severity on the option is honored; this might not be true for all rules and options, but it is true in this case
 	csharp_style_var_for_built_in_types = true
@@ -533,7 +472,6 @@ dotnet_diagnostic.IDE0009.severity = warning
 dotnet_diagnostic.IDE0010.severity = warning # this is good when a new enum member is added to ensure all consumers are covered; but this doesn't work for public api changes, so really what i'd like to see is: you always have to have a default case, and if the enum is assembly local, then you have to add the missing cases (which can passthrough to the default)
 dotnet_diagnostic.IDE0011.severity = warning # goto fail
 	csharp_prefer_braces = true # adding it to be explicit; the idea of multiline is exactly why we want the rule anyway; this is a maintainability issue, not a style issue
-# NOTE: there are no rules from IDE0012-IDE0015
 dotnet_diagnostic.IDE0016.severity = none # i'm not opposed to this style, but it seems to be a pretty specific case of argument checking, which should be done through `argument.throwif...` instead; also, i couldn't get this to trigger
     csharp_style_throw_expression = false
 dotnet_diagnostic.IDE0017.severity = warning # the `init` and `required` keywords on properties remove the issues you have with object initializers; i don't know that it makes sense to *require* initializers; but, if they are a way to remove "settings" objects, then i *do* think you should require them; with that said, to remove settings, i think you would want `public string MyProp { private get; init; } = "default value";`, which goes against the rule ca1044; i suppose maybe there's nothing "wrong" with having a public getter, it's just different from the current settings pattern
@@ -581,7 +519,6 @@ dotnet_diagnostic.IDE0041.severity = warning # look at the `Equality` test metho
 	dotnet_style_prefer_is_null_check_over_reference_equality_method = true
 dotnet_diagnostic.IDE0042.severity = warning # TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0042 seems to indicate `var person = GetPersonTuple();` is illegal, but it doesn't seem flagged to me; *i* prefer this, because i only want `(int x, int y) point = GetPointTuple();` to be fixed; this is either a bug or a doc issue, though
 	csharp_style_deconstructed_variable_declaration = true
-# NOTE: there is no IDE0043
 dotnet_diagnostic.IDE0044.severity = warning
 	dotnet_style_readonly_field = true
 dotnet_diagnostic.IDE0045.severity = none # TODO i would prefer to warn when if statements *aren't* used
@@ -604,7 +541,6 @@ dotnet_diagnostic.IDE0053.severity = warning # i think this is purely style for 
 	csharp_style_expression_bodied_lambdas = true:warning
 dotnet_diagnostic.IDE0054.severity = none # these seem completely equivalent to me; i'd be open to enabling the rule if someone could tell me why it's good; maybe make it a suggestion?
 	dotnet_style_prefer_compound_assignment = false
-# NOTE: there is no IDE0055
 dotnet_diagnostic.IDE0056.severity = none # personally, i'd prefer to warn against using this new style because i don't like symbolic syntax, but the rule can't be configured that way
 	csharp_style_prefer_index_operator = false
 dotnet_diagnostic.IDE0057.severity = warning # TODO make this a suggestion? # as much as i dislike more syntax, creating sub arrays (less so for strings and spans and stuff) has always been weird; you create the new array, then you use array.copy or constrianed copy or buffer.blockcopy or myarray.copyto, and you need to get the indices correct, when most of them are "boilerplate"; and by the way, which copy method do you call and why? there's not really a good answer # that said, this doesn't catch the array stuff i'm talking about, i'd be great to have a rule that does catch it, but because i think the syntactic sugar is good for something, i think it's good to suggest the new syntax to it gets visibility
@@ -628,7 +564,6 @@ dotnet_diagnostic.IDE0065.severity = warning # placing them inside lets you "ove
 	csharp_using_directive_placement = inside_namespace
 dotnet_diagnostic.IDE0066.severity = warning # TODO should be suggestion
 	csharp_style_prefer_switch_expression = true # this is so limited in use (because the cases must be expressions and *can't* be statements), it's fine to suggest to move me towards c# 8 (and to add in refactors), but it's not something to shoehorn in
-# NOTE: there are no rules from IDE0067-IDE0069
 dotnet_diagnostic.IDE0070.severity = warning # i tend to use XOR, but that is commutative, so the order of properties doesn't matter; this is not necessarily a good thing if you have, for example, two `int` properties, because if they swap values, you have a collission; i really always knew i should be using an established hashing mechanism but just never bothered to find one; now is a good time
 	dotnet_prefer_system_hash_code = true
 dotnet_diagnostic.IDE0071.severity = warning # purely style, but i think most would agree it adds to readability
@@ -639,7 +574,6 @@ dotnet_diagnostic.IDE0073.severity = warning # i don't know if there's a line le
 dotnet_diagnostic.IDE0074.severity = warning # see ide0054
 dotnet_diagnostic.IDE0075.severity = warning # this does more than what's listed in the docs; it really seems to understand boolean logic and simplify (like an algebra "simplify") those logical expressions (e.g. `var result2 = true ? true : false`)
 	dotnet_style_prefer_simplified_boolean_expressions = true
-# NOTE: there are no rules from IDE0076-IDE0077
 dotnet_diagnostic.IDE0078.severity = none # i really wish i could make this warn *against* the pattern matching stuff; really much prefer the explicit nature; and what i hate most is that it doesn't have syntax when multiple left-hand-side values are used, and you have to go back to the "old" way (you can't say `if (x is > 5 or y is < 3)`, you have to say `if (x is > 5 || y is < 3)`)
 	csharp_style_prefer_pattern_matching = false
 dotnet_diagnostic.IDE0079.severity = warning # just liters the code, and possible allows for future code that *should* trigger a rule and a re-justification to get through (note i also want to scope these as tightly as possible for the same reasons)
@@ -650,69 +584,48 @@ dotnet_diagnostic.IDE0082.severity = warning # this is a perf thing; `nameof` is
 dotnet_diagnostic.IDE0083.severity = warning # make it a suggestion for discovery; it's way easier to type the new way, but both are fine, even in terms of readability
 	csharp_style_prefer_not_pattern = true # only as a suggestion though...
 dotnet_diagnostic.IDE0084.severity = error # applies to vb only, which i know nothing about, so we are making it an error so that the first person who encounters it must confront it
-# NOTE: there are no rules from IDE0085-IDE0089
 dotnet_diagnostic.IDE0090.severity = none # seems similar to 28 and 34 to me; i'm not opposed to this syntax, but it shouldn't encourage people away from `var`
 	csharp_style_implicit_object_creation_when_type_is_apparent = false
-# NOTE: there are no rules from IDE0091-IDE0099
 dotnet_diagnostic.IDE0100.severity = warning # if variable and method names are good, this is a readability issue; it should be as simple as `if (branchNeeded)` type naming; if the names make it so `if (branchNeeded == true)` is more readable, the variable is poorly named
-# NOTE: there are no rules from IDE0101-IDE0109
 dotnet_diagnostic.IDE0110.severity = warning # purely style, from what i can tell
-# NOTE: there are no rules from IDE0111-IDE0119
 dotnet_diagnostic.IDE0120.severity = none # i actually think all of those "aggregation" overloads are preposterous; i think i should have a rule that *disallows* their use; it's just a convention, and that convention decided on `where`; why not also `select`? or `take`? or `orderby`? or `skip`? # TODO i suppose i'm probably *fine* if someone *does* use these overloads, but i certainly don't want to encourage their use
 dotnet_diagnostic.IDE0121.severity = warning # i would feel similar to 120 if there existed a `tryselect`; then `oftype` would just be a specialization of `tryselect`; it might then still be a *good* specialization, but in this case, there purpose of the entire `oftype` extension is *specifically* to avoid this pattern (because casting is "expensive"); where the purpose of `any` or `first` or etc has a meaning in the first place, and then someone tried to add an optimization on top of that meaning
-# NOTE: there are no rules from IDE0122-IDE0129
 dotnet_diagnostic.IDE0130.severity = warning # purely "style", but so helpful when you're needing to find things on the file system or in solution explorer and you remember some stuff but not everything, and probably you have a keyword or two that makes "find" really hard; i dunno, it seems like there's good application since i've been doing this
 	dotnet_style_namespace_match_folder = true
-# NOTE: there are no rules from IDE0131-IDE0139
 dotnet_diagnostic.IDE0140.severity = error # VB, i don't know anything about it
 	visual_basic_style_prefer_simplified_object_creation
-# NOTE: there are no rules from IDE0141-IDE0149
 dotnet_diagnostic.IDE0150.severity = warning # this is just a really dumb way to do a null check, i'm not sure who would be doing it this way; notably, it gets compiled the same either way, but reading the code, it's not clear if the author thinks something else is happening; just doing a null check makes the most sense
 	csharp_style_prefer_null_check_over_type_check = true
-# NOTE: there are no rules from IDE0151-IDE0159
 dotnet_diagnostic.IDE0160.severity = warning # i *guess* this is purely style; i don't get what people's obsession with saving the tab is, though; and if i'm to *attempt* to justify myself here, if the tab is really affecting you, you need to get a bigger screen, or your code needs to be properly factored so that you don't nest so many scopes (particularly loops), or you're trying to do oneliners to avoid creating variables that would add clarity to your code because the design is so bad that the variable names are hard to come up with
 	csharp_style_namespace_declarations = block_scoped
 dotnet_diagnostic.IDE0161.severity = none
-# NOTE: there are no rules from IDE0162-IDE0169
 dotnet_diagnostic.IDE0170.severity = warning
 	csharp_style_prefer_extended_property_pattern = true # i hate this syntax, but if you're going to use it, i think this is good because the rule only applies for cases where there is a single "inner" check (TODO find the right names to refer to these constructs)
-# NOTE: there are no rules from IDE0171-IDE0179
 dotnet_diagnostic.IDE0180.severity = warning # suggestion; i wonder if the compiler or jiter do magic here; isn't the tuple going to take extra (stack) memory? i do think it looks neat though
 	csharp_style_prefer_tuple_swap = true
-# NOTE: there are no rules from IDE0181-IDE0199
 dotnet_diagnostic.IDE0200.severity = none # purely style, i prefer the consistency for readability
 	csharp_style_prefer_method_group_conversion = false
-# NOTE: there are no rules from IDE0201-IDE0209
 dotnet_diagnostic.IDE0210.severity = none # i would prefer a rule against this; i don't same tabs thing as 160, but why are people's mains involved enough that they ever really look at them? this should simply be where factories are called and top-level error handling is done, which definitely shouldn't require nesting, and where the design is already laid out, so variable names should be trivial and scoping practically non-existent; i guess i can admit this is purely style though; maybe i'm just mad that they spent resources creating this feature that does nothing instead of spending those resources on literally anything else # TODO 211 is actually the rule against this
 	csharp_style_prefer_top_level_statements = false
 dotnet_diagnostic.IDE0211.severity = warning
-# NOTE: there are no rules from IDE0212-IDE0219
 dotnet_diagnostic.IDE0220.severity = none # i don't really get this one; adding the `cast` call definitely makes this slower; both have runtime cast exceptions when the base type collection contains elements that aren't of the derived type; and there's nothing "hidden" here (the element declaration has to contain the type that it's being cast to)
 	dotnet_style_prefer_foreach_explicit_cast_in_source
 dotnet_diagnostic.IDE0221.severity = warning # when *any* explicit cast is required, i think it makes sense to require the entire chain for clarity; because there could be multiple explicit casts from castable to base, in the example given in the documentation, i think it's better for the maintainer to see the chain rather than have to go find the chain
 	dotnet_style_prefer_non_hidden_explicit_cast_in_source = true
-# NOTE: there are no rules from IDE0222-IDE0229
 dotnet_diagnostic.IDE0230.severity = warning # this is great so that the code literals are more readable, and then you don't have to jump through runtime hoops to get the memory format (byte array) that you want
 	csharp_style_prefer_utf8_string_literals = true
-# NOTE: there are no rules from IDE0231-IDE0239
 dotnet_diagnostic.IDE0240.severity = warning # the expectation should by nullable enabled; so if you have any changes, they should be explicit, but not counter to the expectation or redundant to the expectation or a previous deviation; the presence of one will confuse the maintainer, and probably indicates that the original author was coding by superstition; further, we are preventing the original author from coding by superstition without justifying it
 dotnet_diagnostic.IDE0241.severity = warning # same as above
-# NOTE: there are no rules from IDE0242-IDE0249
 dotnet_diagnostic.IDE0250.severity = warning # readonly should have perf benefits in almost all cases; further, it demonstrates to the caller an intention, so they are able to make assumptions based on that intention (like thread-safety)
 	csharp_style_prefer_readonly_struct = true
 dotnet_diagnostic.IDE0251.severity = warning # readonly should have perf benefist in almost all cases; further, this allows 250 to trigger more accurately
 	csharp_style_prefer_readonly_struct_member = true
-# NOTE: there are no rules from IDE0252-IDE0259
 dotnet_diagnostic.IDE0260.severity = none # see ide0078 (not sure it's actually relevant here); i think it's good to come up with a name for the post-cast variable, to demonstrate the "meaning" of that variable, and how its meaning is different from the "meaning" of the original variable
 	csharp_style_pattern_matching_over_as_with_null_check = false
-# NOTE: there are no rules from IDE0261-IDE0269
 dotnet_diagnostic.IDE0270.severity = none # see ide0029 # TODO i thought this would catch `first.Foo is not null ? first.Foo : "asdf"`, but it doesn't... # TODO i can't get this rule to trigger # TODO making this `none` for now, because i don't know what it actually triggers against
-# NOTE: there are no rules from IDE0271-IDE0279
 dotnet_diagnostic.IDE0280.severity = warning # maintainability, this guarantees that you are always consistent and if you do a visual studio refactor it finds it by token instead of value
-# NOTE: there are no rules from IDE0281-IDE0289
 dotnet_diagnostic.IDE0290.severity = none # todo i think you want a rule taht *disallows* primary constructors; you still have to declare fields and set the values, the values are just now set with initializer syntax (is that the right feature name?); and so the order of operations is now based on the order of the field declarations, which isn't how we should decide the order that the fields are in
 	csharp_style_prefer_primary_constructors = false
-# NOTE: there are no rules from IDE0291-IDE0299
 dotnet_diagnostic.IDE0300.severity = none # just like IDE0028
 dotnet_diagnostic.IDE0301.severity = none # just like ide0028
 dotnet_diagnostic.IDE0302.severity = warning # this is different from 0028, 0300, and 0301 because if you aren't in an unsafe context, you *have* to write `span<t>` (or readonlyspan), so the type *can* be inferred by the collection expression, and therefore results in not having to write the type twice
@@ -720,29 +633,20 @@ dotnet_diagnostic.IDE0303.severity = none # just like ide0028
 dotnet_diagnostic.IDE0304.severity = none # way to much symbolic syntax; plus, event as the doc represents, you have to use the object initializer syntax anyway in the middle of the collection expression syntax
 dotnet_diagnostic.IDE0305.severity = none # this at least probably has some merit, but it still requires the LHS type declaration; what is the point? and if there are good reasons to use this syntax (like perf), they should be justified
 dotnet_diagnostic.IDE0306.severity = none # still terrible syntax
-# NOTE: there are no rules from IDE0307-IDE0319
 dotnet_diagnostic.IDE0320.severity = warning # perforamnce, decent enough reason; TODO i have a feeling that i will regret this one because, although it's absolutely the "right" thing to do, linq queries will now have an extra step that i'm not used to reading or writing
 	csharp_prefer_static_anonymous_function = true
-# NOTE: there are no rules from IDE0321-IDE0329
 dotnet_diagnostic.IDE0330.severity = warning # performance
 	csharp_prefer_system_threading_lock = true
-# NOTE: there are no rules from IDE0331-IDE0339
 dotnet_diagnostic.IDE0340.severity = warning # no effect on the output, less code to understand (especially with higher numbers of type parameters), and changing the name of the current methods type parameter won't affect this line of code; also, being in the habit of adding a type parameter can lead to situations of defining types that are undefinable (due to a base class haivng a private constructor, for example), but even if they are definable, dfining a type to use `nameof` so that it satisfies the type constraint is maintenance overhead
 	csharp_style_prefer_unbound_generic_type_in_nameof = true
-# NOTE: there are no rules from IDE0341-IDE0349
 dotnet_diagnostic.IDE0350.severity = warning # this also triggers cases where you are passing a lambda as a parameter to a method `Frub((int x) => { });`; redefining the types is maintenance overhead and makes the code verbose and impossible to read, espcially in linq scenarios
 	csharp_style_prefer_implicitly_typed_lambda_expression = true
-# NOTE: there are no rules from IDE0351-IDE0359
 dotnet_diagnostic.IDE0360.severity = warning # i'm a bit torn n this; what happens if you change the setter to refer to a different field? now you need to update the getter to use the old field...and if you forget to do that, things go very poorly; even with unit testing catching this, it's probably a pain to investigate
 	csharp_style_prefer_simple_property_accessors = true
-# NOTE: there are no rules from IDE0361-IDE0369
 dotnet_diagnostic.IDE0370.severity = warning # TODO you have at least one previous rule which discusses similar things; there could be confusion by the maintainer, the maintainer might add something that accidentally takes advantage of the forgiveness, etc.
-# NOTE: there are no rules from IDE0371-IDE0379
 dotnet_diagnostic.IDE0380.severity = warning # someone could write unsafe code in a way that is easily overlooked by a reviewer because `unsafe` is not being added (which would be a red flag for a reviewer) (for example, `var y = stackalloc int[] { 1, 2, 3 };` is not exactly explicit about being unsafe, especially because normally `y` would be a `span<int>`)
-# NOTE: there are no rules from IDE0381-IDE1004
 dotnet_diagnostic.IDE1005.severity = none # i'm ok with the `?.Invoke()` syntax, but i would like a rule to suggest the opposite; i just think the syntax is more clear calling the delegate as a function, and i don't see when you would want to do something like chain null propagation *after* calling the delegate; something where i've got `func?.Invoke()?.Member?.SubMember` still needs to have a null check done at some point, which would make it `func?.Invoke().Member.SubMember ?? someDefault`, but if anything in the chain is nullable, it's more likely to me that you would want different defaults for different cases, so instead of `func?.Invoke().Member?.SubMember ?? someDefault`, you'd really want `var someMember = func == null ? firstDefault : func(); someMember?.SubMember ?? secondDefault`; plus, what about if `func` returns a nullable? i just think it encourages too much "not thinking about error cases"; i'd be open to changing my mind about this if i had more real-life examples
 	csharp_style_conditional_delegate_call = false
-# NOTE: there are no rules from IDE1006-IDE1999
 dotnet_diagnostic.IDE2000.severity = warning # if code needs to be split up, do it be files, classes, comments, methods, etc. not by injecting line breaks; using language constructs to do this (instead of lines breaks) means that separations are explicit design decisions and require thought, which leads to clearer abstractions
 	dotnet_style_allow_multiple_blank_lines_experimental = false
 dotnet_diagnostic.IDE2001.severity = warning # statements should be on their own line so that we don't "gloss over" them when reading
@@ -762,7 +666,6 @@ dotnet_diagnostic.IDE2006.severity = none # TODO i wish the rule was to require 
 
 dotnet_diagnostic.IDE0076.severity = warning # TODO you've had other rules like this about requiring consistency
 dotnet_diagnostic.IDE0077.severity = warning # sure, the format is equivalent and we don't want slow builds
-# NOTE: there are no rules from IDE0078-IDE2999
 dotnet_diagnostic.IDE3000.severity = warning # i'm going to say i want this rule because it flags notimplementexceptions; whether copilot is used is secondary, in my opinion; i would prefer the rule be split into "you need to implement these" and "here are some quick actions, one of which is copilot"; also, i guess it's worth mentioning, did you really test the code if there are still notimplementedexceptions going on? by the way, does enabling this rule as more than "silent" mean that auto-generated code will have copilot implement things? i actually can't get this rule to trigger...
 
 ### formatting
@@ -1062,7 +965,6 @@ dotnet_search_reference_assemblies = true # i could actually repro this one; if 
 
 
 
-# TODO update the "no rules" comments to say "no rules in this category" or something
 # TODO your "note" comments are just comments, you don't need to say "NOTE"
 
 
