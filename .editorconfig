@@ -965,11 +965,6 @@ dotnet_search_reference_assemblies = true # i could actually repro this one; if 
 
 
 
-# TODO your "note" comments are just comments, you don't need to say "NOTE"
-
-
-
-
 
 
 
