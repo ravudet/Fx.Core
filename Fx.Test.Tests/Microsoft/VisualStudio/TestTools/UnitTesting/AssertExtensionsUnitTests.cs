@@ -402,6 +402,8 @@ class C {
 
         class ThrowExpression
         {
+            public static readonly string Foo = "asdf";
+
             private readonly string s;
 
             public ThrowExpression(string s)
