@@ -176,6 +176,7 @@ dotnet_diagnostic.CA1715.severity = warning
     dotnet_code_quality.CA1715.exclude_single_letter_type_parameters = false
 dotnet_diagnostic.CA1716.severity = none # names should be good regardless of what .NET chose to make keywords (in both directions: it needs to be good even if it's not similar to a keyword, and it needs to be good if it *is* (e.g. `object` type in `json` namespace))
 	dotnet_code_quality.CA1716.api_surface = all
+    dotnet_code_quality.CA1716.analyzed_symbol_kinds =
 dotnet_diagnostic.CA1717.severity = warning
 	dotnet_code_quality.CA1717.api_surface = all
 dotnet_diagnostic.CA1720.severity = warning # i think this will be my biggest violation; the issue is that i'm often working on things of a strong-typing, where it *does* make sense to name something `{type1}` and `{type2}`, because the nature of the method is literally translating from one type to another; further, i've been doing a lot of parsing lately where the goal is to take the data and represent it as the .net type, and again, i think the naming makes sense; in these cases, i don't think it's really the issue that hungarian notation has, and it's more of covering gaps in the type system; regardless, i think each of these cases should be justified

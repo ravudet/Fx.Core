@@ -390,6 +390,9 @@ class C {
 
 
 
+        public class Class
+        {
+        }
 
 
         public class GenericTest<T> : IEnumerable
