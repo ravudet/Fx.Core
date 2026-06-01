@@ -510,7 +510,9 @@ dotnet_diagnostic.IDE0029.severity = warning # it's easy to get these backwards 
 	dotnet_style_coalesce_expression = true
 dotnet_diagnostic.IDE0030.severity = warning # see ide0029
 dotnet_diagnostic.IDE0031.severity = warning # null propagations can be chained, ternaries can't
+    dotnet_style_null_propagation = true
 dotnet_diagnostic.IDE0032.severity = warning # we don't need to duplicate boilerplate code; there used to be cases where you legitimately did this because you needed the backing field to be readonly; there might still be use cases to avoid autoprops, but those should be justified
+    dotnet_style_prefer_auto_properties = true
 dotnet_diagnostic.IDE0033.severity = warning # readability 
     dotnet_style_explicit_tuple_names = true # TODO this is really saying "*when* explicit names are available, use them", not "always add explicit names"
 dotnet_diagnostic.IDE0034.severity = warning # i'm torn; i agree with this for cases like the documentation uses where the left hand side *requires* declaring the type (there are also cases like static fields being initialized in a static constructor); but the rule might give the wrong impression that we prefer `string? value = default` over `var value = default(string)`; maybe you should write a rule that demonstrates this? and i prefer the `var` version for consistency
@@ -973,9 +975,6 @@ dotnet_search_reference_assemblies = true # i could actually repro this one; if 
 
 
 
-
-# dotnet_style_null_propagation 
-# dotnet_style_prefer_auto_properties 
 # dotnet_style_prefer_foreach_explicit_cast_in_source 
 # csharp_style_pattern_matching_over_is_with_cast_check 
 # csharp_prefer_simple_default_expression 
