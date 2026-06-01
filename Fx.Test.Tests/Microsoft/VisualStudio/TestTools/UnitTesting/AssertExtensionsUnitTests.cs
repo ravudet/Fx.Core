@@ -387,14 +387,6 @@ class C {
 
 
 
-
-
-
-        public class Class
-        {
-        }
-
-
         public class GenericTest<T> : IEnumerable
         {
             public IEnumerator GetEnumerator()
