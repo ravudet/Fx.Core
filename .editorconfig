@@ -975,7 +975,6 @@ dotnet_search_reference_assemblies = true # i could actually repro this one; if 
 
 
 
-# TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-quality-rule-options
 # TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
 # TODO https://github.com/dotnet/roslyn/blob/main/docs/roslyn-analyzers/README.md
 
