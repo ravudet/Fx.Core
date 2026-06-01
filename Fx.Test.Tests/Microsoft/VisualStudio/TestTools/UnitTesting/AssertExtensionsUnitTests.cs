@@ -391,6 +391,8 @@ class C {
         {
             public IEnumerator GetEnumerator()
             {
+                new object();
+
                 throw new NotImplementedException();
             }
         }
