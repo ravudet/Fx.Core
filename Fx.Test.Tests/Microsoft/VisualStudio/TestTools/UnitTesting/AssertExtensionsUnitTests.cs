@@ -377,12 +377,7 @@ class C {
 
 
 
-        /// dotnet_style_null_propagation 
-        /// dotnet_style_prefer_auto_properties 
-        /// dotnet_style_prefer_foreach_explicit_cast_in_source 
-        /// csharp_style_pattern_matching_over_is_with_cast_check 
-        /// csharp_prefer_simple_default_expression 
-        /// csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental 
+        
 
 
 
