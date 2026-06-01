@@ -243,6 +243,7 @@ dotnet_diagnostic.CA1850.severity = warning # there's no way this is actually a 
 dotnet_diagnostic.CA1851.severity = warning # good rule, but unfortunately missed `tolist` being called multiple times when no "work" is done in between the calls (like `enumerable.Select(_ => _.Length).ToList().Select(_ => _ * 2).ToList();`)
 	dotnet_code_quality.CA1851.linq_chain_methods = # TODO you should add your custom extensions to this configuration (because those methods don't actually enumerate, and this option is to tell the rule to not assume they do enumerate); i wonder if you can have the package installer update the consumer's editorconfig to add these?
 	dotnet_code_quality.CA1851.assume_method_enumerates_parameters = true # it's just too easy to avoid the rule if we don't assume this
+    dotnet_code_quality.CA1851.enumeration_methods =
 dotnet_diagnostic.CA1852.severity = warning
 	dotnet_code_quality.CA1852.ignore_internalsvisibleto = true # same justification as ca1812
 dotnet_diagnostic.CA1853.severity = warning
