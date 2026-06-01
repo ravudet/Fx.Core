@@ -38,6 +38,7 @@ dotnet_diagnostic.CA1008.severity = warning # TODO i agree with this for flags e
 	dotnet_code_quality.CA1008.api_surface = all
 dotnet_diagnostic.CA1010.severity = warning # TODO i'm good with this one because it doesn't trigger if you implement the non-generic *and* the generic
 	dotnet_code_quality.CA1010.api_surface = all
+    dotnet_code_quality.CA1010.additional_required_generic_interfaces =
 dotnet_diagnostic.CA1012.severity = warning
 	dotnet_code_quality.CA1012.api_surface = all
 dotnet_diagnostic.CA1014.severity = none # TODO you're not clscompliant right now probably, but it wouldn't hurt to do so; but not right now

@@ -392,8 +392,12 @@ class C {
 
 
 
-        public class GenericTest<T>
+        public class GenericTest<T> : IEnumerable
         {
+            public IEnumerator GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
         }
 
 
