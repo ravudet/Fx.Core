@@ -511,7 +511,8 @@ dotnet_diagnostic.IDE0029.severity = warning # it's easy to get these backwards 
 dotnet_diagnostic.IDE0030.severity = warning # see ide0029
 dotnet_diagnostic.IDE0031.severity = warning # null propagations can be chained, ternaries can't
 dotnet_diagnostic.IDE0032.severity = warning # we don't need to duplicate boilerplate code; there used to be cases where you legitimately did this because you needed the backing field to be readonly; there might still be use cases to avoid autoprops, but those should be justified
-dotnet_diagnostic.IDE0033.severity = warning # readability TODO dotnet_style_explicit_tuple_names is really saying "*when* explicit names are available, use them", not "always add explicit names"
+dotnet_diagnostic.IDE0033.severity = warning # readability 
+    dotnet_style_explicit_tuple_names = true # TODO this is really saying "*when* explicit names are available, use them", not "always add explicit names"
 dotnet_diagnostic.IDE0034.severity = warning # i'm torn; i agree with this for cases like the documentation uses where the left hand side *requires* declaring the type (there are also cases like static fields being initialized in a static constructor); but the rule might give the wrong impression that we prefer `string? value = default` over `var value = default(string)`; maybe you should write a rule that demonstrates this? and i prefer the `var` version for consistency
 dotnet_diagnostic.IDE0035.severity = warning # i'm not sure why this needs to exist when we have cs0162 from the compiler directly, and the `ide` rules don't run on build, only from the ide; but i guess it doesn't hurt to have it twice in case one of them gets disabled or something; it should be an indication to the person disabling that they should think longer about it
 dotnet_diagnostic.IDE0036.severity = warning # rule has to be enabled for the preferred order to be honored, unlike a lot of the other options
