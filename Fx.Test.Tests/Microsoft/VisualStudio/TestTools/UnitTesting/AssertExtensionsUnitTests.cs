@@ -398,6 +398,13 @@ class C {
 
 
 
+        public class Fake : Attribute
+        {
+        }
+
+        public class Fake2 : Fake
+        {
+        }
 
 
         class ThrowExpression
