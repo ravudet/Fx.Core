@@ -969,6 +969,14 @@ dotnet_member_insertion_location = at_the_end # https://github.com/dotnet/roslyn
 dotnet_property_generation_behavior = prefer_throwing_properties # https://github.com/dotnet/roslyn/blob/560c1cca10d974ff096cb051d45c1330420e8e6a/src/Analyzers/Core/CodeFixes/ImplementType/ImplementTypeOptions.cs#L29
 dotnet_search_reference_assemblies = true # i could actually repro this one; if you have a type defined in a project that is *not* referenced by the project where you're currently writing code, and you're writing something like `new TypeName()`, intellisense will search the projects that *aren't* referenced (in addition to those that are) when trying to find `TypeName`
 
+# code analysis analyzers
+
+# TODO on the one hand, i like the idea of having analyzers for a library to help guide best practices; on the other, some of these just seem like crutches to overcome lazy design decisions
+
+# banned api analyzers
+
+# public api analyzers
+
 
 
 
