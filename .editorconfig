@@ -974,14 +974,6 @@ dotnet_search_reference_assemblies = true # i could actually repro this one; if 
 
 
 
-
-
-# dotnet_style_prefer_foreach_explicit_cast_in_source 
-# csharp_style_pattern_matching_over_is_with_cast_check
-# csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental
-
-
-# TODO https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options
 # TODO https://github.com/dotnet/roslyn/blob/main/docs/roslyn-analyzers/README.md
 
 
