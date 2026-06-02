@@ -973,6 +973,9 @@ dotnet_search_reference_assemblies = true # i could actually repro this one; if 
 
 # TODO on the one hand, i like the idea of having analyzers for a library to help guide best practices; on the other, some of these just seem like crutches to overcome lazy design decisions
 
+dotnet_diagnostic.RS1001.severity = error # error because the thing straighup doesn't work without it
+dotnet_diagnostic.RS1002.severity = error # error because the thing straighup doesn't work without it
+
 # banned api analyzers
 
 # public api analyzers

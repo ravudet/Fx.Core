@@ -1,4 +1,4 @@
-﻿namespace Analyzer1
+namespace Analyzer1
 {
     using System;
     using System.Collections.Generic;
