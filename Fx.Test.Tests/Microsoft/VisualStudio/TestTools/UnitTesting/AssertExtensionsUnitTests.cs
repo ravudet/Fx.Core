@@ -261,6 +261,8 @@ class C {
         ////    spelling_use_default_exclusion_dictionary = false
         //// TODO i think `csharp_style_inlined_variable_declaration` would make a lot more sense if `while (!int.TryParse(value, out var parsed)) { } Console.WriteLine(parsed);` worked https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0018
 
+        //// TODO how are you going to know that there are new rules?
+        //// TODO keep this link somewhere https://github.com/dotnet/roslyn/blob/main/docs/roslyn-analyzers/README.md
         //// TODO as you're writing the articles, remove your comments and add links to the articles
         //// TODO as you're writing the articles, update any `NOTE` comments to not use the word "note"; it's only there as a reminder for yourself to include it as a comment and differentiate it from the comments that are article reminders
         //// TODO does `is_global=true` (https://github.com/dotnet/roslyn/issues/42219) help you ship a nuget package where the "purely style" rules are in a separate file? //// NOTE: the "global" configs don't apply rules that are under "section headers" (things like `[*.cs]`)
@@ -377,7 +379,7 @@ class C {
 
 
 
-        
+
 
 
 

@@ -978,14 +978,18 @@ dotnet_diagnostic.RS1002.severity = error # error because the thing straighup do
 
 # banned api analyzers
 
+# https://github.com/dotnet/roslyn/blob/main/src/RoslynAnalyzers/Microsoft.CodeAnalysis.BannedApiAnalyzers/Microsoft.CodeAnalysis.BannedApiAnalyzers.md
+# https://github.com/dotnet/roslyn/blob/main/src/RoslynAnalyzers/Microsoft.CodeAnalysis.BannedApiAnalyzers/BannedApiAnalyzers.Help.md
+
 # public api analyzers
 
+# https://github.com/dotnet/roslyn/blob/main/src/RoslynAnalyzers/PublicApiAnalyzers/PublicApiAnalyzers.Help.md
+# https://github.com/dotnet/roslyn/blob/main/src/RoslynAnalyzers/PublicApiAnalyzers/Microsoft.CodeAnalysis.PublicApiAnalyzers.md
 
 
 
 
 
-# TODO https://github.com/dotnet/roslyn/blob/main/docs/roslyn-analyzers/README.md
 
 
 
