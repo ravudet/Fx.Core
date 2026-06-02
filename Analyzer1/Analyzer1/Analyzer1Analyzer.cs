@@ -38,6 +38,10 @@ namespace Analyzer1
             }
         }
 
+        struct Foo
+        {
+        }
+
         public override void Initialize(AnalysisContext context)
         {
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
@@ -53,7 +57,7 @@ namespace Analyzer1
             ////SyntaxKind.SimpleMemberAccessExpression
             //// this is the expression type: https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.syntax.memberaccessexpressionsyntax?view=roslyn-dotnet-5.0.0
 
-            context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.LocalDeclarationStatement);
+            context.RegisterSyntaxNodeAction(AnalyzeNode, new Foo());
             ////context.RegisterSyntaxNodeAction(AnalyzeNode2, SyntaxKind.SimpleMemberAccessExpression);
             context.RegisterSyntaxNodeAction(AnalyzeNode3, SyntaxKind.InvocationExpression);
         }

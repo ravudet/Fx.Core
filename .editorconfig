@@ -978,6 +978,7 @@ dotnet_diagnostic.RS1002.severity = error # error because the thing straighup do
 dotnet_diagnostic.RS1003.severity # TODO you didn't look into this yet
 dotnet_diagnostic.RS1004.severity = suggestion # it's definitely good to look into, but i don't think it makes sense for the developer to need to test support for a language that they don't know; this is a huge burden for the developer; i'm making this a suggestion so that the developer looks into it, and if they know other languages, they can add support (which, according to the rule, should essentially be "free" aside from a test case or two in the new language), but if they don't they can just suppress it
 dotnet_diagnostic.RS1005.severity = error # error because the thing straighup doesn't work without it
+dotnet_diagnostic.RS1006.severity = error # TODO not working yet, try it with vb syntax kind: https://source.dot.net/#Microsoft.CodeAnalysis.VisualBasic/Syntax/SyntaxKind.vb,7d08d712fbf23e18
 # TODO finish these
 
 # banned api analyzers
