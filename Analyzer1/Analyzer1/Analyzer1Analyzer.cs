@@ -57,7 +57,8 @@ namespace Analyzer1
             ////SyntaxKind.SimpleMemberAccessExpression
             //// this is the expression type: https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.syntax.memberaccessexpressionsyntax?view=roslyn-dotnet-5.0.0
 
-            context.RegisterSyntaxNodeAction(AnalyzeNode, new Foo());
+            context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.LocalDeclarationStatement);
+            //context.RegisterSyntaxNodeAction(AnalyzeNode, (int)Microsoft.CodeAnalysis.VisualBasic.SyntaxKind.Attribute);
             ////context.RegisterSyntaxNodeAction(AnalyzeNode2, SyntaxKind.SimpleMemberAccessExpression);
             context.RegisterSyntaxNodeAction(AnalyzeNode3, SyntaxKind.InvocationExpression);
         }

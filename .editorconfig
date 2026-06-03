@@ -978,7 +978,8 @@ dotnet_diagnostic.RS1002.severity = error # error because the thing straighup do
 dotnet_diagnostic.RS1003.severity # TODO you didn't look into this yet
 dotnet_diagnostic.RS1004.severity = suggestion # it's definitely good to look into, but i don't think it makes sense for the developer to need to test support for a language that they don't know; this is a huge burden for the developer; i'm making this a suggestion so that the developer looks into it, and if they know other languages, they can add support (which, according to the rule, should essentially be "free" aside from a test case or two in the new language), but if they don't they can just suppress it
 dotnet_diagnostic.RS1005.severity = error # error because the thing straighup doesn't work without it
-dotnet_diagnostic.RS1006.severity = error # TODO not working yet, try it with vb syntax kind: https://source.dot.net/#Microsoft.CodeAnalysis.VisualBasic/Syntax/SyntaxKind.vb,7d08d712fbf23e18
+dotnet_diagnostic.RS1006.severity = error # error because it won't work without it; but this rule is implemented weird; if you create a new struct and give an instance of that, it won't give an error, but if you cast a `syntaxkind` to `int`, it *will* give an error; but also if you use a `Microsoft.CodeAnalysis.VisualBasic.SyntaxKind` it won't give an error despite the language specified only accommodating c#; not sure when it's actually meant to trigger
+dotnet_diagnostic.RS1007.severity = error # TODO i don't know what this is trying to trigger on
 # TODO finish these
 
 # banned api analyzers
