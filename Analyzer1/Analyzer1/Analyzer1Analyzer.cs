@@ -3,6 +3,7 @@ namespace Analyzer1
     using System;
     using System.Collections.Generic;
     using System.Collections.Immutable;
+    using System.Globalization;
     using System.Linq;
     using System.Reflection;
     using System.Security.Cryptography;
@@ -91,6 +92,7 @@ namespace Analyzer1
             // and ensure that it is not written outside of the data flow analysis region.
             VariableDeclaratorSyntax variable = localDeclaration.Declaration.Variables.Single();
             ISymbol variableSymbol = context.SemanticModel.GetDeclaredSymbol(variable, context.CancellationToken);
+
             if (dataFlowAnalysis.WrittenOutside.Contains(variableSymbol))
             {
                 return;
