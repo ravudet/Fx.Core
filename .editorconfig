@@ -982,6 +982,8 @@ dotnet_diagnostic.RS1006.severity = error # error because it won't work without 
 dotnet_diagnostic.RS1007.severity = error # TODO i don't know what this is trying to trigger on
 dotnet_diagnostic.RS1008.severity = error # TODO i don't know what this is trying to trigger on
 dotnet_diagnostic.RS1009.severity = warning # you can repro by just implementing `isymbol`; wanting to do this seems like an unusual thing to do, and pretty dangerous, so it should be easy to justify when it's actually needed; also, show off your interface with internal member trick for something roslyn could do to avoid this rule
+dotnet_diagnostic.RS1010.severity = error # TODO i don't know what this is trying to trigger on
+dotnet_diagnostic.RS1011.severity = error # TODO i don't know what this is trying to trigger on
 # TODO finish these
 
 # banned api analyzers
