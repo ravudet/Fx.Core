@@ -50,7 +50,11 @@ dotnet_diagnostic.IDE0003.severity = error
 
 
 
+            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Windows\WinSxS\wow64_msbuild_b03f5f7f11d50a3a_4.0.15912.0_none_07ea43e35ad4fd3b");
+
             Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+
+            ////Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
             await DoWork();
             
         }
