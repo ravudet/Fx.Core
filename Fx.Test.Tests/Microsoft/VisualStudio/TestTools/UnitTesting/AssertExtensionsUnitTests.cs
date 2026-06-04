@@ -261,6 +261,7 @@ class C {
         ////    spelling_use_default_exclusion_dictionary = false
         //// TODO i think `csharp_style_inlined_variable_declaration` would make a lot more sense if `while (!int.TryParse(value, out var parsed)) { } Console.WriteLine(parsed);` worked https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/style-rules/ide0018
 
+        //// TODO the editorconfig needs to note if an error is because of ignorance so that the person who encounters it can know if they need to investigate the rule; you want this part in source control
         //// TODO how are you going to know that there are new rules?
         //// TODO keep this link somewhere https://github.com/dotnet/roslyn/blob/main/docs/roslyn-analyzers/README.md
         //// TODO as you're writing the articles, remove your comments and add links to the articles
