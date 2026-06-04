@@ -51,7 +51,7 @@ dotnet_diagnostic.IDE0003.severity = error
 
 
 
-            //// TODO even though you've ide-only triggering on build, some of them (like file header) aren't triggering; they *do* trigger on `dotnet build` though, which makes me think that you're just not loading that analyzer somehow
+            //// TODO even though you've ide-only triggering on build, some of them (like file header) aren't triggering; they *do* trigger on `dotnet build` though, which makes me think that you're just not loading that analyzer somehow //// TODO and you confirmed that a change to 1052 in the `.editorconfig` was reflected in the compiler diagnostics
 
 
 
