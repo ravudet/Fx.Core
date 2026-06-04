@@ -48,6 +48,16 @@ root = true
 dotnet_diagnostic.IDE0003.severity = error
 """;
 
+
+
+            Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+            await DoWork();
+            
+        }
+
+        public static async Task DoWork()
+        {
+            await OpenSolution();
             var code = @"
 internal class C
 {
@@ -59,16 +69,6 @@ internal class C
     }
 }
 ";
-
-            Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
-            await DoWork();
-            
-        }
-
-        public static async Task DoWork()
-        {
-            await OpenSolution();
-
             var project = CreateProjectWithEditorConfig(code, @"C:\github\OddTrotter\Fx.Core\.editorconfig");
 
             var diagnostics = await RunAnalyzersAsync(
