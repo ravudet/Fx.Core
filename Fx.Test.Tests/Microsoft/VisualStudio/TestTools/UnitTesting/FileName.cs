@@ -50,10 +50,10 @@ dotnet_diagnostic.IDE0003.severity = error
 
 
 
-            
+
             ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin");
             ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64");
-            
+
             //Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\9.0.314");
 
             ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\9.0.314\Containers\containerize");
@@ -76,7 +76,9 @@ dotnet_diagnostic.IDE0003.severity = error
             ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Windows\Microsoft.NET\Framework64\v4.0.30319");
             ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Windows\WinSxS\amd64_msbuild_b03f5f7f11d50a3a_4.0.15912.0_none_de1bfcc9998a681e");
 
-            ////var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+            
+
+            var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
 
 
             ////Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
@@ -136,11 +138,11 @@ internal class C
 
             var solution = await workspace.OpenSolutionAsync(solutionPath);
 
-            var project = solution.Projects.Where(project => project.Name == "Fx.Test.Tests").First();
+            var project = solution.Projects.Where(project => project.Name == "ClassLibrary1").First();
 
             solution = solution.WithProjectCompilationOptions(project.Id, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
-            project = solution.Projects.Where(project => project.Name == "Fx.Test.Tests").First();
+            project = solution.Projects.Where(project => project.Name == "ClassLibrary1").First();
 
             var compilation = await project.GetCompilationAsync();
             var withAnalyzers = compilation.WithAnalyzers(LoadAll());
