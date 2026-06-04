@@ -51,6 +51,12 @@ dotnet_diagnostic.IDE0003.severity = error
 
 
 
+            //// TODO even though you've ide-only triggering on build, some of them (like file header) aren't triggering; they *do* trigger on `dotnet build` though, which makes me think that you're just not loading that analyzer somehow
+
+
+
+
+
             ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin");
             ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64");
 
