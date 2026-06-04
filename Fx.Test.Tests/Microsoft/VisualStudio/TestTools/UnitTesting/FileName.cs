@@ -60,6 +60,13 @@ internal class C
 }
 ";
 
+            Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+            await DoWork();
+            
+        }
+
+        public static async Task DoWork()
+        {
             await OpenSolution();
 
             var project = CreateProjectWithEditorConfig(code, @"C:\github\OddTrotter\Fx.Core\.editorconfig");
@@ -86,7 +93,7 @@ internal class C
         public static async Task OpenSolution()
         {
             // TODO this has to be called before the other types are loaded by the runtime, so it needs to be outside of the method (ostensibly)
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+            ////
 
             var solutionPath = @"C:\github\OddTrotter\Fx.Core\Fx.Core.sln";
             //// TODO package `Microsoft.CodeAnalysis.Workspaces.MSBuild` actually depends on `Microsoft.Build`
