@@ -6,6 +6,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Reflection;
@@ -40,7 +41,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             string workingDirectory,
             Stream editorConfigContents,
             Stream projectContents,
-            params (string FilePath, Stream FileContents)[] files)
+            params (string FilePathRelativeToProjectRoot, Stream FileContents)[] files)
         {
             // returns the path to the solution file
 
@@ -52,16 +53,32 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
                 await editorConfigContents.CopyToAsync(editorConfigFile).ConfigureAwait(false);
             }
 
-            var projectPath = Path.Combine(solutionPath, "Project", "Project.csproj");
+            var projectName = "Project";
+            var projectRelativePath = Path.Combine(projectName, $"{projectName}.csproj");
+            var projectPath = Path.Combine(solutionPath, projectRelativePath);
             using (var projectFile = CreateFileWrite(projectPath))
             {
                 await projectContents.CopyToAsync(projectFile).ConfigureAwait(false);
             }
 
-            var solutionPath = Path.Combine(solutionPath, "solution.sln");
+            var solutionPath = Path.Combine(workingDirectory, "solution.sln");
             using (var solutionFile = CreateFileWrite(solutionPath))
             {
+                using (var textWriter = new StreamWriter(solutionFile))
+                {
+                    await textWriter.WriteLineAsync(
+"""
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+"""
+                        ).ConfigureAwait(false);
+                    await textWriter
+                        .WriteLineAsync($"Project(\"{{00000000-0000-0000-0000-000000000000}}\") = \"{projectName}\", \"{projectRelativePath}\", \"{{00000000-0000-0000-0000-000000000001}}\"")
+                        .ConfigureAwait(false);
 
+                }
             }
 
 
