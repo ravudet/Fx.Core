@@ -74,11 +74,11 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 """
                         ).ConfigureAwait(false);
-                    await textWriter
-                        .WriteLineAsync(
-$$"""Project(\"{00000000-0000-0000-0000-000000000000}\") = \"{projectName}\", \"{{projectRelativePath}}\", \"{00000000-0000-0000-0000-000000000001}\"
-"""")
-                        .ConfigureAwait(false);
+                    await textWriter.WriteLineAsync(
+$$"""
+Project("{00000000-0000-0000-0000-000000000000}") = "{{projectName}}", "{{projectRelativePath}}", "{00000000-0000-0000-0000-000000000001}"
+"""
+                        ).ConfigureAwait(false);
 
                 }
             }
