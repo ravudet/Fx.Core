@@ -38,21 +38,27 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     {
         private static async Task<string> SetupSolution(
             string workingDirectory,
-            Stream projectContents,
             Stream editorConfigContents,
+            Stream projectContents,
             params (string FilePath, Stream FileContents)[] files)
         {
             // returns the path to the solution file
 
-            
+            var solutionPath = Path.Combine(workingDirectory, "solution");
 
-            var projectPath = Path.Combine(workingDirectory, "Project", "Project.csproj");
+            var editorConfigPath = Path.Combine(solutionPath, ".editorconfig");
+            using (var editorConfigFile = CreateFileWrite(editorConfigPath))
+            {
+                await editorConfigContents.CopyToAsync(editorConfigFile).ConfigureAwait(false);
+            }
+
+            var projectPath = Path.Combine(solutionPath, "Project", "Project.csproj");
             using (var projectFile = CreateFileWrite(projectPath))
             {
                 await projectContents.CopyToAsync(projectFile).ConfigureAwait(false);
             }
 
-            var solutionPath = Path.Combine(workingDirectory, "solution.sln");
+            var solutionPath = Path.Combine(solutionPath, "solution.sln");
             using (var solutionFile = CreateFileWrite(solutionPath))
             {
 
