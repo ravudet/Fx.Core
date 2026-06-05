@@ -84,10 +84,6 @@ dotnet_diagnostic.IDE0003.severity = error
             ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Windows\WinSxS\amd64_msbuild_b03f5f7f11d50a3a_4.0.15912.0_none_de1bfcc9998a681e");
 
             
-
-            var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
-
-
             ////Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
             await DoWork();
             
@@ -122,8 +118,8 @@ internal class C
             {
                 @"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll",
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.Analyzers.dll",
-                @"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
-                @"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.dll",
+                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
+                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.dll",
             };
 
             ////var assembly = Assembly.Load(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll");
@@ -143,7 +139,10 @@ internal class C
 
         public static async Task OpenSolution()
         {
-            // TODO this has to be called before the other types are loaded by the runtime, so it needs to be outside of the method (ostensibly)
+            //// TODO there is a superstition that this has to be called outside of the first method that uses the msbuild types; this is clearly not true, as demonstrated here
+            var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+
+
             ////
 
             var solutionPath = @"C:\github\OddTrotter\Fx.Core\Fx.Core.sln";
