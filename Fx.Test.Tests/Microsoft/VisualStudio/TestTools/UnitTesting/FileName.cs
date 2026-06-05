@@ -45,9 +45,9 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
         {
             // returns the path to the solution file
 
-            var solutionPath = Path.Combine(workingDirectory, "solution");
+            var repositoryPath = Path.Combine(workingDirectory, "solution");
 
-            var editorConfigPath = Path.Combine(solutionPath, ".editorconfig");
+            var editorConfigPath = Path.Combine(repositoryPath, ".editorconfig");
             using (var editorConfigFile = CreateFileWrite(editorConfigPath))
             {
                 await editorConfigContents.CopyToAsync(editorConfigFile).ConfigureAwait(false);
@@ -55,13 +55,13 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
 
             var projectName = "Project";
             var projectRelativePath = Path.Combine(projectName, $"{projectName}.csproj");
-            var projectPath = Path.Combine(solutionPath, projectRelativePath);
+            var projectPath = Path.Combine(repositoryPath, projectRelativePath);
             using (var projectFile = CreateFileWrite(projectPath))
             {
                 await projectContents.CopyToAsync(projectFile).ConfigureAwait(false);
             }
 
-            var solutionPath = Path.Combine(workingDirectory, "solution.sln");
+            var solutionPath = Path.Combine(repositoryPath, "solution.sln");
             using (var solutionFile = CreateFileWrite(solutionPath))
             {
                 using (var textWriter = new StreamWriter(solutionFile))
@@ -75,7 +75,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 """
                         ).ConfigureAwait(false);
                     await textWriter
-                        .WriteLineAsync($"Project(\"{{00000000-0000-0000-0000-000000000000}}\") = \"{projectName}\", \"{projectRelativePath}\", \"{{00000000-0000-0000-0000-000000000001}}\"")
+                        .WriteLineAsync(
+$$"""Project(\"{00000000-0000-0000-0000-000000000000}\") = \"{projectName}\", \"{{projectRelativePath}}\", \"{00000000-0000-0000-0000-000000000001}\"
+"""")
                         .ConfigureAwait(false);
 
                 }
