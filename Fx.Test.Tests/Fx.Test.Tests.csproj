@@ -66,4 +66,12 @@
     <PackageReference Update="MSTest.TestFramework" Version="4.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="content\Project.csproj" />
+  </ItemGroup>
+
 </Project>

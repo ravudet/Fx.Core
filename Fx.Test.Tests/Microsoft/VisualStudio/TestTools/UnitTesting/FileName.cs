@@ -36,9 +36,75 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     [TestClass]
     public class EditorConfigTests2
     {
+        private static async Task<string> SetupSolution(
+            string workingDirectory,
+            Stream projectContents,
+            Stream editorConfigContents,
+            params (string FilePath, Stream FileContents)[] files)
+        {
+            // returns the path to the solution file
+
+            
+
+            var projectPath = Path.Combine(workingDirectory, "Project", "Project.csproj");
+            using (var projectFile = CreateFileWrite(projectPath))
+            {
+                await projectContents.CopyToAsync(projectFile).ConfigureAwait(false);
+            }
+
+            var solutionPath = Path.Combine(workingDirectory, "solution.sln");
+            using (var solutionFile = CreateFileWrite(solutionPath))
+            {
+
+            }
+
+
+
+                return Path.Combine(workingDirectory, "solution.sln");
+        }
+
+        private static Stream CreateFileWrite(string filePath)
+        {
+            return OpenFileWrite(filePath, FileMode.CreateNew);
+        }
+
+        private static Stream OpenFileWrite(string filePath, FileMode fileMode)
+        {
+            return OpenFile(filePath, fileMode, FileAccess.Write, FileShare.None);
+        }
+
+        private static Stream OpenFile(string filePath, FileMode fileMode, FileAccess fileAccess, FileShare fileShare)
+        {
+            var directoryPath = Path.GetDirectoryName(filePath);
+            while (true)
+            {
+                try
+                {
+                    return File.Open(filePath, fileMode, fileAccess, fileShare);
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+            }
+        }
+
+        public TestContext TestContext { get; set; } //// TODO does it have to be public?
+
         [TestMethod]
         public async Task Foo2()
         {
+            var workingDirectory = Path.Combine(this.TestContext.TestResultsDirectory, nameof(Foo2));
+
+
+
+            Directory.Delete(workingDirectory, true);
+
+
+
+
+
+
             var config =
 """
 root = true
