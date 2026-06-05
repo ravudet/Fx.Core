@@ -3,6 +3,7 @@
 namespace Microsoft.VisualStudio.TestTools.UnitTesting
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -98,11 +99,11 @@ dotnet_diagnostic.IDE0003.severity = error
             var code = @"
 internal class C
 {
-    private int __x;
+    private static int __x;
 
-    void M()
+    static void M()
     {
-        this.__x = 1; // unnecessary 'this', should trigger IDE0003
+        __x = 1; // unnecessary 'this', should trigger IDE0003
     }
 }
 ";
@@ -117,14 +118,27 @@ internal class C
 
         public static ImmutableArray<DiagnosticAnalyzer> LoadAll()
         {
-            var assembly = Assembly.LoadFrom(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll");
+            var paths = new[]
+            {
+                @"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll",
+                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.Analyzers.dll",
+                @"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
+                @"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.dll",
+            };
+
             ////var assembly = Assembly.Load(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll");
+
+            return paths.SelectMany(path => Load(path)).ToImmutableArray();
+        }
+
+        public static IEnumerable<DiagnosticAnalyzer> Load(string assemblyPath)
+        {
+            var assembly = Assembly.LoadFrom(assemblyPath);
 
             return assembly
                 .GetTypes()
                 .Where(t => typeof(DiagnosticAnalyzer).IsAssignableFrom(t) && !t.IsAbstract)
-                .Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!)
-                .ToImmutableArray();
+                .Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
         }
 
         public static async Task OpenSolution()
@@ -189,7 +203,7 @@ internal class C
             project = project.AddAnalyzerConfigDocument(
                 ".editorconfig",
                 editorConfigText,
-                filePath: Path.Combine(solution.FilePath, ".editorConfig")).Project;
+                filePath: editorConfigPath).Project;
 
             project = project.AddAnalyzerReference(reference);
 
