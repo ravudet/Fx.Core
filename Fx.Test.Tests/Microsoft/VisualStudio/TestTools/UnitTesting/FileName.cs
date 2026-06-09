@@ -67,19 +67,38 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
                 using (var textWriter = new StreamWriter(solutionFile))
                 {
                     await textWriter.WriteLineAsync(
-"""
+$$"""
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00000000-0000-0000-0000-000000000001}") = "{{projectName}}", "{{projectRelativePath}}", "{10000000-0000-0000-0000-000000000000}"
+EndProject
+Project("{00000000-0000-0000-0000-000000000002}") = "Solution Items", "Solution Items", "{20000000-0000-0000-0000-000000000000}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10000000-0000-0000-0000-000000000000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10000000-0000-0000-0000-000000000000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10000000-0000-0000-0000-000000000000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10000000-0000-0000-0000-000000000000}.Release|Any CPU.Build.0 = Release|Any CPU
+    EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {938EAC26-C20C-48C0-B5F6-0B535D593D6B}
+	EndGlobalSection
+EndGlobal
 """
                         ).ConfigureAwait(false);
-                    await textWriter.WriteLineAsync(
-$$"""
-Project("{00000000-0000-0000-0000-000000000000}") = "{{projectName}}", "{{projectRelativePath}}", "{00000000-0000-0000-0000-000000000001}"
-"""
-                        ).ConfigureAwait(false);
-
                 }
             }
 
