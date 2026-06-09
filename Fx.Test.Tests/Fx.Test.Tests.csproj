@@ -67,10 +67,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Content\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="..\.editorconfig" Link="Content\.editorconfig" />
     <EmbeddedResource Include="content\Project.csproj" />
   </ItemGroup>

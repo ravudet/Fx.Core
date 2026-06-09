@@ -141,6 +141,34 @@ EndGlobal
 
         public TestContext TestContext { get; set; } //// TODO does it have to be public?
 
+        private static string CombineResourcePath(params string[] paths)
+        {
+            return Path.Combine(paths).Replace(Path.PathSeparator, '.');
+        }
+
+        private const string EmbeddedResourceRootPath = "Content";
+
+        [TestMethod]
+        public async Task Foo3()
+        {
+            var workingDirectory = Path.Combine(this.TestContext.TestResultsDirectory, nameof(Foo2));
+
+            var assembly = typeof(EditorConfigTests2).Assembly;
+            using (var editorConfigContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, ".editorconfig")))
+            using (var projectContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Project.csproj")))
+            using (var fileContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Foo3.cs")))
+            {
+                var solutionPath = await SetupSolution(
+                    workingDirectory,
+                    editorConfigContents,
+                    projectContents,
+                    ("Class1.cs", fileContents)).ConfigureAwait(false);
+            }
+
+
+            Directory.Delete(workingDirectory, true);
+        }
+
         [TestMethod]
         public async Task Foo2()
         {
