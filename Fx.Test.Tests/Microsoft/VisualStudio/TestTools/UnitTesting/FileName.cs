@@ -74,7 +74,7 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00000000-0000-0000-0000-000000000001}") = "{{projectName}}", "{{projectRelativePath}}", "{10000000-0000-0000-0000-000000000000}"
 EndProject
-Project("{00000000-0000-0000-0000-000000000002}") = "Solution Items", "Solution Items", "{20000000-0000-0000-0000-000000000000}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
