@@ -153,24 +153,56 @@ EndGlobal
         {
             var workingDirectory = Path.Combine(this.TestContext.TestResultsDirectory, nameof(Foo2));
 
+            string solutionPath;
+
             var assembly = typeof(EditorConfigTests2).Assembly;
-
-
-            var resources = assembly.GetManifestResourceNames();
-
             using (var editorConfigContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, ".editorconfig")))
             using (var projectContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Project.csproj")))
             using (var fileContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Foo3.cs")))
             {
-                var solutionPath = await SetupSolution(
+                solutionPath = await SetupSolution(
                     workingDirectory,
                     editorConfigContents,
                     projectContents,
                     ("Class1.cs", fileContents)).ConfigureAwait(false);
             }
 
+            //// TODO productize `loadall`; in fact, you generally hate this sort of thing and prefer precision, like knowing the exact analyzer this test will use
+            await CompileSolution(solutionPath, LoadAll()).ConfigureAwait(false);
 
             Directory.Delete(workingDirectory, true);
+        }
+
+        public static async Task CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers)
+        {
+            //// TODO there is a superstition that this has to be called outside of the first method that uses the msbuild types; this is clearly not true, as demonstrated here
+            var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+
+
+            ////
+
+            ////var solutionPath = @"C:\github\OddTrotter\Fx.Core\Fx.Core.sln";
+            //// TODO package `Microsoft.CodeAnalysis.Workspaces.MSBuild` actually depends on `Microsoft.Build`
+            var workspace = MSBuildWorkspace.Create();
+
+            /*var loader = new MSBuildProjectLoader(workspace);
+            var solutionInfo = await loader.LoadSolutionInfoAsync(solutionPath);
+
+
+            var projectInfo = await loader.LoadProjectInfoAsync(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Fx.Test.Tests.csproj");*/
+
+            var solution = await workspace.OpenSolutionAsync(solutionPath);
+
+            var project = solution.Projects.Where(project => project.Name == "ClassLibrary1").First();
+
+            solution = solution.WithProjectCompilationOptions(project.Id, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+
+            project = solution.Projects.Where(project => project.Name == "ClassLibrary1").First();
+
+            var compilation = await project.GetCompilationAsync();
+            var withAnalyzers = compilation.WithAnalyzers(LoadAll());
+            //var diagnostics = compilation.GetDiagnostics();
+            var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
         }
 
         [TestMethod]
