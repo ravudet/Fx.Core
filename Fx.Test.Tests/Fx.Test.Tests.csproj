@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Content\Foo3.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Build" Version="16.10.0">
       <ExcludeAssets>runtime</ExcludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -68,7 +72,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="..\.editorconfig" Link="Content\.editorconfig" />
-    <EmbeddedResource Include="content\Project.csproj" />
+    <EmbeddedResource Include="Content\Foo3.cs" />
+    <EmbeddedResource Include="Content\Project.csproj" />
   </ItemGroup>
 
 </Project>

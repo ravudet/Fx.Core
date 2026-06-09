@@ -143,7 +143,7 @@ EndGlobal
 
         private static string CombineResourcePath(params string[] paths)
         {
-            return Path.Combine(paths).Replace(Path.PathSeparator, '.');
+            return Path.Combine(paths).Replace(Path.DirectorySeparatorChar, '.');
         }
 
         private const string EmbeddedResourceRootPath = "Content";
@@ -154,6 +154,10 @@ EndGlobal
             var workingDirectory = Path.Combine(this.TestContext.TestResultsDirectory, nameof(Foo2));
 
             var assembly = typeof(EditorConfigTests2).Assembly;
+
+
+            var resources = assembly.GetManifestResourceNames();
+
             using (var editorConfigContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, ".editorconfig")))
             using (var projectContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Project.csproj")))
             using (var fileContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Foo3.cs")))
