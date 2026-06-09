@@ -48,17 +48,17 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             var repositoryPath = Path.Combine(workingDirectory, "solution");
 
             var editorConfigPath = Path.Combine(repositoryPath, ".editorconfig");
-            using (var editorConfigFile = CreateFileWrite(editorConfigPath))
-            {
-                await editorConfigContents.CopyToAsync(editorConfigFile).ConfigureAwait(false);
-            }
+            await WriteAllContents(editorConfigPath, editorConfigContents).ConfigureAwait(false)
 
             var projectName = "Project";
             var projectRelativePath = Path.Combine(projectName, $"{projectName}.csproj");
             var projectPath = Path.Combine(repositoryPath, projectRelativePath);
-            using (var projectFile = CreateFileWrite(projectPath))
+            await WriteAllContents(projectPath, projectContents).ConfigureAwait(false);
+            var projectRootPath = Path.GetDirectoryName(projectPath);
+            foreach (var file in files)
             {
-                await projectContents.CopyToAsync(projectFile).ConfigureAwait(false);
+                var filePath = Path.Combine(projectRootPath, file.FilePathRelativeToProjectRoot);
+                await WriteAllContents(filePath, file.FileContents).ConfigureAwait(false);
             }
 
             var solutionPath = Path.Combine(repositoryPath, "solution.sln");
@@ -102,9 +102,15 @@ EndGlobal
                 }
             }
 
+            return solutionPath;
+        }
 
-
-                return Path.Combine(workingDirectory, "solution.sln");
+        private static async Task WriteAllContents(string filePath, Stream contents)
+        {
+            using (var file = CreateFileWrite(filePath))
+            {
+                await contents.CopyToAsync(file).ConfigureAwait(false);
+            }
         }
 
         private static Stream CreateFileWrite(string filePath)
