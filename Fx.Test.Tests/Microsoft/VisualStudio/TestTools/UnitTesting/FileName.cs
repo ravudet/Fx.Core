@@ -48,7 +48,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             var repositoryPath = Path.Combine(workingDirectory, "solution");
 
             var editorConfigPath = Path.Combine(repositoryPath, ".editorconfig");
-            await WriteAllContents(editorConfigPath, editorConfigContents).ConfigureAwait(false)
+            await WriteAllContents(editorConfigPath, editorConfigContents).ConfigureAwait(false);
 
             var projectName = "Project";
             var projectRelativePath = Path.Combine(projectName, $"{projectName}.csproj");
