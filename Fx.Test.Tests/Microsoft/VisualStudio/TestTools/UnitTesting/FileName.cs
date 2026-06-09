@@ -173,7 +173,7 @@ EndGlobal
             Directory.Delete(workingDirectory, true);
         }
 
-        public static async Task CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers)
+        public static async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic>)> CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers)
         {
             //// TODO there is a superstition that this has to be called outside of the first method that uses the msbuild types; this is clearly not true, as demonstrated here
             var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
@@ -192,6 +192,14 @@ EndGlobal
             var projectInfo = await loader.LoadProjectInfoAsync(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Fx.Test.Tests.csproj");*/
 
             var solution = await workspace.OpenSolutionAsync(solutionPath);
+            foreach (var project in solution.Projects)
+            {
+                var compilation = await project.GetCompilationAsync();
+                var withAnalyzers = compilation.WithAnalyzers(LoadAll());
+                //var diagnostics = compilation.GetDiagnostics();
+                var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
+            }
+
 
             var project = solution.Projects.Where(project => project.Name == "ClassLibrary1").First();
 
