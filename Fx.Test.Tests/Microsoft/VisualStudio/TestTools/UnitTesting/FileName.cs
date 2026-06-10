@@ -10,6 +10,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
     using Foo;
@@ -168,12 +169,14 @@ EndGlobal
             }
 
             //// TODO productize `loadall`; in fact, you generally hate this sort of thing and prefer precision, like knowing the exact analyzer this test will use
-            await CompileSolution(solutionPath, LoadAll()).ConfigureAwait(false);
+            var diagnostics = CompileSolution(solutionPath, LoadAll()).SelectMany(project => project.Diagnostics);
+
+            diagnostics.First
 
             Directory.Delete(workingDirectory, true);
         }
 
-        public static async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic>)> CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers)
+        public static async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic> Diagnostics)> CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers)
         {
             //// TODO there is a superstition that this has to be called outside of the first method that uses the msbuild types; this is clearly not true, as demonstrated here
             var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
@@ -198,10 +201,12 @@ EndGlobal
                 var withAnalyzers = compilation.WithAnalyzers(LoadAll());
                 //var diagnostics = compilation.GetDiagnostics();
                 var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
+
+                yield return (project.Id.Id.ToString(), diagnostics);
             }
 
 
-            var project = solution.Projects.Where(project => project.Name == "ClassLibrary1").First();
+            /*var project = solution.Projects.Where(project => project.Name == "ClassLibrary1").First();
 
             solution = solution.WithProjectCompilationOptions(project.Id, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
@@ -210,7 +215,7 @@ EndGlobal
             var compilation = await project.GetCompilationAsync();
             var withAnalyzers = compilation.WithAnalyzers(LoadAll());
             //var diagnostics = compilation.GetDiagnostics();
-            var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
+            var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();*/
         }
 
         [TestMethod]
@@ -407,6 +412,45 @@ internal class C
             var withAnalyzers = compilation!.WithAnalyzers(analyzers.ToImmutableArray());
             return await withAnalyzers.GetAllDiagnosticsAsync();
             //return await withAnalyzers.GetAnalyzerDiagnosticsAsync();
+        }
+    }
+
+    public static class AsyncEnumerableExtensions
+    {
+        public static async IAsyncEnumerable<TResult> SelectMany<TSource, TResult>(
+            this IAsyncEnumerable<TSource> source,
+            Func<TSource, IEnumerable<TResult>> selector)
+        {
+            await foreach (var element in source.ConfigureAwait(false))
+            {
+                foreach (var selectedElement in selector(element))
+                {
+                    yield return selectedElement;
+                }
+            }
+        }
+
+        public static async Task<TElement> First<TElement>(
+            this IAsyncEnumerable<TElement> source)
+        {
+            IAsyncEnumerator<TElement>? enumerator = null; //// TODO figure out a way to not need all of this boilerplate
+            try
+            {
+                enumerator = source.GetAsyncEnumerator();
+                if (!await enumerator.MoveNextAsync().ConfigureAwait(false))
+                {
+                    throw new InvalidOperationException("TODO");
+                }
+
+                return enumerator.Current;
+            }
+            finally
+            {
+                if (enumerator != null)
+                {
+                    await enumerator.DisposeAsync().ConfigureAwait(false);
+                }
+            }
         }
     }
 }
