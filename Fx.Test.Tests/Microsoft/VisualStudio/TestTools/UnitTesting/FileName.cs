@@ -171,7 +171,7 @@ EndGlobal
             //// TODO productize `loadall`; in fact, you generally hate this sort of thing and prefer precision, like knowing the exact analyzer this test will use
             var diagnostics = CompileSolution(solutionPath, LoadAll()).SelectMany(project => project.Diagnostics);
 
-            diagnostics.First
+            var diagnostic = diagnostics.Where(diagnostic => diagnostic.Id == "TODO").First();
 
             Directory.Delete(workingDirectory, true);
         }
@@ -426,6 +426,19 @@ internal class C
                 foreach (var selectedElement in selector(element))
                 {
                     yield return selectedElement;
+                }
+            }
+        }
+
+        public static async IAsyncEnumerable<TElement> Where<TElement>(
+            this IAsyncEnumerable<TElement> source,
+            Func<TElement, bool> predicate)
+        {
+            await foreach (var element in source.ConfigureAwait(false))
+            {
+                if (predicate(element))
+                {
+                    yield return element;
                 }
             }
         }
