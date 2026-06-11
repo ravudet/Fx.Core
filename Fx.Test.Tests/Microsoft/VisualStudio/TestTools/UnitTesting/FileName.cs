@@ -249,58 +249,6 @@ EndGlobal
                 .Where(t => typeof(DiagnosticAnalyzer).IsAssignableFrom(t) && !t.IsAbstract)
                 .Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
         }
-
-        public static Project CreateProjectWithEditorConfig(
-        string code,
-        string editorConfigPath,
-        string projectName = "TestProject")
-        {
-            var workspace = new AdhocWorkspace();
-
-            var editorConfigText = SourceText.From(File.ReadAllText(editorConfigPath));
-
-
-            var projectId = ProjectId.CreateNewId();
-            var solution = workspace.CurrentSolution
-                .AddProject(projectId, projectName, projectName, LanguageNames.CSharp)
-                .WithProjectCompilationOptions(
-                    projectId,
-                    new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
-
-            var project = solution.GetProject(projectId)!;
-
-            // Add references (you can add more as needed)
-            project = project.AddMetadataReference(
-                MetadataReference.CreateFromFile(typeof(object).Assembly.Location));
-
-            // Add source document
-            project = project.AddDocument("Test.cs", SourceText.From(code)).Project;
-
-            // Add .editorconfig as analyzer config document
-
-            var reference = new AnalyzerImageReference(LoadAll());
-
-            project = project.AddAnalyzerConfigDocument(
-                ".editorconfig",
-                editorConfigText,
-                filePath: editorConfigPath).Project;
-
-            project = project.AddAnalyzerReference(reference);
-
-            return project;
-        }
-
-        public static async Task<ImmutableArray<Diagnostic>> RunAnalyzersAsync(
-            Project project,
-            params DiagnosticAnalyzer[] analyzers)
-        {
-
-            var compilation = await project.GetCompilationAsync();
-
-            var withAnalyzers = compilation!.WithAnalyzers(analyzers.ToImmutableArray());
-            return await withAnalyzers.GetAllDiagnosticsAsync();
-            //return await withAnalyzers.GetAnalyzerDiagnosticsAsync();
-        }
     }
 
     public static class AsyncEnumerableExtensions
@@ -344,24 +292,6 @@ EndGlobal
                 }
 
                 return enumerator.Current;
-            }
-            finally
-            {
-                if (enumerator != null)
-                {
-                    await enumerator.DisposeAsync().ConfigureAwait(false);
-                }
-            }
-        }
-
-        public static async Task<bool> Any<TElement>(
-            this IAsyncEnumerable<TElement> source)
-        {
-            IAsyncEnumerator<TElement>? enumerator = null; //// TODO figure out a way to not need all of this boilerplate
-            try
-            {
-                enumerator = source.GetAsyncEnumerator();
-                return await enumerator.MoveNextAsync().ConfigureAwait(false);
             }
             finally
             {
