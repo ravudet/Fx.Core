@@ -152,6 +152,8 @@ EndGlobal
         [TestMethod]
         public async Task Foo3()
         {
+            //// TODO even though you've enabled ide-only triggering on build, some of them (like file header) aren't triggering; they *do* trigger on `dotnet build` though, which makes me think that you're just not loading that analyzer somehow //// TODO and you confirmed that a change to 1052 in the `.editorconfig` was reflected in the compiler diagnostics
+
             var workingDirectory = Path.Combine(this.TestContext.DeploymentDirectory, nameof(Foo3));
 
             string solutionPath;
@@ -222,92 +224,6 @@ EndGlobal
             var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();*/
         }
 
-        [TestMethod]
-        public async Task Foo2()
-        {
-            var workingDirectory = Path.Combine(this.TestContext.TestResultsDirectory, nameof(Foo2));
-
-
-
-            Directory.Delete(workingDirectory, true);
-
-
-
-
-
-
-            var config =
-"""
-root = true
-
-[*.cs]
-
-# IDE0003: Remove 'this' qualification
-dotnet_diagnostic.IDE0003.severity = error
-""";
-
-
-
-
-            //// TODO even though you've ide-only triggering on build, some of them (like file header) aren't triggering; they *do* trigger on `dotnet build` though, which makes me think that you're just not loading that analyzer somehow //// TODO and you confirmed that a change to 1052 in the `.editorconfig` was reflected in the compiler diagnostics
-
-
-
-
-
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64");
-
-            //Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\9.0.314");
-
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\9.0.314\Containers\containerize");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\9.0.314\DotnetTools\dotnet-watch\9.0.314-servicing.26230.9\tools\net9.0\any");
-
-            //Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\9.0.301");
-
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\9.0.301\Containers\containerize");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\9.0.301\DotnetTools\dotnet-watch\9.0.301-servicing.25269.4\tools\net9.0\any");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64");
-
-            //Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\9.0.102");
-
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Program Files\dotnet\sdk\9.0.102\Containers\containerize");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Windows\Microsoft.NET\assembly\GAC_32\MSBuild\v4.0_4.0.0.0__b03f5f7f11d50a3a");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Windows\Microsoft.NET\Framework\v4.0.30319");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Windows\WinSxS\wow64_msbuild_b03f5f7f11d50a3a_4.0.15912.0_none_07ea43e35ad4fd3b");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Windows\Microsoft.NET\assembly\GAC_64\MSBuild\v4.0_4.0.0.0__b03f5f7f11d50a3a");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Windows\Microsoft.NET\Framework64\v4.0.30319");
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterMSBuildPath(@"C:\Windows\WinSxS\amd64_msbuild_b03f5f7f11d50a3a_4.0.15912.0_none_de1bfcc9998a681e");
-
-            
-            ////Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
-            await DoWork();
-            
-        }
-
-        public static async Task DoWork()
-        {
-            await OpenSolution();
-            var code = @"
-internal class C
-{
-    private static int __x;
-
-    static void M()
-    {
-        __x = 1; // unnecessary 'this', should trigger IDE0003
-    }
-}
-";
-            var project = CreateProjectWithEditorConfig(code, @"C:\github\OddTrotter\Fx.Core\.editorconfig");
-
-            var diagnostics = await RunAnalyzersAsync(
-                project,
-                LoadAll().ToArray());
-
-            Assert.IsTrue(diagnostics.Any(d => d.Id == "IDE0003"));
-        }
 
         public static ImmutableArray<DiagnosticAnalyzer> LoadAll()
         {
