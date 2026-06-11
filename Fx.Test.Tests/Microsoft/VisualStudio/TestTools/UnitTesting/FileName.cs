@@ -250,38 +250,6 @@ EndGlobal
                 .Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
         }
 
-        public static async Task OpenSolution()
-        {
-            //// TODO there is a superstition that this has to be called outside of the first method that uses the msbuild types; this is clearly not true, as demonstrated here
-            var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
-
-
-            ////
-
-            var solutionPath = @"C:\github\OddTrotter\Fx.Core\Fx.Core.sln";
-            //// TODO package `Microsoft.CodeAnalysis.Workspaces.MSBuild` actually depends on `Microsoft.Build`
-            var workspace = MSBuildWorkspace.Create();
-
-            /*var loader = new MSBuildProjectLoader(workspace);
-            var solutionInfo = await loader.LoadSolutionInfoAsync(solutionPath);
-
-
-            var projectInfo = await loader.LoadProjectInfoAsync(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Fx.Test.Tests.csproj");*/
-
-            var solution = await workspace.OpenSolutionAsync(solutionPath);
-
-            var project = solution.Projects.Where(project => project.Name == "ClassLibrary1").First();
-
-            solution = solution.WithProjectCompilationOptions(project.Id, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
-
-            project = solution.Projects.Where(project => project.Name == "ClassLibrary1").First();
-
-            var compilation = await project.GetCompilationAsync();
-            var withAnalyzers = compilation.WithAnalyzers(LoadAll());
-            //var diagnostics = compilation.GetDiagnostics();
-            var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
-        }
-
         public static Project CreateProjectWithEditorConfig(
         string code,
         string editorConfigPath,
