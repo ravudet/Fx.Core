@@ -228,6 +228,9 @@ EndGlobal
                 .GetTypes()
                 .Where(t => typeof(DiagnosticAnalyzer).IsAssignableFrom(t) && !t.IsAbstract);
 
+            var publicAnalyzers = analyzers.Where(analyzer => analyzer.IsPublic);
+
+            new Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer();
 
             return analyzers.Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
         }

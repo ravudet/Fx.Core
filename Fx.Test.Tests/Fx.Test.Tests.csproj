@@ -49,6 +49,9 @@
     <Reference Include="AdvancedMember">
       <HintPath>..\AdvancedMember\bin\Debug\net7.0\AdvancedMember.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.NetAnalyzers">
+      <HintPath>Microsoft.CodeAnalysis.NetAnalyzers.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
