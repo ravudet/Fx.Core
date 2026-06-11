@@ -152,7 +152,7 @@ EndGlobal
         [TestMethod]
         public async Task Foo3()
         {
-            var workingDirectory = Path.Combine(this.TestContext.TestResultsDirectory, nameof(Foo2));
+            var workingDirectory = Path.Combine(this.TestContext.DeploymentDirectory, nameof(Foo3));
 
             string solutionPath;
 
@@ -171,7 +171,11 @@ EndGlobal
             //// TODO productize `loadall`; in fact, you generally hate this sort of thing and prefer precision, like knowing the exact analyzer this test will use
             var diagnostics = CompileSolution(solutionPath, LoadAll()).SelectMany(project => project.Diagnostics);
 
-            var diagnostic = diagnostics.Where(diagnostic => diagnostic.Id == "TODO").First();
+            var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "CA1052").First().ConfigureAwait(false);
+
+            Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Class1.cs"));
+            Assert.AreEqual(45, diagnostic.Location.SourceSpan.Start);
+            Assert.AreEqual(51, diagnostic.Location.SourceSpan.End);
 
             Directory.Delete(workingDirectory, true);
         }
@@ -456,6 +460,24 @@ internal class C
                 }
 
                 return enumerator.Current;
+            }
+            finally
+            {
+                if (enumerator != null)
+                {
+                    await enumerator.DisposeAsync().ConfigureAwait(false);
+                }
+            }
+        }
+
+        public static async Task<bool> Any<TElement>(
+            this IAsyncEnumerable<TElement> source)
+        {
+            IAsyncEnumerator<TElement>? enumerator = null; //// TODO figure out a way to not need all of this boilerplate
+            try
+            {
+                enumerator = source.GetAsyncEnumerator();
+                return await enumerator.MoveNextAsync().ConfigureAwait(false);
             }
             finally
             {
