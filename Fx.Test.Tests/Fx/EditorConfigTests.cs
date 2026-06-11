@@ -224,10 +224,12 @@ EndGlobal
         {
             var assembly = Assembly.LoadFrom(assemblyPath);
 
-            return assembly
+            var analyzers = assembly
                 .GetTypes()
-                .Where(t => typeof(DiagnosticAnalyzer).IsAssignableFrom(t) && !t.IsAbstract)
-                .Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
+                .Where(t => typeof(DiagnosticAnalyzer).IsAssignableFrom(t) && !t.IsAbstract);
+
+
+            return analyzers.Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
         }
     }
 
