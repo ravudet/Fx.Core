@@ -34,7 +34,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.8.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.300">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.300" GeneratePathProperty="true">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -49,8 +49,8 @@
     <Reference Include="AdvancedMember">
       <HintPath>..\AdvancedMember\bin\Debug\net7.0\AdvancedMember.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.NetAnalyzers">
-      <HintPath>Microsoft.CodeAnalysis.NetAnalyzers.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis.NetAnalyzers"> <!--TODO get this working-->
+      <HintPath>$(PkgMicrosoft_CodeAnalysis_NetAnalyzers)\analyzers\dotnet\Microsoft.CodeAnalysis.NetAnalyzers.dll</HintPath>
     </Reference>
   </ItemGroup>
 
