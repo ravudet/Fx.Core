@@ -184,7 +184,7 @@ EndGlobal
             foreach (var project in solution.Projects)
             {
                 var compilation = await project.GetCompilationAsync();
-                var withAnalyzers = compilation.WithAnalyzers(LoadAll());
+                var withAnalyzers = compilation.WithAnalyzers(LoadAll()); //// TODO use the analyzers that are passed in
                 //var diagnostics = compilation.GetDiagnostics();
                 var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
 
@@ -209,7 +209,8 @@ EndGlobal
         {
             var paths = new[]
             {
-                @"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll",
+                typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location,
+                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll",
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.Analyzers.dll",
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.dll",
@@ -229,8 +230,6 @@ EndGlobal
                 .Where(t => typeof(DiagnosticAnalyzer).IsAssignableFrom(t) && !t.IsAbstract);
 
             var publicAnalyzers = analyzers.Where(analyzer => analyzer.IsPublic);
-
-            new Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer();
 
             return analyzers.Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
         }

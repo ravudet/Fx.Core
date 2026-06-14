@@ -49,7 +49,7 @@
     <Reference Include="AdvancedMember">
       <HintPath>..\AdvancedMember\bin\Debug\net7.0\AdvancedMember.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.NetAnalyzers"> <!--TODO get this working-->
+    <Reference Include="Microsoft.CodeAnalysis.NetAnalyzers">
       <HintPath>$(PkgMicrosoft_CodeAnalysis_NetAnalyzers)\analyzers\dotnet\Microsoft.CodeAnalysis.NetAnalyzers.dll</HintPath>
     </Reference>
   </ItemGroup>
