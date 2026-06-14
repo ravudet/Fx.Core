@@ -184,7 +184,7 @@ EndGlobal
             foreach (var project in solution.Projects)
             {
                 var compilation = await project.GetCompilationAsync();
-                var withAnalyzers = compilation.WithAnalyzers(LoadAll()); //// TODO use the analyzers that are passed in
+                var withAnalyzers = compilation.WithAnalyzers(analyzers);
                 //var diagnostics = compilation.GetDiagnostics();
                 var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
 
