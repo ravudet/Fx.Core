@@ -222,8 +222,13 @@ EndGlobal
             var projectInfo = await loader.LoadProjectInfoAsync(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Fx.Test.Tests.csproj");*/
 
             var solution = await workspace.OpenSolutionAsync(solutionPath);
+
             foreach (var project in solution.Projects)
             {
+                var reference = CompilationReference.CreateFromFile()
+
+                var references = project.MetadataReferences;
+
                 var compilation = await project.GetCompilationAsync();
                 var withAnalyzers = compilation.WithAnalyzers(analyzers);
                 //var diagnostics = compilation.GetDiagnostics();
