@@ -6,10 +6,11 @@
     <Nullable>enable</Nullable>
     <RootNamespace />
     <UseVSTest>true</UseVSTest>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems> <!-- TODO you shouldn't need to set this-->
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Content\Foo3.cs" />
+    <Compile Remove="Content\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,8 +76,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="..\.editorconfig" Link="Content\.editorconfig" />
-    <EmbeddedResource Include="Content\Foo3.cs" />
-    <EmbeddedResource Include="Content\Project.csproj" />
+    <EmbeddedResource Include="Content\**" />
   </ItemGroup>
 
 </Project>

@@ -124,7 +124,8 @@ EndGlobal
 
         private static string CombineResourcePath(params string[] paths)
         {
-            return Path.Combine(paths).Replace(Path.DirectorySeparatorChar, '.');
+            var result = Path.Combine(paths).Replace(Path.DirectorySeparatorChar, '.');
+            return result;
         }
 
         private const string EmbeddedResourceRootPath = "Content";
@@ -133,7 +134,8 @@ EndGlobal
         public async Task Foo3()
         {
             //// TODO even though you've enabled ide-only triggering on build, some of them (like file header) aren't triggering; they *do* trigger on `dotnet build` though, which makes me think that you're just not loading that analyzer somehow //// TODO and you confirmed that a change to 1052 in the `.editorconfig` was reflected in the compiler diagnostics
-
+            
+            //// TODO current method name
             var workingDirectory = Path.Combine(this.TestContext.DeploymentDirectory, nameof(Foo3));
 
             string solutionPath;
@@ -148,6 +150,45 @@ EndGlobal
                     editorConfigContents,
                     projectContents,
                     ("Class1.cs", fileContents)).ConfigureAwait(false);
+            }
+
+            //// TODO productize `loadall`; in fact, you generally hate this sort of thing and prefer precision, like knowing the exact analyzer this test will use
+            var diagnostics = CompileSolution(solutionPath, LoadAll()).SelectMany(project => project.Diagnostics);
+
+            var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "CA1052").First().ConfigureAwait(false);
+
+            Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Class1.cs"));
+            Assert.AreEqual(45, diagnostic.Location.SourceSpan.Start);
+            Assert.AreEqual(51, diagnostic.Location.SourceSpan.End);
+
+            Directory.Delete(workingDirectory, true);
+        }
+
+        [TestMethod]
+        public async Task Foo4()
+        {
+            //// TODO current method name
+            var workingDirectory = Path.Combine(this.TestContext.DeploymentDirectory, nameof(Foo4));
+
+            string solutionPath;
+
+            var assembly = typeof(EditorConfigTests2).Assembly;
+
+            var paths = assembly.GetManifestResourceNames();
+
+            using (var editorConfigContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, ".editorconfig")))
+            using (var projectContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Project.csproj")))
+            using (var analyzer1AnalzyerContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Analyzer1Analyzer.cs")))
+            using (var resourcesResxContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Resources.resources")))
+            using (var resourcesDesignerContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Resources.Designer.cs")))
+            {
+                solutionPath = await SetupSolution(
+                    workingDirectory,
+                    editorConfigContents,
+                    projectContents,
+                    ("Analyzer1Analzyer.cs", analyzer1AnalzyerContents),
+                    ("Resources.resx", resourcesResxContents),
+                    ("Resources.Designer.cs", resourcesDesignerContents)).ConfigureAwait(false);
             }
 
             //// TODO productize `loadall`; in fact, you generally hate this sort of thing and prefer precision, like knowing the exact analyzer this test will use
