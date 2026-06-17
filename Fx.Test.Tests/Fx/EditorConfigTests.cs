@@ -236,14 +236,14 @@ EndGlobal
                     .AddMetadataReference(reference3)
                     .AddMetadataReference(reference4);
 
-                var path = Path.Combine(this.TestContext.DeploymentDirectory, nameof(Foo4), "solution", "Project", "Resources.resx");
+                /*var path = Path.Combine(this.TestContext.DeploymentDirectory, nameof(Foo4), "solution", "Project", "Resources.resx");
                 project2 = project2
                     .AddAdditionalDocument(
                         "Resources.resx",
                         await File.ReadAllTextAsync(path).ConfigureAwait(false),
                         null,
                         path)
-                    .Project;
+                    .Project;*/
 
                 //// TODO there are too many `analyzerconfigdocuments`
 
@@ -251,6 +251,8 @@ EndGlobal
                 var withAnalyzers = compilation.WithAnalyzers(analyzers);
                 //var diagnostics = compilation.GetDiagnostics();
                 var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
+
+                Assert.IsFalse(diagnostics.Where(diagnostic => diagnostic.Severity == DiagnosticSeverity.Error).Any());
 
                 yield return (project2.Id.Id.ToString(), diagnostics);
             }

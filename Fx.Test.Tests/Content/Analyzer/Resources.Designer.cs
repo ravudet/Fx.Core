@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Analyzer1.Content.Analyzer {
+namespace Analyzer1 {
     using System;
     
     
