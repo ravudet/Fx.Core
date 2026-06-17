@@ -203,7 +203,7 @@ EndGlobal
             Directory.Delete(workingDirectory, true);
         }
 
-        public static async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic> Diagnostics)> CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers)
+        public async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic> Diagnostics)> CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers) //// TODO make this static
         {
             //// TODO there is a superstition that this has to be called outside of the first method that uses the msbuild types; this is clearly not true, as demonstrated here
             var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
@@ -236,12 +236,23 @@ EndGlobal
                     .AddMetadataReference(reference3)
                     .AddMetadataReference(reference4);
 
+                var path = Path.Combine(this.TestContext.DeploymentDirectory, nameof(Foo4), "solution", "Project", "Resources.resx");
+                project2 = project2
+                    .AddAdditionalDocument(
+                        "Resources.resx",
+                        await File.ReadAllTextAsync(path).ConfigureAwait(false),
+                        null,
+                        path)
+                    .Project;
+
+                //// TODO there are too many `analyzerconfigdocuments`
+
                 var compilation = await project2.GetCompilationAsync();
                 var withAnalyzers = compilation.WithAnalyzers(analyzers);
                 //var diagnostics = compilation.GetDiagnostics();
                 var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
 
-                yield return (project.Id.Id.ToString(), diagnostics);
+                yield return (project2.Id.Id.ToString(), diagnostics);
             }
 
 
