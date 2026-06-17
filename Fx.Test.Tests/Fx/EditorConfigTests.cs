@@ -26,6 +26,10 @@ namespace Fx
         {
             // returns the path to the solution file
 
+            await WriteAllContents(
+                Path.Combine(workingDirectory, ".editorconfig"),
+                "root = true").ConfigureAwait(false); // adding this so that the editorconfig that is being tested doesn't accidentally interact with something in the working directory (or above);
+
             var repositoryPath = Path.Combine(workingDirectory, "solution");
 
             var editorConfigPath = Path.Combine(repositoryPath, ".editorconfig");
@@ -84,6 +88,17 @@ EndGlobal
             }
 
             return solutionPath;
+        }
+
+        private static async Task WriteAllContents(string filePath, string contents)
+        {
+            using (var file = CreateFileWrite(filePath))
+            {
+                using (var textWriter = new StreamWriter(file))
+                {
+                    await textWriter.WriteAsync(contents).ConfigureAwait(false);
+                }
+            }
         }
 
         private static async Task WriteAllContents(string filePath, Stream contents)
