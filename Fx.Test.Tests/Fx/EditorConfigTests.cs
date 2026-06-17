@@ -121,6 +121,8 @@ EndGlobal
 
         private static Stream OpenFile(string filePath, FileMode fileMode, FileAccess fileAccess, FileShare fileShare)
         {
+            //// TODO this isn't "openfile"; you shouldn't create a directory for reaed operations, for example
+
             var directoryPath = Path.GetDirectoryName(filePath);
             while (true)
             {
