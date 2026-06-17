@@ -18,6 +18,36 @@ namespace Fx
     [TestClass]
     public class EditorConfigTests2
     {
+        class SolutionSpecification
+        {
+            IEnumerable<FileSpecification> Files { get; }
+
+            IEnumerable<ProjectSpecification> Projects { get; }
+        }
+
+        class ProjectSpecification
+        {
+            string Name { get; }
+
+            Stream Contents { get; }
+
+            IEnumerable<FileSpecification> Files { get; }
+
+            IEnumerable<ReferenceSpecification> References { get; }
+        }
+
+        class FileSpecification
+        {
+            string PathRelativeToContainerRoot { get; }
+
+            Stream Contents { get; }
+        }
+
+        class ReferenceSpecification
+        {
+            Stream Content { get; }
+        }
+
         private static async Task<string> SetupSolution(
             string workingDirectory,
             Stream editorConfigContents,
