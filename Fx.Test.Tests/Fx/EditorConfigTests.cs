@@ -81,12 +81,11 @@ namespace Fx
 
     public class ProjectSpecification
     {
-        public ProjectSpecification(string name, Stream contents, IEnumerable<FileSpecification> files, IEnumerable<ReferenceSpecification> references)
+        public ProjectSpecification(string name, Stream contents, IEnumerable<FileSpecification> files)
         {
             this.Name = name;
             this.Contents = contents;
             this.Files = files;
-            this.References = references;
         }
 
         public string Name { get; }
@@ -94,8 +93,6 @@ namespace Fx
         public Stream Contents { get; }
 
         public IEnumerable<FileSpecification> Files { get; }
-
-        public IEnumerable<ReferenceSpecification> References { get; }
     }
 
     public class FileSpecification
@@ -109,18 +106,6 @@ namespace Fx
         public string PathRelativeToContainerRoot { get; }
 
         public Stream Contents { get; }
-    }
-
-    public class ReferenceSpecification
-    {
-        public ReferenceSpecification(Stream content)
-        {
-            ArgumentNullException.ThrowIfNull(content);
-
-            this.Content = content;
-        }
-
-        public Stream Content { get; }
     }
 
     public static class SolutionUtilities
