@@ -203,12 +203,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Global
 """;
-
-
-                    //// TODO create solution instance //// TODO do y ou actually want to do this, or should the project embedded resouirce just reference relative paths to assemblies?
                 }
             }
 
+            //// TODO create solution instance //// TODO do y ou actually want to do this, or should the project embedded resouirce just reference relative paths to assemblies?
             return solutionPath;
         }
 
