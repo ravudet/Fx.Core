@@ -139,8 +139,7 @@ namespace Fx
             }
 
             //// TODO add solution content files
-            //// TODO create a solution
-            //// TODO create solution instance
+            //// TODO create solution instance //// TODO do y ou actually want to do this, or should the project embedded resouirce just reference relative paths to assemblies?
 
             var solutionPath = Path.Combine(solutionDirectory, "solution.sln");
             using (var solutionFile = FileUtilities.CreateFileWrite(solutionPath))
