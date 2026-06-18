@@ -110,7 +110,7 @@ namespace Fx
 
     public static class SolutionUtilities
     {
-        public static async Task<Solution> SetupSolution(string solutionDirectory, SolutionSpecification solutionSpecification)
+        public static async Task<string> SetupSolution(string solutionDirectory, SolutionSpecification solutionSpecification)
         {
             var projectPaths = new List<(string ProjectName, string ProjectPath)>();
             foreach (var project in solutionSpecification.Projects)
@@ -124,7 +124,7 @@ namespace Fx
             }
 
             //// TODO add solution content files
-            //// TODO create solution instance //// TODO do y ou actually want to do this, or should the project embedded resouirce just reference relative paths to assemblies?
+            
 
             var solutionPath = Path.Combine(solutionDirectory, "solution.sln");
             using (var solutionFile = FileUtilities.CreateFileWrite(solutionPath))
@@ -194,7 +194,7 @@ EndGlobal
 
 
 
-                    var foo = 
+                    var foo =
 $$"""
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
@@ -202,10 +202,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Global
-"""
-                        ).ConfigureAwait(false);
+""";
+
+
+                    //// TODO create solution instance //// TODO do y ou actually want to do this, or should the project embedded resouirce just reference relative paths to assemblies?
                 }
             }
+
+            return solutionPath;
         }
 
         public static async Task<string> SetupProject(
