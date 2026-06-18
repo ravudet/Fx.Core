@@ -113,7 +113,7 @@ namespace Fx
         public static async Task<string> SetupSolution(string solutionDirectory, SolutionSpecification solutionSpecification)
         {
             var projectPaths = new List<(string ProjectName, string ProjectPath)>();
-            foreach (var project in solutionSpecification.Projects)
+            foreach (var project in solutionSpecification.Projects) //// TODO move this inside the using statement below
             {
                 var projectPath = await SolutionUtilities
                     .SetupProject(
@@ -122,9 +122,6 @@ namespace Fx
                     .ConfigureAwait(false);
                 projectPaths.Add((project.Name, projectPath));
             }
-
-            //// TODO add solution content files
-            
 
             var solutionPath = Path.Combine(solutionDirectory, "solution.sln");
             using (var solutionFile = FileUtilities.CreateFileWrite(solutionPath))
@@ -153,6 +150,12 @@ Project("{{{Guid.NewGuid()}}}") = "{{projectPath.ProjectName}}", "{{projectPath.
 EndProject
 """
                             ).ConfigureAwait(false);
+                    }
+
+                    //// TODO add solution content files
+                    foreach (var fileSpecification in solutionSpecification.Files.OrderBy(fileSpecification => Path.GetDirectoryName(fileSpecification.PathRelativeToContainerRoot)))
+                    {
+
                     }
 
                     await textWriter.WriteLineAsync(
