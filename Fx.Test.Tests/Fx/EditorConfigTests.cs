@@ -217,19 +217,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{10000000-0000-0000-0000-000000000000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10000000-0000-0000-0000-000000000000}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10000000-0000-0000-0000-000000000000}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10000000-0000-0000-0000-000000000000}.Release|Any CPU.Build.0 = Release|Any CPU
-    EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {938EAC26-C20C-48C0-B5F6-0B535D593D6B}
-	EndGlobalSection
-EndGlobal
 """
                         ).ConfigureAwait(false);
                 }
