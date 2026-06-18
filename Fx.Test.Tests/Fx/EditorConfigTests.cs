@@ -13,6 +13,7 @@ namespace Fx
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Diagnostics;
     using Microsoft.CodeAnalysis.MSBuild;
+    using Microsoft.NetCore.Analyzers.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     public static class FileUtilities //// TODO productize these
@@ -139,7 +140,6 @@ namespace Fx
 
             //// TODO add solution content files
             //// TODO create a solution
-            //// TODO add projects to solution
             //// TODO create solution instance
 
             var solutionPath = Path.Combine(solutionDirectory, "solution.sln");
@@ -157,31 +157,67 @@ MinimumVisualStudioVersion = 10.0.40219.1
 """
                         ).ConfigureAwait(false);
 
+                    var projectGuids = new List<Guid>();
                     foreach (var projectPath in projectPaths)
                     {
+                        var projectGuid = Guid.NewGuid();
+                        projectGuids.Add(projectGuid);
                         await textWriter
                             .WriteLineAsync(
 $$"""
-Project("{{{Guid.NewGuid()}}}") = "{{projectPath.ProjectName}}", "{{projectPath.ProjectPath}}", "{{{Guid.NewGuid()}}}"
+Project("{{{Guid.NewGuid()}}}") = "{{projectPath.ProjectName}}", "{{projectPath.ProjectPath}}", "{{{projectGuid}}}"
 EndProject
 """
                             ).ConfigureAwait(false);
                     }
 
+                    await textWriter.WriteLineAsync(
+$$"""
+Global
+    GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	    Debug|Any CPU = Debug|Any CPU
+	    Release|Any CPU = Release|Any CPU
+    EndGlobalSection
+    GlobalSection(ProjectConfigurationPlatforms) = postSolution
+"""
+                        ).ConfigureAwait(false);
+
+                    foreach (var projectGuid in projectGuids)
+                    {
+                        await textWriter.WriteLineAsync(
+$$"""
+{{{projectGuid}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{{{projectGuid}}}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{{{projectGuid}}}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{{{projectGuid}}}.Release|Any CPU.Build.0 = Release|Any CPU
+"""
+                            ).ConfigureAwait(false);
+                    }
+
+                    await textWriter.WriteLineAsync(
+$$"""
+    EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {938EAC26-C20C-48C0-B5F6-0B535D593D6B}
+	EndGlobalSection
+EndGlobal
+"""
+                    ).ConfigureAwait(false);
+
+
+
+
                     var foo = 
 $$"""
-Project("{{{Guid.NewGuid()}}}") = "{{projectName}}", "{{projectRelativePath}}", "{10000000-0000-0000-0000-000000000000}"                        
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{10000000-0000-0000-0000-000000000000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10000000-0000-0000-0000-000000000000}.Debug|Any CPU.Build.0 = Debug|Any CPU
