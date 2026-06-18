@@ -484,7 +484,7 @@ EndGlobal
 
                 Assert.IsFalse(diagnostics.Where(diagnostic => diagnostic.Severity == DiagnosticSeverity.Error).Any());
 
-                zyield return (project2.Id.Id.ToString(), diagnostics);
+                yield return (project2.Id.Id.ToString(), diagnostics);
             }
 
 
