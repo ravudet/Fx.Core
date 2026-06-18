@@ -15,39 +15,128 @@ namespace Fx
     using Microsoft.CodeAnalysis.MSBuild;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    public static class FileUtilities //// TODO productize these
+    {
+        public static async Task WriteAllContents(string filePath, string contents)
+        {
+            using (var file = CreateFileWrite(filePath))
+            {
+                using (var textWriter = new StreamWriter(file))
+                {
+                    await textWriter.WriteAsync(contents).ConfigureAwait(false);
+                }
+            }
+        }
+
+        public static async Task WriteAllContents(string filePath, Stream contents)
+        {
+            using (var file = CreateFileWrite(filePath))
+            {
+                await contents.CopyToAsync(file).ConfigureAwait(false);
+            }
+        }
+
+        public static Stream CreateFileWrite(string filePath)
+        {
+            return OpenFileWrite(filePath, FileMode.CreateNew);
+        }
+
+        public static Stream OpenFileWrite(string filePath, FileMode fileMode)
+        {
+            return OpenFile(filePath, fileMode, FileAccess.Write, FileShare.None);
+        }
+
+        public static Stream OpenFile(string filePath, FileMode fileMode, FileAccess fileAccess, FileShare fileShare)
+        {
+            //// TODO this isn't "openfile"; you shouldn't create a directory for reaed operations, for example
+
+            var directoryPath = Path.GetDirectoryName(filePath);
+            while (true)
+            {
+                try
+                {
+                    return File.Open(filePath, fileMode, fileAccess, fileShare);
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+            }
+        }
+    }
+
+    public class SolutionSpecification
+    {
+        public SolutionSpecification(IEnumerable<FileSpecification> files, IEnumerable<ProjectSpecification> projects)
+        {
+            this.Files = files;
+            this.Projects = projects;
+        }
+
+        public IEnumerable<FileSpecification> Files { get; }
+
+        public IEnumerable<ProjectSpecification> Projects { get; }
+    }
+
+    public class ProjectSpecification
+    {
+        public ProjectSpecification(string name, Stream contents, IEnumerable<FileSpecification> files, IEnumerable<ReferenceSpecification> references)
+        {
+            this.Name = name;
+            this.Contents = contents;
+            this.Files = files;
+            this.References = references;
+        }
+
+        public string Name { get; }
+
+        public Stream Contents { get; }
+
+        public IEnumerable<FileSpecification> Files { get; }
+
+        public IEnumerable<ReferenceSpecification> References { get; }
+    }
+
+    public class FileSpecification
+    {
+        public FileSpecification(string pathRelativeToContainerRoot, Stream contents)
+        {
+            this.PathRelativeToContainerRoot = pathRelativeToContainerRoot;
+            this.Contents = contents;
+        }
+
+        public string PathRelativeToContainerRoot { get; }
+
+        public Stream Contents { get; }
+    }
+
+    public class ReferenceSpecification
+    {
+        public ReferenceSpecification(Stream content)
+        {
+            ArgumentNullException.ThrowIfNull(content);
+
+            this.Content = content;
+        }
+
+        public Stream Content { get; }
+    }
+
+    public static class SolutionUtilities
+    {
+        public static async Task<string> SetupSolution(string workingDirectory, SolutionSpecification solutionSpecification)
+        {
+            var rootDirectory = Path.Combine(workingDirectory, "root");
+
+
+        }
+    }
+
+    
+
     [TestClass]
     public class EditorConfigTests2
     {
-        class SolutionSpecification
-        {
-            IEnumerable<FileSpecification> Files { get; }
-
-            IEnumerable<ProjectSpecification> Projects { get; }
-        }
-
-        class ProjectSpecification
-        {
-            string Name { get; }
-
-            Stream Contents { get; }
-
-            IEnumerable<FileSpecification> Files { get; }
-
-            IEnumerable<ReferenceSpecification> References { get; }
-        }
-
-        class FileSpecification
-        {
-            string PathRelativeToContainerRoot { get; }
-
-            Stream Contents { get; }
-        }
-
-        class ReferenceSpecification
-        {
-            Stream Content { get; }
-        }
-
         private static async Task<string> SetupSolution(
             string workingDirectory,
             Stream editorConfigContents,
