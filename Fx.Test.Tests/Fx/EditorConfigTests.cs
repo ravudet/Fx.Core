@@ -137,7 +137,10 @@ namespace Fx
                 projectPaths.Add(projectPath);
             }
 
-
+            //// TODO add solution content files
+            //// TODO create a solution
+            //// TODO add projects to solution
+            //// TODO create solution instance
         }
 
         public static async Task<string> SetupProject(
