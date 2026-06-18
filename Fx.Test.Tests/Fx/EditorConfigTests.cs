@@ -124,11 +124,35 @@ namespace Fx
 
     public static class SolutionUtilities
     {
-        public static async Task<string> SetupSolution(string workingDirectory, SolutionSpecification solutionSpecification)
+        public static async Task<Solution> SetupSolution(string solutionDirectory, SolutionSpecification solutionSpecification)
         {
-            var rootDirectory = Path.Combine(workingDirectory, "root");
+            var projectPaths = new List<string>();
+            foreach (var project in solutionSpecification.Projects)
+            {
+                var projectPath = await SolutionUtilities
+                    .SetupProject(
+                        Path.Combine(solutionDirectory, project.Name),
+                        project)
+                    .ConfigureAwait(false);
+                projectPaths.Add(projectPath);
+            }
 
 
+        }
+
+        public static async Task<string> SetupProject(
+            string projectDirectory,
+            ProjectSpecification projectSpecification)
+        {
+            var projectPath = Path.Combine(projectDirectory, $"{projectSpecification.Name}.csproj");
+            await FileUtilities.WriteAllContents(projectPath, projectSpecification.Contents).ConfigureAwait(false);
+            foreach (var fileSpecification in projectSpecification.Files)
+            {
+                var filePath = Path.Combine(projectDirectory, fileSpecification.PathRelativeToContainerRoot);
+                await FileUtilities.WriteAllContents(filePath, fileSpecification.Contents).ConfigureAwait(false);
+            }
+
+            return projectPath;
         }
     }
 

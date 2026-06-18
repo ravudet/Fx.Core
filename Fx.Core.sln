@@ -26,6 +26,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.Vsix", "Analyzer1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedMember", "AdvancedMember\AdvancedMember.csproj", "{00563080-57EC-5F27-DDC0-3B38C8C0AB04}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testing", "testing", "{BED077FB-37E4-48B9-9202-2F29AD0E4054}"
+	ProjectSection(SolutionItems) = preProject
+		asdf = asdf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testing2", "testing2", "{615B09DF-9018-45BF-B777-F4DCA765401A}"
+	ProjectSection(SolutionItems) = preProject
+		qwer = qwer
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +81,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{615B09DF-9018-45BF-B777-F4DCA765401A} = {BED077FB-37E4-48B9-9202-2F29AD0E4054}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {938EAC26-C20C-48C0-B5F6-0B535D593D6B}
