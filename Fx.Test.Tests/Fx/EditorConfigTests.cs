@@ -110,6 +110,16 @@ namespace Fx
 
     public static class SolutionUtilities
     {
+        private static void CreateIds(string path, Dictionary<string, (Guid Id, HashSet<string> FileNames)> folderToIdMapping)
+        {
+            var parent = Path.GetDirectoryName(path);
+            while (!string.IsNullOrEmpty(parent))
+            {
+                folderToIdMapping.TryAdd(parent, (Guid.NewGuid(), new HashSet<string>()));
+                parent = Path.GetDirectoryName(parent);
+            }
+        }
+
         public static async Task<string> SetupSolution(string solutionDirectory, SolutionSpecification solutionSpecification)
         {
             var projectPaths = new List<(string ProjectName, string ProjectPath)>();
@@ -153,13 +163,23 @@ EndProject
                     }
 
                     //// TODO add solution content files
-                    var solutionFolderToIdMapping = new Dictionary<string, Guid>()
+                    var solutionFolderToIdMapping = new Dictionary<string, (Guid Id, HashSet<string> FileNames)>()
                     {
-                        { string.Empty, Guid.Parse("02EA681E-C7D8-13C7-8484-4AC65E1B71E8") },
+                        { string.Empty, (Guid.Parse("02EA681E-C7D8-13C7-8484-4AC65E1B71E8"), new HashSet<string>()) },
                     };
-                    foreach (var fileSpecification in solutionSpecification.Files.OrderBy(fileSpecification => Path.GetDirectoryName(fileSpecification.PathRelativeToContainerRoot)))
+                    foreach (var fileSpecification in solutionSpecification.Files)
                     {
+                        CreateIds(fileSpecification.PathRelativeToContainerRoot, solutionFolderToIdMapping);
+                        var parent = Path.GetDirectoryName(fileSpecification.PathRelativeToContainerRoot);
+                        solutionFolderToIdMapping.TryGetValue(parent, out var id);
 
+                        var fileName = Path.GetFileName(fileSpecification.PathRelativeToContainerRoot);
+                        if (!id.FileNames.Add(fileName))
+                        {
+                            throw new Exception("TODO duplicate solution file");
+                        }
+
+                        await FileUtilities.WriteAllContents(Path.Combine(solutionDirectory, fileSpecification.PathRelativeToContainerRoot), fileSpecification.Contents).ConfigureAwait(false);
                     }
 
                     await textWriter.WriteLineAsync(
