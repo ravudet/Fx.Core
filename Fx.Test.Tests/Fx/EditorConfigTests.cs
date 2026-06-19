@@ -485,17 +485,11 @@ EndGlobal
                             })
                     });
 
-                await SolutionUtilities
+                solutionPath = await SolutionUtilities
                     .SetupSolution(
                         Path.Combine(workingDirectory, "solution"),
                         solutionSpecification)
                     .ConfigureAwait(false);
-
-                solutionPath = await SetupSolution(
-                    workingDirectory,
-                    editorConfigContents,
-                    projectContents,
-                    ("Class1.cs", fileContents)).ConfigureAwait(false);
             }
 
             //// TODO productize `loadall`; in fact, you generally hate this sort of thing and prefer precision, like knowing the exact analyzer this test will use
@@ -503,7 +497,7 @@ EndGlobal
 
             var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "CA1052").First().ConfigureAwait(false);
 
-            Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Class1.cs"));
+            Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Foo3.cs"));
             Assert.AreEqual(45, diagnostic.Location.SourceSpan.Start);
             Assert.AreEqual(51, diagnostic.Location.SourceSpan.End);
 
