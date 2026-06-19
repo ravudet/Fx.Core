@@ -182,6 +182,45 @@ EndProject
                         await FileUtilities.WriteAllContents(Path.Combine(solutionDirectory, fileSpecification.PathRelativeToContainerRoot), fileSpecification.Contents).ConfigureAwait(false);
                     }
 
+                    foreach (var solutionFolder in solutionFolderToIdMapping)
+                    {
+                        Guid id;
+                        string folderName;
+                        if (string.IsNullOrEmpty(solutionFolder.Key))
+                        {
+                            id = Guid.Parse("2150E333-8FDC-42A3-9474-1A3956D46DE8");
+                            folderName = "Solution Items";
+                        }
+                        else
+                        {
+                            id = Guid.NewGuid();
+                            folderName = Path.GetFileName(solutionFolder.Key);
+                        }
+
+                        await textWriter.WriteLineAsync(
+$$"""
+Project("{{{id}}}") = "{{folderName}}", "{{folderName}}", "{{{solutionFolder.Value.Id}}}"
+    ProjectSection(SolutionItems) = preProject
+"""
+                        ).ConfigureAwait(false);
+
+                        foreach (var fileName in solutionFolder.Value.FileNames)
+                        {
+                            await textWriter.WriteLineAsync(
+$$"""
+        {{fileName}} = {{fileName}}
+"""
+                            ).ConfigureAwait(false);
+                        }
+
+                        await textWriter.WriteLineAsync(
+$$"""
+	EndProjectSection
+EndProject
+"""
+                        ).ConfigureAwait(false);
+                    }
+
                     await textWriter.WriteLineAsync(
 $$"""
 Global
@@ -211,25 +250,41 @@ $$"""
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+    GlobalSection(NestedProjects) = preSolution
+"""
+                    ).ConfigureAwait(false);
+
+                    foreach (var solutionFolder in solutionFolderToIdMapping)
+                    {
+                        if (string.IsNullOrEmpty(solutionFolder.Key))
+                        {
+                            continue;
+                        }
+
+                        var parentPath = Path.GetDirectoryName(solutionFolder.Key);
+                        if (string.IsNullOrEmpty(parentPath))
+                        {
+                            continue;
+                        }
+
+                        var parentId = solutionFolderToIdMapping[parentPath];
+
+                        await textWriter.WriteLineAsync(
+$$"""
+        {{{solutionFolder.Value.Id}}} = {{{parentId}}}
+"""
+                        ).ConfigureAwait(false);
+                    }
+
+                    await textWriter.WriteLineAsync(
+$$"""
+    EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {938EAC26-C20C-48C0-B5F6-0B535D593D6B}
 	EndGlobalSection
 EndGlobal
 """
                     ).ConfigureAwait(false);
-
-
-
-
-                    var foo =
-$$"""
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
-Global
-""";
                 }
             }
 
