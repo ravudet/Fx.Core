@@ -36,6 +36,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testing2", "testing2", "{61
 		qwer = qwer
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testing3", "testing3", "{DDDFE372-ACE9-4145-981F-9399679A1A1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testing4", "testing4", "{65532105-0880-4DE4-B5CE-C172A4E187B8}"
+	ProjectSection(SolutionItems) = preProject
+		zxcv = zxcv
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +91,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{615B09DF-9018-45BF-B777-F4DCA765401A} = {BED077FB-37E4-48B9-9202-2F29AD0E4054}
+		{DDDFE372-ACE9-4145-981F-9399679A1A1F} = {BED077FB-37E4-48B9-9202-2F29AD0E4054}
+		{65532105-0880-4DE4-B5CE-C172A4E187B8} = {DDDFE372-ACE9-4145-981F-9399679A1A1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {938EAC26-C20C-48C0-B5F6-0B535D593D6B}

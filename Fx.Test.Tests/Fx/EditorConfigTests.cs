@@ -153,6 +153,10 @@ EndProject
                     }
 
                     //// TODO add solution content files
+                    var solutionFolderToIdMapping = new Dictionary<string, Guid>()
+                    {
+                        { string.Empty, Guid.Parse("02EA681E-C7D8-13C7-8484-4AC65E1B71E8") },
+                    };
                     foreach (var fileSpecification in solutionSpecification.Files.OrderBy(fileSpecification => Path.GetDirectoryName(fileSpecification.PathRelativeToContainerRoot)))
                     {
 
@@ -234,6 +238,12 @@ Global
     [TestClass]
     public class EditorConfigTests2
     {
+        [TestMethod]
+        public void DirectoryTest()
+        {
+            var directory = Path.GetDirectoryName("asdf");
+        }
+
         private static async Task<string> SetupSolution(
             string workingDirectory,
             Stream editorConfigContents,
