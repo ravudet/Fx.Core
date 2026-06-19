@@ -162,7 +162,6 @@ EndProject
                             ).ConfigureAwait(false);
                     }
 
-                    //// TODO add solution content files
                     var solutionFolderToIdMapping = new Dictionary<string, (Guid Id, HashSet<string> FileNames)>()
                     {
                         { string.Empty, (Guid.Parse("02EA681E-C7D8-13C7-8484-4AC65E1B71E8"), new HashSet<string>()) },
