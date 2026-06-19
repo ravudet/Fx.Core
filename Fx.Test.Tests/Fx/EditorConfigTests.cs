@@ -522,6 +522,11 @@ EndGlobal
             using (var resourcesResxContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Resources.resources")))
             using (var resourcesDesignerContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Resources.Designer.cs")))
             {
+                //// TODO you are here
+                //// TODO get this working by using relative paths for the references and by having the references be embedded resources of the test project
+                //// TODO switch to new setup method
+
+
                 solutionPath = await SetupSolution(
                     workingDirectory,
                     editorConfigContents,

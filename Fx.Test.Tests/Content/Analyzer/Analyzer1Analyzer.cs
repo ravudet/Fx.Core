@@ -14,6 +14,13 @@ namespace Analyzer1
     using Microsoft.CodeAnalysis.CSharp.Syntax;
     using Microsoft.CodeAnalysis.Diagnostics;
 
+    public class Foo
+    {
+        public static void Bar()
+        {
+        }
+    }
+
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class Analyzer1Analyzer : DiagnosticAnalyzer
     {
