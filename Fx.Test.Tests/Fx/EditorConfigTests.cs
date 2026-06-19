@@ -122,6 +122,8 @@ namespace Fx
 
         public static async Task<string> SetupSolution(string solutionDirectory, SolutionSpecification solutionSpecification)
         {
+            //// TODO you haven't tested anything with solution files that aren't in the "solution items" folder
+
             var projectPaths = new List<(string ProjectName, string ProjectPath)>();
             foreach (var project in solutionSpecification.Projects) //// TODO move this inside the using statement below
             {
