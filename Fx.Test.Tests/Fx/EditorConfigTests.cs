@@ -200,7 +200,7 @@ EndProject
                         await textWriter.WriteLineAsync(
 $$"""
 Project("{{{id}}}") = "{{folderName}}", "{{folderName}}", "{{{solutionFolder.Value.Id}}}"
-    ProjectSection(SolutionItems) = preProject
+	ProjectSection(SolutionItems) = preProject
 """
                         ).ConfigureAwait(false);
 
@@ -208,7 +208,7 @@ Project("{{{id}}}") = "{{folderName}}", "{{folderName}}", "{{{solutionFolder.Val
                         {
                             await textWriter.WriteLineAsync(
 $$"""
-        {{fileName}} = {{fileName}}
+		{{fileName}} = {{fileName}}
 """
                             ).ConfigureAwait(false);
                         }
@@ -224,11 +224,11 @@ EndProject
                     await textWriter.WriteLineAsync(
 $$"""
 Global
-    GlobalSection(SolutionConfigurationPlatforms) = preSolution
-	    Debug|Any CPU = Debug|Any CPU
-	    Release|Any CPU = Release|Any CPU
-    EndGlobalSection
-    GlobalSection(ProjectConfigurationPlatforms) = postSolution
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 """
                         ).ConfigureAwait(false);
 
@@ -246,11 +246,11 @@ $$"""
 
                     await textWriter.WriteLineAsync(
 $$"""
-    EndGlobalSection
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-    GlobalSection(NestedProjects) = preSolution
+	GlobalSection(NestedProjects) = preSolution
 """
                     ).ConfigureAwait(false);
 
@@ -271,14 +271,14 @@ $$"""
 
                         await textWriter.WriteLineAsync(
 $$"""
-        {{{solutionFolder.Value.Id}}} = {{{parentId}}}
+		{{{solutionFolder.Value.Id}}} = {{{parentId}}}
 """
                         ).ConfigureAwait(false);
                     }
 
                     await textWriter.WriteLineAsync(
 $$"""
-    EndGlobalSection
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {938EAC26-C20C-48C0-B5F6-0B535D593D6B}
 	EndGlobalSection
