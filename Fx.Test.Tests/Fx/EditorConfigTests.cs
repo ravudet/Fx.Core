@@ -235,10 +235,10 @@ Global
                     {
                         await textWriter.WriteLineAsync(
 $$"""
-{{{projectGuid}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-{{{projectGuid}}}.Debug|Any CPU.Build.0 = Debug|Any CPU
-{{{projectGuid}}}.Release|Any CPU.ActiveCfg = Release|Any CPU
-{{{projectGuid}}}.Release|Any CPU.Build.0 = Release|Any CPU
+		{{{projectGuid}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{{{projectGuid}}}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{{{projectGuid}}}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{{{projectGuid}}}.Release|Any CPU.Build.0 = Release|Any CPU
 """
                             ).ConfigureAwait(false);
                     }
@@ -462,6 +462,32 @@ EndGlobal
             using (var projectContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Project.csproj")))
             using (var fileContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Foo3.cs")))
             {
+                var solutionSpecification = new SolutionSpecification(
+                    new[]
+                    {
+                        new FileSpecification(
+                            ".editorConfig",
+                            editorConfigContents),
+                    },
+                    new[]
+                    {
+                        new ProjectSpecification(
+                            "Project",
+                            projectContents,
+                            new[]
+                            {
+                                new FileSpecification(
+                                    "Foo3.cs",
+                                    fileContents),
+                            })
+                    });
+
+                await SolutionUtilities
+                    .SetupSolution(
+                        Path.Combine(workingDirectory, "solution"),
+                        solutionSpecification)
+                    .ConfigureAwait(false);
+
                 solutionPath = await SetupSolution(
                     workingDirectory,
                     editorConfigContents,
