@@ -153,10 +153,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
                     {
                         var projectGuid = Guid.NewGuid();
                         projectGuids.Add(projectGuid);
+                        var projectRelativePath = Path.GetRelativePath(solutionDirectory, projectPath.ProjectPath);
                         await textWriter
                             .WriteLineAsync(
 $$"""
-Project("{{{Guid.NewGuid()}}}") = "{{projectPath.ProjectName}}", "{{projectPath.ProjectPath}}", "{{{projectGuid}}}"
+Project("{{{Guid.NewGuid()}}}") = "{{projectPath.ProjectName}}", "{{projectRelativePath}}", "{{{projectGuid}}}"
 EndProject
 """
                             ).ConfigureAwait(false);
