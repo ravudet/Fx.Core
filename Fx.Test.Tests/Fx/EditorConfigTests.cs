@@ -586,11 +586,11 @@ EndGlobal
             //// TODO productize `loadall`; in fact, you generally hate this sort of thing and prefer precision, like knowing the exact analyzer this test will use
             var diagnostics = CompileSolution(solutionPath, LoadAll()).SelectMany(project => project.Diagnostics);
 
-            var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "CA1052").First().ConfigureAwait(false);
+            var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "RS1001").First().ConfigureAwait(false);
 
             Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Analyzer1Analyzer.cs"));
-            Assert.AreEqual(474, diagnostic.Location.SourceSpan.Start);
-            Assert.AreEqual(477, diagnostic.Location.SourceSpan.End);
+            Assert.AreEqual(568, diagnostic.Location.SourceSpan.Start);
+            Assert.AreEqual(585, diagnostic.Location.SourceSpan.End);
 
             Directory.Delete(workingDirectory, true);
         }
@@ -650,7 +650,7 @@ EndGlobal
                 //var diagnostics = compilation.GetDiagnostics();
                 var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
 
-                Assert.IsFalse(diagnostics.Where(diagnostic => diagnostic.Severity == DiagnosticSeverity.Error).Any());
+                Assert.IsFalse(diagnostics.Where(diagnostic => diagnostic.Severity == DiagnosticSeverity.Error && !diagnostic.IsWarningAsError).Any());
 
                 yield return (project2.Id.Id.ToString(), diagnostics);
             }

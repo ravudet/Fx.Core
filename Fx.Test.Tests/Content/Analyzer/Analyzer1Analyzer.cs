@@ -21,7 +21,6 @@ namespace Analyzer1
         }
     }
 
-    [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class Analyzer1Analyzer : DiagnosticAnalyzer
     {
         public const string DiagnosticId = "Analyzer1";
