@@ -8,6 +8,7 @@ namespace Fx
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Microsoft.CodeAnalysis;
@@ -594,11 +595,16 @@ EndGlobal
             Directory.Delete(workingDirectory, true);
         }
 
+        private static int DefaultsRegistered = 0;
+
         public async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic> Diagnostics)> CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers) //// TODO make this static
         {
-            //// TODO there is a superstition that this has to be called outside of the first method that uses the msbuild types; this is clearly not true, as demonstrated here
-            var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
 
+            if (Interlocked.Exchange(ref DefaultsRegistered, 1) == 0)
+            {
+                //// TODO there is a superstition that this has to be called outside of the first method that uses the msbuild types; this is clearly not true, as demonstrated here
+                var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+            }
 
             ////
 
