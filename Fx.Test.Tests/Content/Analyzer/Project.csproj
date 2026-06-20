@@ -7,16 +7,16 @@
 
     <ItemGroup>
         <Reference Include="Microsoft.CodeAnalysis.Analyzers">
-            <HintPath>..\..\..\..\..\..\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.Analyzers.dll</HintPath>
+            <HintPath>Microsoft.CodeAnalysis.Analyzers.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.CodeAnalysis.CSharp.Analyzers">
-            <HintPath>..\..\..\..\..\..\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.CSharp.Analyzers.dll</HintPath>
+            <HintPath>Microsoft.CodeAnalysis.CSharp.Analyzers.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.CodeAnalysis.CSharp">
-            <HintPath>..\..\..\..\..\..\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+            <HintPath>Microsoft.CodeAnalysis.CSharp.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.CodeAnalysis">
-            <HintPath>..\..\..\..\..\..\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.dll</HintPath>
+            <HintPath>Microsoft.CodeAnalysis.dll</HintPath>
         </Reference>
     </ItemGroup>
     

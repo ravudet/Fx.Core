@@ -79,4 +79,11 @@
     <EmbeddedResource Include="Content\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+    <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.CSharp.dll" />
+    <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.dll" />
+  </ItemGroup>
+
 </Project>

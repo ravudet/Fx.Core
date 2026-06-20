@@ -521,9 +521,12 @@ EndGlobal
             using (var analyzer1AnalzyerContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Analyzer1Analyzer.cs")))
             using (var resourcesResxContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Resources.resources")))
             using (var resourcesDesignerContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Resources.Designer.cs")))
+            using (var microsoftCodeAnalysisAnalyzersContent = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Microsoft.CodeAnalysis.Analyzers.dll")))
+            using (var microsoftCodeAnalysisCsharpAnalyzersContent = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Microsoft.CodeAnalysis.CSharp.Analyzers.dll")))
+            using (var microsoftCodeAnalysisCsharpContent = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Microsoft.CodeAnalysis.CSharp.dll")))
+            using (var microsoftCodeAnalysisContent = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Microsoft.CodeAnalysis.dll")))
             {
                 //// TODO you are here
-                //// TODO switch to new setup method
                 //// TODO get this working by having the references be embedded resources of the test project
 
                 var solutionSpecification = new SolutionSpecification(
@@ -549,6 +552,18 @@ EndGlobal
                                 new FileSpecification(
                                     "Resources.Designer.cs",
                                     resourcesDesignerContents),
+                                new FileSpecification(
+                                    "Microsoft.CodeAnalysis.Analyzers.dll",
+                                    microsoftCodeAnalysisAnalyzersContent),
+                                new FileSpecification(
+                                    "Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
+                                    microsoftCodeAnalysisCsharpAnalyzersContent),
+                                new FileSpecification(
+                                    "Microsoft.CodeAnalysis.CSharp.dll",
+                                    microsoftCodeAnalysisCsharpContent),
+                                new FileSpecification(
+                                    "Microsoft.CodeAnalysis.dll",
+                                    microsoftCodeAnalysisContent),
                             })
                     });
 
