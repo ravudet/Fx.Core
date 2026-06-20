@@ -53,6 +53,9 @@
     <Reference Include="Microsoft.CodeAnalysis.NetAnalyzers">
       <HintPath>$(PkgMicrosoft_CodeAnalysis_NetAnalyzers)\analyzers\dotnet\Microsoft.CodeAnalysis.NetAnalyzers.dll</HintPath>
     </Reference>
+      <Reference Include="Microsoft.CodeAnalysis.Analyzers">
+          <HintPath>C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.Analyzers.dll</HintPath>
+      </Reference>
   </ItemGroup>
 
   <ItemGroup>

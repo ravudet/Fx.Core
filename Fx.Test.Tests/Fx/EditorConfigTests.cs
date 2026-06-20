@@ -682,7 +682,10 @@ EndGlobal
 
             ////var assembly = Assembly.Load(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll");
 
-            return paths.SelectMany(path => Load(path)).ToImmutableArray();
+            var type = typeof(Microsoft.CodeAnalysis.Analyzers.MetaAnalyzers.DiagnosticAnalyzerAttributeAnalyzer);
+            var another = (DiagnosticAnalyzer)Activator.CreateInstance(type)!;
+
+            return paths.SelectMany(path => Load(path)).Append(another).ToImmutableArray();
         }
 
         public static IEnumerable<DiagnosticAnalyzer> Load(string assemblyPath)
