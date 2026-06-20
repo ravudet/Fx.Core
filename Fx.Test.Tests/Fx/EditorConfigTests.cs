@@ -527,7 +527,7 @@ EndGlobal
             using (var microsoftCodeAnalysisContent = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Microsoft.CodeAnalysis.dll")))
             {
                 //// TODO you are here
-                //// TODO get this working by having the references be embedded resources of the test project
+                //// TODO get an actual analyzer test working (you will need to load the correct analyzers to pass to `compilesolution`
 
                 var solutionSpecification = new SolutionSpecification(
                     new[]
