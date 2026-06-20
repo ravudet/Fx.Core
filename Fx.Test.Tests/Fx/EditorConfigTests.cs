@@ -528,7 +528,7 @@ EndGlobal
             using (var microsoftCodeAnalysisContent = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Microsoft.CodeAnalysis.dll")))
             {
                 //// TODO you are here
-                //// TODO get an actual analyzer test working (you will need to load the correct analyzers to pass to `compilesolution`
+                //// TODO clean all of this up now that you have a test working, then backfill the unit tests for the editorconfig
 
                 var solutionSpecification = new SolutionSpecification(
                     new[]
