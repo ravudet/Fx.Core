@@ -7,16 +7,16 @@
 
     <ItemGroup>
         <Reference Include="Microsoft.CodeAnalysis.Analyzers">
-            <HintPath>C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.Analyzers.dll</HintPath>
+            <HintPath>..\..\..\..\..\..\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.Analyzers.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.CodeAnalysis.CSharp.Analyzers">
-            <HintPath>C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.CSharp.Analyzers.dll</HintPath>
+            <HintPath>..\..\..\..\..\..\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.CSharp.Analyzers.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.CodeAnalysis.CSharp">
-            <HintPath>C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+            <HintPath>..\..\..\..\..\..\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.CodeAnalysis">
-            <HintPath>C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.dll</HintPath>
+            <HintPath>..\..\..\..\..\..\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.dll</HintPath>
         </Reference>
     </ItemGroup>
     
