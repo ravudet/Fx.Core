@@ -570,16 +570,17 @@ EndGlobal
 
             foreach (var project in solution.Projects)
             {
-                var reference1 = CompilationReference.CreateFromFile(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.Analyzers.dll");
+                /*var reference1 = CompilationReference.CreateFromFile(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.Analyzers.dll");
                 var reference2 = CompilationReference.CreateFromFile(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.CSharp.Analyzers.dll");
                 var reference3 = CompilationReference.CreateFromFile(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.CSharp.dll");
-                var reference4 = CompilationReference.CreateFromFile(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.dll");
+                var reference4 = CompilationReference.CreateFromFile(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.dll");*/
 
                 var project2 = project
-                    .AddMetadataReference(reference1)
+                    /*.AddMetadataReference(reference1)
                     .AddMetadataReference(reference2)
                     .AddMetadataReference(reference3)
-                    .AddMetadataReference(reference4);
+                    .AddMetadataReference(reference4)*/
+                    ;
 
                 /*var path = Path.Combine(this.TestContext.DeploymentDirectory, nameof(Foo4), "solution", "Project", "Resources.resx");
                 project2 = project2

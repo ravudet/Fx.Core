@@ -5,7 +5,7 @@
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
-    <!--<ItemGroup>
+    <ItemGroup>
         <Reference Include="Microsoft.CodeAnalysis.Analyzers">
             <HintPath>C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.Analyzers.dll</HintPath>
         </Reference>
@@ -18,7 +18,7 @@
         <Reference Include="Microsoft.CodeAnalysis">
             <HintPath>C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.dll</HintPath>
         </Reference>
-    </ItemGroup>-->
+    </ItemGroup>
     
     <ItemGroup>
         <Compile Update="Resources.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Resources.resx" />
