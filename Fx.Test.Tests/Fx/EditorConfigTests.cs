@@ -541,9 +541,9 @@ EndGlobal
 
             var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "CA1052").First().ConfigureAwait(false);
 
-            Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Class1.cs"));
-            Assert.AreEqual(45, diagnostic.Location.SourceSpan.Start);
-            Assert.AreEqual(51, diagnostic.Location.SourceSpan.End);
+            Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Analyzer1Analzyer.cs"));
+            Assert.AreEqual(474, diagnostic.Location.SourceSpan.Start);
+            Assert.AreEqual(477, diagnostic.Location.SourceSpan.End);
 
             Directory.Delete(workingDirectory, true);
         }
