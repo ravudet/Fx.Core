@@ -523,18 +523,48 @@ EndGlobal
             using (var resourcesDesignerContents = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Resources.Designer.cs")))
             {
                 //// TODO you are here
-                //// TODO get this working by having the references be relative paths
                 //// TODO switch to new setup method
                 //// TODO get this working by having the references be embedded resources of the test project
 
+                var solutionSpecification = new SolutionSpecification(
+                    new[]
+                    {
+                        new FileSpecification(
+                            ".editorConfig",
+                            editorConfigContents),
+                    },
+                    new[]
+                    {
+                        new ProjectSpecification(
+                            "Project",
+                            projectContents,
+                            new[]
+                            {
+                                new FileSpecification(
+                                    "Analyzer1Analyzer.cs",
+                                    analyzer1AnalzyerContents),
+                                new FileSpecification(
+                                    "Resources.resx",
+                                    resourcesResxContents),
+                                new FileSpecification(
+                                    "Resources.Designer.cs",
+                                    resourcesDesignerContents),
+                            })
+                    });
 
-                solutionPath = await SetupSolution(
+                solutionPath = await SolutionUtilities
+                    .SetupSolution(
+                        Path.Combine(workingDirectory, "solution"),
+                        solutionSpecification)
+                    .ConfigureAwait(false);
+
+                /*solutionPath = await SetupSolution(
                     workingDirectory,
                     editorConfigContents,
                     projectContents,
                     ("Analyzer1Analzyer.cs", analyzer1AnalzyerContents),
                     ("Resources.resx", resourcesResxContents),
-                    ("Resources.Designer.cs", resourcesDesignerContents)).ConfigureAwait(false);
+                    ("Resources.Designer.cs", resourcesDesignerContents)).ConfigureAwait(false);*/
             }
 
             //// TODO productize `loadall`; in fact, you generally hate this sort of thing and prefer precision, like knowing the exact analyzer this test will use
@@ -542,7 +572,7 @@ EndGlobal
 
             var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "CA1052").First().ConfigureAwait(false);
 
-            Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Analyzer1Analzyer.cs"));
+            Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Analyzer1Analyzer.cs"));
             Assert.AreEqual(474, diagnostic.Location.SourceSpan.Start);
             Assert.AreEqual(477, diagnostic.Location.SourceSpan.End);
 
