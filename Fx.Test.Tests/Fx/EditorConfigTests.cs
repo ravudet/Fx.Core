@@ -5,6 +5,7 @@ namespace Fx
     using System;
     using System.Collections.Generic;
     using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Reflection;
@@ -313,7 +314,7 @@ EndGlobal
         }
     }
 
-    
+
 
     [TestClass]
     public class EditorConfigTests2
@@ -337,9 +338,103 @@ EndGlobal
 
             var rootResourcePath = CombineResourcePath(EmbeddedResourceRootPath, testName);
             var resourcePaths = typeof(EditorConfigTests2).Assembly.GetManifestResourceNames().AsEnumerable();
-            resourcePaths = resourcePaths.Where(path => path.StartsWith(rootResourcePath));
+            var resourceAndFileSystemPaths = resourcePaths
+                .Where(path => path.StartsWith(rootResourcePath))
+                .Select(path => path.Substring(rootResourcePath.Length))
+                .Select(path => (path, path.Replace('.', '\\').Replace("\\\\", ".")))
+                .Select(paths => (paths.path, paths.Item2, GetRootDirectory(paths.Item2)));
 
             //// TODO `.` characters have to be escaped with `..`
+
+            foreach (var paths in resourceAndFileSystemPaths)
+            {
+                if (!string.IsNullOrEmpty(paths.Item3))
+                {
+                    var potentialProjectFileName = Path.GetFileName(paths.Item2);
+                    if (potentialProjectFileName.EndsWith(".csproj") && string.Equals(Path.Combine(paths.Item3, potentialProjectFileName), paths.Item2))
+                    {
+
+                    }
+                }
+            }
+        }
+
+        private static string? GetRootDirectory(string path)
+        {
+            string? root = null;
+            var parent = path;
+            while (!string.IsNullOrEmpty(parent = Path.GetDirectoryName(parent)))
+            {
+                root = parent;
+            }
+
+            return root;
+        }
+
+        private static HashSet<FileSystemEntry> FileSystemEntries(IEnumerable<string> paths)
+        {
+            var fileSystemEntries = new HashSet<FileSystemEntry>();
+            foreach (var path in paths)
+            {
+            }
+        }
+
+        private static void FileSystemEntry(string path, HashSet<FileSystemEntry> fileSystemEntries)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                //// TODO the recursion should never reach here; this is precondition checking
+                return;
+            }
+
+            var parent = Path.GetDirectoryName(path);
+            if (string.IsNullOrEmpty(parent))
+            {
+                var directory = new FileSystemEntry.Directory(path);
+                fileSystemEntries.Add(directory);
+            }
+        }
+
+        private sealed class FileSystemEntryComparer : IEqualityComparer<FileSystemEntry>
+        {
+            public bool Equals(FileSystemEntry? x, FileSystemEntry? y)
+            {
+                throw new NotImplementedException();
+            }
+
+            public int GetHashCode([DisallowNull] FileSystemEntry obj)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private abstract class FileSystemEntry
+        {
+            public sealed class Directory : FileSystemEntry
+            {
+                public Directory(string name)
+                {
+                    this.Name = name;
+                    this.FileSystemEntries = new HashSet<FileSystemEntry>();
+                }
+
+                public string Name { get; }
+
+                public HashSet<FileSystemEntry> FileSystemEntries { get; }
+            }
+
+            public sealed class File : FileSystemEntry
+            {
+                public File(string name, Directory? parentDirectory)
+                {
+                    this.Name = name;
+                    this.ParentDirectory = parentDirectory;
+                }
+
+                public string Name { get; }
+
+                public Directory? ParentDirectory { get; } // TODO `null` means root
+            }
         }
 
         [TestMethod]
