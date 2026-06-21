@@ -89,8 +89,4 @@
     <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.dll" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Content\Foo2\Project - Copy\" />
-  </ItemGroup>
-
 </Project>
