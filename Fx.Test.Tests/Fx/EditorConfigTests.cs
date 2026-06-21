@@ -480,7 +480,10 @@ EndGlobal
             {
                 //// TODO there is a superstition that this has to be called outside of the first method that uses the msbuild types; this is clearly not true, as demonstrated here
                 var instance = Microsoft.Build.Locator.MSBuildLocator.RegisterDefaults();
+                Microsoft.Build.Locator.MSBuildLocator.IsRegistered
             }
+
+            //// TODO cancel build keyboard shortcut should be shift + f5
 
             ////
 
