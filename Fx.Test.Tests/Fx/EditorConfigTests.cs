@@ -316,7 +316,7 @@ EndGlobal
     [TestClass]
     public class EditorConfigTests2
     {
-        public TestContext TestContext { get; set; } //// TODO does it have to be public?
+        public TestContext TestContext { get; set; }
 
         private static string CombineResourcePath(params string[] paths)
         {
