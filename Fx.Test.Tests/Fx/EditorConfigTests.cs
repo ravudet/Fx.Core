@@ -8,6 +8,7 @@ namespace Fx
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -326,6 +327,23 @@ EndGlobal
         }
 
         private const string EmbeddedResourceRootPath = "Content";
+
+        private static async Task<string> SetupTestSolution([CallerMemberName] string? testName = null)
+        {
+            if (testName == null)
+            {
+                throw new Exception("tODO do you need this since it's private?");
+            }
+
+            var rootResourcePath = CombineResourcePath(EmbeddedResourceRootPath, testName);
+            var resourcePaths = typeof(EditorConfigTests2).Assembly.GetManifestResourceNames();
+            resourcePaths = resourcePaths.Where(path => path.StartsWith(rootResourcePath));
+        }
+
+        [TestMethod]
+        public async Task Foo2()
+        {
+        }
 
         [TestMethod]
         public async Task Foo3()
