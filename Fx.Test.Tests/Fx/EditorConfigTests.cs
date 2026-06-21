@@ -336,8 +336,10 @@ EndGlobal
             }
 
             var rootResourcePath = CombineResourcePath(EmbeddedResourceRootPath, testName);
-            var resourcePaths = typeof(EditorConfigTests2).Assembly.GetManifestResourceNames();
+            var resourcePaths = typeof(EditorConfigTests2).Assembly.GetManifestResourceNames().AsEnumerable();
             resourcePaths = resourcePaths.Where(path => path.StartsWith(rootResourcePath));
+
+            //// TODO `.` characters have to be escaped with `..`
         }
 
         [TestMethod]
