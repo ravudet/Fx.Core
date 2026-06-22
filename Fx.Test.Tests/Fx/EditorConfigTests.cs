@@ -337,54 +337,96 @@ EndGlobal
             }
 
             var rootResourcePath = CombineResourcePath(EmbeddedResourceRootPath, testName);
-            var resourcePaths = typeof(EditorConfigTests2).Assembly.GetManifestResourceNames().AsEnumerable();
-            var resourceAndFileSystemPaths = resourcePaths
+            var assembly = typeof(EditorConfigTests2).Assembly;
+            var resourcePaths = assembly.GetManifestResourceNames().AsEnumerable();
+            resourcePaths = resourcePaths
                 .Where(path => path.StartsWith(rootResourcePath))
                 .Select(path => path.Substring(rootResourcePath.Length))
-                .Select(path => (path, path.Replace('.', '\\').Replace("\\\\", ".")))
-                .Select(paths => (paths.path, paths.Item2, GetRootDirectory(paths.Item2)));
+                .Select(path => path.Replace('.', '\\').Replace("\\\\", "."));
 
             //// TODO `.` characters have to be escaped with `..`
 
-            foreach (var paths in resourceAndFileSystemPaths)
-            {
-                if (!string.IsNullOrEmpty(paths.Item3))
-                {
-                    var potentialProjectFileName = Path.GetFileName(paths.Item2);
-                    if (potentialProjectFileName.EndsWith(".csproj") && string.Equals(Path.Combine(paths.Item3, potentialProjectFileName), paths.Item2))
-                    {
+            var rootDirectory = RootDirectory(resourcePaths);
 
+            var projectSpecifications = new List<ProjectSpecification>();
+            var fileSpecifications = new List<FileSpecification>();
+
+            foreach (var fileSystemEntry in rootDirectory.FileSystemEntries)
+            {
+                if (fileSystemEntry is FileSystemEntry.Directory directory)
+                {
+                    var csprojFiles = directory
+                        .FileSystemEntries
+                        .OfType<FileSystemEntry.File>()
+                        .Where(entry => entry.Name.EndsWith(".csproj"));
+                    var isSingle = csprojFiles.TrySingle(out var csprojFile);
+                    if (isSingle == 2)
+                    {
+                        throw new Exception("TODO multiple csproj in same directory");
                     }
+                    else if (isSingle == 1)
+                    {
+                        var resourcePath = Path.Combine(rootResourcePath, directory.Name, csprojFile.Name).Replace(".", "..").Replace("\\", ".");
+                        var content = assembly.GetManifestResourceStream(resourcePath);
+                        projectSpecifications.Add(new ProjectSpecification(
+                            csprojFile.Name,
+                            content,
+                            FileSpecifications(assembly, rootResourcePath, directory.Name, directory.FileSystemEntries.Where(entry => !object.ReferenceEquals(entry, csprojFile)))));
+                    }
+                    else
+                    {
+                        fileSpecifications.AddRange(FileSpecifications(assembly, rootResourcePath, directory.Name, directory.FileSystemEntries));
+                    }
+                }
+                else
+                {
+                    var resourcePath = Path.Combine(rootResourcePath, fileSystemEntry.Name).Replace(".", "..").Replace("\\", ".");
+                    var content = assembly.GetManifestResourceStream(resourcePath);
+                    fileSpecifications.Add(new FileSpecification(fileSystemEntry.Name, content));
+                }
+            }
+
+            return null; //// TODO
+        }
+
+        private static IEnumerable<FileSpecification> FileSpecifications(Assembly assembly, string rootResourcePath, string rootPath, IEnumerable<FileSystemEntry> entries)
+        {
+            foreach (var entry in entries)
+            {
+                var entryPath = Path.Combine(rootPath, entry.Name);
+                if (entry is FileSystemEntry.Directory directory)
+                {
+                    var subEntries = FileSpecifications(assembly, rootResourcePath, entryPath, directory.FileSystemEntries);
+                    foreach (var subEntry in subEntries)
+                    {
+                        yield return subEntry;
+                    }
+                }
+                else
+                {
+                    var resourcePath = Path.Combine(rootResourcePath, entryPath).Replace(".", "..").Replace("\\", ".");
+                    var content = assembly.GetManifestResourceStream(resourcePath);
+                    yield return new FileSpecification(
+                        entryPath,
+                        content);
                 }
             }
         }
 
-        private static string? GetRootDirectory(string path)
-        {
-            string? root = null;
-            var parent = path;
-            while (!string.IsNullOrEmpty(parent = Path.GetDirectoryName(parent)))
-            {
-                root = parent;
-            }
-
-            return root;
-        }
-
-        private static FileSystemEntry.Directory FileSystemEntries(IEnumerable<string> paths)
+        private static FileSystemEntry.Directory RootDirectory(IEnumerable<string> paths)
         {
             var fileSystemEntries = new Dictionary<string, FileSystemEntry.Directory>();
             foreach (var path in paths)
             {
                 var fileName = Path.GetFileName(path);
                 var file = new FileSystemEntry.File(fileName);
-                Directory(Path.GetDirectoryName(path), fileSystemEntries, file);
+                Directory2(Path.GetDirectoryName(path), fileSystemEntries, file);
             }
 
             return fileSystemEntries[string.Empty];
         }
 
-        private static void Directory(
+        private static void Directory2(
             string directoryPath,
             Dictionary<string, FileSystemEntry.Directory> fileSystemEntries,
             FileSystemEntry fileSystemEntry)
@@ -405,7 +447,7 @@ EndGlobal
                 if (!string.IsNullOrEmpty(directoryPath))
                 {
                     var parentPath = Path.GetDirectoryName(directoryPath);
-                    Directory(parentPath, fileSystemEntries, directory);
+                    Directory2(parentPath, fileSystemEntries, directory);
                 }
             }
         }
@@ -425,15 +467,20 @@ EndGlobal
 
         private abstract class FileSystemEntry
         {
+            private FileSystemEntry(string name)
+            {
+                this.Name = name;
+            }
+
+            public string Name { get; }
+
             public sealed class Directory : FileSystemEntry
             {
                 public Directory(string name)
+                    : base(name)
                 {
-                    this.Name = name;
                     this.FileSystemEntries = new HashSet<FileSystemEntry>();
                 }
-
-                public string Name { get; }
 
                 public HashSet<FileSystemEntry> FileSystemEntries { get; }
             }
@@ -441,11 +488,9 @@ EndGlobal
             public sealed class File : FileSystemEntry
             {
                 public File(string name)
+                    : base(name)
                 {
-                    this.Name = name;
                 }
-
-                public string Name { get; }
 
                 ////public Directory? ParentDirectory { get; } // TODO `null` means root
             }
@@ -756,6 +801,31 @@ EndGlobal
                 if (enumerator != null)
                 {
                     await enumerator.DisposeAsync().ConfigureAwait(false);
+                }
+            }
+        }
+
+        public static int TrySingle<TElement>(this IEnumerable<TElement> source, [MaybeNullWhen(false)] out TElement element)
+        {
+            using (var enumerator = source.GetEnumerator())
+            {
+                if (enumerator.MoveNext())
+                {
+                    element = enumerator.Current;
+
+                    if (enumerator.MoveNext())
+                    {
+                        return 2;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                else
+                {
+                    element = default;
+                    return 0;
                 }
             }
         }
