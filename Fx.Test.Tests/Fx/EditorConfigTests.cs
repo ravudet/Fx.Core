@@ -341,7 +341,7 @@ EndGlobal
             var resourcePaths = assembly.GetManifestResourceNames().AsEnumerable();
             resourcePaths = resourcePaths
                 .Where(path => path.StartsWith(rootResourcePath))
-                .Select(path => path.Substring(rootResourcePath.Length))
+                .Select(path => path.Substring(rootResourcePath.Length + 1)) // get rid of leading `\`
                 .Select(path => path.Replace('.', '\\').Replace("\\\\", "."));
 
             //// TODO `.` characters have to be escaped with `..`
