@@ -499,6 +499,7 @@ EndGlobal
         [TestMethod]
         public async Task Foo2()
         {
+            SetupTestSolution();
         }
 
         [TestMethod]
