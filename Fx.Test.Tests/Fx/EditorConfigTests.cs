@@ -431,24 +431,23 @@ EndGlobal
             Dictionary<string, FileSystemEntry.Directory> fileSystemEntries,
             FileSystemEntry fileSystemEntry)
         {
-            if (fileSystemEntries.TryGetValue(directoryPath, out var directory))
-            {
-                if (!directory.FileSystemEntries.Add(fileSystemEntry))
-                {
-                    throw new Exception("TODO duplicate entries");
-                }
-            }
-            else
+            if (!fileSystemEntries.TryGetValue(directoryPath, out var directory))
             {
                 var directoryName = Path.GetFileName(directoryPath);
                 directory = new FileSystemEntry.Directory(directoryName);
                 fileSystemEntries[directoryPath] = directory;
+            }
 
-                if (!string.IsNullOrEmpty(directoryPath))
-                {
-                    var parentPath = Path.GetDirectoryName(directoryPath);
-                    Directory2(parentPath, fileSystemEntries, directory);
-                }
+
+            if (!directory.FileSystemEntries.Add(fileSystemEntry))
+            {
+                throw new Exception("TODO duplicate entries");
+            }
+
+            if (!string.IsNullOrEmpty(directoryPath))
+            {
+                var parentPath = Path.GetDirectoryName(directoryPath);
+                Directory2(parentPath, fileSystemEntries, directory);
             }
         }
 
