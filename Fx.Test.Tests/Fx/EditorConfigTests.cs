@@ -371,27 +371,42 @@ EndGlobal
             return root;
         }
 
-        private static HashSet<FileSystemEntry> FileSystemEntries(IEnumerable<string> paths)
+        private static FileSystemEntry.Directory FileSystemEntries(IEnumerable<string> paths)
         {
-            var fileSystemEntries = new HashSet<FileSystemEntry>();
+            var fileSystemEntries = new Dictionary<string, FileSystemEntry.Directory>();
             foreach (var path in paths)
             {
+                var fileName = Path.GetFileName(path);
+                var file = new FileSystemEntry.File(fileName);
+                Directory(Path.GetDirectoryName(path), fileSystemEntries, file);
             }
+
+            return fileSystemEntries[string.Empty];
         }
 
-        private static void FileSystemEntry(string path, HashSet<FileSystemEntry> fileSystemEntries)
+        private static void Directory(
+            string directoryPath,
+            Dictionary<string, FileSystemEntry.Directory> fileSystemEntries,
+            FileSystemEntry fileSystemEntry)
         {
-            if (string.IsNullOrEmpty(path))
+            if (fileSystemEntries.TryGetValue(directoryPath, out var directory))
             {
-                //// TODO the recursion should never reach here; this is precondition checking
-                return;
+                if (!directory.FileSystemEntries.Add(fileSystemEntry))
+                {
+                    throw new Exception("TODO duplicate entries");
+                }
             }
-
-            var parent = Path.GetDirectoryName(path);
-            if (string.IsNullOrEmpty(parent))
+            else
             {
-                var directory = new FileSystemEntry.Directory(path);
-                fileSystemEntries.Add(directory);
+                var directoryName = Path.GetFileName(directoryPath);
+                directory = new FileSystemEntry.Directory(directoryName);
+                fileSystemEntries[directoryPath] = directory;
+
+                if (!string.IsNullOrEmpty(directoryPath))
+                {
+                    var parentPath = Path.GetDirectoryName(directoryPath);
+                    Directory(parentPath, fileSystemEntries, directory);
+                }
             }
         }
 
@@ -425,15 +440,14 @@ EndGlobal
 
             public sealed class File : FileSystemEntry
             {
-                public File(string name, Directory? parentDirectory)
+                public File(string name)
                 {
                     this.Name = name;
-                    this.ParentDirectory = parentDirectory;
                 }
 
                 public string Name { get; }
 
-                public Directory? ParentDirectory { get; } // TODO `null` means root
+                ////public Directory? ParentDirectory { get; } // TODO `null` means root
             }
         }
 
