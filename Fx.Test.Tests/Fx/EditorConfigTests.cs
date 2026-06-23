@@ -504,6 +504,7 @@ EndGlobal
         [TestMethod]
         public async Task Foo2()
         {
+            //// TODO get the compilation trick working for the c# files in your content directories
             (var workingDirectory, var solution) = await SetupTestSolution().ConfigureAwait(false);
 
             var diagnostics = CompileSolution(solution, LoadAll()).SelectMany(project => project.Diagnostics);
