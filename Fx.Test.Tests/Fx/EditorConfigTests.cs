@@ -329,7 +329,7 @@ EndGlobal
 
         private const string EmbeddedResourceRootPath = "Content";
 
-        private async Task<string> SetupTestSolution([CallerMemberName] string? testName = null)
+        private async Task<(string WorkingDirectory, Solution Solution)> SetupTestSolution([CallerMemberName] string? testName = null)
         {
             if (testName == null)
             {
@@ -393,7 +393,9 @@ EndGlobal
                 .ConfigureAwait(false);
 
             //// TODO you need to dispose all of your resource streams
-            return solutionPath;
+
+            var solution = await OpenSolution(solutionPath).ConfigureAwait(false);
+            return (workingDirectory, solution);
         }
 
         private static IEnumerable<FileSpecification> FileSpecifications(Assembly assembly, string rootResourcePath, string rootPath, IEnumerable<FileSystemEntry> entries)
@@ -502,9 +504,9 @@ EndGlobal
         [TestMethod]
         public async Task Foo2()
         {
-            var solutionPath = await SetupTestSolution().ConfigureAwait(false);
+            (var workingDirectory, var solution) = await SetupTestSolution().ConfigureAwait(false);
 
-            var diagnostics = CompileSolution(solutionPath, LoadAll()).SelectMany(project => project.Diagnostics);
+            var diagnostics = CompileSolution(solution, LoadAll()).SelectMany(project => project.Diagnostics);
 
             var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "CA1052").First().ConfigureAwait(false);
 
@@ -512,8 +514,7 @@ EndGlobal
             Assert.AreEqual(45, diagnostic.Location.SourceSpan.Start);
             Assert.AreEqual(51, diagnostic.Location.SourceSpan.End);
 
-            //// TODO
-            ////Directory.Delete(workingDirectory, true);
+            Directory.Delete(workingDirectory, true);
         }
 
         [TestMethod]
@@ -663,7 +664,7 @@ EndGlobal
 
         private static int DefaultsRegistered = 0;
 
-        public async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic> Diagnostics)> CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers) //// TODO make this static
+        public static async Task<Solution> OpenSolution(string solutionPath)
         {
             if (Interlocked.Exchange(ref DefaultsRegistered, 1) == 0)
             {
@@ -686,8 +687,11 @@ EndGlobal
 
             var projectInfo = await loader.LoadProjectInfoAsync(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Fx.Test.Tests.csproj");*/
 
-            var solution = await workspace.OpenSolutionAsync(solutionPath);
+            return await workspace.OpenSolutionAsync(solutionPath);
+        }
 
+        public async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic> Diagnostics)> CompileSolution(Solution solution, ImmutableArray<DiagnosticAnalyzer> analyzers) //// TODO make this static
+        {
             foreach (var project in solution.Projects)
             {
                 /*var reference1 = CompilationReference.CreateFromFile(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.Analyzers.dll");
@@ -733,6 +737,15 @@ EndGlobal
             var withAnalyzers = compilation.WithAnalyzers(LoadAll());
             //var diagnostics = compilation.GetDiagnostics();
             var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();*/
+        }
+
+        public async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic> Diagnostics)> CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers) //// TODO make this static
+        {
+            var solution = await OpenSolution(solutionPath).ConfigureAwait(false);
+            await foreach (var project in CompileSolution(solution, analyzers).ConfigureAwait(false))
+            {
+                yield return project;
+            }
         }
 
 
