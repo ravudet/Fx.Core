@@ -277,7 +277,7 @@ $$"""
 
                         await textWriter.WriteLineAsync(
 $$"""
-		{{{solutionFolder.Value.Id}}} = {{{parentId}}}
+		{{{solutionFolder.Value.Id}}} = {{{parentId.Id}}}
 """
                         ).ConfigureAwait(false);
                     }
@@ -366,10 +366,10 @@ EndGlobal
                     }
                     else if (isSingle == 1)
                     {
-                        var resourcePath = Path.Combine(rootResourcePath, directory.Name, csprojFile.Name).Replace(".", "..").Replace("\\", ".");
+                        var resourcePath = CombineResourcePath(rootResourcePath, Path.Combine(directory.Name, csprojFile.Name).Replace(".", "..").Replace("\\", "."));
                         var content = assembly.GetManifestResourceStream(resourcePath);
                         projectSpecifications.Add(new ProjectSpecification(
-                            csprojFile.Name,
+                            Path.GetFileNameWithoutExtension(csprojFile.Name),
                             content,
                             FileSpecifications(assembly, rootResourcePath, directory.Name, directory.FileSystemEntries.Where(entry => !object.ReferenceEquals(entry, csprojFile)))));
                     }
@@ -380,7 +380,7 @@ EndGlobal
                 }
                 else
                 {
-                    var resourcePath = Path.Combine(rootResourcePath, fileSystemEntry.Name).Replace(".", "..").Replace("\\", ".");
+                    var resourcePath = CombineResourcePath(rootResourcePath, fileSystemEntry.Name.Replace(".", "..").Replace("\\", "."));
                     var content = assembly.GetManifestResourceStream(resourcePath);
                     fileSpecifications.Add(new FileSpecification(fileSystemEntry.Name, content));
                 }
@@ -411,7 +411,7 @@ EndGlobal
                 }
                 else
                 {
-                    var resourcePath = Path.Combine(rootResourcePath, entryPath).Replace(".", "..").Replace("\\", ".");
+                    var resourcePath = CombineResourcePath(rootResourcePath, entryPath.Replace(".", "..").Replace("\\", "."));
                     var content = assembly.GetManifestResourceStream(resourcePath);
                     yield return new FileSpecification(
                         entryPath,
@@ -502,7 +502,18 @@ EndGlobal
         [TestMethod]
         public async Task Foo2()
         {
-            var solutionPath = SetupTestSolution();
+            var solutionPath = await SetupTestSolution().ConfigureAwait(false);
+
+            var diagnostics = CompileSolution(solutionPath, LoadAll()).SelectMany(project => project.Diagnostics);
+
+            var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "CA1052").First().ConfigureAwait(false);
+
+            Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Class1.cs"));
+            Assert.AreEqual(45, diagnostic.Location.SourceSpan.Start);
+            Assert.AreEqual(51, diagnostic.Location.SourceSpan.End);
+
+            //// TODO
+            ////Directory.Delete(workingDirectory, true);
         }
 
         [TestMethod]
