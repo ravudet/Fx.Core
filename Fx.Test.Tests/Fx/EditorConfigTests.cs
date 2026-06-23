@@ -329,7 +329,7 @@ EndGlobal
 
         private const string EmbeddedResourceRootPath = "Content";
 
-        private static async Task<string> SetupTestSolution([CallerMemberName] string? testName = null)
+        private async Task<string> SetupTestSolution([CallerMemberName] string? testName = null)
         {
             if (testName == null)
             {
@@ -386,7 +386,14 @@ EndGlobal
                 }
             }
 
-            return null; //// TODO
+            var workingDirectory = Path.Combine(this.TestContext.DeploymentDirectory, testName);
+            var solutionPath = await SolutionUtilities.SetupSolution(
+                Path.Combine(workingDirectory, "solution"),
+                new SolutionSpecification(fileSpecifications, projectSpecifications))
+                .ConfigureAwait(false);
+
+            //// TODO you need to dispose all of your resource streams
+            return solutionPath;
         }
 
         private static IEnumerable<FileSpecification> FileSpecifications(Assembly assembly, string rootResourcePath, string rootPath, IEnumerable<FileSystemEntry> entries)
@@ -495,7 +502,7 @@ EndGlobal
         [TestMethod]
         public async Task Foo2()
         {
-            SetupTestSolution();
+            var solutionPath = SetupTestSolution();
         }
 
         [TestMethod]
