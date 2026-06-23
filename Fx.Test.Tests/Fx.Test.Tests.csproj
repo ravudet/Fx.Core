@@ -77,13 +77,6 @@
     <EmbeddedResource Include="..\.editorconfig" Link="Content\.editorconfig" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.Analyzers.dll" />
-    <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
-    <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.CSharp.dll" />
-    <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.dll" />
-  </ItemGroup>
-
   <Target Name="RemoveTestResources" BeforeTargets="BeforeBuild">
     <ItemGroup>
       <Compile Remove="Content\**" />
