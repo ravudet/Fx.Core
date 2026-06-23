@@ -439,10 +439,7 @@ EndGlobal
             }
 
 
-            if (!directory.FileSystemEntries.Add(fileSystemEntry))
-            {
-                throw new Exception("TODO duplicate entries");
-            }
+            directory.FileSystemEntries.Add(fileSystemEntry);
 
             if (!string.IsNullOrEmpty(directoryPath))
             {
