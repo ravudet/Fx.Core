@@ -504,6 +504,8 @@ EndGlobal
         [TestMethod]
         public async Task Foo2()
         {
+            //// TODO you are here
+            //// TODO this is working exception csproj isn't showing up
             //// TODO get the compilation trick working for the c# files in your content directories
             (var workingDirectory, var solution) = await SetupTestSolution().ConfigureAwait(false);
 

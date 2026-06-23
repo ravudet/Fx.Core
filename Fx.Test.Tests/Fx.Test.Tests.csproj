@@ -10,10 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Content\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Build" Version="16.10.0">
       <ExcludeAssets>runtime</ExcludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -79,7 +75,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="..\.editorconfig" Link="Content\.editorconfig" />
-    <EmbeddedResource Include="Content\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,5 +83,12 @@
     <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.CSharp.dll" />
     <None Remove="Content\Analyzer\Microsoft.CodeAnalysis.dll" />
   </ItemGroup>
+
+  <Target Name="RemoveTestResources" BeforeTargets="BeforeBuild">
+    <ItemGroup>
+      <Compile Remove="Content\**" />
+      <EmbeddedResource Include="Content\**" />
+    </ItemGroup>
+  </Target>
 
 </Project>
