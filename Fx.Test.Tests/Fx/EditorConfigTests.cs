@@ -514,7 +514,8 @@ EndGlobal
             Assert.AreEqual(45, diagnostic.Location.SourceSpan.Start);
             Assert.AreEqual(51, diagnostic.Location.SourceSpan.End);
 
-            Directory.Delete(workingDirectory, true);
+            //// TODO the test infra actually deletes the testcontext working directory if all of the tests pass
+            ////Directory.Delete(workingDirectory, true);
         }
 
         [TestMethod]
