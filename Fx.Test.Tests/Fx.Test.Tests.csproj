@@ -75,6 +75,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="..\.editorconfig" Link="Content\.editorconfig" />
+    <None Include="Content\**" />
   </ItemGroup>
 
   <Target Name="RemoveTestResources" BeforeTargets="BeforeBuild">
