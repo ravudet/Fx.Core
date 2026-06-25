@@ -594,8 +594,11 @@ EndGlobal
             using (var microsoftCodeAnalysisCsharpContent = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Microsoft.CodeAnalysis.CSharp.dll")))
             using (var microsoftCodeAnalysisContent = assembly.GetManifestResourceStream(CombineResourcePath(EmbeddedResourceRootPath, "Analyzer", "Microsoft.CodeAnalysis.dll")))
             {
-                //// TODO you are here
-                //// TODO write down somewhere how you found the right analyzer to add to the loaded analyzers passed to `compilesolution`
+                //// TODO to find the necessary analyzer to load, go to these two repos:
+                //// https://github.com/dotnet/sdk
+                //// https://github.com/dotnet/roslyn
+                //// and search for the diagnostic id of the rule that you are trying to test; you may have to work backwards a bit sometimes to find the actual analyzer code; but then you will have a class file and, based on the directory structure, you should be able to determine the package that the analyzer is in; download this package and you can find the binary in the packages under `.\analyzers\dotnet\cs\`
+
                 //// TODO clean all of this up now that you have a test working, then backfill the unit tests for the editorconfig
 
                 var solutionSpecification = new SolutionSpecification(
