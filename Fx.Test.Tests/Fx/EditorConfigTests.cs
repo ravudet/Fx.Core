@@ -521,8 +521,11 @@ EndGlobal
         [TestMethod]
         public async Task Foo3()
         {
+            //// TODO you are here
+            //// TODO you found the analyzer for file headers, but those analyzers are throwing i think because a dependency is not present
+
             //// TODO even though you've enabled ide-only triggering on build, some of them (like file header) aren't triggering; they *do* trigger on `dotnet build` though, which makes me think that you're just not loading that analyzer somehow //// TODO and you confirmed that a change to 1052 in the `.editorconfig` was reflected in the compiler diagnostics
-            
+
             //// TODO current method name
             var workingDirectory = Path.Combine(this.TestContext.DeploymentDirectory, nameof(Foo3));
 
@@ -755,9 +758,13 @@ EndGlobal
 
         public static ImmutableArray<DiagnosticAnalyzer> LoadAll()
         {
+            var foo = Path.GetDirectoryName(typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location);
+            foo = Path.Combine(foo, "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");
+
             var paths = new[]
             {
                 typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location,
+                foo,
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll",
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.Analyzers.dll",
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
