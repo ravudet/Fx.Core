@@ -522,7 +522,7 @@ EndGlobal
         public async Task Foo3()
         {
             //// TODO you are here
-            //// TODO you found the analyzer for file headers, but those analyzers are throwing i think because a dependency is not present
+            //// TODO you found the analyzer for file headers, but those analyzers are throwing i think because a dependency is not present //// TODO you got that fixed; also you need to enable IDE1006 for build to work, but it's still not working anyway
 
             //// TODO even though you've enabled ide-only triggering on build, some of them (like file header) aren't triggering; they *do* trigger on `dotnet build` though, which makes me think that you're just not loading that analyzer somehow //// TODO and you confirmed that a change to 1052 in the `.editorconfig` was reflected in the compiler diagnostics
 
