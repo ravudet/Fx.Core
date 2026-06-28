@@ -564,9 +564,9 @@ EndGlobal
             }
 
             //// TODO productize `loadall`; in fact, you generally hate this sort of thing and prefer precision, like knowing the exact analyzer this test will use
-            var diagnostics = CompileSolution(solutionPath, LoadAll()).SelectMany(project => project.Diagnostics);
+            var diagnostics = CompileSolution(solutionPath, LoadAll()).SelectMany(project => project.Diagnostics).ToBlockingEnumerable().ToArray();
 
-            var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "CA1052").First().ConfigureAwait(false);
+            var diagnostic = diagnostics.Where(diagnostic => diagnostic.Id == "CA1052").First();
 
             Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Foo3.cs"));
             Assert.AreEqual(45, diagnostic.Location.SourceSpan.Start);
@@ -765,6 +765,7 @@ EndGlobal
             {
                 typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location,
                 foo,
+                //typeof(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext).Assembly.Location, // TODO foo depends on this
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll",
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.Analyzers.dll",
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
