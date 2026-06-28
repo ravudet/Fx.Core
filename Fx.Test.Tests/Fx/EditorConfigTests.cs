@@ -725,6 +725,7 @@ EndGlobal
                 //// TODO there are too many `analyzerconfigdocuments`
 
                 var compilation = await project2.GetCompilationAsync();
+                //compilation = compilation.WithOptions(compilation.Options.WithReportSuppressedDiagnostics(true));
                 var withAnalyzers = compilation.WithAnalyzers(analyzers);
                 //var diagnostics = compilation.GetDiagnostics();
                 var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
