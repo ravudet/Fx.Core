@@ -8,6 +8,7 @@ namespace Fx
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
+    using System.Net.Http;
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Threading;
@@ -699,6 +700,9 @@ EndGlobal
 
         public async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic> Diagnostics)> CompileSolution(Solution solution, ImmutableArray<DiagnosticAnalyzer> analyzers) //// TODO make this static
         {
+            var cd = Environment.CurrentDirectory;
+            Environment.CurrentDirectory = @"C:\github\OddTrotter\Fx.Core";
+            var cd2 = Environment.CurrentDirectory;
             foreach (var project in solution.Projects)
             {
                 /*var reference1 = CompilationReference.CreateFromFile(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\stuff\Microsoft.CodeAnalysis.Analyzers.dll");
@@ -725,8 +729,13 @@ EndGlobal
                 //// TODO there are too many `analyzerconfigdocuments`
 
                 var compilation = await project2.GetCompilationAsync();
+                var first = compilation.GetDiagnostics();
                 //compilation = compilation.WithOptions(compilation.Options.WithReportSuppressedDiagnostics(true));
                 var withAnalyzers = compilation.WithAnalyzers(analyzers);
+                var analysisResult = await withAnalyzers.GetAnalysisResultAsync(CancellationToken.None);
+                ////var two = await withAnalyzers.GetAnalyzerCompilationDiagnosticsAsync(CancellationToken.None);
+                var three = await withAnalyzers.GetAnalyzerDiagnosticsAsync(CancellationToken.None);
+                ////var four = await withAnalyzers.GetAnalyzerTelemetryInfoAsync()
                 //var diagnostics = compilation.GetDiagnostics();
                 var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();
 
