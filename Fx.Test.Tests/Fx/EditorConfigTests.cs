@@ -18,6 +18,8 @@ namespace Fx
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Diagnostics;
     using Microsoft.CodeAnalysis.MSBuild;
+    using Microsoft.CodeAnalysis.Text;
+    using Microsoft.CodeQuality.Analyzers.ApiDesignGuidelines;
     using Microsoft.NetCore.Analyzers.Tasks;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -689,6 +691,9 @@ EndGlobal
             //// TODO package `Microsoft.CodeAnalysis.Workspaces.MSBuild` actually depends on `Microsoft.Build`
             var workspace = MSBuildWorkspace.Create();
 
+            var adhoc = new AdhocWorkspace();
+            SolutionInfo.Create()
+
             /*var loader = new MSBuildProjectLoader(workspace);
             var solutionInfo = await loader.LoadSolutionInfoAsync(solutionPath);
 
@@ -731,7 +736,17 @@ EndGlobal
                 var compilation = await project2.GetCompilationAsync();
                 var first = compilation.GetDiagnostics();
                 //compilation = compilation.WithOptions(compilation.Options.WithReportSuppressedDiagnostics(true));
-                var withAnalyzers = compilation.WithAnalyzers(analyzers);
+                var withAnalyzers = compilation.WithAnalyzers(
+                    analyzers,
+                    new CompilationWithAnalyzersOptions(
+                        new AnalyzerOptions(
+                            ImmutableArray.Create<AdditionalText>(
+                                new Textual(
+                                    ".editorconfig",
+                                    SourceText.From(File.ReadAllText(@"C:\github\OddTrotter\Fx.Core\.editorconfig"))))),
+                        null,
+                        true,
+                        false));
                 var analysisResult = await withAnalyzers.GetAnalysisResultAsync(CancellationToken.None);
                 ////var two = await withAnalyzers.GetAnalyzerCompilationDiagnosticsAsync(CancellationToken.None);
                 var three = await withAnalyzers.GetAnalyzerDiagnosticsAsync(CancellationToken.None);
@@ -756,6 +771,27 @@ EndGlobal
             var diagnostics = await withAnalyzers.GetAllDiagnosticsAsync();*/
         }
 
+        private sealed class Textual : AdditionalText
+        {
+            private readonly SourceText sourceText;
+
+            public Textual(string path, SourceText sourceText)
+            {
+                this.Path = path;
+                this.sourceText = sourceText;
+            }
+
+            public override SourceText? GetText(CancellationToken cancellationToken = default)
+            {
+                return sourceText;
+            }
+
+            public override string Path
+            {
+                get;
+            }
+        }
+
         public async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic> Diagnostics)> CompileSolution(string solutionPath, ImmutableArray<DiagnosticAnalyzer> analyzers) //// TODO make this static
         {
             var solution = await OpenSolution(solutionPath).ConfigureAwait(false);
@@ -775,6 +811,7 @@ EndGlobal
             {
                 typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location,
                 foo,
+                ////typeof(Microsoft.CodeAnalysis.Completion.CompletionTags).Assembly.Location,
                 //typeof(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext).Assembly.Location, // TODO foo depends on this
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll",
                 ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.Analyzers.dll",
