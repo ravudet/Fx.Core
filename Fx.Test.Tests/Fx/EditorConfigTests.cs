@@ -522,6 +522,21 @@ EndGlobal
         }
 
         [TestMethod]
+        public async Task IDE0004()
+        {
+            (var workingDirectory, var solution) = await SetupTestSolution().ConfigureAwait(false);
+
+            var diagnostics = CompileSolution(solution, LoadAll()).SelectMany(project => project.Diagnostics);
+
+            var array = diagnostics.ToBlockingEnumerable().ToArray();
+
+            var diagnostic = await diagnostics.Where(diagnostic => diagnostic.Id == "IDE0004").First().ConfigureAwait(false);
+
+            Assert.IsTrue(diagnostic.Location.SourceTree.FilePath.EndsWith("Class1.cs"));
+            Assert.AreEqual("148-156", $"{diagnostic.Location.SourceSpan.Start}-{diagnostic.Location.SourceSpan.End}");
+        }
+
+        [TestMethod]
         public async Task Foo3()
         {
             //// TODO you are here
