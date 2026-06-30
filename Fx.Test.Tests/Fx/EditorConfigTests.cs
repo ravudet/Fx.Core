@@ -691,16 +691,73 @@ EndGlobal
             //// TODO package `Microsoft.CodeAnalysis.Workspaces.MSBuild` actually depends on `Microsoft.Build`
             var workspace = MSBuildWorkspace.Create();
 
+            var msbuildSolution = await workspace.OpenSolutionAsync(solutionPath);
+
             var adhoc = new AdhocWorkspace();
-            SolutionInfo.Create()
+            var solution = adhoc.AddSolution(ToSolutionInfo(msbuildSolution));
+
+            return msbuildSolution;
 
             /*var loader = new MSBuildProjectLoader(workspace);
             var solutionInfo = await loader.LoadSolutionInfoAsync(solutionPath);
 
 
             var projectInfo = await loader.LoadProjectInfoAsync(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Fx.Test.Tests.csproj");*/
+        }
 
-            return await workspace.OpenSolutionAsync(solutionPath);
+        private static SolutionInfo ToSolutionInfo(Solution solution)
+        {
+            return SolutionInfo.Create(
+                solution.Id,
+                solution.Version,
+                solution.FilePath,
+                solution.Projects.Select(project => ToProjectInfo(project)),
+                null);
+        }
+
+        private static ProjectInfo ToProjectInfo(Project project)
+        {
+            return ProjectInfo.Create(
+                project.Id,
+                project.Version,
+                project.Name,
+                project.AssemblyName,
+                project.Language,
+                project.FilePath,
+                project.OutputFilePath,
+                project.CompilationOptions,
+                project.ParseOptions,
+                project.Documents.Select(document => ToDocumentInfo(document)),
+                project.ProjectReferences,
+                project.MetadataReferences,
+                project.AnalyzerReferences,
+                project.AdditionalDocuments.Select(document => ToDocumentInfo(document)),
+                project.IsSubmission,
+                null);
+        }
+
+        private static DocumentInfo ToDocumentInfo(Document document)
+        {
+            return DocumentInfo.Create(
+                document.Id,
+                document.Name,
+                document.Folders,
+                document.SourceCodeKind,
+                null,
+                document.FilePath,
+                false);
+        }
+
+        private static DocumentInfo ToDocumentInfo(TextDocument textDocument)
+        {
+            return DocumentInfo.Create(
+                textDocument.Id,
+                textDocument.Name,
+                textDocument.Folders,
+                SourceCodeKind.Regular,
+                null,
+                textDocument.FilePath,
+                false);
         }
 
         public async IAsyncEnumerable<(string ProjectId, ImmutableArray<Diagnostic> Diagnostics)> CompileSolution(Solution solution, ImmutableArray<DiagnosticAnalyzer> analyzers) //// TODO make this static
