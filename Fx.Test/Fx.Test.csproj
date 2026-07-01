@@ -5,6 +5,20 @@
     <Nullable>enable</Nullable>
     <RootNamespace />
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Fx.Test</PackageId>
+    <PackageVersion>1.0.0.0</PackageVersion> <!--TODO-->
+    <Authors>ravudet</Authors> <!--TODO-->
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance> <!--TODO-->
+    <Description>Fx.Test</Description>
+    <PackageReleaseNotes>TODO</PackageReleaseNotes>
+    <Copyright>Copyright</Copyright> <!--TODO-->
+    <!--<PackageTags>Analyzer1, analyzers</PackageTags>-->
+    <!--<DevelopmentDependency>true</DevelopmentDependency>-->
+    <!--<NoPackageAnalysis>true</NoPackageAnalysis>-->
   </PropertyGroup>
 
   <ItemGroup>
