@@ -505,6 +505,14 @@ EndGlobal
         }
 
         [TestMethod]
+        public void Nuget()
+        {
+            //new StandardGlobalConfig.Class1();
+            //System.Linq.V2.V2Enumerable.ToV2Enumerable(new[] { "Asdf" });
+            new TestNuget.Class1();
+        }
+
+        [TestMethod]
         public async Task Foo2()
         {
             (var workingDirectory, var solution) = await SetupTestSolution().ConfigureAwait(false);

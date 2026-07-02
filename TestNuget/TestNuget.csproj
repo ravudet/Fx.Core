@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>TestNuget</PackageId>
+    <PackageVersion>4.0.0.0</PackageVersion> <!--TODO-->
+    <Authors>ravudet</Authors> <!--TODO-->
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance> <!--TODO-->
+    <Description>Fx.Core</Description>
+    <PackageReleaseNotes>TODO</PackageReleaseNotes>
+    <Copyright>Copyright</Copyright> <!--TODO-->
+    <!--<PackageTags>Analyzer1, analyzers</PackageTags>-->
+    <!--<DevelopmentDependency>true</DevelopmentDependency>-->
+    <!--<NoPackageAnalysis>true</NoPackageAnalysis>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="build\TestNuget.props" PackagePath="build" Pack="true" />
+    <None Include="content\TestNuget.globalconfig" PackagePath="content" Pack="true" />
+    <None Include="tools\nothing.ps1" PackagePath="tools" Pack="true" />
+  </ItemGroup>
+
+</Project>
