@@ -377,6 +377,9 @@ class C {
 
 
 
+        //// TODO figure out some repro steps to make sure you are actually changing stuff
+        //// TODO figure out why props file is not getting installed
+
         // standard.globalconfig
 
         // exceptiondocanalyzer
