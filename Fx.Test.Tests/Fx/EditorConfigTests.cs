@@ -815,7 +815,7 @@ EndGlobal
                             ImmutableArray.Create<AdditionalText>(
                                 new Textual(
                                     ".editorconfig",
-                                    SourceText.From(File.ReadAllText(@"C:\github\OddTrotter\Fx.Core\.editorconfig"))))),
+                                    SourceText.From(File.ReadAllText(@"C:\github\OddTrotter\Fx.Core\bak.editorconfig"))))),
                         null,
                         true,
                         false));

@@ -84,7 +84,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\.editorconfig" Link="Content\.editorconfig" />
+    <EmbeddedResource Include="..\bak.editorconfig" Link="Content\.editorconfig" />
     <None Include="Content\**" />
   </ItemGroup>
 
