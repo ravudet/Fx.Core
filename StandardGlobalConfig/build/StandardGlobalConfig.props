@@ -1,5 +1,0 @@
-<Project>
-  <ItemGroup>
-    <GlobalAnalyzerConfigFiles Include="../content/StandardGlobalConfig.globalconfig" />
-  </ItemGroup>
-</Project>
