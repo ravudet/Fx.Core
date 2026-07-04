@@ -2,7 +2,4 @@
   <ItemGroup>
     <GlobalAnalyzerConfigFiles Include="$(PkgTestNuget)\content\TestNuget.globalconfig" /> <!--$(PkgTestNuget) would normally only be generated if the consumer of the package uses <PackageReference Include="TestNuget" Version="4.0.0" GeneratePathProperty="true" />; however, from [here](https://github.com/NuGet/Home/issues/7851), they will automatically generate that "variable" if the package has a `tools` folder -->
   </ItemGroup>
-  <PropertyGroup>
-    <RavudetTest>$(PkgTestNuget)\content\TestNuget.globalconfig</RavudetTest>
-  </PropertyGroup>
 </Project>
