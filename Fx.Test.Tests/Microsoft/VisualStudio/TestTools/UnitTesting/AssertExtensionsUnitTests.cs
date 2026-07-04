@@ -382,6 +382,8 @@ class C {
 
         // standard.globalconfig
 
+        // style.globalconfig
+
         // exceptiondocanalyzer
         // exceptiondocanalyzer.globalconfig <- you, the consumer of the package, need to be using exceptiondocanalyzer
 

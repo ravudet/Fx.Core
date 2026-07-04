@@ -40,7 +40,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.8.0" />
-    <PackageReference Include="TestNuget" Version="7.0.0" />
+    <PackageReference Include="TestNuget" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -94,15 +94,6 @@
       <Compile Remove="Content\**" />
       <EmbeddedResource Include="Content\**" />
     </ItemGroup>
-  </Target>
-
-  <Target Name="Failing" BeforeTargets="BeforeBuild">
-    
-    <PropertyGroup>
-      <JoinedList>@(GlobalAnalyzerConfigFiles, ', ')</JoinedList>
-    </PropertyGroup>
-    <Error Text="$(JoinedList); $(RavudetTest) ravudetxyzzy" Condition="'$(RavudetTest)' == ''" />
-    <Error Text="$(JoinedList); $(RavudetTest) ravudetxyzzy2" Condition="'$(RavudetTest)' != ''" />
   </Target>
 
 </Project>
