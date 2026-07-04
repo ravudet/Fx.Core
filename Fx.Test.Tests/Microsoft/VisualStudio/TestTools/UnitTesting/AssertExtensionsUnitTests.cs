@@ -377,8 +377,8 @@ class C {
 
 
 
-        //// TODO figure out some repro steps to make sure you are actually changing stuff
-        //// TODO figure out why props file is not getting installed
+        //// TODO can you remove the lib folder from the nuget package?
+        //// TODO how to deal with the version numbers?
 
         // standard.globalconfig
 
