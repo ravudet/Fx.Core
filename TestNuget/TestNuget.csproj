@@ -9,7 +9,7 @@
 
   <PropertyGroup>
     <PackageId>TestNuget</PackageId>
-    <PackageVersion>8.0.0.0</PackageVersion> <!--TODO-->
+    <PackageVersion>11.0.0.0</PackageVersion> <!--TODO-->
     <Authors>ravudet</Authors> <!--TODO-->
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance> <!--TODO-->
     <Description>Fx.Core</Description>
