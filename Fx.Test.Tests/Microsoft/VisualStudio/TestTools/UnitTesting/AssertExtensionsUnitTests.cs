@@ -401,6 +401,16 @@ class C {
 
 
 
+        public static void StyleGlobalConfigTest()
+        {
+            Func<int, int> square = x => x * x;
+            Func<int, int> square2 = x => { return x * x; }; // IDE0053
+
+            var value = $"{square.ToString()}"; // IDE0071
+            var value2 = $"{square}";
+        }
+
+
 
 
 
@@ -457,6 +467,7 @@ class C {
         {
             public MyImplementation(string value, string otherValue, string anotherValue)
             {
+
                 var foo = new ThrowExpression("asdf");
                 AdvancedMember.Class1.DoWork();
 

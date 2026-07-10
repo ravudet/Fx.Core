@@ -1,0 +1,7 @@
+
+is_global=true # TODO this is essential for the nuget package to work
+
+dotnet_diagnostic.IDE0053.severity = warning # i think this is purely style for you
+	csharp_style_expression_bodied_lambdas = true:warning
+dotnet_diagnostic.IDE0071.severity = warning # purely style, but i think most would agree it adds to readability
+	dotnet_style_prefer_simplified_interpolation = true

@@ -8,21 +8,25 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>StandardGlobalConfig</PackageId>
-    <PackageVersion>4.0.0.0</PackageVersion> <!--TODO-->
-    <Authors>ravudet</Authors> <!--TODO-->
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance> <!--TODO-->
+    <PackageId>StyleGlobalConfig</PackageId>
+    <PackageVersion>3.0.0.0</PackageVersion>
+    <!--TODO-->
+    <Authors>ravudet</Authors>
+    <!--TODO-->
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <!--TODO-->
     <Description>Fx.Core</Description>
     <PackageReleaseNotes>TODO</PackageReleaseNotes>
-    <Copyright>Copyright</Copyright> <!--TODO-->
+    <Copyright>Copyright</Copyright>
+    <!--TODO-->
     <!--<PackageTags>Analyzer1, analyzers</PackageTags>-->
     <!--<DevelopmentDependency>true</DevelopmentDependency>-->
     <!--<NoPackageAnalysis>true</NoPackageAnalysis>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="build\StandardGlobalConfig.props" PackagePath="build" Pack="true" />
-    <None Include="content\StandardGlobalConfig.globalconfig" PackagePath="content" Pack="true" />
+    <None Include="build\StyleGlobalConfig.props" PackagePath="build" Pack="true" />
+    <None Include="content\StyleGlobalConfig.globalconfig" PackagePath="content" Pack="true" />
     <None Include="tools\nothing.ps1" PackagePath="tools" Pack="true" />
   </ItemGroup>
 
