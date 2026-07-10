@@ -418,6 +418,20 @@ class C {
             var array = new[] { 1, 2, 3, 4 }.ToV2Enumerable();
         }
 
+        public static void Analyzer2AnalysisTest()
+        {
+            var actual = 5;
+            Assert.AreEqual(5, actual);
+            Assert.That.AreEqual(5, actual);
+        }
+
+
+
+
+
+
+
+
 
 
 
