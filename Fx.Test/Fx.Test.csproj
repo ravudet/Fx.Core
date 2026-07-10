@@ -25,8 +25,4 @@
     <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
-  </ItemGroup>
-
 </Project>

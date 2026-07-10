@@ -53,6 +53,7 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
+    using System.Linq.V2;
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices.Marshalling;
@@ -409,6 +410,11 @@ class C {
 
             var value = $"{square.ToString()}"; // IDE0071
             var value2 = $"{square}";
+        }
+
+        public static void Analyzer2DependencyTest()
+        {
+            var array = new[] { 1, 2, 3, 4 }.ToV2Enumerable();
         }
 
 
