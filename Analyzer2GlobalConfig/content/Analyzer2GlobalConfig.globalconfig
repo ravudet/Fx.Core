@@ -1,0 +1,4 @@
+
+is_global=true # TODO this is essential for the nuget package to work
+
+dotnet_diagnostic.Analyzer1.const_thing = true

@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandardGlobalConfig", "Sta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StyleGlobalConfig", "StyleGlobalConfig\StyleGlobalConfig.csproj", "{8D0B249E-7BD1-442B-8721-F967DFD34303}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer2GlobalConfig", "Analyzer2GlobalConfig\Analyzer2GlobalConfig.csproj", "{4A3B0D89-5EA5-4F22-859E-5FB88DF72504}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{8D0B249E-7BD1-442B-8721-F967DFD34303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D0B249E-7BD1-442B-8721-F967DFD34303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D0B249E-7BD1-442B-8721-F967DFD34303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A3B0D89-5EA5-4F22-859E-5FB88DF72504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A3B0D89-5EA5-4F22-859E-5FB88DF72504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A3B0D89-5EA5-4F22-859E-5FB88DF72504}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A3B0D89-5EA5-4F22-859E-5FB88DF72504}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

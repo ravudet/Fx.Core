@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Analyzer2GlobalConfig</PackageId>
+    <PackageVersion>5.0.0.0</PackageVersion>
+    <!--TODO-->
+    <Authors>ravudet</Authors>
+    <!--TODO-->
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <!--TODO-->
+    <Description>Fx.Core</Description>
+    <PackageReleaseNotes>TODO</PackageReleaseNotes>
+    <Copyright>Copyright</Copyright>
+    <!--TODO-->
+    <!--<PackageTags>Analyzer1, analyzers</PackageTags>-->
+    <!--<DevelopmentDependency>true</DevelopmentDependency>-->
+    <!--<NoPackageAnalysis>true</NoPackageAnalysis>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="build\Analyzer2GlobalConfig.props" PackagePath="build" Pack="true" />
+    <None Include="content\Analyzer2GlobalConfig.globalconfig" PackagePath="content" Pack="true" />
+    <None Include="tools\nothing.ps1" PackagePath="tools" Pack="true" />
+  </ItemGroup>
+
+</Project>

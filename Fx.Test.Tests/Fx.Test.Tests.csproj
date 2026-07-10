@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Analyzer2" Version="2.0.0" />
+    <PackageReference Include="Analyzer2GlobalConfig" Version="5.0.0" />
     <PackageReference Include="Microsoft.Build" Version="16.10.0">
       <ExcludeAssets>runtime</ExcludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -42,6 +43,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.8.0" />
     <PackageReference Include="StandardGlobalConfig" Version="4.0.0" />
+    <PackageReference Include="StyleGlobalConfig" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

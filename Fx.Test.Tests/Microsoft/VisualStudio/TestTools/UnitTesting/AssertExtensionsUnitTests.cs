@@ -420,6 +420,9 @@ class C {
 
         public static void Analyzer2AnalysisTest()
         {
+            string value = "foo"; // dotnet_diagnostic.Analyzer1.const_thing needs to be false to disable this
+
+
             var actual = 5;
             Assert.AreEqual(5, actual);
             Assert.That.AreEqual(5, actual);
