@@ -9,7 +9,7 @@
 
   <PropertyGroup>
     <PackageId>Analyzer2GlobalConfig</PackageId>
-    <PackageVersion>5.0.0.0</PackageVersion>
+    <PackageVersion>6.0.0.0</PackageVersion>
     <!--TODO-->
     <Authors>ravudet</Authors>
     <!--TODO-->
@@ -28,6 +28,10 @@
     <None Include="build\Analyzer2GlobalConfig.props" PackagePath="build" Pack="true" />
     <None Include="content\Analyzer2GlobalConfig.globalconfig" PackagePath="content" Pack="true" />
     <None Include="tools\nothing.ps1" PackagePath="tools" Pack="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Analyzer1\Analyzer1.Package\Analyzer1.Package.csproj" />
   </ItemGroup>
 
 </Project>
