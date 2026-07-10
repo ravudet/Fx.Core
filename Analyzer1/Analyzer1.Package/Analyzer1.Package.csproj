@@ -9,7 +9,7 @@
 
   <PropertyGroup>
     <PackageId>Analyzer2</PackageId>
-    <PackageVersion>1.0.0.0</PackageVersion>
+    <PackageVersion>2.0.0.0</PackageVersion>
     <Authors>ravud</Authors>
     <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
     <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
@@ -31,10 +31,10 @@
       <IncludeAssets>compile</IncludeAssets>
     </ProjectReference>
     <ProjectReference Include="..\Analyzer1.CodeFixes\Analyzer1.CodeFixes.csproj">
-      <ExcludeAssets>*</ExcludeAssets>
+      <PrivateAssets>all</PrivateAssets> <!--TODO required so that these don't show up as package dependencies (since you are making SuppressDependenciesWhenPacking `false`)-->
     </ProjectReference>
     <ProjectReference Include="..\Analyzer1\Analyzer1.csproj">
-      <ExcludeAssets>*</ExcludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </ProjectReference>
   </ItemGroup>
 
