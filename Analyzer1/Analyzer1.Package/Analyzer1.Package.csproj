@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <IncludeBuildOutput>false</IncludeBuildOutput>
-    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Analyzer1</PackageId>
+    <PackageId>Analyzer2</PackageId>
     <PackageVersion>1.0.0.0</PackageVersion>
     <Authors>ravud</Authors>
     <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
@@ -20,15 +20,22 @@
     <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
     <Copyright>Copyright</Copyright>
     <PackageTags>Analyzer1, analyzers</PackageTags>
-    <DevelopmentDependency>true</DevelopmentDependency>
-    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <!--<DevelopmentDependency>true</DevelopmentDependency>-->
+    <!--<NoPackageAnalysis>true</NoPackageAnalysis>-->
 
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Analyzer1.CodeFixes\Analyzer1.CodeFixes.csproj" />
-    <ProjectReference Include="..\Analyzer1\Analyzer1.csproj" />
+    <ProjectReference Include="..\..\Fx.Core\Fx.Core.csproj">
+      <IncludeAssets>compile</IncludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\Analyzer1.CodeFixes\Analyzer1.CodeFixes.csproj">
+      <ExcludeAssets>*</ExcludeAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\Analyzer1\Analyzer1.csproj">
+      <ExcludeAssets>*</ExcludeAssets>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>

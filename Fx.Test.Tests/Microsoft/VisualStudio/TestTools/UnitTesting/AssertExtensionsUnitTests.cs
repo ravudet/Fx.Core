@@ -378,6 +378,7 @@ class C {
 
         //// TODO create scaffolding for all of the below packages
         //// TODO can you remove the lib folder from the nuget package?
+        ////    use <IncludeBuildOutput>true</IncludeBuildOutput>
         //// TODO how to deal with the version numbers?
 
 
