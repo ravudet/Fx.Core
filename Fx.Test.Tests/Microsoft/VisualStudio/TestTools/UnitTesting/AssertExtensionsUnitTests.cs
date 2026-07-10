@@ -381,6 +381,7 @@ class C {
         //// TODO can you remove the lib folder from the nuget package?
         ////    use <IncludeBuildOutput>true</IncludeBuildOutput>
         //// TODO how to deal with the version numbers?
+        //// TODO analyzer2 now brings fx.core with it as a dependency
 
 
 
