@@ -11,8 +11,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Fx.Core.Analyzers
 {
-    [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class FxCoreAnalyzersAnalyzer : DiagnosticAnalyzer
+    public abstract class FxCoreAnalyzersAnalyzer2 : DiagnosticAnalyzer
     {
         public const string DiagnosticId = "FxCoreAnalyzers";
 
