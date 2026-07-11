@@ -1,9 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFrameworks>net9.0</TargetFrameworks>
     <RootNamespace />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net90'">
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
 </Project>
