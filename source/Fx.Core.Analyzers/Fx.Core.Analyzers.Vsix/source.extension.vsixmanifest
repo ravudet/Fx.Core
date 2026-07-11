@@ -12,9 +12,6 @@
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
   </Dependencies>
   <Assets>
-    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary" Path="|Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary|"/>
-    <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary" Path="|Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary|"/>
-    
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Fx.Core.Analyzers" Path="|Fx.Core.Analyzers|"/>
     <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="Fx.Core.Analyzers" Path="|Fx.Core.Analyzers|"/>
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Fx.Core.Analyzers.CodeFixes" Path="|Fx.Core.Analyzers.CodeFixes|"/>
