@@ -5,7 +5,7 @@
     <RootNamespace />
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net90'">
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0'">
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
