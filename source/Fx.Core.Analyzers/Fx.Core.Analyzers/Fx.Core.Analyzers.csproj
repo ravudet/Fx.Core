@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace />
+    
     <IsPackable>false</IsPackable>
 
     <!-- Avoid ID conflicts with the package project. -->
@@ -14,11 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Resources.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Resources.resx" />
-    <EmbeddedResource Update="Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
   </ItemGroup>
 
 </Project>

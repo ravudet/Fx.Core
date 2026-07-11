@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Threading;
-
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Diagnostics;
-
-namespace Fx.Core.Analyzers
+﻿namespace Microsoft.CodeAnalysis.CSharp
 {
-    public abstract class FxCoreAnalyzersAnalyzer2 : DiagnosticAnalyzer
+    using System.Collections.Immutable;
+    using System.Linq;
+
+    using Microsoft.CodeAnalysis;
+    using Microsoft.CodeAnalysis.Diagnostics;
+
+    public abstract class BaseLowercaseTypeNameAnalyzer : DiagnosticAnalyzer
     {
         public const string DiagnosticId = "FxCoreAnalyzers";
 

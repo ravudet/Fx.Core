@@ -3,7 +3,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using VerifyCS = Fx.Core.Analyzers.Test.CSharpCodeFixVerifier<
-    Fx.Core.Analyzers.FxCoreAnalyzersAnalyzer,
+    Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer,
     Fx.Core.Analyzers.FxCoreAnalyzersCodeFixProvider>;
 
 namespace Fx.Core.Analyzers.Test
