@@ -386,17 +386,22 @@ class C {
 
 
         // fx.globalconfig.standard
+        // fx.globalconfig.standard.tests
 
         // fx.globalconfig.style
+        // fx.globalconfig.style.tests
 
         // fx.analyzer (exceptiondocanalyzer)
-        // exceptiondocanalyzer.globalconfig <- you, the consumer of the package, need to be using exceptiondocanalyzer
+        // fx.analyzer.globalconfig <- you, the consumer of the package, need to be using exceptiondocanalyzer
+        // fx.analyzer.globalconfig.tests
 
         // fx.core.analyzer (useitaskanalyzer) <- you, the consumer of the package, need to depend on fx.core
         // fx.core.globalconfig <- you, the consumer of the package, need to be using useitaskanalyzer
+        // fx.core.globalconfig.tests
 
         // fx.test.analyzer (assertthatanalyzer) <- you, the consumer of the package, need to depend on fx.test
         // fx.test.globalconfig <- you, the consumer of the packacke, need to be using assertthatanalyzer
+        // fx.test.globalconfig.tests
 
 
 
