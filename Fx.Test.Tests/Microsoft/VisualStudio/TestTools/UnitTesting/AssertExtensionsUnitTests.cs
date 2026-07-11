@@ -376,10 +376,13 @@ class C {
 
 
 
-
+        //// TODO put interaction library in the correct folder
         //// TODO make fx.core publish a nuget package
+        //// TODO folder structure of the interaction library
+        //// TODO folder structure of the analyzers project
         //// TODO move the analyzer code to its own project; don't mark it with the `DiagnosticAnalyzer` attribute; then, in the analyzers package, derive from it and add the attribute; check if this works
         //// TODO move the codefix code to its own project
+        //// TODO continue seeing how few projects you actually need
 
 
 
