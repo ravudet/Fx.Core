@@ -377,11 +377,18 @@ class C {
 
 
 
+        //// TODO make fx.core publish a nuget package
+        //// TODO move the analyzer code to its own project; don't mark it with the `DiagnosticAnalyzer` attribute; then, in the analyzers package, derive from it and add the attribute; check if this works
+        //// TODO move the codefix code to its own project
+
+
+
         //// TODO create scaffolding for all of the below packages
         //// TODO can you remove the lib folder from the nuget package?
         ////    use <IncludeBuildOutput>true</IncludeBuildOutput>
         //// TODO how to deal with the version numbers?
         //// TODO analyzer2 now brings fx.core with it as a dependency
+        //// TODO disable the ctrl + p keyboard shortcut
 
 
 
@@ -395,7 +402,7 @@ class C {
         // fx.analyzer.globalconfig <- you, the consumer of the package, need to be using exceptiondocanalyzer
         // fx.analyzer.globalconfig.tests
 
-        // fx.core.analyzer (useitaskanalyzer) <- you, the consumer of the package, need to depend on fx.core
+        // fx.core.analyzer (useitaskanalyzer; code fix should include fixing the returned value to be wrapped in a taskwrapper; i think the most deterministic way to do this is to make the current method private and make a new method with the correct return type that just called `totaskwrapper`; also note that for interfaces, you should find all of the implementations and correct them) <- you, the consumer of the package, need to depend on fx.core
         // fx.core.globalconfig <- you, the consumer of the package, need to be using useitaskanalyzer
         // fx.core.globalconfig.tests
 

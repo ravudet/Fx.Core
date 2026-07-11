@@ -98,6 +98,7 @@ namespace Analyzer1
                 return;
             }
 
+            // TODO diagnostic.create has an overload to set the severity
             context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation(), localDeclaration.Declaration.Variables.First().Identifier.ValueText));
         }
 
