@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj" />
+    <ProjectReference Include="..\..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
