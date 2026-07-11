@@ -12,6 +12,11 @@
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
   </Dependencies>
   <Assets>
+    <!--TODO what order should these be in? this is an aesthetic question-->
+
+
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Fx.Core" Path="|Fx.Core|"/>
+
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary" Path="|Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary|"/>
     <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary" Path="|Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary|"/>
     

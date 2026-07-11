@@ -16,17 +16,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Rename;
 using Microsoft.CodeAnalysis.Text;
 
-namespace Microsoft.CodeAnalysis.CSharp
+namespace Fx.Core.Analyzers
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(FxCoreAnalyzersCodeFixProvider)), Shared]
     public class FxCoreAnalyzersCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get
-            { 
-                return ImmutableArray.Create("FxCoreAnalyzers"); 
-            }
+            get { return ImmutableArray.Create(DiagnosticIds.BaseLowercaseTypeNameAnalyzerDiagnosticId); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()

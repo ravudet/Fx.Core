@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <IsPackable>false</IsPackable>
     <RootNamespace />
   </PropertyGroup>
 
@@ -11,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fx.Core.Analyzers\Fx.Core.Analyzers.csproj" />
+    <ProjectReference Include="..\source\Fx.Core\Fx.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
