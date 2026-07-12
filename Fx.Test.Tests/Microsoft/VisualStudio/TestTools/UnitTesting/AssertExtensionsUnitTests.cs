@@ -376,12 +376,11 @@ class C {
 
 
 
-        //// TODO put interaction library in the correct folder
+        //// TODO use the "tip" from here: https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/tutorials/how-to-write-csharp-analyzer-code-fix#explore-the-analyzer-template to reset the mef components
+
+        //// TODO put analyzer stuff in the correct folder
         //// TODO make fx.core publish a nuget package
-        //// TODO folder structure of the interaction library
-        //// TODO folder structure of the analyzers project
-        //// TODO move the analyzer code to its own project; don't mark it with the `DiagnosticAnalyzer` attribute; then, in the analyzers package, derive from it and add the attribute; check if this works
-        //// TODO move the codefix code to its own project
+        //// TODO get analyzer unit tests working (look at the test output panel, there's some project guid that can't be found)
         //// TODO continue seeing how few projects you actually need
 
 
