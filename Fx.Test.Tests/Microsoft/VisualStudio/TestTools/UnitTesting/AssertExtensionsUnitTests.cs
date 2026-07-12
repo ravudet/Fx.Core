@@ -380,9 +380,9 @@ class C {
 
         //// TODO put analyzer stuff in the correct folder
         //// TODO make fx.core publish a nuget package
-        //// TODO get analyzer unit tests working (look at the test output panel, there's some project guid that can't be found)
         //// TODO continue seeing how few projects you actually need
         //// TODO go through all of the generated code
+        //// TODO go through all of the project files to see if there's anything you should get rid of
 
 
 
