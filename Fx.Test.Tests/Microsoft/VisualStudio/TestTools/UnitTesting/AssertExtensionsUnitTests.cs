@@ -380,7 +380,6 @@ class C {
 
         //// TODO do you want interaction libraries to use underscores?
         //// TODO get all of the nuget stuff in fx.core.analyzers correct
-        //// TODO put analyzer stuff in the correct folder
         //// TODO make fx.core publish a nuget package
         //// TODO continue seeing how few projects you actually need
         //// TODO go through all of the generated code
