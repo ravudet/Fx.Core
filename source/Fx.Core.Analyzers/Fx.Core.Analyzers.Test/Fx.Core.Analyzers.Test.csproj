@@ -24,17 +24,4 @@
     <ProjectReference Include="..\Fx.Core.Analyzers\Fx.Core.Analyzers.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="tools\install.ps1">
-      <PackagePath></PackagePath>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-    </None>
-    <None Update="tools\uninstall.ps1">
-      <PackagePath></PackagePath>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-    </None>
-  </ItemGroup>
-
 </Project>
