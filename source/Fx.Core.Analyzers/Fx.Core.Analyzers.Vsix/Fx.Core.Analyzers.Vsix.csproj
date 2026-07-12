@@ -33,6 +33,7 @@
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj" />
     <ProjectReference Include="..\..\Fx.Core\Fx.Core.csproj" />
     <ProjectReference Include="..\..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj" />
     <ProjectReference Include="..\Fx.Core.Analyzers.CodeFixes\Fx.Core.Analyzers.CodeFixes.csproj" />
