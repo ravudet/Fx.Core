@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core.Analyzers.Vsix", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary", "source\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj", "{9FA3263A-7B60-B1F1-DF78-80005DDB31CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary", "Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj", "{7CE4EA91-DDB7-44B3-A12E-BEC5FA7935EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary", "source\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj", "{7CE4EA91-DDB7-44B3-A12E-BEC5FA7935EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

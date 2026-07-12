@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\source\Fx.Core\Fx.Core.csproj" />
+    <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
