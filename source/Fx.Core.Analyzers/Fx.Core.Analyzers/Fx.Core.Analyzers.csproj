@@ -8,6 +8,7 @@
     <PackageId>*$(MSBuildProjectFile)*</PackageId>
   </PropertyGroup>
 
+  <!--nuget package properties-->
   <PropertyGroup>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
