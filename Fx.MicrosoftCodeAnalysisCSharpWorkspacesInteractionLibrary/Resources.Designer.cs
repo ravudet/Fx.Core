@@ -22,14 +22,14 @@ using System;
 [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
 [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
 [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-internal class CodeFixResources {
+internal class Resources {
     
     private static global::System.Resources.ResourceManager resourceMan;
     
     private static global::System.Globalization.CultureInfo resourceCulture;
     
     [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-    internal CodeFixResources() {
+    internal Resources() {
     }
     
     /// <summary>
@@ -39,7 +39,7 @@ internal class CodeFixResources {
     internal static global::System.Resources.ResourceManager ResourceManager {
         get {
             if (object.ReferenceEquals(resourceMan, null)) {
-                global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CodeFixResources", typeof(CodeFixResources).Assembly);
+                global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources", typeof(Resources).Assembly);
                 resourceMan = temp;
             }
             return resourceMan;
