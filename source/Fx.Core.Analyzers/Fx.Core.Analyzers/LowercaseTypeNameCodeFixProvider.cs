@@ -18,8 +18,8 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Microsoft.CodeAnalysis.CSharp
 {
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(FxCoreAnalyzersCodeFixProvider)), Shared]
-    public class FxCoreAnalyzersCodeFixProvider : CodeFixProvider
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(LowercaseTypeNameCodeFixProvider)), Shared]
+    public class LowercaseTypeNameCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
