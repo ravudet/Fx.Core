@@ -27,7 +27,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fx.Core.Analyzers.CodeFixes\Fx.Core.Analyzers.CodeFixes.csproj" />
     <ProjectReference Include="..\Fx.Core.Analyzers\Fx.Core.Analyzers.csproj" />
   </ItemGroup>
 
