@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core.Tests", "source\Fx.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core.Analyzers", "source\Fx.Core.Analyzers\Fx.Core.Analyzers\Fx.Core.Analyzers.csproj", "{D31B1992-0E1C-49A9-BBEA-DF249E70A224}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core.Analyzers.Package", "source\Fx.Core.Analyzers\Fx.Core.Analyzers.Package\Fx.Core.Analyzers.Package.csproj", "{BCFA422F-1292-4C00-94BD-92DD89226D3E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core.Analyzers.Test", "source\Fx.Core.Analyzers\Fx.Core.Analyzers.Test\Fx.Core.Analyzers.Test.csproj", "{F594420D-A8B6-49C2-B443-A5C451B53D1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core.Analyzers.Vsix", "source\Fx.Core.Analyzers\Fx.Core.Analyzers.Vsix\Fx.Core.Analyzers.Vsix.csproj", "{CB78C2FD-5CDD-4448-AC31-A60DF5AB9C2E}"
@@ -44,10 +42,6 @@ Global
 		{D31B1992-0E1C-49A9-BBEA-DF249E70A224}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D31B1992-0E1C-49A9-BBEA-DF249E70A224}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D31B1992-0E1C-49A9-BBEA-DF249E70A224}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BCFA422F-1292-4C00-94BD-92DD89226D3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCFA422F-1292-4C00-94BD-92DD89226D3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCFA422F-1292-4C00-94BD-92DD89226D3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCFA422F-1292-4C00-94BD-92DD89226D3E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F594420D-A8B6-49C2-B443-A5C451B53D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F594420D-A8B6-49C2-B443-A5C451B53D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F594420D-A8B6-49C2-B443-A5C451B53D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
