@@ -390,6 +390,7 @@ class C {
         //// TODO create scaffolding for all of the below packages
         //// TODO can you remove the lib folder from the nuget package?
         ////    use <IncludeBuildOutput>true</IncludeBuildOutput>
+        //// TODO what happens if the consumer is using a newer or older version of fx.test than that assert.that analyzer was compiled with?
         //// TODO how to deal with the version numbers?
         //// TODO analyzer2 now brings fx.core with it as a dependency
         //// TODO disable the ctrl + p keyboard shortcut
