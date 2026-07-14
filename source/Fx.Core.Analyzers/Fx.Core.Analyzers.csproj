@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net472</TargetFramework> <!--TODO this is supposed to be netstandard2.0 for shipping in the nuget packages-->
     <RootNamespace />
 
     <!-- Avoid ID conflicts with the package project. -->
@@ -31,20 +31,65 @@
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
+  <!--vsix package properties-->
+  <PropertyGroup>
+    <GeneratePkgDefFile>false</GeneratePkgDefFile>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
+    <VSSDKTargetPlatformRegRootSuffix>Roslyn</VSSDKTargetPlatformRegRootSuffix>
+
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>/rootsuffix $(VSSDKTargetPlatformRegRootSuffix)</StartArguments>
+  </PropertyGroup>
+
+  <!--needed for analyzers and codefixes-->
+  <!--TODO come up with a better comment convention for this-->
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.3.1" />
   </ItemGroup>
 
+  <!--vsix package properties-->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.8.3038" PrivateAssets="all" />
+  </ItemGroup>
+
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets')" />
+
+  <!--needed for analyzers and codefixes-->
   <ItemGroup>
     <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj" />
     <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj" />
   </ItemGroup>
 
+  <!--vsix package properties-->
+  <ItemGroup>
+    <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
+    <!--<ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj" />
+    <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj" />
+    <ProjectReference Include="..\Fx.Core.Analyzers\Fx.Core.Analyzers.csproj" />-->
+    <!--TODO the above would be duplicates-->
+  </ItemGroup>
+
+  <!--nuget package properties-->
   <ItemGroup>
     <None Update="tools\*.ps1" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="" />
   </ItemGroup>
 
+  <!--vsix package properties-->
+  <ItemGroup>
+    <!-- https://github.com/dotnet/sdk/issues/433 -->
+    <ProjectReference Update="@(ProjectReference)" AdditionalProperties="TargetFramework=netstandard2.0" />
+
+    <!-- https://github.com/Microsoft/extendvs/issues/57 -->
+    <ProjectReference Update="@(ProjectReference)" Name="%(Filename)" />
+  </ItemGroup>
+  
+  <!--nuget package properties-->
   <Target Name="_AddAnalyzersToOutput">
     <ItemGroup>
       <TfmSpecificPackageFile Include="$(OutputPath)\*.dll" PackagePath="analyzers/dotnet/cs" />
