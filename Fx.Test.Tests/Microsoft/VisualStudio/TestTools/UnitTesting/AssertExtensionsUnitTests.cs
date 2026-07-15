@@ -307,7 +307,8 @@ class C {
 
 
         //// TODO i think you should have a .gitattributes file
-        //// TODO nuget.config
+        //// TODO nuget.config https://learn.microsoft.com/en-us/nuget/reference/nuget-config-file
+        //// TODO directory.build.props
         //// TODO add a .vsconfig
         //// TODO go through all the other files in the repo
         //// TODO add custom Roslyn analayzer for `assert.that`
