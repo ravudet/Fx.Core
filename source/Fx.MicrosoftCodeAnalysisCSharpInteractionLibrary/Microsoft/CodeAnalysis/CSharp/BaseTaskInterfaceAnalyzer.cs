@@ -8,24 +8,25 @@
 
     public abstract class BaseTaskInterfaceAnalyzer : DiagnosticAnalyzer
     {
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(
-            new DiagnosticDescriptor(
-                DiagnosticIds.BaseLowercaseTypeNameAnalyzerDiagnosticId,
-                new LocalizableResourceString(
-                    nameof(Resources.LowercaseTypeNameTitle),
-                    Resources.ResourceManager,
-                    typeof(Resources)),
-                new LocalizableResourceString(
-                    nameof(Resources.LowercaseTypeNameMessageFormat),
-                    Resources.ResourceManager,
-                    typeof(Resources)),
-                Categories.Design,
-                DiagnosticSeverity.Warning,
-                false,
-                new LocalizableResourceString(
-                    nameof(Resources.LowercaseTypeNameDescription),
-                    Resources.ResourceManager,
-                    typeof(Resources))));
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
+            DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId,
+            new LocalizableResourceString(
+                nameof(Resources.LowercaseTypeNameTitle), 
+                Resources.ResourceManager, 
+                typeof(Resources)),
+            new LocalizableResourceString(
+                nameof(Resources.LowercaseTypeNameMessageFormat), 
+                Resources.ResourceManager, 
+                typeof(Resources)), 
+            Categories.Design, 
+            DiagnosticSeverity.Warning,
+            false,
+            new LocalizableResourceString(
+                nameof(Resources.LowercaseTypeNameDescription), 
+                Resources.ResourceManager, 
+                typeof(Resources)));
+
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
 
         public override void Initialize(AnalysisContext context)
         {
@@ -34,7 +35,7 @@
 
             // TODO: Consider registering other actions that act on syntax instead of or in addition to symbols
             // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/Analyzer%20Actions%20Semantics.md for more information
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
+            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
         }
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
