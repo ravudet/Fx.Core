@@ -10,9 +10,12 @@
 
   <!--nuget package properties-->
   <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    
+    <!--TODO somehow, these above properties "feel" different to me than the below properties-->
+    
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Fx.Core.Analyzers</PackageId>
     <PackageVersion>8.0.0.0</PackageVersion>
     <Authors>ravud</Authors>
