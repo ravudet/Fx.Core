@@ -63,27 +63,54 @@ internal class Resources {
     /// <summary>
     ///   Looks up a localized string similar to Type names should be all uppercase..
     /// </summary>
-    internal static string AnalyzerDescription {
+    internal static string LowercaseTypeNameDescription {
         get {
-            return ResourceManager.GetString("AnalyzerDescription", resourceCulture);
+            return ResourceManager.GetString("LowercaseTypeNameDescription", resourceCulture);
         }
     }
     
     /// <summary>
     ///   Looks up a localized string similar to Type name &apos;{0}&apos; contains lowercase letters.
     /// </summary>
-    internal static string AnalyzerMessageFormat {
+    internal static string LowercaseTypeNameMessageFormat {
         get {
-            return ResourceManager.GetString("AnalyzerMessageFormat", resourceCulture);
+            return ResourceManager.GetString("LowercaseTypeNameMessageFormat", resourceCulture);
         }
     }
     
     /// <summary>
     ///   Looks up a localized string similar to Type name contains lowercase letters.
     /// </summary>
-    internal static string AnalyzerTitle {
+    internal static string LowercaseTypeNameTitle {
         get {
-            return ResourceManager.GetString("AnalyzerTitle", resourceCulture);
+            return ResourceManager.GetString("LowercaseTypeNameTitle", resourceCulture);
+        }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized string similar to .
+    /// </summary>
+    internal static string TaskInterfaceDescription {
+        get {
+            return ResourceManager.GetString("TaskInterfaceDescription", resourceCulture);
+        }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized string similar to .
+    /// </summary>
+    internal static string TaskInterfaceMessageFormat {
+        get {
+            return ResourceManager.GetString("TaskInterfaceMessageFormat", resourceCulture);
+        }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized string similar to .
+    /// </summary>
+    internal static string TaskInterfaceTitle {
+        get {
+            return ResourceManager.GetString("TaskInterfaceTitle", resourceCulture);
         }
     }
 }

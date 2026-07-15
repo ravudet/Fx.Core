@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core.Analyzers.Test", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core.Analyzers.Vsix", "source\Fx.Core.Analyzers.Vsix\Fx.Core.Analyzers.Vsix.csproj", "{32EF0E96-D9E7-D5F1-87A0-FD39D42AAB4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Analyzers", "source\Fx.Analyzers\Fx.Analyzers.csproj", "{1C19A2FD-A493-43CB-83E2-E57308BBFF94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{32EF0E96-D9E7-D5F1-87A0-FD39D42AAB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32EF0E96-D9E7-D5F1-87A0-FD39D42AAB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32EF0E96-D9E7-D5F1-87A0-FD39D42AAB4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C19A2FD-A493-43CB-83E2-E57308BBFF94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C19A2FD-A493-43CB-83E2-E57308BBFF94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C19A2FD-A493-43CB-83E2-E57308BBFF94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C19A2FD-A493-43CB-83E2-E57308BBFF94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
