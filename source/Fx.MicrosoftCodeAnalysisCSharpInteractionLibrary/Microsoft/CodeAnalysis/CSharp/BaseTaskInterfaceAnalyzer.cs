@@ -2,6 +2,7 @@
 {
     using System.Collections.Immutable;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Diagnostics;
@@ -41,13 +42,25 @@
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
         {
             // TODO: Replace the following code with your own analysis, generating Diagnostic objects for any issues you find
-            var namedTypeSymbol = (INamedTypeSymbol)context.Symbol;
+            var methodSymbol = (IMethodSymbol)context.Symbol;
+
+            var returnType = methodSymbol.ReturnType;
+            var taskType = typeof(Task<>);
+
+            if (returnType.Name == taskType.Name)
+            {
+                var returnTypeAssembly = returnType.ContainingAssembly;
+                var taskTypeAssembly = taskType.Assembly;
+                if (returnTypeAssembly.Name == taskTypeAssembly.GetName().Name)
+                {
+                }
+            }
 
             // Find just those named type symbols with names containing lowercase letters.
-            if (namedTypeSymbol.Name.ToCharArray().Any(char.IsLower))
+            if (methodSymbol.Name.ToCharArray().Any(char.IsLower))
             {
                 // For all such symbols, produce a diagnostic.
-                var diagnostic = Diagnostic.Create(Rule, namedTypeSymbol.Locations[0], namedTypeSymbol.Name);
+                var diagnostic = Diagnostic.Create(Rule, methodSymbol.Locations[0], methodSymbol.Name);
 
                 context.ReportDiagnostic(diagnostic);
             }
