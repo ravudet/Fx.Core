@@ -306,6 +306,7 @@ class C {
 
 
 
+        //// TODO add a license
         //// TODO i think you should have a .gitattributes file
         //// TODO nuget.config https://learn.microsoft.com/en-us/nuget/reference/nuget-config-file
         //// TODO directory.build.props
@@ -378,14 +379,15 @@ class C {
 
 
         //// TODO use the "tip" from here: https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/tutorials/how-to-write-csharp-analyzer-code-fix#explore-the-analyzer-template to reset the mef components
-        
+
         //// TODO do you want interaction libraries to use underscores?
         //// TODO get all of the nuget stuff in fx.core.analyzers correct
-        //// TODO make fx.core publish a nuget package
+        //// TODO get all of the nuget stuff in fx.analyzers correct
         //// TODO continue seeing how few projects you actually need
+        //// TODO do you actually need the vsix projects? i guess they let you play a little more freely than having a "playground" project, but i think you still need the playground project for testing the packages anyway
         //// TODO go through all of the generated code
         //// TODO go through all of the project files to see if there's anything you should get rid of
-
+        //// TODO go through any todos
 
 
         //// TODO create scaffolding for all of the below packages
