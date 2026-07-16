@@ -21,7 +21,7 @@
                 typeof(Resources)), 
             Categories.Design, 
             DiagnosticSeverity.Warning,
-            false,
+            true,
             new LocalizableResourceString(
                 nameof(Resources.TaskInterfaceDescription), 
                 Resources.ResourceManager, 
