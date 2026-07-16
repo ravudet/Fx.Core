@@ -13,11 +13,11 @@
     
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
-    <PackageVersion>14.0.0.0</PackageVersion>
+    <PackageVersion>18.0.0.0</PackageVersion>
     <PackageProjectUrl>TODO</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>TODO link to the github release notes</PackageReleaseNotes>
-    <!--<DevelopmentDependency>true</DevelopmentDependency> TODO-->
+    <DevelopmentDependency>true</DevelopmentDependency>
     <!--<PackageReadmeFile>README.md</PackageReadmeFile> TODO-->
 
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
@@ -34,7 +34,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj">
-      <IncludeAssets>compile</IncludeAssets> <!--TODO is this line necessary, or will it happen automatically anyway? you added the line so that the project that pull this package in will also get the fx.core package automatically-->
+      <IncludeAssets>all</IncludeAssets> <!--TODO is this line necessary, or will it happen automatically anyway? you added the line so that the project that pull this package in will also get the fx.core package automatically-->
+      <ExcludeAssets>None</ExcludeAssets>
+      <PrivateAssets>None</PrivateAssets>
+      <Private>True</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TreatAsPackageReference>True</TreatAsPackageReference>
     </ProjectReference>
     <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj">
       <PrivateAssets>all</PrivateAssets> <!--TODO required so that these don't show up as package dependencies (since you are making SuppressDependenciesWhenPacking `false`)-->
