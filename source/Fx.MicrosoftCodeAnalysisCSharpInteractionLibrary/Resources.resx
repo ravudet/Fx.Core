@@ -130,10 +130,10 @@
     <comment>The title of the diagnostic.</comment>
   </data>
   <data name="TaskInterfaceTitle" xml:space="preserve">
-    <value>Method return type is Task&lt;T&gt;</value>
+    <value>Method return type is 'Task&lt;T&gt;' instead of 'ITask&lt;T&gt;'</value>
   </data>
   <data name="TaskInterfaceMessageFormat" xml:space="preserve">
-    <value>Method with name '{0}' uses a return type of Task&lt;T&gt;</value>
+    <value>Method with name '{0}' uses a return type of 'Task&lt;T&gt;' instead of 'ITask&lt;T&gt;'</value>
   </data>
   <data name="TaskInterfaceDescription" xml:space="preserve">
     <value>Methods should use the Fx.Core ITask&lt;T&gt; type instead of the .NET Task&lt;T&gt; type when declaring return types</value>
