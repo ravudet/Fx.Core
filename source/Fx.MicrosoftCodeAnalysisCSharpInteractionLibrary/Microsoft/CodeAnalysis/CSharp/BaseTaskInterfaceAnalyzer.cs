@@ -12,18 +12,18 @@
         private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
             DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId,
             new LocalizableResourceString(
-                nameof(Resources.LowercaseTypeNameTitle), 
+                nameof(Resources.TaskInterfaceTitle), 
                 Resources.ResourceManager, 
                 typeof(Resources)),
             new LocalizableResourceString(
-                nameof(Resources.LowercaseTypeNameMessageFormat), 
+                nameof(Resources.TaskInterfaceMessageFormat), 
                 Resources.ResourceManager, 
                 typeof(Resources)), 
             Categories.Design, 
             DiagnosticSeverity.Warning,
             false,
             new LocalizableResourceString(
-                nameof(Resources.LowercaseTypeNameDescription), 
+                nameof(Resources.TaskInterfaceDescription), 
                 Resources.ResourceManager, 
                 typeof(Resources)));
 
@@ -41,7 +41,11 @@
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
         {
-            // TODO: Replace the following code with your own analysis, generating Diagnostic objects for any issues you find
+            //// TODO you should also find cases like async funcs
+            //// TODO you still need a codefix for this
+
+
+
             var methodSymbol = (IMethodSymbol)context.Symbol;
 
             var returnType = methodSymbol.ReturnType;

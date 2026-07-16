@@ -88,7 +88,7 @@ internal class Resources {
     }
     
     /// <summary>
-    ///   Looks up a localized string similar to .
+    ///   Looks up a localized string similar to Methods should use the Fx.Core ITask&lt;T&gt; type instead of the .NET Task&lt;T&gt; type when declaring return types.
     /// </summary>
     internal static string TaskInterfaceDescription {
         get {
@@ -97,7 +97,7 @@ internal class Resources {
     }
     
     /// <summary>
-    ///   Looks up a localized string similar to .
+    ///   Looks up a localized string similar to Method with name &apos;{0}&apos; uses a return type of Task&lt;T&gt;.
     /// </summary>
     internal static string TaskInterfaceMessageFormat {
         get {
@@ -106,7 +106,7 @@ internal class Resources {
     }
     
     /// <summary>
-    ///   Looks up a localized string similar to .
+    ///   Looks up a localized string similar to Method return type is Task&lt;T&gt;.
     /// </summary>
     internal static string TaskInterfaceTitle {
         get {
