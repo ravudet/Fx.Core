@@ -2,7 +2,7 @@
 {
     public class Class1
     {
-        public ITask<int> DoWork()
+        public Task<int> DoWork()
         {
             return Task.FromResult(1);
         }
