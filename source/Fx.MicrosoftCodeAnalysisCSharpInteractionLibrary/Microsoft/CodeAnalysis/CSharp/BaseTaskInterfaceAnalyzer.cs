@@ -47,22 +47,18 @@
             var returnType = methodSymbol.ReturnType;
             var taskType = typeof(Task<>);
 
-            if (returnType.Name == taskType.Name)
+            var displayString = returnType.ToDisplayString();
+
+            if (returnType.MetadataName == taskType.Name)
             {
-                var returnTypeAssembly = returnType.ContainingAssembly;
-                var taskTypeAssembly = taskType.Assembly;
-                if (returnTypeAssembly.Name == taskTypeAssembly.GetName().Name)
+                var returnTypeNamespace = returnType.ContainingNamespace.ToDisplayString();
+
+                if (returnTypeNamespace == taskType.Namespace)
                 {
+                    var diagnostic = Diagnostic.Create(Rule, methodSymbol.Locations[0], methodSymbol.Name);
+
+                    context.ReportDiagnostic(diagnostic);
                 }
-            }
-
-            // Find just those named type symbols with names containing lowercase letters.
-            if (methodSymbol.Name.ToCharArray().Any(char.IsLower))
-            {
-                // For all such symbols, produce a diagnostic.
-                var diagnostic = Diagnostic.Create(Rule, methodSymbol.Locations[0], methodSymbol.Name);
-
-                context.ReportDiagnostic(diagnostic);
             }
         }
     }
