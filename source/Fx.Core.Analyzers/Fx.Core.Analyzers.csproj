@@ -3,9 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace />
-
-    <!-- Avoid ID conflicts with the package project. -->
-    <PackageId>*$(MSBuildProjectFile)*</PackageId>
   </PropertyGroup>
 
   <!--nuget package properties-->
@@ -15,21 +12,13 @@
     <!--TODO somehow, these above properties "feel" different to me than the below properties-->
     
     <IncludeBuildOutput>false</IncludeBuildOutput>
-    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-    <PackageId>Fx.Core.Analyzers</PackageId>
-    <PackageVersion>8.0.0.0</PackageVersion>
-    <Authors>ravud</Authors>
-    <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
-    <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
-    <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
-    <RepositoryUrl>http://REPOSITORY_URL_HERE_OR_DELETE_THIS_LINE</RepositoryUrl>
+    <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
+    <PackageVersion>13.0.0.0</PackageVersion>
+    <PackageProjectUrl>TODO</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>Fx.Core.Analyzers</Description>
-    <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
-    <Copyright>Copyright</Copyright>
-    <PackageTags>Fx.Core.Analyzers, analyzers</PackageTags>
-    <DevelopmentDependency>true</DevelopmentDependency>
-    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <PackageReleaseNotes>TODO link to the github release notes</PackageReleaseNotes>
+    <!--<DevelopmentDependency>true</DevelopmentDependency> TODO-->
+    <!--<PackageReadmeFile>README.md</PackageReadmeFile> TODO-->
 
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
@@ -40,8 +29,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj" />
-    <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj" />
+    <ProjectReference Include="..\Fx.Core\Fx.Core.csproj">
+      <IncludeAssets>compile</IncludeAssets> <!--TODO is this line necessary, or will it happen automatically anyway? you added the line so that the project that pull this package in will also get the fx.core package automatically-->
+    </ProjectReference>
+    <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj">
+      <PrivateAssets>all</PrivateAssets> <!--TODO required so that these don't show up as package dependencies (since you are making SuppressDependenciesWhenPacking `false`)-->
+    </ProjectReference>
+    <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj">
+      <PrivateAssets>all</PrivateAssets> <!--TODO required so that these don't show up as package dependencies (since you are making SuppressDependenciesWhenPacking `false`)-->
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -50,7 +46,7 @@
 
   <Target Name="_AddAnalyzersToOutput">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="$(OutputPath)\*.dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\Fx.Core.Analyzers.dll" PackagePath="analyzers/dotnet/cs" />
     </ItemGroup>
   </Target>
 
