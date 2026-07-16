@@ -37,14 +37,10 @@ namespace Fx.Core.Analyzers.Test
     {
         public static class Foo
         {
-            public static async Task<int> DoWork()
+            public static async Task<int> {|#0:DoWork|}()
             {
                 return await Task.FromResult(3).ConfigureAwait(false);
             }
-        }
-
-        class {|#0:TypeName|}
-        {
         }
     }";
 
@@ -63,7 +59,7 @@ namespace Fx.Core.Analyzers.Test
         }
     }";
 
-            var expected = VerifyCS.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("TypeName");
+            var expected = VerifyCS.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork");
 
             await VerifyCS.VerifyAnalyzerAsync(test, expected);
             ////await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
