@@ -8,4 +8,24 @@
   <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0'">
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  
+  <!--nuget package properties-->
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <!--TODO somehow, these above properties "feel" different to me than the below properties-->
+
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
+    <PackageVersion>1.0.0.0</PackageVersion>
+    <PackageProjectUrl>https://github.com/ravudet/Fx.Core/tree/main/source/Fx.Core</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>TODO link to the github release notes</PackageReleaseNotes>
+    <DevelopmentDependency>false</DevelopmentDependency>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 </Project>
