@@ -9,7 +9,6 @@
   <ItemGroup>
     <PackageReference Include="Fx.Core.Analyzers" Version="21.0.0">
       <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>all</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
