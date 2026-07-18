@@ -11,7 +11,7 @@
     
     <!--TODO somehow, these above properties "feel" different to me than the below properties-->
     
-    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
     <PackageVersion>22.0.0.0</PackageVersion>
     <PackageProjectUrl>TODO</PackageProjectUrl>
