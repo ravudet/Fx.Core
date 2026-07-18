@@ -2,9 +2,11 @@
 {
     public class Class1
     {
-        public Task<int> DoWork()
+        public async ITask<int> DoWork()
         {
-            return Task.FromResult(1);
+            return await Fx.Test.Class1.DoWork();
+
+            ////return Task.FromResult(1);
         }
     }
 }

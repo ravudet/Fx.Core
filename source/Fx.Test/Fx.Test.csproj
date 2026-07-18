@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net9.0</TargetFrameworks>
     <RootNamespace />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0'">
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  
+
   <!--nuget package properties-->
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -24,8 +24,12 @@
     <DevelopmentDependency>false</DevelopmentDependency>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
-    
+
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fx.Core" Version="2.0.0" />
   </ItemGroup>
 </Project>
