@@ -7,6 +7,10 @@ using VerifyCS = Fx.Core.Analyzers.Test.CSharpCodeFixVerifier<
     Microsoft.CodeAnalysis.CSharp.TaskInterfaceAnalyzer,
     Microsoft.CodeAnalysis.CodeFixes.LowercaseTypeNameCodeFixProvider>;
 
+using VerifyCS2 = Fx.Core.Analyzers.Test.CSharpCodeFixVerifier<
+    Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer,
+    Microsoft.CodeAnalysis.CodeFixes.LowercaseTypeNameCodeFixProvider>;
+
 namespace Fx.Core.Analyzers.Test
 {
     [TestClass]
