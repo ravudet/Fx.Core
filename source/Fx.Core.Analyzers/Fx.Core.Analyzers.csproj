@@ -11,9 +11,9 @@
     
     <!--TODO somehow, these above properties "feel" different to me than the below properties-->
     
-    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
-    <PackageVersion>20.0.0.0</PackageVersion>
+    <PackageVersion>21.0.0.0</PackageVersion>
     <PackageProjectUrl>TODO</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>TODO link to the github release notes</PackageReleaseNotes>
@@ -36,11 +36,11 @@
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj">
       <IncludeAssets>all</IncludeAssets> <!--TODO is this line necessary, or will it happen automatically anyway? you added the line so that the project that pull this package in will also get the fx.core package automatically-->
       <ExcludeAssets>None</ExcludeAssets>
-      <PrivateAssets>None</PrivateAssets>
-      <Private>True</Private>
+      <PrivateAssets>none</PrivateAssets>
+      <!--<Private>True</Private>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <TreatAsPackageReference>True</TreatAsPackageReference>
+      <TreatAsPackageReference>True</TreatAsPackageReference>-->
     </ProjectReference>
     <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj">
       <PrivateAssets>all</PrivateAssets> <!--TODO required so that these don't show up as package dependencies (since you are making SuppressDependenciesWhenPacking `false`)-->
