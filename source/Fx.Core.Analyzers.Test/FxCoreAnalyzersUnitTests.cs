@@ -4,8 +4,8 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using VerifyCS = Fx.Core.Analyzers.Test.CSharpCodeFixVerifier<
-    Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer,
-    Microsoft.CodeAnalysis.CodeFixes.LowercaseTypeNameCodeFixProvider>;
+    Microsoft.CodeAnalysis.CSharp.TaskInterfaceAnalyzer,
+    Microsoft.CodeAnalysis.CodeFixes.TaskInterfaceCodeFixProvider>;
 
 namespace Fx.Core.Analyzers.Test
 {
@@ -35,8 +35,12 @@ namespace Fx.Core.Analyzers.Test
 
     namespace ConsoleApplication1
     {
-        class {|#0:TypeName|}
-        {   
+        public static class Foo
+        {
+            public static async Task<int> {|#0:DoWork|}()
+            {
+                return await Task.FromResult(3).ConfigureAwait(false);
+            }
         }
     }";
 
@@ -55,7 +59,53 @@ namespace Fx.Core.Analyzers.Test
         }
     }";
 
-            var expected = VerifyCS.Diagnostic(DiagnosticIds.BaseLowercaseTypeNameAnalyzerDiagnosticId).WithLocation(0).WithArguments("TypeName");
+            var expected = VerifyCS.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork");
+
+            await VerifyCS.VerifyAnalyzerAsync(test, expected);
+            ////await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
+        }
+
+        //Diagnostic and CodeFix both triggered and checked for
+        [TestMethod]
+        public async Task TestMethod3()
+        {
+            var test = @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        public static class Foo
+        {
+            public static async Task<int> {|#0:DoWork|}()
+            {
+                return await Task.FromResult(3).ConfigureAwait(false);
+            }
+        }
+    }";
+
+            var fixtest = @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        class TYPENAME
+        {   
+        }
+    }";
+
+            var expected = VerifyCS.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork");
+
+            ////await VerifyCS.VerifyAnalyzerAsync(test, expected);
             await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
         }
     }

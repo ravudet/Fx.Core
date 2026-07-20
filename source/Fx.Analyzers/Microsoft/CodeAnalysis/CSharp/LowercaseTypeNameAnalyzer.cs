@@ -4,7 +4,7 @@
     using Microsoft.CodeAnalysis.Diagnostics;
 
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public sealed class TaskInterfaceAnalyzer : BaseTaskInterfaceAnalyzer
+    public sealed class LowercaseTypeNameAnalyzer : BaseLowercaseTypeNameAnalyzer
     {
     }
 }

@@ -14,11 +14,11 @@
     using Microsoft.CodeAnalysis.Rename;
     using Microsoft.CodeAnalysis.Text;
 
-    public class BaseLowercaseTypeNameCodeFixProvider : CodeFixProvider
+    public class BaseTaskInterfaceCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(DiagnosticIds.BaseLowercaseTypeNameAnalyzerDiagnosticId); }
+            get { return ImmutableArray.Create(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
@@ -49,6 +49,17 @@
 
         private async Task<Solution> MakeUppercaseAsync(Document document, TypeDeclarationSyntax typeDecl, CancellationToken cancellationToken)
         {
+            var project = document.Project;
+            var csprojDoc = project.AdditionalDocuments.FirstOrDefault(d => d.Name.EndsWith(".csproj", StringComparison.OrdinalIgnoreCase));
+            if (csprojDoc != null)
+            {
+                var text = await csprojDoc.GetTextAsync().ConfigureAwait(false);
+                var xml = XDocument.Parse(text.ToString());
+
+                xml.Root.RemoveAll();
+                var newText = SourceText.From(xml.ToString());
+            }
+
             // Compute new uppercase name.
             var identifierToken = typeDecl.Identifier;
             var newName = identifierToken.Text.ToUpperInvariant();
