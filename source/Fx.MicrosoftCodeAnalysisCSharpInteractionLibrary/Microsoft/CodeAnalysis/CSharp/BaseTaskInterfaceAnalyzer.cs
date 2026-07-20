@@ -45,6 +45,13 @@
             //// TODO you still need a codefix for this
 
 
+            var myType = context.Compilation.GetTypeByMetadataName("Fx.ITest");
+            var message = string.Empty;
+            if (myType is null)
+            {
+                message = "The 'Fx.Core' package which contains 'ITask<T>' is also missing.";
+            }
+
 
             var methodSymbol = (IMethodSymbol)context.Symbol;
 
@@ -59,7 +66,7 @@
 
                 if (returnTypeNamespace == taskType.Namespace)
                 {
-                    var diagnostic = Diagnostic.Create(Rule, methodSymbol.Locations[0], methodSymbol.Name);
+                    var diagnostic = Diagnostic.Create(Rule, methodSymbol.Locations[0], methodSymbol.Name, message);
 
                     context.ReportDiagnostic(diagnostic);
                 }

@@ -38,6 +38,9 @@
             // Find the type declaration identified by the diagnostic.
             var declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<TypeDeclarationSyntax>().First();
 
+            ////context.Document.Project.
+
+
             // Register a code action that will invoke the fix.
             context.RegisterCodeFix(
                 CodeAction.Create(
@@ -49,9 +52,56 @@
 
         private async Task<Solution> MakeUppercaseAsync(Document document, TypeDeclarationSyntax typeDecl, CancellationToken cancellationToken)
         {
+            var project = document.Project;
+
             // Compute new uppercase name.
             var identifierToken = typeDecl.Identifier;
-            var newName = identifierToken.Text.ToUpperInvariant();
+            var newName = identifierToken.Text.ToUpperInvariant() + " : ITest";
+
+
+
+
+            /*var newName = string.Join(";", project.ProjectReferences.Select(d => d.ProjectId));
+
+
+
+            var sol = project.Solution.RemoveProject(project.Id);
+            var newProject = project.WithCompilationOptions(project.CompilationOptions.WithOptimizationLevel(OptimizationLevel.Release));
+            sol = sol.AddProject(ProjectInfo.Create(
+                newProject.Id,
+                newProject.Version,
+                newProject.Name,
+                newProject.AssemblyName,
+                newProject.Language,
+                newProject.FilePath,
+                newProject.OutputFilePath,
+                newProject.CompilationOptions,
+                newProject.ParseOptions,
+                newProject.Documents.Select(d => DocumentInfo.Create(
+                    d.Id,
+                    d.Name,
+                    d.Folders,
+                    d.SourceCodeKind,
+                    null,
+                    d.FilePath,
+                    false)),
+                newProject.ProjectReferences,
+                newProject.MetadataReferences,
+                newProject.AnalyzerReferences,
+                newProject.AdditionalDocuments.Select(d => DocumentInfo.Create(
+                    d.Id,
+                    d.Name,
+                    d.Folders,
+                    SourceCodeKind.Regular,
+                    null,
+                    d.FilePath,
+                    false)),
+                newProject.IsSubmission,
+                null));*/
+
+
+            ////var newName = "ravudet";
+
 
             // Get the symbol representing the type to be renamed.
             var semanticModel = await document.GetSemanticModelAsync(cancellationToken);

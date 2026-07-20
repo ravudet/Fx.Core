@@ -7,8 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fx.Core.Analyzers" Version="22.0.0">
+    <PackageReference Include="Fx.Core" Version="4.0.0" />
+    <PackageReference Include="Fx.Core.Analyzers" Version="24.0.0">
       <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 

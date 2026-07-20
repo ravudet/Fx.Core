@@ -97,7 +97,7 @@ internal class Resources {
     }
     
     /// <summary>
-    ///   Looks up a localized string similar to Method with name &apos;{0}&apos; uses a return type of &apos;Task&lt;T&gt;&apos; instead of &apos;ITask&lt;T&gt;&apos;.
+    ///   Looks up a localized string similar to Method with name &apos;{0}&apos; uses a return type of &apos;Task&lt;T&gt;&apos; instead of &apos;ITask&lt;T&gt;&apos;. {1}.
     /// </summary>
     internal static string TaskInterfaceMessageFormat {
         get {

@@ -49,7 +49,7 @@
 
         private async Task<Solution> MakeUppercaseAsync(Document document, TypeDeclarationSyntax typeDecl, CancellationToken cancellationToken)
         {
-            var project = document.Project;
+            /*var project = document.Project;
             var csprojDoc = project.AdditionalDocuments.FirstOrDefault(d => d.Name.EndsWith(".csproj", StringComparison.OrdinalIgnoreCase));
             if (csprojDoc != null)
             {
@@ -58,11 +58,24 @@
 
                 xml.Root.RemoveAll();
                 var newText = SourceText.From(xml.ToString());
-            }
+            }*/
+
+            var project = document.Project;
+
 
             // Compute new uppercase name.
             var identifierToken = typeDecl.Identifier;
             var newName = identifierToken.Text.ToUpperInvariant();
+
+
+
+            newName = string.Join(";", project.Documents.Select(d => d.Name));
+
+            
+            
+                
+
+
 
             // Get the symbol representing the type to be renamed.
             var semanticModel = await document.GetSemanticModelAsync(cancellationToken);

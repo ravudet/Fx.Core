@@ -17,7 +17,7 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <PackageId>Fx.Analyzers</PackageId>
-    <PackageVersion>8.0.0.0</PackageVersion>
+    <PackageVersion>18.0.0.0</PackageVersion>
     <Authors>ravud</Authors>
     <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
     <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>

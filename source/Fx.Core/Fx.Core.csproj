@@ -17,7 +17,7 @@
 
     <IncludeBuildOutput>true</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
-    <PackageVersion>3.0.0.0</PackageVersion>
+    <PackageVersion>4.0.0.0</PackageVersion>
     <PackageProjectUrl>https://github.com/ravudet/Fx.Core/tree/main/source/Fx.Core</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>TODO link to the github release notes</PackageReleaseNotes>
