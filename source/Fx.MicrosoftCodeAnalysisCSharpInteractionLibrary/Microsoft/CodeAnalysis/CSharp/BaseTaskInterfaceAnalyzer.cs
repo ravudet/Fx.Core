@@ -21,7 +21,7 @@
                 typeof(Resources)), 
             Categories.Design, 
             DiagnosticSeverity.Warning,
-            true,
+            true, //// TODO should be false
             new LocalizableResourceString(
                 nameof(Resources.TaskInterfaceDescription), 
                 Resources.ResourceManager, 
