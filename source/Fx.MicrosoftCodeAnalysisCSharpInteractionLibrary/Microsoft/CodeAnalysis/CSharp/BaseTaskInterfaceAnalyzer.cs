@@ -41,6 +41,9 @@
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
         {
+            var config = context.Options.AnalyzerConfigOptionsProvider.GetOptions(context.Compilation.SyntaxTrees.First());
+            var configResult = config.TryGetValue("ravudet", out var configValue);
+
             //// TODO you should also find cases like async funcs
             //// TODO you still need a codefix for this
 
@@ -66,6 +69,7 @@
 
                 if (returnTypeNamespace == taskType.Namespace)
                 {
+                    message = $"'{configValue}'";
                     var diagnostic = Diagnostic.Create(Rule, methodSymbol.Locations[0], methodSymbol.Name, message);
 
                     context.ReportDiagnostic(diagnostic);

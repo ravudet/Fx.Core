@@ -4,6 +4,7 @@
     using System.Linq;
 
     using Microsoft.CodeAnalysis;
+    using Microsoft.CodeAnalysis.CSharp.Syntax;
     using Microsoft.CodeAnalysis.Diagnostics;
 
     public abstract class BaseLowercaseTypeNameAnalyzer : DiagnosticAnalyzer
@@ -27,6 +28,8 @@
             // TODO: Consider registering other actions that act on syntax instead of or in addition to symbols
             // See https://github.com/dotnet/roslyn/blob/main/docs/analyzers/Analyzer%20Actions%20Semantics.md for more information
             context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
+
+            context.RegisterSyntaxNodeAction(AnalyzeNode, SyntaxKind.LocalDeclarationStatement);
         }
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
@@ -42,6 +45,44 @@
 
                 context.ReportDiagnostic(diagnostic);
             }
+        }
+
+        private void AnalyzeNode(SyntaxNodeAnalysisContext context)
+        {
+            var config = context.Options.AnalyzerConfigOptionsProvider.GetOptions(context.Node.SyntaxTree);
+            config.TryGetValue("ravudet", out var configValue);
+
+            if (string.IsNullOrEmpty(configValue))
+            {
+                return;
+            }
+
+            if (bool.TryParse(configValue, out var isConfigured) && !isConfigured)
+            {
+                return;
+            }
+
+            var localDeclaration = (LocalDeclarationStatementSyntax)context.Node;
+            if (localDeclaration.Modifiers.Any(SyntaxKind.ConstKeyword))
+            {
+                return;
+            }
+
+            // Perform data flow analysis on the local declaration.
+            DataFlowAnalysis dataFlowAnalysis = context.SemanticModel.AnalyzeDataFlow(localDeclaration);
+
+            // Retrieve the local symbol for each variable in the local declaration
+            // and ensure that it is not written outside of the data flow analysis region.
+            VariableDeclaratorSyntax variable = localDeclaration.Declaration.Variables.Single();
+            ISymbol variableSymbol = context.SemanticModel.GetDeclaredSymbol(variable, context.CancellationToken);
+
+            if (dataFlowAnalysis.WrittenOutside.Contains(variableSymbol))
+            {
+                return;
+            }
+
+            // TODO diagnostic.create has an overload to set the severity
+            context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation(), localDeclaration.Declaration.Variables.First().Identifier.ValueText));
         }
     }
 }
