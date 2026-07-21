@@ -45,11 +45,11 @@
             //// TODO you still need a codefix for this
 
 
-            var myType = context.Compilation.GetTypeByMetadataName("Fx.ITest");
+            var myType = context.Compilation.GetTypeByMetadataName("System.Threading.Tasks.ITask"); //// TODO i don't know how you're supposed to get the generic
             var message = string.Empty;
             if (myType is null)
             {
-                message = "The 'Fx.Core' package which contains 'ITask<T>' is also missing.";
+                // message = "The 'Fx.Core' package which contains 'ITask<T>' is also missing.";
             }
 
 

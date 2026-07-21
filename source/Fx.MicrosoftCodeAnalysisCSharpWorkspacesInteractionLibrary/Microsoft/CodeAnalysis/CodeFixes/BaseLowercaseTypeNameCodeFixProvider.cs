@@ -56,53 +56,8 @@
 
             // Compute new uppercase name.
             var identifierToken = typeDecl.Identifier;
-            var newName = identifierToken.Text.ToUpperInvariant() + " : ITest";
-
-
-
-
-            /*var newName = string.Join(";", project.ProjectReferences.Select(d => d.ProjectId));
-
-
-
-            var sol = project.Solution.RemoveProject(project.Id);
-            var newProject = project.WithCompilationOptions(project.CompilationOptions.WithOptimizationLevel(OptimizationLevel.Release));
-            sol = sol.AddProject(ProjectInfo.Create(
-                newProject.Id,
-                newProject.Version,
-                newProject.Name,
-                newProject.AssemblyName,
-                newProject.Language,
-                newProject.FilePath,
-                newProject.OutputFilePath,
-                newProject.CompilationOptions,
-                newProject.ParseOptions,
-                newProject.Documents.Select(d => DocumentInfo.Create(
-                    d.Id,
-                    d.Name,
-                    d.Folders,
-                    d.SourceCodeKind,
-                    null,
-                    d.FilePath,
-                    false)),
-                newProject.ProjectReferences,
-                newProject.MetadataReferences,
-                newProject.AnalyzerReferences,
-                newProject.AdditionalDocuments.Select(d => DocumentInfo.Create(
-                    d.Id,
-                    d.Name,
-                    d.Folders,
-                    SourceCodeKind.Regular,
-                    null,
-                    d.FilePath,
-                    false)),
-                newProject.IsSubmission,
-                null));*/
-
-
-            ////var newName = "ravudet";
-
-
+            var newName = identifierToken.Text.ToUpperInvariant();
+            
             // Get the symbol representing the type to be renamed.
             var semanticModel = await document.GetSemanticModelAsync(cancellationToken);
             var typeSymbol = semanticModel.GetDeclaredSymbol(typeDecl, cancellationToken);

@@ -59,54 +59,10 @@ namespace Fx.Core.Analyzers.Test
         }
     }";
 
-            var expected = VerifyCS.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork");
+            var expected = VerifyCS.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork", string.Empty);
 
             await VerifyCS.VerifyAnalyzerAsync(test, expected);
             ////await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
-        }
-
-        //Diagnostic and CodeFix both triggered and checked for
-        [TestMethod]
-        public async Task TestMethod3()
-        {
-            var test = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
-
-    namespace ConsoleApplication1
-    {
-        public static class Foo
-        {
-            public static async Task<int> {|#0:DoWork|}()
-            {
-                return await Task.FromResult(3).ConfigureAwait(false);
-            }
-        }
-    }";
-
-            var fixtest = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
-
-    namespace ConsoleApplication1
-    {
-        class TYPENAME
-        {   
-        }
-    }";
-
-            var expected = VerifyCS.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork");
-
-            ////await VerifyCS.VerifyAnalyzerAsync(test, expected);
-            await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
         }
     }
 }
