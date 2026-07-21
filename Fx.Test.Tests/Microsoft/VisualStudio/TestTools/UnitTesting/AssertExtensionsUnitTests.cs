@@ -380,6 +380,7 @@ class C {
 
         //// TODO use the "tip" from here: https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/tutorials/how-to-write-csharp-analyzer-code-fix#explore-the-analyzer-template to reset the mef components
 
+        //// TODO get a config option working for your analyzers, and make sure you can set the option in the unit tests
         //// TODO do you want interaction libraries to use underscores?
         //// TODO get all of the nuget stuff in fx.core.analyzers correct
         //// TODO get all of the nuget stuff in fx.analyzers correct
