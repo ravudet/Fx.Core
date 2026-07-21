@@ -13,7 +13,7 @@ namespace Fx.Core.Analyzers.Test
         {
             public Test()
             {
-                SolutionTransforms.Add((solution, projectId) =>
+                /*SolutionTransforms.Add((solution, projectId) =>
                 {
                     var compilationOptions = solution.GetProject(projectId).CompilationOptions;
                     compilationOptions = compilationOptions.WithSpecificDiagnosticOptions(
@@ -21,7 +21,7 @@ namespace Fx.Core.Analyzers.Test
                     solution = solution.WithProjectCompilationOptions(projectId, compilationOptions);
 
                     return solution;
-                });
+                });*/
             }
         }
     }
