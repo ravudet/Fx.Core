@@ -62,7 +62,7 @@ namespace Fx.Core.Analyzers.Test
             var expected = VerifyCS.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork", string.Empty);
 
             await VerifyCS.VerifyAnalyzerAsync(test, expected);
-            ////await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
+            ////await VerifyCS.VerifyCodeFixAsync(test, expected, test);
         }
     }
 }

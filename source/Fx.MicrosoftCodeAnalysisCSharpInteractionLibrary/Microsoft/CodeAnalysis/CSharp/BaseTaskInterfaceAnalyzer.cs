@@ -69,7 +69,7 @@
 
                 if (returnTypeNamespace == taskType.Namespace)
                 {
-                    message = $"'{configValue}'";
+                    ////message = $"'{configValue}'";
                     var diagnostic = Diagnostic.Create(Rule, methodSymbol.Locations[0], methodSymbol.Name, message);
 
                     context.ReportDiagnostic(diagnostic);
