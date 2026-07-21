@@ -1,10 +1,9 @@
-﻿<Project Sdk="MSTest.Sdk/3.6.4">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <RootNamespace />
-    <UseVSTest>true</UseVSTest>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
-    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest\Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.csproj" />
   </ItemGroup>
 
 </Project>
