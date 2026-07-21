@@ -7,6 +7,7 @@ using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Testing.Verifiers;
+using Microsoft.CodeAnalysis.Text;
 
 namespace Fx.Core.Analyzers.Test
 {
@@ -53,6 +54,23 @@ namespace Fx.Core.Analyzers.Test
             {
                 TestCode = source,
                 FixedCode = fixedSource,
+                //// TODO the below lines were added to the template
+                TestState =
+                {
+                    AnalyzerConfigFiles =
+                    {
+                        ("/.editorconfig", SourceText.From(
+"""
+#is_global = true
+
+root = true
+
+[*]
+ravudet = true
+"""))
+                    }
+                }
+                //// TODO the above lines were added to the template
             };
 
             test.ExpectedDiagnostics.AddRange(expected);
