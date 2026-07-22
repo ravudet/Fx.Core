@@ -398,6 +398,10 @@ class C {
         //// TODO how to deal with the version numbers?
         //// TODO analyzer2 now brings fx.core with it as a dependency
         //// TODO disable the ctrl + p keyboard shortcut
+        //// TODO for interaction libraries:
+        ////    you don't need to call them "interaction libraries"
+        ////    you should name them `Fx.{0}` where `{0}` is the list of dependencies in the form `{0}+{1}+...+{n}`, where each element is the name of the dependency, replacing `.` with `_`, and where the order of the dependencies is alphabetical
+
 
 
 
