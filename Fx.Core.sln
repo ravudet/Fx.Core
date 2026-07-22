@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Test", "source\Fx.Test\F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest", "source\Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest\Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.csproj", "{146F1762-5DFC-49F9-A14E-F31160D984FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_CSharp.TestCore", "source\Fx.Microsoft_CodeAnalysis_CSharp.TestCore\Fx.Microsoft_CodeAnalysis_CSharp.TestCore.csproj", "{F8398F63-5876-401A-8ABA-BFF3F4B01307}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,10 @@ Global
 		{146F1762-5DFC-49F9-A14E-F31160D984FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{146F1762-5DFC-49F9-A14E-F31160D984FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{146F1762-5DFC-49F9-A14E-F31160D984FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8398F63-5876-401A-8ABA-BFF3F4B01307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8398F63-5876-401A-8ABA-BFF3F4B01307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8398F63-5876-401A-8ABA-BFF3F4B01307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8398F63-5876-401A-8ABA-BFF3F4B01307}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
