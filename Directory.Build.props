@@ -1,12 +1,14 @@
 <Project>
-  
+
+  <!--nuget build properties-->
   <PropertyGroup>
     <PackageId>$(MSBuildProjectName)</PackageId>
     <NoPackageAnalysis>false</NoPackageAnalysis>
     <PackageOutputPath>$(MSBuildThisFileDirectory)\packages</PackageOutputPath>
-    
-    <!--TODO somehow, these above properties "feel" different to me than the below properties-->
+  </PropertyGroup>
 
+  <!--nuget package properties-->
+  <PropertyGroup>
     <Authors>ravudet</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ravudet/Fx.Core</RepositoryUrl>
