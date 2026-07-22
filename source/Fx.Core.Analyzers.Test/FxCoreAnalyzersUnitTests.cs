@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using VerifyCS = Fx.Core.Analyzers.Test.CSharpCodeFixVerifier<
+using VerifyCS2 = Fx.Core.Analyzers.Test.Test<
     Microsoft.CodeAnalysis.CSharp.TaskInterfaceAnalyzer,
     Microsoft.CodeAnalysis.CodeFixes.TaskInterfaceCodeFixProvider>;
 
@@ -18,7 +20,29 @@ namespace Fx.Core.Analyzers.Test
         {
             var test = @"";
 
-            await VerifyCS.VerifyAnalyzerAsync(test);
+            var tester = new VerifyCS2
+            {
+                TestCode = test,
+                //// TODO the below lines were added to the template
+                TestState =
+                {
+                    AnalyzerConfigFiles =
+                    {
+                        ("/.editorconfig", SourceText.From(
+"""
+#is_global = true
+
+root = true
+
+[*]
+ravudet = true
+"""))
+                    }
+                }
+                //// TODO the above lines were added to the template
+            };
+
+            await tester.RunAsync(CancellationToken.None);
         }
 
         //Diagnostic and CodeFix both triggered and checked for
@@ -59,10 +83,35 @@ namespace Fx.Core.Analyzers.Test
         }
     }";
 
-            var expected = VerifyCS.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork", string.Empty);
+            var expected = VerifyCS2.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork", string.Empty);
 
-            await VerifyCS.VerifyAnalyzerAsync(test, expected);
+            ////await VerifyCS.VerifyAnalyzerAsync(test, expected);
             ////await VerifyCS.VerifyCodeFixAsync(test, expected, test);
+
+            var tester = new VerifyCS2
+            {
+                TestCode = test,
+                //// TODO the below lines were added to the template
+                TestState =
+                {
+                    AnalyzerConfigFiles =
+                    {
+                        ("/.editorconfig", SourceText.From(
+"""
+#is_global = true
+
+root = true
+
+[*]
+ravudet = true
+"""))
+                    }
+                }
+                //// TODO the above lines were added to the template
+            };
+
+            tester.ExpectedDiagnostics.Add(expected);
+            await tester.RunAsync(CancellationToken.None);
         }
     }
 }
