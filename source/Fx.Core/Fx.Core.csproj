@@ -19,6 +19,7 @@
     <IncludeBuildOutput>true</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
     <!--TODO only use current ticks if you are doing a "local"-->
+    <!--TODO what does "release" look like? you should have a script for doing this; at the very least, the script should take you through each manual step one at a time-->
     <PackageVersion>1.0.0.0-$(CurrentTicks)</PackageVersion>
     <PackageProjectUrl>https://github.com/ravudet/Fx.Core/tree/main/source/Fx.Core</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
