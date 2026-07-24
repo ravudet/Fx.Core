@@ -17,7 +17,6 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <PackageId>Fx.Analyzers</PackageId>
-    <CurrentTicks>$([System.DateTime]::Now.Ticks)</CurrentTicks>
     <PackageVersion>18.0.0.0-$(CurrentTicks)</PackageVersion>
     <Authors>ravud</Authors>
     <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>

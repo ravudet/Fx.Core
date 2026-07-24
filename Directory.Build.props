@@ -1,4 +1,7 @@
 <Project>
+  <PropertyGroup>
+    <CurrentTicks>$([System.DateTime]::Now.Ticks)</CurrentTicks>
+  </PropertyGroup>
 
   <!--nuget build properties-->
   <PropertyGroup>
