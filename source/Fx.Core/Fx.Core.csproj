@@ -9,15 +9,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   
-  <!--nuget package properties-->
+  <!--nuget build properties-->
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-    <!--TODO somehow, these above properties "feel" different to me than the below properties-->
-
+  <!--nuget package properties-->
+  <PropertyGroup>
     <IncludeBuildOutput>true</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
-    <PackageVersion>4.0.0.0</PackageVersion>
+    <!--TODO only use current ticks if you are doing a "local"-->
+    <PackageVersion>1.0.0.0-$(CurrentTicks)</PackageVersion>
     <PackageProjectUrl>https://github.com/ravudet/Fx.Core/tree/main/source/Fx.Core</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>TODO link to the github release notes</PackageReleaseNotes>
