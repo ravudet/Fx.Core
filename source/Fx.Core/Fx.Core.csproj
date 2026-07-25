@@ -18,6 +18,7 @@
   <PropertyGroup>
     <IncludeBuildOutput>true</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
+    <!--TODO you are here, but up above, i think you can have nullable condition on the `nullable` element itself; and also i think you can have the condition use something like "net90orgreater"-->
     <!--TODO only use current ticks if you are doing a "local"--> <!--you should do a "package version suffix" in the directory.build that way you don't repeat the logic everywhere-->
     <!--TODO what does "release" look like? you should have a script for doing this; at the very least, the script should take you through each manual step one at a time-->
     <PackageVersion>1.0.0.0-$(CurrentTicks)</PackageVersion>

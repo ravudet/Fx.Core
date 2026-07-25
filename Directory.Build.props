@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
     <CurrentTicks>$([System.DateTime]::Now.Ticks)</CurrentTicks>
+    <PackageVersionSuffix Condition="'$(Fx.Release)' == 'true'">-$(CurrentTicks)</PackageVersionSuffix>
   </PropertyGroup>
 
   <!--nuget build properties-->
