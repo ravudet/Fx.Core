@@ -412,7 +412,7 @@ class C {
         ////    update the github "release" with the correct release notes
         ////    publish the nuget packages
         ////    updated the version numbers to the *next* release
-        ////    create the new github releases
+        ////    create the new github release (should follow the naming convention of `{packageid}_{versionnumber}`
 
 
 
