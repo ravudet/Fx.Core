@@ -1,1 +1,1 @@
-TODO
+`Fx.Core` is a library of .NET utilities that depends only on .NET.
