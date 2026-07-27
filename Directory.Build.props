@@ -1,8 +1,6 @@
 <Project>
   <PropertyGroup>
     <LangVersion>13.0</LangVersion>
-    <CurrentTicks>$([System.DateTime]::Now.Ticks)</CurrentTicks>
-    <PackageVersionSuffix Condition="'$(Fx_Release)' != 'true'">-$(CurrentTicks)</PackageVersionSuffix>
   </PropertyGroup>
 
   <!--nuget build properties-->
@@ -17,6 +15,7 @@
     <Authors>ravudet</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ravudet/Fx.Core</RepositoryUrl>
+    <VersionSuffix Condition="'$(Fx_Release)' != 'true' and '$(DesignTimeBuild)' != 'true'">$([System.DateTime]::Now.Ticks)</VersionSuffix>
   </PropertyGroup>
 
 </Project>
