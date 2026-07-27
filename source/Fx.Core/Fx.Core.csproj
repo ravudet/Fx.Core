@@ -3,13 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net9.0</TargetFrameworks>
     <RootNamespace />
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(LangVersion)' == '13.0'">
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-  
   <!--nuget build properties-->
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
