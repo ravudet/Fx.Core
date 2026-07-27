@@ -441,7 +441,7 @@ class C {
 
 
 
-        public static void StyleGlobalConfigTest()
+        pub` static void StyleGlobalConfigTest()
         {
             Func<int, int> square = x => x * x;
             Func<int, int> square2 = x => { return x * x; }; // IDE0053
