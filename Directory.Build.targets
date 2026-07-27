@@ -1,0 +1,9 @@
+<Project>
+  <Target Name="PackageVersionSuffix" BeforeTargets="Pack">
+    <PropertyGroup>
+      <CurrentTicks>$([System.DateTime]::Now.Ticks)</CurrentTicks>
+      <PackageVersionSuffix>-$(CurrentTicks)</PackageVersionSuffix>
+      <PackageVersion>foo</PackageVersion>
+    </PropertyGroup>
+  </Target>
+</Project>
