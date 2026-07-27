@@ -405,7 +405,8 @@ class C {
         //// TODO write out test instructions for the playground project
 
         //// TODO you should have a script for official releases
-        ////    needs to set the Fx_Release environment variable to get nuget package versions correct
+        ////    needs to set the FX_RELEASE environment variable to get nuget package versions correct
+        ////    at the very least, the script should take you through each manual step one at a time
 
 
 
