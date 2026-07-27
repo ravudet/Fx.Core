@@ -407,6 +407,12 @@ class C {
         //// TODO you should have a script for official releases
         ////    needs to set the FX_RELEASE environment variable to get nuget package versions correct
         ////    at the very least, the script should take you through each manual step one at a time
+        ////    create the correct branches for shipping hotfixes etc.
+        ////    apply the correct git tag so that the github release notes work correctly
+        ////    update the github "release" with the correct release notes
+        ////    publish the nuget packages
+        ////    updated the version numbers to the *next* release
+        ////    create the new github releases
 
 
 
