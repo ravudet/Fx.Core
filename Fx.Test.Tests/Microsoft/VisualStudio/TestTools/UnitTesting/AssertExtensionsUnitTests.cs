@@ -404,6 +404,9 @@ class C {
         ////    you should name them `Fx.{0}` where `{0}` is the list of dependencies in the form `{0}+{1}+...+{n}`, where each element is the name of the dependency, replacing `.` with `_`, and where the order of the dependencies is alphabetical
         //// TODO write out test instructions for the playground project
 
+        //// TODO you should have a script for official releases
+        ////    needs to set the Fx_Release environment variable to get nuget package versions correct
+
 
 
 
