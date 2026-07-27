@@ -16,7 +16,7 @@
     <Authors>ravudet</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ravudet/Fx.Core</RepositoryUrl>
-    <VersionSuffix Condition="'$(Fx_Release)' != 'true' and '$(DesignTimeBuild)' != 'true'">$([System.DateTime]::Now.Ticks)</VersionSuffix>
+    <VersionSuffix Condition="'$(FX_RELEASE)' != 'true' and '$(DesignTimeBuild)' != 'true'">$([System.DateTime]::Now.Ticks)</VersionSuffix> <!--`FX_RELEASE` is the environment variable indicating we are performing an official release, so we don't want to add a suffix in that case; `DesignTimeBuild` is a variable set by visual studio to indicate compilation steps are being performed to populate intellisense, so we don't want to add *this* suffix in that case because this suffix always changes between builds, so visual studio wouldn't be able to leverage incremental builds very well-->
   </PropertyGroup>
 
 </Project>
