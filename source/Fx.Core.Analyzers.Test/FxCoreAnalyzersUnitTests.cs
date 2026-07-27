@@ -83,7 +83,7 @@ ravudet = true
         }
     }";
 
-            var expected = VerifyCS2.Diagnostic(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork", string.Empty);
+            var expected = VerifyCS2.Diagnostic(FxCoreDiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork", string.Empty);
 
             ////await VerifyCS.VerifyAnalyzerAsync(test, expected);
             ////await VerifyCS.VerifyCodeFixAsync(test, expected, test);

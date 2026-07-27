@@ -10,7 +10,7 @@
     public abstract class BaseTaskInterfaceAnalyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
-            DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId,
+            FxCoreDiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId,
             new LocalizableResourceString(
                 nameof(Resources.TaskInterfaceTitle), 
                 Resources.ResourceManager, 

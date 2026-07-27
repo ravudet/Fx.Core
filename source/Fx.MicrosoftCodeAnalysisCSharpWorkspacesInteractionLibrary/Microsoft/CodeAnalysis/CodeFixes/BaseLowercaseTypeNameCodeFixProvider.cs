@@ -18,7 +18,7 @@
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(DiagnosticIds.BaseLowercaseTypeNameAnalyzerDiagnosticId); }
+            get { return ImmutableArray.Create(FxDiagnosticIds.BaseLowercaseTypeNameAnalyzerDiagnosticId); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()

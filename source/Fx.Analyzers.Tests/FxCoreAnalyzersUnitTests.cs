@@ -80,7 +80,7 @@ ravudet = true
         }
     }";
 
-            var expected = VerifyCS2.Diagnostic(DiagnosticIds.BaseLowercaseTypeNameAnalyzerDiagnosticId).WithLocation(0).WithArguments("TypeName");
+            var expected = VerifyCS2.Diagnostic(FxDiagnosticIds.BaseLowercaseTypeNameAnalyzerDiagnosticId).WithLocation(0).WithArguments("TypeName");
             ////await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
 
 

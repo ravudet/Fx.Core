@@ -18,7 +18,7 @@
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(DiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId); }
+            get { return ImmutableArray.Create(FxCoreDiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
