@@ -14,10 +14,9 @@
   <PropertyGroup>
     <IncludeBuildOutput>true</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>2.0.0</VersionPrefix>
     <PackageProjectUrl>https://github.com/ravudet/Fx.Core/tree/main/source/Fx.Core</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <!--TODO you are here-->
     <PackageReleaseNotes>https://github.com/ravudet/Fx.Core/releases/tag/$(PackageId)_$(VersionPrefix)</PackageReleaseNotes>
     <DevelopmentDependency>false</DevelopmentDependency>
     <PackageReadmeFile>README.md</PackageReadmeFile>
