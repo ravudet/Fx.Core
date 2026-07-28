@@ -6,6 +6,10 @@
     {
         private readonly Task<T> task;
 
+        public Exception? Exception => throw new NotImplementedException();
+
+        public bool IsCanceled => throw new NotImplementedException();
+
         public TaskWrapper(Task<T> task)
         {
             this.task = task;
@@ -67,6 +71,11 @@
         public IAwaiter<T> GetAwaiter()
         {
             return new Awaiter(this.task.GetAwaiter());
+        }
+
+        public IConfiguredTask<T> ConfigureAwait(ConfigureAwaitOptions configureAwaitOptions)
+        {
+            throw new NotImplementedException();
         }
 
         private sealed class Awaiter : IAwaiter<T>
