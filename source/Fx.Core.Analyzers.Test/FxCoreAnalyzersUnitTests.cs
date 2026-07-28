@@ -83,7 +83,7 @@ ravudet = true
         }
     }";
 
-            var expected = VerifyCS2.Diagnostic(FxCoreDiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork", string.Empty);
+            var expected = VerifyCS2.Diagnostic(FxCoreDiagnosticIds.BaseTaskInterfaceAnalyzerDiagnosticId).WithLocation(0).WithArguments("DoWork", string.Empty); //.WithSeverity(Microsoft.CodeAnalysis.DiagnosticSeverity.Error);
 
             ////await VerifyCS.VerifyAnalyzerAsync(test, expected);
             ////await VerifyCS.VerifyCodeFixAsync(test, expected, test);
@@ -104,13 +104,16 @@ root = true
 
 [*]
 ravudet = true
+
+#dotnet_diagnostic.FXCORE0001.severity = none
 """))
-                    }
-                }
+                    },
+                },
                 //// TODO the above lines were added to the template
             };
 
             tester.ExpectedDiagnostics.Add(expected);
+
             await tester.RunAsync(CancellationToken.None);
         }
     }
