@@ -6,8 +6,7 @@
     {
         None = 0,
         ContinueOnCapturedContext = 1 << 0,
-        SuppressThrowing = 1 << 1,
-        ForceYielding = 1 << 2,
+        //// TODO you are intentionally not adding the other options because there's no way to support them with the framework's available functionality
     }
 #endif
 }
