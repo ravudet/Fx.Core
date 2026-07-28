@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
-    <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary.csproj" />
+    <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.Microsoft_CodeAnalysis_CSharp.csproj" />
     <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj" />
     <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
   </ItemGroup>
