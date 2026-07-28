@@ -18,9 +18,9 @@
                 nameof(Resources.TaskInterfaceMessageFormat), 
                 Resources.ResourceManager, 
                 typeof(Resources)), 
-            Categories.Usage, //// TODO is this the correct category
+            Categories.Usage,
             DiagnosticSeverity.Warning,
-            true, //// TODO should be false
+            false, //// TODO do you actually need a config value, or is this handled automatically?
             new LocalizableResourceString(
                 nameof(Resources.TaskInterfaceDescription), 
                 Resources.ResourceManager, 
