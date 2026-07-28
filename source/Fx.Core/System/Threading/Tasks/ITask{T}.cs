@@ -2,11 +2,23 @@
 {
     using System.Runtime.CompilerServices;
 
-    public interface ITask<out T> : IAwaitable<T>
+    public interface ITask<out T> : IConfigurableAwaitable<IAwaiter<T>, T, IConfiguredTask<T>, IAwaiter<T>>
 #if NET6_0_OR_GREATER
         where T : allows ref struct
 #endif
     {
-        IAwaitable<T> ConfigureAwait(bool continueOnCapturedContext);
+        Exception? Exception { get; }
+
+        bool IsCanceled { get; }
+    }
+
+    public interface IConfiguredTask<out T> : IAwaitable<T>
+#if NET6_0_OR_GREATER
+        where T : allows ref struct
+#endif
+    {
+        Exception? Exception { get; }
+
+        bool IsCanceled { get; }
     }
 }
