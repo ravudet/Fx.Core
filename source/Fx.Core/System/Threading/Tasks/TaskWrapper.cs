@@ -6,32 +6,107 @@
     {
         private readonly Task<T> task;
 
-        public Exception? Exception => throw new NotImplementedException();
-
-        public bool IsCanceled => throw new NotImplementedException();
-
         public TaskWrapper(Task<T> task)
         {
             this.task = task;
         }
 
-        public IAwaitable<T> ConfigureAwait(bool continueOnCapturedContext)
+        public Exception? Exception
         {
-            return new Awaitable(this.task.ConfigureAwait(continueOnCapturedContext));
+            get
+            {
+                return this.task.Exception;
+            }
         }
 
-        private sealed class Awaitable : IAwaitable<T>
+        public bool IsCanceled
         {
-            private readonly ConfiguredTaskAwaitable<T> configuredTaskAwaitable;
-
-            public Awaitable(ConfiguredTaskAwaitable<T> configuredTaskAwaitable)
+            get
             {
-                this.configuredTaskAwaitable = configuredTaskAwaitable;
+                return this.task.IsCanceled;
+            }
+        }
+
+        public IAwaiter<T> GetAwaiter()
+        {
+            return new Awaiter(this.task.GetAwaiter());
+        }
+
+        private sealed class Awaiter : IAwaiter<T>
+        {
+            private readonly TaskAwaiter<T> taskAwaiter;
+
+            public Awaiter(TaskAwaiter<T> taskAwaiter)
+            {
+                this.taskAwaiter = taskAwaiter;
+            }
+
+            public bool IsCompleted
+            {
+                get
+                {
+                    return this.taskAwaiter.IsCompleted;
+                }
+            }
+
+            public T GetResult()
+            {
+                return this.taskAwaiter.GetResult();
+            }
+
+            public void OnCompleted(Action continuation)
+            {
+                this.taskAwaiter.OnCompleted(continuation);
+            }
+
+            public void UnsafeOnCompleted(Action continuation)
+            {
+                this.taskAwaiter.UnsafeOnCompleted(continuation);
+            }
+        }
+
+        public IConfiguredTask<T> ConfigureAwait(ConfigureAwaitOptions configureAwaitOptions)
+        {
+            return new ConfiguredTask(this.task, configureAwaitOptions);
+        }
+
+        private sealed class ConfiguredTask : IConfiguredTask<T>
+        {
+            private readonly Task<T> task;
+            private readonly ConfigureAwaitOptions configureAwaitOptions;
+
+            public ConfiguredTask(Task<T> task, ConfigureAwaitOptions configureAwaitOptions)
+            {
+                this.task = task;
+                this.configureAwaitOptions = configureAwaitOptions;
+            }
+
+            public Exception? Exception
+            {
+                get
+                {
+                    return this.task.Exception;
+                }
+            }
+
+            public bool IsCanceled
+            {
+                get
+                {
+                    return this.task.IsCanceled;
+                }
             }
 
             public IAwaiter<T> GetAwaiter()
             {
-                return new Awaiter(this.configuredTaskAwaitable.GetAwaiter());
+                ConfiguredTaskAwaitable<T> configuredTaskAwaitable;
+#if !NET8_0_OR_GREATER
+                configuredTaskAwaitable = this.task.ConfigureAwait(configureAwaitOptions == ConfigureAwaitOptions.ContinueOnCapturedContext);
+#else
+                configuredTaskAwaitable = this.task.ConfigureAwait(configureAwaitOptions);
+#endif
+
+                return new Awaiter(configuredTaskAwaitable.GetAwaiter());
             }
 
             private sealed class Awaiter : IAwaiter<T>
@@ -65,49 +140,6 @@
                 {
                     this.configuredTaskAwaiter.UnsafeOnCompleted(continuation);
                 }
-            }
-        }
-
-        public IAwaiter<T> GetAwaiter()
-        {
-            return new Awaiter(this.task.GetAwaiter());
-        }
-
-        public IConfiguredTask<T> ConfigureAwait(ConfigureAwaitOptions configureAwaitOptions)
-        {
-            throw new NotImplementedException();
-        }
-
-        private sealed class Awaiter : IAwaiter<T>
-        {
-            private readonly TaskAwaiter<T> taskAwaiter;
-
-            public Awaiter(TaskAwaiter<T> taskAwaiter)
-            {
-                this.taskAwaiter = taskAwaiter;
-            }
-
-            public bool IsCompleted
-            {
-                get
-                {
-                    return this.taskAwaiter.IsCompleted;
-                }
-            }
-
-            public T GetResult()
-            {
-                return this.taskAwaiter.GetResult();
-            }
-
-            public void OnCompleted(Action continuation)
-            {
-                this.taskAwaiter.OnCompleted(continuation);
-            }
-
-            public void UnsafeOnCompleted(Action continuation)
-            {
-                this.taskAwaiter.UnsafeOnCompleted(continuation);
             }
         }
     }
