@@ -18,7 +18,7 @@
                 nameof(Resources.TaskInterfaceMessageFormat), 
                 Resources.ResourceManager, 
                 typeof(Resources)), 
-            Categories.Design, //// TODO is this the correct category
+            Categories.Usage, //// TODO is this the correct category
             DiagnosticSeverity.Warning,
             true, //// TODO should be false
             new LocalizableResourceString(

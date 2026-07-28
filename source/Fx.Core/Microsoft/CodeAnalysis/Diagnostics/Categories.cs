@@ -2,6 +2,8 @@
 {
     public static class Categories
     {
-        public const string Design = "Design";
+        //// TODO categories seem to be listed here: https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories?view=vs-2019
+
+        public const string Usage = "Usage";
     }
 }
