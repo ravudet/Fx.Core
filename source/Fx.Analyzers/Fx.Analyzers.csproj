@@ -36,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.Microsoft_CodeAnalysis_CSharp.csproj" />
+    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_CSharp\Fx.Microsoft_CodeAnalysis_CSharp.csproj" />
     <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj" />
   </ItemGroup>
 

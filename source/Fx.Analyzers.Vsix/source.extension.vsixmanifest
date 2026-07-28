@@ -17,8 +17,8 @@
 
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Fx.Core" Path="|Fx.Core|"/>
 
-    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary" Path="|Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary|"/>
-    <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary" Path="|Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary|"/>
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Fx.Microsoft_CodeAnalysis_CSharp" Path="|Fx.Microsoft_CodeAnalysis_CSharp|"/>
+    <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="Fx.Microsoft_CodeAnalysis_CSharp" Path="|Fx.Microsoft_CodeAnalysis_CSharp|"/>
 
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary" Path="|Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary|"/>
     <Asset Type="Microsoft.VisualStudio.Analyzer" d:Source="Project" d:ProjectName="Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary" Path="|Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary|"/>

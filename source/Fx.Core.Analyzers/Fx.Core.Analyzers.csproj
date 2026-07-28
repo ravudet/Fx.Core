@@ -42,7 +42,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TreatAsPackageReference>True</TreatAsPackageReference>-->
     </ProjectReference>
-    <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.Microsoft_CodeAnalysis_CSharp.csproj">
+    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_CSharp\Fx.Microsoft_CodeAnalysis_CSharp.csproj">
       <PrivateAssets>all</PrivateAssets> <!--TODO required so that these don't show up as package dependencies (since you are making SuppressDependenciesWhenPacking `false`)-->
     </ProjectReference>
     <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj">

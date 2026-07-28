@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core", "source\Fx.Core\F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Core.Tests", "source\Fx.Core.Tests\Fx.Core.Tests.csproj", "{9DFE7795-7613-40A8-8C73-7C1CBE4AA87F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_CSharp", "source\Fx.MicrosoftCodeAnalysisCSharpInteractionLibrary\Fx.Microsoft_CodeAnalysis_CSharp.csproj", "{9FA3263A-7B60-B1F1-DF78-80005DDB31CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_CSharp", "source\Fx.Microsoft_CodeAnalysis_CSharp\Fx.Microsoft_CodeAnalysis_CSharp.csproj", "{9FA3263A-7B60-B1F1-DF78-80005DDB31CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary", "source\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj", "{7CE4EA91-DDB7-44B3-A12E-BEC5FA7935EB}"
 EndProject
