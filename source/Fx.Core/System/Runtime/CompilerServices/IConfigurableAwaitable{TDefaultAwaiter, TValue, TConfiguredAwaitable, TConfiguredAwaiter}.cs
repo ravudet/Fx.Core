@@ -1,5 +1,7 @@
 ﻿namespace System.Runtime.CompilerServices
 {
+    using System.Threading.Tasks;
+
     public interface IConfigurableAwaitable<out TDefaultAwaiter, out TValue, out TConfiguredAwaitable, out TConfiguredAwaiter> : IAwaitable<TDefaultAwaiter, TValue>
         where TDefaultAwaiter : IAwaiter<TValue>
 #if NET6_0_OR_GREATER
@@ -17,6 +19,6 @@
         , allows ref struct
 #endif
     {
-        TConfiguredAwaitable ConfigureAwait(bool continueOnCapturedContext); //// TODO use the enum and have an extension for the bool instead
+        TConfiguredAwaitable ConfigureAwait(ConfigureAwaitOptions configureAwaitOptions); //// TODO have an extension method for the bool overload
     }
 }
