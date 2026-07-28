@@ -1,4 +1,4 @@
-﻿namespace Microsoft.CodeAnalysis.CSharp
+﻿namespace Microsoft.CodeAnalysis.Diagnostics
 {
     public static class Categories
     {

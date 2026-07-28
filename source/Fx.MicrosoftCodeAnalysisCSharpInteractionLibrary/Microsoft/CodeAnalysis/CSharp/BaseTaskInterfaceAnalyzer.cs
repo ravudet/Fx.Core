@@ -1,11 +1,10 @@
-﻿namespace Microsoft.CodeAnalysis.CSharp
+﻿namespace Microsoft.CodeAnalysis.Diagnostics
 {
     using System.Collections.Immutable;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.CodeAnalysis;
-    using Microsoft.CodeAnalysis.Diagnostics;
 
     public abstract class BaseTaskInterfaceAnalyzer : DiagnosticAnalyzer
     {
@@ -19,13 +18,14 @@
                 nameof(Resources.TaskInterfaceMessageFormat), 
                 Resources.ResourceManager, 
                 typeof(Resources)), 
-            Categories.Design, 
+            Categories.Design, //// TODO is this the correct category
             DiagnosticSeverity.Warning,
             true, //// TODO should be false
             new LocalizableResourceString(
                 nameof(Resources.TaskInterfaceDescription), 
                 Resources.ResourceManager, 
-                typeof(Resources)));
+                typeof(Resources)),
+            "TODO helplinkuri");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
 
