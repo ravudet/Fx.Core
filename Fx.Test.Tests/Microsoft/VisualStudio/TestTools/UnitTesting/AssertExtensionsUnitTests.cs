@@ -390,6 +390,7 @@ class C {
         //// TODO go through all of the generated code
         //// TODO go through all of the project files to see if there's anything you should get rid of
         //// TODO go through any todos
+        //// TODO default enabled status of analyzers needs to be tested in the playground
 
 
         //// TODO create scaffolding for all of the below packages
