@@ -25,7 +25,7 @@
                 nameof(Resources.TaskInterfaceDescription), 
                 Resources.ResourceManager, 
                 typeof(Resources)),
-            "TODO helplinkuri");
+            "https://github.com/ravudet/Fx.Core/blob/main/source/Fx.Core.Analyzers/Microsoft/CodeAnalysis/CSharp/TaskInterfaceAnalyzer.md");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
 
