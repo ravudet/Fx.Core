@@ -20,7 +20,7 @@
                 typeof(Resources)), 
             Categories.Usage,
             DiagnosticSeverity.Warning,
-            false, //// TODO do you actually need a config value, or is this handled automatically?
+            false,
             new LocalizableResourceString(
                 nameof(Resources.TaskInterfaceDescription), 
                 Resources.ResourceManager, 
