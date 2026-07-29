@@ -1,6 +1,6 @@
 ﻿namespace System.Threading.Tasks
 {
-    public static class TaskExtensions
+    public static class TaskExtensions2
     {
         public static TaskWrapper<T> ToTaskWrapper<T>(this Task<T> task)
         {

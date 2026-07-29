@@ -3,4 +3,4 @@ root = true
 [*]
 ravudet = true
 
-dotnet_diagnostic.FXCORE0001.severity = none
+dotnet_diagnostic.FXCORE0001.severity = warning
