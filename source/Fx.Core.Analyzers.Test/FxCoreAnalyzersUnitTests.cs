@@ -173,9 +173,10 @@ ravudet = true
             };
 
 
-            ////tester.ReferenceAssemblies.AddPackages(System.Collections.Immutable.ImmutableArray.Create(new Microsoft.CodeAnalysis.Testing.PackageIdentity("Fx.Core", "1.0.0")));
+            //// TODO package needs to be "restored" before this will work...i'm not really sure what that means, but i got it working previously by creating the package with the right version number, installing that package in one of my projects (so that it ended up in the local package cache), and then running the test
+            tester.ReferenceAssemblies = tester.ReferenceAssemblies.AddPackages(System.Collections.Immutable.ImmutableArray.Create(new Microsoft.CodeAnalysis.Testing.PackageIdentity("Fx.Core", "3.0.0")));
 
-            ////tester.ReferenceAssemblies.AddAssemblies(["Fx.Core"]);
+            ////tester.ReferenceAssemblies = tester.ReferenceAssemblies.AddAssemblies(["Fx.Core"]);
 
             tester.ExpectedDiagnostics.Add(expected);
 
