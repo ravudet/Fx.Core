@@ -404,6 +404,7 @@ class C {
         ////    you don't need to call them "interaction libraries"
         ////    you should name them `Fx.{0}` where `{0}` is the list of dependencies in the form `{0}+{1}+...+{n}`, where each element is the name of the dependency, replacing `.` with `_`, and where the order of the dependencies is alphabetical
         //// TODO write out test instructions for the playground project
+        ////    make sure to test that analyzers are disabled by default
 
         //// TODO you should have a script for official releases
         ////    needs to set the FX_RELEASE environment variable to get nuget package versions correct
