@@ -376,7 +376,7 @@ class C {
 
 
 
-
+        //// TODO have an analyzer to add configureawait everywhere; add this to codequality if it isn't already there
 
         //// TODO use the "tip" from here: https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/tutorials/how-to-write-csharp-analyzer-code-fix#explore-the-analyzer-template to reset the mef components
 
