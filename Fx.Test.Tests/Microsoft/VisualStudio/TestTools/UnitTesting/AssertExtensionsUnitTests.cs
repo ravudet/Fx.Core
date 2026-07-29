@@ -391,7 +391,7 @@ class C {
         //// TODO go through all of the project files to see if there's anything you should get rid of
         //// TODO go through any todos
         //// TODO default enabled status of analyzers needs to be tested in the playground
-
+        //// TODO is xmldoc getting published in the nuget packages?
 
         //// TODO create scaffolding for all of the below packages
         //// TODO can you remove the lib folder from the nuget package?
