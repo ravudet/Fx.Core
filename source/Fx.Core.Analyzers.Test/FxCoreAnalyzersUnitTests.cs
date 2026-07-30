@@ -1,6 +1,8 @@
-﻿using System.Threading;
+﻿using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -176,11 +178,30 @@ ravudet = true
             //// TODO package needs to be "restored" before this will work...i'm not really sure what that means, but i got it working previously by creating the package with the right version number, installing that package in one of my projects (so that it ended up in the local package cache), and then running the test
             ////tester.ReferenceAssemblies = tester.ReferenceAssemblies.AddPackages(System.Collections.Immutable.ImmutableArray.Create(new Microsoft.CodeAnalysis.Testing.PackageIdentity("Fx.Core", "3.0.0")));
 
-            tester.ReferenceAssemblies = tester.ReferenceAssemblies.AddAssemblies([@"C:\github\Fx.Core\source\Fx.Core\bin\Debug\net9.0\Fx.Core"]);
+            var fxCorePath = GetPathWithoutExtension(FullPath(typeof(System.Threading.Tasks.ITask<>).Assembly));
+            tester.ReferenceAssemblies = tester.ReferenceAssemblies.AddAssemblies([fxCorePath]);
 
             tester.ExpectedDiagnostics.Add(expected);
 
             await tester.RunAsync(CancellationToken.None);
+        }
+
+        private static string GetPathWithoutExtension(string path)
+        {
+            var directory = Path.GetDirectoryName(path);
+            var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(path);
+            if (directory == null)
+            {
+                return fileNameWithoutExtension;
+            }
+
+            return Path.Combine(directory, fileNameWithoutExtension);
+        }
+
+        private static string FullPath(System.Reflection.Assembly assembly)
+        {
+            var uri = new System.Uri(assembly.CodeBase);
+            return uri.LocalPath;
         }
     }
 }

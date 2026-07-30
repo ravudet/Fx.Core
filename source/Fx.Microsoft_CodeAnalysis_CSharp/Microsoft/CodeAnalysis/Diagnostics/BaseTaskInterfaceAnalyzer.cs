@@ -45,8 +45,8 @@
             //// TODO you should also find cases like async funcs
 
 
-            ////var type = typeof(System.Threading.Tasks.ITask<>).GetGenericTypeDefinition().FullName;
-            var myType = context.Compilation.GetTypeByMetadataName("System.Threading.Tasks.ITask`1"); //// TODO i don't know how you're supposed to get the generic
+            var typeName = typeof(System.Threading.Tasks.ITask<>).GetGenericTypeDefinition().FullName;
+            var myType = context.Compilation.GetTypeByMetadataName(typeName); //// TODO i don't know how you're supposed to get the generic
             var message = string.Empty;
             if (myType is null)
             {
