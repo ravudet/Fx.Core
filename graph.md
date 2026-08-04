@@ -52,5 +52,12 @@ flowchart BT
 	Fx.Core.GlobalConfig --> FxCore.GlobalConfig.Tests
 	Fx.Test --> FxCore.GlobalConfig.Tests
 
-	
+	Fx.Core --> Fx.Test
+
+	Fx.Core --> Fx.Test.TestCore
+	Fx.Test --> Fx.Test.TestCore
+
+	Fx.Core --> Fx.Test.Tests
+	Fx.Test --> Fx.Test.Tests
+	Fx.Test.TestCore --> Fx.Test.Tests
 ```
