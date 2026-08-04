@@ -103,6 +103,7 @@ flowchart LR
 
 	Fx.Core --> Fx.Microsoft_CodeAnalysis_CSharp.TestCore
 	Fx.Test --> Fx.Microsoft_CodeAnalysis_CSharp.TestCore
+	Fx.Microsoft_CodeAnalysis_CSharp --> Fx.Microsoft_CodeAnalysis_CSharp.TestCore
 
 	Fx.Core --> Fx.Microsoft_CodeAnalysis_CSharp.Tests
 	Fx.Test --> Fx.Microsoft_CodeAnalysis_CSharp.Tests
