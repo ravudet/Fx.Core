@@ -46,7 +46,7 @@
 
 
             var typeName = typeof(System.Threading.Tasks.ITask<>).GetGenericTypeDefinition().FullName;
-            var myType = context.Compilation.GetTypeByMetadataName(typeName); //// TODO i don't know how you're supposed to get the generic
+            var myType = context.Compilation.GetTypeByMetadataName(typeName);
             var message = string.Empty;
             if (myType is null)
             {
