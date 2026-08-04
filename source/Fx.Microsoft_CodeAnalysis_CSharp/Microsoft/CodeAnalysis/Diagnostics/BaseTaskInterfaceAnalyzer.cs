@@ -50,7 +50,7 @@
             var message = string.Empty;
             if (myType is null)
             {
-                // message = "The 'Fx.Core' package (which contains 'ITask<T>') is also missing.";
+                message = "The 'Fx.Core' package (which contains 'ITask<T>') is also missing.";
             }
 
 
