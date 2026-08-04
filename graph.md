@@ -128,5 +128,6 @@ flowchart LR
 
 	Fx.Core --> Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.Tests
 	Fx.Test --> Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.Tests
+	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces --> Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.Tests
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.TestCore --> Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.Tests
 ```
