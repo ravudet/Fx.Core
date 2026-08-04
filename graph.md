@@ -21,7 +21,11 @@ flowchart BT
 	Fx.Test.GlobalConfig
 	Fx.Test.GlobalConfig.Tests
 	Fx.Microsoft_CodeAnalysis_CSharp
+	Fx.Microsoft_CodeAnalysis_CSharp.TestCore
 	Fx.Microsoft_CodeAnalysis_CSharp.Tests
+	Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest
+	Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.TestCore
+	Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.Tests
 
 	Fx.Core --> Fx.Test
 ```
