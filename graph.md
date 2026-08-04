@@ -76,4 +76,13 @@ flowchart LR
 	Fx.Core --> Fx.Test.GlobalConfig.Tests
 	Fx.Test --> Fx.Test.GlobalConfig.Tests
 	Fx.Test.GlobalConfig --> Fx.Test.GlobalConfig.Tests
+
+	Fx.Core --> Fx.Microsoft_CodeAnalysis_CSharp
+
+	Fx.Core --> Fx.Microsoft_CodeAnalysis_CSharp.TestCore
+	Fx.Test --> Fx.Microsoft_CodeAnalysis_CSharp.TestCore
+
+	Fx.Core --> Fx.Microsoft_CodeAnalysis_CSharp.Tests
+	Fx.Test --> Fx.Microsoft_CodeAnalysis_CSharp.Tests
+	Fx.Microsoft_CodeAnalysis_CSharp.TestCore --> Fx.Microsoft_CodeAnalysis_CSharp.Tests
 ```
