@@ -1,5 +1,5 @@
 ```mermaid
-flowchart TD
+flowchart BT
 	Fx.Core
 	Fx.Analyzers
 	Fx.Analyzers.Tests
