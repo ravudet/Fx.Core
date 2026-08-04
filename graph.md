@@ -49,8 +49,8 @@ flowchart BT
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces --> Fx.Core.Analzyers.Tests
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.TestCore --> Fx.Core.Analzyers.Tests
 
-	Fx.Core.GlobalConfig --> FxCore.GlobalConfig.Tests
-	Fx.Test --> FxCore.GlobalConfig.Tests
+	Fx.Core.GlobalConfig --> Fx.Core.GlobalConfig.Tests
+	Fx.Test --> Fx.Core.GlobalConfig.Tests
 
 	Fx.Core --> Fx.Test
 
