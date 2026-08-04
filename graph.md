@@ -85,4 +85,13 @@ flowchart LR
 	Fx.Core --> Fx.Microsoft_CodeAnalysis_CSharp.Tests
 	Fx.Test --> Fx.Microsoft_CodeAnalysis_CSharp.Tests
 	Fx.Microsoft_CodeAnalysis_CSharp.TestCore --> Fx.Microsoft_CodeAnalysis_CSharp.Tests
+
+	Fx.Core --> Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest
+
+	Fx.Core --> Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.TestCore
+	Fx.Test --> Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.TestCore
+
+	Fx.Core --> Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.Tests
+	Fx.Test --> Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.Tests
+	Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.TestCore --> Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.Tests
 ```
