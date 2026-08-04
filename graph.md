@@ -17,7 +17,7 @@ flowchart BT
 	Fx.Test.TestCore
 	Fx.Test.Tests
 	Fx.Test.Analyzers
-	Fx.Test.Analyzers.Test
+	Fx.Test.Analyzers.Tests
 	Fx.Test.GlobalConfig
 	Fx.Test.GlobalConfig.Tests
 	Fx.Microsoft_CodeAnalysis_CSharp
