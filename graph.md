@@ -36,4 +36,8 @@ flowchart BT
 	Fx.Core --> Fx.Core.Tests
 	Fx.Test --> Fx.Core.Tests
 	Fx.Core.TestCore --> Fx.Core.Tests
+
+	Fx.Core --> Fx.Core.Analyzers
+	Fx.Microsoft_CodeAnalysis_CSharp --> Fx.Core.Analyzers
+	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces --> Fx.Core.Analyzers
 ```
