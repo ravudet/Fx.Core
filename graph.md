@@ -65,6 +65,10 @@ flowchart LR
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces --> Fx.Analyzers.Tests
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.TestCore --> Fx.Analyzers.Tests
 
+	Fx.Core -->  Fx.Analyzers.GlobalConfig.Tests
+	Fx.Core.GlobalConfig --> Fx.Analyzers.GlobalConfig.Tests
+	Fx.Test --> Fx.Analyzers.GlobalConfig.Tests
+
 	Fx.Core --> Fx.Test
 
 	Fx.Core --> Fx.Test.TestCore
