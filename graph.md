@@ -1,25 +1,18 @@
 ```mermaid
 flowchart LR
+	Fx.Analyzers
+	Fx.Analyzers.GlobalConfig
+	Fx.Analyzers.GlobalConfig.Tests
+	Fx.Analyzers.Tests
 	Fx.Core
-	Fx.Core.TestCore
-	Fx.Core.Tests
 	Fx.Core.Analyzers
 	Fx.Core.Analyzers.Tests
 	Fx.Core.GlobalConfig
 	Fx.Core.GlobalConfig.Tests
-	Fx.Analyzers
-	Fx.Analyzers.Tests
-	Fx.Analyzers.GlobalConfig
-	Fx.Analyzers.GlobalConfig.Tests
+	Fx.Core.TestCore
+	Fx.Core.Tests
 	Fx.GlobalConfig
 	Fx.GlobalConfig.Tests
-	Fx.Test
-	Fx.Test.TestCore
-	Fx.Test.Tests
-	Fx.Test.Analyzers
-	Fx.Test.Analyzers.Tests
-	Fx.Test.GlobalConfig
-	Fx.Test.GlobalConfig.Tests
 	Fx.Microsoft_CodeAnalysis_CSharp
 	Fx.Microsoft_CodeAnalysis_CSharp.TestCore
 	Fx.Microsoft_CodeAnalysis_CSharp.Tests
@@ -29,6 +22,13 @@ flowchart LR
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.TestCore
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.Tests
+	Fx.Test
+	Fx.Test.Analyzers
+	Fx.Test.Analyzers.Tests
+	Fx.Test.GlobalConfig
+	Fx.Test.GlobalConfig.Tests
+	Fx.Test.TestCore
+	Fx.Test.Tests
 
 	Fx.Core --> Fx.Core.TestCore
 	Fx.Test --> Fx.Core.TestCore
