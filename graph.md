@@ -26,6 +26,9 @@ flowchart BT
 	Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest
 	Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.TestCore
 	Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest.Tests
+	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces
+	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.TestCore
+	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.Tests
 
 	Fx.Core --> Fx.Test
 ```
