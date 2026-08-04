@@ -49,6 +49,7 @@ flowchart BT
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces --> Fx.Core.Analzyers.Tests
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.TestCore --> Fx.Core.Analzyers.Tests
 
+	Fx.Core -->  Fx.Core.GlobalConfig.Tests
 	Fx.Core.GlobalConfig --> Fx.Core.GlobalConfig.Tests
 	Fx.Test --> Fx.Core.GlobalConfig.Tests
 
@@ -71,4 +72,6 @@ flowchart BT
 	Fx.Microsoft_CodeAnalysis_CSharp_CodeFix_Testing_MSTest --> Fx.Test.Analyzers.Tests
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces --> Fx.Test.Analyzers.Tests
 	Fx.Microsoft_CodeAnalysis_CSharp_Workspaces.TestCore --> Fx.Test.Analyzers.Tests
+
+	Fx.Core --> 
 ```
