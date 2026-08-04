@@ -69,6 +69,10 @@ flowchart LR
 	Fx.Analyzers.GlobalConfig --> Fx.Analyzers.GlobalConfig.Tests
 	Fx.Test --> Fx.Analyzers.GlobalConfig.Tests
 
+	Fx.Core -->  Fx.GlobalConfig.Tests
+	Fx.GlobalConfig --> Fx.GlobalConfig.Tests
+	Fx.Test --> Fx.GlobalConfig.Tests
+
 	Fx.Core --> Fx.Test
 
 	Fx.Core --> Fx.Test.TestCore
