@@ -32,4 +32,8 @@ flowchart BT
 
 	Fx.Core --> Fx.Core.TestCore
 	Fx.Test --> Fx.Core.TestCore
+
+	Fx.Core --> Fx.Core.Tests
+	Fx.Test --> Fx.Core.Tests
+	Fx.Core.TestCore --> Fx.Core.Tests
 ```
