@@ -1,0 +1,4 @@
+is_global=true # TODO this is essential for the nuget package to work
+
+dotnet_diagnostic.FX0001.severity = error
+dotnet_diagnostic.CA1034.severity = warning

@@ -23,12 +23,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!--TODO rename these to use the package name-->
-    <!--TODO update the props file to use the package name-->
     <!--TODO test a global config-->
     <!--TODO test a global config that uses the custom analyzer-->
-    <None Include="build\Analyzer2GlobalConfig.props" PackagePath="build" Pack="true" />
-    <None Include="content\Analyzer2GlobalConfig.globalconfig" PackagePath="content" Pack="true" />
+    <None Include="build\Fx.Analyzers.GlobalConfig.props" PackagePath="build" Pack="true" />
+    <None Include="content\Fx.Analyzers.GlobalConfig.globalconfig" PackagePath="content" Pack="true" />
     <None Include="tools\nothing.ps1" PackagePath="tools" Pack="true" />
     <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>

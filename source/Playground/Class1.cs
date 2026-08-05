@@ -8,5 +8,9 @@
 
             return Task.FromResult(1); ////.ToTaskWrapper();
         }
+
+        class Foo
+        {
+        }
     }
 }
