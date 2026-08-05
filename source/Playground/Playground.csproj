@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fx.Analyzers.GlobalConfig" Version="1.0.0-639215064814906675" />
     <PackageReference Include="Fx.Core.Analyzers" Version="28.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

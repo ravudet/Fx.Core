@@ -1,4 +1,4 @@
 is_global=true # TODO this is essential for the nuget package to work
 
 dotnet_diagnostic.FX0001.severity = error
-dotnet_diagnostic.CA1034.severity = warning
+dotnet_diagnostic.CA1034.severity = warning # TODO remove this, you are using it right now for testing a rule for an analyzer that isn't custom, and you're only needing it here because you don't have another globalconfig project yet

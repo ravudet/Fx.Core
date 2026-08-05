@@ -9,7 +9,7 @@
             return Task.FromResult(1); ////.ToTaskWrapper();
         }
 
-        class Foo
+        public class Foo
         {
         }
     }
