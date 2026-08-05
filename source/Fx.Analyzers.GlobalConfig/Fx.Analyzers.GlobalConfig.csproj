@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net9.0</TargetFrameworks>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace />
   </PropertyGroup>
 
@@ -12,10 +12,10 @@
 
   <!--nuget package properties-->
   <PropertyGroup>
-    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
-    <VersionPrefix>3.0.0</VersionPrefix>
-    <PackageProjectUrl>https://github.com/ravudet/Fx.Core/tree/main/source/Fx.Core</PackageProjectUrl>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <PackageProjectUrl>TODO</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>https://github.com/ravudet/Fx.Core/releases/tag/$(PackageId)_$(VersionPrefix)</PackageReleaseNotes>
     <DevelopmentDependency>false</DevelopmentDependency>
@@ -23,7 +23,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="build\Analyzer2GlobalConfig.props" PackagePath="build" Pack="true" />
+    <None Include="content\Analyzer2GlobalConfig.globalconfig" PackagePath="content" Pack="true" />
+    <None Include="tools\nothing.ps1" PackagePath="tools" Pack="true" />
     <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
   </ItemGroup>
 
 </Project>
