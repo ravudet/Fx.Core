@@ -1,0 +1,14 @@
+﻿<Project Sdk="MSTest.Sdk/3.6.4">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace />
+    <UseVSTest>true</UseVSTest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\Fx.Analyzers.GlobalConfig\content\Fx.Analyzers.GlobalConfig.globalconfig" Link="Fx.Analyzers.GlobalConfig.globalconfig" />
+  </ItemGroup>
+
+</Project>

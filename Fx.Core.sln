@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Analyzers.GlobalConfig", "source\Fx.Analyzers.GlobalConfig\Fx.Analyzers.GlobalConfig.csproj", "{F2C62B24-3A81-4212-92D1-6D3237E3B0AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Analyzers.GlobalConfig.Tests", "source\Fx.Analyzers.GlobalConfig.Tests\Fx.Analyzers.GlobalConfig.Tests.csproj", "{8011E3B3-EF6B-4020-B942-C49DD0F398EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,10 @@ Global
 		{F2C62B24-3A81-4212-92D1-6D3237E3B0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2C62B24-3A81-4212-92D1-6D3237E3B0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2C62B24-3A81-4212-92D1-6D3237E3B0AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8011E3B3-EF6B-4020-B942-C49DD0F398EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8011E3B3-EF6B-4020-B942-C49DD0F398EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8011E3B3-EF6B-4020-B942-C49DD0F398EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8011E3B3-EF6B-4020-B942-C49DD0F398EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
