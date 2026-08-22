@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
     <ProjectReference Include="..\Fx.Core.Analyzers\Fx.Core.Analyzers.csproj" />
     <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_CSharp\Fx.Microsoft_CodeAnalysis_CSharp.csproj" />
     <ProjectReference Include="..\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary\Fx.MicrosoftCodeAnalysisCSharpWorkspacesInteractionLibrary.csproj" />
