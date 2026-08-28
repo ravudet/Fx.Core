@@ -35,7 +35,7 @@
 
     namespace ConsoleApplication1
     {
-        public class Foo
+        public static class Foo
         {   
             public class Bar
             {
@@ -58,9 +58,9 @@ root = true
 
 [*]
 dotnet_diagnostic.CA1034.severity = warning
-dotnet_diagnostic.CA1014.severity = none
-dotnet_diagnostic.CA1016.severity = none
-dotnet_diagnostic.CA1052.severity = none
+#dotnet_diagnostic.CA1014.severity = none
+#dotnet_diagnostic.CA1016.severity = none
+#dotnet_diagnostic.CA1052.severity = none
 """))
                     }
                 }
