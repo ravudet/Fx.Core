@@ -35,7 +35,7 @@ using Microsoft.VisualStudio.Composition.Reflection;
 
 namespace Fx
 {
-    public abstract class AnalyzerTest<TVerifier>
+    /*public abstract class AnalyzerTest<TVerifier>
         where TVerifier : IVerifier, new()
     {
         #region codefixtest
@@ -2622,7 +2622,7 @@ namespace Fx
             }
         }
         #endregion
-    }
+    }*/
 
     internal static class AnalyzerInfo
     {

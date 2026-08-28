@@ -9,9 +9,21 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzer.Testing" Version="1.1.4" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.3.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.11.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.11.0" />
+    
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.300" GeneratePathProperty="true">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.MSTest" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeAnalysis.NetAnalyzers">
+      <HintPath>$(PkgMicrosoft_CodeAnalysis_NetAnalyzers)\analyzers\dotnet\Microsoft.CodeAnalysis.NetAnalyzers.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\Fx.Analyzers.GlobalConfig\content\Fx.Analyzers.GlobalConfig.globalconfig" Link="Fx.Analyzers.GlobalConfig.globalconfig" />
   </ItemGroup>
