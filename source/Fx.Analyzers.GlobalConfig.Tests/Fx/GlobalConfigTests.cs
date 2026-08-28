@@ -26,6 +26,11 @@
         public async Task Test()
         {
             var test = @"
+[assembly: System.CLSCompliant(true)]
+[assembly: System.Reflection.AssemblyVersion(""1.0.0"")]
+
+namespace ConsoleApplication1
+{
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -33,15 +38,13 @@
     using System.Threading.Tasks;
     using System.Diagnostics;
 
-    namespace ConsoleApplication1
-    {
-        public static class Foo
-        {   
-            public class Bar
-            {
-            }
+    public static class Foo
+    {   
+        public class Bar
+        {
         }
-    }";
+    }
+}";
 
             var tester = new CustomAnalyzerTest()
             {
@@ -66,7 +69,7 @@ dotnet_diagnostic.CA1034.severity = warning
                 }
             };
 
-            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1034", DiagnosticSeverity.Warning).WithSpan(13, 26, 13, 29));
+            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1034", DiagnosticSeverity.Warning).WithSpan(16, 22, 16, 25));
 
             await tester.RunAsync().ConfigureAwait(false);
         }
