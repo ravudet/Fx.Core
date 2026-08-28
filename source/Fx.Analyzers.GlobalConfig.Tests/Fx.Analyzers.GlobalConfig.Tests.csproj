@@ -9,11 +9,14 @@
 
   <ItemGroup>
     
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.11.0" />
+    
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing" Version="1.1.4" />
+    
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.300" GeneratePathProperty="true">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing.MSTest" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
