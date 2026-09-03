@@ -46,6 +46,10 @@ namespace ConsoleApplication1
     }
 }";
 
+            //// TODO factory test string into its own file to give intellisense and code highlighting
+            //// TODO move below helper types into their own project
+            //// TODO remove any unnecessary dependencies
+
             var tester = new CustomAnalyzerTest()
             {
                 TestCode = test,
@@ -61,9 +65,6 @@ root = true
 
 [*]
 dotnet_diagnostic.CA1034.severity = warning
-#dotnet_diagnostic.CA1014.severity = none
-#dotnet_diagnostic.CA1016.severity = none
-#dotnet_diagnostic.CA1052.severity = none
 """))
                     }
                 }
