@@ -19,9 +19,43 @@
     using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    public static class Extensions
+    {
+        public static async Task<string> GetManifestResourceString(this Assembly assembly, string resourceName)
+        {
+            //// TODO have a sync overload?
+
+            using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (resourceStream == null)
+                {
+                    throw new Exception("TODO");
+                }
+
+                //// TODO parameterize the constructor parameters
+                using (var streamReader = new StreamReader(resourceStream))
+                {
+                    return await streamReader.ReadToEndAsync().ConfigureAwait(false);
+                }
+            }
+        }
+    }
+
+    public readonly struct ResourcePath
+    {
+        public static string Combine(IEnumerable<string> paths)
+        {
+            //// TODO you are using an instance type so that you can differentiate a `.` that comes from a file name and a `.` that comes from a path separator
+        }
+    }
+
     [TestClass]
     public class GlobalConfigTests
     {
+        private static string GetManifestResourceString(string resourceName)
+        {
+        }
+
         [TestMethod]
         public async Task Test()
         {
@@ -47,6 +81,7 @@ namespace ConsoleApplication1
 }";
 
             //// TODO factory test string into its own file to give intellisense and code highlighting
+            //// TODO load the correct editorconfig
             //// TODO move below helper types into their own project
             //// TODO remove any unnecessary dependencies
 
