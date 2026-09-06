@@ -54,8 +54,6 @@
 
         private static async Task<string> GetTestString([CallerMemberName] string testName = "")
         {
-            //// TODO combining paths?
-            //// TODO can you rename the folder to `_resources`?
             return await GlobalConfigTests.GetManifestResourceString("Content." + testName + ".cs").ConfigureAwait(false);
         }
 
@@ -85,10 +83,11 @@ namespace ConsoleApplication1
 
             var test = await GetTestString().ConfigureAwait(false);
 
-            //// TODO factory test string into its own file to give intellisense and code highlighting
             //// TODO load the correct editorconfig
             //// TODO move below helper types into their own project
             //// TODO remove any unnecessary dependencies
+            //// TODO can you rename the folder to `_resources`?
+            //// TODO is there a better way to combine resource paths?
 
             var tester = new CustomAnalyzerTest()
             {
