@@ -29,13 +29,13 @@
     <EmbeddedResource Include="..\Fx.Analyzers.GlobalConfig\content\Fx.Analyzers.GlobalConfig.globalconfig" Link="Fx.Analyzers.GlobalConfig.globalconfig" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="_resources\**" />
+    <None Include="Content\**" />
   </ItemGroup>
   
   <Target Name="RemoveResources" BeforeTargets="BeforeBuild">
     <ItemGroup>
-      <Compile Remove="_resources\**" />
-      <EmbeddedResource Include="_resouces\**" />
+      <Compile Remove="Content\**" />
+      <EmbeddedResource Include="Content\**" />
     </ItemGroup>
   </Target>
 

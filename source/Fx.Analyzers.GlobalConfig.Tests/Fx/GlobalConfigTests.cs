@@ -13,6 +13,7 @@
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CodeFixes;
     using Microsoft.CodeAnalysis.CSharp;
+    using Microsoft.CodeAnalysis.CSharp.Syntax;
     using Microsoft.CodeAnalysis.Diagnostics;
     using Microsoft.CodeAnalysis.Testing;
     using Microsoft.CodeAnalysis.Text;
@@ -24,6 +25,8 @@
         public static async Task<string> GetManifestResourceString(this Assembly assembly, string resourceName)
         {
             //// TODO have a sync overload?
+
+            var names = assembly.GetManifestResourceNames();
 
             using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
             {
@@ -41,25 +44,25 @@
         }
     }
 
-    public readonly struct ResourcePath
-    {
-        public static string Combine(IEnumerable<string> paths)
-        {
-            //// TODO you are using an instance type so that you can differentiate a `.` that comes from a file name and a `.` that comes from a path separator
-        }
-    }
-
     [TestClass]
     public class GlobalConfigTests
     {
-        private static string GetManifestResourceString(string resourceName)
+        private static async Task<string> GetManifestResourceString(string resourceName)
         {
+            return await typeof(GlobalConfigTests).Assembly.GetManifestResourceString(resourceName).ConfigureAwait(false);
+        }
+
+        private static async Task<string> GetTestString([CallerMemberName] string testName = "")
+        {
+            //// TODO combining paths?
+            //// TODO can you rename the folder to `_resources`?
+            return await GlobalConfigTests.GetManifestResourceString("Content." + testName + ".cs").ConfigureAwait(false);
         }
 
         [TestMethod]
         public async Task Test()
         {
-            var test = @"
+            /*var test = @"
 [assembly: System.CLSCompliant(true)]
 [assembly: System.Reflection.AssemblyVersion(""1.0.0"")]
 
@@ -78,7 +81,9 @@ namespace ConsoleApplication1
         {
         }
     }
-}";
+}";*/
+
+            var test = await GetTestString().ConfigureAwait(false);
 
             //// TODO factory test string into its own file to give intellisense and code highlighting
             //// TODO load the correct editorconfig
@@ -105,7 +110,7 @@ dotnet_diagnostic.CA1034.severity = warning
                 }
             };
 
-            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1034", DiagnosticSeverity.Warning).WithSpan(16, 22, 16, 25));
+            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1034", DiagnosticSeverity.Warning).WithSpan(15, 22, 15, 25));
 
             await tester.RunAsync().ConfigureAwait(false);
         }
