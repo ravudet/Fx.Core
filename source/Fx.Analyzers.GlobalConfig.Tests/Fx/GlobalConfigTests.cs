@@ -58,25 +58,20 @@
             return await GlobalConfigTests.GetManifestResourceString("Content." + testName + ".cs").ConfigureAwait(false);
         }
 
+        private static async Task<string> GetEditorConfigString()
+        {
+            return await GetManifestResourceString("Fx.Analyzers.GlobalConfig.globalconfig").ConfigureAwait(false);
+        }
+
         [TestMethod]
         public async Task Test()
         {
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
+            var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
-            var editorConfig =
-"""
-#is_global = true
-
-root = true
-
-[*]
-dotnet_diagnostic.CA1034.severity = warning
-""";
-
-            //// TODO load the correct editorconfig
             //// TODO move below helper types into their own project
             //// TODO remove any unnecessary dependencies
-            //// TODO can you rename the folder to `_resources`?
+            //// TODO can you rename the Content folder to `_resources`?
             //// TODO is there a better way to combine resource paths?
 
             var tester = new CustomAnalyzerTest()
@@ -91,7 +86,7 @@ dotnet_diagnostic.CA1034.severity = warning
                 }
             };
 
-            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1034", DiagnosticSeverity.Warning).WithSpan(15, 22, 15, 25));
+            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1510", DiagnosticSeverity.Warning).WithSpan(17, 13, 20, 14).WithSpan(17, 17, 17, 27));
 
             await tester.RunAsync().ConfigureAwait(false);
         }

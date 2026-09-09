@@ -12,8 +12,17 @@ namespace ConsoleApplication1
 
     public static class Foo
     {
-        public class Bar
+        public static IEnumerable<T> AsEnumerable<T>(this IEnumerable<T> enumerable)
         {
+            if (enumerable == null)
+            {
+                throw new ArgumentNullException(nameof(enumerable));
+            }
+
+            foreach (var element in enumerable)
+            {
+                yield return element;
+            }
         }
     }
 }
