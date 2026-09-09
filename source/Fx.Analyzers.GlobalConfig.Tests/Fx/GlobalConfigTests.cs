@@ -26,8 +26,6 @@
         {
             //// TODO have a sync overload?
 
-            var names = assembly.GetManifestResourceNames();
-
             using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
             {
                 if (resourceStream == null)
@@ -76,7 +74,7 @@
 
             var tester = new CustomAnalyzerTest()
             {
-                TestCode = test,
+                TestCode = test, 
                 TestState =
                 {
                     AnalyzerConfigFiles =
@@ -95,11 +93,6 @@
 
     public sealed class CustomAnalyzerTest : AnalyzerTest<MSTestVerifier>
     {
-        private static readonly LanguageVersion DefaultLanguageVersion =
-            Enum.TryParse("Default", out LanguageVersion version) ? version : LanguageVersion.CSharp6;
-
-        ///public override Type SyntaxKindType => typeof(SyntaxKind);
-
         public override string Language => LanguageNames.CSharp;
 
         protected override string DefaultFileExt => "cs";
@@ -111,7 +104,7 @@
 
         protected override ParseOptions CreateParseOptions()
         {
-            return new CSharpParseOptions(DefaultLanguageVersion, DocumentationMode.Diagnose);
+            return new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
         }
 
         protected override IEnumerable<DiagnosticAnalyzer> GetDiagnosticAnalyzers()
