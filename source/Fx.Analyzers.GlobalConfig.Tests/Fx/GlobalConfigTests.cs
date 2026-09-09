@@ -54,34 +54,24 @@
 
         private static async Task<string> GetTestString([CallerMemberName] string testName = "")
         {
+            //// TODO do you like this method name?
             return await GlobalConfigTests.GetManifestResourceString("Content." + testName + ".cs").ConfigureAwait(false);
         }
 
         [TestMethod]
         public async Task Test()
         {
-            /*var test = @"
-[assembly: System.CLSCompliant(true)]
-[assembly: System.Reflection.AssemblyVersion(""1.0.0"")]
+            var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
 
-namespace ConsoleApplication1
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
+            var editorConfig =
+"""
+#is_global = true
 
-    public static class Foo
-    {   
-        public class Bar
-        {
-        }
-    }
-}";*/
+root = true
 
-            var test = await GetTestString().ConfigureAwait(false);
+[*]
+dotnet_diagnostic.CA1034.severity = warning
+""";
 
             //// TODO load the correct editorconfig
             //// TODO move below helper types into their own project
@@ -96,15 +86,7 @@ namespace ConsoleApplication1
                 {
                     AnalyzerConfigFiles =
                     {
-                        ("/.editorconfig", SourceText.From(
-"""
-#is_global = true
-
-root = true
-
-[*]
-dotnet_diagnostic.CA1034.severity = warning
-"""))
+                        ("/.editorconfig", SourceText.From(editorConfig)),
                     }
                 }
             };
