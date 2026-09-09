@@ -129,7 +129,8 @@
             string defaultFileExtension,
             CompilationOptions compilationOptions,
             ParseOptions parseOptions, 
-            IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers)
+            IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers,
+            SolutionState testState)
         {
             this.Language = language;
             this.DefaultFileExt = defaultFileExtension;
@@ -159,22 +160,31 @@
 
 
 
-        public static CustomAnalyzerTest Csharp(CompilationOptions compilationOptions, CSharpParseOptions parseOptions, IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers)
+        public static CustomAnalyzerTest Csharp(string testCode, SolutionState testState, IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers, CompilationOptions compilationOptions, CSharpParseOptions parseOptions)
         {
             return new CustomAnalyzerTest(
                 LanguageNames.CSharp,
                 "cs",
                 compilationOptions,
                 parseOptions,
-                diagnosticAnalyzers);
+                diagnosticAnalyzers)
+            {
+                TestCode = testCode,
+                TestState =
+                {
+                    AdditionalFiles = testState.AdditionalFiles,
+                },
+            };
         }
 
-        public static CustomAnalyzerTest Csharp(IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers)
+        public static CustomAnalyzerTest Csharp(string testCode, SolutionState testState, IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers)
         {
             return CustomAnalyzerTest.Csharp(
+                testCode,
+                testState,
+                diagnosticAnalyzers,
                 new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
-                new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
-                diagnosticAnalyzers);
+                new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose));
         }
 
         public static CustomAnalyzerTest Csharp()
