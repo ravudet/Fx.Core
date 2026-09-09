@@ -64,6 +64,8 @@
         [TestMethod]
         public async Task Test()
         {
+            //// TODO this test should actually go in fx.globalconfig.tests
+
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
@@ -89,26 +91,105 @@
 
             await tester.RunAsync().ConfigureAwait(false);
         }
+
+        [TestMethod]
+        public async Task MethodWithTaskReturnType()
+        {
+            var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
+            var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
+
+            //// TODO use the factory methods, you are creating one that allows taking testcode and teststate
+            var tester = new CustomAnalyzerTest()
+            {
+                TestCode = test,
+                TestState =
+                {
+                    AnalyzerConfigFiles =
+                    {
+                        ("/.editorconfig", SourceText.From(editorConfig)),
+                    }
+                },
+            };
+
+            tester.ExpectedDiagnostics.Add(new DiagnosticResult("FX0001", DiagnosticSeverity.Error).WithSpan(17, 13, 20, 14).WithSpan(17, 17, 17, 27));
+
+            await tester.RunAsync().ConfigureAwait(false);
+        }
     }
 
 
     public sealed class CustomAnalyzerTest : AnalyzerTest<MSTestVerifier>
     {
-        public override string Language => LanguageNames.CSharp;
+        private readonly CompilationOptions compilationOptions;
+        private readonly ParseOptions parseOptions;
+        private readonly IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers;
 
-        protected override string DefaultFileExt => "cs";
+        public CustomAnalyzerTest(
+            string language, 
+            string defaultFileExtension,
+            CompilationOptions compilationOptions,
+            ParseOptions parseOptions, 
+            IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers)
+        {
+            this.Language = language;
+            this.DefaultFileExt = defaultFileExtension;
+            this.compilationOptions = compilationOptions;
+            this.parseOptions = parseOptions;
+            this.diagnosticAnalyzers = diagnosticAnalyzers;
+        }
+
+        public override string Language { get; }
+
+        protected override string DefaultFileExt { get; }
 
         protected override CompilationOptions CreateCompilationOptions()
         {
-            return new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
+            return this.compilationOptions;
         }
 
         protected override ParseOptions CreateParseOptions()
         {
-            return new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
+            return this.parseOptions;
         }
 
         protected override IEnumerable<DiagnosticAnalyzer> GetDiagnosticAnalyzers()
+        {
+            return this.diagnosticAnalyzers;
+        }
+
+
+
+        public static CustomAnalyzerTest Csharp(CompilationOptions compilationOptions, CSharpParseOptions parseOptions, IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers)
+        {
+            return new CustomAnalyzerTest(
+                LanguageNames.CSharp,
+                "cs",
+                compilationOptions,
+                parseOptions,
+                diagnosticAnalyzers);
+        }
+
+        public static CustomAnalyzerTest Csharp(IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers)
+        {
+            return CustomAnalyzerTest.Csharp(
+                new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
+                new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
+                diagnosticAnalyzers);
+        }
+
+        public static CustomAnalyzerTest Csharp()
+        {
+            return CustomAnalyzerTest.Csharp(
+                DefaultAnalyzers());
+        }
+
+        public static CustomAnalyzerTest Csharp(string testCode, SolutionState testState)
+        {
+            return CustomAnalyzerTest.Csharp(
+                DefaultAnalyzers());
+        }
+
+        public static IEnumerable<DiagnosticAnalyzer> DefaultAnalyzers() //// TODO make this a property
         {
             /*var foo = Path.GetDirectoryName(typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location);
             foo = Path.Combine(foo, "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");*/
@@ -130,10 +211,10 @@
             /*var type = typeof(Microsoft.CodeAnalysis.Analyzers.MetaAnalyzers.DiagnosticAnalyzerAttributeAnalyzer);
             var another = (DiagnosticAnalyzer)Activator.CreateInstance(type)!;*/
 
-            return paths.SelectMany(path => Load(path))/*.Append(another).ToImmutableArray()*/;
+            return paths.SelectMany(path => LoadAnalyzers(path))/*.Append(another).ToImmutableArray()*/;
         }
 
-        private static IEnumerable<DiagnosticAnalyzer> Load(string assemblyPath)
+        public static IEnumerable<DiagnosticAnalyzer> LoadAnalyzers(string assemblyPath)
         {
             var assembly = Assembly.LoadFrom(assemblyPath);
 
@@ -145,6 +226,7 @@
 
             return analyzers.Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
         }
+
     }
     public class MSTestVerifier : IVerifier
     {
