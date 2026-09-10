@@ -75,7 +75,7 @@
             //// TODO can you rename the Content folder to `_resources`?
             //// TODO is there a better way to combine resource paths?
 
-            var tester = new CustomAnalyzerTest()
+            var tester = new CustomAnalyzerTest2()
             {
                 TestCode = test,
                 TestState =
@@ -84,7 +84,12 @@
                     {
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     }
-                }
+                },
+                Language = LanguageNames.CSharp,
+                DefaultFileExt = "cs",
+                CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
+                ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
+                DiagnosticAnalyzers = CustomAnalyzerTest.DefaultAnalyzers(),
             };
 
             tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1510", DiagnosticSeverity.Warning).WithSpan(17, 13, 20, 14).WithSpan(17, 17, 17, 27));
@@ -111,6 +116,9 @@
                 },
                 Language = LanguageNames.CSharp,
                 DefaultFileExt = "cs",
+                CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
+                ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
+                DiagnosticAnalyzers = CustomAnalyzerTest.DefaultAnalyzers(),
             };
 
             tester.ExpectedDiagnostics.Add(new DiagnosticResult("FX0001", DiagnosticSeverity.Error).WithSpan(17, 13, 20, 14).WithSpan(17, 17, 17, 27));
@@ -134,6 +142,30 @@
             init
             {
                 base.BaseDefaultFileExt = value;
+            }
+        }
+
+        public required CompilationOptions CompilationOptions
+        {
+            init
+            {
+                base.BaseCompilationOptions = value;
+            }
+        }
+
+        public required ParseOptions ParseOptions
+        {
+            init
+            {
+                base.BaseParseOptions = value;
+            }
+        }
+
+        public required IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers
+        {
+            init
+            {
+                base.BaseDiagnosticAnalyzers = value;
             }
         }
     }
@@ -229,7 +261,7 @@
 
 
 
-        public static CustomAnalyzerTest Csharp(string testCode, SolutionState testState, IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers, CompilationOptions compilationOptions, CSharpParseOptions parseOptions)
+        /*public static CustomAnalyzerTest Csharp(string testCode, SolutionState testState, IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers, CompilationOptions compilationOptions, CSharpParseOptions parseOptions)
         {
             return new CustomAnalyzerTest(
                 LanguageNames.CSharp,
@@ -266,7 +298,7 @@
         {
             return CustomAnalyzerTest.Csharp(
                 DefaultAnalyzers());
-        }
+        }*/
 
         public static IEnumerable<DiagnosticAnalyzer> DefaultAnalyzers() //// TODO make this a property
         {
