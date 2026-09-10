@@ -77,7 +77,7 @@
 
             var tester = new CustomAnalyzerTest()
             {
-                TestCode = test, 
+                TestCode = test,
                 TestState =
                 {
                     AnalyzerConfigFiles =
@@ -99,7 +99,7 @@
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
             //// TODO use the factory methods, you are creating one that allows taking testcode and teststate
-            var tester = new CustomAnalyzerTest()
+            var tester = new CustomAnalyzerTest2()
             {
                 TestCode = test,
                 TestState =
@@ -109,6 +109,8 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     }
                 },
+                Language = LanguageNames.CSharp,
+                DefaultFileExt = "cs",
             };
 
             tester.ExpectedDiagnostics.Add(new DiagnosticResult("FX0001", DiagnosticSeverity.Error).WithSpan(17, 13, 20, 14).WithSpan(17, 17, 17, 27));
@@ -117,6 +119,73 @@
         }
     }
 
+    public class CustomAnalyzerTest2 : CustomAnalyzerTest1
+    {
+        public required new string Language
+        {
+            init
+            {
+                base.BaseLanguage = value;
+            }
+        }
+
+        public required new string DefaultFileExt
+        {
+            init
+            {
+                base.BaseDefaultFileExt = value;
+            }
+        }
+    }
+
+    public abstract class CustomAnalyzerTest1 : AnalyzerTest<MSTestVerifier>
+    {
+        protected internal CustomAnalyzerTest1()
+        {
+            //// TODO note that derived types must set all of the protected properties as through they were marked `required`
+        }
+
+        public override string Language
+        {
+            get
+            {
+                return this.BaseLanguage;
+            }
+        }
+
+        protected string BaseLanguage { get; init; }
+
+        protected override string DefaultFileExt
+        {
+            get
+            {
+                return this.BaseDefaultFileExt;
+            }
+        }
+
+        protected string BaseDefaultFileExt { get; init; }
+
+        protected CompilationOptions BaseCompilationOptions { get; init; }
+
+        protected ParseOptions BaseParseOptions { get; init; }
+
+        protected IEnumerable<DiagnosticAnalyzer> BaseDiagnosticAnalyzers { get; init; }
+
+        protected override CompilationOptions CreateCompilationOptions()
+        {
+            return this.BaseCompilationOptions;
+        }
+
+        protected override ParseOptions CreateParseOptions()
+        {
+            return this.BaseParseOptions;
+        }
+
+        protected override IEnumerable<DiagnosticAnalyzer> GetDiagnosticAnalyzers()
+        {
+            return this.BaseDiagnosticAnalyzers;
+        }
+    }
 
     public sealed class CustomAnalyzerTest : AnalyzerTest<MSTestVerifier>
     {
