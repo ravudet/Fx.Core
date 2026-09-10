@@ -5,7 +5,7 @@ namespace MethodWithTaskReturnType
 {
     using System.Threading.Tasks;
 
-    public static class MethodWithTaskReturnType
+    public static class Foo
     {
         public static Task<int> DoWork()
         {

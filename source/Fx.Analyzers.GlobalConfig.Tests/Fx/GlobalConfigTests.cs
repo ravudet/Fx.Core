@@ -85,14 +85,12 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     }
                 },
-                Language = LanguageNames.CSharp,
-                DefaultFileExt = "cs",
                 CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
                 ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
                 DiagnosticAnalyzers = CustomAnalyzerTest.DefaultAnalyzers(),
             };
 
-            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1510", DiagnosticSeverity.Warning).WithSpan(17, 13, 20, 14).WithSpan(17, 17, 17, 27));
+            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1510", DiagnosticSeverity.Warning).WithSpan(13, 13, 16, 14).WithSpan(13, 17, 13, 27).WithArguments("ArgumentNullException", "ThrowIfNull"));
 
             await tester.RunAsync().ConfigureAwait(false);
         }
@@ -114,14 +112,12 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     }
                 },
-                Language = LanguageNames.CSharp,
-                DefaultFileExt = "cs",
                 CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
                 ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
-                DiagnosticAnalyzers = CustomAnalyzerTest.DefaultAnalyzers(),
+                DiagnosticAnalyzers = CustomAnalyzerTest.LoadAnalyzers(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
             };
 
-            tester.ExpectedDiagnostics.Add(new DiagnosticResult("FX0001", DiagnosticSeverity.Error).WithSpan(17, 13, 20, 14).WithSpan(17, 17, 17, 27));
+            tester.ExpectedDiagnostics.Add(new DiagnosticResult("FX0001", DiagnosticSeverity.Error).WithSpan(8, 25, 8, 28).WithArguments("Foo"));
 
             await tester.RunAsync().ConfigureAwait(false);
         }
@@ -129,93 +125,32 @@
 
     public class CustomAnalyzerTest2 : CustomAnalyzerTest1
     {
-        public required new string Language
-        {
-            init
-            {
-                base.BaseLanguage = value;
-            }
-        }
+        public override string Language { get; } = LanguageNames.CSharp;
 
-        public required new string DefaultFileExt
-        {
-            init
-            {
-                base.BaseDefaultFileExt = value;
-            }
-        }
-
-        public required CompilationOptions CompilationOptions
-        {
-            init
-            {
-                base.BaseCompilationOptions = value;
-            }
-        }
-
-        public required ParseOptions ParseOptions
-        {
-            init
-            {
-                base.BaseParseOptions = value;
-            }
-        }
-
-        public required IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers
-        {
-            init
-            {
-                base.BaseDiagnosticAnalyzers = value;
-            }
-        }
+        protected override string DefaultFileExt { get; } = "cs";
     }
 
     public abstract class CustomAnalyzerTest1 : AnalyzerTest<MSTestVerifier>
     {
-        protected internal CustomAnalyzerTest1()
-        {
-            //// TODO note that derived types must set all of the protected properties as through they were marked `required`
-        }
+        public required CompilationOptions CompilationOptions { private get; init; }
 
-        public override string Language
-        {
-            get
-            {
-                return this.BaseLanguage;
-            }
-        }
+        public required ParseOptions ParseOptions { private get; init; }
 
-        protected string BaseLanguage { get; init; }
-
-        protected override string DefaultFileExt
-        {
-            get
-            {
-                return this.BaseDefaultFileExt;
-            }
-        }
-
-        protected string BaseDefaultFileExt { get; init; }
-
-        protected CompilationOptions BaseCompilationOptions { get; init; }
-
-        protected ParseOptions BaseParseOptions { get; init; }
-
-        protected IEnumerable<DiagnosticAnalyzer> BaseDiagnosticAnalyzers { get; init; }
+        public required IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { private get; init; }
 
         protected override CompilationOptions CreateCompilationOptions()
         {
-            return this.BaseCompilationOptions;
+            return this.CompilationOptions;
         }
 
         protected override ParseOptions CreateParseOptions()
         {
-            return this.BaseParseOptions;
+            return this.ParseOptions;
         }
 
         protected override IEnumerable<DiagnosticAnalyzer> GetDiagnosticAnalyzers()
         {
-            return this.BaseDiagnosticAnalyzers;
+            return this.DiagnosticAnalyzers;
         }
     }
 
