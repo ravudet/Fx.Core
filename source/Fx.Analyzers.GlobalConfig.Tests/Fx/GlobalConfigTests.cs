@@ -69,7 +69,6 @@
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
-            //// TODO add a teste for lowercasetypename
             //// TODO move below helper types into their own project
             //// TODO remove any unnecessary dependencies
             //// TODO can you rename the Content folder to `_resources`?
