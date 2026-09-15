@@ -29,7 +29,7 @@
     <EmbeddedResource Include="..\Fx.Analyzers.GlobalConfig\content\Fx.Analyzers.GlobalConfig.globalconfig" Link="Fx.Analyzers.GlobalConfig.globalconfig" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\**" />
+    <Compile Include="Content\**" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
