@@ -83,7 +83,7 @@
                     AnalyzerConfigFiles =
                     {
                         ("/.editorconfig", SourceText.From(editorConfig)),
-                    }
+                    },
                 },
                 CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
                 ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
@@ -110,14 +110,14 @@
                     AnalyzerConfigFiles =
                     {
                         ("/.editorconfig", SourceText.From(editorConfig)),
-                    }
+                    },
                 },
                 CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
                 ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
                 DiagnosticAnalyzers = CustomAnalyzerTest.LoadAnalyzers(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
             };
 
-            tester.ExpectedDiagnostics.Add(new DiagnosticResult("FX0001", DiagnosticSeverity.Error).WithSpan(8, 25, 8, 28).WithArguments("Foo"));
+            tester.ExpectedDiagnostics.Add(new DiagnosticResult("FX0001", DiagnosticSeverity.Error).WithOptions(DiagnosticOptions.IgnoreSeverity).WithSpan(8, 25, 8, 28).WithArguments("Foo"));
 
             await tester.RunAsync().ConfigureAwait(false);
         }
