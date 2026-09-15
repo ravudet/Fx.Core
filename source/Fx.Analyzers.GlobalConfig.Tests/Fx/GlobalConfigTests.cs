@@ -95,42 +95,6 @@
             await tester.RunAsync().ConfigureAwait(false);
         }
 
-        //// TODO you are here
-        //// TODO you messed up what you were testing in the below test; remove one of them, it's the fx0001 NOT fxcore0001
-
-        [TestMethod]
-        public async Task FXCORE0001_MethodWithTaskReturnType()
-        {
-            //// TODO this test should actually go in fx.core.analyzers.globalconfig.tests
-
-            var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
-            var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
-
-            var tester = new CustomAnalyzerTest2()
-            {
-                TestCode = test,
-                TestState =
-                {
-                    AnalyzerConfigFiles =
-                    {
-                        ("/.editorconfig", SourceText.From(editorConfig)),
-                    },
-                },
-                CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
-                ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
-                DiagnosticAnalyzers = CustomAnalyzerTest.LoadAnalyzers(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
-            };
-
-            tester.ExpectedDiagnostics.Add(
-                DiagnosticResult.CompilerError("FXCORE0001")
-                    .WithSeverity(DiagnosticSeverity.Error)
-                    .WithOptions(DiagnosticOptions.IgnoreSeverity) //// TODO the globalconfig has the severity set to error, but this isn't honored by the test harness for some reason (and instead uses the analyzer's default severity), so you're ignoring severity for now to get the test to pass, but you should fix this at some point; NOTE: you didn't have to do this for the `CA1510` test, maybe the different is the custom analyzer is not done correctly somehow?
-                    .WithSpan(8, 25, 8, 28)
-                    .WithArguments("Foo"));
-
-            await tester.RunAsync().ConfigureAwait(false);
-        }
-
         [TestMethod]
         public async Task FX0001()
         {
@@ -158,7 +122,7 @@
                 DiagnosticResult.CompilerError("FX0001")
                     .WithSeverity(DiagnosticSeverity.Error)
                     .WithOptions(DiagnosticOptions.IgnoreSeverity) //// TODO the globalconfig has the severity set to error, but this isn't honored by the test harness for some reason (and instead uses the analyzer's default severity), so you're ignoring severity for now to get the test to pass, but you should fix this at some point; NOTE: you didn't have to do this for the `CA1510` test, maybe the different is the custom analyzer is not done correctly somehow?
-                    .WithSpan(8, 25, 8, 28)
+                    .WithSpan(6, 25, 6, 28)
                     .WithArguments("Foo"));
 
             await tester.RunAsync().ConfigureAwait(false);

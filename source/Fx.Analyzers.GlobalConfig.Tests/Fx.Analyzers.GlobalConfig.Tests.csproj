@@ -32,9 +32,6 @@
     <None Include="Content\**" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Content\FX0001.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
   </ItemGroup>
   

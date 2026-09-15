@@ -3,8 +3,6 @@
 
 namespace FX0001
 {
-    using System.Threading.Tasks;
-
     public static class Foo
     {
     }
