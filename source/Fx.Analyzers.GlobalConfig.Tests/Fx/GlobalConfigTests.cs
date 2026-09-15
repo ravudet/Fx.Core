@@ -84,9 +84,6 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     },
                 },
-                CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
-                ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
-                DiagnosticAnalyzers = CustomAnalyzerTest.DefaultAnalyzers(),
             };
 
             tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1510", DiagnosticSeverity.Error).WithSpan(13, 13, 16, 14).WithSpan(13, 17, 13, 27).WithArguments("ArgumentNullException", "ThrowIfNull"));
@@ -112,8 +109,6 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     },
                 },
-                CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
-                ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
                 DiagnosticAnalyzers = CustomAnalyzerTest.LoadAnalyzers(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
             };
 
@@ -130,6 +125,14 @@
 
     public class CustomAnalyzerTest2 : CustomAnalyzerTest1
     {
+        [SetsRequiredMembers]
+        public CustomAnalyzerTest2()
+        {
+            base.CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
+            base.ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
+            base.DiagnosticAnalyzers = CustomAnalyzerTest.DefaultAnalyzers();
+        }
+
         public override string Language { get; } = LanguageNames.CSharp;
 
         protected override string DefaultFileExt { get; } = "cs";
