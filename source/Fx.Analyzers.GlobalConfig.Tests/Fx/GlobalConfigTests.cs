@@ -90,7 +90,7 @@
                 DiagnosticAnalyzers = CustomAnalyzerTest.DefaultAnalyzers(),
             };
 
-            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1510", DiagnosticSeverity.Warning).WithSpan(13, 13, 16, 14).WithSpan(13, 17, 13, 27).WithArguments("ArgumentNullException", "ThrowIfNull"));
+            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1510", DiagnosticSeverity.Error).WithSpan(13, 13, 16, 14).WithSpan(13, 17, 13, 27).WithArguments("ArgumentNullException", "ThrowIfNull"));
 
             await tester.RunAsync().ConfigureAwait(false);
         }
@@ -120,7 +120,7 @@
             tester.ExpectedDiagnostics.Add(
                 DiagnosticResult.CompilerError("FX0001")
                     .WithSeverity(DiagnosticSeverity.Error)
-                    .WithOptions(DiagnosticOptions.IgnoreSeverity) //// TODO the globalconfig has the severity set to error, but this isn't honored by the test harness for some reason (and instead uses the analyzer's default severity), so you're ignoring severity for now to get the test to pass, but you should fix this at some point
+                    .WithOptions(DiagnosticOptions.IgnoreSeverity) //// TODO the globalconfig has the severity set to error, but this isn't honored by the test harness for some reason (and instead uses the analyzer's default severity), so you're ignoring severity for now to get the test to pass, but you should fix this at some point; NOTE: you didn't have to do this for the `CA1510` test, maybe the different is the custom analyzer is not done correctly somehow?
                     .WithSpan(8, 25, 8, 28)
                     .WithArguments("Foo"));
 
