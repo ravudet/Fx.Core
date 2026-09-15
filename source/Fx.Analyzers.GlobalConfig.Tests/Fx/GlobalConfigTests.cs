@@ -98,10 +98,11 @@
         [TestMethod]
         public async Task MethodWithTaskReturnType()
         {
+            //// TODO this test should actually go in fx.core.analyzers.globalconfig.tests
+
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
-            //// TODO use the factory methods, you are creating one that allows taking testcode and teststate
             var tester = new CustomAnalyzerTest2()
             {
                 TestCode = test,
