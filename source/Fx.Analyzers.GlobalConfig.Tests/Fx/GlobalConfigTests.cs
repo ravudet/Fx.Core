@@ -96,7 +96,7 @@
         }
 
         [TestMethod]
-        public async Task MethodWithTaskReturnType()
+        public async Task FXCORE0001_MethodWithTaskReturnType()
         {
             //// TODO this test should actually go in fx.core.analyzers.globalconfig.tests
 

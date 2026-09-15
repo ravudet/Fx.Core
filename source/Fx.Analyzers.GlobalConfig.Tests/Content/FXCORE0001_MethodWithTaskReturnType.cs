@@ -1,7 +1,7 @@
 [assembly: System.CLSCompliant(true)]
 [assembly: System.Reflection.AssemblyVersion("1.0.0")]
 
-namespace MethodWithTaskReturnType
+namespace FXCORE0001_MethodWithTaskReturnType
 {
     using System.Threading.Tasks;
 
