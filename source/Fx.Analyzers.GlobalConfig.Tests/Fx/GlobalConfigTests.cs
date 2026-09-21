@@ -42,6 +42,23 @@
         }
     }
 
+    public static class EnumerableExtensions
+    {
+        public static IEnumerable<T> Sort<T>(this IReadOnlyCollection<T> source)
+        {
+        }
+
+        private static IEnumerable<T> Sort<T>(IReadOnlyList<T> source, IList<T> destination)
+        {
+        }
+
+        private static int Partition<T>(IReadOnlyList<T> source, IList<T> destination)
+        {
+        }
+
+        // TODO reverse a doubly linked list using linqv2
+    }
+
     [TestClass]
     public class GlobalConfigTests
     {
