@@ -6,10 +6,12 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
+    using System.Net.Quic;
     using System.Reflection;
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
+    using Microsoft.ApplicationInsights.DataContracts;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CodeFixes;
     using Microsoft.CodeAnalysis.CSharp;
@@ -44,16 +46,69 @@
 
     public static class EnumerableExtensions
     {
-        public static IEnumerable<T> Sort<T>(this IReadOnlyCollection<T> source)
+        public static IEnumerable<T> Sort<T>(this IReadOnlyCollection<T> source) where T : IComparable<T> //// TODO do icomparer
         {
+            var destination = new T[source.Count];
+            return Sort(source, destination);
         }
 
-        private static IEnumerable<T> Sort<T>(IReadOnlyList<T> source, IList<T> destination)
+        private static IEnumerable<T> Sort<T>(IReadOnlyCollection<T> source, IList<T> destination) where T : IComparable<T> //// TODO do icomparer
         {
+            var low = 0;
+            var high = source.Count;
+
+            var pivotIndex = Partition(source, destination);
+            var left = Sort(destination, low, pivotIndex - 1);
+            var right = Sort(destination, pivotIndex + 1, high);
+            return left.Concat(right);
         }
 
-        private static int Partition<T>(IReadOnlyList<T> source, IList<T> destination)
+        private static int Partition<T>(IReadOnlyCollection<T> source, IList<T> destination) where T : IComparable<T> //// TODO do icomparer
         {
+            var low = 0;
+            var high = destination.Count;
+
+            var pivot = source.Last(); //// TODO this is bad
+
+            var i = low;
+
+            var j = low;
+            foreach (var element in source)
+            {
+
+                ++j;
+            }
+        }
+
+        private static IEnumerable<T> Sort<T>(IList<T> source, int low, int high) where T : IComparable<T> //// TODO do icomparer
+        {
+            if (low >= high || low < 0)
+            {
+                return Enumerable.Empty<T>();
+            }
+
+            var pivotIndex = Partition(source, low, high);
+            var left = Sort(source, low, pivotIndex - 1);
+            var right = Sort(source, pivotIndex + 1, high);
+            return left.Concat(right);
+        }
+
+        private static int Partition<T>(IList<T> source, int low, int high) where T : IComparable<T> //// TODO do icomparer
+        {
+            var pivot = source[high];
+            var pivotIndex = low;
+            for (int i = low; i < high; ++i)
+            {
+                var element = source[i];
+                if (element.CompareTo(pivot) <= 0)
+                {
+                    source[pivotIndex] = element;
+                    ++pivotIndex;
+                }
+            }
+
+            source[pivotIndex] = source[high];
+            return pivotIndex;
         }
 
         // TODO reverse a doubly linked list using linqv2
