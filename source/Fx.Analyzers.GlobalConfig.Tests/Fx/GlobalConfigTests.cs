@@ -53,7 +53,10 @@
         {
             var data = new int[0];
             var permutations = data.Permutations();
-            CollectionAssert.AreEquivalent(Array.Empty<int[]>(), permutations, SequenceComparer<int>.Default);
+            CollectionAssert.AreEquivalent(
+                Array.Empty<int[]>(),
+                permutations,
+                SequenceComparer<int>.Default);
         }
 
         [TestMethod]
@@ -61,7 +64,28 @@
         {
             var data = new[] { 1 };
             var permutations = data.Permutations();
-            CollectionAssert.AreEquivalent(new[] { new[] { 1 } }, permutations, SequenceComparer<int>.Default);
+            CollectionAssert.AreEquivalent(
+                new[]
+                { 
+                    new[] { 1 },
+                }, 
+                permutations, 
+                SequenceComparer<int>.Default);
+        }
+
+        [TestMethod]
+        public void Permutations_2()
+        {
+            var data = new[] { 1, 2 };
+            var permutations = data.Permutations();
+            CollectionAssert.AreEquivalent(
+                new[]
+                { 
+                    new[] { 1, 2 }, 
+                    new[] { 2, 1 },
+                }, 
+                permutations, 
+                SequenceComparer<int>.Default);
         }
 
         private sealed class SequenceComparer<T> : IEqualityComparer<IEnumerable<T>>
