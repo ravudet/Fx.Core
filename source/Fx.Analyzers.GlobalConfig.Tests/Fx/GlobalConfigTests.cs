@@ -434,6 +434,7 @@
             var pivot = source[high];
             var i = low;
 
+            //// TODO i think you can modify the for loop to be `j = low + 1 to high` and then `swap a[i] with a[low]` after the loop
             var j = low;
             foreach (var element in source)
             {
