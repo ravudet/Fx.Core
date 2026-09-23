@@ -1,6 +1,7 @@
 ﻿namespace Fx
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Diagnostics.CodeAnalysis;
@@ -44,9 +45,96 @@
         }
     }
 
+    [TestClass]
+    public sealed class SortTests
+    {
+        [TestMethod]
+        public void Permutations()
+        {
+            var data = new int[0];
+            var permutations = data.Permutations();
+            CollectionAssert.AreEquivalent(new int[][], permutations);
+        }
+    }
+
     public static class EnumerableExtensions
     {
-        //// TODO generate all permutations, and then use an 8 element sequence for test cases (or 9 elements if 8 is super faste)
+        //// TODO generate all permutations, and then use an 8 element sequence for test cases (or 9 elements if 8 is super fast)
+
+
+
+        public static IEnumerable<IEnumerable<T>> Permutations<T>(this IReadOnlyList<T> source) //// TODO can you do better than list?
+        {
+            for (int i = 0; i < source.Count; ++i)
+            {
+                foreach (var permutation in Permutations(source.RemoveAt(i)))
+                {
+                    yield return permutation.Prepend(source[i]);
+                }
+            }
+        }
+
+        public static IReadOnlyList<T> RemoveAt<T>(this IReadOnlyList<T> source, int index) //// TODO use mixin
+        {
+            return new RemoveAtList<T>(source, index);
+        }
+
+        private sealed class RemoveAtList<T> : IReadOnlyList<T>
+        {
+            private readonly IReadOnlyList<T> source;
+            private readonly int index;
+
+            public RemoveAtList(IReadOnlyList<T> source, int index)
+            {
+                this.source = source;
+                this.index = index;
+            }
+
+            public T this[int index]
+            {
+                get
+                {
+                    if (index < 0 || index >= this.source.Count - 1)
+                    {
+                        throw new ArgumentOutOfRangeException("TODO");
+                    }
+
+                    if (index < this.index)
+                    {
+                        return this.source[index];
+                    }
+                    else
+                    {
+                        return this.source[index + 1];
+                    }
+                }
+            }
+
+            public int Count
+            {
+                get
+                {
+                    return this.source.Count - 1;
+                }
+            }
+
+            public IEnumerator<T> GetEnumerator()
+            {
+                for (int i = 0; i < this.Count; ++i)
+                {
+                    yield return this[i];
+                }
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+
+
+
 
         public static IEnumerable<T> Sort<T>(this IReadOnlyCollection<T> source) where T : IComparable<T> //// TODO do icomparer
         {
@@ -80,6 +168,8 @@
 
                 ++j;
             }
+
+            return 0; //// TODO not actually correct
         }
 
         private static IEnumerable<T> Sort<T>(IList<T> source, int low, int high) where T : IComparable<T> //// TODO do icomparer
