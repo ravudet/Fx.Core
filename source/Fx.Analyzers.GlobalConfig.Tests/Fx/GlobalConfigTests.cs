@@ -49,11 +49,58 @@
     public sealed class SortTests
     {
         [TestMethod]
-        public void Permutations()
+        public void Permutations_0()
         {
             var data = new int[0];
             var permutations = data.Permutations();
-            CollectionAssert.AreEquivalent(new int[][], permutations);
+            CollectionAssert.AreEquivalent(Array.Empty<int[]>(), permutations, SequenceComparer<int>.Default);
+        }
+
+        [TestMethod]
+        public void Permutations_1()
+        {
+            var data = new[] { 1 };
+            var permutations = data.Permutations();
+            CollectionAssert.AreEquivalent(new[] { new[] { 1 } }, permutations, SequenceComparer<int>.Default);
+        }
+
+        private sealed class SequenceComparer<T> : IEqualityComparer<IEnumerable<T>>
+        {
+            private readonly IEqualityComparer<T> elementComparer;
+
+            public SequenceComparer(IEqualityComparer<T> elementComparer)
+            {
+                this.elementComparer = elementComparer;
+            }
+
+            public static SequenceComparer<T> Default { get; } = new SequenceComparer<T>(EqualityComparer<T>.Default);
+
+            public bool Equals(IEnumerable<T>? x, IEnumerable<T>? y)
+            {
+                //// TODO write this correctly
+                if (x == null && y == null)
+                {
+                    return true;
+                }
+
+                if (x == null)
+                {
+                    return false;
+                }
+
+                if (y == null)
+                {
+                    return false;
+                }
+
+                return x.SequenceEqual(y, this.elementComparer);
+            }
+
+            public int GetHashCode([DisallowNull] IEnumerable<T> obj)
+            {
+                //// TODO implement this
+                return 0;
+            }
         }
     }
 
@@ -65,6 +112,12 @@
 
         public static IEnumerable<IEnumerable<T>> Permutations<T>(this IReadOnlyList<T> source) //// TODO can you do better than list?
         {
+            if (source.Count == 1)
+            {
+                yield return source;
+                yield break;
+            }
+
             for (int i = 0; i < source.Count; ++i)
             {
                 foreach (var permutation in Permutations(source.RemoveAt(i)))
@@ -133,6 +186,7 @@
         }
 
 
+        //// TODO skip and take as mixins on list
 
 
 
