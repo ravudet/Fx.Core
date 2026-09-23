@@ -187,7 +187,7 @@
         [TestMethod]
         public void SortList()
         {
-            var data = new[] { 1, 2, 3, 4 };
+            var data = new[] { 1, 2, 3, 4, 5 };
             var permutations = data.Permutations();
             foreach (var permutation in permutations)
             {
