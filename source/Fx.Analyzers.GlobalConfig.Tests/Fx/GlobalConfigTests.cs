@@ -46,6 +46,8 @@
 
     public static class EnumerableExtensions
     {
+        //// TODO generate all permutations, and then use an 8 element sequence for test cases (or 9 elements if 8 is super faste)
+
         public static IEnumerable<T> Sort<T>(this IReadOnlyCollection<T> source) where T : IComparable<T> //// TODO do icomparer
         {
             var destination = new T[source.Count];
