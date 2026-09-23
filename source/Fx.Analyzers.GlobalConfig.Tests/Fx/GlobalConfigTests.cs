@@ -199,6 +199,8 @@
                 var instrumented = new InstrumentedList<int>(list);
                 instrumented.RavudetSortInPlace3();
 
+                //// TODO test only as many operations as needed are actually exectued
+
                 var currentReads = instrumented.Writes; //// TODO i don't know why reads are way extra
                 reads += currentReads;
                 if (currentReads < best)
