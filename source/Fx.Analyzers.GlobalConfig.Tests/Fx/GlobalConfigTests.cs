@@ -295,17 +295,6 @@
             return RavudetSort(mutable, 0, mutable.Count - 1);
         }
 
-        private static IEnumerable<T> RavudetSort<T>(IReadOnlyList<T> source, IList<T> destination) where T : IComparable<T> //// TODO do icomparer
-        {
-            var low = 0;
-            var high = source.Count - 1;
-
-            var pivotIndex = Partition(source, destination);
-            var left = RavudetSort(destination, low, pivotIndex - 1);
-            var right = RavudetSort(destination, pivotIndex + 1, high);
-            return left.Concat(right);
-        }
-
         public readonly struct Optional<T>
         {
             private readonly T value;
