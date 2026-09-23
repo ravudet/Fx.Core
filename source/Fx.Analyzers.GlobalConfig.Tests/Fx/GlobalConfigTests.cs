@@ -10,6 +10,7 @@
     using System.Net.Quic;
     using System.Reflection;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices.Marshalling;
     using System.Threading.Tasks;
 
     using Microsoft.ApplicationInsights.DataContracts;
@@ -188,11 +189,140 @@
         public void SortList()
         {
             var data = new[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-            var permutations = data.Permutations();
+            var permutations = data.Permutations().ToArray();
+            var reads = 0;
+            var best = int.MaxValue;
+            var worst = int.MinValue;
             foreach (var permutation in permutations)
             {
-                var sorted = permutation.ToList().RavudetSort().ToArray();
-                CollectionAssert.AreEqual(data, sorted);
+                var list = new EnumerableExtensions.MutableList<int>(permutation.ToList(), new EnumerableExtensions.Optional<int>[data.Length]);
+                var instrumented = new InstrumentedList<int>(list);
+                instrumented.RavudetSortInPlace3();
+
+                var currentReads = instrumented.Writes; //// TODO i don't know why reads are way extra
+                reads += currentReads;
+                if (currentReads < best)
+                {
+                    best = currentReads;
+                }
+
+                if (currentReads > worst)
+                {
+                    worst = currentReads;
+                }
+
+                CollectionAssert.AreEqual(data, instrumented);
+            }
+
+            Console.WriteLine($"best: {best}; worst: {worst}; average: {(double)reads / permutations.Length}");
+        }
+
+        private sealed class InstrumentedList<T> : IList<T>, ICollection
+        {
+            private readonly IList<T> source;
+
+            public InstrumentedList(IList<T> source)
+            {
+                this.source = source;
+
+                this.Reads = 0;
+                this.Writes = 0;
+            }
+
+            public int Reads { get; private set; }
+
+            public int Writes { get; private set; }
+
+            public T this[int index]
+            {
+                get
+                {
+                    ++this.Reads;
+                    return this.source[index];
+                }
+                set
+                {
+                    ++this.Writes;
+                    this.source[index] = value;
+                }
+            }
+
+            public int Count
+            {
+                get
+                {
+                    return this.source.Count;
+                }
+            }
+
+            public bool IsReadOnly
+            {
+                get
+                {
+                    return false;
+                }
+            }
+
+            public bool IsSynchronized => throw new NotImplementedException();
+
+            public object SyncRoot => throw new NotImplementedException();
+
+            public void Add(T item)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Clear()
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool Contains(T item)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void CopyTo(T[] array, int arrayIndex)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IEnumerator<T> GetEnumerator()
+            {
+                for (int i = 0; i < this.Count; ++i)
+                {
+                    yield return this.source[i];
+                }
+            }
+
+            public int IndexOf(T item)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Insert(int index, T item)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool Remove(T item)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void RemoveAt(int index)
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+
+            public void CopyTo(Array array, int index)
+            {
+                throw new NotImplementedException();
             }
         }
     }
@@ -286,13 +416,21 @@
 
 
 
-        public static IEnumerable<T> RavudetSort<T>(this IReadOnlyList<T> source) where T : IComparable<T> //// TODO do icomparer
+        public static IEnumerable<T> RavudetSort2<T>(this IReadOnlyList<T> source) where T : IComparable<T> //// TODO do icomparer
         {
             /*var destination = new T[source.Count];
             return Sort(source, destination);*/
 
             var mutable = new MutableList<T>(source, new Optional<T>[source.Count]);
-            return RavudetSort(mutable, 0, mutable.Count - 1);
+            return RavudetSort3(mutable);
+        }
+
+        public static IEnumerable<T> RavudetSort3<T>(this IList<T> source) where T : IComparable<T> //// TODO do icomparer
+        {
+            /*var destination = new T[source.Count];
+            return Sort(source, destination);*/
+
+            return RavudetSort(source, 0, source.Count - 1);
         }
 
         public readonly struct Optional<T>
@@ -313,7 +451,7 @@
             }
         }
 
-        private sealed class MutableList<T> : IList<T>
+        public sealed class MutableList<T> : IList<T>
         {
             private readonly IReadOnlyList<T> source;
             private readonly IList<Optional<T>> destination;
@@ -464,6 +602,26 @@
             return left.Append(source[pivotIndex]).Concat(right);
         }
 
+        public static void RavudetSortInPlace3<T>(this IList<T> source) where T : IComparable<T> //// TODO do icomparer
+        {
+            /*var destination = new T[source.Count];
+            return Sort(source, destination);*/
+
+            RavudetSortInPlace(source, 0, source.Count - 1);
+        }
+
+        private static void RavudetSortInPlace<T>(this IList<T> source, int low, int high) where T : IComparable<T> //// TODO do icomparer
+        {
+            if (low >= high || low < 0)
+            {
+                return;
+            }
+
+            var pivotIndex = Partition(source, low, high);
+            var left = RavudetSort(source, low, pivotIndex - 1);
+            var right = RavudetSort(source, pivotIndex + 1, high);
+        }
+
         private static int Partition<T>(IList<T> source, int low, int high) where T : IComparable<T> //// TODO do icomparer
         {
             var pivot = source[high];
@@ -473,9 +631,19 @@
                 var element = source[j];
                 if (element.CompareTo(pivot) <= 0)
                 {
-                    var temp2 = source[i];
+                    T temp2;
+                    if (i == j)
+                    {
+                        temp2 = element;
+                    }
+                    else
+                    {
+                        temp2 = source[i];
+                    }
+
                     source[i] = element;
                     source[j] = temp2;
+
                     ++i;
                 }
             }
