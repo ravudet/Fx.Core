@@ -191,7 +191,7 @@
             var permutations = data.Permutations();
             foreach (var permutation in permutations)
             {
-                var sorted = permutation.ToList().RavudetSort(0, 3).ToArray();
+                var sorted = permutation.ToList().RavudetSort().ToArray();
                 CollectionAssert.AreEqual(data, sorted);
             }
         }
@@ -459,7 +459,7 @@
             return 0; //// TODO not actually correct
         }
 
-        public static IEnumerable<T> RavudetSort<T>(this IList<T> source, int low, int high) where T : IComparable<T> //// TODO do icomparer
+        private static IEnumerable<T> RavudetSort<T>(this IList<T> source, int low, int high) where T : IComparable<T> //// TODO do icomparer
         {
             if (low > high || low < 0)
             {
