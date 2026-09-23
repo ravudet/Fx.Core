@@ -187,7 +187,7 @@
         [TestMethod]
         public void SortList()
         {
-            var data = new[] { 1, 2, 3, 4, 5 };
+            var data = new[] { 1, 2, 3, 4, 5, 6, 7, 8 };
             var permutations = data.Permutations();
             foreach (var permutation in permutations)
             {
@@ -199,10 +199,6 @@
 
     public static class EnumerableExtensions
     {
-        //// TODO generate all permutations, and then use an 8 element sequence for test cases (or 9 elements if 8 is super fast)
-
-
-
         public static IEnumerable<IEnumerable<T>> Permutations<T>(this IReadOnlyList<T> source) //// TODO can you do better than list?
         {
             if (source.Count == 1)
