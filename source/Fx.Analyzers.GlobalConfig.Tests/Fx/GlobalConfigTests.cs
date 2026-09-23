@@ -107,6 +107,44 @@
                 SequenceComparer<int>.Default);
         }
 
+
+        [TestMethod]
+        public void Permutations_4()
+        {
+            var data = new[] { 1, 2, 3, 4 };
+            var permutations = data.Permutations();
+            CollectionAssert.AreEquivalent(
+                new[]
+                {
+                    new[] { 1, 2, 3, 4 },
+                    new[] { 1, 2, 4, 3 },
+                    new[] { 1, 3, 2, 4 },
+                    new[] { 1, 3, 4, 2 },
+                    new[] { 1, 4, 2, 3 },
+                    new[] { 1, 4, 3, 2 },
+                    new[] { 2, 1, 3, 4 },
+                    new[] { 2, 1, 4, 3 },
+                    new[] { 2, 3, 1, 4 },
+                    new[] { 2, 3, 4, 1 },
+                    new[] { 2, 4, 1, 3 },
+                    new[] { 2, 4, 3, 1 },
+                    new[] { 3, 1, 2, 4 },
+                    new[] { 3, 1, 4, 2 },
+                    new[] { 3, 2, 1, 4 },
+                    new[] { 3, 2, 4, 1 },
+                    new[] { 3, 4, 1, 2 },
+                    new[] { 3, 4, 2, 1 },
+                    new[] { 4, 1, 2, 3 },
+                    new[] { 4, 1, 3, 2 },
+                    new[] { 4, 2, 1, 3 },
+                    new[] { 4, 2, 3, 1 },
+                    new[] { 4, 3, 1, 2 },
+                    new[] { 4, 3, 2, 1 },
+                },
+                permutations,
+                SequenceComparer<int>.Default);
+        }
+
         private sealed class SequenceComparer<T> : IEqualityComparer<IEnumerable<T>>
         {
             private readonly IEqualityComparer<T> elementComparer;
@@ -143,6 +181,18 @@
             {
                 //// TODO implement this
                 return 0;
+            }
+        }
+
+        [TestMethod]
+        public void SortList()
+        {
+            var data = new[] { 1, 2, 3, 4 };
+            var permutations = data.Permutations();
+            foreach (var permutation in permutations)
+            {
+                var sorted = permutation.ToList().RavudetSort(0, 3).ToArray();
+                CollectionAssert.AreEqual(data, sorted);
             }
         }
     }
@@ -233,30 +283,170 @@
 
 
 
-        public static IEnumerable<T> Sort<T>(this IReadOnlyCollection<T> source) where T : IComparable<T> //// TODO do icomparer
+        public static IEnumerable<T> RavudetSort<T>(this IReadOnlyCollection<T> source) where T : IComparable<T> //// TODO do icomparer
         {
-            var destination = new T[source.Count];
-            return Sort(source, destination);
+            throw new NotImplementedException("TODO");
         }
 
-        private static IEnumerable<T> Sort<T>(IReadOnlyCollection<T> source, IList<T> destination) where T : IComparable<T> //// TODO do icomparer
+
+
+        public static IEnumerable<T> RavudetSort<T>(this IReadOnlyList<T> source) where T : IComparable<T> //// TODO do icomparer
+        {
+            /*var destination = new T[source.Count];
+            return Sort(source, destination);*/
+
+            var mutable = new MutableList<T>(source, new Optional<T>[source.Count]);
+            return RavudetSort(mutable, 0, mutable.Count - 1);
+        }
+
+        private static IEnumerable<T> RavudetSort<T>(IReadOnlyList<T> source, IList<T> destination) where T : IComparable<T> //// TODO do icomparer
         {
             var low = 0;
-            var high = source.Count;
+            var high = source.Count - 1;
 
             var pivotIndex = Partition(source, destination);
-            var left = Sort(destination, low, pivotIndex - 1);
-            var right = Sort(destination, pivotIndex + 1, high);
+            var left = RavudetSort(destination, low, pivotIndex - 1);
+            var right = RavudetSort(destination, pivotIndex + 1, high);
             return left.Concat(right);
         }
 
-        private static int Partition<T>(IReadOnlyCollection<T> source, IList<T> destination) where T : IComparable<T> //// TODO do icomparer
+        public readonly struct Optional<T>
+        {
+            private readonly T value;
+            private readonly bool hasValue;
+
+            public Optional(T value)
+            {
+                this.value = value;
+                this.hasValue = true;
+            }
+
+            public bool TryGetValue([MaybeNullWhen(false)] out T value)
+            {
+                value = this.value;
+                return this.hasValue;
+            }
+        }
+
+        private sealed class MutableList<T> : IList<T>
+        {
+            private readonly IReadOnlyList<T> source;
+            private readonly IList<Optional<T>> destination;
+
+            public MutableList(IReadOnlyList<T> source, IList<Optional<T>> destination)
+            {
+                if (source.Count != destination.Count)
+                {
+                    throw new ArgumentOutOfRangeException("TODO");
+                }
+
+                this.source = source;
+                this.destination = destination;
+            }
+
+            public T this[int index]
+            {
+                get
+                {
+                    var optional = this.destination[index];
+                    if (!optional.TryGetValue(out var value))
+                    {
+                        value = this.source[index];
+                    }
+
+                    return value;
+                }
+                set
+                {
+                    this.destination[index] = new Optional<T>(value);
+                }
+            }
+
+            public int Count
+            {
+                get
+                {
+                    return this.source.Count;
+                }
+            }
+
+            public bool IsReadOnly
+            {
+                get
+                {
+                    //// TODO is it faster to have a member or to return the constant value
+                    return false;
+                }
+            }
+
+            public void Add(T item)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Clear()
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool Contains(T item)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void CopyTo(T[] array, int arrayIndex)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IEnumerator<T> GetEnumerator()
+            {
+                for (int i = 0; i < this.source.Count; ++i)
+                {
+                    var optional = this.destination[i];
+                    if (optional.TryGetValue(out var value))
+                    {
+                        yield return value;
+                    }
+                    else
+                    {
+                        yield return this.source[i];
+                    }
+                }
+            }
+
+            public int IndexOf(T item)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Insert(int index, T item)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool Remove(T item)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void RemoveAt(int index)
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this.GetEnumerator();
+            }
+        }
+
+        private static int Partition<T>(IReadOnlyList<T> source, IList<T> destination) where T : IComparable<T> //// TODO do icomparer
         {
             var low = 0;
-            var high = destination.Count;
+            var high = destination.Count - 1;
 
-            var pivot = source.Last(); //// TODO this is bad
-
+            var pivot = source[high];
             var i = low;
 
             var j = low;
@@ -269,35 +459,45 @@
             return 0; //// TODO not actually correct
         }
 
-        private static IEnumerable<T> Sort<T>(IList<T> source, int low, int high) where T : IComparable<T> //// TODO do icomparer
+        public static IEnumerable<T> RavudetSort<T>(this IList<T> source, int low, int high) where T : IComparable<T> //// TODO do icomparer
         {
-            if (low >= high || low < 0)
+            if (low > high || low < 0)
             {
                 return Enumerable.Empty<T>();
             }
 
+            if (low == high)
+            {
+                return new[] { source[low] };
+            }
+
             var pivotIndex = Partition(source, low, high);
-            var left = Sort(source, low, pivotIndex - 1);
-            var right = Sort(source, pivotIndex + 1, high);
-            return left.Concat(right);
+            var left = RavudetSort(source, low, pivotIndex - 1);
+            var right = RavudetSort(source, pivotIndex + 1, high);
+
+            return left.Append(source[pivotIndex]).Concat(right);
         }
 
         private static int Partition<T>(IList<T> source, int low, int high) where T : IComparable<T> //// TODO do icomparer
         {
             var pivot = source[high];
-            var pivotIndex = low;
-            for (int i = low; i < high; ++i)
+            var i = low;
+            for (int j = low; j < high; ++j)
             {
-                var element = source[i];
+                var element = source[j];
                 if (element.CompareTo(pivot) <= 0)
                 {
-                    source[pivotIndex] = element;
-                    ++pivotIndex;
+                    var temp2 = source[i];
+                    source[i] = element;
+                    source[j] = temp2;
+                    ++i;
                 }
             }
 
-            source[pivotIndex] = source[high];
-            return pivotIndex;
+            var temp = source[i];
+            source[i] = source[high];
+            source[high] = temp;
+            return i;
         }
 
         // TODO reverse a doubly linked list using linqv2
