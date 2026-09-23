@@ -88,6 +88,25 @@
                 SequenceComparer<int>.Default);
         }
 
+        [TestMethod]
+        public void Permutations_3()
+        {
+            var data = new[] { 1, 2, 3 };
+            var permutations = data.Permutations();
+            CollectionAssert.AreEquivalent(
+                new[]
+                {
+                    new[] { 1, 2, 3 },
+                    new[] { 1, 3, 2 },
+                    new[] { 2, 1, 3 },
+                    new[] { 2, 3, 1 },
+                    new[] { 3, 1, 2 },
+                    new[] { 3, 2, 1 },
+                },
+                permutations,
+                SequenceComparer<int>.Default);
+        }
+
         private sealed class SequenceComparer<T> : IEqualityComparer<IEnumerable<T>>
         {
             private readonly IEqualityComparer<T> elementComparer;
