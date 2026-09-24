@@ -109,7 +109,7 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     },
                 },
-                DiagnosticAnalyzers = CustomAnalyzerTest.LoadAnalyzers(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
+                DiagnosticAnalyzers = CustomAnalyzerTest1.LoadAnalyzers(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
             };
 
             tester.ExpectedDiagnostics.Add(
@@ -130,7 +130,7 @@
         {
             base.CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
             base.ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
-            base.DiagnosticAnalyzers = CustomAnalyzerTest.DefaultAnalyzers();
+            base.DiagnosticAnalyzers = CustomAnalyzerTest1.DefaultAnalyzers();
         }
 
         public override string Language { get; } = LanguageNames.CSharp;
@@ -183,7 +183,7 @@
             /*var type = typeof(Microsoft.CodeAnalysis.Analyzers.MetaAnalyzers.DiagnosticAnalyzerAttributeAnalyzer);
             var another = (DiagnosticAnalyzer)Activator.CreateInstance(type)!;*/
 
-            return paths.SelectMany(path => LoadAnalyzers(path))/*.Append(another).ToImmutableArray()*/;
+            return paths.SelectMany(path => CustomAnalyzerTest1.LoadAnalyzers(path))/*.Append(another).ToImmutableArray()*/;
         }
 
         public static IEnumerable<DiagnosticAnalyzer> LoadAnalyzers(string assemblyPath)
@@ -200,126 +200,6 @@
         }
     }
 
-    public sealed class CustomAnalyzerTest : AnalyzerTest<MSTestVerifier>
-    {
-        private readonly CompilationOptions compilationOptions;
-        private readonly ParseOptions parseOptions;
-        private readonly IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers;
-
-        public CustomAnalyzerTest(
-            string language, 
-            string defaultFileExtension,
-            CompilationOptions compilationOptions,
-            ParseOptions parseOptions, 
-            IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers,
-            SolutionState testState)
-        {
-            this.Language = language;
-            this.DefaultFileExt = defaultFileExtension;
-            this.compilationOptions = compilationOptions;
-            this.parseOptions = parseOptions;
-            this.diagnosticAnalyzers = diagnosticAnalyzers;
-        }
-
-        public override string Language { get; }
-
-        protected override string DefaultFileExt { get; }
-
-        protected override CompilationOptions CreateCompilationOptions()
-        {
-            return this.compilationOptions;
-        }
-
-        protected override ParseOptions CreateParseOptions()
-        {
-            return this.parseOptions;
-        }
-
-        protected override IEnumerable<DiagnosticAnalyzer> GetDiagnosticAnalyzers()
-        {
-            return this.diagnosticAnalyzers;
-        }
-
-
-
-        /*public static CustomAnalyzerTest Csharp(string testCode, SolutionState testState, IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers, CompilationOptions compilationOptions, CSharpParseOptions parseOptions)
-        {
-            return new CustomAnalyzerTest(
-                LanguageNames.CSharp,
-                "cs",
-                compilationOptions,
-                parseOptions,
-                diagnosticAnalyzers)
-            {
-                TestCode = testCode,
-                TestState =
-                {
-                    AdditionalFiles = testState.AdditionalFiles,
-                },
-            };
-        }
-
-        public static CustomAnalyzerTest Csharp(string testCode, SolutionState testState, IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers)
-        {
-            return CustomAnalyzerTest.Csharp(
-                testCode,
-                testState,
-                diagnosticAnalyzers,
-                new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
-                new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose));
-        }
-
-        public static CustomAnalyzerTest Csharp()
-        {
-            return CustomAnalyzerTest.Csharp(
-                DefaultAnalyzers());
-        }
-
-        public static CustomAnalyzerTest Csharp(string testCode, SolutionState testState)
-        {
-            return CustomAnalyzerTest.Csharp(
-                DefaultAnalyzers());
-        }*/
-
-        public static IEnumerable<DiagnosticAnalyzer> DefaultAnalyzers() //// TODO make this a property
-        {
-            /*var foo = Path.GetDirectoryName(typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location);
-            foo = Path.Combine(foo, "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");*/
-
-            var paths = new[]
-            {
-                typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location,
-                //foo,
-                ////typeof(Microsoft.CodeAnalysis.Completion.CompletionTags).Assembly.Location,
-                //typeof(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext).Assembly.Location, // TODO foo depends on this
-                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll",
-                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.Analyzers.dll",
-                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
-                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.dll",
-            };
-
-            ////var assembly = Assembly.Load(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll");
-
-            /*var type = typeof(Microsoft.CodeAnalysis.Analyzers.MetaAnalyzers.DiagnosticAnalyzerAttributeAnalyzer);
-            var another = (DiagnosticAnalyzer)Activator.CreateInstance(type)!;*/
-
-            return paths.SelectMany(path => LoadAnalyzers(path))/*.Append(another).ToImmutableArray()*/;
-        }
-
-        public static IEnumerable<DiagnosticAnalyzer> LoadAnalyzers(string assemblyPath)
-        {
-            var assembly = Assembly.LoadFrom(assemblyPath);
-
-            var types = assembly.GetTypes();
-            var analyzers = types
-                .Where(t => typeof(DiagnosticAnalyzer).IsAssignableFrom(t) && !t.IsAbstract);
-
-            var publicAnalyzers = analyzers.Where(analyzer => analyzer.IsPublic);
-
-            return analyzers.Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
-        }
-
-    }
     public class MSTestVerifier : IVerifier
     {
         public MSTestVerifier()
