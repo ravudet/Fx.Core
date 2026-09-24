@@ -34,6 +34,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
+    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis\Fx.Microsoft_CodeAnalysis.csproj" />
   </ItemGroup>
   
   <Target Name="RemoveResources" BeforeTargets="BeforeBuild">
