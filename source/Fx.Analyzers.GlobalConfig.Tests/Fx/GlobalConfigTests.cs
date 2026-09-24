@@ -30,6 +30,8 @@
     {
         private static async Task<string> GetManifestResourceString(string resourceName)
         {
+            //// TODO do you want to use Assembly.GetCallingAssembly?
+
             return await typeof(GlobalConfigTests).Assembly.GetManifestResourceString(resourceName).ConfigureAwait(false);
         }
 
