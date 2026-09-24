@@ -10,6 +10,7 @@
 
     //// TODO this was pulled from an existing package, but you couldn't get the versions working correctly; see if you actually need this class (and, by extension, this project) at all
     //// TODO maybe you should create an `iassert` interface in fx.core and then have an `iverifier` implementation that adapts an `iassert` and have `fx.test` have an `iassert` implementation for mstest; you would do this because right now this project has 2 dependencies, which is nice for demonstrating how that would work, but not great otherwise
+    //// TODO note that if you *don't* do the above with the `iassert` interface, you need to rename this project (and the folder it's in) to be `Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework`
 
     public class MSTestVerifier : IVerifier
     {
