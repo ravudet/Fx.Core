@@ -7,7 +7,7 @@
 
   <!--nuget build properties-->
   <PropertyGroup>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!--TODO make sure that projects that don't need packages aren't generating packages-->
   </PropertyGroup>
 
   <!--nuget package properties-->
