@@ -44,6 +44,8 @@
             return await GetManifestResourceString("Fx.Analyzers.GlobalConfig.globalconfig").ConfigureAwait(false);
         }
 
+        public static IEnumerable<DiagnosticAnalyzer> DefaultAnalyzers { get; } = DiagnosticAnalyzers.Extensions.Load(DiagnosticAnalyzers.Extensions.DefaultAssembly());
+
         [TestMethod]
         public async Task Test()
         {
@@ -120,11 +122,11 @@
         [SetsRequiredMembers]
         public CsharpAnalyzerTest()
         {
-            //// TODO put analyzers in base type
+            //// TODO put setting default analyzers in base type
 
             base.CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
             base.ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
-            base.DiagnosticAnalyzers = Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzers.Extensions.Load(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzers.Extensions.DefaultAssembly().Location);
+            base.DiagnosticAnalyzers = GlobalConfigTests.DefaultAnalyzers;
         }
 
         public override string Language { get; } = LanguageNames.CSharp;

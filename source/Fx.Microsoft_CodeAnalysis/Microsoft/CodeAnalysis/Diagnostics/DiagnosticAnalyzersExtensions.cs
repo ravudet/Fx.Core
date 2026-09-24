@@ -11,6 +11,11 @@
         {
             var assembly = Assembly.LoadFrom(assemblyPath);
 
+            return DiagnosticAnalyzers.Extensions.Load(assembly);
+        }
+
+        public static IEnumerable<DiagnosticAnalyzer> Load(this DiagnosticAnalyzers _, Assembly assembly)
+        {
             var types = assembly.GetTypes();
             var analyzers = types
                 .Where(t => typeof(DiagnosticAnalyzer).IsAssignableFrom(t) && !t.IsAbstract);
