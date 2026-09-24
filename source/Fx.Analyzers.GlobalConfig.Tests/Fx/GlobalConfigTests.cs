@@ -74,7 +74,7 @@
             //// TODO can you rename the Content folder to `_resources`?
             //// TODO is there a better way to combine resource paths?
 
-            var tester = new CustomAnalyzerTest2()
+            var tester = new MsTestCsharpAnalyzerTest()
             {
                 TestCode = test,
                 TestState =
@@ -99,7 +99,7 @@
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
-            var tester = new CustomAnalyzerTest2()
+            var tester = new MsTestCsharpAnalyzerTest()
             {
                 TestCode = test,
                 TestState =
@@ -109,7 +109,7 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     },
                 },
-                DiagnosticAnalyzers = CustomAnalyzerTest1.LoadAnalyzers(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
+                DiagnosticAnalyzers = AnalyzerTest.LoadAnalyzers(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
             };
 
             tester.ExpectedDiagnostics.Add(
@@ -123,14 +123,23 @@
         }
     }
 
-    public class CustomAnalyzerTest2 : CustomAnalyzerTest1
+    public class MsTestCsharpAnalyzerTest : CsharpAnalyzerTest<MSTestVerifier>
     {
         [SetsRequiredMembers]
-        public CustomAnalyzerTest2()
+        public MsTestCsharpAnalyzerTest()
+        {
+        }
+    }
+
+    public class CsharpAnalyzerTest<TVerifier> : BaseAnalyzerTest<TVerifier>
+        where TVerifier : IVerifier, new()
+    {
+        [SetsRequiredMembers]
+        public CsharpAnalyzerTest()
         {
             base.CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
             base.ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
-            base.DiagnosticAnalyzers = CustomAnalyzerTest1.DefaultAnalyzers();
+            base.DiagnosticAnalyzers = AnalyzerTest.DefaultAnalyzers();
         }
 
         public override string Language { get; } = LanguageNames.CSharp;
@@ -138,29 +147,8 @@
         protected override string DefaultFileExt { get; } = "cs";
     }
 
-    public abstract class CustomAnalyzerTest1 : AnalyzerTest<MSTestVerifier> //// TODO call this customanlzyerstest and the above refer to c#, and then remove the below one, replaceing the static calls with references to this type
+    public static class AnalyzerTest
     {
-        public required CompilationOptions CompilationOptions { private get; init; }
-
-        public required ParseOptions ParseOptions { private get; init; }
-
-        public required IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { private get; init; }
-
-        protected override CompilationOptions CreateCompilationOptions()
-        {
-            return this.CompilationOptions;
-        }
-
-        protected override ParseOptions CreateParseOptions()
-        {
-            return this.ParseOptions;
-        }
-
-        protected override IEnumerable<DiagnosticAnalyzer> GetDiagnosticAnalyzers()
-        {
-            return this.DiagnosticAnalyzers;
-        }
-
         public static IEnumerable<DiagnosticAnalyzer> DefaultAnalyzers() //// TODO make this a property
         {
             /*var foo = Path.GetDirectoryName(typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location);
@@ -183,7 +171,7 @@
             /*var type = typeof(Microsoft.CodeAnalysis.Analyzers.MetaAnalyzers.DiagnosticAnalyzerAttributeAnalyzer);
             var another = (DiagnosticAnalyzer)Activator.CreateInstance(type)!;*/
 
-            return paths.SelectMany(path => CustomAnalyzerTest1.LoadAnalyzers(path))/*.Append(another).ToImmutableArray()*/;
+            return paths.SelectMany(path => AnalyzerTest.LoadAnalyzers(path))/*.Append(another).ToImmutableArray()*/;
         }
 
         public static IEnumerable<DiagnosticAnalyzer> LoadAnalyzers(string assemblyPath)
@@ -198,6 +186,32 @@
 
             return analyzers.Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
         }
+    }
+
+    public abstract class BaseAnalyzerTest<TVerifier> : AnalyzerTest<TVerifier>
+        where TVerifier : IVerifier, new()
+    {
+        public required CompilationOptions CompilationOptions { private get; init; }
+
+        public required ParseOptions ParseOptions { private get; init; }
+
+        public required IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { private get; init; }
+
+        protected override CompilationOptions CreateCompilationOptions()
+        {
+            return this.CompilationOptions;
+        }
+
+        protected override ParseOptions CreateParseOptions()
+        {
+            return this.ParseOptions;
+        }
+
+        protected override IEnumerable<DiagnosticAnalyzer> GetDiagnosticAnalyzers()
+        {
+            return this.DiagnosticAnalyzers;
+        }
+
     }
 
     public class MSTestVerifier : IVerifier
