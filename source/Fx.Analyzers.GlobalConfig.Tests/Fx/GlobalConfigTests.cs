@@ -22,24 +22,7 @@
 
     public static class Extensions
     {
-        public static async Task<string> GetManifestResourceString(this Assembly assembly, string resourceName)
-        {
-            //// TODO have a sync overload?
-
-            using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
-            {
-                if (resourceStream == null)
-                {
-                    throw new Exception("TODO");
-                }
-
-                //// TODO parameterize the constructor parameters
-                using (var streamReader = new StreamReader(resourceStream))
-                {
-                    return await streamReader.ReadToEndAsync().ConfigureAwait(false);
-                }
-            }
-        }
+        
     }
 
     [TestClass]
@@ -109,7 +92,7 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     },
                 },
-                DiagnosticAnalyzers = AnalyzerTest.LoadAnalyzers(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
+                DiagnosticAnalyzers = DiagnosticAnalyzers.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
             };
 
             tester.ExpectedDiagnostics.Add(
@@ -139,7 +122,7 @@
         {
             base.CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
             base.ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
-            base.DiagnosticAnalyzers = AnalyzerTest.DefaultAnalyzers();
+            base.DiagnosticAnalyzers = Fx.DiagnosticAnalyzers.Default();
         }
 
         public override string Language { get; } = LanguageNames.CSharp;
@@ -147,9 +130,9 @@
         protected override string DefaultFileExt { get; } = "cs";
     }
 
-    public static class AnalyzerTest
+    public static class DiagnosticAnalyzers
     {
-        public static IEnumerable<DiagnosticAnalyzer> DefaultAnalyzers() //// TODO make this a property
+        public static IEnumerable<DiagnosticAnalyzer> Default() //// TODO make this a property
         {
             /*var foo = Path.GetDirectoryName(typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location);
             foo = Path.Combine(foo, "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");*/
@@ -171,10 +154,10 @@
             /*var type = typeof(Microsoft.CodeAnalysis.Analyzers.MetaAnalyzers.DiagnosticAnalyzerAttributeAnalyzer);
             var another = (DiagnosticAnalyzer)Activator.CreateInstance(type)!;*/
 
-            return paths.SelectMany(path => AnalyzerTest.LoadAnalyzers(path))/*.Append(another).ToImmutableArray()*/;
+            return paths.SelectMany(path => DiagnosticAnalyzers.Load(path))/*.Append(another).ToImmutableArray()*/;
         }
 
-        public static IEnumerable<DiagnosticAnalyzer> LoadAnalyzers(string assemblyPath)
+        public static IEnumerable<DiagnosticAnalyzer> Load(string assemblyPath)
         {
             var assembly = Assembly.LoadFrom(assemblyPath);
 
