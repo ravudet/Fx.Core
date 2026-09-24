@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework", "source\Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework\Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework.csproj", "{400FF19C-449D-4FAE-A72E-E6E379EE0088}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_Analyzer_Testing", "source\Fx.Microsoft_CodeAnalysis_Analyzer_Testing\Fx.Microsoft_CodeAnalysis_Analyzer_Testing.csproj", "{746C63F9-70DF-444C-8F1F-355985E4D950}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,10 @@ Global
 		{400FF19C-449D-4FAE-A72E-E6E379EE0088}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{400FF19C-449D-4FAE-A72E-E6E379EE0088}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{400FF19C-449D-4FAE-A72E-E6E379EE0088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{746C63F9-70DF-444C-8F1F-355985E4D950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{746C63F9-70DF-444C-8F1F-355985E4D950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{746C63F9-70DF-444C-8F1F-355985E4D950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{746C63F9-70DF-444C-8F1F-355985E4D950}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
