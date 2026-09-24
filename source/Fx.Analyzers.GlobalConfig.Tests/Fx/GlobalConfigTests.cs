@@ -92,7 +92,7 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     },
                 },
-                DiagnosticAnalyzers = DiagnosticAnalyzers.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
+                DiagnosticAnalyzers = DiagnosticAnalyzers.Extensions.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
             };
 
             tester.ExpectedDiagnostics.Add(
@@ -122,7 +122,7 @@
         {
             base.CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
             base.ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
-            base.DiagnosticAnalyzers = Fx.DiagnosticAnalyzers.Default();
+            base.DiagnosticAnalyzers = Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzers.Extensions.Default();
         }
 
         public override string Language { get; } = LanguageNames.CSharp;
@@ -130,9 +130,9 @@
         protected override string DefaultFileExt { get; } = "cs";
     }
 
-    public static class DiagnosticAnalyzers
+    public static class DiagnosticAnalyzersExtensions
     {
-        public static IEnumerable<DiagnosticAnalyzer> Default() //// TODO make this a property
+        public static IEnumerable<DiagnosticAnalyzer> Default(this DiagnosticAnalyzers _) //// TODO make this a property
         {
             /*var foo = Path.GetDirectoryName(typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location);
             foo = Path.Combine(foo, "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");*/
@@ -154,10 +154,10 @@
             /*var type = typeof(Microsoft.CodeAnalysis.Analyzers.MetaAnalyzers.DiagnosticAnalyzerAttributeAnalyzer);
             var another = (DiagnosticAnalyzer)Activator.CreateInstance(type)!;*/
 
-            return paths.SelectMany(path => DiagnosticAnalyzers.Load(path))/*.Append(another).ToImmutableArray()*/;
+            return paths.SelectMany(path => DiagnosticAnalyzers.Extensions.Load(path))/*.Append(another).ToImmutableArray()*/;
         }
 
-        public static IEnumerable<DiagnosticAnalyzer> Load(string assemblyPath)
+        public static IEnumerable<DiagnosticAnalyzer> Load(this DiagnosticAnalyzers _, string assemblyPath)
         {
             var assembly = Assembly.LoadFrom(assemblyPath);
 
