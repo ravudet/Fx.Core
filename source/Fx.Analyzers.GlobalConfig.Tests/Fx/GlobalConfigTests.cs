@@ -138,7 +138,7 @@
         protected override string DefaultFileExt { get; } = "cs";
     }
 
-    public abstract class CustomAnalyzerTest1 : AnalyzerTest<MSTestVerifier>
+    public abstract class CustomAnalyzerTest1 : AnalyzerTest<MSTestVerifier> //// TODO call this customanlzyerstest and the above refer to c#, and then remove the below one, replaceing the static calls with references to this type
     {
         public required CompilationOptions CompilationOptions { private get; init; }
 
@@ -159,6 +159,44 @@
         protected override IEnumerable<DiagnosticAnalyzer> GetDiagnosticAnalyzers()
         {
             return this.DiagnosticAnalyzers;
+        }
+
+        public static IEnumerable<DiagnosticAnalyzer> DefaultAnalyzers() //// TODO make this a property
+        {
+            /*var foo = Path.GetDirectoryName(typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location);
+            foo = Path.Combine(foo, "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");*/
+
+            var paths = new[]
+            {
+                typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location,
+                //foo,
+                ////typeof(Microsoft.CodeAnalysis.Completion.CompletionTags).Assembly.Location,
+                //typeof(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext).Assembly.Location, // TODO foo depends on this
+                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll",
+                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.Analyzers.dll",
+                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
+                ////@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.CSharp.dll",
+            };
+
+            ////var assembly = Assembly.Load(@"C:\github\OddTrotter\Fx.Core\Fx.Test.Tests\Microsoft.CodeAnalysis.NetAnalyzers.dll");
+
+            /*var type = typeof(Microsoft.CodeAnalysis.Analyzers.MetaAnalyzers.DiagnosticAnalyzerAttributeAnalyzer);
+            var another = (DiagnosticAnalyzer)Activator.CreateInstance(type)!;*/
+
+            return paths.SelectMany(path => LoadAnalyzers(path))/*.Append(another).ToImmutableArray()*/;
+        }
+
+        public static IEnumerable<DiagnosticAnalyzer> LoadAnalyzers(string assemblyPath)
+        {
+            var assembly = Assembly.LoadFrom(assemblyPath);
+
+            var types = assembly.GetTypes();
+            var analyzers = types
+                .Where(t => typeof(DiagnosticAnalyzer).IsAssignableFrom(t) && !t.IsAbstract);
+
+            var publicAnalyzers = analyzers.Where(analyzer => analyzer.IsPublic);
+
+            return analyzers.Select(t => (DiagnosticAnalyzer)Activator.CreateInstance(t)!);
         }
     }
 
