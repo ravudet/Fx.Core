@@ -9,6 +9,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     //// TODO this was pulled from an existing package, but you couldn't get the versions working correctly; see if you actually need this class (and, by extension, this project) at all
+    //// TODO maybe you should create an `iassert` interface in fx.core and then have an `iverifier` implementation that adapts an `iassert` and have `fx.test` have an `iassert` implementation for mstest; you would do this because right now this project has 2 dependencies, which is nice for demonstrating how that would work, but not great otherwise
 
     public class MSTestVerifier : IVerifier
     {
