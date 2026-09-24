@@ -1,14 +1,13 @@
 ﻿namespace Microsoft.CodeAnalysis.Diagnostics
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Reflection;
 
     public static class DiagnosticAnalyzersExtensions
     {
-        public static IEnumerable<DiagnosticAnalyzer> Default(this DiagnosticAnalyzers _) //// TODO make this a property
+        public static Assembly DefaultAssembly(this DiagnosticAnalyzers _) //// TODO make this a property
         {
+            return typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly;
+
             /*var foo = Path.GetDirectoryName(typeof(Microsoft.NetFramework.Analyzers.TypesShouldNotExtendCertainBaseTypesAnalyzer).Assembly.Location);
             foo = Path.Combine(foo, "Microsoft.CodeAnalysis.CSharp.CodeStyle.dll");*/
 
@@ -29,7 +28,7 @@
             /*var type = typeof(Microsoft.CodeAnalysis.Analyzers.MetaAnalyzers.DiagnosticAnalyzerAttributeAnalyzer);
             var another = (DiagnosticAnalyzer)Activator.CreateInstance(type)!;*/
 
-            return paths.SelectMany(path => DiagnosticAnalyzers.Extensions.Load(path))/*.Append(another).ToImmutableArray()*/;
+            ////return paths.SelectMany(path => DiagnosticAnalyzers.Extensions.Load(path))/*.Append(another).ToImmutableArray()*/;
         }
     }
 }
