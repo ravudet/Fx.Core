@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_NetAnalyzers", "source\Fx.Microsoft_CodeAnalysis_NetAnalyzers\Fx.Microsoft_CodeAnalysis_NetAnalyzers.csproj", "{4F140A7D-4325-417D-B3E1-36314D922F3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_Analyzer_Testing", "source\Fx.Microsoft_CodeAnalysis_Analyzer_Testing\Fx.Microsoft_CodeAnalysis_Analyzer_Testing.csproj", "{400FF19C-449D-4FAE-A72E-E6E379EE0088}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework", "source\Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework\Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework.csproj", "{400FF19C-449D-4FAE-A72E-E6E379EE0088}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
