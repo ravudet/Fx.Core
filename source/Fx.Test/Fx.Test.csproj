@@ -32,4 +32,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
   </ItemGroup>
+
 </Project>
