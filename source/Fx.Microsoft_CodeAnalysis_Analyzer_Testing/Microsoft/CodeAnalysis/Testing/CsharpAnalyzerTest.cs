@@ -17,11 +17,11 @@
             base.CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
             base.ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
             //// TODO base.DiagnosticAnalyzers = GlobalConfigTests.DefaultAnalyzers;
-            
+
             var test = new FakeAnalyzerTest()
             {
-                TestState = new SolutionState(string.Empty, string.Empty, string.Empty, string.Empty),
-            }
+                //// TODO you are here TestState = new SolutionState(string.Empty, string.Empty, string.Empty, string.Empty),
+            };
         }
 
         public override string Language { get; } = LanguageNames.CSharp;
