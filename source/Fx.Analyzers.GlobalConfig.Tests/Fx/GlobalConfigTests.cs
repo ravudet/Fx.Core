@@ -79,6 +79,7 @@
 
             public Derived Build()
             {
+                //// TODO you could do all of the locking in here, actually; so, you would lock, set all of the static properties, created the drived, unlock, and return
                 var derived = new Derived();
                 Monitor.Exit(Derived.@lock);
                 return derived;
