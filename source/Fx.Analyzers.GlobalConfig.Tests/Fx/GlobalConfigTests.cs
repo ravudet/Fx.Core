@@ -8,6 +8,7 @@
     using System.Linq;
     using System.Reflection;
     using System.Runtime.CompilerServices;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using Microsoft.CodeAnalysis;
@@ -20,10 +21,84 @@
     using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    public static class Extensions
+    public abstract class Base
     {
-        
+        protected Base()
+        {
+            Console.WriteLine($"value: '{DoWork()}'");
+        }
+
+        protected abstract string DoWork();
     }
+
+    public abstract class Intermediate
+        : Base
+    {
+        protected Intermediate()
+        {
+        }
+
+        protected int Value { get; set; } = Derived.BuilderFoo;
+
+        protected override string DoWork()
+        {
+            return Value.ToString();
+        }
+    }
+
+    public class Derived
+        : Intermediate
+    {
+        private Derived()
+        {
+        }
+
+        private static readonly object @lock = new object();
+
+        internal static int BuilderFoo { get; set; } //// TODO do better than `internal` here
+
+        public sealed class Builder
+        {
+            public Builder()
+            {
+                //// TODO i don't know if locking here is a good experience
+                Monitor.Enter(Derived.@lock);
+            }
+
+            public int Foo
+            {
+                get
+                {
+                    return Derived.BuilderFoo;
+                }
+                set
+                {
+                    Derived.BuilderFoo = value;
+                }
+            }
+
+            public Derived Build()
+            {
+                var derived = new Derived();
+                Monitor.Exit(Derived.@lock);
+                return derived;
+            }
+        }
+    }
+
+    [TestClass]
+    public class Tests
+    {
+        [TestMethod]
+        public void Test()
+        {
+            new Derived.Builder()
+            {
+                Foo = 5,
+            }.Build();
+        }
+    }
+
 
     [TestClass]
     public class GlobalConfigTests
