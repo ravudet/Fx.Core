@@ -162,6 +162,15 @@
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
+
+
+
+            var test2 = CsharpAnalzyerTest.Create<MSTestVerifier>(test, DiagnosticAnalyzers.Extensions.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location));
+            test2.TestState.AnalyzerConfigFiles.Add(
+
+
+
+
             var tester = new MsTestCsharpAnalyzerTest()
             {
                 TestCode = test,
@@ -186,12 +195,9 @@
         }
     }
 
-    public class MsTestCsharpAnalyzerTest : CsharpAnalyzerTest<MSTestVerifier>
+    public static class MsTestCsharpAnalyzerTest
     {
-        [SetsRequiredMembers]
-        public MsTestCsharpAnalyzerTest()
-        {
-        }
+        public static AnalyzerTest<MSTestVerifier> Create(string testCode, )
     }
 
     

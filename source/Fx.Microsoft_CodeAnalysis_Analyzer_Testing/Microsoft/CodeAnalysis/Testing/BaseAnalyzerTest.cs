@@ -55,6 +55,8 @@
 
             public required string Language { get; set; }
 
+            public required string TestCode { get; init; }
+
             public BaseAnalyzerTest<TVerifier> Build()
             {
                 //// TODO document why this works
@@ -66,7 +68,10 @@
                     BaseAnalyzerTest<TVerifier>.BuilderDefaultFileExt = this.DefaultFileExt;
                     BaseAnalyzerTest<TVerifier>.BuilderLanguage = this.Language;
 
-                    return new BaseAnalyzerTest<TVerifier>();
+                    return new BaseAnalyzerTest<TVerifier>()
+                    {
+                        TestCode = this.TestCode,
+                    };
                 }
             }
         }
