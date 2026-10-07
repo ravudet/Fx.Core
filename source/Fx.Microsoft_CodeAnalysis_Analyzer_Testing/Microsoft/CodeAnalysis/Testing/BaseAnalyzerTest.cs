@@ -19,7 +19,7 @@
             // This is a very peculiar way to instantiate a type, so let's explain the motivation, and then explain how the
             // provided code accomplishes the goal.
             //
-            // ## objective
+            // ## motivation
             //
             // The objective is to allow instantiating a `AnalyzerTest<TVerifier>` where the caller can provide the
             // appropriate `CompilationOptions`, `ParseOptions`, `DiagnosticAnalyzer`s, `DefaultFileExt`, and `Language`. As
