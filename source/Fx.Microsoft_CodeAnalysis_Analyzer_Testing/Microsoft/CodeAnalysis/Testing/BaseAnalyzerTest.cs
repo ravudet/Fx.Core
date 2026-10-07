@@ -42,7 +42,7 @@
             // }
             // ```
             //
-            // We could then have a concrete derived type to specify the less configurable properties that are langauge specific (`DefaultFileExt` and `Language`):
+            // It's important to note that we *cannot* have the less configurable values (`DefaultFileExt` and `Language`) as properties on the derived type because `AnalyzerTest<TVerifier>` calls them from its constructor. Base type constructors are run before derived type constructors, so `AnalyzerTest<TVerifier>` will use the values of `DefaultFileExt` and `Language` before `Base<TVerifier>` has had a chance to initialize them to the values provided by the caller, meaning they will always have their default values of `null`. Because of this limitation, we would then have a concrete derived type to specify those values:
             // ```
             // class Csharp<TVerifier> : Base<TVerifier>
             //   where TVerifier : IVerifier, new()
