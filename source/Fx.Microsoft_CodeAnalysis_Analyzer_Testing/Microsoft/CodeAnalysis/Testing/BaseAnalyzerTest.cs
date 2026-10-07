@@ -52,6 +52,7 @@
             // }
             // ```
             //
+            // TODO the real reason was because of default values
             // However, now that we know that we are a C# analyzer, we should only allow `CSharpCompilationOptions` and `CSharpParseOptions`. We can accomplish this by adding new properties to `Csharp<TVerifier>`, but doing so requires `Csharp<TVerifier>` to use different property names than `Base<TVerifier>`; this means that callers would possibly set both properties, which defeats the purpose of having the more specific properties on `Csharp<TVerifier>`. 
             //
             // This could be addressed by having `Base<TVerifier>` use `protected abstract` properties, and then require derived types to expose the `public`ly initializable properties. At that point, there is nothing gained by even having the `Base<TVerifier>` type. This is "fine", we can discard it, but it means that each derived type now has to deal with creating properties to deal with the highly configuable values on `AnalyzerTest<TVerifier>`. So, having discarded `Base<TVerifier>`, we end up with:

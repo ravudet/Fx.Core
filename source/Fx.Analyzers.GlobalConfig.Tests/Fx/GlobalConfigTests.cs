@@ -30,7 +30,7 @@
 
     sealed class Derived : OriginalBase
     {
-        public required string CompilationOptions { private get; init; } = string.Empty;
+        public string CompilationOptions { private get; init; } = string.Empty;
 
         public override string Language { get; } = "csharp";
 
