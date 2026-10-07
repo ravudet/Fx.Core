@@ -24,6 +24,8 @@
             // designed, `AnalyzerTest<TVerifier>` requires inheritance for providing these values by making them
             // `abstract`. The issue with this design is that most of these values (`CompilationOptions`, `ParseOptions`, and `DiagnosticAnalyzer`s) are highly configurable, and so they should not require a new derived type for every combination of configurations. 
 
+            // TODO with what you know now about the type initializers, do you actually need this stuff?
+
             // https://learn.microsoft.com/en-us/answers/questions/462106/in-what-order-do-things-happen
             // https://giannisakritidis.com/blog/Instantiation-And-Initialization-Order/
 
