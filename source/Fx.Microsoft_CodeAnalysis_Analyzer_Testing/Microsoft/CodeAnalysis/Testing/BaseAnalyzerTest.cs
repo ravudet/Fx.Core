@@ -47,6 +47,8 @@
             // class Csharp<TVerifier> : Base<TVerifier>
             //   where TVerifier : IVerifier, new()
             // {
+            //   protected override string DefaultFileExt { get; } = "cs";
+            //   public override string Language { get; } = LanguageNames.CSharp;
             // }
             // ```
             //
