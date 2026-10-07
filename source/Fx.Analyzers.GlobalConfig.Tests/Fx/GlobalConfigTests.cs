@@ -26,6 +26,8 @@
         protected abstract string CreateCompilationOptions();
 
         public abstract string Language { get; }
+
+        public abstract object Test { init; }
     }
 
     sealed class Derived : OriginalBase
