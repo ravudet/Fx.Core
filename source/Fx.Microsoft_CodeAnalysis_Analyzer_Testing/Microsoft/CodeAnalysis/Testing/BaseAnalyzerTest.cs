@@ -19,10 +19,38 @@
             // This is a very peculiar way to instantiate a type, so let's explain the motivation, and then explain how the
             // provided code accomplishes the goal.
             //
+            // ## objective
+            //
             // The objective is to allow instantiating a `AnalyzerTest<TVerifier>` where the caller can provide the
             // appropriate `CompilationOptions`, `ParseOptions`, `DiagnosticAnalyzer`s, `DefaultFileExt`, and `Language`. As
             // designed, `AnalyzerTest<TVerifier>` requires inheritance for providing these values by making them
             // `abstract`. The issue with this design is that most of these values (`CompilationOptions`, `ParseOptions`, and `DiagnosticAnalyzer`s) are highly configurable, and so they should not require a new derived type for every combination of configurations. 
+            // 
+            // We *could* accomplish this by creating a "base" type that derives from `AnalyzerTest<TVerifier>` and exposes the highly configurable values as properties:
+            // ```
+            // abstact class Base<TVerifier> : AnalyzerTest<TVerifier>
+            //   where TVerifier : IVerifier, new()
+            // {
+            //   public required CompilationOptions CompilationOptions { private get; init; }
+            //   protected override CompilationOptions CreateCompilationOptions()
+            //   {
+            //     return this.CompilationOptions;
+            //   }
+            //
+            //   // NOTE: add `ParseOptions` and  `DiagnosticAnalyzers` too
+            //   ...
+            // }
+            // ```
+            //
+            // We could then have a concrete derived type to specify the less configurable properties that are langauge specific (`DefaultFileExt` and `Language`):
+            // ```
+            // class Csharp<TVerifier> : Base<TVerifier>
+            //   where TVerifier : IVerifier, new()
+            // {
+            // }
+            // ```
+            //
+            // ## solution
 
             // TODO with what you know now about the type initializers, do you actually need this stuff?
 
