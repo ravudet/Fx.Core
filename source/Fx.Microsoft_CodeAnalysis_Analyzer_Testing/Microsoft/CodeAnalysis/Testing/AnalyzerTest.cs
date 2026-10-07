@@ -6,6 +6,40 @@
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.Diagnostics;
 
+    abstract class OriginalBase
+    {
+        protected abstract string CreateCompilationOptions();
+
+        protected abstract string Language { get; }
+    }
+
+    abstract class Base : OriginalBase
+    {
+        public required string CompilationOptions { get; init; }
+
+        protected override string CreateCompilationOptions()
+        {
+            return this.CompilationOptions;
+        }
+    }
+
+    class Derived : Base
+    {
+        public required string DerivedCompilationOptions
+        {
+            get
+            {
+                return base.CompilationOptions;
+            }
+            init
+            {
+                base.CompilationOptions = value;
+            }
+        }
+
+        protected override string Language { get; } = "csharp";
+    }
+
     public static class AnalyzerTest
     {
         public static AnalyzerTest<TVerifier> Create<TVerifier>(
