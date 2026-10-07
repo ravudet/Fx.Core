@@ -56,7 +56,7 @@
             //
             // This could be addressed by having `Base<TVerifier>` use `protected abstract` properties, and then require derived types to expose the `public`ly initializable properties. At that point, there is nothing gained by even having the `Base<TVerifier>` type. This is "fine", we can discard it, but it means that each derived type now has to deal with creating properties to deal with the highly configuable values on `AnalyzerTest<TVerifier>`. 
             //
-            // TODO talk about the constructor problem
+            // TODO talk about that you could get around this with protected setters on properties, but there's the constructor problem
             //
             // ## solution
 
