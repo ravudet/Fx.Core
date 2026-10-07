@@ -24,6 +24,9 @@
             // designed, `AnalyzerTest<TVerifier>` requires inheritance for providing these values by making them
             // `abstract`. 
 
+            // https://learn.microsoft.com/en-us/answers/questions/462106/in-what-order-do-things-happen
+            // https://giannisakritidis.com/blog/Instantiation-And-Initialization-Order/
+
             //// TODO document why this works
             lock (BaseAnalyzerTest<TVerifier>.@lock)
             {
