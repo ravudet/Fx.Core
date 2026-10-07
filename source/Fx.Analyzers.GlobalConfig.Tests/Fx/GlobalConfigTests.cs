@@ -21,6 +21,25 @@
     using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    abstract class OriginalBase
+    {
+        protected abstract string CreateCompilationOptions();
+
+        public abstract string Language { get; }
+    }
+
+    sealed class Derived : OriginalBase
+    {
+        public required string CompilationOptions { private get; init; } = string.Empty;
+
+        public override string Language { get; } = "csharp";
+
+        protected override string CreateCompilationOptions()
+        {
+            return this.CompilationOptions;
+        }
+    }
+
     [TestClass]
     public class GlobalConfigTests
     {
