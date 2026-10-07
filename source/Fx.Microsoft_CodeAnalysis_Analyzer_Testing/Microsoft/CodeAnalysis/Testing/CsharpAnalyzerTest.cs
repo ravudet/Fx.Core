@@ -6,23 +6,6 @@
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.Diagnostics;
 
-    public static class CsharpAnalzyerTest
-    {
-        public static BaseAnalyzerTest<TVerifier> Create<TVerifier>(string testCode, IEnumerable<DiagnosticAnalyzer> diagnosticAnalyzers)
-            where TVerifier : IVerifier, new()
-        {
-            return new BaseAnalyzerTest<TVerifier>.Builder()
-            {
-                DiagnosticAnalyzers = diagnosticAnalyzers,
-                CompilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true),
-                DefaultFileExt = "cs",
-                Language = LanguageNames.CSharp,
-                ParseOptions = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose),
-                TestCode = testCode,
-            }.Build();
-        }
-    }
-
     /*public class CsharpAnalyzerTest<TVerifier> : BaseAnalyzerTest<TVerifier>
         where TVerifier : IVerifier, new()
     {

@@ -137,7 +137,10 @@
             //// TODO can you rename the Content folder to `_resources`?
             //// TODO is there a better way to combine resource paths?
 
-            var tester = new MsTestCsharpAnalyzerTest()
+            var tester = AnalyzerTest.Csharp.Create<MSTestVerifier>(test, new AnalyzerTest.Csharp.Settings.Builder() {  DiagnosticAnalyzers = GlobalConfigTests.DefaultAnalyzers }.Build());
+            tester.TestState.AnalyzerConfigFiles.Add(("/.editorconfig", SourceText.From(editorConfig)));
+
+            /*var tester = new MsTestCsharpAnalyzerTest()
             {
                 TestCode = test,
                 TestState =
@@ -147,7 +150,7 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     },
                 },
-            };
+            };*/
 
             tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1510", DiagnosticSeverity.Error).WithSpan(13, 13, 16, 14).WithSpan(13, 17, 13, 27).WithArguments("ArgumentNullException", "ThrowIfNull"));
 
@@ -163,15 +166,18 @@
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
 
+            var tester = AnalyzerTest.Csharp.Create<MSTestVerifier>(
+                test,
+                new AnalyzerTest.Csharp.Settings.Builder()
+                {
+                    DiagnosticAnalyzers = DiagnosticAnalyzers.Extensions.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
+                }.Build());
+            tester.TestState.AnalyzerConfigFiles.Add(("/.editorconfig", SourceText.From(editorConfig)));
 
 
-            var test2 = CsharpAnalzyerTest.Create<MSTestVerifier>(test, DiagnosticAnalyzers.Extensions.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location));
-            test2.TestState.AnalyzerConfigFiles.Add(
 
 
-
-
-            var tester = new MsTestCsharpAnalyzerTest()
+            /*var tester = new MsTestCsharpAnalyzerTest()
             {
                 TestCode = test,
                 TestState =
@@ -182,7 +188,7 @@
                     },
                 },
                 DiagnosticAnalyzers = DiagnosticAnalyzers.Extensions.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
-            };
+            };*/
 
             tester.ExpectedDiagnostics.Add(
                 DiagnosticResult.CompilerError("FX0001")
@@ -194,13 +200,5 @@
             await tester.RunAsync().ConfigureAwait(false);
         }
     }
-
-    public static class MsTestCsharpAnalyzerTest
-    {
-        public static AnalyzerTest<MSTestVerifier> Create(string testCode, )
-    }
-
-    
-
-    
+        
 }
