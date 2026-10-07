@@ -35,6 +35,7 @@
         public string CompilationOptions { private get; init; } = string.Empty;
 
         public override string Language { get; } = "csharp";
+        public override object Test { init => throw new NotImplementedException(); }
 
         protected override string CreateCompilationOptions()
         {
@@ -46,9 +47,10 @@
     {
         public static void Create()
         {
-            new Derived()
+            var derived = new Derived()
             {
             };
+            Console.WriteLine(derived.Test);
         }
     }
 
