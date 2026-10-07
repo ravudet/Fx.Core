@@ -22,7 +22,7 @@
             // The objective is to allow instantiating a `AnalyzerTest<TVerifier>` where the caller can provide the
             // appropriate `CompilationOptions`, `ParseOptions`, `DiagnosticAnalyzer`s, `DefaultFileExt`, and `Language`. As
             // designed, `AnalyzerTest<TVerifier>` requires inheritance for providing these values by making them
-            // `abstract`. 
+            // `abstract`. The issue with this design is that most of these values (`CompilationOptions`, `ParseOptions`, and `DiagnosticAnalyzer`s) are highly configurable, and so they should not require a new derived type for every combination of configurations. 
 
             // https://learn.microsoft.com/en-us/answers/questions/462106/in-what-order-do-things-happen
             // https://giannisakritidis.com/blog/Instantiation-And-Initialization-Order/
