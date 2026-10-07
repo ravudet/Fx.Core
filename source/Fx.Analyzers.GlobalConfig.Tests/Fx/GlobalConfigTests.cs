@@ -40,6 +40,16 @@
         }
     }
 
+    public static class Factory
+    {
+        public static void Create()
+        {
+            new Derived()
+            {
+            };
+        }
+    }
+
     [TestClass]
     public class GlobalConfigTests
     {
