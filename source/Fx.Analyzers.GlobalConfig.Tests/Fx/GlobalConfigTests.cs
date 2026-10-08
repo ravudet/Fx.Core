@@ -84,20 +84,6 @@
                 DiagnosticAnalyzers = DiagnosticAnalyzers.Extensions.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly),               
             };
 
-
-            /*var tester = new MsTestCsharpAnalyzerTest()
-            {
-                TestCode = test,
-                TestState =
-                {
-                    AnalyzerConfigFiles =
-                    {
-                        ("/.editorconfig", SourceText.From(editorConfig)),
-                    },
-                },
-                DiagnosticAnalyzers = DiagnosticAnalyzers.Extensions.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
-            };*/
-
             tester.ExpectedDiagnostics.Add(
                 DiagnosticResult.CompilerError("FX0001")
                     .WithSeverity(DiagnosticSeverity.Error)
