@@ -6,7 +6,7 @@
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.Diagnostics;
 
-    public abstract class BaseAnalyzerTest2<TVerifier, TCompilationOptions, TParseOptions> : AnalyzerTest<TVerifier>
+    public abstract class BaseAnalyzerTest<TVerifier, TCompilationOptions, TParseOptions> : AnalyzerTest<TVerifier>
         where TVerifier : IVerifier, new()
         where TCompilationOptions : CompilationOptions
         where TParseOptions : ParseOptions
@@ -31,7 +31,7 @@
         }
     }
 
-    public class CsharpAnalyzerTest<TVerifier> : BaseAnalyzerTest2<TVerifier, CSharpCompilationOptions, CSharpParseOptions>
+    public class CsharpAnalyzerTest<TVerifier> : BaseAnalyzerTest<TVerifier, CSharpCompilationOptions, CSharpParseOptions>
         where TVerifier : IVerifier, new()
     {
         public override CSharpCompilationOptions CompilationOptions { protected get; init; } = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
