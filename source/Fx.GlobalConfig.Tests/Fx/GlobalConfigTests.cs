@@ -39,6 +39,8 @@
         [TestMethod]
         public async Task CA1510()
         {
+            //// TODO remove unnecessary dependencies
+
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 

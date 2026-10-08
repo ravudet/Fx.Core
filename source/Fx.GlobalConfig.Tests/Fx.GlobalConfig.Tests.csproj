@@ -18,7 +18,6 @@
     <Compile Include="_resources\**" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
     <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis\Fx.Microsoft_CodeAnalysis.csproj" />
     <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework\Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework.csproj" />
