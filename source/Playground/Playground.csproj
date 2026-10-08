@@ -12,6 +12,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Fx.GlobalConfig" Version="1.0.0-639270616212686653" />
   </ItemGroup>
 
 </Project>

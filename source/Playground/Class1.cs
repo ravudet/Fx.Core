@@ -2,7 +2,7 @@
 {
     public class Class1
     {
-        public Task<int> DoWork()
+        public Task<int> DoWork(int foo)
         {
             ////return await Fx.Test.Class1.DoWork();
 
