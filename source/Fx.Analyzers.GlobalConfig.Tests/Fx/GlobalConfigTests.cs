@@ -90,10 +90,7 @@
             //// TODO can you rename the Content folder to `_resources`?
             //// TODO is there a better way to combine resource paths?
 
-            var tester = AnalyzerTest.Csharp.Create<MSTestVerifier>(test, new AnalyzerTest.Csharp.Settings.Builder() {  DiagnosticAnalyzers = GlobalConfigTests.DefaultAnalyzers }.Build());
-            tester.TestState.AnalyzerConfigFiles.Add(("/.editorconfig", SourceText.From(editorConfig)));
-
-            tester = new MsTestCsharpAnalyzerTest()
+            var tester = new MsTestCsharpAnalyzerTest()
             {
                 TestCode = test,
                 TestState =
@@ -120,15 +117,7 @@
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
 
-            var tester = AnalyzerTest.Csharp.Create<MSTestVerifier>(
-                test,
-                new AnalyzerTest.Csharp.Settings.Builder()
-                {
-                    DiagnosticAnalyzers = DiagnosticAnalyzers.Extensions.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),
-                }.Build());
-            tester.TestState.AnalyzerConfigFiles.Add(("/.editorconfig", SourceText.From(editorConfig)));
-
-            tester = new MsTestCsharpAnalyzerTest()
+            var tester = new MsTestCsharpAnalyzerTest()
             {
                 TestCode = test,
                 TestState =
@@ -169,21 +158,4 @@
     public sealed class MsTestCsharpAnalyzerTest : CsharpAnalyzerTest<MSTestVerifier>
     {
     }
-
-    public class Foo : BaseAnalyzerTest2<MSTestVerifier, CompilationOptions, ParseOptions>
-    {
-        public override CompilationOptions CompilationOptions { protected get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
-        public override ParseOptions ParseOptions { protected get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
-        public override IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { protected get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
-
-        public object Bar()
-        {
-            return this.CompilationOptions;
-        }
-
-        public override string Language => throw new NotImplementedException();
-
-        protected override string DefaultFileExt => throw new NotImplementedException();
-    }
-
 }
