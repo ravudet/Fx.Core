@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <!--nuget build properties-->
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <!--nuget package properties-->
+  <PropertyGroup>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <PackageProjectUrl>TODO</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>https://github.com/ravudet/Fx.Core/releases/tag/$(PackageId)_$(VersionPrefix)</PackageReleaseNotes>
+    <DevelopmentDependency>false</DevelopmentDependency>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="build\Fx.GlobalConfig.props" PackagePath="build" Pack="true" />
+    <None Include="content\Fx.GlobalConfig.globalconfig" PackagePath="content" Pack="true" />
+    <None Include="tools\nothing.ps1" PackagePath="tools" Pack="true" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>
