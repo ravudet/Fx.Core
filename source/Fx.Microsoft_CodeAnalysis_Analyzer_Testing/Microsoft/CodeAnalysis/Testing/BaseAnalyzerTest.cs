@@ -1,8 +1,49 @@
 ﻿namespace Microsoft.CodeAnalysis.Testing
 {
     using System.Collections.Generic;
+    using System.Linq;
 
+    using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.Diagnostics;
+
+    public abstract class BaseAnalyzerTest2<TVerifier, TCompilationOptions, TParseOptions> : AnalyzerTest<TVerifier>
+        where TVerifier : IVerifier, new()
+        where TCompilationOptions : CompilationOptions
+        where TParseOptions : ParseOptions
+    {
+        public abstract TCompilationOptions CompilationOptions { protected internal get; init; } //// TODO document why `internal`
+        public abstract TParseOptions ParseOptions { protected internal get; init; }
+        public abstract IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { protected internal get; init; }
+
+        protected override CompilationOptions CreateCompilationOptions()
+        {
+            return this.CompilationOptions;
+        }
+
+        protected override ParseOptions CreateParseOptions()
+        {
+            return this.ParseOptions;
+        }
+
+        protected override IEnumerable<DiagnosticAnalyzer> GetDiagnosticAnalyzers()
+        {
+            return this.DiagnosticAnalyzers;
+        }
+    }
+
+    public class CsharpAnalyzerTest<TVerifier> : BaseAnalyzerTest2<TVerifier, CSharpCompilationOptions, CSharpParseOptions>
+        where TVerifier : IVerifier, new()
+    {
+        public override CSharpCompilationOptions CompilationOptions { protected internal get; init; } = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
+
+        public override CSharpParseOptions ParseOptions { protected internal get; init; } = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
+
+        public override IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { protected internal get; init; } = Enumerable.Empty<DiagnosticAnalyzer>();
+
+        public override string Language { get; } = LanguageNames.CSharp; //// TODO property, or return constant?
+
+        protected override string DefaultFileExt { get; } = "cs"; //// TODO property, or return constant?
+    }
 
     public sealed class BaseAnalyzerTest<TVerifier> : AnalyzerTest<TVerifier>
         where TVerifier : IVerifier, new()

@@ -50,7 +50,7 @@
             var derived = new Derived()
             {
             };
-            Console.WriteLine(derived.Test);
+            ////Console.WriteLine(derived.Test);
         }
     }
 
@@ -127,7 +127,18 @@
                 }.Build());
             tester.TestState.AnalyzerConfigFiles.Add(("/.editorconfig", SourceText.From(editorConfig)));
 
-
+            tester = new MsTestCsharpAnalyzerTest()
+            {
+                TestCode = test,
+                TestState =
+                {
+                    AnalyzerConfigFiles =
+                    {
+                        ("/.editorconfig", SourceText.From(editorConfig)),
+                    },
+                },
+                DiagnosticAnalyzers = DiagnosticAnalyzers.Extensions.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly.Location),               
+            };
 
 
             /*var tester = new MsTestCsharpAnalyzerTest()
@@ -152,6 +163,10 @@
 
             await tester.RunAsync().ConfigureAwait(false);
         }
+    }
+
+    public sealed class MsTestCsharpAnalyzerTest : CsharpAnalyzerTest<MSTestVerifier>
+    {
     }
         
 }
