@@ -67,8 +67,6 @@
         [TestMethod]
         public async Task FX0001()
         {
-            //// TODO this test should actually go in fx.core.analyzers.globalconfig.tests
-
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
