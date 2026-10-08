@@ -13,16 +13,10 @@
 
   <ItemGroup>
     <EmbeddedResource Include="..\Fx.GlobalConfig\content\Fx.GlobalConfig.globalconfig" Link="Fx.GlobalConfig.globalconfig" />
-    <!--<EmbeddedResource Include="_resources\FX0001.cs" />
-    <EmbeddedResource Include="_resources\Test.cs" />-->
   </ItemGroup>
   <ItemGroup>
     <Compile Include="_resources\**" />
   </ItemGroup>
-  <!--<ItemGroup>
-    <Compile Remove="_resources\FX0001.cs" />
-    <Compile Remove="_resources\Test.cs" />
-  </ItemGroup>-->
   <ItemGroup>
     <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
