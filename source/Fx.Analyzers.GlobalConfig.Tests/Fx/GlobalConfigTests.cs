@@ -14,6 +14,8 @@
     [TestClass]
     public class GlobalConfigTests
     {
+        //// TODO do any of these helper methods need to be factored out and shared with the `...Analzyers.Tests` projects?
+
         private static async Task<string> GetManifestResourceString(string resourceName)
         {
             //// TODO do you want to use Assembly.GetCallingAssembly?
