@@ -27,10 +27,8 @@
 
         private static async Task<string> GetTestString([CallerMemberName] string testName = "")
         {
-            var names = typeof(GlobalConfigTests).Assembly.GetManifestResourceNames();
-
             //// TODO do you like this method name?
-            return await GlobalConfigTests.GetManifestResourceString("_resources." + testName + ".cs").ConfigureAwait(false);
+            return await GlobalConfigTests.GetManifestResourceString($"_resources.{testName}.cs").ConfigureAwait(false);
         }
 
         private static async Task<string> GetEditorConfigString()
