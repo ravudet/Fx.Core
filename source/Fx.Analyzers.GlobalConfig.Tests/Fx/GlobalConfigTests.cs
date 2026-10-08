@@ -90,7 +90,7 @@
             //// TODO can you rename the Content folder to `_resources`?
             //// TODO is there a better way to combine resource paths?
 
-            var tester = new MsTestCsharpAnalyzerTest()
+            var tester = new CsharpAnalyzerTest<MSTestVerifier>()
             {
                 TestCode = test,
                 TestState =
@@ -117,7 +117,7 @@
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
 
-            var tester = new MsTestCsharpAnalyzerTest()
+            var tester = new CsharpAnalyzerTest<MSTestVerifier>()
             {
                 TestCode = test,
                 TestState =
@@ -153,9 +153,5 @@
 
             await tester.RunAsync().ConfigureAwait(false);
         }
-    }
-
-    public sealed class MsTestCsharpAnalyzerTest : CsharpAnalyzerTest<MSTestVerifier>
-    {
     }
 }
