@@ -12,11 +12,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\Fx.Analyzers.GlobalConfig\content\Fx.Analyzers.GlobalConfig.globalconfig" Link="Fx.Analyzers.GlobalConfig.globalconfig" />
+    <EmbeddedResource Include="..\Fx.GlobalConfig\content\Fx.GlobalConfig.globalconfig" Link="Fx.GlobalConfig.globalconfig" />
+    <!--<EmbeddedResource Include="_resources\FX0001.cs" />
+    <EmbeddedResource Include="_resources\Test.cs" />-->
   </ItemGroup>
   <ItemGroup>
     <Compile Include="_resources\**" />
   </ItemGroup>
+  <!--<ItemGroup>
+    <Compile Remove="_resources\FX0001.cs" />
+    <Compile Remove="_resources\Test.cs" />
+  </ItemGroup>-->
   <ItemGroup>
     <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
@@ -25,7 +31,7 @@
     <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_Analyzer_Testing\Fx.Microsoft_CodeAnalysis_Analyzer_Testing.csproj" />
     <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_NetAnalyzers\Fx.Microsoft_CodeAnalysis_NetAnalyzers.csproj" />
   </ItemGroup>
-  
+
   <Target Name="RemoveResources" BeforeTargets="BeforeBuild">
     <ItemGroup>
       <Compile Remove="_resources\**" />
