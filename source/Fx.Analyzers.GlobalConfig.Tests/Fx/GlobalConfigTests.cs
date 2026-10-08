@@ -46,7 +46,6 @@
 
             //// TODO remove any unnecessary dependencies
             //// TODO can you rename the Content folder to `_resources`?
-            //// TODO is there a better way to combine resource paths?
 
             var tester = new CsharpAnalyzerTest<MSTestVerifier>()
             {
