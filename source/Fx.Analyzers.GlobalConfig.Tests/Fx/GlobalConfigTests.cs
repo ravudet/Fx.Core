@@ -169,5 +169,21 @@
     public sealed class MsTestCsharpAnalyzerTest : CsharpAnalyzerTest<MSTestVerifier>
     {
     }
-        
+
+    public class Foo : BaseAnalyzerTest2<MSTestVerifier, CompilationOptions, ParseOptions>
+    {
+        public override CompilationOptions CompilationOptions { protected get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
+        public override ParseOptions ParseOptions { protected get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
+        public override IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { protected get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
+
+        public object Bar()
+        {
+            return this.CompilationOptions;
+        }
+
+        public override string Language => throw new NotImplementedException();
+
+        protected override string DefaultFileExt => throw new NotImplementedException();
+    }
+
 }

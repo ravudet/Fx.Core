@@ -11,9 +11,9 @@
         where TCompilationOptions : CompilationOptions
         where TParseOptions : ParseOptions
     {
-        public abstract TCompilationOptions CompilationOptions { protected internal get; init; } //// TODO document why `internal`
-        public abstract TParseOptions ParseOptions { protected internal get; init; }
-        public abstract IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { protected internal get; init; }
+        public abstract TCompilationOptions CompilationOptions { protected get; init; } //// TODO can you do better than `protected`? `internal` doesn't do anything
+        public abstract TParseOptions ParseOptions { protected get; init; }
+        public abstract IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { protected get; init; }
 
         protected override CompilationOptions CreateCompilationOptions()
         {
@@ -34,11 +34,11 @@
     public class CsharpAnalyzerTest<TVerifier> : BaseAnalyzerTest2<TVerifier, CSharpCompilationOptions, CSharpParseOptions>
         where TVerifier : IVerifier, new()
     {
-        public override CSharpCompilationOptions CompilationOptions { protected internal get; init; } = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
+        public override CSharpCompilationOptions CompilationOptions { protected get; init; } = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary, allowUnsafe: true);
 
-        public override CSharpParseOptions ParseOptions { protected internal get; init; } = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
+        public override CSharpParseOptions ParseOptions { protected get; init; } = new CSharpParseOptions(LanguageVersion.Default, DocumentationMode.Diagnose);
 
-        public override IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { protected internal get; init; } = Enumerable.Empty<DiagnosticAnalyzer>();
+        public override IEnumerable<DiagnosticAnalyzer> DiagnosticAnalyzers { protected get; init; } = Enumerable.Empty<DiagnosticAnalyzer>();
 
         public override string Language { get; } = LanguageNames.CSharp; //// TODO property, or return constant?
 
