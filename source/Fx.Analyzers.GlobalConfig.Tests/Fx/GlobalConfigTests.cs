@@ -93,7 +93,7 @@
             var tester = AnalyzerTest.Csharp.Create<MSTestVerifier>(test, new AnalyzerTest.Csharp.Settings.Builder() {  DiagnosticAnalyzers = GlobalConfigTests.DefaultAnalyzers }.Build());
             tester.TestState.AnalyzerConfigFiles.Add(("/.editorconfig", SourceText.From(editorConfig)));
 
-            /*var tester = new MsTestCsharpAnalyzerTest()
+            tester = new MsTestCsharpAnalyzerTest()
             {
                 TestCode = test,
                 TestState =
@@ -103,7 +103,8 @@
                         ("/.editorconfig", SourceText.From(editorConfig)),
                     },
                 },
-            };*/
+                DiagnosticAnalyzers = GlobalConfigTests.DefaultAnalyzers,
+            };
 
             tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1510", DiagnosticSeverity.Error).WithSpan(13, 13, 16, 14).WithSpan(13, 17, 13, 27).WithArguments("ArgumentNullException", "ThrowIfNull"));
 
