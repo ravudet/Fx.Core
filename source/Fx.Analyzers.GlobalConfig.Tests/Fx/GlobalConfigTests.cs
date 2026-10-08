@@ -16,6 +16,8 @@
     {
         //// TODO do any of these helper methods need to be factored out and shared with the `...Analzyers.Tests` projects?
 
+        private static IEnumerable<DiagnosticAnalyzer> DefaultAnalyzers { get; } = DiagnosticAnalyzers.Extensions.Load(DiagnosticAnalyzers.Extensions.DefaultAssembly());
+
         private static async Task<string> GetManifestResourceString(string resourceName)
         {
             //// TODO do you want to use Assembly.GetCallingAssembly?
@@ -33,8 +35,6 @@
         {
             return await GetManifestResourceString("Fx.Analyzers.GlobalConfig.globalconfig").ConfigureAwait(false);
         }
-
-        public static IEnumerable<DiagnosticAnalyzer> DefaultAnalyzers { get; } = DiagnosticAnalyzers.Extensions.Load(DiagnosticAnalyzers.Extensions.DefaultAssembly());
 
         [TestMethod]
         public async Task Test()
