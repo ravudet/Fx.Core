@@ -21,39 +21,6 @@
     using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    abstract class OriginalBase
-    {
-        protected abstract string CreateCompilationOptions();
-
-        public abstract string Language { get; }
-
-        public abstract object Test { init; }
-    }
-
-    sealed class Derived : OriginalBase
-    {
-        public string CompilationOptions { private get; init; } = string.Empty;
-
-        public override string Language { get; } = "csharp";
-        public override object Test { init => throw new NotImplementedException(); }
-
-        protected override string CreateCompilationOptions()
-        {
-            return this.CompilationOptions;
-        }
-    }
-
-    public static class Factory
-    {
-        public static void Create()
-        {
-            var derived = new Derived()
-            {
-            };
-            ////Console.WriteLine(derived.Test);
-        }
-    }
-
     [TestClass]
     public class GlobalConfigTests
     {
