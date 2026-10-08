@@ -44,7 +44,6 @@
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
-            //// TODO remove any unnecessary dependencies
             //// TODO can you rename the Content folder to `_resources`?
 
             var tester = new CsharpAnalyzerTest<MSTestVerifier>()
