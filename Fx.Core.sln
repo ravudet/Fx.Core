@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.GlobalConfig", "source\F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fx.GlobalConfig.Tests", "source\Fx.GlobalConfig.Tests\Fx.GlobalConfig.Tests.csproj", "{0EB68B63-E6E0-49C3-9FEE-9D01D28B489E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackageTests", "source\PackageTests\PackageTests.csproj", "{F5E9FE47-BC36-4517-A5EB-A7154263677D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -148,6 +150,10 @@ Global
 		{0EB68B63-E6E0-49C3-9FEE-9D01D28B489E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EB68B63-E6E0-49C3-9FEE-9D01D28B489E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EB68B63-E6E0-49C3-9FEE-9D01D28B489E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E9FE47-BC36-4517-A5EB-A7154263677D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E9FE47-BC36-4517-A5EB-A7154263677D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E9FE47-BC36-4517-A5EB-A7154263677D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E9FE47-BC36-4517-A5EB-A7154263677D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
