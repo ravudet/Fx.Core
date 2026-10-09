@@ -26,6 +26,8 @@
             var value3 = System.Configuration.ConfigurationManager.AppSettings["BuildNumber"];
 
             Console.WriteLine(value3);
+
+            //// TODO dotnet package add {package_name_should_be_taken_from_build_properties} --source {local_path}
         }
     }
 }
