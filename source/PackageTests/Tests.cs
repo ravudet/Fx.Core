@@ -22,6 +22,10 @@
             var value2 = System.Configuration.ConfigurationManager.AppSettings["ApiUrl"];
 
             Console.WriteLine(value2);
+
+            var value3 = System.Configuration.ConfigurationManager.AppSettings["BuildNumber"];
+
+            Console.WriteLine(value3);
         }
     }
 }

@@ -33,5 +33,9 @@
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.12" />
   </ItemGroup>
+  
+  <Target Name="UpdateOutputConfig" AfterTargets="Build">
+    <XmlPoke XmlInputPath="C:\github\Fx.Core\source\PackageTests\bin\Debug\net9.0\actualconfig.config" Query="/configuration/appSettings/add[@key='BuildNumber']/@value" Value="$(MyCustomProperty)" />
+  </Target>
 
 </Project>
