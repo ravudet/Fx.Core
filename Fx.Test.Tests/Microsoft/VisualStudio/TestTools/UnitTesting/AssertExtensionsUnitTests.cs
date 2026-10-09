@@ -376,6 +376,7 @@ class C {
 
 
 
+        //// TODO you need tests to ensure that packages are being generated correctly (probably you will use the `dotnet` command line tool and refer to a local path where the generated packages are)
         //// TODO have an analyzer to add configureawait everywhere; add this to codequality if it isn't already there
         //// TODO remove the lowercase type name analyzer; it was just for POC on the overall project structure
 
