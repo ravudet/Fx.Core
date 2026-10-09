@@ -38,32 +38,6 @@
         }
 
         [TestMethod]
-        public async Task Test()
-        {
-            //// TODO this test should actually go in fx.globalconfig.tests
-
-            var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
-            var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
-
-            var tester = new CsharpAnalyzerTest<MSTestVerifier>()
-            {
-                TestCode = test,
-                TestState =
-                {
-                    AnalyzerConfigFiles =
-                    {
-                        ("/.editorconfig", SourceText.From(editorConfig)),
-                    },
-                },
-                DiagnosticAnalyzers = GlobalConfigTests.DefaultAnalyzers,
-            };
-
-            tester.ExpectedDiagnostics.Add(new DiagnosticResult("CA1510", DiagnosticSeverity.Error).WithSpan(13, 13, 16, 14).WithSpan(13, 17, 13, 27).WithArguments("ArgumentNullException", "ThrowIfNull"));
-
-            await tester.RunAsync().ConfigureAwait(false);
-        }
-
-        [TestMethod]
         public async Task FX0001()
         {
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
