@@ -58,7 +58,7 @@
                 DiagnosticResult.CompilerError("FX0001")
                     .WithSeverity(DiagnosticSeverity.Error)
                     .WithOptions(DiagnosticOptions.IgnoreSeverity) //// TODO the globalconfig has the severity set to error, but this isn't honored by the test harness for some reason (and instead uses the analyzer's default severity), so you're ignoring severity for now to get the test to pass, but you should fix this at some point; NOTE: you didn't have to do this for the `CA1510` test, maybe the different is the custom analyzer is not done correctly somehow?
-                    .WithSpan(6, 25, 6, 28)
+                    .WithSpan(3, 25, 3, 28)
                     .WithArguments("Foo"));
 
             await tester.RunAsync().ConfigureAwait(false);
