@@ -33,6 +33,7 @@
 
         private static async Task<string> GetEditorConfigString()
         {
+            //// TODO can you compute this string?
             return await GetManifestResourceString("Fx.Analyzers.GlobalConfig.globalconfig").ConfigureAwait(false);
         }
 

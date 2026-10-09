@@ -33,14 +33,13 @@
 
         private static async Task<string> GetEditorConfigString()
         {
+            //// TODO can you compute this string?
             return await GetManifestResourceString("Fx.GlobalConfig.globalconfig").ConfigureAwait(false);
         }
 
         [TestMethod]
         public async Task CA1510()
         {
-            //// TODO remove unnecessary dependencies
-
             var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
             var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
 
