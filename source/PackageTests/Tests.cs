@@ -11,7 +11,7 @@
         [TestMethod]
         public void Fx_Analyzers()
         {
-            //// TODO i don't think it should be called `testhost.dll.config``
+            //// TODO i don't think it should be called `testhost.dll.config`
 
             //// TODO you should use a json config probably
 
@@ -20,14 +20,6 @@
             var value = System.Configuration.ConfigurationManager.AppSettings["MyCustomKey"];
 
             Console.WriteLine(value);
-
-            var value2 = System.Configuration.ConfigurationManager.AppSettings["ApiUrl"];
-
-            Console.WriteLine(value2);
-
-            var value3 = System.Configuration.ConfigurationManager.AppSettings["BuildNumber"];
-
-            Console.WriteLine(value3);
 
             //// TODO dotnet package add {package_name_should_be_taken_from_build_properties} --source {local_path}
         }
