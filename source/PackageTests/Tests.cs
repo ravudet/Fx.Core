@@ -11,7 +11,7 @@
         [TestMethod]
         public void Fx_Analyzers()
         {
-            //// TODO i don't think it should be called `testhost.dll.config`
+            //// TODO i don't think it should be called `testhost.dll.config``
 
             //// TODO you should use a json config probably
 
