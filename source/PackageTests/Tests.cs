@@ -15,8 +15,6 @@
 
             //// TODO you should use a json config probably
 
-            Console.WriteLine(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).FilePath);
-
             var value = System.Configuration.ConfigurationManager.AppSettings["MyCustomKey"];
 
             Console.WriteLine(value);
