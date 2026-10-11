@@ -20,10 +20,13 @@
 
             Console.WriteLine(value);
 
-            //// TODO dotnet package add {package_name_should_be_taken_from_build_properties} --source {local_path}
-            
+
+
 
             //// TODO you should bring the csproj file as a resource
+            //// TODO build before and ensure %errorlevel% is 0
+            //// TODO dotnet package add Fx.GlobalConfig --source c:\github\Fx.Core\packages --project c:\github\fx.core\testing --prerelease
+            //// TODO build after and ensure %errorlevel% is 1 (you could also maybe assert something about the output; the output appears to be enitely standard out)
         }
     }
 }
