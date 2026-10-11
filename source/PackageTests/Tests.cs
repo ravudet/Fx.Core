@@ -21,6 +21,9 @@
             Console.WriteLine(value);
 
             //// TODO dotnet package add {package_name_should_be_taken_from_build_properties} --source {local_path}
+            
+
+            //// TODO you should bring the csproj file as a resource
         }
     }
 }
