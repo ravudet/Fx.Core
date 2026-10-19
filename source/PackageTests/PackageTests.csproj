@@ -7,10 +7,6 @@
     <UseVSTest>true</UseVSTest>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <MyCustomProperty>ravudet-testing</MyCustomProperty>
-  </PropertyGroup>
-
   <ItemGroup>
     <Content Include="testhost.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -22,7 +18,7 @@
   </ItemGroup>
   
   <Target Name="UpdateOutputConfig" AfterTargets="Build">
-    <XmlPoke XmlInputPath="C:\github\Fx.Core\source\PackageTests\bin\Debug\net9.0\testhost.dll.config" Query="/configuration/appSettings/add[@key='MyCustomKey']/@value" Value="$(MyCustomProperty)" />
+    <XmlPoke XmlInputPath="C:\github\Fx.Core\source\PackageTests\bin\Debug\net9.0\testhost.dll.config" Query="/configuration/appSettings/add[@key='MyCustomKey']/@value" Value="$(PackageOutputPath)" />
   </Target>
 
 </Project>
