@@ -14,7 +14,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="_resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\Fx.Analyzers.GlobalConfig.Tests\_resources\FX0001.cs" Link="_resources\FX0001.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.12" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
   </ItemGroup>
   
   <Target Name="UpdateOutputConfig" AfterTargets="Build">
