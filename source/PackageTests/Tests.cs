@@ -47,7 +47,7 @@
                 Assert.AreEqual(0, process.ExitCode);
             }
 
-            var addPackageCommand = $"package add Fx.GlobalConfig --source \"{value}\" --project \"{workingDirectory}\" --prerelease";
+            var addPackageCommand = $"package add Fx.Analyzers.GlobalConfig --source \"{value}\" --project \"{workingDirectory}\" --prerelease";
             using (var process = Process.Start("dotnet", addPackageCommand))
             {
                 await process.WaitForExitAsync().ConfigureAwait(false);
