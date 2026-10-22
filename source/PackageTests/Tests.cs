@@ -25,6 +25,7 @@
         {
             //// TODO move these to the globalconfig test assembly
             //// TODO have one of these tests for each of the "debug" tests
+            //// TODO once you have this corect for fx.analyzers.globalconfig.tests, add it for each other nuget package
 
             //// TODO i don't think it should be called `testhost.dll.config`
 
