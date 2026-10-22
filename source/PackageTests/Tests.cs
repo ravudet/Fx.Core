@@ -23,6 +23,9 @@
         [TestMethod]
         public async Task Fx_Analyzers()
         {
+            //// TODO move these to the globalconfig test assembly
+            //// TODO have one of these tests for each of the "debug" tests
+
             //// TODO i don't think it should be called `testhost.dll.config`
 
             //// TODO you should use a json config probably
