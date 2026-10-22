@@ -90,9 +90,83 @@
                 Assert.IsTrue(standardOutput.Contains(analyzerIdentifier));
             }
 
-
             //// TODO make the embedded csproj files part of compilation when in the editor
 
+        }
+
+        public static async Task InstallGlobalConfigPackage(
+            Assembly assembly,
+            string workingDirectory,
+            string projectResourceName,
+            string codeResourceName,
+            string globalConfigPackageName,
+            string packageDirectory,
+            string analyzerIdentifier)
+        {
+            await assembly.WriteManifestResource(projectResourceName, Path.Combine(workingDirectory, "project.csproj")).ConfigureAwait(false);
+            await assembly.WriteManifestResource(codeResourceName, Path.Combine(workingDirectory, "class.cs")).ConfigureAwait(false);
+
+            var initialBuildExitCode = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
+            Assert.AreEqual(0, initialBuildExitCode);
+
+            var packageInstallExitCode = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
+            Assert.AreEqual(0, packageInstallExitCode);
+        }
+
+        private static async Task<int> Run(string command, string arguments)
+        {
+            using (var process = Process.Start(new ProcessStartInfo()
+            {
+                FileName = command,
+                Arguments = arguments,
+            })!) //// TODO !; read the code for `start` and make sure you can't follow a branch that returns null
+            {
+                await process.WaitForExitAsync().ConfigureAwait(false);
+                return process.ExitCode;
+            }
+        }
+    }
+
+    public static class Extensions
+    {
+        public static async Task WriteManifestResource(this Assembly assembly, string resourceName, string filePath)
+        {
+            var directoryPath = Path.GetDirectoryName(filePath);
+            if (string.IsNullOrEmpty(directoryPath))
+            {
+                throw new Exception("TODO");
+            }
+
+            using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (resourceStream == null)
+                {
+                    throw new Exception("TODO");
+                }
+
+                FileStream? fileStream = null;
+                try
+                {
+                    while (true)
+                    {
+                        try
+                        {
+                            fileStream = File.OpenWrite(filePath);
+                            break;
+                        }
+                        catch (DirectoryNotFoundException)
+                        {
+                            Directory.CreateDirectory(directoryPath);
+                        }
+                    }
+
+                    await resourceStream.CopyToAsync(fileStream).ConfigureAwait(false);
+                }
+                finally
+                {
+                    fileStream?.Dispose();
+                }
+            }
         }
     }
 }
