@@ -1,6 +1,7 @@
 ﻿namespace PackageTests
 {
     using System;
+    using System.Diagnostics;
     using System.IO;
     using System.Reflection;
     using System.Threading.Tasks;
@@ -39,7 +40,25 @@
             var codeFileContents = await GetManifestResourceString("_resources.FX0001.cs").ConfigureAwait(false);
             File.WriteAllText(Path.Combine(workingDirectory, "FX0001.cs"), codeFileContents);
 
-            
+            var buildCommand = $"build \"{workingDirectory}\"";
+            using (var process = Process.Start("dotnet", buildCommand))
+            {
+                await process.WaitForExitAsync().ConfigureAwait(false);
+                Assert.AreEqual(0, process.ExitCode);
+            }
+
+            var addPackageCommand = $"package add Fx.GlobalConfig --source \"{value}\" --project \"{workingDirectory}\" --prerelease";
+            using (var process = Process.Start("dotnet", addPackageCommand))
+            {
+                await process.WaitForExitAsync().ConfigureAwait(false);
+                Assert.AreEqual(0, process.ExitCode);
+            }
+
+            using (var process = Process.Start("dotnet", buildCommand))
+            {
+                await process.WaitForExitAsync().ConfigureAwait(false);
+                Assert.AreEqual(1, process.ExitCode);
+            }
 
 
             //// TODO make the embedded csproj files part of compilation when in the editor
