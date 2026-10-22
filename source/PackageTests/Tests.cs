@@ -33,12 +33,14 @@
             Console.WriteLine(value);
 
 
+            var analyzerIdentifier = "FX0001";
+
             var workingDirectory = Path.Combine(TestContext.DeploymentDirectory, nameof(Fx_Analyzers));
             Directory.CreateDirectory(workingDirectory);
             var projectFileContents = await GetManifestResourceString("_resources.project.csproj").ConfigureAwait(false);
             File.WriteAllText(Path.Combine(workingDirectory, "project.csproj"), projectFileContents);
-            var codeFileContents = await GetManifestResourceString("_resources.FX0001.cs").ConfigureAwait(false);
-            File.WriteAllText(Path.Combine(workingDirectory, "FX0001.cs"), codeFileContents);
+            var codeFileContents = await GetManifestResourceString($"_resources.{analyzerIdentifier}.cs").ConfigureAwait(false);
+            File.WriteAllText(Path.Combine(workingDirectory, $"{analyzerIdentifier}.cs"), codeFileContents);
 
             var buildCommand = $"build \"{workingDirectory}\"";
             using (var process = Process.Start("dotnet", buildCommand))
@@ -54,19 +56,29 @@
                 Assert.AreEqual(0, process.ExitCode);
             }
 
-            using (var process = Process.Start("dotnet", buildCommand))
+            using (var process = new Process()
             {
+                StartInfo = new ProcessStartInfo()
+                {
+                    FileName = "dotnet",
+                    Arguments = buildCommand,
+                    RedirectStandardOutput = true,
+                },
+            })
+            {
+                process.Start();
+
                 await process.WaitForExitAsync().ConfigureAwait(false);
                 Assert.AreEqual(1, process.ExitCode);
+
+                var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
+
+                Assert.IsTrue(standardOutput.Contains(analyzerIdentifier));
             }
 
 
             //// TODO make the embedded csproj files part of compilation when in the editor
 
-            //// TODO you should bring the csproj file as a resource
-            //// TODO build before and ensure %errorlevel% is 0
-            //// TODO dotnet package add Fx.GlobalConfig --source c:\github\Fx.Core\packages --project c:\github\fx.core\testing --prerelease
-            //// TODO build after and ensure %errorlevel% is 1 (you could also maybe assert something about the output; the output appears to be enitely standard out)
         }
     }
 }
