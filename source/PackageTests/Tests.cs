@@ -60,6 +60,16 @@
                 Assert.AreEqual(0, process.ExitCode);
             }
 
+            //// TODO you need this to avoid cached versions or "officla" releases for your testing
+            //// TODO dotnet nuget locals --clear all
+            //// TODO --no-cache --force
+            using (var process = Process.Start("dotnet", $"restore \"{workingDirectory}\" --source \"{value}\""))
+            {
+                await process.WaitForExitAsync().ConfigureAwait(false);
+                Assert.AreEqual(0, process.ExitCode);
+            }
+            //// TODO do a restore, and only allow restoring from the feed path (the one you got from the config, not any local cache or whatever)
+
             using (var process = new Process()
             {
                 StartInfo = new ProcessStartInfo()
