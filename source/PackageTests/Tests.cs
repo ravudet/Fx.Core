@@ -1,6 +1,7 @@
 ﻿namespace PackageTests
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Diagnostics;
     using System.IO;
     using System.Reflection;
@@ -100,7 +101,7 @@
             string projectResourceName,
             string codeResourceName,
             string globalConfigPackageName,
-            string packageDirectory,
+            string packageSourceDirectory,
             string analyzerIdentifier)
         {
             await assembly.WriteManifestResource(projectResourceName, Path.Combine(workingDirectory, "project.csproj")).ConfigureAwait(false);
@@ -109,8 +110,13 @@
             var initialBuildExitCode = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
             Assert.AreEqual(0, initialBuildExitCode);
 
-            var packageInstallExitCode = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
+            var packageInstallExitCode = await Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\"");
             Assert.AreEqual(0, packageInstallExitCode);
+
+            var packageCacheClearExitCode = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
+            Assert.AreEqual(0, packageCacheClearExitCode);
+
+            var packageRestoreExitCode = await Run("dotnet", $"restore \"{workingDirectory}\" --")
         }
 
         private static async Task<int> Run(string command, string arguments)
