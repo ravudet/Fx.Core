@@ -91,7 +91,7 @@
                 Assert.IsTrue(standardOutput.Contains(analyzerIdentifier));
             }
 
-            //// TODO make the embedded csproj files part of compilation when in the editor
+            //// TODO make the embedded cs files part of compilation when in the editor
 
         }
 
@@ -107,8 +107,8 @@
             await assembly.WriteManifestResource(projectResourceName, Path.Combine(workingDirectory, "project.csproj")).ConfigureAwait(false);
             await assembly.WriteManifestResource(codeResourceName, Path.Combine(workingDirectory, "class.cs")).ConfigureAwait(false);
 
-            var initialBuildExitCode = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
-            Assert.AreEqual(0, initialBuildExitCode);
+            var buildWithoutPackageExitCode = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
+            Assert.AreEqual(0, buildWithoutPackageExitCode);
 
             var packageInstallExitCode = await Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\"");
             Assert.AreEqual(0, packageInstallExitCode);
@@ -116,7 +116,12 @@
             var packageCacheClearExitCode = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
             Assert.AreEqual(0, packageCacheClearExitCode);
 
-            var packageRestoreExitCode = await Run("dotnet", $"restore \"{workingDirectory}\" --")
+            var packageRestoreExitCode = await Run("dotnet", $"restore \"{workingDirectory}\" --source \"{packageSourceDirectory}\" --no-cache --force");
+            Assert.AreEqual(0, packageRestoreExitCode);
+
+            var buildWithPackageExitCode = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
+            Assert.AreEqual(0, buildWithPackageExitCode);
+
         }
 
         private static async Task<int> Run(string command, string arguments)
