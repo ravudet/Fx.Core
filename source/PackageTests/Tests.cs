@@ -24,9 +24,6 @@
         [TestMethod]
         public async Task Fx_Analyzers()
         {
-            //// TODO can you use the packagepath to reference the globalconfig embedded resource in the other test project?
-
-
             
 
             //// TODO move these to the globalconfig test assembly
@@ -123,52 +120,38 @@
             await assembly.WriteManifestResource(projectResourceName, Path.Combine(workingDirectory, "project.csproj")).ConfigureAwait(false);
             await assembly.WriteManifestResource(codeResourceName, Path.Combine(workingDirectory, "class.cs")).ConfigureAwait(false);
 
-            //// TODO get standard output for each one
-            var buildWithoutPackageExitCode = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
-            Assert.AreEqual(0, buildWithoutPackageExitCode);
+            var (buildWithoutPackageExitCode, buildWithoutPackageStandardOutput, _) = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
+            Assert.AreEqual(0, buildWithoutPackageExitCode, buildWithoutPackageStandardOutput);
 
-            var (packageInstallExitCode, packageInstallStandardOutput) = await Run2("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\" --prerelease");
+            var (packageInstallExitCode, packageInstallStandardOutput, _) = await Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\" --prerelease");
             Assert.AreEqual(0, packageInstallExitCode, packageInstallStandardOutput);
 
-            var packageCacheClearExitCode = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
-            Assert.AreEqual(0, packageCacheClearExitCode);
+            var (packageCacheClearExitCode, packageCacheClearStandardOutput, _) = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
+            Assert.AreEqual(0, packageCacheClearExitCode, packageCacheClearStandardOutput);
 
-            var packageRestoreExitCode = await Run("dotnet", $"restore \"{workingDirectory}\" --source \"{packageSourceDirectory}\" --no-cache --force");
-            Assert.AreEqual(0, packageRestoreExitCode);
+            var (packageRestoreExitCode, packageRestoreStandardOutput, _) = await Run("dotnet", $"restore \"{workingDirectory}\" --source \"{packageSourceDirectory}\" --no-cache --force");
+            Assert.AreEqual(0, packageRestoreExitCode, packageRestoreStandardOutput);
 
-            var (buildWithPackageExitCode, standardOutput) = await Run2("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
-            Assert.AreEqual(1, buildWithPackageExitCode);
-            Assert.IsTrue(standardOutput.Contains(analyzerIdentifier));
+            var (buildWithPackageExitCode, buildWithPackageStandardOutput, _) = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
+            Assert.AreEqual(1, buildWithPackageExitCode, buildWithPackageStandardOutput);
+            Assert.IsTrue(buildWithPackageStandardOutput.Contains(analyzerIdentifier));
         }
 
-        private static async Task<int> Run(string command, string arguments)
+        private static async Task<(int ExitCode, string StandardOutput, string StandardError)> Run(string command, string arguments)
         {
-            using (var process = Process.Start(new ProcessStartInfo()
-            {
-                FileName = command,
-                Arguments = arguments,
-            })!) //// TODO !; read the code for `start` and make sure you can't follow a branch that returns null
-            {
-                await process.WaitForExitAsync().ConfigureAwait(false);
-                return process.ExitCode;
-            }
-        }
-
-        private static async Task<(int ExitCode, string StandardOutput)> Run2(string command, string arguments)
-        {
-            //// TODO better name
-
             using (var process = Process.Start(new ProcessStartInfo()
             {
                 FileName = command,
                 Arguments = arguments,
                 RedirectStandardOutput = true,
+                RedirectStandardError = true,
             })!) //// TODO !; read the code for `start` and make sure you can't follow a branch that returns null
             {
                 await process.WaitForExitAsync().ConfigureAwait(false);
                 var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
+                var standardError = await process.StandardError.ReadToEndAsync().ConfigureAwait(false);
 
-                return (process.ExitCode, standardOutput);
+                return (process.ExitCode, standardOutput, standardError);
             }
         }
     }
