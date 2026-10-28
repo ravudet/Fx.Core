@@ -14,13 +14,6 @@
     {
         public TestContext TestContext { get; set; }
 
-        private static async Task<string> GetManifestResourceString(string resourceName)
-        {
-            //// TODO do you want to use Assembly.GetCallingAssembly?
-
-            return await typeof(Tests).Assembly.GetManifestResourceString(resourceName).ConfigureAwait(false);
-        }
-
         [TestMethod]
         public async Task Fx_Analyzers()
         {
