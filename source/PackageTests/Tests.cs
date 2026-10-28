@@ -24,19 +24,25 @@
         [TestMethod]
         public async Task Fx_Analyzers()
         {
-            
+
 
             //// TODO move these to the globalconfig test assembly
             //// TODO have one of these tests for each of the "debug" tests
             //// TODO once you have this corect for fx.analyzers.globalconfig.tests, add it for each other nuget package
 
-            //// TODO i don't think it should be called `testhost.dll.config`
 
-            //// TODO you should use a json config probably
+
+
+            //// TODO you should use a json config probably //// https://benfoster.io/blog/net-core-configuration-legacy-projects
 
             var value = System.Configuration.ConfigurationManager.AppSettings["MyCustomKey"]; //// TODO different config name
 
             Console.WriteLine(value);
+
+
+            var exeConfiguration = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
+
+
 
             await InstallGlobalConfigPackage(
                 typeof(Tests).Assembly,
