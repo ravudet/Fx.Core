@@ -40,10 +40,6 @@
             Console.WriteLine(value);
 
 
-            var exeConfiguration = System.Configuration.ConfigurationManager.OpenExeConfiguration(System.Configuration.ConfigurationUserLevel.None);
-
-
-
             await InstallGlobalConfigPackage(
                 typeof(Tests).Assembly,
                 Path.Combine(TestContext.DeploymentDirectory, nameof(Fx_Analyzers)),
