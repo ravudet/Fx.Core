@@ -32,13 +32,24 @@
 
             //// TODO you should use a json config probably
 
-            
             var value = System.Configuration.ConfigurationManager.AppSettings["MyCustomKey"]; //// TODO different config name
 
             Console.WriteLine(value);
 
+            await InstallGlobalConfigPackage(
+                typeof(Tests).Assembly,
+                Path.Combine(TestContext.DeploymentDirectory, nameof(Fx_Analyzers)),
+                "_resources.project.csproj",
+                "_resources.FX0001.cs",
+                "Fx.Analyzers.GlobalConfig",
+                value,
+                "FX0001");
 
-            var analyzerIdentifier = "FX0001";
+            
+            
+
+
+            /*var analyzerIdentifier = "FX0001";
 
             var workingDirectory = Path.Combine(TestContext.DeploymentDirectory, nameof(Fx_Analyzers));
             Directory.CreateDirectory(workingDirectory);
@@ -91,7 +102,7 @@
                 Assert.IsTrue(standardOutput.Contains(analyzerIdentifier));
             }
 
-            //// TODO make the embedded cs files part of compilation when in the editor
+            //// TODO make the embedded cs files part of compilation when in the editor*/
 
         }
 
@@ -110,8 +121,8 @@
             var buildWithoutPackageExitCode = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
             Assert.AreEqual(0, buildWithoutPackageExitCode);
 
-            var packageInstallExitCode = await Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\"");
-            Assert.AreEqual(0, packageInstallExitCode);
+            var (packageInstallExitCode, packageInstallStandardOutput) = await Run2("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\" --prerelease");
+            Assert.AreEqual(0, packageInstallExitCode, packageInstallStandardOutput);
 
             var packageCacheClearExitCode = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
             Assert.AreEqual(0, packageCacheClearExitCode);
@@ -119,9 +130,9 @@
             var packageRestoreExitCode = await Run("dotnet", $"restore \"{workingDirectory}\" --source \"{packageSourceDirectory}\" --no-cache --force");
             Assert.AreEqual(0, packageRestoreExitCode);
 
-            var buildWithPackageExitCode = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
-            Assert.AreEqual(0, buildWithPackageExitCode);
-
+            var (buildWithPackageExitCode, standardOutput) = await Run2("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
+            Assert.AreEqual(1, buildWithPackageExitCode);
+            Assert.IsTrue(standardOutput.Contains(analyzerIdentifier));
         }
 
         private static async Task<int> Run(string command, string arguments)
@@ -134,6 +145,24 @@
             {
                 await process.WaitForExitAsync().ConfigureAwait(false);
                 return process.ExitCode;
+            }
+        }
+
+        private static async Task<(int ExitCode, string StandardOutput)> Run2(string command, string arguments)
+        {
+            //// TODO better name
+
+            using (var process = Process.Start(new ProcessStartInfo()
+            {
+                FileName = command,
+                Arguments = arguments,
+                RedirectStandardOutput = true,
+            })!) //// TODO !; read the code for `start` and make sure you can't follow a branch that returns null
+            {
+                await process.WaitForExitAsync().ConfigureAwait(false);
+                var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
+
+                return (process.ExitCode, standardOutput);
             }
         }
     }
