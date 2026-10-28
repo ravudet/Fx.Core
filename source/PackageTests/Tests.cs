@@ -50,58 +50,6 @@
                 "FX0001");
 
             
-            
-
-
-            var analyzerIdentifier = "FX0001";
-
-            var workingDirectory = Path.Combine(TestContext.DeploymentDirectory, nameof(Fx_Analyzers));
-            Directory.CreateDirectory(workingDirectory);
-            var projectFileContents = await GetManifestResourceString("_resources.project.csproj").ConfigureAwait(false);
-            File.WriteAllText(Path.Combine(workingDirectory, "project.csproj"), projectFileContents);
-            var codeFileContents = await GetManifestResourceString($"_resources.{analyzerIdentifier}.cs").ConfigureAwait(false);
-            File.WriteAllText(Path.Combine(workingDirectory, $"{analyzerIdentifier}.cs"), codeFileContents);
-
-            var buildCommand = $"build \"{workingDirectory}\"";
-            using (var process = Process.Start("dotnet", buildCommand))
-            {
-                await process.WaitForExitAsync().ConfigureAwait(false);
-                Assert.AreEqual(0, process.ExitCode);
-            }
-
-            var addPackageCommand = $"package add Fx.Analyzers.GlobalConfig --source \"{value}\" --project \"{workingDirectory}\" --prerelease";
-            using (var process = Process.Start("dotnet", addPackageCommand))
-            {
-                await process.WaitForExitAsync().ConfigureAwait(false);
-                Assert.AreEqual(0, process.ExitCode);
-            }
-
-            using (var process = Process.Start("dotnet", $"restore \"{workingDirectory}\" --source \"{value}\""))
-            {
-                await process.WaitForExitAsync().ConfigureAwait(false);
-                Assert.AreEqual(0, process.ExitCode);
-            }
-
-            using (var process = new Process()
-            {
-                StartInfo = new ProcessStartInfo()
-                {
-                    FileName = "dotnet",
-                    Arguments = buildCommand,
-                    RedirectStandardOutput = true,
-                },
-            })
-            {
-                process.Start();
-
-                await process.WaitForExitAsync().ConfigureAwait(false);
-                Assert.AreEqual(1, process.ExitCode);
-
-                var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
-
-                Assert.IsTrue(standardOutput.Contains(analyzerIdentifier));
-            }
-
             //// TODO make the embedded cs files part of compilation when in the editor
 
         }
