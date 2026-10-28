@@ -53,7 +53,7 @@
             
 
 
-            /*var analyzerIdentifier = "FX0001";
+            var analyzerIdentifier = "FX0001";
 
             var workingDirectory = Path.Combine(TestContext.DeploymentDirectory, nameof(Fx_Analyzers));
             Directory.CreateDirectory(workingDirectory);
@@ -106,7 +106,7 @@
                 Assert.IsTrue(standardOutput.Contains(analyzerIdentifier));
             }
 
-            //// TODO make the embedded cs files part of compilation when in the editor*/
+            //// TODO make the embedded cs files part of compilation when in the editor
 
         }
 
@@ -122,18 +122,23 @@
             await assembly.WriteManifestResource(projectResourceName, Path.Combine(workingDirectory, "project.csproj")).ConfigureAwait(false);
             await assembly.WriteManifestResource(codeResourceName, Path.Combine(workingDirectory, "class.cs")).ConfigureAwait(false);
 
+            // build the project before the `.globalconfig` package is installed to make sure that everything builds successfully (meaning that, later, when the build fails, we know it is because of the `.globalconfig` package having been installed)
             var (buildWithoutPackageExitCode, buildWithoutPackageStandardOutput, _) = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
             Assert.AreEqual(0, buildWithoutPackageExitCode, buildWithoutPackageStandardOutput);
 
+            // add the `.globalconfig` package reference to the project; we allow prerelease so that locally built packages can be tested before release
             var (packageInstallExitCode, packageInstallStandardOutput, _) = await Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\" --prerelease");
             Assert.AreEqual(0, packageInstallExitCode, packageInstallStandardOutput);
 
+            // remove all packages from the local "source" so that we don't use an older, local version of the `.globalconfig` package
             var (packageCacheClearExitCode, packageCacheClearStandardOutput, _) = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
             Assert.AreEqual(0, packageCacheClearExitCode, packageCacheClearStandardOutput);
 
+            // restore the package from the package source that is populated by the local build
             var (packageRestoreExitCode, packageRestoreStandardOutput, _) = await Run("dotnet", $"restore \"{workingDirectory}\" --source \"{packageSourceDirectory}\" --no-cache --force");
             Assert.AreEqual(0, packageRestoreExitCode, packageRestoreStandardOutput);
 
+            // build the project again now that the `.globalconfig` package has been installed and ensure that there is a build failure related to the expected analyzer identifier
             var (buildWithPackageExitCode, buildWithPackageStandardOutput, _) = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
             Assert.AreEqual(1, buildWithPackageExitCode, buildWithPackageStandardOutput);
             Assert.IsTrue(buildWithPackageStandardOutput.Contains(analyzerIdentifier));
