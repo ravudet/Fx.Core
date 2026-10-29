@@ -20,7 +20,7 @@
 
 
             //// TODO move these to the globalconfig test assembly
-            //// TODO have one of these tests for each of the "debug" tests
+            //// TODO have one of these tests for each of the "debug" tests //// TODO can you have a structure to represent a mapping between the file and which analyzeridentifier + file position is expected for that file?
             //// TODO once you have this corect for fx.analyzers.globalconfig.tests, add it for each other nuget package
 
 
