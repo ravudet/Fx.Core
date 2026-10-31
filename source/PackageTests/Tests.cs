@@ -64,7 +64,7 @@
             Assert.AreEqual(0, buildWithoutPackageExitCode, buildWithoutPackageStandardOutput);
 
             // add the `.globalconfig` package reference to the project; we allow prerelease so that locally built packages can be tested before release
-            var (packageInstallExitCode, packageInstallStandardOutput, _) = await Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\" --prerelease");
+            var (packageInstallExitCode, packageInstallStandardOutput, _) = await Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\" --prerelease --no-restore");
             Assert.AreEqual(0, packageInstallExitCode, packageInstallStandardOutput);
 
             // remove all packages from the local "source" so that we don't use an older, local version of the `.globalconfig` package
