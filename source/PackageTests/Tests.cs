@@ -63,7 +63,7 @@
             var (buildWithoutPackageExitCode, buildWithoutPackageStandardOutput, _) = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
             Assert.AreEqual(0, buildWithoutPackageExitCode, buildWithoutPackageStandardOutput);
 
-            // add the `.globalconfig` package reference to the project; we allow prerelease so that locally built packages can be tested before release
+            // add the `.globalconfig` package reference to the project; we allow prerelease so that locally built packages can be tested before release; we use no restoration so that the version numbers of the analyzer packages that the config package depends on will be ignored (this is because the version suffix of the local builds are timestamp dependent, and each project will have a different value)
             var (packageInstallExitCode, packageInstallStandardOutput, _) = await Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\" --prerelease --no-restore");
             Assert.AreEqual(0, packageInstallExitCode, packageInstallStandardOutput);
 
