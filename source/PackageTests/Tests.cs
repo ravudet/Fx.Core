@@ -67,9 +67,10 @@
             var (packageInstallExitCode, packageInstallStandardOutput, _) = await Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\" --prerelease --no-restore");
             Assert.AreEqual(0, packageInstallExitCode, packageInstallStandardOutput);
 
+            //// TODO removed this temporarily because you had bad internet for a bit and it caused frequent restores when building your other projects; add it back
             // remove all packages from the local "source" so that we don't use an older, local version of the `.globalconfig` package
-            var (packageCacheClearExitCode, packageCacheClearStandardOutput, _) = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
-            Assert.AreEqual(0, packageCacheClearExitCode, packageCacheClearStandardOutput);
+            /*var (packageCacheClearExitCode, packageCacheClearStandardOutput, _) = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
+            Assert.AreEqual(0, packageCacheClearExitCode, packageCacheClearStandardOutput);*/
 
             // restore the package from the package source that is populated by the local build
             var (packageRestoreExitCode, packageRestoreStandardOutput, _) = await Run("dotnet", $"restore \"{workingDirectory}\" --source \"{packageSourceDirectory}\" --no-cache --force");
