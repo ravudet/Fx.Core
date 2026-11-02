@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeFix.Testing" Version="1.1.4" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.12" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +17,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="_resources\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="testhost.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
@@ -30,6 +36,10 @@
       <Compile Remove="_resources\**" />
       <EmbeddedResource Include="_resources\**" />
     </ItemGroup>
+  </Target>
+
+  <Target Name="UpdateOutputConfig" AfterTargets="Build">
+    <XmlPoke XmlInputPath="C:\github\Fx.Core\source\Fx.Analyzers.GlobalConfig.Tests\bin\Debug\net9.0\testhost.dll.config" Query="/configuration/appSettings/add[@key='PackageSourceDirectory']/@value" Value="$(PackageOutputPath)" />
   </Target>
 
 </Project>
