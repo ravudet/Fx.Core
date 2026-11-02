@@ -1,4 +1,4 @@
-﻿namespace PackageTests
+﻿namespace Fx
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -18,10 +18,11 @@
         public async Task Fx_Analyzers()
         {
 
-
+            //// TODO change test name
             //// TODO move these to the globalconfig test assembly
             //// TODO have one of these tests for each of the "debug" tests //// TODO can you have a structure to represent a mapping between the file and which analyzeridentifier + file position is expected for that file?
             //// TODO don't use a hardcoded path for the config file in the csproj
+            //// TODO do you like the layout of the csproj file?
             //// TODO once you have this corect for fx.analyzers.globalconfig.tests, add it for each other nuget package
 
 
@@ -37,7 +38,7 @@
             await InstallGlobalConfigPackage(
                 typeof(PackageTests).Assembly,
                 Path.Combine(TestContext.DeploymentDirectory, nameof(Fx_Analyzers)),
-                "_resources.project.csproj",
+                "_resources.packagetest.csproj",
                 "_resources.FX0001.cs",
                 "Fx.Analyzers.GlobalConfig",
                 value,
