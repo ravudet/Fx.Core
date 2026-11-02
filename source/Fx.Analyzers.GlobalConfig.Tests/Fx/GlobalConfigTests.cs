@@ -37,18 +37,18 @@
         [TestMethod]
         public async Task FX0001()
         {
-            var test = await GetTestString().ConfigureAwait(false); //// TODO do you like this variable name?
-            var editorConfig = await GetEditorConfigString().ConfigureAwait(false); //// TODO do you like this variable name?
+            var codeToAnalyze = await GetTestString().ConfigureAwait(false);
+            var editorConfigContents = await GetEditorConfigString().ConfigureAwait(false);
 
 
             var tester = new CsharpAnalyzerTest<MSTestVerifier>()
             {
-                TestCode = test,
+                TestCode = codeToAnalyze,
                 TestState =
                 {
                     AnalyzerConfigFiles =
                     {
-                        ("/.editorconfig", SourceText.From(editorConfig)),
+                        ("/.editorconfig", SourceText.From(editorConfigContents)),
                     },
                 },
                 DiagnosticAnalyzers = DiagnosticAnalyzers.Extensions.Load(typeof(Microsoft.CodeAnalysis.CSharp.LowercaseTypeNameAnalyzer).Assembly),               
