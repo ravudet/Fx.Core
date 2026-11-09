@@ -25,19 +25,11 @@
             //// TODO do you like the layout of the csproj file?
             //// TODO once you have this corect for fx.analyzers.globalconfig.tests, add it for each other nuget package
 
-
-
-
-            //// TODO you should use a json config probably //// https://benfoster.io/blog/net-core-configuration-legacy-projects
-
-
             var diagnosticSpecifier = DiagnosticSpecifiers.FX0001;
 
 
-            var value = System.Configuration.ConfigurationManager.AppSettings["PackageSourceDirectory"]; //// TODO different config name
-
-            Console.WriteLine(value);
-
+            var packageSourceDirectory = System.Configuration.ConfigurationManager.AppSettings["PackageSourceDirectory"];
+            Assert.IsNotNull(packageSourceDirectory, "PackageSourceDirectory config value is not found");
 
             await InstallGlobalConfigPackage(
                 typeof(PackageTests).Assembly,
@@ -45,7 +37,7 @@
                 "_resources.packagetest.csproj",
                 diagnosticSpecifier.ResourceName,
                 "Fx.Analyzers.GlobalConfig",
-                value,
+                packageSourceDirectory,
                 diagnosticSpecifier.DiagnosticResult);
 
         }
