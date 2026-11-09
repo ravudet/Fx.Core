@@ -22,12 +22,6 @@
             return await typeof(GlobalConfigTests).Assembly.GetManifestResourceString(resourceName).ConfigureAwait(false);
         }
 
-        private static async Task<string> GetTestString([CallerMemberName] string testName = "")
-        {
-            //// TODO do you like this method name?
-            return await GlobalConfigTests.GetManifestResourceString($"_resources.{testName}.cs").ConfigureAwait(false);
-        }
-
         private static async Task<string> GetEditorConfigString()
         {
             //// TODO can you compute this string?
@@ -41,7 +35,6 @@
 
             var codeToAnalyze = await GetManifestResourceString(diagnosticSpecifier.ResourceName).ConfigureAwait(false);
             var editorConfigContents = await GetEditorConfigString().ConfigureAwait(false);
-
 
             var tester = new CsharpAnalyzerTest<MSTestVerifier>()
             {
