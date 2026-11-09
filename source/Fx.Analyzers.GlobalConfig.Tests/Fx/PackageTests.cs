@@ -80,14 +80,17 @@
 
         private static async Task<(int ExitCode, string StandardOutput, string StandardError)> Run(string command, string arguments)
         {
-            using (var process = Process.Start(new ProcessStartInfo()
+            using (var process = new Process())
             {
-                FileName = command,
-                Arguments = arguments,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-            })!) //// TODO !; read the code for `start` and make sure you can't follow a branch that returns null
-            {
+                process.StartInfo = new ProcessStartInfo()
+                {
+                    FileName = command,
+                    Arguments = arguments,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                };
+                process.Start();
+
                 await process.WaitForExitAsync().ConfigureAwait(false);
                 var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
                 var standardError = await process.StandardError.ReadToEndAsync().ConfigureAwait(false);
