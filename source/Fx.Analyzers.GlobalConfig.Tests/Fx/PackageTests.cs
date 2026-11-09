@@ -19,7 +19,6 @@
         {
 
             //// TODO change test name
-            //// TODO move these to the globalconfig test assembly
             //// TODO have one of these tests for each of the "debug" tests //// TODO can you have a structure to represent a mapping between the file and which analyzeridentifier + file position is expected for that file?
             //// TODO don't use a hardcoded path for the config file in the csproj
             //// TODO do you like the layout of the csproj file?
