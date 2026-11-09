@@ -21,23 +21,10 @@
         [TestMethod]
         public async Task FX0001()
         {
-            //// compilation properties
-            //// nuget properties
-            ////    build
-            ////    package
-            ////    asset
-            //// package references
-            //// project references
-            //// binary references
-            //// content
-            //// embedded resources
-            //// targets, in build order
+            //// TODO make sure you can just run the test and don't need to build the whole solution
 
-            //// TODO do you like the layout of the csproj file?
             //// TODO once you have this corect for fx.analyzers.globalconfig.tests, add it for each other nuget package
 
-            //// TODO make sure you can just run the test and don't need to build the whole solution
-            
             //// TODO make sure to have a test for everything in playground
 
             var diagnosticSpecifier = DiagnosticSpecifiers.FX0001;

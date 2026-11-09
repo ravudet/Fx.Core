@@ -13,10 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="_resources\**" />
-    <!--<Compile Remove="_resources\packagetest.csproj" />-->
-    <EmbeddedResource Include="..\Fx.Analyzers.GlobalConfig\content\Fx.Analyzers.GlobalConfig.globalconfig" Link="Fx.Analyzers.GlobalConfig.globalconfig" />
-    <!--<EmbeddedResource Include="_resources\packagetest.csproj" />-->
+    <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
+    <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
+    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis\Fx.Microsoft_CodeAnalysis.csproj" />
+    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework\Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework.csproj" />
+    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_Analyzer_Testing\Fx.Microsoft_CodeAnalysis_Analyzer_Testing.csproj" />
   </ItemGroup>
   
   <ItemGroup>
@@ -26,11 +27,10 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Fx.Analyzers\Fx.Analyzers.csproj" />
-    <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
-    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis\Fx.Microsoft_CodeAnalysis.csproj" />
-    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework\Fx.Microsoft_CodeAnalysis_Analyzer_Testing+MSTest_TestFramework.csproj" />
-    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_Analyzer_Testing\Fx.Microsoft_CodeAnalysis_Analyzer_Testing.csproj" />
+    <Compile Include="_resources\**" />
+    <!--<Compile Remove="_resources\packagetest.csproj" />-->
+    <EmbeddedResource Include="..\Fx.Analyzers.GlobalConfig\content\Fx.Analyzers.GlobalConfig.globalconfig" Link="Fx.Analyzers.GlobalConfig.globalconfig" />
+    <!--<EmbeddedResource Include="_resources\packagetest.csproj" />-->
   </ItemGroup>
   
   <Target Name="RemoveResources" BeforeTargets="BeforeBuild">
