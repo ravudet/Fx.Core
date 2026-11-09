@@ -38,9 +38,9 @@
 
             await InstallGlobalConfigPackage(
                 typeof(PackageTests).Assembly,
-                Path.Combine(TestContext.DeploymentDirectory, ),
+                Path.Combine(TestContext.DeploymentDirectory, diagnosticSpecifier.TestName),
                 "_resources.packagetest.csproj",
-                "_resources.FX0001.cs",
+                diagnosticSpecifier.ResourceName,
                 "Fx.Analyzers.GlobalConfig",
                 value,
                 "FX0001");
