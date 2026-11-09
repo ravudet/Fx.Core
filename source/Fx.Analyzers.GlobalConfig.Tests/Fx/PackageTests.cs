@@ -27,6 +27,10 @@
 
             //// TODO you should use a json config probably //// https://benfoster.io/blog/net-core-configuration-legacy-projects
 
+
+            var diagnosticSpecifier = DiagnosticSpecifiers.FX0001;
+
+
             var value = System.Configuration.ConfigurationManager.AppSettings["PackageSourceDirectory"]; //// TODO different config name
 
             Console.WriteLine(value);
@@ -34,7 +38,7 @@
 
             await InstallGlobalConfigPackage(
                 typeof(PackageTests).Assembly,
-                Path.Combine(TestContext.DeploymentDirectory, nameof(FX0001)),
+                Path.Combine(TestContext.DeploymentDirectory, ),
                 "_resources.packagetest.csproj",
                 "_resources.FX0001.cs",
                 "Fx.Analyzers.GlobalConfig",
