@@ -86,20 +86,7 @@
             // build the project again now that the `.globalconfig` package has been installed and ensure that there is a build failure related to the expected analyzer identifier
             var (buildWithPackageExitCode, buildWithPackageStandardOutput, _) = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
             Assert.AreEqual(1, buildWithPackageExitCode, buildWithPackageStandardOutput);
-            Assert.IsTrue(buildWithPackageStandardOutput.Contains(ToCompilerError(diagnosticResult)));
-        }
-
-        private static string ToCompilerError(DiagnosticResult diagnosticResult)
-        {
-            var compilerError = new StringBuilder();
-            if (diagnosticResult.Spans.TryFirst(out var location))
-            {
-                compilerError.Append($"({location.Span.StartLinePosition.Line + 1},{location.Span.StartLinePosition.Character + 1}): ");
-            }
-
-            compilerError.Append($"{diagnosticResult.Severity.ToString().ToLowerInvariant()} {diagnosticResult.Id}:");
-
-            return compilerError.ToString();
+            Assert.IsTrue(buildWithPackageStandardOutput.Contains(diagnosticResult.ToCompilerError()));
         }
 
         private static async Task<(int ExitCode, string StandardOutput, string StandardError)> Run(string command, string arguments)
@@ -123,6 +110,19 @@
 
     public static class Extensions //// TODO put these somewhere else
     {
+        public static string ToCompilerError(this DiagnosticResult diagnosticResult)
+        {
+            var compilerError = new StringBuilder();
+            if (diagnosticResult.Spans.TryFirst(out var location))
+            {
+                compilerError.Append($"({location.Span.StartLinePosition.Line + 1},{location.Span.StartLinePosition.Character + 1}): ");
+            }
+
+            compilerError.Append($"{diagnosticResult.Severity.ToString().ToLowerInvariant()} {diagnosticResult.Id}:");
+
+            return compilerError.ToString();
+        }
+
         public static bool TryFirst<TElement>(this IEnumerable<TElement> source, [MaybeNullWhen(false)] out TElement first)
         {
             using (var enumerator = source.GetEnumerator())
