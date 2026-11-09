@@ -22,6 +22,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
+  <!--nuget assets-->
   <ItemGroup>
     <None Include="build\Fx.Analyzers.GlobalConfig.props" PackagePath="build" Pack="true" />
     <None Include="content\Fx.Analyzers.GlobalConfig.globalconfig" PackagePath="content" Pack="true" />

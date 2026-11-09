@@ -25,6 +25,8 @@
             //// TODO do you like the layout of the csproj file?
             //// TODO once you have this corect for fx.analyzers.globalconfig.tests, add it for each other nuget package
 
+            //// TODO make sure you can just run the test and don't need to build the whole solution
+            
             //// TODO make sure to have a test for everything in playground
 
             var diagnosticSpecifier = DiagnosticSpecifiers.FX0001;
@@ -66,8 +68,8 @@
 
             //// TODO removed this temporarily because you had bad internet for a bit and it caused frequent restores when building your other projects; add it back
             // remove all packages from the local "source" so that we don't use an older, local version of the `.globalconfig` package
-            /*var (packageCacheClearExitCode, packageCacheClearStandardOutput, _) = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
-            Assert.AreEqual(0, packageCacheClearExitCode, packageCacheClearStandardOutput);*/
+            var (packageCacheClearExitCode, packageCacheClearStandardOutput, _) = await Run("dotnet", $"nuget locals --clear all").ConfigureAwait(false);
+            Assert.AreEqual(0, packageCacheClearExitCode, packageCacheClearStandardOutput);
 
             // restore the package from the package source that is populated by the local build
             var (packageRestoreExitCode, packageRestoreStandardOutput, _) = await Run("dotnet", $"restore \"{workingDirectory}\" --source \"{packageSourceDirectory}\" --no-cache --force");
