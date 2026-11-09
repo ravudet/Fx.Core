@@ -21,6 +21,18 @@
         [TestMethod]
         public async Task FX0001()
         {
+            //// compilation properties
+            //// nuget properties
+            ////    build
+            ////    package
+            ////    asset
+            //// package references
+            //// project references
+            //// binary references
+            //// content
+            //// embedded resources
+            //// targets, in build order
+
             //// TODO do you like the layout of the csproj file?
             //// TODO once you have this corect for fx.analyzers.globalconfig.tests, add it for each other nuget package
 
