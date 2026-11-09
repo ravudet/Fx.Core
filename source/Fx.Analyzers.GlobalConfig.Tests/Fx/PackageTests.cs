@@ -21,7 +21,6 @@
         [TestMethod]
         public async Task FX0001()
         {
-            //// TODO don't use a hardcoded path for the config file in the csproj
             //// TODO do you like the layout of the csproj file?
             //// TODO once you have this corect for fx.analyzers.globalconfig.tests, add it for each other nuget package
 
