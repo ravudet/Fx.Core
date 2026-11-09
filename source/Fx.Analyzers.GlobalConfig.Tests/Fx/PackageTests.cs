@@ -15,7 +15,7 @@
         public TestContext TestContext { get; set; }
 
         [TestMethod]
-        public async Task Fx_Analyzers()
+        public async Task FX0001()
         {
 
             //// TODO change test name
