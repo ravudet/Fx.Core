@@ -29,7 +29,6 @@
 
             var diagnosticSpecifier = DiagnosticSpecifiers.FX0001;
 
-
             var packageSourceDirectory = System.Configuration.ConfigurationManager.AppSettings["PackageSourceDirectory"];
             Assert.IsNotNull(packageSourceDirectory, "PackageSourceDirectory config value is not found");
 
