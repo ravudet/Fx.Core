@@ -25,6 +25,8 @@
             //// TODO do you like the layout of the csproj file?
             //// TODO once you have this corect for fx.analyzers.globalconfig.tests, add it for each other nuget package
 
+            //// TODO make sure to have a test for everything in playground
+
             var diagnosticSpecifier = DiagnosticSpecifiers.FX0001;
 
 

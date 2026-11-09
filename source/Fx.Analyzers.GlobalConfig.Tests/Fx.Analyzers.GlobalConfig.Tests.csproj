@@ -41,7 +41,7 @@
   </Target>
 
   <Target Name="UpdateOutputConfig" AfterTargets="Build">
-    <XmlPoke XmlInputPath="C:\github\Fx.Core\source\Fx.Analyzers.GlobalConfig.Tests\bin\Debug\net9.0\testhost.dll.config" Query="/configuration/appSettings/add[@key='PackageSourceDirectory']/@value" Value="$(PackageOutputPath)" />
+    <XmlPoke XmlInputPath="$(OutputPath)\testhost.dll.config" Query="/configuration/appSettings/add[@key='PackageSourceDirectory']/@value" Value="$(PackageOutputPath)" />
   </Target>
 
 </Project>
