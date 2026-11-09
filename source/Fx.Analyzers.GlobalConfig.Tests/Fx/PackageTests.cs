@@ -49,9 +49,6 @@
                 value,
                 diagnosticSpecifier.DiagnosticResult);
 
-            
-            //// TODO make the embedded cs files part of compilation when in the editor
-
         }
 
         public static async Task InstallGlobalConfigPackage( //// TODO put this somewhere else
