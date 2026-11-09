@@ -56,11 +56,11 @@
             await assembly.WriteManifestResource(codeResourceName, Path.Combine(workingDirectory, "class.cs")).ConfigureAwait(false);
 
             // build the project before the `.globalconfig` package is installed to make sure that everything builds successfully (meaning that, later, when the build fails, we know it is because of the `.globalconfig` package having been installed)
-            var (buildWithoutPackageExitCode, buildWithoutPackageStandardOutput, _) = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
+            var (buildWithoutPackageExitCode, buildWithoutPackageStandardOutput, _) = await ProcessEx.Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
             Assert.AreEqual(0, buildWithoutPackageExitCode, buildWithoutPackageStandardOutput);
 
             // add the `.globalconfig` package reference to the project; we allow prerelease so that locally built packages can be tested before release; we use no restoration so that the version numbers of the analyzer packages that the config package depends on will be ignored (this is because the version suffix of the local builds are timestamp dependent, and each project will have a different value)
-            var (packageInstallExitCode, packageInstallStandardOutput, _) = await Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\" --prerelease --no-restore");
+            var (packageInstallExitCode, packageInstallStandardOutput, _) = await ProcessEx.Run("dotnet", $"package add {globalConfigPackageName} --source \"{packageSourceDirectory}\" --project \"{workingDirectory}\" --prerelease --no-restore");
             Assert.AreEqual(0, packageInstallExitCode, packageInstallStandardOutput);
 
             //// TODO removed this temporarily because you had bad internet for a bit and it caused frequent restores when building your other projects; add it back
@@ -69,34 +69,13 @@
             Assert.AreEqual(0, packageCacheClearExitCode, packageCacheClearStandardOutput);*/
 
             // restore the package from the package source that is populated by the local build
-            var (packageRestoreExitCode, packageRestoreStandardOutput, _) = await Run("dotnet", $"restore \"{workingDirectory}\" --source \"{packageSourceDirectory}\" --no-cache --force");
+            var (packageRestoreExitCode, packageRestoreStandardOutput, _) = await ProcessEx.Run("dotnet", $"restore \"{workingDirectory}\" --source \"{packageSourceDirectory}\" --no-cache --force");
             Assert.AreEqual(0, packageRestoreExitCode, packageRestoreStandardOutput);
 
             // build the project again now that the `.globalconfig` package has been installed and ensure that there is a build failure related to the expected analyzer identifier
-            var (buildWithPackageExitCode, buildWithPackageStandardOutput, _) = await Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
+            var (buildWithPackageExitCode, buildWithPackageStandardOutput, _) = await ProcessEx.Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
             Assert.AreEqual(1, buildWithPackageExitCode, buildWithPackageStandardOutput);
             Assert.IsTrue(buildWithPackageStandardOutput.Contains(diagnosticResult.ToCompilerError()));
-        }
-
-        private static async Task<(int ExitCode, string StandardOutput, string StandardError)> Run(string command, string arguments)
-        {
-            using (var process = new Process())
-            {
-                process.StartInfo = new ProcessStartInfo()
-                {
-                    FileName = command,
-                    Arguments = arguments,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                };
-                process.Start(); //// TODO you needed to do this because `Process.Start()` return always returns true, but process.start(info) returns a nullable; how do you want to share this knowledge? you can't re-use the class name `process`
-
-                await process.WaitForExitAsync().ConfigureAwait(false);
-                var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
-                var standardError = await process.StandardError.ReadToEndAsync().ConfigureAwait(false);
-
-                return (process.ExitCode, standardOutput, standardError);
-            }
         }
     }
 
