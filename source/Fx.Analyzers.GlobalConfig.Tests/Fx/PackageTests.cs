@@ -89,7 +89,7 @@
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                 };
-                process.Start();
+                process.Start(); //// TODO you needed to do this because `Process.Start()` return always returns true, but process.start(info) returns a nullable; how do you want to share this knowledge? you can't re-use the class name `process`
 
                 await process.WaitForExitAsync().ConfigureAwait(false);
                 var standardOutput = await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false);
