@@ -48,7 +48,7 @@
 
         }
 
-        public static async Task InstallGlobalConfigPackage(
+        public static async Task InstallGlobalConfigPackage( //// TODO put this somewhere else
             Assembly assembly,
             string workingDirectory,
             string projectResourceName,
@@ -102,7 +102,7 @@
         }
     }
 
-    public static class Extensions
+    public static class Extensions //// TODO put this somewhere else
     {
         public static async Task WriteManifestResource(this Assembly assembly, string resourceName, string filePath)
         {
