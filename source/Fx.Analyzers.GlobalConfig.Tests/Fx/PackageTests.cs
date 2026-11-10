@@ -94,18 +94,5 @@
 
             return compilerError.ToString();
         }
-
-        public static async Task WriteManifestResource(this Assembly assembly, string resourceName, string filePath)
-        {
-            using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
-            {
-                if (resourceStream == null)
-                {
-                    throw new Exception("TODO");
-                }
-
-                await FileEx.WriteStreamToPath(filePath, resourceStream).ConfigureAwait(false);
-            }
-        }
     }
 }
