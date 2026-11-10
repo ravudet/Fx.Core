@@ -6,6 +6,7 @@
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
     using System.Text;
     using System.Threading.Tasks;
@@ -92,21 +93,6 @@
             compilerError.Append($"{diagnosticResult.Severity.ToString().ToLowerInvariant()} {diagnosticResult.Id}:");
 
             return compilerError.ToString();
-        }
-
-        public static bool TryFirst<TElement>(this IEnumerable<TElement> source, [MaybeNullWhen(false)] out TElement first)
-        {
-            using (var enumerator = source.GetEnumerator())
-            {
-                if (!enumerator.MoveNext())
-                {
-                    first = default(TElement);
-                    return false;
-                }
-
-                first = enumerator.Current;
-                return true;
-            }
         }
 
         public static async Task WriteManifestResource(this Assembly assembly, string resourceName, string filePath)
