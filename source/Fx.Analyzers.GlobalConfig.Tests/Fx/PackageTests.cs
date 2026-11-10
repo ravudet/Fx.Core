@@ -111,6 +111,8 @@
 
         public static async Task WriteManifestResource(this Assembly assembly, string resourceName, string filePath)
         {
+            //// TODO fileex.writetopath ?
+
             var directoryPath = Path.GetDirectoryName(filePath);
             if (string.IsNullOrEmpty(directoryPath))
             {
