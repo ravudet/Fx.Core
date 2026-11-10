@@ -1,14 +1,8 @@
 ﻿namespace Fx
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Linq;
     using System.Reflection;
-    using System.Text;
     using System.Threading.Tasks;
 
     using Microsoft.CodeAnalysis.Testing;
@@ -77,22 +71,6 @@
             var (buildWithPackageExitCode, buildWithPackageStandardOutput, _) = await ProcessEx.Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
             Assert.AreEqual(1, buildWithPackageExitCode, buildWithPackageStandardOutput);
             Assert.IsTrue(buildWithPackageStandardOutput.Contains(diagnosticResult.ToCompilerError()));
-        }
-    }
-
-    public static class Extensions //// TODO put these somewhere else
-    {
-        public static string ToCompilerError(this DiagnosticResult diagnosticResult)
-        {
-            var compilerError = new StringBuilder();
-            if (diagnosticResult.Spans.TryFirst(out var location))
-            {
-                compilerError.Append($"({location.Span.StartLinePosition.Line + 1},{location.Span.StartLinePosition.Character + 1}): ");
-            }
-
-            compilerError.Append($"{diagnosticResult.Severity.ToString().ToLowerInvariant()} {diagnosticResult.Id}:");
-
-            return compilerError.ToString();
         }
     }
 }
