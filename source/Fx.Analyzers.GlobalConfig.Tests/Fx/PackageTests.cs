@@ -111,14 +111,6 @@
 
         public static async Task WriteManifestResource(this Assembly assembly, string resourceName, string filePath)
         {
-            //// TODO fileex.writetopath ?
-
-            var directoryPath = Path.GetDirectoryName(filePath);
-            if (string.IsNullOrEmpty(directoryPath))
-            {
-                throw new Exception("TODO");
-            }
-
             using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
             {
                 if (resourceStream == null)
@@ -126,28 +118,7 @@
                     throw new Exception("TODO");
                 }
 
-                FileStream? fileStream = null;
-                try
-                {
-                    while (true)
-                    {
-                        try
-                        {
-                            fileStream = File.OpenWrite(filePath);
-                            break;
-                        }
-                        catch (DirectoryNotFoundException)
-                        {
-                            Directory.CreateDirectory(directoryPath);
-                        }
-                    }
-
-                    await resourceStream.CopyToAsync(fileStream).ConfigureAwait(false);
-                }
-                finally
-                {
-                    fileStream?.Dispose();
-                }
+                await FileEx.WriteStreamToPath(filePath, resourceStream).ConfigureAwait(false);
             }
         }
     }
