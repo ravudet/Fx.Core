@@ -28,9 +28,7 @@
   
   <ItemGroup>
     <Compile Include="_resources\**" />
-    <!--<Compile Remove="_resources\packagetest.csproj" />-->
     <EmbeddedResource Include="..\Fx.Analyzers.GlobalConfig\content\Fx.Analyzers.GlobalConfig.globalconfig" Link="Fx.Analyzers.GlobalConfig.globalconfig" />
-    <!--<EmbeddedResource Include="_resources\packagetest.csproj" />-->
   </ItemGroup>
   
   <Target Name="RemoveResources" BeforeTargets="BeforeBuild">
