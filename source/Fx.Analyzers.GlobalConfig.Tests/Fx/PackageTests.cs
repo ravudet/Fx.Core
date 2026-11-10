@@ -53,8 +53,8 @@
             string packageSourceDirectory,
             DiagnosticResult diagnosticResult)
         {
-            await assembly.WriteManifestResource(projectResourceName, Path.Combine(workingDirectory, "project.csproj")).ConfigureAwait(false);
-            await assembly.WriteManifestResource(codeResourceName, Path.Combine(workingDirectory, "class.cs")).ConfigureAwait(false);
+            await assembly.WriteManifestResourceToPath(projectResourceName, Path.Combine(workingDirectory, "project.csproj")).ConfigureAwait(false);
+            await assembly.WriteManifestResourceToPath(codeResourceName, Path.Combine(workingDirectory, "class.cs")).ConfigureAwait(false);
 
             // build the project before the `.globalconfig` package is installed to make sure that everything builds successfully (meaning that, later, when the build fails, we know it is because of the `.globalconfig` package having been installed)
             var (buildWithoutPackageExitCode, buildWithoutPackageStandardOutput, _) = await ProcessEx.Run("dotnet", $"build \"{workingDirectory}\"").ConfigureAwait(false);
@@ -95,7 +95,7 @@
             return compilerError.ToString();
         }
 
-        public static async Task WriteManifestResource(this Assembly assembly, string resourceName, string filePath)
+        public static async Task WriteManifestResourceToPath(this Assembly assembly, string resourceName, string filePath)
         {
             using (var resourceStream = assembly.GetManifestResourceStream(resourceName))
             {
