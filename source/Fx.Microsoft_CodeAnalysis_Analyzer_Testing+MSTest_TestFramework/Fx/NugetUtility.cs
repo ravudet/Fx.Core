@@ -1,13 +1,13 @@
-﻿using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
-
-using Microsoft.CodeAnalysis.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace Fx //// TODO find the right namespace
+﻿namespace Fx //// TODO find the right namespace
 {
+    using System.Diagnostics;
+    using System.IO;
+    using System.Reflection;
+    using System.Threading.Tasks;
+
+    using Microsoft.CodeAnalysis.Testing;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     public static class NugetUtility //// TODO find the right name
     {
         public static async Task InstallGlobalConfigPackage(

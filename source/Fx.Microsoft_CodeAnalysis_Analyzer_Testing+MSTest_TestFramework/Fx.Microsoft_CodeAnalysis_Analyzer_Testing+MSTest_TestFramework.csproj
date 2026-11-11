@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
+    <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_Analyzer_Testing\Fx.Microsoft_CodeAnalysis_Analyzer_Testing.csproj" />
   </ItemGroup>
 
 </Project>
