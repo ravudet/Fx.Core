@@ -16,6 +16,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fx.Core\Fx.Core.csproj" />
+    <!--
+    TODO write this down somewhere:
+    
+    If you depend on `{x}`, you "get to" and "must" depend on `Fx.{x}`. You "get to" because the dependency tree is flat and it allows for `Fx.{x}+{y}` to get access to static types with `Fx.{x}` and `Fx.{y}` that couldn't be shared otherwise. You "must" beause of binary compatibility where your project adding a transitive dependency on `Fx.{x}` might conflict with an existing dependency's transitive depedency on a specific version of `Fx.{x}` (For example, let's call your project `A`. You customer depdends on `A` and also on `B` which depends on `Fx.{x}`. If `A` "suddenly" adds a dependency on `Fx.{x}`, then this might cause a break for the customer if `A`'s required version of `Fx.{x}` is a break with `B`'s required version. TODO can't this be resolved by incrementing `A`'s major version when a dependency is added and whenever a dependency has a major version increase?). 
+    
+    The above rules are "cross" associative", meaning if you depend on `{x}+{y}`, you also "get to" and "must" depend on `Fx.{x}`, `Fx.{y}`, and `Fx.{x}+{y}`.
+    -->
     <ProjectReference Include="..\Fx.Microsoft_CodeAnalysis_Analyzer_Testing\Fx.Microsoft_CodeAnalysis_Analyzer_Testing.csproj" />
   </ItemGroup>
 
